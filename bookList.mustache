@@ -1,0 +1,32 @@
+    <ul class="thr-book-list">
+        {{#books}}
+        <li class="selectable" data-preview="{{preview.url}}" data-id="{{ID}}" lang="{{language}}" data-has-speech="{{has_speech}}" >
+            <a href="{{link}}">
+                <h2>{{title}}</h2>
+                <p class="thr-author">by {{author}}</p>
+                <img src="/wp-content/themes/thr3/images/{{rating}}stars_t.png" class="thr-stars" 
+                     {{#rating}}
+                     alt="{{rating}} stars" title="{{rating}} stars"
+                     {{/rating}}
+                     {{^rating}}
+                     alt="not yet rated" title="not yet rated"
+                     {{/rating}}
+                />
+                {{#reviewed}}
+                <img src="/wp-content/themes/thr3/images/reviewed_t.png" class="thr-reviewed"
+                     alt="reviewed for educational quality" title="Reviewed for educational quality" />
+                {{/reviewed}}
+                {{#caution}}
+                <img src="/wp-content/themes/thr3/images/caution_t.png" class="thr-caution"
+                     alt="rated C for caution" title="May not be appropriate for all readers" />
+                {{/caution}}
+                {{#cover}}
+                    <div class="thr-thumb-box">
+                        <img src="{{url}}" class="thr-thumb" style="width:{{pw}}%; height:{{ph}}%; padding-top: {{pm}}%" data-width="{{width}}" data-height="{{height}}" />
+                    </div>
+                {{/cover}}
+                <p class="thr-pages">{{pages}}</p>
+            </a>
+        </li>
+        {{/books}}
+    </ul>

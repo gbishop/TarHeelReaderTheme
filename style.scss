@@ -1,0 +1,497 @@
+/*   
+Theme Name: Tar Heel Reader
+Theme URI: http://tarheelreader.org
+Description: Started life as HtmlReset
+Author: Gary Bishop
+Author URI: http://www.cs.unc.edu/~gb/;
+Version: 1
+*/
+
+@import "reset";
+
+/* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
+body {
+	font-family: Helmet, Freesans, sans-serif;
+	font-size: 100%;
+	//width: 100%;
+	//height: 100%;
+}
+
+/* using local fonts? make sure to read up on Paul Irish's 
+	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
+
+a {color: #03f;}
+a:hover {color: #69f;}
+
+/* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
+::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
+::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+
+/*	j.mp/webkit-tap-highlight-color */
+a:link {-webkit-tap-highlight-color: #fcd700;} 
+
+ins {background-color: #fcd700; color: #000; text-decoration: none;}
+mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
+
+/* And here begins the Wordpress fun.
+-------------------------------------------------------------------------------*/
+
+#thr-home-icon {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	img {
+		width: 3em;
+		height: 3em;
+		opacity: 0.3;
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+#thr-settings-icon {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	img {
+		width: 3em;
+		height: 3em;
+		opacity: 0.3;
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.page-wrap {
+	width: 48em; 
+	margin: 0px auto;
+	display: none;
+	//height: 100%;
+}
+
+.active-page {
+	display: block;
+}
+
+#header {
+	position: relative;
+	width: 100%;
+	background-color: rgba(220, 220, 220, 0.5);
+	display: block;
+	margin: 0px auto;
+	text-align: center;
+	//opacity: 0.5;
+
+	h1 {
+		font-size: 1.3em;
+
+		a {
+			text-decoration: none;
+		}
+	}
+	.description {
+		font-size: 0.9em;
+	}
+
+	#thr-settings-icon img {
+		opacity: 1;
+	}
+	#thr-home-icon img {
+		opacity: 1;
+	}
+}
+
+#footer, #footer a {
+	width: 100%;
+	text-align: center;
+	font-size: 0.7em;
+	color: #888;
+}
+
+.thr-colors a, .thr-colors a:hover {
+	color: inherit;
+}
+
+.post {
+	float: left;
+	width: 33em;
+}
+
+.entry { margin-left: 1em;}
+.entry a { text-decoration: none;}
+.entry a:hover { text-decoration: underline;}
+
+#meta {}
+.postmetadata {}
+
+p {
+	margin-bottom: 0.5em;
+}
+
+li {
+	margin-left: 1.2em;
+	margin-bottom: 0.5em;
+}
+
+h2 {
+	font-size: 1.3em;
+	margin: 0.5em 0;
+}
+
+
+#sidebar {
+	float:right;
+	width:12.5em;
+	margin-left: 2em;
+
+	a {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	h2 {
+		font-size: 1.1em;
+	}
+
+	#search {
+		width: 12em;
+	}
+}
+
+#searchForm {
+	margin-top: 0.2em;
+	text-align: center;
+}
+
+#searchShowButton {
+	display: none; // displayed by media query if js is on and screen is small
+	height: 2em;
+	font-size: 1.5em;
+	border: solid black 1px;
+	text-decoration: none;
+	vertical-align: middle;
+	-webkit-appearance: push-button;
+	//font-size: 1.5em;
+	text-align: center;
+	color: black;
+}
+
+.selected {
+	border-color: red !important;
+}
+
+.thr-book-list {
+	display: block;
+	text-align: center;
+	margin-left: 0.3em;
+
+	li {
+		width: 11em;
+		height: 11em;
+		border: 1px black solid;
+		margin: 0.2em;
+		float: left;
+		text-align: center;
+		position: relative;
+		line-height: 1em;
+		overflow: hidden;
+	}
+
+	h2 {
+		height: 2.2em;
+		font-size: 1em;
+		line-height: 1.1em;
+		overflow: hidden;
+		margin: 0.2em 0 0 0;
+	}
+
+	.thr-author {
+		font-size: 0.8em;
+		overflow: hidden;
+		height: 1.3em;
+		margin: 0;
+	}
+
+	a, a:hover {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+	}
+
+	.thr-pages {
+		position: absolute;
+		bottom: 0.25em;
+		right: 0.625em;
+		font-size: 0.7em;
+	}
+
+	.thr-thumb-box {
+		width: 6.25em;
+		height: 6.25em;
+		margin: 0 auto;
+	}
+
+	.thr-stars {
+		width: 3em;
+		height: 1em;
+	}
+
+	.thr-reviewed {
+		width: 1em;
+		height: 1em;
+		position: absolute;
+		left: 0.5em;
+		bottom: 0.5em;
+	}
+
+	.thr-caution {
+		width: 1em;
+		height: 1em;
+		position: absolute;
+		left: 0.5em;
+		bottom: 1.5em;
+	}
+
+	#preview {
+		position: absolute;
+		margin: 0;
+		z-index: 10;
+	}
+
+}
+
+.thr-find-next, .thr-find-back {
+	display: block;
+	width: 11em;
+	height: 2em;
+	text-decoration: none;
+	border: 2px solid black;
+	text-align: center;
+}
+
+.thr-find-next {
+	float: right;
+	margin: 1em 1em 0 0;
+}
+
+.thr-find-back {
+	float: left;
+	margin: 1em 0 0 1em;
+}
+
+.thr-back-link {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+.thr-next-link {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+.thr-next-link, .thr-back-link {
+	width: 6em;
+	height: 4em;
+	display: block;
+	text-decoration: none;
+	border: 2px solid red;
+	position: absolute;
+	bottom: 0;
+	font-size: 1em;
+
+	img {
+		margin-top: 0.25em;
+		width: 1.5em;
+		height: 1.5em;
+	}
+}
+.thr-page-number {
+	position: absolute;
+	top: 0.25em;
+	right: 0.25em;
+	font-size: 1em;
+}
+
+/* This default page design is for browsers wtihout media queries. 
+   It is designed to fit in 768 by 600 pixels, that is 48em by 37.5em 
+*/
+.thr-page, .thr-end-page {
+	text-align: center;
+
+	h1 {
+		font-size: 2em;
+		height: 2.5em;
+		overflow: hidden;
+	}
+
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+}
+.thr-pic-box {
+	width: 29em;
+	height: 29em;
+	margin: auto;
+}
+.thr-credit {
+	font-size: 0.5em;
+	color: #DDD;
+}
+.thr-caption {
+	font-size: 2em;
+	line-height: 1.2em;
+	width: 100%;
+	height: 2.5em; // this is 5 native em tall because it is using the new font size. Why?
+	overflow: hidden;
+}
+
+
+
+.thr-choices {
+	width: 12em;
+	margin: auto;
+	font-size: 2em;
+	text-align: left;
+
+	li {
+		// margin-top: 1em;
+		padding: 0.25em 0.25em;
+	}
+
+	li:hover {
+		border: 0.25em solid;
+		padding: 0px 0px;
+	}
+}
+
+#settingsForm {
+	table {
+		margin-left: 1em;
+	}
+	td {
+		padding: 0 0.5em 0.5em 0;
+	}
+	select {
+		width: 100%;
+	}
+}
+
+.navgation {}
+.next-posts {}
+.prev-posts {}
+
+/* Print styles!
+-------------------------------------------------------------------------------*/
+@media print {
+
+
+
+}
+
+
+/* Media queries!
+-------------------------------------------------------------------------------*/
+
+/* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+
+/* include my automatically generated media queries */
+
+@import "mediaqueries";
+
+/* iPod all */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+	.js {
+		#searchForm {
+			input, select {
+				width: 100%;
+				height: 3em;
+				vertical-align: middle;
+				font-size: 1.2em;
+			}
+			display: none;
+		}
+
+		#searchShowButton {
+			display: block;
+		}
+	}
+
+}
+
+/* iPod landscape */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (min-width: 321px) and (max-width: 480px) {
+	body {
+		font-size: 10px;
+	}
+
+	.thr-pic-box {
+		width: 15em;
+		height: 15em;
+	}
+}
+
+/* iPod portrait */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (max-width: 320px) {
+	body {
+		font-size: 8.33px;
+	}
+	.page-wrap {
+		width: 35em;
+	}
+}
+
+/* iPad portrait */
+
+@media only screen 
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation: portrait) {
+	body {
+		font-size: 16px;
+	}
+	.thr-pic-box {
+		width: 48em;
+		height: 48em;
+	}
+}
+
+/* iPad landscape */
+
+@media only screen 
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (min-height: 650px) // prevent ie9 from hitting this one
+and (orientation: landscape) {		
+	body {
+		font-size: 16px;
+	}
+	.thr-pic-box {
+		width: 33em;
+		height: 33em;
+	}
+}
+
+.screen-reader-text {
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+.flashplayer {
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	width: 1px;
+	height: 1px;
+}
