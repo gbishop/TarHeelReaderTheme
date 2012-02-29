@@ -115,7 +115,7 @@ function thr_header($colors, $pageType, $heading, $disableCache=true) {
         // this is a ajax request for the page, give it the mininimum header
         echo "<div class=\"$pageType page-wrap\" data-title=\"";
         thr_title();
-        echo "\">\n";
+        echo "\" $body_style>\n";
 
     } else {
         // this is a request from a browser for the full page.

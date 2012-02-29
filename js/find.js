@@ -14,6 +14,7 @@ define(["jquery",
 
     // handle find locally
     function findRender(url, query) {
+        console.log('findRender', url);
         var view = {};
         view.heading = templates.heading();
         view.searchForm = templates.searchForm(); // sets the selects based on the state
@@ -50,7 +51,7 @@ define(["jquery",
                 }
                 var $content = page.getInactive('find-page');
                 $content.empty().append(templates.find(view));
-                page.transitionTo($content, {title: 'Find - Tar Heel Reader'});
+                page.transitionTo($content, {title: 'Find - Tar Heel Reader', colors: true});
             }
         });
         return true;
@@ -145,11 +146,6 @@ define(["jquery",
 
     function findConfigure(url, query) {
         // set the colors based on the state
-        $('body').css({
-            color: '#' + state.get('textColor'),
-            backgroundColor: '#' + state.get('pageColor'),
-            borderColor: '#' + state.get('textColor')
-        });
         // setup the show search button for small screens
         $('#searchShowButton').click(function(e){
             e.preventDefault();

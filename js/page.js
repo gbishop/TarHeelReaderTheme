@@ -1,6 +1,6 @@
 /* page.js manage multiple pages in the DOM */
 
-define(["jquery"], function($) {
+define(["jquery", "state"], function($, state) {
 
     // find or create an inactive page of the indicated type
     function getInactive(type) {
@@ -17,8 +17,24 @@ define(["jquery"], function($) {
     function transitionTo($page, options) {
         // fade out, deactive old, then activate new and fade it in
         // Update the title
-        options = $.extend({title:null, effect: 'fade'}, options);
-        $('.active-page').animate({opacity: 0}, 100, function() {
+        var defaults = {
+            title: null,
+            effect: 'fade',
+            colors: false
+        };
+        options = $.extend({title:null, effect:'fade'}, options);
+        $('.active-page').fadeOut(100, function() {
+            if (options.colors) {
+                $('body').css({
+                    color: '#' + state.get('textColor'),
+                    backgroundColor: '#' + state.get('pageColor'),
+                    borderColor: '#' + state.get('textColor')
+                });
+            } else if ($page.attr('style')) {
+                $('body').attr('style', $page.attr('style'));
+            } else {
+                $('body').attr('style', '');
+            }
             $(this).removeClass('active-page');
             var title = options.title || $page.attr('data-title');
             if (title) {
@@ -28,7 +44,7 @@ define(["jquery"], function($) {
                 }
                 catch ( Exception ) { }
             }
-            $page.css('opacity', 0).addClass('active-page').animate({opacity:1},100);
+            $page.addClass('active-page').fadeIn(100);
         
         });
     }
