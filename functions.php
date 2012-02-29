@@ -1,6 +1,14 @@
 <?php 
 
 require('state.php'); // manage shared state in a cookie so both client and host have access
+require_once "Mustache.php";
+require_once "Templates.php";
+$mustache = new Mustache();
+
+function mustache($name, $data=array()) {
+    global $mustache, $Templates;
+    return $mustache->render($Templates[$name], $data);
+}
 
 $LangNameToLangCode = array(
     'Arabic' => 'ar',
@@ -80,15 +88,6 @@ function thr_title() {
 function is_ajax() {
     return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
         || (isset($_GET['ajax']) && $_GET['ajax']);
-}
-
-require_once "Mustache.php";
-require_once "Templates.php";
-$mustache = new Mustache();
-
-function mustache($name, $data=array()) {
-    global $mustache, $Templates;
-    return $mustache->render($Templates[$name], $data);
 }
 
 // output the header with some tweaks 
@@ -368,13 +367,8 @@ function getGet($key, $default = null, $rule = null)
 }
 
 function flashAudio($mp3) { 
-    $tp = get_bloginfo('template_directory'); ?>
-    <object class="thr-player" type="application/x-shockwave-flash" data="<?php echo $tp ?>/player_mp3_mini.swf" width="1" height="1">
-         <param name="movie" value="<?php echo $tp ?>/player_mp3_mini.swf" />
-         <param name="bgcolor" value="#ff0000" />
-         <param name="FlashVars" value="mp3=<?php echo urlencode($mp3) ?>&amp;autoplay=1" />
-    </object>
-    <?php
+    $view = array('mp3' => urlencode($mp3));
+    echo mustache('flash', $view);
 }
 
 function setFormFromState($FormData) {
