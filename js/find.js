@@ -8,8 +8,9 @@ define(["jquery",
          "state",
          "keyboard",
          "speech",
+         "page",
          "jquery.scrollIntoView"
-        ], function($, route, templates, state, keys, speech) {
+        ], function($, route, templates, state, keys, speech, page) {
 
     // handle find locally
     function findRender(url, query) {
@@ -17,7 +18,6 @@ define(["jquery",
         view.heading = templates.heading();
         view.searchForm = templates.searchForm(); // sets the selects based on the state
 
-        $('#find-page').animate({opacity:0}, 500);
         // fetch the json for the current set of books
         $.ajax({
             url: url,
@@ -41,26 +41,16 @@ define(["jquery",
                     }
                 }
                 view.bookList = templates.bookList(data);
-                var page = state.get('page');
+                var pageNumber = state.get('page');
                 if (data.more) {
-                    view.nextLink = state.find_url(page + 1);
+                    view.nextLink = state.find_url(pageNumber + 1);
                 }
-                if (page > 1) {
-                    view.backLink = state.find_url(page - 1);
+                if (pageNumber > 1) {
+                    view.backLink = state.find_url(pageNumber - 1);
                 }
-                var $content = $('#find-page');
-                if ($content.length === 0) {
-                    $('body').append('<div id="find-page" class="page-wrap"></div>');
-                    $content = $('#find-page');
-                } else {
-                    $content.empty();
-                }
-                // TODO: use a better transition
-
-                $content.append(templates.find(view));
-                $('.active-page').removeClass('active-page');
-                $content.addClass('active-page');
-                $content.animate({opacity:1}, 500);
+                var $content = page.getInactive('find-page');
+                $content.empty().append(templates.find(view));
+                page.transitionTo($content);
             }
         });
         return true;

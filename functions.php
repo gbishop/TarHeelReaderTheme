@@ -92,12 +92,12 @@ function mustache($name, $data=array()) {
 }
 
 // output the header with some tweaks 
-function thr_header($colors, $pageId, $heading, $disableCache=true) {
+function thr_header($colors, $pageType, $heading, $disableCache=true) {
     // tell IE8 how to render and to prefer chrome frame
     header('X-UA_Compatible: IE=edge,chrome=1');
 
-    if (!$pageId) {
-        $pageId = 'server-page';
+    if (!$pageType) {
+        $pageType = 'server-page';
     }
 
     // disable caching on our dynamically generated pages
@@ -113,7 +113,7 @@ function thr_header($colors, $pageId, $heading, $disableCache=true) {
 
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header
-        echo "<div id=\"$pageId\" class=\"page-wrap active-page\" data-title=\"";
+        echo "<div class=\"$pageType page-wrap\" data-title=\"";
         thr_title();
         echo "\">\n";
 
@@ -121,7 +121,7 @@ function thr_header($colors, $pageId, $heading, $disableCache=true) {
         // this is a request from a browser for the full page.
         get_header();
         echo "<body $body_style >\n";
-        echo "<div id=\"$pageId\" class=\"page-wrap active-page\">\n";
+        echo "<div class=\"$pageType page-wrap active-page\">\n";
     }
     if ($heading) {
         echo mustache('heading');

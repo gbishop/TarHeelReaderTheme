@@ -1,4 +1,4 @@
-require([ "jquery", "route", "jquery.history" ], function($, route) {
+require([ "jquery", "route", "page", "jquery.history" ], function($, route, page) {
 
     var History = window.History,
         document = window.document;
@@ -68,8 +68,6 @@ require([ "jquery", "route", "jquery.history" ], function($, route) {
         // and forms
         $body.on('submit', 'form:not(.no-ajaxy)', hijaxLink);
 
-        // fool with routing
-
         // hook into state changes
         $(window).on('statechange', function() {
             var State = History.getState(),
@@ -82,20 +80,16 @@ require([ "jquery", "route", "jquery.history" ], function($, route) {
             // loading
             $body.addClass('loading');
 
-            // fade out the active page
-            $('.active-page').animate({opacity:0},500);
-
             // request the page
             $.ajax({
                 url: url,
                 data: { ajax: 1 }, // signal this is a ajax request right in the URL
                 success: function(data, textStatus, jqXHR) {
-                    $('.active-page').stop(true, true); // stop the animation, force it to finish
-                    // find or create the place to put it
-                    $('#server-page').remove();
-                    $('.active-page').removeClass('active-page');
-                    $('body').append(data);
-                    $('.active-page').css('opacity', 0).animate({opacity:1}, 500);
+                    var $newPage = $(data),
+                        type = $newPage.attr('class').match(/[-a-z]+-page/)[0],
+                        $oldPage = page.getInactive(type);
+                    $oldPage.replaceWith($newPage);
+                    page.transitionTo($newPage);
                     $(window).scrollTop(0);
 
                     // Update the title
