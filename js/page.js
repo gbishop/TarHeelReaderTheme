@@ -30,7 +30,7 @@ define(["jquery", "state"], function($, state) {
                     backgroundColor: '#' + state.get('pageColor'),
                     borderColor: '#' + state.get('textColor')
                 });
-            } else if ($page.attr('style')) {
+            } else if ($page.attr('style')) { // a hack until read gets handled locally
                 $('body').attr('style', $page.attr('style'));
             } else {
                 $('body').attr('style', '');
