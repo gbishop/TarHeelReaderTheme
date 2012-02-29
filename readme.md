@@ -6,8 +6,8 @@ Wordpress theme for the 2012 rewrite of [Tar Heel Reader](http://tarheelreader.o
 
 ## Credits
 
-[HTML5 Reset Wordpress Theme](https://github.com/murtaugh/HTML5-Reset)
-[Exclamation icon](http://www.iconarchive.com/show/red-orb-alphabet-icons-by-iconarchive/Exclamation-mark-icon.html)
-[Check icon](http://www.iconarchive.com/show/sleek-xp-basic-icons-by-deleket/Ok-icon.html)
+* [HTML5 Reset Wordpress Theme](https://github.com/murtaugh/HTML5-Reset)
+* [Exclamation icon](http://www.iconarchive.com/show/red-orb-alphabet-icons-by-iconarchive/Exclamation-mark-icon.html)
+* [Check icon](http://www.iconarchive.com/show/sleek-xp-basic-icons-by-deleket/Ok-icon.html)
 
 Lots of other stuff to credit here.
