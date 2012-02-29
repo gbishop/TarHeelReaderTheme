@@ -92,14 +92,6 @@ require([ "jquery", "route", "page", "jquery.history" ], function($, route, page
                     page.transitionTo($newPage);
                     $(window).scrollTop(0);
 
-                    // Update the title
-                    var title = $('.active-page').attr('data-title');
-                    document.title = title;
-                    try {
-                        document.getElementsByTagName('title')[0].innerHTML = title;
-                    }
-                    catch ( Exception ) { }
-
                     $body.removeClass('loading');
 
                     //$content.animate({opacity:1}, 500);

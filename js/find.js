@@ -50,7 +50,7 @@ define(["jquery",
                 }
                 var $content = page.getInactive('find-page');
                 $content.empty().append(templates.find(view));
-                page.transitionTo($content);
+                page.transitionTo($content, {title: 'Find - Tar Heel Reader'});
             }
         });
         return true;
