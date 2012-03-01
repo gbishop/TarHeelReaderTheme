@@ -4,7 +4,7 @@ $(function(){
 
     function remoteCommand() {
         $.ajax({
-            url: "/wp-content/themes/thr3/remoteCommand.php",
+            url: "/theme/remoteCommand.php",
             cache: false,
             timeout: 100000,
 

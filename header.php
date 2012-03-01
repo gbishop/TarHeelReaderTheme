@@ -22,23 +22,23 @@
 	<meta name="google-site-verification" content="">
 	<!-- Speaking of Google, don't forget to set your site up: http://google.com/webmasters -->
 	
-	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.ico">
+	<link rel="shortcut icon" href="/theme/images/favicon.ico">
 	<!-- This is the traditional favicon.
 		 - size: 16x16 or 32x32
 		 - transparency is OK
 		 - see wikipedia for info on browser support: http://mky.be/favicon/ -->
 		 
-	<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
 	<!-- The is the icon for iOS's Web Clip.
 		 - size: 57x57 for older iPhones, 72x72 for iPads, 114x114 for iPhone4's retina display (IMHO, just go ahead and use the biggest one)
 		 - To prevent iOS from applying its styles to the icon name it thusly: apple-touch-icon-precomposed.png
 		 - Transparency is not recommended (iOS will put a black BG behind the icon) -->
 	
 	<!-- CSS: screen, mobile & print are all in the same file -->
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+	<link rel="stylesheet" href="/theme/style.css">
 
 	<!--[if IE 7 ]>
-	<script src="<?php bloginfo('template_directory'); ?>/js/json2.js"></script>
+	<script src="/theme/js/json2.js"></script>
 	<script>
 		window.console = {
 		    log: function(a) { /*alert(a);*/ }
@@ -47,9 +47,9 @@
 	<![endif]-->
 
 	<!-- I'm not sure I need modernizr but include it for now. -->
-	<script src="<?php bloginfo('template_directory'); ?>/js/modernizr.js"></script>
+	<script src="/theme/js/modernizr.js"></script>
 	<!-- load everything else dynamically -->
-	<script data-main="<?php bloginfo('template_directory'); ?>/js/main" src="<?php bloginfo('template_directory'); ?>/js/require-jquery.js"></script>	
+	<script data-main="/theme/js/main" src="/theme/js/require-jquery.js"></script>	
 
 	<?php wp_head(); ?>
 	
