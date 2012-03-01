@@ -89,12 +89,11 @@ require([ "jquery", "route", "page", "history", "history.html4", "history.adapte
                         type = $newPage.attr('class').match(/[-a-z]+-page/)[0],
                         $oldPage = page.getInactive(type);
                     $oldPage.replaceWith($newPage);
-                    page.transitionTo($newPage);
-                    $(window).scrollTop(0);
-
-                    $body.removeClass('loading');
-
-                    //$content.animate({opacity:1}, 500);
+                    page.transitionTo($newPage).then(function() {
+                        $(window).scrollTop(0);
+                        route.doRoute(url, true);
+                        $body.removeClass('loading');
+                    });
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log('ajax request failed for: ', url);
