@@ -35,7 +35,7 @@ define(["jquery", "state"], function($, state) {
             } else {
                 $('body').attr('style', '');
             }
-            $(this).removeClass('active-page');
+            $('.active-page').removeClass('active-page');
             var title = options.title || $page.attr('data-title');
             if (title) {
                 document.title = title;
