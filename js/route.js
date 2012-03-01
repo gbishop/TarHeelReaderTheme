@@ -1,4 +1,4 @@
-define([ "jquery.history" ], function () {
+define([ ], function () {
 
     var rootUrl = null;
     var routeMap = [];

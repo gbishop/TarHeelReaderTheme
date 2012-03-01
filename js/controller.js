@@ -1,4 +1,4 @@
-require([ "jquery", "route", "page", "jquery.history" ], function($, route, page) {
+require([ "jquery", "route", "page", "history", "history.html4", "history.adapter.jquery" ], function($, route, page) {
 
     var History = window.History,
         document = window.document;
