@@ -15,7 +15,8 @@ define(["jquery",
     // handle find locally
     function findRender(url, query) {
         console.log('findRender', url);
-        var view = {};
+        var view = {},
+            $def = $.Deferred();
         view.heading = templates.heading();
         view.searchForm = templates.searchForm(); // sets the selects based on the state
 
@@ -51,10 +52,10 @@ define(["jquery",
                 }
                 var $content = page.getInactive('find-page');
                 $content.empty().append(templates.find(view));
-                page.transitionTo($content, {title: 'Find - Tar Heel Reader', colors: true});
+                $def.resolve($content);
             }
         });
-        return true;
+        return $def;
     }
     function moveSelection(direction) {
         // stop any animation of the preview and remove it
@@ -147,7 +148,8 @@ define(["jquery",
     function findConfigure(url, query) {
         // set the colors based on the state
         // setup the show search button for small screens
-        $('#searchShowButton').click(function(e){
+        var $page = $(this);
+        $page.find('#searchShowButton').click(function(e){
             e.preventDefault();
             $('#searchForm').slideDown('fast');
             $(this).hide();
@@ -162,8 +164,11 @@ define(["jquery",
             'c': '/find/select',
             'm': '/find/next'
         });
+
+        return {title: 'Find - Tar Heel Reader', colors: true};
     }
-    route.addRoute(/^\/find\/(\?.*)?$/, findRender, findConfigure);
+    route.add('render', /^\/find\/(\?.*)?$/, findRender);
+    route.add('init', /^\/find\/(\?.*)?$/, findConfigure);
 
     // I don't really need to define anything but I need it to be called before main runs.
     return {};
