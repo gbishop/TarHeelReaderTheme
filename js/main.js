@@ -1,4 +1,4 @@
-require([ "jquery", "route", "controller", "state", "find", "remoteCommand"], function($, route) {
+require([ "jquery", "route", "controller", "state", "find", "read", "remoteCommand"], function($, route) {
     // run any configure hooks
-    route.doRoute(window.location.href, true);
+    route.go('init', window.location.href);
 });

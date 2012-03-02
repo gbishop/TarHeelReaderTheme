@@ -34,7 +34,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         return result;
     }
 
-    function stateUpdate(url, qstring) {
+    function stateUpdate(url) {
 
         // get the old value
         var cookie = $.cookie('thr');
@@ -42,8 +42,9 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         state = cookieValue || $.extend({}, defaultState);
 
         // update from the query string
-        if (qstring) {
-            qvals = parseQuery(qstring);
+        var i = url.indexOf('?');
+        if (i > 0) {
+            qvals = parseQuery(url.substring(i+1));
             for(var k in state) {
                 if (k in qvals) {
                     state[k] = qvals[k];
@@ -56,10 +57,9 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         $.cookie('thr', JSON.stringify(state), {path: '/'});
     }
 
-    route.addRoute(/^[^?]*(\?.*)?$/, null, stateUpdate);
-
     return {
         get: function(key) { return state[key]; },
-        find_url: find_url
+        find_url: find_url,
+        update: stateUpdate
     };
 });
