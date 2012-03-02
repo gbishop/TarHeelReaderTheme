@@ -38,7 +38,6 @@ define(["jquery", "state"], function($, state) {
             }
             $('.active-page').removeClass('active-page');
             $page.css('display', 'none').addClass('active-page').fadeIn(0);
-            console.log('resolve');
             $def.resolve($page);
             var title = options.title || $page.attr('data-title');
             if (title) {
@@ -49,7 +48,6 @@ define(["jquery", "state"], function($, state) {
                 catch ( Exception ) { }
             }
         });
-        console.log('returning def');
         return $def;
     }
 
