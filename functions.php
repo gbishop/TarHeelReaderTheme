@@ -391,6 +391,22 @@ function THRoption($label, $value, $var) {
     echo "<option value=\"$value\" $selected>$label</option>\n";
 }
 
+function setImageSizes(&$c) {
+    if ($c['width'] > $c['height']) {
+        $c['pw'] = 100;
+        $c['ph'] = 100*$c['height']/$c['width'];
+        $c['pm'] = (100 - $c['ph']) / 2;
+    } else {
+        $c['ph'] = 100;
+        $c['pw'] = 100*$c['width']/$c['height'];
+        $c['pm'] = 0;
+    }
+}
+
+function pageLink($link, $page) {
+    if ($page == 1) return $link;
+    return $link . $page . '/';
+}
         // Translations can be filed in the /languages/ directory
         load_theme_textdomain( 'html5reset', TEMPLATEPATH . '/languages' );
  

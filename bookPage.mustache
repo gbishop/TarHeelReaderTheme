@@ -1,11 +1,9 @@
-<div class="thr-book-page page-wrap" data-title="{{title}}"
-     style="color:#{{textColor}}; background-color:#{{pageColor}}; border-color:#{{textColor}}">
     <a class="thr-home-icon" href="/" title="Go home">
-        <img src="/theme/images/home.png" width="32" height="32" alt="home" />
+        <img src="/theme/images/home.png" alt="home" />
     </a>
     {{#frontPage}}
     <a href="/reading-controls/?id={{ID}}" class="thr-settings-icon" title="Settings">
-        <img src="/theme/images/settings.png" width="32" height="32" alt="settings" />
+        <img src="/theme/images/settings.png" alt="settings" />
     </a>
     <h1>{{title}}</h1>
     <p class="thr-author">by {{author}}</p>
@@ -24,8 +22,7 @@
     <p class="thr-caption">{{caption}}</p>
     {{/frontPage}}
     <a class="thr-back-link" data-role="back" href="{{backLink}}">
-        <img src="/theme/images/BackArrow.png" width="24" height="24" />Go back</a>
+        <img src="/theme/images/BackArrow.png" />Go back</a>
     <a class="thr-next-link" href="{{nextLink}}">
-        <img src="/theme/images/NextArrow.png" width="24" height="24" />Next page</a>
+        <img src="/theme/images/NextArrow.png" />Next page</a>
     {{{audio}}}
-</div>

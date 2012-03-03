@@ -54,7 +54,7 @@ define(["jquery",
             view.textColor = state.get('textColor');
             view.pageColor = state.get('pageColor');
             view.ID = book.ID;
-            var $newPage;
+            var newPage;
             var N = book.pages.length;
             if (pageNumber <= N) {
                 view.author = book.author;
@@ -69,7 +69,7 @@ define(["jquery",
                     view.nextLink = pageLink(book.link, pageNumber+1);
                 }
                 templates.setImageSizes(view.image);
-                $newPage = $(templates.bookPage(view));
+                newPage = templates.bookPage(view);
             } else {
                 if (pageNumber === N+1) {
                     view.question = "What would you like to do now?";
@@ -109,11 +109,11 @@ define(["jquery",
                 } else {
                     view.question = 'How did we get here?';
                 }
-                $newPage = $(templates.choicePage(view));
+                newPage = templates.choicePage(view);
             }
             var $oldPage = page.getInactive('thr-book-page');
-            $oldPage.replaceWith($newPage);
-            $def.resolve($newPage);
+            $oldPage.empty().html(newPage);
+            $def.resolve($oldPage);
         });
         return $def;
     }

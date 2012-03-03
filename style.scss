@@ -305,9 +305,10 @@ h2 {
 	font-size: 1em;
 
 	img {
-		margin-top: 0.25em;
+		margin: 0.25em auto 0 auto;
 		width: 1.5em;
 		height: 1.5em;
+		display: block;
 	}
 }
 .thr-page-number {
@@ -371,10 +372,11 @@ h2 {
 			padding: 0px 0px;
 		}
 	}
-	.js .thr-pic {	// hide the picture initially when javascript is enabled so we can size it without a jump
-		display: none;
-	}
 }
+.js .thr-pic {	// hide the picture initially when javascript is enabled so we can size it without a jump
+	display: none;
+}
+
 #settingsForm {
 	table {
 		margin-left: 1em;
