@@ -21,4 +21,4 @@ for fname in sys.argv[1:]:
     templates[key] = value
 
 file('Templates.php', 'w').write(php_dumps(templates))
-#file('Templates.json', 'w').write(json.dumps(templates))
+file('Templates.json', 'w').write(json.dumps(templates))

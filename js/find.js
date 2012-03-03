@@ -17,7 +17,7 @@ define(["jquery",
         console.log('findRender', url);
         var view = {},
             $def = $.Deferred();
-        view.heading = templates.heading();
+        view.heading = templates.get('heading');
         view.searchForm = templates.searchForm(); // sets the selects based on the state
 
         // fetch the json for the current set of books
@@ -42,7 +42,7 @@ define(["jquery",
                         c.pm = 0;
                     }
                 }
-                view.bookList = templates.bookList(data);
+                view.bookList = templates.render('bookList', data);
                 var pageNumber = state.get('page');
                 if (data.more) {
                     view.nextLink = state.find_url(pageNumber + 1);
@@ -51,7 +51,7 @@ define(["jquery",
                     view.backLink = state.find_url(pageNumber - 1);
                 }
                 var $content = page.getInactive('find-page');
-                $content.empty().append(templates.find(view));
+                $content.empty().append(templates.render('find', view));
                 $def.resolve($content, {title: 'Find - Tar Heel Reader', colors: true});
             }
         });

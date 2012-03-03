@@ -1,18 +1,13 @@
 define([ "state",
          "requirejs.mustache",
-         "text!../form.mustache",
-         "json!../searchForm.json",
-         "text!../heading.mustache",
-         "text!../bookList.mustache",
-         "text!../find.mustache",
-         "text!../preview.mustache",
-         "text!../flash.mustache",
-         "text!../bookPage.mustache",
-         "text!../choicePage.mustache"
+         "json!../Templates.json",
+         "json!../searchForm.json"
          ],
-        function(state, mustache, form, searchD, heading, bookList, find, preview, flash, bookPage, choicePage) {
+        function(state, mustache, Templates, searchD) {
             return {
-                mustache: mustache,
+                render: function(name, view) {
+                    return mustache.render(Templates[name], view);
+                },
                 searchForm: function() {
                     for (var j=0; j<searchD.controls.length; j++) {
                         var control = searchD.controls[j];
@@ -26,24 +21,10 @@ define([ "state",
                             }
                         }
                     }
-                    return mustache.render(form, searchD);
+                    return mustache.render(Templates.form, searchD);
                 },
-                heading: function() { return heading; },
-                bookList: function(data) { return mustache.render(bookList, data); },
-                find: function(view) {
-                  return mustache.render(find, view);
-                },
-                preview: function(book) {
-                    return mustache.render(preview, book);
-                },
-                flash: function(mp3) {
-                    return mustache.render(flash, { mp3: encodeURIComponent(mp3) });
-                },
-                bookPage: function(view) {
-                    return mustache.render(bookPage, view);
-                },
-                choicePage: function(view) {
-                    return mustache.render(choicePage, view);
+                get: function(name) {
+                    return Templates[name];
                 },
                 setImageSizes: function(p) {
                     if (p.width > p.height) {

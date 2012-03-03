@@ -48,7 +48,7 @@ define(["jquery", "templates" ], function($, templates) {
 
         if (audio === 'flash') {
             $('.flashplayer').remove();
-            $('body').append(templates.flash(mp3));
+            $('body').append(templates.render('flash', mp3));
         } else {
             audio.src = mp3;
             audio.load();

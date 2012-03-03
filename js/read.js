@@ -69,7 +69,7 @@ define(["jquery",
                     view.nextLink = pageLink(book.link, pageNumber+1);
                 }
                 templates.setImageSizes(view.image);
-                newPage = templates.bookPage(view);
+                newPage = templates.render('bookPage', view);
             } else {
                 if (pageNumber === N+1) {
                     view.question = "What would you like to do now?";
@@ -109,7 +109,7 @@ define(["jquery",
                 } else {
                     view.question = 'How did we get here?';
                 }
-                newPage = templates.choicePage(view);
+                newPage = templates.render('choicePage', view);
             }
             var $oldPage = page.getInactive('thr-book-page');
             $oldPage.empty().html(newPage);
