@@ -2,7 +2,7 @@
 
 require('state.php'); // manage shared state in a cookie so both client and host have access
 require_once "Mustache.php";
-require_once "Templates.php";
+$Templates = json_decode(file_get_contents('Templates.json', FILE_USE_INCLUDE_PATH), true);
 $mustache = new Mustache();
 
 function mustache($name, $data=array()) {

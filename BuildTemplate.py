@@ -20,5 +20,5 @@ for fname in sys.argv[1:]:
     key = osp.basename(osp.splitext(fname)[0])
     templates[key] = value
 
-file('Templates.php', 'w').write(php_dumps(templates))
+#file('Templates.php', 'w').write(php_dumps(templates))
 file('Templates.json', 'w').write(json.dumps(templates))
