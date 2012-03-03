@@ -6,9 +6,11 @@ define([ "state",
          "text!../bookList.mustache",
          "text!../find.mustache",
          "text!../preview.mustache",
-         "text!../flash.mustache"
+         "text!../flash.mustache",
+         "text!../bookPage.mustache",
+         "text!../choicePage.mustache"
          ],
-        function(state, mustache, form, searchD, heading, bookList, find, preview, flash) {
+        function(state, mustache, form, searchD, heading, bookList, find, preview, flash, bookPage, choicePage) {
             return {
                 mustache: mustache,
                 searchForm: function() {
@@ -36,6 +38,23 @@ define([ "state",
                 },
                 flash: function(mp3) {
                     return mustache.render(flash, { mp3: encodeURIComponent(mp3) });
+                },
+                bookPage: function(view) {
+                    return mustache.render(bookPage, view);
+                },
+                choicePage: function(view) {
+                    return mustache.render(choicePage, view);
+                },
+                setImageSizes: function(p) {
+                    if (p.width > p.height) {
+                        p.pw = 100;
+                        p.ph = 100*p.height/p.width;
+                        p.pm = (100 - p.ph) / 2;
+                    } else {
+                        p.ph = 100;
+                        p.pw = 100*p.width/p.height;
+                        p.pm = 0;
+                    }
                 }
             };
         });

@@ -83,10 +83,10 @@ require([ "jquery",
             state.update(url);
 
             // if there is a local handler for this url call it
-            var $def = route.go('render', url);
+            var $render = route.go('render', url);
 
-            if ($def === false) { // no local handler was found, fetch the page from the server
-                $def = $.Deferred();
+            if ($render === false) { // no local handler was found, fetch the page from the server
+                $render = $.Deferred();
 
                 // request the page
                 $.ajax({
@@ -97,26 +97,23 @@ require([ "jquery",
                             type = $newPage.attr('class').match(/[-a-z]+-page/)[0],
                             $oldPage = page.getInactive(type);
                         $oldPage.replaceWith($newPage);
-                        $def.resolve($newPage);
+                        $render.resolve($newPage);
                     },
 
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log('ajax request failed for: ', url);
                         document.location.href = url;
-                        $def.reject();
+                        $render.reject();
                     }
                 }); // end ajax
             }
             // now the deferred with be resolved when the page has been rendered either locally or from the server
-            $def.then(function($newPage) {
-                // see if there is a local handler to initialize the page
-                var $def2 = route.go('init', url, $newPage);
-                // allow (but don't require) it to return a deferred
-                $.when($def2).then(function(options){
-                    // do the page transition
-                    page.transitionTo($newPage, options).then(function() {
-                        $(window).scrollTop(0);
-                    });
+            $render.then(function($newPage, options) {
+                console.log('newPage', $newPage);
+                // transition to the new page
+                page.transitionTo($newPage).then(function($newPage) {
+                    route.go('init', url, $newPage);
+                    $(window).scrollTop(0);
                 });
             });
         }); // end on statechange

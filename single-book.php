@@ -1,6 +1,6 @@
 <?php thr_header(true, 'thr-book-page', false); ?>
 
-    <a id="thr-home-icon" href="/" title="Go home">
+    <a class="thr-home-icon" href="/" title="Go home">
         <img src="/theme/images/home.png" width=32 height=32 alt="home"/>
     </a>
     <?php if (have_posts()): 
@@ -25,10 +25,8 @@
             }
             ?>
 
-            <article>
                 <?php if ($page == 1): ?>
-                    <div class="thr-cover-page thr-page" id="book-<?php the_ID(); ?>-1">
-                    <a href="/reading-controls/?id=<?php echo $ID ?>" id="thr-settings-icon" title="Settings"><img src="/theme/images/settings.png" width=32 height=32 alt="settings"/></a>
+                    <a href="/reading-controls/?id=<?php echo $ID ?>" class="thr-settings-icon" title="Settings"><img src="/theme/images/settings.png" width=32 height=32 alt="settings"/></a>
                     <h1><?php the_title(); ?></h1>
                     <p class="thr-author">by <?php echo $book['author']; ?></p>
                     <?php echo_img($pages[1], 'thr-pic', true); ?>
@@ -37,7 +35,6 @@
                     <a class="thr-next-link" href="<?php echo $link . ($page+1) . '/'; ?>"><img src="/theme/images/NextArrow.png" width="24" height="24" />Next page</a>
                     <?php if ($mp3) flashAudio($mp3) ?>
                 <?php elseif ($page <= $Npages): ?>
-                    <div class="thr-page" id="book-<?php the_ID(); ?>-<?php echo $page; ?>">
                     <p class="thr-page-number"><?php echo $page; ?></p>
                     <?php echo_img($pages[$page-1], 'thr-pic', true); ?>
                     <a class="thr-credit" href="/photo-credits/?id=<?php echo $ID; ?>">Photo Credits</a>
@@ -47,7 +44,6 @@
                     <?php if ($mp3) flashAudio($mp3) ?>
 
                 <?php elseif ($page == $Npages+1): ?>
-                    <div class="thr-end-page" id="book-<?php the_ID(); ?>-whatnow">
                     <h1 class="thr-question">What would you like to do now?</h1>
                     <ul class="thr-choices">
                         <li><a href="<?php echo $link ?>">Read this book again.</a></li>
@@ -55,7 +51,6 @@
                         <li><a href="<?php find_url(); ?>">Read another book.</a></li>
                     </ul>
                 <?php elseif ($page == $Npages+2): ?>
-                    <div class="thr-end-page" id="book-<?php the_ID(); ?>-rate">
                     <h1 class="thr-question">How do you rate this book?</h1>
                     <ul class="thr-choices">
                         <?php $np = $page + 1; $lk = $link . $np . '/?rating='; ?>
@@ -68,7 +63,6 @@
                     if ($rating) {
                         list($avgrating, $nratings) = update_book_rating($post->ID, $rating);
                     } ?>
-                    <div class="thr-end-page" id="book-<?php the_ID(); ?>-thanks">
                     <h1>Thank you for your opinion.</h1>
                     <img src=""
                     <p class="thr-rating">Average rating: <?php echo $avgrating; ?></p>
@@ -80,8 +74,6 @@
                 <?php else: ?>
                     Outside
                 <?php endif; ?>
-                </div>
-            </article>
 
     <?php endwhile; endif; ?>
 <?php thr_footer(false, false); ?>

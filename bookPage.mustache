@@ -1,0 +1,31 @@
+<div class="thr-book-page page-wrap" data-title="{{title}}"
+     style="color:#{{textColor}}; background-color:#{{pageColor}}; border-color:#{{textColor}}">
+    <a class="thr-home-icon" href="/" title="Go home">
+        <img src="/theme/images/home.png" width="32" height="32" alt="home" />
+    </a>
+    {{#frontPage}}
+    <a href="/reading-controls/?id={{ID}}" class="thr-settings-icon" title="Settings">
+        <img src="/theme/images/settings.png" width="32" height="32" alt="settings" />
+    </a>
+    <h1>{{title}}</h1>
+    <p class="thr-author">by {{author}}</p>
+    {{/frontPage}}
+    {{^frontPage}}
+    <p class="thr-page-number">{{pageNumber}}</p>
+    {{/frontPage}}
+    <div class="thr-pic-box">
+        {{#image}}
+        <img src="{{url}}" class="thr-pic" style="width:{{pw}}%; height:{{ph}}%; padding-top: {{pm}}%" 
+             data-width="{{width}}" data-height="{{height}}" />
+        {{/image}}
+    </div>
+    <a class="thr-credit" href="/photo-credits/?id={{ID}}">Photo credits</a>
+    {{^frontPage}}
+    <p class="thr-caption">{{caption}}</p>
+    {{/frontPage}}
+    <a class="thr-back-link" data-role="back" href="{{backLink}}">
+        <img src="/theme/images/BackArrow.png" width="24" height="24" />Go back</a>
+    <a class="thr-next-link" href="{{nextLink}}">
+        <img src="/theme/images/NextArrow.png" width="24" height="24" />Next page</a>
+    {{{audio}}}
+</div>

@@ -36,7 +36,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 /* And here begins the Wordpress fun.
 -------------------------------------------------------------------------------*/
 
-#thr-home-icon {
+.thr-home-icon {
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -50,7 +50,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 	}
 }
 
-#thr-settings-icon {
+.thr-settings-icon {
 	position: absolute;
 	top: 0px;
 	right: 0px;
@@ -95,10 +95,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 		font-size: 0.9em;
 	}
 
-	#thr-settings-icon img {
+	.thr-settings-icon img {
 		opacity: 1;
 	}
-	#thr-home-icon img {
+	.thr-home-icon img {
 		opacity: 1;
 	}
 }
@@ -320,7 +320,7 @@ h2 {
 /* This default page design is for browsers wtihout media queries. 
    It is designed to fit in 768 by 600 pixels, that is 48em by 37.5em 
 */
-.thr-page, .thr-end-page {
+.thr-book-page {
 	text-align: center;
 
 	h1 {
@@ -329,47 +329,52 @@ h2 {
 		overflow: hidden;
 	}
 
-	img {
-		display: block;
-		margin: 0 auto;
+	.thr-pic-box {
+		width: 29em;
+		height: 29em;
+		margin: auto;
+	}
+	.thr-credit {
+		font-size: 0.5em;
+		color: #DDD;
+	}
+	.thr-caption {
+		font-size: 2em;
+		line-height: 1.2em;
+		width: 100%;
+		height: 2.5em; // this is 5 native em tall because it is using the new font size. Why?
+		overflow: hidden;
+		margin-bottom: 0;
+	}
+	.thr-choices {
+		width: 12em;
+		margin: auto;
+		font-size: 2em;
+		text-align: left;
+
+		li {
+			padding: 0.25em 0.25em;
+			.thr-stars {
+				width: 3em; // font-size is 2em so these are halved
+				height: 1em;
+				margin-right: 1em;
+			}
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		li:hover {
+			border: 0.25em solid;
+			padding: 0px 0px;
+		}
+	}
+	.js .thr-pic {	// hide the picture initially when javascript is enabled so we can size it without a jump
+		display: none;
 	}
 }
-.thr-pic-box {
-	width: 29em;
-	height: 29em;
-	margin: auto;
-}
-.thr-credit {
-	font-size: 0.5em;
-	color: #DDD;
-}
-.thr-caption {
-	font-size: 2em;
-	line-height: 1.2em;
-	width: 100%;
-	height: 2.5em; // this is 5 native em tall because it is using the new font size. Why?
-	overflow: hidden;
-}
-
-
-
-.thr-choices {
-	width: 12em;
-	margin: auto;
-	font-size: 2em;
-	text-align: left;
-
-	li {
-		// margin-top: 1em;
-		padding: 0.25em 0.25em;
-	}
-
-	li:hover {
-		border: 0.25em solid;
-		padding: 0px 0px;
-	}
-}
-
 #settingsForm {
 	table {
 		margin-left: 1em;
