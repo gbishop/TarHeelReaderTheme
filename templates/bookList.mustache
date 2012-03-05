@@ -3,22 +3,22 @@
         <li class="selectable" data-preview="{{preview.url}}" data-id="{{ID}}" lang="{{language}}" data-has-speech="{{has_speech}}" >
             <a href="{{link}}">
                 <h2>{{title}}</h2>
-                <p class="thr-author">by {{author}}</p>
+                <p class="thr-author">_(by {{author}})</p>
                 <img src="/theme/images/{{rating}}stars_t.png" class="thr-stars" 
                      {{#rating}}
-                     alt="{{rating}} stars" title="{{rating}} stars"
+                     alt="{{rating}} stars" title="_({{rating}} stars)"
                      {{/rating}}
                      {{^rating}}
-                     alt="not yet rated" title="not yet rated"
+                     alt="not yet rated" title="_(not yet rated)"
                      {{/rating}}
                 />
                 {{#reviewed}}
                 <img src="/theme/images/reviewed_t.png" class="thr-reviewed"
-                     alt="reviewed for educational quality" title="Reviewed for educational quality" />
+                     alt="reviewed for educational quality" title="_(Reviewed for educational quality.)" />
                 {{/reviewed}}
                 {{#caution}}
                 <img src="/theme/images/caution_t.png" class="thr-caution"
-                     alt="rated C for caution" title="May not be appropriate for all readers" />
+                     alt="rated C for caution" title="_(May not be appropriate for all readers.)" />
                 {{/caution}}
                 {{#cover}}
                     <div class="thr-thumb-box">

@@ -13,8 +13,13 @@ Version: 1
 body {
 	font-family: Helmet, Freesans, sans-serif;
 	font-size: 100%;
-	//width: 100%;
-	//height: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	width: 100%;
+	height: 100%;
 }
 
 /* using local fonts? make sure to read up on Paul Irish's 
@@ -64,11 +69,17 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 	}
 }
 
-.page-wrap {
+.content-wrap {
 	width: 48em; 
 	margin: 0px auto;
+}
+
+.page-wrap {
+	width: 100%;
+	height: 100%;
 	display: none;
-	//height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .active-page {
@@ -494,7 +505,7 @@ h2 {
 	body {
 		font-size: 8.33px;
 	}
-	.page-wrap {
+	.content-wrap {
 		width: 35em;
 	}
 }

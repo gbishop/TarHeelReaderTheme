@@ -1,75 +1,75 @@
 {   "action": "/find/",
     "method": "get",
     "controls": [
-        {   "label": "Search for",
+        {   "label": "_(Search for)",
             "name" : "search",
             "input": true,
             "type": "search",
-            "description": "Enter text to search"
+            "description": "_(Enter text to search)"
         },
-        {   "label": "Category",
+        {   "label": "_(Category)",
             "name": "category",
             "select": true,
             "options": [
-                { "label": "All Categories", "value": "" },
-                { "label": "Alphabet", "value": "Alph" },
-                { "label": "Animals and Nature", "value": "Anim" },
-                { "label": "Art and Music", "value": "ArtM" },
-                { "label": "Biographies", "value": "Biog" },
-                { "label": "Fairy and Folk Tales", "value": "Fair" },
-                { "label": "Fiction", "value": "Fict" },
-                { "label": "Foods", "value": "Food" },
-                { "label": "Health", "value": "Heal" },
-                { "label": "History", "value": "Hist" },
-                { "label": "Holidays", "value": "Holi" },
-                { "label": "Math and Science", "value": "Math" },
-                { "label": "Nursery Rhymes", "value": "Nurs" },
-                { "label": "People and Places", "value": "Peop" },
-                { "label": "Poetry", "value": "Poet" },
-                { "label": "Recreation and Leisure", "value": "Recr" },
-                { "label": "Sports", "value": "Spor" }
+                { "label": "_(All Categories)", "value": "" },
+                { "label": "_(Alphabet)", "value": "Alph" },
+                { "label": "_(Animals and Nature)", "value": "Anim" },
+                { "label": "_(Art and Music)", "value": "ArtM" },
+                { "label": "_(Biographies)", "value": "Biog" },
+                { "label": "_(Fairy and Folk Tales)", "value": "Fair" },
+                { "label": "_(Fiction)", "value": "Fict" },
+                { "label": "_(Foods)", "value": "Food" },
+                { "label": "_(Health)", "value": "Heal" },
+                { "label": "_(History)", "value": "Hist" },
+                { "label": "_(Holidays)", "value": "Holi" },
+                { "label": "_(Math and Science)", "value": "Math" },
+                { "label": "_(Nursery Rhymes)", "value": "Nurs" },
+                { "label": "_(People and Places)", "value": "Peop" },
+                { "label": "_(Poetry)", "value": "Poet" },
+                { "label": "_(Recreation and Leisure)", "value": "Recr" },
+                { "label": "_(Sports)", "value": "Spor" }
             ]
         },
-        {   "label": "Review status",
+        {   "label": "_(Review status)",
             "name": "reviewed",
             "select": true,
             "options": [
-                { "label": "Reviewed only", "value": "R" },
-                { "label": "Include unreviewed", "value": "" }
+                { "label": "_(Reviewed only)", "value": "R" },
+                { "label": "_(Include unreviewed)", "value": "" }
             ]
         },
-        {   "label": "Audience",
+        {   "label": "_(Audience)",
             "name": "audience",
             "select": true,
             "options": [
-                { "label": "Rated E/Everybody", "value": "E" },
-                { "label": "Rated C/Caution", "value": "C" },
-                { "label": "Any rating", "value": "" }
+                { "label": "_(Rated E/Everybody)", "value": "E" },
+                { "label": "_(Rated C/Caution)", "value": "C" },
+                { "label": "_(Any rating)", "value": "" }
             ]
         },
-        {   "label": "Language",
+        {   "label": "_(Language)",
             "name": "language",
             "select": true,
             "options": [
-                { "label": "Arabic", "value": "ar" },
-                { "label": "Basque", "value": "eu" },
-                { "label": "Catalan", "value": "ca" },
-                { "label": "Danish", "value": "da" },
-                { "label": "English", "value": "en" },
-                { "label": "Filipino", "value": "fil" },
-                { "label": "Finnish", "value": "fi" },
-                { "label": "French", "value": "fr" },
-                { "label": "Galician", "value": "gl" },
-                { "label": "German", "value": "de" },
-                { "label": "Greek", "value": "el" },
-                { "label": "Hebrew", "value": "he" },
-                { "label": "Italian", "value": "it" },
-                { "label": "Japanese", "value": "ja" },
-                { "label": "Latin", "value": "la" },
-                { "label": "Polish", "value": "pl" },
-                { "label": "Portuguese", "value": "pt" },
-                { "label": "Spanish", "value": "es" },
-                { "label": "Swedish", "value": "sv" }
+                { "label": "_(Arabic)", "value": "ar" },
+                { "label": "_(Basque)", "value": "eu" },
+                { "label": "_(Catalan)", "value": "ca" },
+                { "label": "_(Danish)", "value": "da" },
+                { "label": "_(English)", "value": "en" },
+                { "label": "_(Filipino)", "value": "fil" },
+                { "label": "_(Finnish)", "value": "fi" },
+                { "label": "_(French)", "value": "fr" },
+                { "label": "_(Galician)", "value": "gl" },
+                { "label": "_(German)", "value": "de" },
+                { "label": "_(Greek)", "value": "el" },
+                { "label": "_(Hebrew)", "value": "he" },
+                { "label": "_(Italian)", "value": "it" },
+                { "label": "_(Japanese)", "value": "ja" },
+                { "label": "_(Latin)", "value": "la" },
+                { "label": "_(Polish)", "value": "pl" },
+                { "label": "_(Portuguese)", "value": "pt" },
+                { "label": "_(Spanish)", "value": "es" },
+                { "label": "_(Swedish)", "value": "sv" }
             ]
         },
         {   "name": "page",
@@ -79,7 +79,7 @@
         },
         {   "input": true,
             "type": "submit",
-            "value": "Search"
+            "value": "_(Search)"
         }
     ]
 }

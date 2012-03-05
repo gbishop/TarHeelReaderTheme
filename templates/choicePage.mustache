@@ -1,0 +1,32 @@
+    <a class="thr-home-icon" href="/" title="Go home">
+        <img src="/theme/images/home.png" alt="home" />
+    </a>
+    {{#what}}
+    <h1 class="thr-question" data-speech="whatnow">_(What would you like to do now?)</h1>
+    <ul class="thr-choices">
+        <li data-speech="again"><a href="{{link}}">_(Read this book again.)</a></li>
+        <li data-speech="rate"><a href="{{link}}{{nextPage}}/">_(Rate this book.)</a></li>
+        <li data-speech="another"><a href="{{findLink}}">_(Read another book.)</a></li>
+    </ul>
+    {{/what}}
+    {{#rate}}
+    <h1 class="thr-question" data-speech="howrate">_(How do you rate this book?)</h1>
+    <ul class="thr-choices">
+        <li data-speech="1star"><a href="{{link}}{{nextPage}}/?rating=1">
+            <img src="/theme/images/1stars.png" class="thr-stars">_(1 star)</a></li>
+        <li data-speech="2stars"><a href="{{link}}{{nextPage}}/?rating=2">
+            <img src="/theme/images/2stars.png" class="thr-stars">_(2 stars)</a></li>
+        <li data-speech="3stars"><a href="{{link}}{{nextPage}}/?rating=3">
+            <img src="/theme/images/3stars.png" class="thr-stars">_(3 stars)</a></li>
+    </ul>
+    {{/rate}}
+    {{#thanks}}
+    <h1 class="thr-thanks">_(Thank you for your opinion.)</h1>
+    <img src="/theme/images/{{rating}}stars.png" />
+    <p>_(Average Rating): {{rating}}</p>
+    <h1 class="thr-question" data-speech="whatnow">_(What would you like to do now?)</h1>
+    <ul class="thr-choices">
+        <li data-speech="again"><a href="{{link}}">_(Read this book again.)</a></li>
+        <li data-speech="another"><a href="{{findLink}}">_(Read another book.)</a></li>
+    </ul>
+    {{/thanks}}

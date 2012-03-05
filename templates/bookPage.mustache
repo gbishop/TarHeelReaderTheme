@@ -1,12 +1,12 @@
-    <a class="thr-home-icon" href="/" title="Go home">
+    <a class="thr-home-icon" href="/" title="_(Go home)">
         <img src="/theme/images/home.png" alt="home" />
     </a>
     {{#frontPage}}
-    <a href="/reading-controls/?id={{ID}}" class="thr-settings-icon" title="Settings">
+    <a href="/reading-controls/?id={{ID}}" class="thr-settings-icon" title="_(Settings)">
         <img src="/theme/images/settings.png" alt="settings" />
     </a>
     <h1>{{title}}</h1>
-    <p class="thr-author">by {{author}}</p>
+    <p class="thr-author">_(by {{author}})</p>
     {{/frontPage}}
     {{^frontPage}}
     <p class="thr-page-number">{{pageNumber}}</p>
@@ -17,12 +17,12 @@
              data-width="{{width}}" data-height="{{height}}" />
         {{/image}}
     </div>
-    <a class="thr-credit" href="/photo-credits/?id={{ID}}">Photo credits</a>
+    <a class="thr-credit" href="/photo-credits/?id={{ID}}">_(Photo credits)</a>
     {{^frontPage}}
     <p class="thr-caption">{{caption}}</p>
     {{/frontPage}}
     <a class="thr-back-link" data-role="back" href="{{backLink}}">
-        <img src="/theme/images/BackArrow.png" />Go back</a>
+        <img src="/theme/images/BackArrow.png" />_(Go back)</a>
     <a class="thr-next-link" href="{{nextLink}}">
-        <img src="/theme/images/NextArrow.png" />Next page</a>
+        <img src="/theme/images/NextArrow.png" />_(Next page)</a>
     {{{audio}}}

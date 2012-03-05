@@ -47,7 +47,7 @@
 	<![endif]-->
 
 	<!-- I'm not sure I need modernizr but include it for now. -->
-	<script src="/theme/js/modernizr.js"></script>
+	<script src="/theme/js/modernizr.custom.js"></script>
 	<!-- load everything else dynamically -->
 	<script data-main="/theme/js/main" src="/theme/js/require-jquery.js"></script>	
 

@@ -111,7 +111,7 @@ require([ "jquery",
             $render.then(function($newPage, options) {
                 console.log('newPage', $newPage);
                 // transition to the new page
-                page.transitionTo($newPage).then(function($newPage) {
+                page.transitionTo($newPage, options).then(function($newPage) {
                     route.go('init', url, $newPage);
                     $(window).scrollTop(0);
                 });
