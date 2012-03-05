@@ -1,0 +1,42 @@
+<div id="sidebar">
+    <form action="/find/" id="searchform" method="get">
+        <div>
+            <label for="search" class="screen-reader-text">_(Search for)</label>
+            <input type="search" id="search" name="search" value="" />
+            <input type="hidden" name="page" value="1" />
+            <input type="submit" value="Search" id="searchsubmit" />
+        </div>
+    </form>
+    <h2>_(Reading)</h2>
+    <ul>
+        <li><a href="{{findUrl}}">_(Find Books)</a></li>
+        <li><a href="/favorites/">_(Favorites)</a></li>
+        <li><a href="/reading-controls/">_(Setup)</a></li>
+    </ul>
+
+    <h2>_(Writing)</h2>
+    <ul>
+        <li><a href="/write/">_(Write a Book)</a></li>
+        <li><a href="/your-books/">_(Books you wrote)</a></li>
+    </uL>
+
+    <h2>_(Info)</h2>
+    <ul>
+        <li><a href="/blog/">_(Announcements)</a></li>
+        <li><a href="/frequently-asked-questions/" title="_(Frequently Asked Questions)">_(FAQ)</a></li>
+        <li><a href="/photo-credits/">_(Photo Credits)</a></li>
+    </ul>
+            
+	<h2>_(Admin)</h2>
+	<ul>
+        {{^loggedIn}}
+		<li><a href="/wp-login.php?action=register">_(Register)</a></li>
+        <li><a href="/login/">_(Log In)</a></li>
+        {{/loggedIn}}
+        {{#loggedIn}}
+        <li><a href="/wp-admin/">_(Site Admin)</a></li>
+        <li><a href="/wp-login.php?action=logout">_(Log out)</a></li>
+        {{/loggedIn}}
+	</ul>
+</div>
+<div style="clear: both"></div>
