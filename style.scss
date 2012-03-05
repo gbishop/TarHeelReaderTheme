@@ -13,8 +13,13 @@ Version: 1
 body {
 	font-family: Helmet, Freesans, sans-serif;
 	font-size: 100%;
-	//width: 100%;
-	//height: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	width: 100%;
+	height: 100%;
 }
 
 /* using local fonts? make sure to read up on Paul Irish's 
