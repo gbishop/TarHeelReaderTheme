@@ -32,11 +32,6 @@ $LangNameToLangCode = array(
     'Swedish' => 'sv'
 );
 
-$LangCodeToLangName = array();
-foreach($LangNameToLangCode as $name => $code) {
-    $LangCodeToLangName[$code] = $name;
-}
-
 $SynthLanguages = array('en', 'fr', 'de', 'it', 'pt', 'es', 'sv');
 
 $CategoryAbbrv = array('Alphabet' => 'Alph',
