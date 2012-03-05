@@ -5,6 +5,7 @@
     paths: {
         "jquery": "require-jquery"
     },
+    preserveLicenseComments: false,
 
     modules: [
         //Optimize the require-jquery.js file by applying any minification
