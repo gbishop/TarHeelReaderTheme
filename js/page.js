@@ -8,7 +8,7 @@ define(["jquery", "state"], function($, state) {
             $page = $(selector);
         if ($page.length === 0) {
             // not found create it and add it to the body
-            $page = $('<div class="' + type + ' page-wrap"></div>').appendTo('body');
+            $page = $('<div class="' + type + ' page-wrap"><div class="content-wrap"></div></div>').appendTo('body');
         }
         return $page;
     }
@@ -26,18 +26,17 @@ define(["jquery", "state"], function($, state) {
         options = $.extend({title:null, effect:'fade'}, options);
         $('.active-page').fadeOut(0, function() {
             if (options.colors) {
-                $('body').css({
+                $page.css({
                     color: '#' + state.get('textColor'),
                     backgroundColor: '#' + state.get('pageColor'),
                     borderColor: '#' + state.get('textColor')
                 });
-            } else {
-                $('body').attr('style', '');
             }
             $('.active-page').removeClass('active-page');
             $page.css('display', 'none').addClass('active-page').fadeIn(0);
             $def.resolve($page);
             var title = options.title || $page.attr('data-title');
+            console.log('options', options, title);
             if (title) {
                 document.title = title;
                 try {

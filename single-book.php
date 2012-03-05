@@ -44,47 +44,13 @@
                 setImageSizes($view['image']);
                 echo mustache('bookPage', $view);
             } else {
-                if ($pageNumber == $N+1) {
-                    $view['question'] = "What would you like to do now?";
-                    $view['choices'] = array(
-                        array('text' => 'Read this book again.',
-                              'href' => $book['link']),
-                        array('text' => 'Rate this book.',
-                              'href' => pageLink($book['link'], $pageNumber+1)),
-                        array('text' => 'Read another book.',
-                              'href' => get_find_url()));
-                } elseif ($pageNumber == $N+2) {
-                    $view['question'] = 'How do you rate this book?';
-                    $link = pageLink($book['link'], $pageNumber+1) + '?rating=';
-                    $view['choices'] = array(
-                        array('text' => '1 star',
-                              'image' => array('url' => '1stars.png',
-                                               'cls' => 'thr-stars',
-                                               'alt' => '1 star'),
-                              'href' => link+1),
-                        array('text' => '2 stars',
-                              'image' => array('url' => '2stars.png',
-                                               'cls' => 'thr-stars',
-                                               'alt' => '2 stars'),
-                              'href' => link+2),
-                        array('text' => '3 stars',
-                              'image' => array('url' => '3stars.png',
-                                               'cls' => 'thr-stars',
-                                               'alt' => '3 stars'),
-                              'href' => link+3));
-                } elseif ($pageNumber == $N+3) {
-                    $view['thanks'] = 'Thank you for your opinion.';
-                    $view['rating'] = $book['rating_value'];
-                    $view['averageText'] = 'Average rating';
-                    $view['question'] = 'What would you like to do now?';
-                    $view['choices'] = array(
-                        array('text' => 'Read this book again.',
-                              'href' => $book['link']),
-                        array('text' => 'Read another book.',
-                              'href' => get_find_url()));
-                } else {
-                    $view['question'] = 'How did we get here?';
-                }
+                $view['nextPage'] = $pageNumber+1;
+                $view['link'] = $book['link'];
+                $view['findLink'] = get_find_url();
+                $view['rating'] = $book['rating_value'];
+                $view['what'] = $pageNumber == $N+1;
+                $view['rate'] = $pageNumber == $N+2;
+                $view['thanks'] = $pageNumber >= $N+3;
                 echo mustache('choicePage', $view);
             }
     endwhile; endif;

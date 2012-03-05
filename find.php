@@ -106,7 +106,7 @@ if ($json) {
 	echo $output;
 	die();
 }
-$searchFormData = setFormFromState(json_decode(file_get_contents('searchForm.json', FILE_USE_INCLUDE_PATH), true));
+$searchFormData = setFormFromState($Templates['searchForm']);
 ?>
 <?php thr_header(true, 'find-page', true);
 $view = array();

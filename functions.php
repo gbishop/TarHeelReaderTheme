@@ -98,24 +98,26 @@ function thr_header($colors, $pageType, $heading, $disableCache=true) {
     if ($disableCache) {
         header('Cache-Control: max-age=10'); // 10 seconds should allow a quick forward and back without a trip to the server
     }
-    $body_style = '';
+    $style = '';
     if ($colors) {
         $pc = THR('pageColor');
         $tc = THR('textColor');
-        $body_style = "style=\"color: #$tc; background-color: #$pc; border-color: #$tc;\"";
+        $style = "style=\"color: #$tc; background-color: #$pc; border-color: #$tc;\"";
     }
 
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header
         echo "<div class=\"$pageType page-wrap\" data-title=\"";
         thr_title();
-        echo "\" $body_style>\n";
+        echo "\" $style>\n";
+        echo "<div class=\"content-wrap\">\n";
 
     } else {
         // this is a request from a browser for the full page.
         get_header();
-        echo "<body $body_style >\n";
-        echo "<div class=\"$pageType page-wrap active-page\">\n";
+        echo "<body>\n";
+        echo "<div class=\"$pageType page-wrap active-page\" $style >\n";
+        echo "<div class=\"content-wrap\">\n";
     }
     if ($heading) {
         echo mustache('heading');
@@ -128,7 +130,7 @@ function thr_footer($sidebar, $full) {
         if ($sidebar) {
             get_sidebar();
         }
-        echo "</div>\n";
+        echo "</div></div>\n";
     } else {
         if ($sidebar) {
             get_sidebar();
@@ -136,6 +138,7 @@ function thr_footer($sidebar, $full) {
         if ($full) {
             include('footing.php');
         }
+        echo "</div>\n";
         get_footer();
     }        
 }

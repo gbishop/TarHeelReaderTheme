@@ -54,7 +54,7 @@ define(["jquery",
             view.textColor = state.get('textColor');
             view.pageColor = state.get('pageColor');
             view.ID = book.ID;
-            var newPage;
+            var newContent;
             var N = book.pages.length;
             if (pageNumber <= N) {
                 view.author = book.author;
@@ -69,50 +69,20 @@ define(["jquery",
                     view.nextLink = pageLink(book.link, pageNumber+1);
                 }
                 templates.setImageSizes(view.image);
-                newPage = templates.render('bookPage', view);
+                newContent = templates.render('bookPage', view);
             } else {
-                if (pageNumber === N+1) {
-                    view.question = "What would you like to do now?";
-                    view.choices = [
-                        { text: 'Read this book again.',
-                          href: book.link },
-                        { text: 'Rate this book.',
-                          href: pageLink(book.link, pageNumber+1) },
-                        { text: 'Read another book.',
-                          href: state.find_url() }
-                    ];
-                } else if (pageNumber === N+2) {
-                    view.question = "How do you rate this book?";
-                    var link = pageLink(book.link, pageNumber+1) + '?rating=';
-                    view.choices = [
-                        { text: '1 star',
-                          image: { url: '1stars.png', cls: 'thr-stars', alt: '1 star'},
-                          href: link+1 },
-                        { text: '2 stars',
-                          image: { url: '2stars.png', cls: 'thr-stars', alt: '2 stars'},
-                          href: link+2 },
-                        { text: '3 stars',
-                          image: { url: '3stars.png', cls: 'thr-stars', alt: '3 stars'},
-                          href: link+3 }
-                    ];
-                } else if (pageNumber === N+3) {
-                    view.thanks = 'Thank you for your opinion.';
-                    view.rating = book.rating_value;
-                    view.averageText = 'Average rating';
-                    view.question = 'What would you like to do now?';
-                    view.choices = [
-                        { text: 'Read this book again.',
-                          href: book.link },
-                        { text: 'Read another book.',
-                          href: state.find_url() }
-                    ];
-                } else {
-                    view.question = 'How did we get here?';
-                }
-                newPage = templates.render('choicePage', view);
+                view.nextPage = pageNumber+1;
+                view.link = book.link;
+                view.findLink = state.find_url();
+                view.rating = book.rating_value; // TODO: handle updating the rating
+                view.what = pageNumber === N+1;
+                view.rate = pageNumber === N+2;
+                view.thanks = pageNumber >= N+3;
+                newContent = templates.render('choicePage', view);
             }
             var $oldPage = page.getInactive('thr-book-page');
-            $oldPage.empty().html(newPage);
+            var $content = $oldPage.find('.content-wrap');
+            $content.empty().append(newContent);
             $def.resolve($oldPage);
         });
         return $def;

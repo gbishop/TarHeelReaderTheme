@@ -1,14 +1,14 @@
 define([ "state",
          "requirejs.mustache",
-         "json!../Templates.json",
-         "json!../searchForm.json"
+         "json!../Templates.json"
          ],
-        function(state, mustache, Templates, searchD) {
+        function(state, mustache, Templates) {
             return {
                 render: function(name, view) {
                     return mustache.render(Templates[name], view);
                 },
                 searchForm: function() {
+                    var searchD = Templates['searchForm'];
                     for (var j=0; j<searchD.controls.length; j++) {
                         var control = searchD.controls[j];
                         if (control.type != 'hidden' && 'name' in control) {

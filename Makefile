@@ -1,6 +1,6 @@
 test: style.css
 	python MakeMediaQueries.py > _mediaqueries.scss
-	python BuildTemplate.py templates/*.mustache
+	python BuildTemplate.py --lang=en templates/*.mustache searchForm.json
 	sass style.scss style.css
 	rsync -az --delete . gbserver3:/var/www/TarHeelReader/wp-content/themes/thr3
 	scp js/command.js gbserver3:/var/tmp/command.js

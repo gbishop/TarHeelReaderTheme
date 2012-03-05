@@ -50,9 +50,10 @@ define(["jquery",
                 if (pageNumber > 1) {
                     view.backLink = state.find_url(pageNumber - 1);
                 }
-                var $content = page.getInactive('find-page');
+                var $newPage = page.getInactive('find-page');
+                var $content = $newPage.find('.content-wrap');
                 $content.empty().append(templates.render('find', view));
-                $def.resolve($content, {title: 'Find - Tar Heel Reader', colors: true});
+                $def.resolve($newPage, {title: 'Find - Tar Heel Reader', colors: true});
             }
         });
         return $def;

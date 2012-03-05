@@ -64,11 +64,17 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 	}
 }
 
-.page-wrap {
+.content-wrap {
 	width: 48em; 
 	margin: 0px auto;
+}
+
+.page-wrap {
+	width: 100%;
+	height: 100%;
 	display: none;
-	//height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .active-page {
@@ -450,7 +456,7 @@ h2 {
 	body {
 		font-size: 8.33px;
 	}
-	.page-wrap {
+	.content-wrap {
 		width: 35em;
 	}
 }
