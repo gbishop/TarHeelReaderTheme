@@ -7,11 +7,11 @@
             "type": "search",
             "description": "_(Enter text to search|placeholder text for search box)"
         },
-        {   "label": "_(Category|pulldown label)",
+        {   "label": "_(Topics|pulldown label)",
             "name": "category",
             "select": true,
             "options": [
-                { "label": "_(All Categories)", "value": "" },
+                { "label": "_(All Topics)", "value": "" },
                 { "label": "_(Alphabet)", "value": "Alph" },
                 { "label": "_(Animals and Nature)", "value": "Anim" },
                 { "label": "_(Art and Music)", "value": "ArtM" },

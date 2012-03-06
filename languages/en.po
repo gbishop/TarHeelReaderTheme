@@ -1,3 +1,4 @@
+
 msgid ""
 msgstr ""
 "Project-Id-Version: Foo\n"
@@ -10,6 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+
 # searchForm.json:8
 msgctxt "placeholder text for search box"
 msgid "Enter text to search"
@@ -17,12 +19,12 @@ msgstr "Enter text to search"
 
 # searchForm.json:10
 msgctxt "pulldown label"
-msgid "Category"
-msgstr "Category"
+msgid "Topics"
+msgstr "Topics"
 
 # searchForm.json:14
-msgid "All Categories"
-msgstr "All Categories"
+msgid "All Topics"
+msgstr "All Topics"
 
 # searchForm.json:15
 msgid "Alphabet"
