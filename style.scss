@@ -70,16 +70,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .content-wrap {
-	width: 48em; 
+	width: 46.1em; 
 	margin: 0px auto;
 }
 
 .page-wrap {
 	width: 100%;
-<<<<<<< HEAD
-=======
-	//height: 100%;
->>>>>>> upstream/master
 	display: none;
 	margin: 0;
 	padding: 0;
@@ -202,18 +198,18 @@ h2 {
 
 .find-page{
 	background:url('http://subtlepatterns.com/patterns/purty_wood.png');
+	padding-bottom:10px;
 }
 
 .thr-book-list {
 	display: block;
 	text-align: center;
-	margin-left:0.3em;
 
 	li {
 		width: 11em;
 		height: 11em;
 		border: 1px grey solid;
-		margin: 0.4em;
+		margin: 0.2em;
 		float: left;
 		text-align: center;
 		position: relative;
@@ -304,7 +300,6 @@ h2 {
 	border-radius: 3px;
 	color: #333;
 	font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-
 	padding: 8px 0;
 	text-align: center;
 	text-shadow: 0 1px 0 #eee;
@@ -338,11 +333,15 @@ h2 {
 .thr-find-next {
 	float: right;
 	margin: 1em 0 0 0;
+	position:relative;
+	left:-0.6em;
 }
 
 .thr-find-back {
 	float: left;
 	margin: 1em 0 0 0;
+	position:relative;
+	left:0.3em;
 }
 
 .thr-back-link {
