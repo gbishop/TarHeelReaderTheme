@@ -1,13 +1,13 @@
 {   "action": "/find/",
     "method": "get",
     "controls": [
-        {   "label": "_(Search for)",
+        {   "label": "_(Search for|label for search box)",
             "name" : "search",
             "input": true,
             "type": "search",
-            "description": "_(Enter text to search)"
+            "description": "_(Enter text to search|placeholder text for search box)"
         },
-        {   "label": "_(Category)",
+        {   "label": "_(Category|pulldown label)",
             "name": "category",
             "select": true,
             "options": [
@@ -30,7 +30,7 @@
                 { "label": "_(Sports)", "value": "Spor" }
             ]
         },
-        {   "label": "_(Review status)",
+        {   "label": "_(Review status|pulldown label)",
             "name": "reviewed",
             "select": true,
             "options": [
@@ -38,16 +38,16 @@
                 { "label": "_(Include unreviewed)", "value": "" }
             ]
         },
-        {   "label": "_(Audience)",
+        {   "label": "_(Audience|pulldown label for audience ratings)",
             "name": "audience",
             "select": true,
             "options": [
-                { "label": "_(Rated E/Everybody)", "value": "E" },
-                { "label": "_(Rated C/Caution)", "value": "C" },
-                { "label": "_(Any rating)", "value": "" }
+                { "label": "_(Rated E/Everybody|books appropriate for everyone)", "value": "E" },
+                { "label": "_(Rated C/Caution|books that may not be appropriate for all readers)", "value": "C" },
+                { "label": "_(Any rating|selection to ignore the audience rating)", "value": "" }
             ]
         },
-        {   "label": "_(Language)",
+        {   "label": "_(Language|pulldown label for selecting the language of the book)",
             "name": "language",
             "select": true,
             "options": [
@@ -79,7 +79,7 @@
         },
         {   "input": true,
             "type": "submit",
-            "value": "_(Search)"
+            "value": "_(Search|button label)"
         }
     ]
 }
