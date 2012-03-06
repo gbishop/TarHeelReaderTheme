@@ -1,75 +1,430 @@
-#
-msgid "1 star"
-msgstr ""
-#
-msgid "2 stars"
-msgstr ""
-#
-msgid "3 stars"
-msgstr ""
-#
-msgid "Average Rating"
-msgstr ""
-#
-msgid "Books for beginning readers of all ages"
-msgstr ""
-#
-msgid "Go back"
-msgstr ""
-#
-msgid "Go home"
-msgstr ""
-#
-msgid "How do you rate this book?"
-msgstr ""
-#
-msgid "May not be appropriate for all readers."
-msgstr ""
-#
-msgid "More Books"
-msgstr ""
-#
-msgid "Next page"
-msgstr ""
-#
-msgid "Photo credits"
-msgstr ""
-#
-msgid "Press to search"
-msgstr ""
-#
-msgid "Previous Books"
-msgstr ""
-#
-msgid "Rate this book."
-msgstr ""
-#
-msgid "Read another book."
-msgstr ""
-#
-msgid "Read this book again."
-msgstr ""
-#
-msgid "Reviewed for educational quality."
-msgstr ""
-#
-msgid "Settings"
-msgstr ""
-#
-msgid "Tar Heel Reader"
-msgstr ""
-#
-msgid "Thank you for your opinion."
-msgstr ""
-#
-msgid "What would you like to do now?"
-msgstr ""
-#
+
+# templates/bookList.mustache 6
+msgctxt "short for written by author name"
 msgid "by {{author}}"
 msgstr ""
-#
+
+# templates/bookList.mustache 9
+msgid "{{rating}} stars"
+msgstr ""
+
+# templates/bookList.mustache 12
 msgid "not yet rated"
 msgstr ""
-#
-msgid "{{rating}} stars"
+
+# templates/bookList.mustache 17
+msgctxt "icon explanatory text"
+msgid "Reviewed for educational quality."
+msgstr ""
+
+# templates/bookList.mustache 21
+msgctxt "icon explanatory text"
+msgid "May not be appropriate for all readers."
+msgstr ""
+
+# templates/bookPage.mustache 1
+msgctxt "icon explanatory text"
+msgid "Go home"
+msgstr ""
+
+# templates/bookPage.mustache 5
+msgctxt "icon explanatory text"
+msgid "Settings"
+msgstr ""
+
+# templates/bookPage.mustache 9
+msgctxt "short for written by author name"
+msgid "by {{author}}"
+msgstr ""
+
+# templates/bookPage.mustache 20
+msgctxt "link text below images"
+msgid "Photo credits"
+msgstr ""
+
+# templates/bookPage.mustache 25
+msgctxt "button label"
+msgid "Go back"
+msgstr ""
+
+# templates/bookPage.mustache 27
+msgctxt "button label"
+msgid "Next page"
+msgstr ""
+
+# templates/choicePage.mustache 1
+msgctxt "icon explanatory text"
+msgid "Go home"
+msgstr ""
+
+# templates/choicePage.mustache 5
+msgid "What would you like to do now?"
+msgstr ""
+
+# templates/choicePage.mustache 7
+msgid "Read this book again."
+msgstr ""
+
+# templates/choicePage.mustache 8
+msgid "Rate this book."
+msgstr ""
+
+# templates/choicePage.mustache 9
+msgid "Read another book."
+msgstr ""
+
+# templates/choicePage.mustache 13
+msgid "How do you rate this book?"
+msgstr ""
+
+# templates/choicePage.mustache 16
+msgid "1 star"
+msgstr ""
+
+# templates/choicePage.mustache 18
+msgid "2 stars"
+msgstr ""
+
+# templates/choicePage.mustache 20
+msgid "3 stars"
+msgstr ""
+
+# templates/choicePage.mustache 24
+msgid "Thank you for your opinion."
+msgstr ""
+
+# templates/choicePage.mustache 26
+msgid "Average Rating"
+msgstr ""
+
+# templates/choicePage.mustache 27
+msgid "What would you like to do now?"
+msgstr ""
+
+# templates/choicePage.mustache 29
+msgid "Read this book again."
+msgstr ""
+
+# templates/choicePage.mustache 30
+msgid "Read another book."
+msgstr ""
+
+# templates/find.mustache 5
+msgctxt "label for button to expose search fields on small devices"
+msgid "Press to search"
+msgstr ""
+
+# templates/find.mustache 9
+msgctxt "button label"
+msgid "Previous Books"
+msgstr ""
+
+# templates/find.mustache 12
+msgctxt "button label"
+msgid "More Books"
+msgstr ""
+
+# templates/heading.mustache 3
+msgctxt "icon explanatory text"
+msgid "Go home"
+msgstr ""
+
+# templates/heading.mustache 4
+msgctxt "icon explanatory text"
+msgid "Settings"
+msgstr ""
+
+# templates/heading.mustache 5
+msgctxt "site name"
+msgid "Tar Heel Reader"
+msgstr ""
+
+# templates/heading.mustache 6
+msgctxt "site sub-heading"
+msgid "Books for beginning readers of all ages"
+msgstr ""
+
+# templates/sidebar.mustache 4
+msgctxt "label for search box"
+msgid "Search for"
+msgstr ""
+
+# templates/sidebar.mustache 10
+msgctxt "section heading"
+msgid "Reading"
+msgstr ""
+
+# templates/sidebar.mustache 12
+msgid "Find Books"
+msgstr ""
+
+# templates/sidebar.mustache 13
+msgid "Favorites"
+msgstr ""
+
+# templates/sidebar.mustache 14
+msgid "Settings"
+msgstr ""
+
+# templates/sidebar.mustache 17
+msgctxt "section heading"
+msgid "Writing"
+msgstr ""
+
+# templates/sidebar.mustache 19
+msgid "Write a Book"
+msgstr ""
+
+# templates/sidebar.mustache 20
+msgid "Books you wrote"
+msgstr ""
+
+# templates/sidebar.mustache 23
+msgctxt "section heading"
+msgid "Info"
+msgstr ""
+
+# templates/sidebar.mustache 25
+msgid "Announcements"
+msgstr ""
+
+# templates/sidebar.mustache 26
+msgctxt "link explanatory text"
+msgid "Frequently Asked Questions"
+msgstr ""
+
+# templates/sidebar.mustache 26
+msgctxt "link label"
+msgid "FAQ"
+msgstr ""
+
+# templates/sidebar.mustache 27
+msgid "Photo Credits"
+msgstr ""
+
+# templates/sidebar.mustache 30
+msgctxt "section heading"
+msgid "Admin"
+msgstr ""
+
+# templates/sidebar.mustache 33
+msgctxt "link label"
+msgid "Register"
+msgstr ""
+
+# templates/sidebar.mustache 34
+msgctxt "link label"
+msgid "Log In"
+msgstr ""
+
+# templates/sidebar.mustache 37
+msgctxt "link label"
+msgid "Site Admin"
+msgstr ""
+
+# templates/sidebar.mustache 38
+msgctxt "link label"
+msgid "Log out"
+msgstr ""
+
+# searchForm.json 4
+msgctxt "label for search box"
+msgid "Search for"
+msgstr ""
+
+# searchForm.json 8
+msgctxt "placeholder text for search box"
+msgid "Enter text to search"
+msgstr ""
+
+# searchForm.json 10
+msgctxt "pulldown label"
+msgid "Category"
+msgstr ""
+
+# searchForm.json 14
+msgid "All Categories"
+msgstr ""
+
+# searchForm.json 15
+msgid "Alphabet"
+msgstr ""
+
+# searchForm.json 16
+msgid "Animals and Nature"
+msgstr ""
+
+# searchForm.json 17
+msgid "Art and Music"
+msgstr ""
+
+# searchForm.json 18
+msgid "Biographies"
+msgstr ""
+
+# searchForm.json 19
+msgid "Fairy and Folk Tales"
+msgstr ""
+
+# searchForm.json 20
+msgid "Fiction"
+msgstr ""
+
+# searchForm.json 21
+msgid "Foods"
+msgstr ""
+
+# searchForm.json 22
+msgid "Health"
+msgstr ""
+
+# searchForm.json 23
+msgid "History"
+msgstr ""
+
+# searchForm.json 24
+msgid "Holidays"
+msgstr ""
+
+# searchForm.json 25
+msgid "Math and Science"
+msgstr ""
+
+# searchForm.json 26
+msgid "Nursery Rhymes"
+msgstr ""
+
+# searchForm.json 27
+msgid "People and Places"
+msgstr ""
+
+# searchForm.json 28
+msgid "Poetry"
+msgstr ""
+
+# searchForm.json 29
+msgid "Recreation and Leisure"
+msgstr ""
+
+# searchForm.json 30
+msgid "Sports"
+msgstr ""
+
+# searchForm.json 33
+msgctxt "pulldown label"
+msgid "Review status"
+msgstr ""
+
+# searchForm.json 37
+msgid "Reviewed only"
+msgstr ""
+
+# searchForm.json 38
+msgid "Include unreviewed"
+msgstr ""
+
+# searchForm.json 41
+msgctxt "pulldown label for audience ratings"
+msgid "Audience"
+msgstr ""
+
+# searchForm.json 45
+msgctxt "books appropriate for everyone"
+msgid "Rated E/Everybody"
+msgstr ""
+
+# searchForm.json 46
+msgctxt "books that may not be appropriate for all readers"
+msgid "Rated C/Caution"
+msgstr ""
+
+# searchForm.json 47
+msgctxt "selection to ignore the audience rating"
+msgid "Any rating"
+msgstr ""
+
+# searchForm.json 50
+msgctxt "pulldown label for selecting the language of the book"
+msgid "Language"
+msgstr ""
+
+# searchForm.json 54
+msgid "Arabic"
+msgstr ""
+
+# searchForm.json 55
+msgid "Basque"
+msgstr ""
+
+# searchForm.json 56
+msgid "Catalan"
+msgstr ""
+
+# searchForm.json 57
+msgid "Danish"
+msgstr ""
+
+# searchForm.json 58
+msgid "English"
+msgstr ""
+
+# searchForm.json 59
+msgid "Filipino"
+msgstr ""
+
+# searchForm.json 60
+msgid "Finnish"
+msgstr ""
+
+# searchForm.json 61
+msgid "French"
+msgstr ""
+
+# searchForm.json 62
+msgid "Galician"
+msgstr ""
+
+# searchForm.json 63
+msgid "German"
+msgstr ""
+
+# searchForm.json 64
+msgid "Greek"
+msgstr ""
+
+# searchForm.json 65
+msgid "Hebrew"
+msgstr ""
+
+# searchForm.json 66
+msgid "Italian"
+msgstr ""
+
+# searchForm.json 67
+msgid "Japanese"
+msgstr ""
+
+# searchForm.json 68
+msgid "Latin"
+msgstr ""
+
+# searchForm.json 69
+msgid "Polish"
+msgstr ""
+
+# searchForm.json 70
+msgid "Portuguese"
+msgstr ""
+
+# searchForm.json 71
+msgid "Spanish"
+msgstr ""
+
+# searchForm.json 72
+msgid "Swedish"
+msgstr ""
+
+# searchForm.json 82
+msgctxt "button label"
+msgid "Search"
 msgstr ""
