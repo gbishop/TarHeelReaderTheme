@@ -40,13 +40,28 @@ for fname in args.templates:
 
 file(args.output, 'w').write(json.dumps(templates))
 
+poHeader = r'''
+msgid ""
+msgstr ""
+"Project-Id-Version: Foo\n"
+"PO-Revision-Date: 2012-03-06 09:49-0500\n"
+"Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+'''
+
 if args.extract:
     toSort = [(locs, string) for string, locs in strings.iteritems()]
     toSort.sort()
     fp = file(args.extract, 'w')
+    print >>fp, poHeader
     for locs, string in toSort:
         print >>fp, '\n#', ', '.join(['%s:%d' % (fname, lineNumber) for fname, lineNumber in locs])
         if len(string) == 2:
             print >>fp, 'msgctxt "%s"' % string[1]
         print >>fp, 'msgid "%s"' % string[0]
-        print >>fp, 'msgstr ""'
+        print >>fp, 'msgstr "%s"' % string[0]
