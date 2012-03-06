@@ -23,9 +23,9 @@ for fname in args.templates:
     lines = []
     for lineNumber, text in enumerate(file(fname, 'r')):
         def translate(m):
-            s = m.group(1)
-            strings.append((lineNumber, fname, s))
-            r = t.gettext(s)
+            s = m.group(1).split('|')
+            strings.append((lineNumber + 1, fname, s))
+            r = t.gettext(s[0])
             return r
 
         text = re.sub(r'_\(([^)]+)\)', translate, text)
@@ -41,6 +41,8 @@ file(args.output, 'w').write(json.dumps(templates))
 if args.extract:
     fp = file(args.extract, 'w')
     for lineNumber, fname, string in strings:
-        print >>fp, '# %s %d' % (fname, lineNumber)
-        print >>fp, 'msgid "%s"' % string
+        print >>fp, '\n# %s %d' % (fname, lineNumber)
+        if len(string) == 2:
+            print >>fp, 'msgctxt "%s"' % string[1]
+        print >>fp, 'msgid "%s"' % string[0]
         print >>fp, 'msgstr ""'
