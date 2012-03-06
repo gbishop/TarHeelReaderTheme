@@ -1,0 +1,75 @@
+#
+msgid "1 star"
+msgstr ""
+#
+msgid "2 stars"
+msgstr ""
+#
+msgid "3 stars"
+msgstr ""
+#
+msgid "Average Rating"
+msgstr ""
+#
+msgid "Books for beginning readers of all ages"
+msgstr ""
+#
+msgid "Go back"
+msgstr ""
+#
+msgid "Go home"
+msgstr ""
+#
+msgid "How do you rate this book?"
+msgstr ""
+#
+msgid "May not be appropriate for all readers."
+msgstr ""
+#
+msgid "More Books"
+msgstr ""
+#
+msgid "Next page"
+msgstr ""
+#
+msgid "Photo credits"
+msgstr ""
+#
+msgid "Press to search"
+msgstr ""
+#
+msgid "Previous Books"
+msgstr ""
+#
+msgid "Rate this book."
+msgstr ""
+#
+msgid "Read another book."
+msgstr ""
+#
+msgid "Read this book again."
+msgstr ""
+#
+msgid "Reviewed for educational quality."
+msgstr ""
+#
+msgid "Settings"
+msgstr ""
+#
+msgid "Tar Heel Reader"
+msgstr ""
+#
+msgid "Thank you for your opinion."
+msgstr ""
+#
+msgid "What would you like to do now?"
+msgstr ""
+#
+msgid "by {{author}}"
+msgstr ""
+#
+msgid "not yet rated"
+msgstr ""
+#
+msgid "{{rating}} stars"
+msgstr ""
