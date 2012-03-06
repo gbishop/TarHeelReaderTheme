@@ -8,6 +8,7 @@ Version: 1
 */
 
 @import "reset";
+@import url(http://fonts.googleapis.com/css?family=Andika);
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
@@ -44,33 +45,23 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .thr-home-icon {
 	position: absolute;
 	top: 0px;
-	left: 0px;
+	left: 10px;
 	img {
-		width: 3em;
-		height: 3em;
-		opacity: 0.3;
-		&:hover {
-			opacity: 1;
-		}
+		height:100%;
 	}
 }
 
 .thr-settings-icon {
 	position: absolute;
 	top: 0px;
-	right: 0px;
+	right: 10px;
 	img {
-		width: 3em;
-		height: 3em;
-		opacity: 0.3;
-		&:hover {
-			opacity: 1;
-		}
+		height:100%;
 	}
 }
 
 .content-wrap {
-	width: 46.1em; 
+	width: 46.3em; 
 	margin: 0px auto;
 }
 
@@ -88,7 +79,37 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 #header {
 	position: relative;
 	width: 100%;
-	background-color: rgba(220, 220, 220, 0.5);
+	background-color: black;
+	display: block;
+	margin: 0px auto;
+	text-align: center;
+	height:3em;
+	h1 {
+		font-size: 2em;
+		font-family: 'Andika', sans-serif;
+		a {
+			text-decoration: none;
+			color:white;
+		}
+	}
+	.description {
+		font-size: 0.9em;
+	}
+}
+
+#find-header {
+	position: relative;
+
+	background-color: #eeeeee;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+	background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+	background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+	background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+	background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+	background-image: linear-gradient(top, #eeeeee, #cccccc);
+	border: 1px solid #ccc;
+	border-bottom: 1px solid #bbb;
+
 	display: block;
 	margin: 0px auto;
 	text-align: center;
@@ -97,20 +118,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 	h1 {
 		font-size: 1.3em;
-
 		a {
 			text-decoration: none;
 		}
 	}
 	.description {
 		font-size: 0.9em;
-	}
-
-	.thr-settings-icon img {
-		opacity: 1;
-	}
-	.thr-home-icon img {
-		opacity: 1;
 	}
 }
 
@@ -177,6 +190,22 @@ h2 {
 #searchForm {
 	margin-top: 0.2em;
 	text-align: center;
+	font-size:0.8em;
+	select{
+		font-size:.8em;
+		width:11.4em;
+		
+	}
+	input{
+		font-size:.8em;
+		width:5.7em;
+	}
+	#searchInput{
+		width:17.1em;
+		border-radius:10px;
+		border:1px solid grey;
+		height:1.5em;
+	}
 }
 
 #searchShowButton {
@@ -204,7 +233,6 @@ h2 {
 .thr-book-list {
 	display: block;
 	text-align: center;
-
 	li {
 		width: 11em;
 		height: 11em;
@@ -291,8 +319,7 @@ h2 {
 	background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
 	background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
 	background-image: linear-gradient(top, #eeeeee, #cccccc);
-	border: 1px solid #ccc;
-	border-bottom: 1px solid #bbb;
+	border: 1px solid grey;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-ms-border-radius: 3px;
