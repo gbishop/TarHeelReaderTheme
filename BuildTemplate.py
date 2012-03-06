@@ -64,4 +64,4 @@ if args.extract:
         if len(string) == 2:
             print >>fp, 'msgctxt "%s"' % string[1]
         print >>fp, 'msgid "%s"' % string[0]
-        print >>fp, 'msgstr "%s"' % string[0]
+        print >>fp, 'msgstr ""'
