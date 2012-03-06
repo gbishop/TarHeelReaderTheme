@@ -14,7 +14,7 @@ args = parser.parse_args()
 t = gettext.translation('thr', 'locale', [args.lang], fallback=True)
 
 templates = {}
-strings = []
+strings = {}
 
 for fname in args.templates:
     base = osp.basename(fname)
@@ -23,8 +23,10 @@ for fname in args.templates:
     lines = []
     for lineNumber, text in enumerate(file(fname, 'r')):
         def translate(m):
-            s = m.group(1).split('|')
-            strings.append((lineNumber + 1, fname, s))
+            s = tuple(m.group(1).split('|'))
+            locs = strings.get(s, [])
+            locs.append((fname, lineNumber + 1))
+            strings[s] = locs
             r = t.gettext(s[0])
             return r
 
@@ -39,9 +41,11 @@ for fname in args.templates:
 file(args.output, 'w').write(json.dumps(templates))
 
 if args.extract:
+    toSort = [(locs, string) for string, locs in strings.iteritems()]
+    toSort.sort()
     fp = file(args.extract, 'w')
-    for lineNumber, fname, string in strings:
-        print >>fp, '\n# %s %d' % (fname, lineNumber)
+    for locs, string in toSort:
+        print >>fp, '\n#', ', '.join(['%s:%d' % (fname, lineNumber) for fname, lineNumber in locs])
         if len(string) == 2:
             print >>fp, 'msgctxt "%s"' % string[1]
         print >>fp, 'msgid "%s"' % string[0]
