@@ -3,7 +3,7 @@
         <li class="selectable" data-preview="{{preview.url}}" data-id="{{ID}}" lang="{{language}}" data-has-speech="{{has_speech}}" >
             <a href="{{link}}">
                 <h2>{{title}}</h2>
-                <p class="thr-author">_(by {{author}})</p>
+                <p class="thr-author">_(by {{author}}|short for written by author name)</p>
                 <img src="/theme/images/{{rating}}stars_t.png" class="thr-stars" 
                      {{#rating}}
                      alt="{{rating}} stars" title="_({{rating}} stars)"
@@ -14,11 +14,11 @@
                 />
                 {{#reviewed}}
                 <img src="/theme/images/reviewed_t.png" class="thr-reviewed"
-                     alt="reviewed for educational quality" title="_(Reviewed for educational quality.)" />
+                     alt="reviewed for educational quality" title="_(Reviewed for educational quality.|icon explanatory text)" />
                 {{/reviewed}}
                 {{#caution}}
                 <img src="/theme/images/caution_t.png" class="thr-caution"
-                     alt="rated C for caution" title="_(May not be appropriate for all readers.)" />
+                     alt="rated C for caution" title="_(May not be appropriate for all readers.|icon explanatory text)" />
                 {{/caution}}
                 {{#cover}}
                     <div class="thr-thumb-box">
