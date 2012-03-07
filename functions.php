@@ -2,10 +2,17 @@
 
 require('state.php'); // manage shared state in a cookie so both client and host have access
 require_once "Mustache.php";
-$Templates = json_decode(file_get_contents('Templates.json', FILE_USE_INCLUDE_PATH), true);
+$locale = THR('locale');
+if ($locale != 'en') {
+    $content = file_get_contents("Templates.$locale.json", FILE_USE_INCLUDE_PATH);
+}
+if ($locale == 'en' || !$content) {
+    $content = file_get_contents("Templates.json", FILE_USE_INCLUDE_PATH);
+}
+$Templates = json_decode($content, true);
 $mustache = new Mustache();
 
-function mustache($name, $data=array()) {
+function template_render($name, $data=array()) {
     global $mustache, $Templates;
     return $mustache->render($Templates[$name], $data);
 }
@@ -120,7 +127,7 @@ function thr_header($colors, $pageType, $heading, $disableCache=true) {
         echo "<div class=\"content-wrap\">\n";
     }
     if ($heading) {
-        echo mustache('heading');
+        echo template_render('heading');
     }
 }
 
@@ -366,7 +373,7 @@ function getGet($key, $default = null, $rule = null)
 
 function flashAudio($mp3) { 
     $view = array('mp3' => urlencode($mp3));
-    echo mustache('flash', $view);
+    echo template_render('flash', $view);
 }
 
 function setFormFromState($FormData) {

@@ -13,8 +13,8 @@ $ID = getGet('id', '', '/[0-9]+/');
 $settingsFormData = setFormFromState($Templates['readingForm']);
 $settingsFormData['action'] = history(1);
 $view = array();
-$view['settingsForm'] = mustache('formTable', $settingsFormData);
+$view['settingsForm'] = template_render('formTable', $settingsFormData);
 $view['ID'] = $ID;
-echo mustache('readingControls', $view);
+echo template_render('readingControls', $view);
 ?>
 <?php thr_footer(false, true); ?>
