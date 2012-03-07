@@ -3,6 +3,7 @@ import os.path as osp
 import json
 import argparse
 import gettext
+import sys
 
 parser = argparse.ArgumentParser(description="Process templates to produce locale specific json files.")
 parser.add_argument('--lang')
@@ -35,7 +36,12 @@ for fname in args.templates:
     value = '\n'.join(lines)
 
     if ext == '.json':
-        value = json.loads(value)
+        try:
+            value = json.loads(value)
+        except:
+            print 'error', fname
+            print value
+            sys.exit(1)
     templates[key] = value
 
 file(args.output, 'w').write(json.dumps(templates))
