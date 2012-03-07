@@ -12,6 +12,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 
+# readingForm.json:3
+msgctxt "pulldown label"
+msgid "Voice"
+msgstr ""
+
+# readingForm.json:7
+msgctxt "no speech at all"
+msgid "Silent"
+msgstr ""
+
+# readingForm.json:8
+msgid "Child"
+msgstr ""
+
+# readingForm.json:9
+msgid "Woman"
+msgstr ""
+
+# readingForm.json:10
+msgid "Man"
+msgstr ""
+
+# readingForm.json:13
+msgctxt "pulldown label for selecting the background color"
+msgid "Page Color"
+msgstr ""
+
+# readingForm.json:17, readingForm.json:31
+msgid "Black"
+msgstr ""
+
+# readingForm.json:18, readingForm.json:32
+msgid "Blue"
+msgstr ""
+
+# readingForm.json:19, readingForm.json:33
+msgid "Cyan"
+msgstr ""
+
+# readingForm.json:20, readingForm.json:34
+msgid "Green"
+msgstr ""
+
+# readingForm.json:21, readingForm.json:35
+msgid "Magenta"
+msgstr ""
+
+# readingForm.json:22, readingForm.json:36
+msgid "Red"
+msgstr ""
+
+# readingForm.json:23, readingForm.json:37
+msgid "White"
+msgstr ""
+
+# readingForm.json:24, readingForm.json:38
+msgid "Yellow"
+msgstr ""
+
+# readingForm.json:27
+msgctxt "pulldown label for selecting the text color"
+msgid "Text Color"
+msgstr ""
+
+# readingForm.json:43
+msgctxt "button label"
+msgid "Done"
+msgstr ""
+
 # searchForm.json:8
 msgctxt "placeholder text for search box"
 msgid "Enter text to search"
@@ -320,6 +389,18 @@ msgstr ""
 # templates/heading.mustache:6
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
+msgstr ""
+
+# templates/readingControls.mustache:1
+msgid "Reading Preferences"
+msgstr ""
+
+# templates/readingControls.mustache:6
+msgid "This book"
+msgstr ""
+
+# templates/readingControls.mustache:7
+msgid "Download book"
 msgstr ""
 
 # templates/sidebar.mustache:4, searchForm.json:4
