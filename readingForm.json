@@ -1,0 +1,46 @@
+{   "method": "get",
+    "controls": [
+        {   "label": "_(Voice|pulldown label)",
+            "name": "voice",
+            "select": true,
+            "options": [
+                { "label": "_(Silent|no speech at all)", "value": "silent" },
+                { "label": "_(Child)", "value": "child" },
+                { "label": "_(Woman)", "value": "female" },
+                { "label": "_(Man)", "value": "male" }
+            ]
+        },
+        {   "label": "_(Page Color|pulldown label for selecting the background color)",
+            "name": "pageColor",
+            "select": true,
+            "options": [
+                { "label": "_(Black)", "value": "000" },
+                { "label": "_(Blue)", "value": "00f"},
+                { "label": "_(Cyan)", "value": "0ff"},
+                { "label": "_(Green)", "value": "0f0"},
+                { "label": "_(Magenta)", "value": "f0f"},
+                { "label": "_(Red)", "value": "f00"},
+                { "label": "_(White)", "value": "fff"},
+                { "label": "_(Yellow)", "value": "ff0"}
+            ]
+        },
+        {   "label": "_(Text Color|pulldown label for selecting the text color)",
+            "name": "textColor",
+            "select": true,
+            "options": [
+                { "label": "_(Black)", "value": "000" },
+                { "label": "_(Blue)", "value": "00f"},
+                { "label": "_(Cyan)", "value": "0ff"},
+                { "label": "_(Green)", "value": "0f0"},
+                { "label": "_(Magenta)", "value": "f0f"},
+                { "label": "_(Red)", "value": "f00"},
+                { "label": "_(White)", "value": "fff"},
+                { "label": "_(Yellow)", "value": "ff0"}
+            ]
+        },
+        {   "input": true,
+            "type": "submit",
+            "value": "_(Done|button label)"
+        }
+    ]
+}

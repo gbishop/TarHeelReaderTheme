@@ -114,7 +114,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 	}
 }
 
-#footer, #footer a {
+.footer, .footer a {
 	width: 100%;
 	text-align: center;
 	font-size: 0.7em;
@@ -174,12 +174,12 @@ h2 {
 	}
 }
 
-#searchForm {
+.searchForm {
 	margin-top: 0.2em;
 	text-align: center;
 }
 
-#searchShowButton {
+.searchShowButton {
 	display: none; // displayed by media query if js is on and screen is small
 	height: 2em;
 	font-size: 1.5em;
@@ -388,7 +388,7 @@ h2 {
 	display: none;
 }
 
-#settingsForm {
+.reading-controls {
 	table {
 		margin-left: 1em;
 	}
@@ -426,7 +426,7 @@ h2 {
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 
 	.js {
-		#searchForm {
+		.searchForm {
 			input, select {
 				width: 100%;
 				height: 3em;
@@ -436,7 +436,7 @@ h2 {
 			display: none;
 		}
 
-		#searchShowButton {
+		.searchShowButton {
 			display: block;
 		}
 	}
