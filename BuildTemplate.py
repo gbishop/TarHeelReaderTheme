@@ -28,10 +28,16 @@ for fname in args.templates:
             locs = strings.get(s, [])
             locs.append((fname, lineNumber + 1))
             strings[s] = locs
-            r = t.gettext(s[0])
+            if len(s) == 2:
+                r = t.gettext(s[1] + "\x04" + s[0])
+                rr = r.split("\x04")
+                if len(rr) == 2:
+                    r = rr[1]
+            else:
+                r = t.gettext(s[0])
             return r
 
-        text = re.sub(r'_\(([^)]+)\)', translate, text)
+        text = re.sub(r'_\(([^\)]+)\)', translate, text)
         lines.append(text)
     value = '\n'.join(lines)
 
