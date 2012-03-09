@@ -1,4 +1,4 @@
-/*   
+/*
 Theme Name: Tar Heel Reader
 Theme URI: http://tarheelreader.org
 Description: Started life as HtmlReset
@@ -22,7 +22,7 @@ html {
 	height: 100%;
 }
 
-/* using local fonts? make sure to read up on Paul Irish's 
+/* using local fonts? make sure to read up on Paul Irish's
 	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
 
 a {color: #03f;}
@@ -30,10 +30,10 @@ a:hover {color: #69f;}
 
 /* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
 ::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
-::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+::selection {background: #fcd700; color: #fff; text-shadow: none;}
 
 /*	j.mp/webkit-tap-highlight-color */
-a:link {-webkit-tap-highlight-color: #fcd700;} 
+a:link {-webkit-tap-highlight-color: #fcd700;}
 
 ins {background-color: #fcd700; color: #000; text-decoration: none;}
 mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
@@ -70,7 +70,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .content-wrap {
-	width: 48em; 
+	width: 48em;
 	margin: 0px auto;
 }
 
@@ -86,7 +86,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 	display: block;
 }
 
-#header {
+.header {
 	position: relative;
 	width: 100%;
 	background-color: rgba(220, 220, 220, 0.5);
@@ -134,7 +134,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .entry a { text-decoration: none;}
 .entry a:hover { text-decoration: underline;}
 
-#meta {}
 .postmetadata {}
 
 p {
@@ -152,7 +151,7 @@ h2 {
 }
 
 
-#sidebar {
+.sidebar {
 	float:right;
 	width:12.5em;
 	margin-left: 2em;
@@ -169,7 +168,7 @@ h2 {
 		font-size: 1.1em;
 	}
 
-	#search {
+	.search {
 		width: 12em;
 	}
 }
@@ -267,13 +266,6 @@ h2 {
 		left: 0.5em;
 		bottom: 1.5em;
 	}
-
-	#preview {
-		position: absolute;
-		margin: 0;
-		z-index: 10;
-	}
-
 }
 
 .thr-find-next, .thr-find-back {
@@ -329,8 +321,8 @@ h2 {
 	font-size: 1em;
 }
 
-/* This default page design is for browsers wtihout media queries. 
-   It is designed to fit in 768 by 600 pixels, that is 48em by 37.5em 
+/* This default page design is for browsers wtihout media queries.
+   It is designed to fit in 768 by 600 pixels, that is 48em by 37.5em
 */
 .thr-book-page {
 	text-align: center;
@@ -468,7 +460,7 @@ h2 {
 
 /* iPad portrait */
 
-@media only screen 
+@media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation: portrait) {
@@ -483,11 +475,11 @@ and (orientation: portrait) {
 
 /* iPad landscape */
 
-@media only screen 
+@media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (min-height: 650px) // prevent ie9 from hitting this one
-and (orientation: landscape) {		
+and (orientation: landscape) {
 	body {
 		font-size: 16px;
 	}
