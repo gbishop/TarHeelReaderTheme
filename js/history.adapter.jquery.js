@@ -6,7 +6,7 @@
  */
 
 // Closure
-(function(window,undefined){
+define(['jquery', 'history', 'history.html4'], function(){
 	"use strict";
 
 	// Localise Globals
@@ -73,5 +73,5 @@
 		History.init();
 	}
 
-})(window);
+});
 

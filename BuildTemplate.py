@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(description="Process templates to produce local
 parser.add_argument('--lang')
 parser.add_argument('--extract')
 parser.add_argument('templates', nargs='+')
-parser.add_argument('--output', default='Templates.json')
+parser.add_argument('--output')
 args = parser.parse_args()
 
 t = gettext.translation('thr', 'locale', [args.lang], fallback=True)
@@ -38,8 +38,9 @@ for fname in args.templates:
             return r
 
         text = re.sub(r'_\(([^\)]+)\)', translate, text)
+        text = re.sub(r' +', ' ', text)
         lines.append(text)
-    value = '\n'.join(lines)
+    value = ''.join(lines)
 
     if ext == '.json':
         try:
@@ -50,7 +51,8 @@ for fname in args.templates:
             sys.exit(1)
     templates[key] = value
 
-file(args.output, 'w').write(json.dumps(templates))
+if args.output:
+    file(args.output, 'w').write(json.dumps(templates, sort_keys=True))
 
 poHeader = r'''
 msgid ""

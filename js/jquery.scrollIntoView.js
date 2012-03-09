@@ -1,17 +1,17 @@
 /*!
  * $.fn.scrollIntoView - similar to the default browser scrollIntoView
- * The default browser behavior always places the element at the top or bottom of its container. 
+ * The default browser behavior always places the element at the top or bottom of its container.
  * This override is smart enough to not scroll if the element is already visible.
  *
  * Copyright 2011 Arwid Bancewicz
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * @date 9 May 2011
  * @author Arwid Bancewicz http://arwid.ca
  * @version 0.2
  */
- (function($) {
+ define(['jquery'], function($) {
     $.fn.scrollIntoView = function(duration, easing, complete) {
         // The arguments are optional.
         // The first argment can be false for no animation or a duration.
@@ -39,15 +39,15 @@
         var pEl = this.commonAncestor().get(0);
 
         var wH = $(window).height();
-        
+
         // go up parents until we find one that scrolls
         while (pEl) {
             var pY = pEl.scrollTop, pH = pEl.clientHeight;
             if (pH > wH) pH = wH;
-            
+
             // case: if body's elements are all absolutely/fixed positioned, use window height
             if (pH == 0 && pEl.tagName == "BODY") pH = wH;
-            
+
             if (
             // it wiggles?
             (pEl.scrollTop != ((pEl.scrollTop += 1) == null || pEl.scrollTop) && (pEl.scrollTop -= 1) != null) ||
@@ -134,4 +134,4 @@
         return $([]);
     }
 
-})(jQuery);
+});

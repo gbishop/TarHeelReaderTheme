@@ -1,10 +1,8 @@
-require([ "jquery",
+define([ "jquery",
           "route",
           "page",
           "state",
           "templates",
-          "history",
-          "history.html4",
           "history.adapter.jquery"
          ], function($, route, page, state, templates) {
 
@@ -27,7 +25,7 @@ require([ "jquery",
 
             var $this = $(this),
                 url;
-                
+
             if ($this.is('a')) {
                 // click on a link
                 if ($this.attr('data-role') === 'back') {
@@ -55,7 +53,7 @@ require([ "jquery",
                     return true;
                 }
             }
-            
+
            // Continue as normal for ctrl clicks or external links
             if (event.which === 2 || event.metaKey || event.ctrlKey ||
                 ( url.substring(0,rootUrl.length) !== rootUrl && url.indexOf(':') !== -1 ) ||
@@ -63,7 +61,7 @@ require([ "jquery",
                 console.log('not hijaxing', url);
                 return true;
             }
-            
+
             // hijax this link
             History.pushState(null,null,url);
             event.preventDefault();
