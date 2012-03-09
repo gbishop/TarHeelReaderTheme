@@ -1,4 +1,4 @@
-all: production
+all: test
 
 test: style.css
 	python MakeMediaQueries.py > _mediaqueries.scss
