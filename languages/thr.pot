@@ -366,17 +366,17 @@ msgstr ""
 msgid "Average Rating"
 msgstr ""
 
-# templates/find.mustache:5
+# templates/find.mustache:4
 msgctxt "label for button to expose search fields on small devices"
 msgid "Press to search"
 msgstr ""
 
-# templates/find.mustache:9
+# templates/find.mustache:8
 msgctxt "button label"
 msgid "Previous Books"
 msgstr ""
 
-# templates/find.mustache:12
+# templates/find.mustache:11
 msgctxt "button label"
 msgid "More Books"
 msgstr ""

@@ -81,8 +81,7 @@ define(["jquery",
                 newContent = templates.render('choicePage', view);
             }
             var $oldPage = page.getInactive('thr-book-page');
-            var $content = $oldPage.find('.content-wrap');
-            $content.empty().append(newContent);
+            $oldPage.empty().append('<div id="content-wrap">' + newContent + '</div>');
             $def.resolve($oldPage);
         });
         return $def;

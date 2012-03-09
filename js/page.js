@@ -8,7 +8,7 @@ define(["jquery", "state"], function($, state) {
             $page = $(selector);
         if ($page.length === 0) {
             // not found create it and add it to the body
-            $page = $('<div class="' + type + ' page-wrap"><div class="content-wrap"></div></div>').appendTo('body');
+            $page = $('<div class="' + type + ' page-wrap"></div>').appendTo('body');
         }
         return $page;
     }
