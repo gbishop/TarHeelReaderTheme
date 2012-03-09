@@ -6,15 +6,18 @@ requirejs.config({
 
 require([ "jquery",
           "route",
-          "controller",
           "state",
+          "controller",
           "find",
           "read"/*,
           "remoteCommand"*/
           ],
-    function($, route) {
+    function($, route, state) {
         // run any configure hooks
         $(function() {
-            route.go('init', window.location.href, $('.active-page'));
+            // update my app internal state from the cookie and any query parameters
+            var url = window.location.href;
+            state.update(url);
+            route.go('init', url, $('.active-page'));
         });
     });
