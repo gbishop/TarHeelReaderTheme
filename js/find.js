@@ -61,12 +61,14 @@ define(["jquery",
         return $def;
     }
     function moveSelection(direction) {
+        // operate on the active page only
+        var $page = $('.active-page');
         // stop any animation of the preview and remove it
         $('#preview').stop(true, false).remove();
         // get a list of the selectable elements
-        var targets = $('.selectable');
+        var targets = $page.find('.selectable');
         // and find the selected one
-        var selected = $('.selected');
+        var selected = $page.find('.selected');
         var i = 0;
         var toSelect = direction > 0 ? $(targets[0]) : $(targets[targets.length -1]);
         if (selected.length > 0) {
@@ -108,7 +110,7 @@ define(["jquery",
                 var top = wt + (wh - b) / 2;
                 toSelect.clone()
                 .attr('id', 'preview') // make a copy of the selected book
-                    .appendTo('.thr-book-list') // add it to the end of the list
+                    .appendTo($page.find('.thr-book-list')) // add it to the end of the list
                     .css({
                         position: 'absolute',
                         margin: 0,
@@ -127,7 +129,7 @@ define(["jquery",
                         $(this).remove(); // then remove it.
                     });
                 // replace the images with high res versions
-                $('#preview')
+                $page.find('#preview')
                     .find('img')
                     .each(function(i, img){
                         img.src = img.src.replace('_t', '');
@@ -158,9 +160,12 @@ define(["jquery",
         // set the colors based on the state
         // setup the show search button for small screens
         var $page = $(this);
-        $page.find('#searchShowButton').click(function(e){
+        var $form = $page.find('.searchForm');
+        console.log('findConfigure');
+        $page.find('a.searchShowButton').click(function(e){
+            console.log('click');
             e.preventDefault();
-            $('#searchForm').slideDown('fast');
+            $form.slideDown('fast');
             $(this).hide();
         });
         // configure the keyboard controls

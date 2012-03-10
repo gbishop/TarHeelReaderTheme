@@ -92,7 +92,8 @@ define(["jquery",
         if ($box.length === 0) return;
 
         var $window = $(window),
-            ww = $window.width(),
+            $container = $page.find('.content-wrap'),
+            ww = $container.width(),
             wh = $window.height(),
             b = $box.width(),
             bt = $box.offset().top,
@@ -110,7 +111,10 @@ define(["jquery",
             gap = $credit.offset().top - bt - b + $credit.outerHeight() + 4;
             available = Math.min(ww, wh - bt - gap);
         }
-        $box.css({width: available + 'px', height: available + 'px'});
+        $box.css({
+            width: available + 'px',
+            height: available + 'px'
+        });
     }
 
     function configureBook(url, slug, pageNumber) {
