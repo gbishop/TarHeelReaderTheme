@@ -377,6 +377,7 @@ function flashAudio($mp3) {
 
 function setFormFromState($FormData) {
     foreach($FormData['controls'] as &$control) {
+        $control['unique'] = uniqid();
         if (!isset($control['value']) && isset($control['name'])) {
             $control['value'] = THR($control['name']);
         }

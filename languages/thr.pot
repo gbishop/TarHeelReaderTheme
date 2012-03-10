@@ -408,80 +408,80 @@ msgctxt "label for search box"
 msgid "Search for"
 msgstr ""
 
-# templates/sidebar.mustache:10
+# templates/sidebar.mustache:11
 msgctxt "section heading"
 msgid "Reading"
 msgstr ""
 
-# templates/sidebar.mustache:12
+# templates/sidebar.mustache:13
 msgid "Find Books"
 msgstr ""
 
-# templates/sidebar.mustache:13
+# templates/sidebar.mustache:14
 msgid "Favorites"
 msgstr ""
 
-# templates/sidebar.mustache:14
+# templates/sidebar.mustache:15
 msgid "Settings"
 msgstr ""
 
-# templates/sidebar.mustache:17
+# templates/sidebar.mustache:18
 msgctxt "section heading"
 msgid "Writing"
 msgstr ""
 
-# templates/sidebar.mustache:19
+# templates/sidebar.mustache:20
 msgid "Write a Book"
 msgstr ""
 
-# templates/sidebar.mustache:20
+# templates/sidebar.mustache:21
 msgid "Books you wrote"
 msgstr ""
 
-# templates/sidebar.mustache:23
+# templates/sidebar.mustache:24
 msgctxt "section heading"
 msgid "Info"
 msgstr ""
 
-# templates/sidebar.mustache:25
+# templates/sidebar.mustache:26
 msgid "Announcements"
 msgstr ""
 
-# templates/sidebar.mustache:26
+# templates/sidebar.mustache:27
 msgctxt "link label"
 msgid "FAQ"
 msgstr ""
 
-# templates/sidebar.mustache:26
+# templates/sidebar.mustache:27
 msgctxt "link explanatory text"
 msgid "Frequently Asked Questions"
 msgstr ""
 
-# templates/sidebar.mustache:27
+# templates/sidebar.mustache:28
 msgid "Photo Credits"
 msgstr ""
 
-# templates/sidebar.mustache:30
+# templates/sidebar.mustache:31
 msgctxt "section heading"
 msgid "Admin"
 msgstr ""
 
-# templates/sidebar.mustache:33
+# templates/sidebar.mustache:34
 msgctxt "link label"
 msgid "Register"
 msgstr ""
 
-# templates/sidebar.mustache:34
+# templates/sidebar.mustache:35
 msgctxt "link label"
 msgid "Log In"
 msgstr ""
 
-# templates/sidebar.mustache:37
+# templates/sidebar.mustache:38
 msgctxt "link label"
 msgid "Site Admin"
 msgstr ""
 
-# templates/sidebar.mustache:38
+# templates/sidebar.mustache:39
 msgctxt "link label"
 msgid "Log out"
 msgstr ""

@@ -5,6 +5,7 @@ define([ "state",
         function(state, mustache, Templates) {
             var localeTemplates = {};
             localeTemplates['en'] = Templates;
+            var uniqueID = 0;
 
             function getTemplate(name) {
                 var locale = state.get('locale');
@@ -24,6 +25,8 @@ define([ "state",
                 var searchD = getTemplate('searchForm');
                 for (var j=0; j<searchD.controls.length; j++) {
                     var control = searchD.controls[j];
+                    control.unique = uniqueID;
+                    uniqueID += 1;
                     if (control.type != 'hidden' && 'name' in control) {
                         control.value = state.get(control.name);
                     }
