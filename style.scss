@@ -381,14 +381,19 @@ h2 {
 }
 
 .reading-controls {
-	table {
-		margin-left: 1em;
-	}
-	td {
-		padding: 0 0.5em 0.5em 0;
+	label {
+		display: block;
+		margin-top: 1em;
+		padding-bottom: 0.25em;
 	}
 	select {
-		width: 100%;
+		width: 10em;;
+		display: block;
+	}
+	input {
+		margin-top: 1em;
+		display: block;
+		width: 10em;
 	}
 }
 
@@ -489,7 +494,7 @@ and (orientation: landscape) {
 	}
 }
 
-.screen-reader-text {
+.searchForm label, .sidebar label {
 	position:absolute;
 	left:-10000px;
 	top:auto;

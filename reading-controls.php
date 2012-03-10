@@ -13,7 +13,7 @@ $ID = getGet('id', '', '/[0-9]+/');
 $settingsFormData = setFormFromState($Templates['readingForm']);
 $settingsFormData['action'] = history(1);
 $view = array();
-$view['settingsForm'] = template_render('formTable', $settingsFormData);
+$view['settingsForm'] = template_render('form', $settingsFormData);
 $view['ID'] = $ID;
 echo template_render('readingControls', $view);
 ?>
