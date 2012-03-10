@@ -123,8 +123,9 @@ define(["jquery",
                         fontSize: fs
                     }, 300) // not too slow or it jiggles a lot
                     .delay(8000) // hold there so we can see it
-                    .fadeOut(500); // fade it away
-
+                    .fadeOut(500, function() { // fade it away
+                        $(this).remove(); // then remove it.
+                    });
                 // replace the images with high res versions
                 $('#preview')
                     .find('img')
