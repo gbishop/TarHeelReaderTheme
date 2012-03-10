@@ -101,7 +101,7 @@ define(["jquery",
                 var wt = $window.scrollTop();
                 // calculate the font size that would make the book cover fill the screen with 50 pixels margin
                 var fs = (Math.min(ww,wh) - 50) / 11; // the book is 11ems wide and tall
-                // comnpute the resulting book size
+                // compute the resulting book size
                 var b = 11 * fs;
                 // get the final coordinates for the book
                 var left = (ww - b) / 2;
