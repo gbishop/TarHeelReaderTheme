@@ -25,7 +25,7 @@
 				".sass-cache",
 				"images"
 			],
-			"file_exclude_patterns": [ "style.css", "*.swf" ],
+			"file_exclude_patterns": [ "style.css", "*.swf", "Templates.json", "Templates.*.json", "*.min.js" ],
 			"path": "/home/gb/Projects/THR/Theme"
 		}
 	]
