@@ -3,7 +3,8 @@
     baseUrl: "js",
     dir: "../../Theme-build",
     paths: {
-        "jquery": "empty:"
+        "jquery": "empty:",
+        "jquery-ui": "empty"
     },
     preserveLicenseComments: false,
     name: "main"
