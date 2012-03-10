@@ -109,6 +109,11 @@ define(["jquery",
                 toSelect.clone()
                 .attr('id', 'preview') // make a copy of the selected book
                     .appendTo('.thr-book-list') // add it to the end of the list
+                    .css({
+                        position: 'absolute',
+                        margin: 0,
+                        zIndex: 10
+                    })
                     .css('background-color', '#' + state.get('pageColor')) // make the background solid
                     .css(toSelect.offset()) // position it over the original
                     .delay(200) // wait a bit so we can see the highlight move
