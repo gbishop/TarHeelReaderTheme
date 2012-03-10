@@ -12,7 +12,7 @@
 /*jslint nomen: true */
 /*global jQuery, window, document, setTimeout, clearTimeout */
 
-define(['jquery', 'jquery-ui'](function ($) {
+define(['jquery', 'jquery-ui'], function ($) {
     'use strict';
 
     // The Image Gallery plugin makes use of jQuery's delegate method to attach
