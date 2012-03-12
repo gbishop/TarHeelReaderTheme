@@ -96,7 +96,8 @@ define([ "jquery",
                         data: { ajax: 1 }, // signal this is a ajax request right in the URL
                         success: function(data, textStatus, jqXHR) {
                             var $newPage = $(data),
-                                type = $newPage.attr('class').match(/[-a-z]+-page/)[0],
+                                cls = $newPage.attr('class'),
+                                type = (cls && cls.match(/[-a-z]+-page/)[0]) || 'server-page',
                                 $oldPage = page.getInactive(type);
                             $oldPage.replaceWith($newPage);
                             $render.resolve($newPage);
