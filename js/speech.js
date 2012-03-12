@@ -7,17 +7,21 @@ define(["jquery", "templates" ], function($, templates) {
         // use html5 audio if it is available and if it supports mp3. I'd rather use ogg but I need mp3 for
         // flash fallback anyway
         // to make it work on the iPad I apparently have to load a legal mp3. Use this one for now.
-        audio = new Audio(SpeechBase + 'site/en-c-whatnow.mp3');
-        if (audio && audio.canPlayType &&
-            ("no" != audio.canPlayType("audio/mpeg")) &&
-            ("" !== audio.canPlayType("audio/mpeg"))) {
-            $('.flashplayer').remove();
-            // we appear to have html5 audio so call load which is required on the iPod.
-            audio.load();
-            // now this node is blessed so we can play sound whenever we want.
+        if (typeof(Audio) == 'function') {
+            audio = new Audio(SpeechBase + 'site/en-c-whatnow.mp3');
+            if (audio && audio.canPlayType &&
+                ("no" != audio.canPlayType("audio/mpeg")) &&
+                ("" !== audio.canPlayType("audio/mpeg"))) {
+                $('.flashplayer').remove();
+                // we appear to have html5 audio so call load which is required on the iPod.
+                audio.load();
+                // now this node is blessed so we can play sound whenever we want.
 
+            } else {
+                // otherwise signal that we'll be using flash
+                audio = 'flash';
+            }
         } else {
-            // otherwise signal that we'll be using flash
             audio = 'flash';
         }
     }
