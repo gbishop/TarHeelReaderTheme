@@ -1,10 +1,11 @@
-<div id="sidebar">
-    <form action="/find/" id="searchform" method="get">
+<div class="sidebar">
+    <form action="/find/" class="searchform" method="get">
         <div>
-            <label for="search" class="screen-reader-text">_(Search for|label for search box)</label>
-            <input type="search" id="search" name="search" value="" />
+            <label>_(Search for|label for search box)</label>
+                <input type="search" name="search" value="" />
+            </label>
             <input type="hidden" name="page" value="1" />
-            <input type="submit" value="Search" id="searchsubmit" />
+            <input type="submit" value="Search" />
         </div>
     </form>
     <h2>_(Reading|section heading)</h2>
@@ -26,7 +27,7 @@
         <li><a href="/frequently-asked-questions/" title="_(Frequently Asked Questions|link explanatory text)">_(FAQ|link label)</a></li>
         <li><a href="/photo-credits/">_(Photo Credits)</a></li>
     </ul>
-            
+
 	<h2>_(Admin|section heading)</h2>
 	<ul>
         {{^loggedIn}}

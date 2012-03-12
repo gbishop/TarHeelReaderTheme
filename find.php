@@ -110,7 +110,7 @@ $searchFormData = setFormFromState($Templates['searchForm']);
 ?>
 <?php thr_header(true, 'find-page', true);
 $view = array();
-$view['searchForm'] = mustache('form', $searchFormData);
+$view['searchForm'] = template_render('form', $searchFormData);
 // edit the data to create the view for the template
 foreach( $result['books'] as &$book ) {
     $c = &$book['cover'];
@@ -124,14 +124,14 @@ foreach( $result['books'] as &$book ) {
         $c['pm'] = 0;
     }
 } 
-$view['bookList'] = mustache('bookList', $result);
+$view['bookList'] = template_render('bookList', $result);
 if ($page > 1) {
 	$view['backLink'] = get_find_url($page-1);
 }
 if ($more) {
 	$view['nextLink'] = get_find_url($page+1);
 }
-echo mustache('find', $view);
+echo template_render('find', $view);
 
 thr_footer(false, false); 
 ?>

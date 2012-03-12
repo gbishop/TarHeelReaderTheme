@@ -1,11 +1,10 @@
-require([ "jquery",
+define([ "jquery",
           "route",
           "page",
           "state",
-          "history",
-          "history.html4",
+          "templates",
           "history.adapter.jquery"
-         ], function($, route, page, state) {
+         ], function($, route, page, state, templates) {
 
     var History = window.History,
         document = window.document;
@@ -26,7 +25,7 @@ require([ "jquery",
 
             var $this = $(this),
                 url;
-                
+
             if ($this.is('a')) {
                 // click on a link
                 if ($this.attr('data-role') === 'back') {
@@ -54,7 +53,7 @@ require([ "jquery",
                     return true;
                 }
             }
-            
+
            // Continue as normal for ctrl clicks or external links
             if (event.which === 2 || event.metaKey || event.ctrlKey ||
                 ( url.substring(0,rootUrl.length) !== rootUrl && url.indexOf(':') !== -1 ) ||
@@ -62,7 +61,7 @@ require([ "jquery",
                 console.log('not hijaxing', url);
                 return true;
             }
-            
+
             // hijax this link
             History.pushState(null,null,url);
             event.preventDefault();
@@ -82,38 +81,42 @@ require([ "jquery",
             // update my app internal state from the cookie and any query parameters
             state.update(url);
 
-            // if there is a local handler for this url call it
-            var $render = route.go('render', url);
+            // make sure we've got the right templates for the locale
+            templates.setLocale().then(function() {
 
-            if ($render === false) { // no local handler was found, fetch the page from the server
-                $render = $.Deferred();
+                // if there is a local handler for this url call it
+                var $render = route.go('render', url);
 
-                // request the page
-                $.ajax({
-                    url: url,
-                    data: { ajax: 1 }, // signal this is a ajax request right in the URL
-                    success: function(data, textStatus, jqXHR) {
-                        var $newPage = $(data),
-                            type = $newPage.attr('class').match(/[-a-z]+-page/)[0],
-                            $oldPage = page.getInactive(type);
-                        $oldPage.replaceWith($newPage);
-                        $render.resolve($newPage);
-                    },
+                if ($render === false) { // no local handler was found, fetch the page from the server
+                    $render = $.Deferred();
 
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.log('ajax request failed for: ', url);
-                        document.location.href = url;
-                        $render.reject();
-                    }
-                }); // end ajax
-            }
-            // now the deferred with be resolved when the page has been rendered either locally or from the server
-            $render.then(function($newPage, options) {
-                console.log('newPage', $newPage);
-                // transition to the new page
-                page.transitionTo($newPage, options).then(function($newPage) {
-                    route.go('init', url, $newPage);
-                    $(window).scrollTop(0);
+                    // request the page
+                    $.ajax({
+                        url: url,
+                        data: { ajax: 1 }, // signal this is a ajax request right in the URL
+                        success: function(data, textStatus, jqXHR) {
+                            var $newPage = $(data),
+                                type = $newPage.attr('class').match(/[-a-z]+-page/)[0],
+                                $oldPage = page.getInactive(type);
+                            $oldPage.replaceWith($newPage);
+                            $render.resolve($newPage);
+                        },
+
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log('ajax request failed for: ', url);
+                            document.location.href = url;
+                            $render.reject();
+                        }
+                    }); // end ajax
+                }
+                // now the deferred with be resolved when the page has been rendered either locally or from the server
+                $render.then(function($newPage, options) {
+                    console.log('newPage', $newPage);
+                    // transition to the new page
+                    page.transitionTo($newPage, options).then(function($newPage) {
+                        route.go('init', url, $newPage);
+                        $(window).scrollTop(0);
+                    });
                 });
             });
         }); // end on statechange

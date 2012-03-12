@@ -1,11 +1,18 @@
-<?php 
+<?php
 
 require('state.php'); // manage shared state in a cookie so both client and host have access
 require_once "Mustache.php";
-$Templates = json_decode(file_get_contents('Templates.json', FILE_USE_INCLUDE_PATH), true);
+$locale = THR('locale');
+if ($locale != 'en') {
+    $content = file_get_contents("Templates.$locale.json", FILE_USE_INCLUDE_PATH);
+}
+if ($locale == 'en' || !$content) {
+    $content = file_get_contents("Templates.json", FILE_USE_INCLUDE_PATH);
+}
+$Templates = json_decode($content, true);
 $mustache = new Mustache();
 
-function mustache($name, $data=array()) {
+function template_render($name, $data=array()) {
     global $mustache, $Templates;
     return $mustache->render($Templates[$name], $data);
 }
@@ -81,11 +88,11 @@ function thr_title() {
 }
 
 function is_ajax() {
-    return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
+    return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
         || (isset($_GET['ajax']) && $_GET['ajax']);
 }
 
-// output the header with some tweaks 
+// output the header with some tweaks
 function thr_header($colors, $pageType, $heading, $disableCache=true) {
     // tell IE8 how to render and to prefer chrome frame
     header('X-UA_Compatible: IE=edge,chrome=1');
@@ -110,18 +117,17 @@ function thr_header($colors, $pageType, $heading, $disableCache=true) {
         echo "<div class=\"$pageType page-wrap\" data-title=\"";
         thr_title();
         echo "\" $style>\n";
-        echo "<div class=\"content-wrap\">\n";
 
     } else {
         // this is a request from a browser for the full page.
         get_header();
         echo "<body>\n";
         echo "<div class=\"$pageType page-wrap active-page\" $style >\n";
-        echo "<div class=\"content-wrap\">\n";
     }
     if ($heading) {
-        echo mustache('heading');
+        echo template_render('heading');
     }
+    echo "<div class=\"content-wrap\">\n";
 }
 
 function thr_footer($sidebar, $full) {
@@ -140,7 +146,7 @@ function thr_footer($sidebar, $full) {
         }
         echo "</div>\n";
         get_footer();
-    }        
+    }
 }
 
 function convert_image_url($url) {
@@ -257,7 +263,7 @@ function ParseBookPost($post) {
         if (array_key_exists($n, $LangNameToLangCode)) {
             $language = $LangNameToLangCode[$n];
         } else {
-            $tags[] = $n;        
+            $tags[] = $n;
         }
     }
     $audience = ' ';
@@ -293,20 +299,20 @@ function ParseBookPost($post) {
     for($i = 1; $i < count($image_urls); $i++) {
         $pages[] = make_page($captions[$i-1], $image_urls[$i]);
     }
-    $res = array('title'=>$title, 
-                 'author'=>$author, 
-                 'author_id'=>$author_id, 
-                 'status'=>$status, 
-                 'type'=>$type, 
-                 'audience'=>$audience, 
-                 'reviewed'=>$reviewed, 
+    $res = array('title'=>$title,
+                 'author'=>$author,
+                 'author_id'=>$author_id,
+                 'status'=>$status,
+                 'type'=>$type,
+                 'audience'=>$audience,
+                 'reviewed'=>$reviewed,
                  'language'=>$language,
                  'has_speech'=>intval(in_array($language, $SynthLanguages)),
-                 'modified'=>$modified, 
-                 'created'=>$created, 
-                 'tags'=>$tags, 
-                 'categories'=>$categories, 
-                 'ID'=>$id, 
+                 'modified'=>$modified,
+                 'created'=>$created,
+                 'tags'=>$tags,
+                 'categories'=>$categories,
+                 'ID'=>$id,
                  'slug'=>$slug,
                  'link'=>$link,
                  'rating_count' => $rating_count,
@@ -364,13 +370,14 @@ function getGet($key, $default = null, $rule = null)
     return $default;
 }
 
-function flashAudio($mp3) { 
+function flashAudio($mp3) {
     $view = array('mp3' => urlencode($mp3));
-    echo mustache('flash', $view);
+    echo template_render('flash', $view);
 }
 
 function setFormFromState($FormData) {
     foreach($FormData['controls'] as &$control) {
+        $control['unique'] = uniqid();
         if (!isset($control['value']) && isset($control['name'])) {
             $control['value'] = THR($control['name']);
         }
@@ -407,12 +414,12 @@ function pageLink($link, $page) {
 }
         // Translations can be filed in the /languages/ directory
         load_theme_textdomain( 'html5reset', TEMPLATEPATH . '/languages' );
- 
+
         $locale = get_locale();
         $locale_file = TEMPLATEPATH . "/languages/$locale.php";
         if ( is_readable($locale_file) )
             require_once($locale_file);
-	
+
 // Clean up the <head>
 function removeHeadLinks() {
     remove_action('wp_head', 'rsd_link'); // Might be necessary if you or other people on this site use remote editors.
@@ -426,7 +433,7 @@ function removeHeadLinks() {
     remove_filter( 'the_content', 'capital_P_dangit' ); // Get outta my Wordpress codez dangit!
     remove_filter( 'the_title', 'capital_P_dangit' );
     remove_filter( 'comment_text', 'capital_P_dangit' );
-    // Hide the version of WordPress you're running from source and RSS feed // Want to JUST remove it from the source? Try: 
+    // Hide the version of WordPress you're running from source and RSS feed // Want to JUST remove it from the source? Try:
     remove_action('wp_head', 'wp_generator');
 
 }
@@ -444,5 +451,5 @@ function my_login_redirect() {
 }
 add_filter('login_redirect', 'my_login_redirect');
 
-    
+
 ?>

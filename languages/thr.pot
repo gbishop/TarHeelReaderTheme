@@ -12,6 +12,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 
+# readingForm.json:3
+msgctxt "pulldown label"
+msgid "Voice"
+msgstr ""
+
+# readingForm.json:7
+msgctxt "no speech at all"
+msgid "Silent"
+msgstr ""
+
+# readingForm.json:8
+msgid "Child"
+msgstr ""
+
+# readingForm.json:9
+msgid "Woman"
+msgstr ""
+
+# readingForm.json:10
+msgid "Man"
+msgstr ""
+
+# readingForm.json:13
+msgctxt "pulldown label for selecting the background color"
+msgid "Page Color"
+msgstr ""
+
+# readingForm.json:17, readingForm.json:31
+msgid "Black"
+msgstr ""
+
+# readingForm.json:18, readingForm.json:32
+msgid "Blue"
+msgstr ""
+
+# readingForm.json:19, readingForm.json:33
+msgid "Cyan"
+msgstr ""
+
+# readingForm.json:20, readingForm.json:34
+msgid "Green"
+msgstr ""
+
+# readingForm.json:21, readingForm.json:35
+msgid "Magenta"
+msgstr ""
+
+# readingForm.json:22, readingForm.json:36
+msgid "Red"
+msgstr ""
+
+# readingForm.json:23, readingForm.json:37
+msgid "White"
+msgstr ""
+
+# readingForm.json:24, readingForm.json:38
+msgid "Yellow"
+msgstr ""
+
+# readingForm.json:27
+msgctxt "pulldown label for selecting the text color"
+msgid "Text Color"
+msgstr ""
+
+# readingForm.json:43
+msgctxt "button label"
+msgid "Done"
+msgstr ""
+
 # searchForm.json:8
 msgctxt "placeholder text for search box"
 msgid "Enter text to search"
@@ -297,17 +366,17 @@ msgstr ""
 msgid "Average Rating"
 msgstr ""
 
-# templates/find.mustache:5
+# templates/find.mustache:4
 msgctxt "label for button to expose search fields on small devices"
 msgid "Press to search"
 msgstr ""
 
-# templates/find.mustache:9
+# templates/find.mustache:8
 msgctxt "button label"
 msgid "Previous Books"
 msgstr ""
 
-# templates/find.mustache:12
+# templates/find.mustache:11
 msgctxt "button label"
 msgid "More Books"
 msgstr ""
@@ -322,85 +391,97 @@ msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
 msgstr ""
 
+# templates/readingControls.mustache:1
+msgid "Reading Preferences"
+msgstr ""
+
+# templates/readingControls.mustache:6
+msgid "This book"
+msgstr ""
+
+# templates/readingControls.mustache:7
+msgid "Download book"
+msgstr ""
+
 # templates/sidebar.mustache:4, searchForm.json:4
 msgctxt "label for search box"
 msgid "Search for"
 msgstr ""
 
-# templates/sidebar.mustache:10
+# templates/sidebar.mustache:11
 msgctxt "section heading"
 msgid "Reading"
 msgstr ""
 
-# templates/sidebar.mustache:12
+# templates/sidebar.mustache:13
 msgid "Find Books"
 msgstr ""
 
-# templates/sidebar.mustache:13
+# templates/sidebar.mustache:14
 msgid "Favorites"
 msgstr ""
 
-# templates/sidebar.mustache:14
+# templates/sidebar.mustache:15
 msgid "Settings"
 msgstr ""
 
-# templates/sidebar.mustache:17
+# templates/sidebar.mustache:18
 msgctxt "section heading"
 msgid "Writing"
 msgstr ""
 
-# templates/sidebar.mustache:19
+# templates/sidebar.mustache:20
 msgid "Write a Book"
 msgstr ""
 
-# templates/sidebar.mustache:20
+# templates/sidebar.mustache:21
 msgid "Books you wrote"
 msgstr ""
 
-# templates/sidebar.mustache:23
+# templates/sidebar.mustache:24
 msgctxt "section heading"
 msgid "Info"
 msgstr ""
 
-# templates/sidebar.mustache:25
+# templates/sidebar.mustache:26
 msgid "Announcements"
 msgstr ""
 
-# templates/sidebar.mustache:26
+# templates/sidebar.mustache:27
 msgctxt "link label"
 msgid "FAQ"
 msgstr ""
 
-# templates/sidebar.mustache:26
+# templates/sidebar.mustache:27
 msgctxt "link explanatory text"
 msgid "Frequently Asked Questions"
 msgstr ""
 
-# templates/sidebar.mustache:27
+# templates/sidebar.mustache:28
 msgid "Photo Credits"
 msgstr ""
 
-# templates/sidebar.mustache:30
+# templates/sidebar.mustache:31
 msgctxt "section heading"
 msgid "Admin"
 msgstr ""
 
-# templates/sidebar.mustache:33
+# templates/sidebar.mustache:34
 msgctxt "link label"
 msgid "Register"
 msgstr ""
 
-# templates/sidebar.mustache:34
+# templates/sidebar.mustache:35
 msgctxt "link label"
 msgid "Log In"
 msgstr ""
 
-# templates/sidebar.mustache:37
+# templates/sidebar.mustache:38
 msgctxt "link label"
 msgid "Site Admin"
 msgstr ""
 
-# templates/sidebar.mustache:38
+# templates/sidebar.mustache:39
 msgctxt "link label"
 msgid "Log out"
 msgstr ""

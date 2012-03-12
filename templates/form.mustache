@@ -1,14 +1,14 @@
     <form action="{{action}}" method="{{method}}">
     {{#controls}}
         {{#label}}
-        <label for="{{name}}Input" class="screen-reader-text">{{label}}</label>
+        <label for="I-{{name}}-{{unique}}" >{{label}}</label>
         {{/label}}
         {{#input}}
-        <input type="{{type}}"  value="{{value}}" {{#name}}name="{{name}}" id="{{name}}Input"{{/name}}
+        <input type="{{type}}" value="{{value}}" id="I-{{name}}-{{unique}}" {{#name}}name="{{name}}"{{/name}}
                {{#description}}placeholder="{{description}}" title="{{description}}"{{/description}} />
         {{/input}}
         {{#select}}
-        <select id="{{name}}Input" name="{{name}}">
+        <select id="I-{{name}}-{{unique}}" name="{{name}}">
             {{#options}}
             <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
             {{/options}}

@@ -42,7 +42,7 @@
                     $view['nextLink'] = pageLink($book['link'], $pageNumber+1);
                 }
                 setImageSizes($view['image']);
-                echo mustache('bookPage', $view);
+                echo template_render('bookPage', $view);
             } else {
                 $view['nextPage'] = $pageNumber+1;
                 $view['link'] = $book['link'];
@@ -51,7 +51,7 @@
                 $view['what'] = $pageNumber == $N+1;
                 $view['rate'] = $pageNumber == $N+2;
                 $view['thanks'] = $pageNumber >= $N+3;
-                echo mustache('choicePage', $view);
+                echo template_render('choicePage', $view);
             }
     endwhile; endif;
 thr_footer(false, false); ?>

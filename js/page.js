@@ -4,11 +4,11 @@ define(["jquery", "state"], function($, state) {
 
     // find or create an inactive page of the indicated type
     function getInactive(type) {
-        var selector = '.' + type + ':not(.active-page)',
+        var selector = '.' + type + ':not(.active-page):first',
             $page = $(selector);
         if ($page.length === 0) {
             // not found create it and add it to the body
-            $page = $('<div class="' + type + ' page-wrap"><div class="content-wrap"></div></div>').appendTo('body');
+            $page = $('<div class="' + type + ' page-wrap"></div>').appendTo('body');
         }
         return $page;
     }

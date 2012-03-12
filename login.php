@@ -28,19 +28,19 @@ Display the login form
 <?php thr_header(false, '', true); ?>
 <h1>Login to Tar Heel Reader</h1>
 <p><?php echo $msg ?></p>
-<form id="loginForm" action="/login/" method="post">
+<form class="loginForm" action="/login/" method="post">
     <p>
         <label>Username<br />
-        <input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="10" /></label>
+        <input type="text" name="log" class="input" value="" size="20" tabindex="10" /></label>
     </p>
     <p>
         <label>Password<br />
 
-        <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="20" /></label>
+        <input type="password" name="pwd" class="input" value="" size="20" tabindex="20" /></label>
     </p>
-    <p class="forgetmenot"><label><input name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="90" /> Remember Me</label></p>
+    <p class="forgetmenot"><label><input name="rememberme" type="checkbox" value="forever" tabindex="90" /> Remember Me</label></p>
     <p class="submit">
-        <input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" tabindex="100" />
+        <input type="submit" name="wp-submit" class="button-primary" value="Log In" tabindex="100" />
         <input type="hidden" name="redirect_to" value="/" />
         <input type="hidden" name="testcookie" value="1" />
     </p>

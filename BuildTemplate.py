@@ -3,12 +3,13 @@ import os.path as osp
 import json
 import argparse
 import gettext
+import sys
 
 parser = argparse.ArgumentParser(description="Process templates to produce locale specific json files.")
 parser.add_argument('--lang')
 parser.add_argument('--extract')
 parser.add_argument('templates', nargs='+')
-parser.add_argument('--output', default='Templates.json')
+parser.add_argument('--output')
 args = parser.parse_args()
 
 t = gettext.translation('thr', 'locale', [args.lang], fallback=True)
@@ -27,18 +28,31 @@ for fname in args.templates:
             locs = strings.get(s, [])
             locs.append((fname, lineNumber + 1))
             strings[s] = locs
-            r = t.gettext(s[0])
+            if len(s) == 2:
+                r = t.gettext(s[1] + "\x04" + s[0])
+                rr = r.split("\x04")
+                if len(rr) == 2:
+                    r = rr[1]
+            else:
+                r = t.gettext(s[0])
             return r
 
-        text = re.sub(r'_\(([^)]+)\)', translate, text)
+        text = re.sub(r'_\(([^\)]+)\)', translate, text)
+        text = re.sub(r' +', ' ', text)
         lines.append(text)
-    value = '\n'.join(lines)
+    value = ''.join(lines)
 
     if ext == '.json':
-        value = json.loads(value)
+        try:
+            value = json.loads(value)
+        except:
+            print 'error', fname
+            print value
+            sys.exit(1)
     templates[key] = value
 
-file(args.output, 'w').write(json.dumps(templates))
+if args.output:
+    file(args.output, 'w').write(json.dumps(templates, sort_keys=True))
 
 poHeader = r'''
 msgid ""

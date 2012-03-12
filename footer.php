@@ -1,10 +1,13 @@
     </div>
-    
+
 	<?php wp_footer(); ?>
+
+  <!-- load everything else dynamically -->
+  <script data-main="/theme/js/main" src="/theme/js/require.js"></script>
 
 <!-- Asynchronous google analytics; this is the official snippet.
 	 Replace UA-XXXXXX-XX with your site's ID and uncomment to enable.
-	 
+
 <script>
 
   var _gaq = _gaq || [];
@@ -19,7 +22,7 @@
 
 </script>
 -->
-	
+
 </body>
 
 </html>
