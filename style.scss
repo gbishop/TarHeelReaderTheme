@@ -8,6 +8,7 @@ Version: 1
 */
 
 @import "reset";
+@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
@@ -71,7 +72,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 .content-wrap {
     width: 48em;
-    margin: 0px auto;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    left:0.7em;
+    padding-bottom:2em;
+    padding-top:1em;
 }
 
 .page-wrap {
@@ -80,6 +86,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     display: none;
     margin: 0;
     padding: 0;
+}
+
+.find-page{
+    background:url('http://subtlepatterns.com/patterns/furley_bg.png')
 }
 
 .active-page {
@@ -93,13 +103,22 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     display: block;
     margin: 0px auto;
     text-align: center;
+    background:rgb(51,51,51);
+    border-top:4px solid #3399FF;
+    height:3em;
     //opacity: 0.5;
 
     h1 {
         font-size: 1.3em;
+        height:2.3em;
 
         a {
             text-decoration: none;
+            color:#999;
+            font-family: 'Terminal Dosis', sans-serif;
+            font-weight:400;
+            height:2.3em;
+            line-height:2.3em;
         }
     }
     .description {
@@ -174,8 +193,32 @@ h2 {
 }
 
 .searchForm {
-    margin-top: 0.2em;
     text-align: center;
+    background-image: linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
+    background-image: -o-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
+    background-image: -moz-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
+    background-image: -webkit-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
+    background-image: -ms-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.28, rgb(214,214,214)),
+        color-stop(0.66, rgb(237,237,237))
+    );
+    width:100%;
+    padding-top:0.2em;
+    padding-bottom:0.2em;
+    select{
+        width:7em;
+    }
+
+    [name=search]{
+        width:12em;
+        border-radius:10px;
+        border:1px solid grey;
+    }
+
 }
 
 .searchShowButton {
@@ -203,13 +246,15 @@ h2 {
     li {
         width: 11em;
         height: 11em;
-        border: 1px solid black;
+        border: 1px solid grey;
         margin: 0.2em;
         float: left;
         text-align: center;
         position: relative;
         line-height: 1em;
         overflow: hidden;
+        background:white;
+        border-radius:4px;
     }
 
     h2 {
