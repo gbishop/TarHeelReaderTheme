@@ -81,7 +81,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     position:relative;
     left:0.7em;
     padding-bottom:2em;
-    padding-top:1em;
+    //padding-top:1em;
 }
 
 .page-wrap {
@@ -93,7 +93,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .find-page{
-    background:url('http://subtlepatterns.com/patterns/furley_bg.png')
+    background:url('http://subtlepatterns.com/patterns/furley_bg.png');
+    .description {
+        display: none;
+    }
 }
 
 .active-page {
@@ -198,6 +201,7 @@ h2 {
 
 .searchForm {
     text-align: center;
+    /*
     background-image: linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
     background-image: -o-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
     background-image: -moz-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
@@ -209,7 +213,7 @@ h2 {
         left top,
         color-stop(0.28, rgb(214,214,214)),
         color-stop(0.66, rgb(237,237,237))
-    );
+    );*/
     width:100%;
     padding-top:0.2em;
     padding-bottom:0.2em;
