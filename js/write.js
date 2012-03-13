@@ -3,20 +3,29 @@ define(['jquery',
         ],
     function($, route, page){
 
-        function fetchGallery(query) {
-            console.log('fetchGallery', query);
+        function fetchGallery(options) {
+            console.log('fetchGallery', options);
             // TODO: set loading here
+            var data = {
+                page: 1,
+                per_page: 16
+            };
+            var url;
+            if ('query' in options) {
+                data.tags = options.query;
+                url = '/photoSearch/';
+            } else if ('user_id' in options) {
+                data.user_id = options.user_id;
+                url = '/photoSearchPeople/';
+            } else {
+                console.log('error');
+                return false;
+            }
             $.ajax({
-                url: '/photoSearch/',
-                data: {
-                    //use_id: '26671200@N08',
-                    tags: query,
-                    page: 1,
-                    per_page: 16
-                },
+                url: url,
+                data: data,
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
-                //dataType: 'json',
                 success: function (data) {
                     console.log('success!', data);
                     $('#gallery').empty();
@@ -63,8 +72,13 @@ define(['jquery',
                     var $form = $page.find('form');
                     $form.submit(function(e) {
                         e.preventDefault();
+                        console.log('submit');
                         var query = $page.find('input[name=query]').val();
-                        fetchGallery(query);
+                        if (query.match(/^.*@.*$/)) {
+                            fetchGallery({ user_id: query });
+                        } else {
+                            fetchGallery({ query: query });
+                        }
                         return false;
                     });
                 });

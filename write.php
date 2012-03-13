@@ -17,7 +17,7 @@ $ID = getGet('id', '', '/[0-9]+/');
 </noscript>
 <p>Check to be sure they are logged in too</p>
 
-<form method="get">
+<form method="get" class="no-ajaxy">
     <input type="search" name="query" />
     <input type="submit" value="Search" />
 </form>
