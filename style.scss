@@ -79,14 +79,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     margin-left:auto;
     margin-right:auto;
     position:relative;
-    left:0.7em;
-    padding-bottom:2em;
-    //padding-top:1em;
 }
 
 .page-wrap {
     width: 100%;
-    //height: 100%;
     display: none;
     margin: 0;
     padding: 0;
@@ -111,9 +107,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     margin: 0px auto;
     text-align: center;
     background:rgb(51,51,51);
-    border-top:4px solid #3399FF;
+    border-top: 0.25em solid #3399FF;
     height:3em;
-    //opacity: 0.5;
 
     h1 {
         font-size: 1.8em;
@@ -223,10 +218,10 @@ h2 {
 
     [name=search]{
         width:12em;
-        border-radius:10px;
+        border-radius: 0.5em;
         border:1px solid grey;
-        padding-left:4px;
-        padding-right:4px;
+        padding-left: 0.25em;
+        padding-right: 0.25em;
     }
 
 }
@@ -264,7 +259,7 @@ h2 {
         line-height: 1em;
         overflow: hidden;
         background:white;
-        border-radius:4px;
+        border-radius: 0.25em;
     }
 
     h2 {
@@ -332,11 +327,11 @@ h2 {
     background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
     background-image: linear-gradient(top, #eeeeee, #cccccc);
     border: 1px solid grey;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
+    -webkit-border-radius: 0.25em;
+    -moz-border-radius: 0.25em;
+    -ms-border-radius: 0.25em;
+    -o-border-radius: 0.25em;
+    border-radius: 0.25em;
     color: #333;
     font: bold 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
     padding: 0.5em 0;
@@ -364,9 +359,9 @@ h2 {
 .thr-find-next:active, .thr-find-back:hover:active {
     border: 1px solid #aaa;
     border-bottom: 1px solid #888;
-    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -webkit-box-shadow: inset 0 0 0.25em 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -moz-box-shadow: inset 0 0 0.25em 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    box-shadow: inset 0 0 0.25em 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 }
 
 .thr-find-next {
@@ -420,6 +415,9 @@ h2 {
     text-align: center;
     height: 100%;
 
+    .content-wrap {
+        width: auto;
+    }
     h1 {
         font-size: 2em;
         height: 2.5em;
@@ -608,6 +606,6 @@ and (orientation: landscape) {
 
 .myThumbnail {
 	width: 12%;
-	max-width: 150px;
-	min-width: 75px;
+	max-width: 10em;
+	min-width: 5em;
 }
