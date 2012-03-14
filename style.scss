@@ -46,6 +46,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     position: absolute;
     top: 0px;
     left: 0px;
+    width: 2em;
+    height: 2em;
     img {
         width: 2em;
         height: 2em;
@@ -62,6 +64,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     position: absolute;
     top: 0px;
     right: 0px;
+    width: 2em;
+    height: 2em;
     img {
         width: 2em;
         height: 2em;
@@ -82,7 +86,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .page-wrap {
-    width: 100%;
+    //width: 100%;
     display: none;
     margin: 0;
     padding: 0;
