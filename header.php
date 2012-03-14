@@ -42,12 +42,13 @@
 			echo ".thr-colors { color: #$tc; background-color: #$pc; border-color: #$tc; }";
 		?></style>
 
-	<!--[if IE 7 ]>
-	<script src="/theme/js/json2.js"></script>
+	<!--[if lt IE 9 ]>
 	<script>
-		window.console = {
-		    log: function(a) { /*alert(a);*/ }
-		};
+		if (typeof(window.console) == 'undefined') {
+			window.console = {
+		    	log: function(a) { /*alert(a);*/ }
+			};
+		}
 	</script>
 	<![endif]-->
 
