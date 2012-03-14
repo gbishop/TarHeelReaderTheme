@@ -116,7 +116,6 @@ define(["jquery",
                         margin: 0,
                         zIndex: 10
                     })
-                    .css('background-color', '#' + state.get('pageColor')) // make the background solid
                     .css(toSelect.offset()) // position it over the original
                     .delay(200) // wait a bit so we can see the highlight move
                     .animate({ // animate the book zooming up to final size

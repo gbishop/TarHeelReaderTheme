@@ -108,7 +108,7 @@ if ($json) {
 }
 $searchFormData = setFormFromState($Templates['searchForm']);
 ?>
-<?php thr_header(true, 'find-page', true);
+<?php thr_header('find-page', true);
 $view = array();
 $view['searchForm'] = template_render('form', $searchFormData);
 // edit the data to create the view for the template
@@ -123,7 +123,7 @@ foreach( $result['books'] as &$book ) {
         $c['pw'] = 100*$c['width']/$c['height'];
         $c['pm'] = 0;
     }
-} 
+}
 $view['bookList'] = template_render('bookList', $result);
 if ($page > 1) {
 	$view['backLink'] = get_find_url($page-1);
@@ -133,5 +133,5 @@ if ($more) {
 }
 echo template_render('find', $view);
 
-thr_footer(false, false); 
+thr_footer(false, false);
 ?>

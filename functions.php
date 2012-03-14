@@ -93,7 +93,7 @@ function is_ajax() {
 }
 
 // output the header with some tweaks
-function thr_header($colors, $pageType, $heading, $disableCache=true) {
+function thr_header($pageType, $heading, $disableCache=true) {
     // tell IE8 how to render and to prefer chrome frame
     header('X-UA_Compatible: IE=edge,chrome=1');
 
@@ -105,24 +105,18 @@ function thr_header($colors, $pageType, $heading, $disableCache=true) {
     if ($disableCache) {
         header('Cache-Control: max-age=10'); // 10 seconds should allow a quick forward and back without a trip to the server
     }
-    $style = '';
-    if ($colors) {
-        $pc = THR('pageColor');
-        $tc = THR('textColor');
-        $style = "style=\"color: #$tc; background-color: #$pc; border-color: #$tc;\"";
-    }
 
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header
         echo "<div class=\"$pageType page-wrap\" data-title=\"";
         thr_title();
-        echo "\" $style>\n";
+        echo "\">\n";
 
     } else {
         // this is a request from a browser for the full page.
         get_header();
         echo "<body>\n";
-        echo "<div class=\"$pageType page-wrap active-page\" $style >\n";
+        echo "<div class=\"$pageType page-wrap active-page\" >\n";
     }
     if ($heading) {
         echo template_render('heading');

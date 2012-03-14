@@ -26,7 +26,7 @@ define(["jquery", "state"], function($, state) {
         options = $.extend({title:null, effect:'fade'}, options);
         $('.active-page').fadeOut(0, function() {
             if (options.colors) {
-                $page.css({
+                $('.thr-colors').css({
                     color: '#' + state.get('textColor'),
                     backgroundColor: '#' + state.get('pageColor'),
                     borderColor: '#' + state.get('textColor')

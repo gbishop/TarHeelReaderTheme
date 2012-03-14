@@ -5,7 +5,7 @@ Template Name: Write
 Allow users to write books
 */
 ?>
-<?php thr_header(false, 'write-page', true); ?>
+<?php thr_header('write-page', true); ?>
 <?php
 
 // get the id if any
