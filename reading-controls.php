@@ -10,8 +10,9 @@ Allow users to configure reading
 
 // get the id if any
 $ID = getGet('id', '', '/[0-9]+/');
+$backto = getGet('backto', '/');
 $settingsFormData = setFormFromState($Templates['readingForm']);
-$settingsFormData['action'] = history(1);
+$settingsFormData['action'] = parse_url($backto, PHP_URL_PATH);
 $view = array();
 $view['settingsForm'] = template_render('form', $settingsFormData);
 $view['ID'] = $ID;

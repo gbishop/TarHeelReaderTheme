@@ -32,6 +32,7 @@
             if ($pageNumber <= $N) {
                 $view['author'] = $book['author'];
                 $view['pageNumber'] = $pageNumber;
+                $view['backto'] = urlencode($book['link']);
                 $view['image'] = $book['pages'][max(1, $pageNumber-1)];
                 $view['caption'] = $view['image']['text'];
                 if ($pageNumber == 1) {

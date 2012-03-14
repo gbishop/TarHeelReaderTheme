@@ -51,14 +51,13 @@ define(["jquery",
             }
             view.frontPage = pageNumber === 1;
             view.title = book.title;
-            view.textColor = state.get('textColor');
-            view.pageColor = state.get('pageColor');
             view.ID = book.ID;
             var newContent;
             var N = book.pages.length;
             if (pageNumber <= N) {
                 view.author = book.author;
                 view.pageNumber = pageNumber;
+                view.backto = encodeURI(book.link);
                 view.image = book.pages[Math.max(1, pageNumber-1)];
                 view.caption = view.image.text;
                 if (pageNumber === 1) {
@@ -83,7 +82,7 @@ define(["jquery",
             var $oldPage = page.getInactive('thr-book-page');
             $oldPage.addClass('thr-colors');
             $oldPage.empty().append('<div class="content-wrap">' + newContent + '</div>');
-            $def.resolve($oldPage);
+            $def.resolve($oldPage, {title: book.title, colors: true});
         });
         return $def;
     }
@@ -122,12 +121,11 @@ define(["jquery",
         console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         scalePicture($page);
-        $page.find('.thr-pic').fadeIn(1000);
-
+        $page.find('.thr-pic').fadeIn(200);
     }
 
-    route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/(\?rating=\d)?)?$/, renderBook);
-    route.add('init', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/(\?rating=\d)?)?$/, configureBook);
+    route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
+    route.add('init', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, configureBook);
 
     return {};
 });
