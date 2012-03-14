@@ -36,6 +36,11 @@
 
 	<!-- CSS: screen, mobile & print are all in the same file -->
 	<link rel="stylesheet" href="/theme/style.css">
+	<style type="text/css"><?php
+			$pc = THR('pageColor');
+			$tc = THR('textColor');
+			echo ".thr-colors { color: #$tc; background-color: #$pc; border-color: #$tc; }";
+		?></style>
 
 	<!--[if IE 7 ]>
 	<script src="/theme/js/json2.js"></script>

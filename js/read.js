@@ -81,6 +81,7 @@ define(["jquery",
                 newContent = templates.render('choicePage', view);
             }
             var $oldPage = page.getInactive('thr-book-page');
+            $oldPage.addClass('thr-colors');
             $oldPage.empty().append('<div class="content-wrap">' + newContent + '</div>');
             $def.resolve($oldPage);
         });
@@ -122,6 +123,7 @@ define(["jquery",
         var $page = $(this);
         scalePicture($page);
         $page.find('.thr-pic').fadeIn(1000);
+
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/(\?rating=\d)?)?$/, renderBook);

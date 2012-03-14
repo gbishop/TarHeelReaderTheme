@@ -1,7 +1,7 @@
-<?php thr_header(true, 'thr-book-page', false); ?>
+<?php thr_header('thr-book-page thr-colors', false); ?>
 
-    <?php if (have_posts()): 
-        while (have_posts()): 
+    <?php if (have_posts()):
+        while (have_posts()):
             the_post();
 
             $book = ParseBookPost($post);

@@ -1,4 +1,4 @@
-<?php thr_header(false, '', true); ?>
+<?php thr_header('', true); ?>
 		<?php if (have_posts()) : ?>
 
  			<?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>
