@@ -375,12 +375,10 @@ h2 {
 }
 
 .thr-back-link {
-    position: absolute;
     left: 0px;
     bottom: 0px;
 }
 .thr-next-link {
-    position: absolute;
     right: 0px;
     bottom: 0px;
 }
@@ -390,7 +388,7 @@ h2 {
     display: block;
     text-decoration: none;
     border: 2px solid red;
-    position: absolute;
+    position: absolute; // fixed works fine but isn't supported before ios5?
     bottom: 0;
     font-size: 1em;
 
@@ -417,6 +415,7 @@ h2 {
 
     .content-wrap {
         width: auto;
+        height: 100%;
     }
     h1 {
         font-size: 2em;
