@@ -51,7 +51,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         height: 2em;
         margin-top:.5em;
         margin-left:.5em;
-        opacity: 0.3;
+        opacity: 0.8;
         &:hover {
             opacity: 1;
         }
@@ -67,7 +67,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         height: 2em;
         margin-top:.5em;
         margin-right:.5em;
-        opacity: 0.3;
+        opacity: 0.8;
         &:hover {
             opacity: 1;
         }
@@ -78,7 +78,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     width: 48em;
     margin-left:auto;
     margin-right:auto;
-    position:relative;
+    //position:relative; // why do we need this?
 }
 
 .page-wrap {
@@ -196,19 +196,6 @@ h2 {
 
 .searchForm {
     text-align: center;
-    /*
-    background-image: linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
-    background-image: -o-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
-    background-image: -moz-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
-    background-image: -webkit-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
-    background-image: -ms-linear-gradient(bottom, rgb(214,214,214) 28%, rgb(237,237,237) 66%);
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.28, rgb(214,214,214)),
-        color-stop(0.66, rgb(237,237,237))
-    );*/
     width:100%;
     padding-top:0.2em;
     padding-bottom:0.2em;
@@ -246,7 +233,7 @@ h2 {
 .thr-book-list {
     display: block;
     text-align: center;
-    margin-left: 0.3em;
+    margin-left: 1em;
 
     li {
         width: 11em;
@@ -258,8 +245,12 @@ h2 {
         position: relative;
         line-height: 1em;
         overflow: hidden;
-        background:white;
+        //background:white;
         border-radius: 0.25em;
+        //-webkit-box-shadow: 0.2em 0.2em 0.25em 2px #aaaaaa;
+        //-moz-box-shadow: 0.1em 0.1em 0.1em 2px #aaaaaa;
+        box-shadow: 0.1em 0.1em 0.0em 2px #aaaaaa;
+
     }
 
     h2 {
@@ -387,7 +378,7 @@ h2 {
     height: 4em;
     display: block;
     text-decoration: none;
-    border: 2px solid red;
+    border: 2px solid; // red;
     position: absolute; // fixed works fine but isn't supported before ios5?
     bottom: 0;
     font-size: 1em;
@@ -550,6 +541,9 @@ h2 {
     }
     .content-wrap {
         width: 38em;
+    }
+    .thr-book-list {
+        margin-left: 2em;
     }
 }
 
