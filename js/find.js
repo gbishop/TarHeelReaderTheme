@@ -161,6 +161,7 @@ define(["jquery",
         var $page = $(this);
         var $form = $page.find('.searchForm');
         console.log('findConfigure');
+        $form.submit(function(){ $('input:focus').blur(); });
         $page.find('a.searchShowButton').click(function(e){
             console.log('click');
             e.preventDefault();
