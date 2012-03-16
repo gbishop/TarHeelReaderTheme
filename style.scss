@@ -8,7 +8,7 @@ Version: 1
 */
 
 @import "reset";
-@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
+//@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
@@ -44,15 +44,13 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 .thr-home-icon {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0.5em;
+    left: 0.5em;
     width: 2em;
     height: 2em;
     img {
         width: 2em;
         height: 2em;
-        margin-top:.5em;
-        margin-left:.5em;
         opacity: 0.8;
         &:hover {
             opacity: 1;
@@ -62,15 +60,13 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 .thr-settings-icon {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0.5em;
+    right: 0.5em;
     width: 2em;
     height: 2em;
     img {
         width: 2em;
         height: 2em;
-        margin-top:.5em;
-        margin-right:.5em;
         opacity: 0.8;
         &:hover {
             opacity: 1;
@@ -93,7 +89,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .find-page{
-    background:url('http://subtlepatterns.com/patterns/furley_bg.png');
+    background:url('/theme/images/furley_bg.png');
     .description {
         display: none;
     }
@@ -121,8 +117,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         a {
             text-decoration: none;
             color:#999;
-            font-family: 'Terminal Dosis', sans-serif;
-            font-weight:400;
+            //font-family: 'Terminal Dosis', sans-serif;
+            font-weight:200;
             height:1.7em;
             line-height:1.7em;
         }
@@ -604,5 +600,21 @@ and (orientation: landscape) {
 .myThumbnail {
 	width: 12%;
 	max-width: 10em;
-	min-width: 5em;
+	min-width: 4em;
+}
+
+.write-page {
+    #writing-controls {
+        visibility: hidden;
+    }
+
+    noscript {
+        color: red;
+        font-weight: bold;
+        font-size: 2em;
+    }
+
+    #gallery {
+        margin-top: 1em;
+    }
 }
