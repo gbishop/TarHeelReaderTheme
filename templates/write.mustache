@@ -1,0 +1,46 @@
+<noscript>
+<p>_(You must have Javascript enabled in order to write a book.)</p>
+</noscript>
+{{^loggedIn}}
+<p>_(You must be logged in, to write a book.)<a href="/login/">_(Log In|link label)</a></p>
+{{/loggedIn}}
+<div id="writing-controls">
+    <div class="accordion">
+        <h3><a href="#">_(Step 1: Find pictures at Flickr)</a></h3>
+        <div>
+            <form method="get" class="no-ajaxy">
+                <label for="write-image-search">_(Enter words to search Flickr.)</label>
+                <input type="search" name="query" id="write-image-search" />
+                <input type="submit" value="_(Search)" />
+            </form>
+            <div id="gallery"></div>
+            <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
+        </div>
+        <h3><a href="#" class="spacer">_(Or upload your own pictures)</a></h3>
+        <div>
+            <form method="post" action="/upload-image/" class="no-ajaxy">
+                <label for="write-file-upload">_(Enter a filename.)</label>
+                <input type="file" name="imagefile" id="write-file-upload" />
+                <input type="submit" value="_(Upload)" />
+            </form>
+        </div>
+    </div>
+    <div class="accordion">
+        <h3><a href="#">_(Step 2: Add text to each page)</a></h3>
+        <div>
+            <p>Show the book pages here.</p>
+        </div>
+    </div>
+    <div class="accordion">
+        <h3><a href="#">_(Step 3: Fill in the details)</a></h3>
+        <div>
+            <p>Book settings like title, author, classification, language go here.</p>
+        </div>
+    </div>
+    <div class="accordion">
+        <h3><a href="#">_(Step 4: Publish)</a></h3>
+        <div>
+            <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
+        </div>
+    </div>
+</div>
