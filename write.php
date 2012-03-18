@@ -10,17 +10,10 @@ Allow users to write books
 
 // get the id if any
 $ID = getGet('id', '', '/[0-9]+/');
+$view = array();
+$view['ID'] = $ID;
+$view['loggedIn'] = true;
+
+echo template_render('write', $view);
 ?>
-<h1>Write a book</h1>
-<noscript>
-    <p>You must have Javascript enabled in order to write a book.</p>
-</noscript>
-<p>Check to be sure they are logged in too</p>
-
-<form method="get" class="no-ajaxy">
-    <input type="search" name="query" />
-    <input type="submit" value="Search" />
-</form>
-<div id="gallery"></div>
-
 <?php thr_footer(false, true); ?>
