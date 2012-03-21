@@ -7,6 +7,9 @@ Author URI: http://www.cs.unc.edu/~gb/;
 Version: 1
 */
 
+$captionFontSize: 1.8em;
+$pageLinkFontSize: 0.8em;
+
 @import "reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
@@ -373,6 +376,7 @@ h2 {
     right: 0px;
     bottom: 0px;
 }
+
 .thr-next-link, .thr-back-link {
     width: 6em;
     height: 4em;
@@ -381,7 +385,7 @@ h2 {
     border: 2px solid; // red;
     position: absolute; // fixed works fine but isn't supported before ios5?
     bottom: 0;
-    font-size: 1em;
+    font-size: $pageLinkFontSize;
 
     img {
         margin: 0.25em auto 0 auto;
@@ -424,12 +428,12 @@ h2 {
         color: #DDD;
     }
     .thr-caption {
-        font-size: 2em;
+        font-size: $captionFontSize;
         line-height: 1.2em;
-        width: 100%;
-        height: 2.5em; // this is 5 native em tall because it is using the new font size. Why?
+        width: (48em - 2 * 6 * $pageLinkFontSize) / $captionFontSize * 1em + 0.2em;
+        height: 6em / $captionFontSize * 1em + 0.2em;
         overflow: hidden;
-        margin-bottom: 0;
+        margin: 0 auto;
     }
     .thr-choices {
         width: 12em;
@@ -504,6 +508,7 @@ h2 {
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 
     .js {
+        // hide the search form until the search button is pressed
         .searchForm {
             input, select {
                 width: 100%;
@@ -517,7 +522,13 @@ h2 {
         .searchShowButton {
             display: block;
         }
+
     }
+    // bump up the font size on the writing page to make it easier to hit buttons
+    #writing-controls {
+        font-size: 1.5em;
+    }
+
 
 }
 
@@ -601,9 +612,13 @@ and (orientation: landscape) {
 	width: 12%;
 	max-width: 10em;
 	min-width: 4em;
+    margin: 0 2px;
 }
 
 .write-page {
+    .content-wrap {
+        width: auto;
+    }
     #writing-controls {
         visibility: hidden;
     }
@@ -620,5 +635,54 @@ and (orientation: landscape) {
 
     h3 a.spacer {
         padding-left: 6.4em;
+    }
+
+    #slide-wrap {
+        font-size: 3px;
+        width: 100%;
+        //height: 128px;
+        margin: 1em auto;
+        overflow: auto;
+    }
+
+    #write-pages {
+        //float: left;
+        //margin-right: -30000px;
+    }
+
+    .thr-book-page {
+        margin: 0.5em;
+        width: 48em;
+        height: 36em;
+        background-color: white;
+        float: left;
+        border: 1px solid black;
+    }
+    .thr-pic {
+        display: inline;
+    }
+}
+
+.help {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+}
+
+.edit-page {
+    font-size: 83%;
+    width: 48em !important;
+    height: 36em !important;
+
+    .thr-pic {
+        display: inline;
+    }
+
+    textarea {
+        width: (48em - 12em) / $captionFontSize * 1em;
+        height: 5em / $captionFontSize * 1em;
+        margin: auto;
+        resize: none;
+        //border: 1px solid black;
     }
 }
