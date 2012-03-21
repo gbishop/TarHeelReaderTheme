@@ -25,7 +25,7 @@ define(["jquery", "pubsub"], function($) {
     };
 
     $(document).on('keydown', function(e) {
-        if ($(document.activeElement).is("input:focus")) {
+        if ($(document.activeElement).is("input:focus,textarea:focus")) {
             return true;
         }
 
