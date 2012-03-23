@@ -8,6 +8,7 @@ define(['jquery',
         var galleryData = {};
         var galleryUrl = '';
         var $editDialog = null;
+        var $galleryDialog = null;
 
         function fetchAnotherGallery(step) {
             galleryData.page += step;
@@ -27,13 +28,18 @@ define(['jquery',
                     }
                     g.empty();
                     $.each(p.photo, function (index, photo) {
-                        var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret;
-                        $('<a rel="gallery"></a>')
-                            .append($('<img>').prop('src', url + '_s.jpg').prop('class', 'myThumbnail'))
-                            .prop('href', url + '.jpg')
+                        var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret,
+                            ow = parseInt(photo.o_width, 10),
+                            oh = parseInt(photo.o_height, 10),
+                            scale = 500.0 / Math.max(ow, oh),
+                            w = Math.round(ow * scale),
+                            h = Math.round(oh * scale);
+                        $('<img>').prop('src', url + '_s.jpg')
+                            .prop('class', 'myThumbnail')
                             .prop('title', photo.title)
+                            .attr('data-width', w)
+                            .attr('data-height', h)
                             .appendTo(g);
-                        g.find('a').addClass('no-ajaxy');
                     });
                     $('#gallery-back').button(p.page > 1 ? 'enable' : 'disable');
                     $('#gallery-more').button(p.page < p.pages ? 'enable' : 'disable');
@@ -48,7 +54,8 @@ define(['jquery',
             // TODO: set loading here
             galleryData = {
                 page: 1,
-                per_page: 16
+                per_page: 16,
+                extras: 'o_dims'
             };
             if ('query' in options) {
                 galleryData.tags = options.query;
@@ -63,6 +70,84 @@ define(['jquery',
             fetchAnotherGallery(0);
         }
 
+        function showGalleryPreview(startIndex) {
+            var index = startIndex;
+
+            function showPreviewImage() { // display the currently selected image in the preview dialog
+                // get all the images
+                var $imgs = $('#gallery img');
+                // restrict the index to the range
+                if (index >= $imgs.length) {
+                    index = 0;
+                } else if (index < 0) {
+                    index = $imgs.length - 1;
+                }
+                // get the current image
+                var $img = $($imgs.get(index));
+                // extract image parameters
+                var url = $img.prop('src'),
+                    width = $img.attr('data-width'),
+                    height = $img.attr('data-height'),
+                    prop = width > height ? 'width' : 'height';
+                // create the preview image with the same
+                var $dimg = $('<img />')
+                    .prop('src', url.replace('_s', ''))
+                    .css(prop, '100%')
+                    .attr('data-width', width)
+                    .attr('data-height', height);
+                // insert into the preview dialog
+                $galleryDialog.find('>img').replaceWith($dimg);
+                // display the image clipped title on the preview dialog
+                var title = $img.attr('title');
+                if (title.length > 32) {
+                    title = title.substr(0,30) + '...';
+                }
+                $galleryDialog.dialog('option', 'title', title);
+            }
+
+            if (!$galleryDialog) {
+                // create the dialog if it doesn't already exist
+                $galleryDialog = $('<div class="galleryPreviewDialog"><img /></div>').dialog({
+                    width: 'auto',
+                    resizable: false,
+                    modal: true,
+                    draggable: false,
+                    autoOpen: false,
+                    buttons: [
+                        {
+                            text: $('#wlNext').html(), // pulling the labels from the page
+                            click: function() { index += 1; showPreviewImage(); }
+                        },
+                        {
+                            text: $('#wlPrevious').html(),
+                            click: function() { index -= 1; showPreviewImage(); }
+                        },
+                        {
+                            text: $('#wlAddToBook').html(),
+                            click: function() {
+                                var $img = $(this).find('>img');
+                                console.log('img', $img);
+                                var page = {
+                                    url: $img.attr('src').replace('_s', ''),
+                                    width: $img.attr('data-width'),
+                                    height: $img.attr('data-height'),
+                                    text: ''
+                                };
+                                console.log('page', page);
+                                addPage(page);
+                                // confirm the page creation in the dialog title
+                                $(this).dialog('option', 'title', $('#wlPageAdded').html());
+                            }
+                        }
+                    ]
+                });
+            }
+            // insert the first image
+            showPreviewImage();
+            $galleryDialog.dialog('open');
+        }
+
+        // add a page to the book
         function addPage(page) {
             var view = {
                 image: page,
@@ -74,7 +159,7 @@ define(['jquery',
             $('#write-pages').append($p);
             $('#noPicturesMessage').hide();
         }
-
+        // initialize book pages from an existing book
         function initializeBookState(book) {
             console.log('initBook', book);
             $('input[title]').val(book.title);
@@ -82,24 +167,8 @@ define(['jquery',
                 addPage(page);
             });
         }
-
+        // edit a book page
         function editPage(e) {
-            var $this = $(this);
-            var $img = $this.find('img');
-            var caption = $this.find('p.thr-caption').html();
-            console.log('eP', $img, caption);
-            var view = {
-                image: {
-                    url: $img.attr('src'),
-                    width: $img.attr('data-width'),
-                    height: $img.attr('data-height')
-                },
-                caption: caption
-            };
-            templates.setImageSizes(view.image);
-            var $content = $(templates.render('bookPage', view));
-            foo = $content;
-            $content.filter('a.thr-credit,a.thr-home-icon,a.thr-settings-icon').hide();
             if (!$editDialog) {
                 $editDialog = $('<div class="thr-book-page edit-page"></div>').dialog({
                     width: 'auto',
@@ -117,7 +186,50 @@ define(['jquery',
                     }
                 });
             }
-            $editDialog.empty().append($content);
+            var index = $('#write-pages li').index(this);
+            function setupEditContent() {
+                var $wp = $('#write-pages li');
+                if (index < 0) {
+                    index = $wp.length - 1;
+                } else if (index >= $wp.length) {
+                    index = 0;
+                }
+                var $this = $($wp.get(index));
+                var $img = $this.find('img');
+                var caption = $this.find('p.thr-caption').html();
+                console.log('eP', $this, $img, caption);
+                var view = {
+                    image: {
+                        url: $img.attr('src'),
+                        width: $img.attr('data-width'),
+                        height: $img.attr('data-height')
+                    },
+                    caption: caption
+                };
+                templates.setImageSizes(view.image);
+                var $content = $(templates.render('bookPage', view));
+                foo = $content;
+                $content.filter('a.thr-credit,a.thr-home-icon,a.thr-settings-icon').hide();
+                $editDialog.empty().append($content);
+            }
+
+            var $window = $(window),
+                ww = $window.width(),
+                wh = $window.height(),
+                pw = ww/(48 + 4),
+                ph = wh/(36 + 10),
+                p = Math.min(pw, ph);
+            console.log('p', p, ph, pw, ww, wh);
+            setupEditContent();
+            $editDialog.on('click', 'a.thr-back-link', function() {
+                index -= 1;
+                setupEditContent();
+            });
+            $editDialog.on('click', 'a.thr-next-link', function() {
+                index += 1;
+                setupEditContent();
+            });
+            $editDialog.css('font-size', p + 'px');
             $editDialog.dialog('open');
         }
 
@@ -145,7 +257,7 @@ define(['jquery',
                 id: 'theme'
             }).appendTo('head');
 
-            require(['jquery-ui', 'jquery.image-gallery', 'jquery.ui.touch-punch'],
+            require(['jquery-ui', 'jquery.ui.touch-punch'],
                 function() {
                     // TODO: Clear loading here
                     // Initialize the accordian look
@@ -154,26 +266,10 @@ define(['jquery',
                             active: false,
                             clearStyle: true });
 
-                    // Initialize the Image Gallery widget:
-                    $('#gallery').imagegallery({
-                        buttons: {
-                            "Add to book": function() {
-                                var $img = $(this).find('img');
-                                var page = {
-                                    url: $img.attr('src').replace('_s', ''),
-                                    width: $img.attr('width'),
-                                    height: $img.attr('height'),
-                                    text: ''
-                                };
-                                addPage(page);
-                                $('#step2').accordion('activate');
-                            },
-                            "Go back to search": function() { $(this).dialog("close"); },
-                            "Previous picture": function() { $('#gallery').imagegallery('prev'); },
-                            "Next picture": function() { $('#gallery').imagegallery('next'); }
-                        },
-                        show: {effect: 'fade', duration: 1 },
-                        hide: {effect: 'fade', duration: 100 }
+                    $('#gallery').on('click', 'img', function(e) {
+                        var $imgs = $('#gallery img'),
+                            index = $imgs.index(this);
+                        showGalleryPreview(index);
                     });
                     var $form = $page.find('form');
                     $form.submit(function(e) {
@@ -199,6 +295,27 @@ define(['jquery',
                     });
                     $('#write-pages').on('click', 'li', editPage);
                     $('#write-pages').sortable();
+
+                    $('body').on('click', '.help,.help-text', function(e) {
+                        var $openTips = $('body>.help-text');
+                        if ($openTips.length > 0) {
+                            $openTips.remove();
+                            return;
+                        }
+                        var $this = $(this),
+                            offset = $this.offset(),
+                            ww = $(window).width(),
+                            $tip = $this.next().clone().appendTo('body');
+                            //$tip = $('<div>' + text + '</div>').appendTo('body');
+
+                        console.log('.help', e, $this, $tip, offset);
+                        $tip.css({
+                            position: 'absolute',
+                            right: ww - offset.left + 20,
+                            top: offset.top
+                        });
+                        $tip.toggle();
+                    });
 
                     $.when(bookContent).then(function(book) {
 

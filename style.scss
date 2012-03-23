@@ -486,6 +486,122 @@ h2 {
 .next-posts {}
 .prev-posts {}
 
+@import "image-gallery"; // should this be dynamic?
+
+.myThumbnail {
+    width: 12%;
+    max-width: 10em;
+    min-width: 4em;
+    margin: 0 2px;
+}
+
+.write-page {
+    .content-wrap {
+        width: auto;
+    }
+    #writing-controls {
+        visibility: hidden;
+    }
+
+    noscript {
+        color: red;
+        font-weight: bold;
+        font-size: 2em;
+    }
+
+    #gallery {
+        margin-top: 1em;
+    }
+
+    h3 a.spacer {
+        padding-left: 6.4em;
+    }
+
+    #write-pages {
+        font-size: 3px;
+        width: 100%;
+        margin: 1em auto;
+        overflow: auto;
+    }
+
+    .thr-book-page {
+        margin: 0.5em;
+        width: 48em;
+        height: 36em;
+        background-color: white;
+        float: left;
+        border: 1px solid black;
+    }
+
+    .thr-pic {
+        display: inline;
+    }
+}
+
+.help {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    float: right;
+}
+
+.help-text {
+    padding: 0.5em;
+    display: none;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #EEE;
+    max-width: 30%;
+}
+
+.edit-page {
+    //font-size: 50%;
+    width: 48em !important;
+    height: 36em !important;
+
+    .thr-pic {
+        display: inline;
+    }
+
+    textarea {
+        width: (48em - 12em) / $captionFontSize * 1em;
+        height: 5em / $captionFontSize * 1em;
+        margin: auto;
+        resize: none;
+        //border: 1px solid black;
+    }
+}
+
+.galleryPreviewDialog {
+    width: 20em !important;
+    height: 20em !important;
+
+    img {
+        margin: auto;
+        display: block;
+    }
+
+    a {
+        height: 100%;
+        opacity: 0;
+        width: 45%;
+        position: absolute;
+        top: 0;
+
+        img {
+            margin-top: 2em;
+        }
+        &.p {
+            left: 0;
+        }
+        &.n {
+            right: 0;
+        }
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}
 /* Print styles!
 -------------------------------------------------------------------------------*/
 @media print {
@@ -604,85 +720,4 @@ and (orientation: landscape) {
     top: -9999px;
     width: 1px;
     height: 1px;
-}
-
-@import "image-gallery"; // should this be dynamic?
-
-.myThumbnail {
-	width: 12%;
-	max-width: 10em;
-	min-width: 4em;
-    margin: 0 2px;
-}
-
-.write-page {
-    .content-wrap {
-        width: auto;
-    }
-    #writing-controls {
-        visibility: hidden;
-    }
-
-    noscript {
-        color: red;
-        font-weight: bold;
-        font-size: 2em;
-    }
-
-    #gallery {
-        margin-top: 1em;
-    }
-
-    h3 a.spacer {
-        padding-left: 6.4em;
-    }
-
-    #slide-wrap {
-        font-size: 3px;
-        width: 100%;
-        //height: 128px;
-        margin: 1em auto;
-        overflow: auto;
-    }
-
-    #write-pages {
-        //float: left;
-        //margin-right: -30000px;
-    }
-
-    .thr-book-page {
-        margin: 0.5em;
-        width: 48em;
-        height: 36em;
-        background-color: white;
-        float: left;
-        border: 1px solid black;
-    }
-    .thr-pic {
-        display: inline;
-    }
-}
-
-.help {
-    width: 1em;
-    height: 1em;
-    vertical-align: middle;
-}
-
-.edit-page {
-    font-size: 83%;
-    width: 48em !important;
-    height: 36em !important;
-
-    .thr-pic {
-        display: inline;
-    }
-
-    textarea {
-        width: (48em - 12em) / $captionFontSize * 1em;
-        height: 5em / $captionFontSize * 1em;
-        margin: auto;
-        resize: none;
-        //border: 1px solid black;
-    }
 }

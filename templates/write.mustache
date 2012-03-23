@@ -12,7 +12,8 @@
                 <label for="write-image-search">_(Enter words to search Flickr.)</label>
                 <input type="search" name="query" id="write-image-search" />
                 <input type="submit" value="_(Search)" />
-                <img class="help" src="/theme/images/help.png" title="_(Enter words or phrases separated by commas to search Flickr. Enter the email address you use at Flickr to see your personal photos.)" />
+                <img class="help" src="/theme/images/help.png" />
+                <p class="help-text">_(Enter words or phrases separated by commas to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
             </form>
             <div id="gallery"></div>
             <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
@@ -23,18 +24,19 @@
                 <label for="write-file-upload">_(Enter a filename.)</label>
                 <input type="file" name="imagefile" id="write-file-upload" />
                 <input type="submit" value="_(Upload)" />
-                <img class="help" src="/theme/images/help.png" title="_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be automatically resized to 500x500 pixels.)" />
-
+                <img class="help" src="/theme/images/help.png"/>
+                <p class="help-text">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
             </form>
         </div>
     </div>
     <div class="accordion" id="step2">
         <h3><a href="#">_(Step 2: Enter a short sentence for each page)</a></h3>
         <div>
-            <div id="slide-wrap">
-                <ul id="write-pages">
-                </ul>
-            </div>
+            <ul id="write-pages">
+            </ul>
+            <img class="help special" src="/theme/images/help.png"/>
+            <p class="help-text">_(You may reorder the pages by dragging. Click on a page to edit it.)</p>
+
             <p id="noPicturesMessage">_(After you select or upload pictures your pages will appear here.)</p>
         </div>
     </div>
@@ -52,4 +54,11 @@
             <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
         </div>
     </div>
+</div>
+<div style="display:none" id="writeLabels">
+    <span id="wlAddToBook">_(Add to Book|Button label to add picture to book)</span>
+    <span id="wlClose">_(Close|Button label to close preview)</span>
+    <span id="wlPrevious">_(Previous|Button label to preview previous picture)</span>
+    <span id="wlNext">_(Next|Button label to preview next picture)</span>
+    <span id="wlPageAdded">_(Page added to your book)</span>
 </div>
