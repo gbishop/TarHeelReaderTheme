@@ -517,6 +517,14 @@ h2 {
         padding-left: 6.4em;
     }
 
+    .ui-accordion .ui-accordion-content {
+        padding-right: 0.2em !important;
+    }
+
+    .aWrap {
+        margin-right: 2em;
+    }
+
     #write-pages {
         font-size: 3px;
         width: 100%;
@@ -539,19 +547,14 @@ h2 {
 }
 
 .help {
-    width: 1em;
-    height: 1em;
+    width: 2em;
+    height: 2em;
     vertical-align: middle;
     float: right;
 }
 
 .help-text {
-    padding: 0.5em;
     display: none;
-    border: 1px solid black;
-    border-radius: 6px;
-    background-color: #EEE;
-    max-width: 30%;
 }
 
 .edit-page {
@@ -720,4 +723,33 @@ and (orientation: landscape) {
     top: -9999px;
     width: 1px;
     height: 1px;
+}
+
+#busyBlocker {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
+
+#busyMessage {
+    font-size: 2em;
+    position: absolute;
+    width: 50%;
+    padding: 1em;
+    background: #FFF;
+    border: 2px solid red;
+    top: 25%;
+    left: 25%;
+    text-align: center;
+}
+
+.request-failed {
+    margin: 2em;
+    color: red;
+    background: white;
+    font-weight: bold;
 }
