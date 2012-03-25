@@ -58,7 +58,7 @@ define(['jquery',
                 extras: 'o_dims'
             };
             if ('query' in options) {
-                galleryData.tags = options.query;
+                galleryData.tags = options.query.replace(/[ ,"']+/g, ',').replace(/^,+/,'').replace(/,+$/,'').replace(/,+/,',');
                 galleryUrl = '/photoSearch/';
             } else if ('user_id' in options) {
                 galleryData.user_id = options.user_id;
@@ -113,11 +113,10 @@ define(['jquery',
                     modal: true,
                     draggable: false,
                     autoOpen: false,
+                    open: function() {
+                        $(this).parents('.ui-dialog-buttonpane button:eq(2)').focus();
+                    },
                     buttons: [
-                        {
-                            text: $('#wlNext').html(), // pulling the labels from the page
-                            click: function() { index += 1; showPreviewImage(); }
-                        },
                         {
                             text: $('#wlPrevious').html(),
                             click: function() { index -= 1; showPreviewImage(); }
@@ -137,7 +136,30 @@ define(['jquery',
                                 addPage(page);
                                 // confirm the page creation in the dialog title
                                 $(this).dialog('option', 'title', $('#wlPageAdded').html());
+                                var step2 = $('#step2').offset();
+                                $img.clone().appendTo('body')
+                                    .css({
+                                        position: 'absolute',
+                                        margin: 0,
+                                        zIndex: 1003,
+                                        width: $img.width() + 'px',
+                                        height: $img.height() + 'px'
+                                    }).css($img.offset())
+                                    .animate({
+                                        top: step2.top,
+                                        left: step2.left + 100,
+                                        width: '40px',
+                                        height: '40px',
+                                        opacity: 0
+                                    },1000, function() {
+                                        $(this).remove();
+                                        $('#step2 h3').effect('highlight', {}, 1000);
+                                    });
                             }
+                        },
+                        {
+                            text: $('#wlNext').html(), // pulling the labels from the page
+                            click: function() { index += 1; showPreviewImage(); }
                         }
                     ]
                 });
@@ -210,7 +232,7 @@ define(['jquery',
                 var $content = $(templates.render('bookPage', view));
                 foo = $content;
                 $content.filter('a.thr-credit,a.thr-home-icon,a.thr-settings-icon').hide();
-                $editDialog.empty().append($content);
+                $editDialog.empty().append($('#wEditHelp').html()).append($content);
             }
 
             var $window = $(window),
@@ -297,24 +319,21 @@ define(['jquery',
                     $('#write-pages').sortable();
 
                     $('body').on('click', '.help,.help-text', function(e) {
-                        var $openTips = $('body>.help-text');
+                        // dialog doc claims it restores the source element but it does not do that for me, clone below
+                        var $openTips = $('.ui-dialog .help-text:visible');
                         if ($openTips.length > 0) {
-                            $openTips.remove();
+                            $openTips.dialog('destroy');
                             return;
                         }
                         var $this = $(this),
                             offset = $this.offset(),
                             ww = $(window).width(),
-                            $tip = $this.next().clone().appendTo('body');
-                            //$tip = $('<div>' + text + '</div>').appendTo('body');
-
-                        console.log('.help', e, $this, $tip, offset);
-                        $tip.css({
-                            position: 'absolute',
-                            right: ww - offset.left + 20,
-                            top: offset.top
-                        });
-                        $tip.toggle();
+                            tw = Math.max(200, ww/3),
+                            $tip = $this.next().clone().dialog({
+                                position: [offset.left - tw - 20, offset.top],
+                                width: tw
+                            });
+                            console.log('help', $tip);
                     });
 
                     $.when(bookContent).then(function(book) {
