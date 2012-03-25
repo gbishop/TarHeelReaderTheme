@@ -57,6 +57,8 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         $.cookie('thr', JSON.stringify(state), {path: '/'});
     }
 
+    stateUpdate(window.location.href);
+
     return {
         get: function(key) { return state[key]; },
         find_url: find_url,

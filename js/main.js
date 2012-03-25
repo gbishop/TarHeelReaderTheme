@@ -11,15 +11,13 @@ require([ "jquery",
           "controller",
           "find",
           "read",
-          "write"/*,
-          "remoteCommand"*/
+          "write",
+          "busy"
           ],
     function($, route, state) {
-        // run any configure hooks
         $(function() {
-            // update my app internal state from the cookie and any query parameters
             var url = window.location.href;
-            state.update(url);
+            // run any configure hooks
             route.go('init', url, $('.active-page'));
         });
     });
