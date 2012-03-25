@@ -44,7 +44,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         // update from the query string
         var i = url.indexOf('?');
         if (i > 0) {
-            qvals = parseQuery(url.substring(i+1));
+            qvals = parseQuery(url.substring(i));
             for(var k in state) {
                 if (k in qvals) {
                     state[k] = qvals[k];
@@ -52,9 +52,12 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
             }
         }
         state['page'] = parseInt(state['page'], 10); // page is an int
-
         // update the cookie
         $.cookie('thr', JSON.stringify(state), {path: '/'});
+    }
+
+    function dump(msg) {
+        console.log('state dump', msg, state);
     }
 
     stateUpdate(window.location.href);
@@ -62,6 +65,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
     return {
         get: function(key) { return state[key]; },
         find_url: find_url,
-        update: stateUpdate
+        update: stateUpdate,
+        dump: dump
     };
 });
