@@ -8,50 +8,63 @@
     <div class="accordion" id="step1">
         <h3><a href="#">_(Step 1: Find pictures at Flickr)</a></h3>
         <div>
-            <form method="get" class="no-ajaxy">
-                <label for="write-image-search">_(Enter words to search Flickr.)</label>
-                <input type="search" name="query" id="write-image-search" />
-                <input type="submit" value="_(Search)" />
-                <img class="help" src="/theme/images/help.png" />
-                <p class="help-text">_(Enter words or phrases separated by commas to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
-            </form>
-            <div id="gallery"></div>
-            <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
+            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+            <p class="help-text" title="_(Step 1 Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
+            <div class="aWrap">
+                <form method="get" class="no-ajaxy">
+                    <label for="write-image-search">_(Enter words to search Flickr.)</label>
+                    <input type="search" name="query" id="write-image-search" />
+                    <input type="submit" value="_(Search)" />
+                </form>
+                <div id="gallery"></div>
+                <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
+            </div>
         </div>
         <h3><a href="#" class="spacer">_(Or upload your own pictures)</a></h3>
         <div id="w-upload">
-            <form method="post" action="/upload-image/" class="no-ajaxy">
-                <label for="write-file-upload">_(Enter a filename.)</label>
-                <input type="file" name="imagefile" id="write-file-upload" />
-                <input type="submit" value="_(Upload)" />
-                <img class="help" src="/theme/images/help.png"/>
-                <p class="help-text">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
-            </form>
+            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+            <p class="help-text" title="_(Step 1 Upload Help)">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
+            <div class="aWrap">
+                <form method="post" action="/upload-image/" class="no-ajaxy">
+                    <label for="write-file-upload">_(Enter a filename.)</label>
+                    <input type="file" name="imagefile" id="write-file-upload" />
+                    <input type="submit" value="_(Upload)" />
+                </form>
+            </div>
         </div>
     </div>
     <div class="accordion" id="step2">
         <h3><a href="#">_(Step 2: Enter a short sentence for each page)</a></h3>
         <div>
-            <ul id="write-pages">
-            </ul>
-            <img class="help special" src="/theme/images/help.png"/>
-            <p class="help-text">_(You may reorder the pages by dragging. Click on a page to edit it.)</p>
-
-            <p id="noPicturesMessage">_(After you select or upload pictures your pages will appear here.)</p>
+            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+            <p class="help-text" title="_(Step 2 Help)">_(Click on a page to edit it. You may reorder the pages with drag and drop.)</p>
+            <div class="aWrap">
+                <ul id="write-pages">
+                </ul>
+                <p id="noPicturesMessage">_(After you select or upload pictures your pages will appear here.)</p>
+            </div>
         </div>
     </div>
     <div class="accordion" id="step3">
         <h3><a href="#">_(Step 3: Fill in the details)</a></h3>
         <div>
-            <p>Book settings title, author, classification, language go here.</p>
-            <label for="write-title">_(Title)</label>
-            <input type="text" name="title" id="write-title" title="_(Enter a title for your book)" />
+            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+            <p class="help-text" title="_(Step 3 Help)">_(Some helpful message.)</p>
+            <div class="aWrap">
+                <p>Book settings title, author, classification, language go here.</p>
+                <label for="write-title">_(Title)</label>
+                <input type="text" name="title" id="write-title" title="_(Enter a title for your book)" />
+            </div>
         </div>
     </div>
     <div class="accordion" id="step4">
         <h3><a href="#">_(Step 4: Publish)</a></h3>
         <div>
-            <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
+            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+            <p class="help-text" title="_(Step 4 Help)">_(Some helpful message.)</p>
+            <div class="aWrap">
+                <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -61,4 +74,8 @@
     <span id="wlPrevious">_(Previous|Button label to preview previous picture)</span>
     <span id="wlNext">_(Next|Button label to preview next picture)</span>
     <span id="wlPageAdded">_(Page added to your book)</span>
+    <div id="wEditHelp">
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Page Editor Help)">_(Click on the text to change it. You may use the next and previous buttons to move between pages. When you're finished, close the editor by clicking on the x in the upper right.)</p>
+    </div>
 </div>
