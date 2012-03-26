@@ -486,15 +486,6 @@ h2 {
 .next-posts {}
 .prev-posts {}
 
-@import "image-gallery"; // should this be dynamic?
-
-.myThumbnail {
-    width: 12%;
-    max-width: 10em;
-    min-width: 4em;
-    margin: 0 2px;
-}
-
 .write-page {
     .content-wrap {
         width: auto;
@@ -733,10 +724,11 @@ and (orientation: landscape) {
     top: 0;
     left: 0;
     z-index: 10000;
+
 }
 
 #busyMessage {
-    font-size: 2em;
+    font-size: 1.5em;
     position: absolute;
     width: 50%;
     padding: 1em;
@@ -745,6 +737,18 @@ and (orientation: landscape) {
     top: 25%;
     left: 25%;
     text-align: center;
+
+    div {
+        display: none;
+    }
+}
+
+.isBusy #busyMessage #loadingMessage {
+    display: block;
+}
+
+.isError #busyMessage #errorMessage {
+    display: block;
 }
 
 .request-failed {
