@@ -100,6 +100,13 @@ $result['time'] = timer_stop(0);
 $result['more'] = $more;
 
 if ($json) {
+    if (0) { // force an error for testing
+        header("HTTP/1.0 500 Internal Error");
+        die();
+    }
+    if (0) { // delay for testing
+        sleep(10);
+    }
 	$output = json_encode($result);
 	header('Content-Type: application/json');
 	header('Content-Size: ' . strlen($output));
