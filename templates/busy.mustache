@@ -1,3 +1,14 @@
 <div id="busyBlocker">
-    <div id="busyMessage"><img src="/theme/images/loading.gif" /> _(Loading. Please wait.)<button>_(Cancel|Button label)</button></div>
+    <div id="busyMessage">
+        <div id="loadingMessage">
+            <img src="/theme/images/loading.gif" />
+            _(Loading. Please wait.)
+            <button class="ajaxCancel">_(Cancel|Button label)</button>
+        </div>
+        <div id="errorMessage">
+            _(Something went wrong. The message was:) "<span></span>"
+            <button class="urlRetry">_(Try again|Button label)</button>
+            <button class="ajaxCancel">_(Cancel|Button label)</button>
+        </div>
+    </div>
 </div>
