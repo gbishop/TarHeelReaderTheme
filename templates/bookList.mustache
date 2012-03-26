@@ -1,3 +1,6 @@
+    {{^books}}
+        <p>_(No books found. Try another search.)</p>
+    {{/books}}
     <ul class="thr-book-list">
         {{#books}}
         <li class="selectable thr-colors" data-preview="{{preview.url}}" data-id="{{ID}}" lang="{{language}}" data-has-speech="{{has_speech}}" >
