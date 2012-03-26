@@ -20,21 +20,11 @@ define(["jquery",
         view.searchForm = templates.searchForm(); // sets the selects based on the state
 
         // fetch the json for the current set of books
-        function error(jqXHR, textStatus, errorThrown) {
-            var $newPage = page.getInactive('find-page');
-            view.bookList = templates.render('requestFailed', { retry: state.find_url(state.get('page')) + '&bust=1'} );
-            $newPage.empty()
-                .append(templates.get('heading'))
-                .append('<div class="content-wrap">' +
-                        templates.render('find', view) +
-                        '</div>');
-            $def.resolve($newPage, {title: 'Find - Tar Heel Reader', colors: true});
-        }
-
         $.ajax({
             url: url,
             data: 'json=1',
             dataType: 'json',
+            timeout: 30000,
             success: function(data, textStatus, jqXHR) {
                 if (!data) {
                     error(jqXHR, textStatus, '');
@@ -43,7 +33,6 @@ define(["jquery",
                 // TODO: print a message when none are found
 
                 // setup the image width and height for the template
-                var voice = state.get('voice').substring(0,1);
                 for(var i=0; i<data.books.length; i++) {
                     var c = data.books[i].cover;
                     if (c.width > c.height) {
@@ -71,8 +60,7 @@ define(["jquery",
                             templates.render('find', view) +
                             '</div>');
                 $def.resolve($newPage, {title: 'Find - Tar Heel Reader', colors: true});
-            },
-            error: error
+            }
         });
         return $def;
     }
