@@ -37,7 +37,6 @@ define(['jquery',
                             w = Math.round(ow * scale),
                             h = Math.round(oh * scale);
                         $('<img>').prop('src', url + '_s.jpg')
-                            //.prop('class', 'myThumbnail')
                             .prop('title', photo.title)
                             .attr('data-width', w)
                             .attr('data-height', h)
