@@ -19,8 +19,10 @@ define(['jquery',
                 jsonp: 'jsoncallback',
                 success: function (result) {
                     console.log('success!', result);
-                    var p = result.photos;
-                    var g = $('#gallery');
+                    var p = result.photos,
+                        g = $('#gallery'),
+                        gwidth = g.width(),
+                        iwidth = Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8);
                     if (galleryData.page > 1) {
                         g.css('height', g.height() + 'px');
                     } else {
@@ -39,6 +41,7 @@ define(['jquery',
                             .prop('title', photo.title)
                             .attr('data-width', w)
                             .attr('data-height', h)
+                            .css({width: iwidth + 'px', height: iwidth + 'px', border: '1px solid black', marginRight: '1px'})
                             .appendTo(g);
                     });
                     $('#gallery-back').button(p.page > 1 ? 'enable' : 'disable');
