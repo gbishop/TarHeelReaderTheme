@@ -94,6 +94,8 @@ function is_ajax() {
 
 // output the header with some tweaks
 function thr_header($pageType, $heading, $disableCache=true) {
+    thr_setcookie();
+
     // tell IE8 how to render and to prefer chrome frame
     header('X-UA_Compatible: IE=edge,chrome=1');
 
