@@ -26,24 +26,9 @@ define(["jquery",
             dataType: 'json',
             timeout: 30000,
             success: function(data, textStatus, jqXHR) {
-                if (!data) {
-                    error(jqXHR, textStatus, '');
-                    return;
-                }
-                // TODO: print a message when none are found
-
                 // setup the image width and height for the template
                 for(var i=0; i<data.books.length; i++) {
-                    var c = data.books[i].cover;
-                    if (c.width > c.height) {
-                        c.pw = 100;
-                        c.ph = 100*c.height/c.width;
-                        c.pm = (100 - c.ph) / 2;
-                    } else {
-                        c.ph = 100;
-                        c.pw = 100*c.width/c.height;
-                        c.pm = 0;
-                    }
+                    templates.setImageSizes(data.books[i].cover);
                 }
                 view.bookList = templates.render('bookList', data);
                 var pageNumber = state.get('page');
