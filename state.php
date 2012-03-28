@@ -125,17 +125,4 @@ function find_url($page = null) {
     echo get_find_url($page);
 }
 
-// keep track of page history in php
-if (!session_id()) {
-    session_start();
-}
-if (!isset($_SESSION['history']) || !is_array($_SESSION['history'])) {
-    $_SESSION['history'] = array();
-}
-array_unshift($_SESSION['history'], preg_replace('/[?&](ajax|json)=1/', '', $_SERVER['REQUEST_URI']));
-array_splice($_SESSION['history'], 7); // keep last few pages
-
-function history($n) {
-    return $_SESSION['history'][$n];
-}
 ?>
