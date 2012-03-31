@@ -133,13 +133,14 @@ define(["jquery",
         moveSelection(-1);
     });
     $.subscribe('/find/select', function(e, name, code) {
-        var selected = $('.selected');
+        var selected = $('.selected:first');
         var link;
         if (selected.length > 0) {
             if (selected.is('a'))
                 link = selected;
             else
                 link = selected.find('a');
+            console.log('clicking', link);
             link.click();
         }
     });
