@@ -8,7 +8,8 @@ define([ "jquery",
 
     var History = window.History,
         document = window.document,
-        rootUrl = null;
+        rootUrl = null,
+        alreadyRendered = false;
 
     if (!History.enabled) {
         console.log('History not enabled');
@@ -59,13 +60,30 @@ define([ "jquery",
         }
 
         // hijax this link
-        History.pushState(null,null,url);
+        renderUrl(url).then(function(title) {
+            console.log('ar true');
+            alreadyRendered = true;
+            History.pushState(null,title,url);
+            alreadyRendered = false;
+            console.log('ar false');
+        });
         event.preventDefault();
         return false;
     }
 
     function stateChange() {
         var url = History.getState().url;
+        console.log('stateChange', url);
+
+        if (!alreadyRendered) {
+            renderUrl(url);
+        }
+
+    }
+
+    function renderUrl(url) {
+        console.log('renderUrl', url);
+        var $pageReady = $.Deferred();
 
         // update my app internal state from the cookie and any query parameters
         state.update(url);
@@ -84,6 +102,7 @@ define([ "jquery",
                     url: url,
                     data: { ajax: 1 }, // signal this is a ajax request right in the URL
                     success: function(data, textStatus, jqXHR) {
+                        console.log('controller ajax gets data');
                         var $newPage = $(data),
                             cls = $newPage.attr('class'),
                             type = (cls && cls.match(/[-a-z]+-page/)[0]) || 'server-page',
@@ -103,13 +122,15 @@ define([ "jquery",
             $render.then(function($newPage, options) {
                 console.log('newPage', $newPage);
                 // transition to the new page
-                page.transitionTo($newPage, options).then(function($newPage) {
+                page.transitionTo($newPage, options).then(function($newPage, title) {
                     route.go('init', url, $newPage);
                     $(window).scrollTop(0);
+                    $pageReady.resolve(title);
                 });
             });
         });
-    } // end stateChange
+        return $pageReady;
+    } // end renderUrl
 
     // wait for the document
     $(function() {

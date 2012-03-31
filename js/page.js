@@ -34,8 +34,9 @@ define(["jquery", "state"], function($, state) {
             }
             $('.active-page').removeClass('active-page');
             $page.css('display', 'none').addClass('active-page').fadeIn(0);
-            $def.resolve($page);
             var title = options.title || $page.attr('data-title');
+            $def.resolve($page, title);
+            /*
             console.log('options', options, title);
             if (title) {
                 document.title = title;
@@ -43,7 +44,7 @@ define(["jquery", "state"], function($, state) {
                     document.getElementsByTagName('title')[0].innerHTML = title;
                 }
                 catch ( Exception ) { }
-            }
+            } */
         });
         return $def;
     }
