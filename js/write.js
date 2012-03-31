@@ -248,10 +248,12 @@ define(['jquery',
             $editDialog.on('click', 'a.thr-back-link', function() {
                 index -= 1;
                 setupEditContent();
+                return false;
             });
             $editDialog.on('click', 'a.thr-next-link', function() {
                 index += 1;
                 setupEditContent();
+                return false;
             });
             $editDialog.css('font-size', p + 'px');
             $editDialog.dialog('open');
