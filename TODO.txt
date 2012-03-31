@@ -1,0 +1,33 @@
+# TODOs for new version of Tar Heel Reader
+
+## caching and performance
+* use last modified time of books as a cache buster for audio
+* serve sound and pictures from my static content host
+* access flickr photos /photo address on static content host
+* precache speech. average 11.2 utterances/book, 8.5kb/utterance, 3 voices, 100k books = 26G, current site has about 875k speech files and about 260k of them have been accessed in the last 30 days. About 13% of all speech is mp3. 46% of book pages read in the previous week had speech with them.
+
+## security
+* check for logged in cookie on flickr api access?
+
+## reading
+* switch access for book reading
+* formatting of choice pages
+* record reading statistics
+* rating
+
+## editor
+* handle image uploads
+* enable email search for personal photos at flickr
+* save state in editor so no loss on refresh
+* automatic save?
+* check for logged-in before starting
+* add to index on save
+* finish details and public tabs
+* detect language?
+* restrict length of captions with feedback to user
+
+## other
+* books you wrote page
+* login from idevices
+* registration page
+* where to report numbers?
