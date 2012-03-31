@@ -108,6 +108,7 @@ if ($json) {
         sleep(10);
     }
 	$output = json_encode($result);
+    header('Cache-Control: max-age=600');
 	header('Content-Type: application/json');
 	header('Content-Size: ' . strlen($output));
 	echo $output;
