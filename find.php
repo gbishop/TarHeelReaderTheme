@@ -87,6 +87,7 @@ for($i=0; $i<$nrows; $i++) {
 	$po['caution'] = $book['audience'] == 'C';
 	$po['cover'] = $book['pages'][0];
 	$po['preview'] = $book['pages'][1];
+    $po['preview']['text'] = $po['title'];
 	$po['pages'] = count($book['pages']);
 	$po['language'] = $book['language'];
 	$po['has_speech'] = $book['has_speech'];
