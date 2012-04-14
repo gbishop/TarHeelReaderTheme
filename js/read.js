@@ -117,11 +117,93 @@ define(["jquery",
         });
     }
 
+    function chooseOrPreviousPage() {
+        if ($('.active-page .thr-choices').length > 0) {
+            makeChoice();
+        } else {
+            previousPage();
+        }
+    }
+
+    function nextChoiceOrPage() {
+        if ($('.active-page .thr-choices').length > 0) {
+            changeChoice(+1);
+        } else {
+            nextPage();
+        }
+    }
+
+    function previousChoiceOrPage() {
+        if ($('.active-page .thr-choices').length > 0) {
+            changeChoice(-1);
+        } else {
+            previousPage();
+        }
+    }
+
+    function makeChoice() {
+        var choice = $('.active-page .thr-choices .selected a');
+        if (choice.length == 1) {
+            choice.click();
+        } else {
+            console.log('no choice', choice.length);
+        }
+    }
+
+    function previousPage() {
+        $('.active-page a.thr-back-link').click();
+    }
+
+    function nextPage() {
+        $('.active-page a.thr-next-link').click();
+    }
+
+    function changeChoice(dir) {
+        var choices = $('.active-page .thr-choices li');
+        if (choices.length > 0) {
+            var index = 0;
+            var selected = choices.filter('.selected');
+            if (selected.length > 0) {
+                index = choices.index(selected);
+                index += dir;
+                if (index < 0) {
+                    index = choices.length - 1;
+                } else if (index > choices.length - 1) {
+                    index = 0;
+                }
+            }
+            choices.removeClass('selected');
+            $(choices.get(index)).addClass('selected');
+        } else {
+            console.log('no choices');
+        }
+    }
+
+    function keyChoice(e, name, code) {
+        var selector = '.active-page .key-' + name + ' a';
+        var link = $(selector);
+        link.click();
+    }
+
+    $.subscribe('/read/chooseOrPreviousPage', chooseOrPreviousPage);
+    $.subscribe('/read/nextChoiceOrPage', nextChoiceOrPage);
+    $.subscribe('/read.previousChoiceOrPage', previousChoiceOrPage);
+    $.subscribe('/read/makeChoice', makeChoice);
+    $.subscribe('/read/key', keyChoice);
+
     function configureBook(url, slug, pageNumber) {
         console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         scalePicture($page);
         $page.find('.thr-pic').fadeIn(200);
+        // configure the keyboard controls
+        keys.setMap({
+            'left space': '/read/chooseOrPreviousPage',
+            'right space': '/read/nextChoiceOrPage',
+            'up': '/read/previousChoiceOrPage',
+            'down': '/read/makeChoice',
+            'p n m c a r d 1 2 3': '/read/key'
+        });
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);

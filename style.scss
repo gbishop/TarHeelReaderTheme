@@ -229,10 +229,6 @@ h2 {
     color: black;
 }
 
-.selected {
-    border-color: red !important;
-}
-
 .thr-book-list {
     display: block;
     text-align: center;
@@ -254,6 +250,10 @@ h2 {
         //-moz-box-shadow: 0.1em 0.1em 0.1em 2px #aaaaaa;
         box-shadow: 0.1em 0.1em 0.0em 2px #aaaaaa;
 
+    }
+
+    li.selected {
+        border-color: red !important;
     }
 
     h2 {
@@ -455,10 +455,11 @@ h2 {
             color: inherit;
         }
 
-        li:hover {
+        li:hover, li.selected {
             border: 0.25em solid;
             padding: 0px 0px;
         }
+
     }
 }
 .js .thr-pic {  // hide the picture initially when javascript is enabled so we can size it without a jump

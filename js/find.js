@@ -160,13 +160,9 @@ define(["jquery",
         });
         // configure the keyboard controls
         keys.setMap({
-            'left': '/find/select',
-            'right': '/find/next',
-            'up': '/find/prev',
-            'space': '/find/next',
-            'enter': '/find/select',
-            'c': '/find/select',
-            'm': '/find/next'
+            'left down enter c': '/find/select',
+            'right space m': '/find/next',
+            'up': '/find/prev'
         });
 
         return {title: 'Find - Tar Heel Reader', colors: true};

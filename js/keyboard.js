@@ -51,7 +51,13 @@ define(["jquery", "pubsub"], function($) {
     });
 
     function setKeyMap(map) {
-        keyMap = map;
+        keyMap = {};
+        for (var key in map) {
+            var keys = key.split(' ');
+            for(var i=0; i<keys.length; i++) {
+                keyMap[keys[i]] = map[key];
+            }
+        }
     }
 
     function getKeyMap() {
