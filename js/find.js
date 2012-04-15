@@ -17,6 +17,13 @@ define(["jquery",
         console.log('findRender', url);
         var view = {},
             $def = $.Deferred();
+        // see if we can find one already rendered
+        var $newPage = $('.find-page[data-key="' + url + '"]');
+        if ($newPage.length == 1) {
+            console.log('reusing page');
+            $def.resolve($newPage, {title: 'Find - Tar Heel Reader', colors: true});
+            return $def;
+        }
         view.searchForm = templates.searchForm(); // sets the selects based on the state
 
         // fetch the json for the current set of books
@@ -150,7 +157,7 @@ define(["jquery",
         // setup the show search button for small screens
         var $page = $(this);
         var $form = $page.find('.searchForm');
-        console.log('findConfigure');
+        console.log('findConfigure', $page);
         $form.submit(function(){ $('input:focus').blur(); });
         $page.find('a.searchShowButton').click(function(e){
             console.log('click');
@@ -164,6 +171,7 @@ define(["jquery",
             'right space m': '/find/next',
             'up': '/find/prev'
         });
+        $page.attr('data-key', url);
 
         return {title: 'Find - Tar Heel Reader', colors: true};
     }
