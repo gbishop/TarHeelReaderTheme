@@ -18,8 +18,6 @@ define([ "jquery",
 
     // load a link or submit a form via Ajax so we don't leave the page
     function hijaxLink(event) {
-        console.log('hijaxLink', event);
-
         var $this = $(this),
             url;
 
@@ -61,11 +59,9 @@ define([ "jquery",
 
         // hijax this link
         renderUrl(url).then(function(title) {
-            console.log('ar true');
             alreadyRendered = true;
             History.pushState(null,title,url);
             alreadyRendered = false;
-            console.log('ar false');
         });
         event.preventDefault();
         return false;
@@ -73,7 +69,6 @@ define([ "jquery",
 
     function stateChange() {
         var url = History.getState().url;
-        console.log('stateChange', url);
 
         if (!alreadyRendered) {
             renderUrl(url);
