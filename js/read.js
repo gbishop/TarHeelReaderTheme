@@ -180,14 +180,14 @@ define(["jquery",
     }
 
     function keyChoice(e, name, code) {
-        var selector = '.active-page .key-' + name + ' a';
+        var selector = '.active-page .key-' + name;
         var link = $(selector);
         link.click();
     }
 
     $.subscribe('/read/chooseOrPreviousPage', chooseOrPreviousPage);
     $.subscribe('/read/nextChoiceOrPage', nextChoiceOrPage);
-    $.subscribe('/read.previousChoiceOrPage', previousChoiceOrPage);
+    $.subscribe('/read/previousChoiceOrPage', previousChoiceOrPage);
     $.subscribe('/read/makeChoice', makeChoice);
     $.subscribe('/read/key', keyChoice);
 
