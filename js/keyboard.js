@@ -3,8 +3,8 @@
 */
 define(["jquery", "pubsub"], function($) {
 
-    var keyDown = {};
-    var keyMap = {};
+    var keyIsDown = {};
+    var keyMaps = {};
     var keyName = {
         37: 'left',
         38: 'up',
@@ -24,17 +24,19 @@ define(["jquery", "pubsub"], function($) {
         13: 'enter'
     };
 
-    $(document).on('keydown', function(e) {
-        if ($(document.activeElement).is("input:focus,textarea:focus")) {
-            return true;
-        }
+    function onKeyDown(e) {
+        var selector = e.data;
+        if (!selector || $(selector).length === 0) return true;
 
         // defeat key repeat
         var code = e.keyCode || e.which;
-        if (keyDown[code]) {
+        if (keyIsDown[code]) {
             return false;
         }
-        keyDown[code] = true;
+        keyIsDown[code] = true;
+
+        console.log('kd', e, e.data);
+        var keyMap = keyMaps[selector];
 
         var name = keyName[code];
         if (name && name in keyMap) {
@@ -43,14 +45,48 @@ define(["jquery", "pubsub"], function($) {
             //return false;
         }
         return true;
-    });
-    $(document).on('keyup', function(e) {
+    }
+    function onKeyUp(e) {
         var code = e.keyCode || e.which;
-        keyDown[code] = false;
+        keyIsDown[code] = false;
         return true;
-    });
+    }
+    $(document).on('keyup', onKeyUp);
 
-    function setKeyMap(map) {
+    // add swipe as an event
+    var touchStart = null;
+
+    function onTouchStart(e) {
+        var selector = e.data;
+        if (!selector || $(selector).length === 0) return true;
+
+        $('body').css('overflow', 'hidden');
+        var touch = e.originalEvent.changedTouches[0];
+        touchStart = [e.timeStamp, touch.clientX, touch.clientY];
+        console.log('ts' + touchStart);
+    }
+
+    function onTouchEnd(e) {
+        if (!touchStart) return;
+
+        var selector = e.data;
+        if (!selector || $(selector).length === 0) return true;
+
+        $('body').css('overflow', '');
+
+        var keyMap = keyMaps[selector];
+        var touch = e.originalEvent.changedTouches[0],
+            dt = e.timeStamp - touchStart[0],
+            dx = touch.clientX - touchStart[1],
+            dy = Math.abs(touch.clientY - touchStart[2]);
+        if (dt < 1500 && (dx > 100 || dx < -100) && dy < 30) {
+            $.publish(keyMap['swipe'], [dx, dy]);
+        }
+        touchStart = null;
+    }
+
+    function setKeyMap(selector, map) {
+        console.log('setKeyMap', selector, map);
         keyMap = {};
         for (var key in map) {
             var keys = key.split(' ');
@@ -58,13 +94,15 @@ define(["jquery", "pubsub"], function($) {
                 keyMap[keys[i]] = map[key];
             }
         }
+        keyMaps[selector] = keyMap;
+        $(document).on('keydown', null, selector, onKeyDown);
+        if ('swipe' in keyMap && 'ontouchend' in document) {
+            $(document).on('touchstart', null, selector, onTouchStart);
+            $(document).on('touchend', null, selector, onTouchEnd);
+        }
     }
 
-    function getKeyMap() {
-        return keyMap;
-    }
     return {
-        setMap: setKeyMap,
-        getMap: getKeyMap
+        setMap: setKeyMap
     };
 });

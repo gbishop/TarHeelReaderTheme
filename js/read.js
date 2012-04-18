@@ -185,25 +185,37 @@ define(["jquery",
         link.click();
     }
 
+    function swipe(e, dx, dy) {
+        console.log('do swipe');
+        if (dx < 0) {
+            nextPage();
+        } else {
+            previousPage();
+        }
+    }
+
     $.subscribe('/read/chooseOrPreviousPage', chooseOrPreviousPage);
     $.subscribe('/read/nextChoiceOrPage', nextChoiceOrPage);
     $.subscribe('/read/previousChoiceOrPage', previousChoiceOrPage);
     $.subscribe('/read/makeChoice', makeChoice);
     $.subscribe('/read/key', keyChoice);
+    $.subscribe('/read/swipe', swipe);
+
+    // configure the keyboard controls
+    keys.setMap('.active-page.thr-book-page', {
+        'left space': '/read/chooseOrPreviousPage',
+        'right space': '/read/nextChoiceOrPage',
+        'up': '/read/previousChoiceOrPage',
+        'down': '/read/makeChoice',
+        'p n m c a r d 1 2 3': '/read/key',
+        'swipe': '/read/swipe'
+    });
 
     function configureBook(url, slug, pageNumber) {
         console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         scalePicture($page);
         $page.find('.thr-pic').fadeIn(200);
-        // configure the keyboard controls
-        keys.setMap({
-            'left space': '/read/chooseOrPreviousPage',
-            'right space': '/read/nextChoiceOrPage',
-            'up': '/read/previousChoiceOrPage',
-            'down': '/read/makeChoice',
-            'p n m c a r d 1 2 3': '/read/key'
-        });
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);

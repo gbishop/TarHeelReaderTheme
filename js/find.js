@@ -152,6 +152,13 @@ define(["jquery",
         }
     });
 
+    // configure the keyboard controls
+    keys.setMap('.active-page.find-page', {
+        'left down enter c': '/find/select',
+        'right space m': '/find/next',
+        'up': '/find/prev'
+    });
+
     function findConfigure(url, query) {
         // set the colors based on the state
         // setup the show search button for small screens
@@ -164,12 +171,6 @@ define(["jquery",
             e.preventDefault();
             $form.slideDown('fast');
             $(this).hide();
-        });
-        // configure the keyboard controls
-        keys.setMap({
-            'left down enter c': '/find/select',
-            'right space m': '/find/next',
-            'up': '/find/prev'
         });
         $page.attr('data-key', url);
 
