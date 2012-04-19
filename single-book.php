@@ -43,6 +43,7 @@
                     $view['nextLink'] = pageLink($book['link'], $pageNumber+1);
                 }
                 setImageSizes($view['image']);
+                if ($mp3) $view['audio'] = audio($mp3);
                 echo template_render('bookPage', $view);
             } else {
                 $view['nextPage'] = $pageNumber+1;

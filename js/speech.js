@@ -41,18 +41,22 @@ define(["jquery", "templates" ], function($, templates) {
     });
 
     function play(id, lang, voice, page) {
+        voice = voice[0]; // assure we're only using the 1st letter
         if (!audio || voice === 's') return;
 
         var mp3 = SpeechBase;
         if (id == 'site') {
             mp3 += 'site' + lang + '-' + voice + '-' + page + '.mp3';
         } else {
+            id = id + '';
             mp3 += id.substr(id.length-2) + '/' + id + '/' + lang + '-' + voice + '-' + page + '.mp3';
         }
 
         if (audio === 'flash') {
             $('.flashplayer').remove();
-            $('body').append(templates.render('flash', mp3));
+            console.log('about to render', mp3);
+            var view = { eurl: encodeURI(mp3) };
+            $('body').append(templates.render('flash', view));
         } else {
             audio.src = mp3;
             audio.load();

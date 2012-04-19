@@ -69,6 +69,7 @@ define(["jquery",
                 }
                 templates.setImageSizes(view.image);
                 newContent = templates.render('bookPage', view);
+                speech.play(book.ID, book.language, state.get('voice'), pageNumber);
             } else {
                 view.nextPage = pageNumber+1;
                 view.link = book.link;

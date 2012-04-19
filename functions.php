@@ -289,7 +289,7 @@ function ParseBookPost($post) {
     $modified = $post->post_modified;
     $created = $post->post_date;
     $slug = $post->post_name;
-    $link = get_permalink($id);
+    $link = preg_replace('/http:\/\/[a-z0-9.]+/', '', get_permalink($id));
     $pages = array();
     $pages[] = make_page($title, $image_urls[0]);
     for($i = 1; $i < count($image_urls); $i++) {
@@ -366,9 +366,9 @@ function getGet($key, $default = null, $rule = null)
     return $default;
 }
 
-function flashAudio($mp3) {
-    $view = array('mp3' => urlencode($mp3));
-    echo template_render('flash', $view);
+function audio($mp3) {
+    $view = array('url' => $mp3, 'eurl' => urlencode($mp3));
+    return template_render('flash', $view);
 }
 
 function setFormFromState($FormData) {
