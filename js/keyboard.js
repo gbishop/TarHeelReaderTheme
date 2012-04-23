@@ -62,7 +62,7 @@ define(["jquery", "pubsub"], function($) {
 
         $('body').css('overflow', 'hidden');
         var touch = e.originalEvent.changedTouches[0];
-        touchStart = [e.timeStamp, touch.clientX, touch.clientY];
+        touchStart = { t: e.timeStamp, x: touch.clientX, y: touch.clientY };
         console.log('ts' + touchStart);
     }
 
@@ -76,9 +76,9 @@ define(["jquery", "pubsub"], function($) {
 
         var keyMap = keyMaps[selector];
         var touch = e.originalEvent.changedTouches[0],
-            dt = e.timeStamp - touchStart[0],
-            dx = touch.clientX - touchStart[1],
-            dy = Math.abs(touch.clientY - touchStart[2]);
+            dt = e.timeStamp - touchStart.t,
+            dx = touch.clientX - touchStart.x,
+            dy = Math.abs(touch.clientY - touchStart.y);
         if (dt < 1500 && (dx > 100 || dx < -100) && dy < 30) {
             $.publish(keyMap['swipe'], [dx, dy]);
         }
