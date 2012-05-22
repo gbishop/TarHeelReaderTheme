@@ -30,6 +30,10 @@ define([ "jquery",
                 return false;
             }
             url = $this.attr('href');
+            if (typeof(url) == 'undefined') {
+                e.preventDefault();
+                return true;
+            }
 
         } else if ($this.is('form')) {
             // submiting a form
