@@ -169,8 +169,10 @@ define(["jquery",
         $page.find('a.searchShowButton').click(function(e){
             console.log('click');
             e.preventDefault();
-            $form.slideDown('fast');
+            //$form.slideDown('fast');
+            $form.show();
             $(this).hide();
+            return false;
         });
         $page.attr('data-key', url);
 
