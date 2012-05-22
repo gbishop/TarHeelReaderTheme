@@ -45,37 +45,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 /* And here begins the Wordpress fun.
 -------------------------------------------------------------------------------*/
 
-.thr-home-icon {
-    position: absolute;
-    top: 0.5em;
-    left: 0.5em;
-    width: 2em;
-    height: 2em;
-    img {
-        width: 2em;
-        height: 2em;
-        opacity: 0.8;
-        &:hover {
-            opacity: 1;
-        }
-    }
-}
-
-.thr-settings-icon {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    width: 2em;
-    height: 2em;
-    img {
-        width: 2em;
-        height: 2em;
-        opacity: 0.8;
-        &:hover {
-            opacity: 1;
-        }
-    }
-}
 
 .content-wrap {
     width: 48em;
@@ -112,29 +81,64 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     background:rgb(51,51,51);
     border-top: 0.25em solid #3399FF;
     height:3em;
+    min-height: 32px;
 
     h1 {
         font-size: 1.8em;
-        height:1.7em;
+        //height:1.7em;
+        //min-height: 57%;
 
         a {
             text-decoration: none;
             color:#999;
             //font-family: 'Terminal Dosis', sans-serif;
             font-weight:200;
-            height:1.7em;
-            line-height:1.7em;
+            //height:1.7em;
+            //line-height:1.7em;
         }
     }
     .description {
         font-size: 0.9em;
     }
 
-    .thr-settings-icon img {
-        opacity: 1;
+    .thr-home-icon {
+        position: absolute;
+        top: 0.5em;
+        left: 0.5em;
+        width: 2em;
+        min-width: 24px;
+        height: 2em;
+        min-height: 24px;
+        img {
+            width: 2em;
+            min-width: 24px;
+            height: 2em;
+            min-height: 24px;
+            opacity: 0.8;
+            &:hover {
+                opacity: 1;
+            }
+        }
     }
-    .thr-home-icon img {
-        opacity: 1;
+
+    .thr-settings-icon {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        width: 2em;
+        min-width: 24px;
+        height: 2em;
+        min-height: 24px;
+        img {
+            width: 2em;
+            min-width: 24px;
+            height: 2em;
+            min-height: 24px;
+            opacity: 0.8;
+            &:hover {
+                opacity: 1;
+            }
+        }
     }
 }
 
@@ -219,6 +223,7 @@ h2 {
 .searchShowButton {
     display: none; // displayed by media query if js is on and screen is small
     height: 2em;
+    min-height: 32px;
     font-size: 1.5em;
     border: solid black 1px;
     text-decoration: none;
@@ -500,17 +505,28 @@ h2 {
         font-weight: bold;
         font-size: 2em;
     }
+    .steps {
+        padding: 0.5em;
+        background-color: #EEE;
+        position: relative;
+    }
 
     #gallery {
         margin-top: 1em;
+        //height: 6em;
     }
 
-    h3 a.spacer {
-        padding-left: 6.4em;
+    h2,h3 {
+        position: relative;
+        font-size: 1em;
+        padding: 0.3em;
+        margin: 0 0 0.25em 0;
+        background-color: #FFF;
+        border-radius: 1em;
     }
 
-    .ui-accordion .ui-accordion-content {
-        padding-right: 0.2em !important;
+    h3 {
+        background-color: #F8F8F8;
     }
 
     .aWrap {
@@ -541,8 +557,9 @@ h2 {
 .help {
     width: 2em;
     height: 2em;
-    vertical-align: middle;
-    float: right;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
 }
 
 .help-text {
@@ -564,6 +581,14 @@ h2 {
         margin: auto;
         resize: none;
         //border: 1px solid black;
+    }
+
+    #deleteIcon {
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: 0.5em;
+        left: 0.5em;
     }
 }
 

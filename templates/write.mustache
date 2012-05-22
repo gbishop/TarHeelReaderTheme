@@ -5,14 +5,13 @@
 <p>_(You must be logged in, to write a book.)<a href="/login/">_(Log In|link label)</a></p>
 {{/loggedIn}}
 <div id="writing-controls">
-    <div class="accordion" id="step1">
-        <h3><a href="#">_(Step 1: Find pictures at Flickr)</a></h3>
+    <div class="steps" id="step1">
+        <h2>_(Step 1: Find pictures)</h2>
         <div>
             <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
             <p class="help-text" title="_(Step 1 Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
             <div class="aWrap">
                 <form method="get" class="no-ajaxy">
-                    <label for="write-image-search">_(Enter words to search Flickr.)</label>
                     <input type="search" name="query" id="write-image-search" />
                     <input type="submit" value="_(Search)" />
                 </form>
@@ -20,21 +19,22 @@
                 <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
             </div>
         </div>
-        <h3><a href="#" class="spacer">_(Or upload your own pictures)</a></h3>
+    </div>
+    <div class="steps" id="step1a">
+        <h3>_(Or upload your own pictures)</h2>
         <div id="w-upload">
             <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
             <p class="help-text" title="_(Step 1 Upload Help)">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
             <div class="aWrap">
                 <form method="post" action="/upload-image/" class="no-ajaxy">
-                    <label for="write-file-upload">_(Enter a filename.)</label>
                     <input type="file" name="imagefile" id="write-file-upload" />
                     <input type="submit" value="_(Upload)" />
                 </form>
             </div>
         </div>
     </div>
-    <div class="accordion" id="step2">
-        <h3><a href="#">_(Step 2: Enter a short sentence for each page)</a></h3>
+    <div class="steps" id="step2">
+        <h2>_(Step 2: Enter a short sentence for each page)</h2>
         <div>
             <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
             <p class="help-text" title="_(Step 2 Help)">_(Click on a page to edit it. You may reorder the pages with drag and drop.)</p>
@@ -45,8 +45,8 @@
             </div>
         </div>
     </div>
-    <div class="accordion" id="step3">
-        <h3><a href="#">_(Step 3: Fill in the details)</a></h3>
+    <div class="steps" id="step3">
+        <h2>_(Step 3: Fill in the details)</h2>
         <div>
             <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
             <p class="help-text" title="_(Step 3 Help)">_(Some helpful message.)</p>
@@ -57,8 +57,8 @@
             </div>
         </div>
     </div>
-    <div class="accordion" id="step4">
-        <h3><a href="#">_(Step 4: Publish)</a></h3>
+    <div class="steps" id="step4">
+        <h2>_(Step 4: Publish)</h2>
         <div>
             <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
             <p class="help-text" title="_(Step 4 Help)">_(Some helpful message.)</p>
@@ -78,4 +78,6 @@
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Page Editor Help)">_(Click on the text to change it. You may use the next and previous buttons to move between pages. When you're finished, close the editor by clicking on the x in the upper right.)</p>
     </div>
+    <span id="wlClickToEdit">_(Click to edit)</span>
+    <span id="wDeleteThisPage">_(Delete this page)</span>
 </div>

@@ -1,14 +1,14 @@
 define(['jquery',
         'route',
-        'templates',
-        'jquery.inlineedit'
+        'templates'
         ],
     function($, route, templates) {
 
         var galleryData = {};
         var galleryUrl = '';
-        var $editDialog = null;
-        var $galleryDialog = null;
+        var $editDialog = null; // holds the page editor dialog which we'll create only once
+        var editIndex = 0; // index of the current page in the editor
+        var $galleryDialog = null; // holds the gallery preview dialog
 
         function fetchAnotherGallery(step) {
             galleryData.page += step;
@@ -22,12 +22,12 @@ define(['jquery',
                     var p = result.photos,
                         g = $('#gallery'),
                         gwidth = g.width(),
-                        iwidth = Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8);
-                    if (galleryData.page > 1) {
+                        iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
+                    /*if (galleryData.page > 1) {
                         g.css('height', g.height() + 'px');
                     } else {
                         g.css('height', 'auto');
-                    }
+                    } */
                     g.empty();
                     $.each(p.photo, function (index, photo) {
                         var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret,
@@ -56,7 +56,7 @@ define(['jquery',
             // TODO: set loading here
             galleryData = {
                 page: 1,
-                per_page: 16,
+                per_page: 15,
                 extras: 'o_dims'
             };
             if ('query' in options) {
@@ -191,51 +191,92 @@ define(['jquery',
                 addPage(page);
             });
         }
+        // create the page editor dialog
+        function createPageEditDialog() {
+            $editDialog = $('<div class="thr-book-page edit-page"></div>').dialog({
+                width: 'auto',
+                resizable: false,
+                modal: true,
+                draggable: false,
+                autoOpen: false,
+                open: function(event, ui) {
+                    $(this).find('.thr-caption').inlineEdit({
+                        buttons: '',
+                        saveOnBlur: true,
+                        control: 'textarea',
+                        placeholder: $('#wlClickToEdit').html(),
+                        save: saveEditCaption
+                    });
+
+                }
+            });
+            $editDialog.on('click', 'a.thr-back-link', function() {
+                editIndex -= 1;
+                console.log('prev', editIndex);
+                setupEditContent();
+                return false;
+            });
+            $editDialog.on('click', 'a.thr-next-link', function() {
+                editIndex += 1;
+                console.log('next', editIndex);
+                setupEditContent();
+                return false;
+            });
+            $editDialog.on('click', 'img#deleteIcon', deletePage);
+        }
+
+        // initialize the page editor with its content
+        function setupEditContent() {
+            var $wp = $('#write-pages li'); // the list of book pages
+            // make sure the index is in bound wrapping at the ends
+            if (editIndex < 0) {
+                editIndex = $wp.length - 1;
+            } else if (editIndex >= $wp.length) {
+                editIndex = 0;
+            }
+            var $page = $($wp.get(editIndex)); // the current page
+            var $img = $page.find('img');
+            var caption = $page.find('p.thr-caption').html();
+            var view = {
+                image: {
+                    url: $img.attr('src'),
+                    width: $img.attr('data-width'),
+                    height: $img.attr('data-height')
+                },
+                caption: caption
+            };
+            templates.setImageSizes(view.image); // size the image
+            var $content = $(templates.render('bookPage', view)); // render like any book page
+            $content.filter('a.thr-credit,a.thr-home-icon,a.thr-settings-icon').hide(); // remove some unneeded links
+            $editDialog.empty().append($('#wEditHelp').html()).append($content); // update dialog body
+            var $deleteIcon = $('<img id="deleteIcon" src="/theme/images/delete.png" />');
+            $deleteIcon.attr('title', $('#wDeleteThisPage').html());
+            $editDialog.append($deleteIcon);
+        }
+
+        // save the edited caption
+        function saveEditCaption(e, data) {
+            var $wp = $('#write-pages li'); // the list of book pages
+            var $page = $($wp.get(editIndex)); // the current page
+            var $caption = $page.find('p.thr-caption');
+            console.log('saving', data.value, 'was', $caption.html());
+            $caption.html(data.value); // update the caption
+        }
+
+        // delete a book page
+        function deletePage() {
+            var $wp = $('#write-pages li'); // the list of book pages
+            var $page = $($wp.get(editIndex)); // the current page
+            $page.remove(); // remove it
+            setupEditContent();
+        }
+
         // edit a book page
         function editPage(e) {
             if (!$editDialog) {
-                $editDialog = $('<div class="thr-book-page edit-page"></div>').dialog({
-                    width: 'auto',
-                    resizable: false,
-                    modal: true,
-                    draggable: false,
-                    autoOpen: false,
-                    open: function(event, ui) {
-                        $(this).find('.thr-caption').inlineEdit({
-                            buttons: '',
-                            saveOnBlur: true,
-                            control: 'textarea'
-                        });
-
-                    }
-                });
+                createPageEditDialog();
             }
-            var index = $('#write-pages li').index(this);
-            function setupEditContent() {
-                var $wp = $('#write-pages li');
-                if (index < 0) {
-                    index = $wp.length - 1;
-                } else if (index >= $wp.length) {
-                    index = 0;
-                }
-                var $this = $($wp.get(index));
-                var $img = $this.find('img');
-                var caption = $this.find('p.thr-caption').html();
-                console.log('eP', $this, $img, caption);
-                var view = {
-                    image: {
-                        url: $img.attr('src'),
-                        width: $img.attr('data-width'),
-                        height: $img.attr('data-height')
-                    },
-                    caption: caption
-                };
-                templates.setImageSizes(view.image);
-                var $content = $(templates.render('bookPage', view));
-                foo = $content;
-                $content.filter('a.thr-credit,a.thr-home-icon,a.thr-settings-icon').hide();
-                $editDialog.empty().append($('#wEditHelp').html()).append($content);
-            }
+            editIndex = $('#write-pages li').index(this);
 
             var $window = $(window),
                 ww = $window.width(),
@@ -243,25 +284,12 @@ define(['jquery',
                 pw = ww/(48 + 4),
                 ph = wh/(36 + 10),
                 p = Math.min(pw, ph);
-            console.log('p', p, ph, pw, ww, wh);
             setupEditContent();
-            $editDialog.on('click', 'a.thr-back-link', function() {
-                index -= 1;
-                setupEditContent();
-                return false;
-            });
-            $editDialog.on('click', 'a.thr-next-link', function() {
-                index += 1;
-                setupEditContent();
-                return false;
-            });
             $editDialog.css('font-size', p + 'px');
             $editDialog.dialog('open');
         }
 
         function writeInit(url, id) {
-            // nested require so these are only loaded by users who want to write.
-            // TODO: set loading here so user knows to wait
             var $page = this;
 
             var bookContent = {};
@@ -283,15 +311,9 @@ define(['jquery',
                 id: 'theme'
             }).appendTo('head');
 
-            require(['jquery-ui', 'jquery.ui.touch-punch'],
+            // nested require so these are only loaded by users who want to write.
+            require(['jquery-ui', 'jquery.ui.touch-punch', 'jquery.inlineedit' ],
                 function() {
-                    // TODO: Clear loading here
-                    // Initialize the accordian look
-                    $('.accordion').accordion({
-                            collapsible: true,
-                            active: false,
-                            clearStyle: true });
-
                     $('#gallery').on('click', 'img', function(e) {
                         var $imgs = $('#gallery img'),
                             index = $imgs.index(this);
@@ -333,7 +355,7 @@ define(['jquery',
                             offset = $this.offset(),
                             ww = $(window).width(),
                             tw = Math.max(200, ww/3),
-                            $tip = $this.next().clone().dialog({
+                            $tip = $page.next().clone().dialog({
                                 position: [offset.left - tw - 20, offset.top],
                                 width: tw
                             });
@@ -341,20 +363,12 @@ define(['jquery',
                     });
 
                     $.when(bookContent).then(function(book) {
-
                         if (book.ID) { // editing an existing book
                             initializeBookState(book);
                         }
                         // ie8 insists I made this visible before activating the control
                         $('#writing-controls').css('visibility', 'visible');
 
-                        if (book.ID) {
-                            // open step 2
-                            $('#step2').accordion('activate');
-                        } else {
-                            // open step 1
-                            $('#step1').accordion('activate');
-                        }
                     });
 
                 });
