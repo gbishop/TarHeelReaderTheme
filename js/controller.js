@@ -122,6 +122,7 @@ define([ "jquery",
                 console.log('newPage', $newPage);
                 // transition to the new page
                 page.transitionTo($newPage, options).then(function($newPage, title) {
+                    $(window).off('beforeunload'); // be sure the beforeunload handler gets disabled
                     route.go('init', url, $newPage);
                     $(window).scrollTop(0);
                     $pageReady.resolve(title);

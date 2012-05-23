@@ -9,6 +9,7 @@ define(['jquery',
         var $editDialog = null; // holds the page editor dialog which we'll create only once
         var editIndex = 0; // index of the current page in the editor
         var $galleryDialog = null; // holds the gallery preview dialog
+        var isModified = false; // true when the book has been edited
 
         function fetchAnotherGallery(step) {
             galleryData.page += step;
@@ -172,7 +173,7 @@ define(['jquery',
         }
 
         // add a page to the book
-        function addPage(page) {
+        function addPage(page, isInit) {
             var view = {
                 image: page,
                 caption: page.text
@@ -182,13 +183,16 @@ define(['jquery',
             $p.find('a').remove();
             $('#write-pages').append($p);
             $('#noPicturesMessage').hide();
+            if (!isInit) {
+                setModified();
+            }
         }
         // initialize book pages from an existing book
         function initializeBookState(book) {
             console.log('initBook', book);
             $('input[title]').val(book.title);
             $.each(book.pages.slice(1), function (index, page) {
-                addPage(page);
+                addPage(page, true);
             });
         }
         // create the page editor dialog
@@ -261,6 +265,7 @@ define(['jquery',
             var $caption = $page.find('p.thr-caption');
             console.log('saving', data.value, 'was', $caption.html());
             $caption.html(data.value); // update the caption
+            setModified();
         }
 
         // delete a book page
@@ -269,6 +274,7 @@ define(['jquery',
             var $page = $($wp.get(editIndex)); // the current page
             $page.remove(); // remove it
             setupEditContent();
+            setModified();
         }
 
         // edit a book page
@@ -287,6 +293,39 @@ define(['jquery',
             setupEditContent();
             $editDialog.css('font-size', p + 'px');
             $editDialog.dialog('open');
+        }
+
+        // warn the user if they are leaving the page without saving
+        function confirmLeaving(e) {
+            if (isModified) {
+                if (!confirm(warnModified())) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // warning message for beforeunload
+        function warnModified() {
+            return $('#wLoseWork').html();
+        }
+
+        // set the indicator that the book has been modified
+        function setModified() {
+            console.log('setModified', isModified);
+            if (!isModified) {
+                isModified = true;
+                $(window).on('beforeunload', warnModified);
+            }
+        }
+
+        // clear the modified indication
+        function clearModified() {
+            if (isModified) {
+                isModified = false;
+                $(window).off('beforeunload');
+            }
         }
 
         function writeInit(url, id) {
@@ -342,7 +381,11 @@ define(['jquery',
                         return false;
                     });
                     $('#write-pages').on('click', 'li', editPage);
-                    $('#write-pages').sortable();
+                    $('#write-pages').sortable({
+                        change: setModified
+                    });
+                    $('a.thr-settings-icon').hide();
+                    $('a.thr-home-icon').on('click', confirmLeaving);
 
                     $('body').on('click', '.help,.help-text', function(e) {
                         // dialog doc claims it restores the source element but it does not do that for me, clone below
