@@ -4,8 +4,7 @@ define(['jquery',
         ],
     function($, route, templates) {
 
-        var galleryData = {};
-        var galleryUrl = '';
+        var galleryData = {}; // parameters for the photo search
         var $editDialog = null; // holds the page editor dialog which we'll create only once
         var editIndex = 0; // index of the current page in the editor
         var $galleryDialog = null; // holds the gallery preview dialog
@@ -27,9 +26,12 @@ define(['jquery',
                 $('#gallery-back,#gallery-more').button('disable');
                 $('#gallery').empty();
                 var query = $page.find('input[name=query]').val();
-                if (query.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)) { // email query
-                    $.when(getNsidFromEmail(query)).then(function(nsid) {
-                        fetchGallery({ user_id: nsid });
+                var emailRe = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})\b/i;
+                var match = query.match(emailRe);
+                if (match) { // email query
+                    query = query.replace(emailRe, '');
+                    $.when(getNsidFromEmail(match[0])).then(function(nsid) {
+                        fetchGallery({ user_id: nsid, query: query });
                     });
                 } else {
                     fetchGallery({ query: query });
@@ -52,7 +54,7 @@ define(['jquery',
             clearErrors();
             galleryData.page += step;
             $.ajax({
-                url: galleryUrl,
+                url: '/photoSearch/',
                 data: galleryData,
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
@@ -68,11 +70,8 @@ define(['jquery',
                     }
                     $.each(p.photo, function (index, photo) {
                         var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret,
-                            ow = parseInt(photo.o_width, 10),
-                            oh = parseInt(photo.o_height, 10),
-                            scale = 500.0 / Math.max(ow, oh),
-                            w = Math.round(ow * scale),
-                            h = Math.round(oh * scale);
+                            w = parseInt(photo.width_m, 10),
+                            h = parseInt(photo.height_m, 10);
                         $('<img>').prop('src', url + '_s.jpg')
                             .prop('title', photo.title)
                             .attr('data-width', w)
@@ -92,18 +91,15 @@ define(['jquery',
             galleryData = {
                 page: 1,
                 per_page: 15,
-                extras: 'o_dims'
+                extras: 'url_m' // ask for the medium url so I can get the size
             };
             if ('query' in options) {
                 galleryData.tags = options.query.replace(/[ ,"']+/g, ',').replace(/^,+/,'').replace(/,+$/,'').replace(/,+/,',');
-                galleryUrl = '/photoSearch/';
-            } else if ('user_id' in options) {
-                galleryData.user_id = options.user_id;
-                galleryUrl = '/photoSearchPeople/';
-            } else {
-                console.log('error');
-                return false;
             }
+            if ('user_id' in options) {
+                galleryData.user_id = options.user_id;
+            }
+
             fetchAnotherGallery(0);
         }
 
