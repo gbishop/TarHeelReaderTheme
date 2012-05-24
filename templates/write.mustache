@@ -11,11 +11,15 @@
             <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
             <p class="help-text" title="_(Step 1 Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
             <div class="aWrap">
-                <form method="get" class="no-ajaxy">
+                <form id="image-search" method="get" class="no-ajaxy">
                     <input type="search" name="query" id="write-image-search" />
                     <input type="submit" value="_(Search)" />
                 </form>
                 <div id="gallery"></div>
+                <div class="error-messages">
+                    <p id="em-g-not-found">_(No matching images found.)</p>
+                    <p id="em-g-invalid-email">_(No matching email address found.)</p>
+                </div>
                 <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
             </div>
         </div>

@@ -229,6 +229,7 @@ h2 {
     text-decoration: none;
     vertical-align: middle;
     -webkit-appearance: push-button;
+    border-radius: 2em;
     //font-size: 1.5em;
     text-align: center;
     color: black;
@@ -564,6 +565,15 @@ h2 {
 
 .help-text {
     display: none;
+}
+
+.error-messages p {
+    display: none;
+    color: red;
+}
+
+.error-messages p.show-error {
+    display: block;
 }
 
 .edit-page {

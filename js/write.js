@@ -11,7 +11,45 @@ define(['jquery',
         var $galleryDialog = null; // holds the gallery preview dialog
         var isModified = false; // true when the book has been edited
 
+        function setupGallery() {
+            var $page = $('.write-page.active-page');
+
+            $('#gallery').on('click', 'img', function(e) {
+                var $imgs = $('#gallery img'),
+                    index = $imgs.index(this);
+                showGalleryPreview(index);
+            });
+            var $form = $page.find('#image-search');
+            $form.submit(function(e) {
+                e.preventDefault();
+                console.log('submit');
+                clearErrors();
+                $('#gallery-back,#gallery-more').button('disable');
+                $('#gallery').empty();
+                var query = $page.find('input[name=query]').val();
+                if (query.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)) { // email query
+                    $.when(getNsidFromEmail(query)).then(function(nsid) {
+                        fetchGallery({ user_id: nsid });
+                    });
+                } else {
+                    fetchGallery({ query: query });
+                }
+                return false;
+            });
+
+            $('.button', '#writing-controls').button().button('disable');
+            $('#gallery-back').click(function() {
+                fetchAnotherGallery(-1);
+                return false;
+            });
+            $('#gallery-more').click(function() {
+                fetchAnotherGallery(+1);
+                return false;
+            });
+        }
+
         function fetchAnotherGallery(step) {
+            clearErrors();
             galleryData.page += step;
             $.ajax({
                 url: galleryUrl,
@@ -24,12 +62,10 @@ define(['jquery',
                         g = $('#gallery'),
                         gwidth = g.width(),
                         iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
-                    /*if (galleryData.page > 1) {
-                        g.css('height', g.height() + 'px');
-                    } else {
-                        g.css('height', 'auto');
-                    } */
                     g.empty();
+                    if (p.photo.length === 0) {
+                        showError('em-g-not-found');
+                    }
                     $.each(p.photo, function (index, photo) {
                         var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret,
                             ow = parseInt(photo.o_width, 10),
@@ -46,8 +82,6 @@ define(['jquery',
                     });
                     $('#gallery-back').button(p.page > 1 ? 'enable' : 'disable');
                     $('#gallery-more').button(p.page < p.pages ? 'enable' : 'disable');
-
-                    //TODO: clear loading here
                 }
             });
         }
@@ -328,6 +362,46 @@ define(['jquery',
             }
         }
 
+        // show an error message
+        function showError(id) {
+            $('#' + id).addClass('show-error');
+        }
+
+        // hide error messages
+        function clearErrors() {
+            $('.error-messages p').removeClass('show-error');
+        }
+
+        // translate email address into flickr nsid
+        var nsidCache = {}; // store translations to avoid multiple lookups
+        function getNsidFromEmail(email) {
+            if (email in nsidCache) {
+                return nsidCache[email]; // return from the cache
+            } else {
+                var def = $.Deferred();
+                $.ajax({ // ask flickr
+                    url: '/photoSearchEmail/',
+                    data: { find_email: email },
+                    dataType: 'jsonp',
+                    jsonp: 'jsoncallback',
+                    success: function(data) {
+                        if (data.stat === 'ok') {
+                            nsidCache[email] = data.user.nsid;
+                            def.resolve(data.user.nsid);
+                        } else {
+                            showError('em-g-invalid-email');
+                            def.reject();
+                        }
+                    },
+                    error: function() {
+                        showError('em-g-network-error');
+                        def.reject();
+                    }
+                });
+                return def;
+            }
+        }
+
         function writeInit(url, id) {
             var $page = this;
 
@@ -353,33 +427,7 @@ define(['jquery',
             // nested require so these are only loaded by users who want to write.
             require(['jquery-ui', 'jquery.ui.touch-punch', 'jquery.inlineedit' ],
                 function() {
-                    $('#gallery').on('click', 'img', function(e) {
-                        var $imgs = $('#gallery img'),
-                            index = $imgs.index(this);
-                        showGalleryPreview(index);
-                    });
-                    var $form = $page.find('form');
-                    $form.submit(function(e) {
-                        e.preventDefault();
-                        console.log('submit');
-                        var query = $page.find('input[name=query]').val();
-                        if (query.match(/^.*@.*$/)) {
-                            fetchGallery({ user_id: query });
-                        } else {
-                            fetchGallery({ query: query });
-                        }
-                        return false;
-                    });
-
-                    $('.button', '#writing-controls').button().button('disable');
-                    $('#gallery-back').click(function() {
-                        fetchAnotherGallery(-1);
-                        return false;
-                    });
-                    $('#gallery-more').click(function() {
-                        fetchAnotherGallery(+1);
-                        return false;
-                    });
+                    setupGallery();
                     $('#write-pages').on('click', 'li', editPage);
                     $('#write-pages').sortable({
                         change: setModified
