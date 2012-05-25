@@ -447,5 +447,7 @@ function my_login_redirect() {
 }
 add_filter('login_redirect', 'my_login_redirect');
 
+// I suddenly started getting redirect loops when accessing / this seems to fix it.
+remove_filter('template_redirect', 'redirect_canonical');
 
 ?>
