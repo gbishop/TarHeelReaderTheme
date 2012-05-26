@@ -101,43 +101,44 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         font-size: 0.9em;
     }
 
-    .thr-home-icon {
-        position: absolute;
-        top: 0.5em;
-        left: 0.5em;
+}
+
+.thr-home-icon {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    width: 2em;
+    min-width: 24px;
+    height: 2em;
+    min-height: 24px;
+    img {
         width: 2em;
         min-width: 24px;
         height: 2em;
         min-height: 24px;
-        img {
-            width: 2em;
-            min-width: 24px;
-            height: 2em;
-            min-height: 24px;
-            opacity: 0.8;
-            &:hover {
-                opacity: 1;
-            }
+        opacity: 0.8;
+        &:hover {
+            opacity: 1;
         }
     }
+}
 
-    .thr-settings-icon {
-        position: absolute;
-        top: 0.5em;
-        right: 0.5em;
+.thr-settings-icon {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    width: 2em;
+    min-width: 24px;
+    height: 2em;
+    min-height: 24px;
+    img {
         width: 2em;
         min-width: 24px;
         height: 2em;
         min-height: 24px;
-        img {
-            width: 2em;
-            min-width: 24px;
-            height: 2em;
-            min-height: 24px;
-            opacity: 0.8;
-            &:hover {
-                opacity: 1;
-            }
+        opacity: 0.8;
+        &:hover {
+            opacity: 1;
         }
     }
 }
