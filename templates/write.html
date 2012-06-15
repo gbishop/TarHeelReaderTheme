@@ -2,62 +2,98 @@
 <p>_(You must have Javascript enabled in order to write a book.)</p>
 </noscript>
 {{^loggedIn}}
-<p>_(You must be logged in, to write a book.)<a href="/login/">_(Log In|link label)</a></p>
+<p id="notLoggedIn">_(You must be logged in, to write a book.)<a href="/login/">_(Log In|link label)</a></p>
 {{/loggedIn}}
 <div id="writing-controls">
     <div class="steps" id="step1">
         <h2>_(Step 1: Find pictures)</h2>
-        <div>
-            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-            <p class="help-text" title="_(Step 1 Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
-            <div class="aWrap">
-                <form id="image-search" method="get" class="no-ajaxy">
-                    <input type="search" name="query" id="write-image-search" />
-                    <input type="submit" value="_(Search)" />
-                </form>
-                <div id="gallery"></div>
-                <div class="error-messages">
-                    <p id="em-g-not-found">_(No matching images found.)</p>
-                    <p id="em-g-invalid-email">_(No matching email address found.)</p>
-                </div>
-                <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Step 1 Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
+        <div class="aWrap">
+            <form id="image-search" method="get" class="no-ajaxy">
+                <input type="search" name="query" id="write-image-search" />
+                <input type="submit" value="_(Search)" />
+            </form>
+            <div id="gallery"></div>
+            <div class="error-messages">
+                <p id="em-g-not-found">_(No matching images found.)</p>
+                <p id="em-g-invalid-email">_(No matching email address found.)</p>
             </div>
+            <a href="#" class="button no-ajaxy" id="gallery-back">Go back</a><a href="#" class="button no-ajaxy" id="gallery-more">More like these</a>
         </div>
     </div>
     <div class="steps" id="step1a">
         <h3>_(Or upload your own pictures)</h2>
-        <div id="w-upload">
-            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-            <p class="help-text" title="_(Step 1 Upload Help)">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
-            <div class="aWrap">
-                <form method="post" action="/upload-image/" class="no-ajaxy">
-                    <input type="file" name="imagefile" id="write-file-upload" />
-                    <input type="submit" value="_(Upload)" />
-                </form>
-            </div>
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Step 1 Upload Help)">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
+        <div class="aWrap">
+            <form method="post" action="/upload-image/" class="no-ajaxy">
+                <input type="file" name="imagefile" id="write-file-upload" />
+                <input type="submit" value="_(Upload)" />
+            </form>
         </div>
     </div>
     <div class="steps" id="step2">
         <h2>_(Step 2: Enter a short sentence for each page)</h2>
-        <div>
-            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-            <p class="help-text" title="_(Step 2 Help)">_(Click on a page to edit it. You may reorder the pages with drag and drop.)</p>
-            <div class="aWrap">
-                <ul id="write-pages">
-                </ul>
-                <p id="noPicturesMessage">_(After you select or upload pictures your pages will appear here.)</p>
-            </div>
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Step 2 Help)">_(Click on a page to edit it. You may reorder the pages with drag and drop.)</p>
+        <div class="aWrap">
+            <ul id="write-pages">
+            </ul>
+            <p id="noPicturesMessage">_(After you select or upload pictures your pages will appear here.)</p>
         </div>
     </div>
     <div class="steps" id="step3">
         <h2>_(Step 3: Fill in the details)</h2>
-        <div>
-            <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-            <p class="help-text" title="_(Step 3 Help)">_(Some helpful message.)</p>
-            <div class="aWrap">
-                <p>Book settings title, author, classification, language go here.</p>
-                <label for="write-title">_(Title)</label>
-                <input type="text" name="title" id="write-title" title="_(Enter a title for your book)" />
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Step 3 Help)">_(Fill in the title for your book and select its language from the list. You may use a psuedonym if you wish by changing the author field.)</p>
+        <div class="aWrap">
+            <label><b>_(Title):</b>
+                <input type="text" name="title" title="_(Enter a title for your book)" />
+            </label>
+            <label><b>_(Author):</b>
+                <input type="text" name="author" title="_(Enter a pseudonym)" value="{{user}}"/>
+            </label>
+            <label><b>_(Language):</b>
+                <select name="language">
+                    <option value=" ">_(Choose a language)</option>
+                    {{#languages}}
+                    <option value="{{value}}">{{label}}</option>
+                    {{/languages}}
+                </select>
+            </label>
+            <p>_(Optionally) <button id="categorizeButton">_(Categorize your book)</button></p>
+        </div>
+    </div>
+    <div class="steps" id="step3a">
+        <h3>_(Categorize your book)</h3>
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Step 3a Help)">_(You may select up to three library categories, an audience rating and BLF type if you wish.)</p>
+
+        <div id="aWrap">
+            <div class="settings categories"><b>_(Library Classification):</b><br />
+                {{#categories}}
+                <label><input name="category" type="checkbox" value="{{value}}" />{{label}}</label>
+                {{/categories}}
+            </div>
+            <div class="settings">
+                <label><b>_(Audience Rating):</b>
+                    <select name="audience">
+                        <option value=" ">_(None)</option>
+                        <option value="E">_(Rated E/Everybody|books appropriate for everyone)</option>
+                        <option value="C">_(Rated C/Caution|books that may not be appropriate for all readers)</option>
+                    </select>
+                </label>
+            </div>
+            <div class="settings">
+                <label><b>Beginning Literacy Framework Type:</b>
+                    <select name="type">
+                        <option value="" >_(None)</option>
+                        <option value="T" />_(Transitional)</option>
+                        <option value="C">_(Conventional)</option>
+                        <option value="O">_(Other)</option>
+                    </select>
+                </label>
             </div>
         </div>
     </div>
@@ -69,6 +105,8 @@
             <div class="aWrap">
                 <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
             </div>
+            <button id="save">Save as draft</button>
+            <button id="publish" disabled>Publish</button>
         </div>
     </div>
 </div>

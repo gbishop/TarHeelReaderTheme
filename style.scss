@@ -497,9 +497,10 @@ h2 {
 .write-page {
     .content-wrap {
         width: auto;
+        overflow: hidden;
     }
     #writing-controls {
-        visibility: hidden;
+        display: none;
     }
 
     noscript {
@@ -532,7 +533,7 @@ h2 {
     }
 
     .aWrap {
-        margin-right: 2em;
+        // margin-right: 2em;
     }
 
     #write-pages {
@@ -554,6 +555,35 @@ h2 {
     .thr-pic {
         display: inline;
     }
+
+    .settings {
+        margin-top: 1em;
+        clear: both;
+    }
+
+    .categories {
+        line-height: 2em !important;
+    }
+    .categories label {
+        white-space: nowrap;
+        width: 12em;
+        float: left;
+        margin-left: 2em;
+    }
+    label {
+        white-space: nowrap;
+        line-height: 2.5em;
+    }
+    .categories input {
+        vertical-align: baseline;
+    }
+
+    #step3a {
+        display: none;
+    }
+    button {
+        font-size: 1em;
+    }
 }
 
 .help {
@@ -562,6 +592,7 @@ h2 {
     position: absolute;
     top: 0.5em;
     right: 0.5em;
+    cursor: pointer;
 }
 
 .help-text {

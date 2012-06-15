@@ -220,10 +220,52 @@ define(['jquery',
         // initialize book pages from an existing book
         function initializeBookState(book) {
             console.log('initBook', book);
-            $('input[title]').val(book.title);
+            $('input[name=title]').val(book.title);
+            $('input[name=author]').val(book.author);
+            $('select[name=language]').val(book.language);
+            $('input[name=category]').prop('checked', false);
+            $.each(book.categories, function (index, category) {
+                $('input[value=' + category + ']').prop('checked', true);
+            });
+            $('select[name=audience]').val(book.audience);
+            $('select[name=type]').val(book.type);
             $.each(book.pages.slice(1), function (index, page) {
                 addPage(page, true);
             });
+        }
+        // extract the books state from the controls
+        function extractBookState() {
+            console.log('start extract');
+
+            var book = {};
+            book.title = $('input[name=title]').val();
+            book.author = $('input[name=author]').val();
+            book.categories = $('.categories input[type=checkbox]:checked').map(function(i, v) {
+                return $(v).prop('value'); });
+            book.pages = $('#write-pages li').map(function(i, p) {
+                var $p = $(p),
+                    caption = $p.find('.thr-caption').html(),
+                    img = $p.find('img.thr-pic'),
+                    width = parseInt(img.attr('data-width'), 10),
+                    height = parseInt(img.attr('data-height'), 10);
+                return {
+                    text: caption,
+                    url: img.attr('src'),
+                    width: width,
+                    height: height
+                };
+            }).get();
+            if (book.pages.length > 0) {
+                var p = book.pages[0];
+                var page = {
+                    caption: book.title,
+                    url: p.url.replace('.jpg', '_t.jpg'),
+                    width: p.width > p.height ? 100 : Math.round(100 * p.width / p.height),
+                    height: p.width > p.height ? Math.round(100 * p.height / p.width) : 100
+                };
+                book.pages.unshift(page);
+            }
+            console.log('extracted book', book);
         }
         // create the page editor dialog
         function createPageEditDialog() {
@@ -398,6 +440,7 @@ define(['jquery',
             }
         }
 
+        // initialize the writing page.
         function writeInit(url, id) {
             var $page = this;
 
@@ -442,20 +485,27 @@ define(['jquery',
                             offset = $this.offset(),
                             ww = $(window).width(),
                             tw = Math.max(200, ww/3),
-                            $tip = $page.next().clone().dialog({
+                            $tip = $this.next().clone().dialog({
                                 position: [offset.left - tw - 20, offset.top],
                                 width: tw
                             });
                             console.log('help', $tip);
                     });
+                    $('#save').on('click', extractBookState);
+                    $('#categorizeButton').on('click', function() {
+                        $('#step3a').toggle();
+                    });
+                    if ($('input[name=imagefile]').attr('disabled')) {
+                        $('#step1a').hide();
+                    }
 
                     $.when(bookContent).then(function(book) {
                         if (book.ID) { // editing an existing book
                             initializeBookState(book);
                         }
-                        // ie8 insists I made this visible before activating the control
-                        $('#writing-controls').css('visibility', 'visible');
-
+                        if ($('#notLoggedIn').length === 0) {
+                            $('#writing-controls').show();
+                        }
                     });
 
                 });
