@@ -54,6 +54,7 @@
 
 	<!-- I'm not sure I need modernizr but include it for now. -->
 	<script src="/theme/js/modernizr.custom.js"></script>
+	<!-- <script src="https://getfirebug.com/firebug-lite.js#startOpened"></script> -->
 
 	<?php wp_head(); ?>
 
