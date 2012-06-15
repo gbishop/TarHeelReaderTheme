@@ -1,0 +1,18 @@
+[
+        { "label": "_(Alphabet)", "value": "Alph" },
+        { "label": "_(Animals and Nature)", "value": "Anim" },
+        { "label": "_(Art and Music)", "value": "ArtM" },
+        { "label": "_(Biographies)", "value": "Biog" },
+        { "label": "_(Fairy and Folk Tales)", "value": "Fair" },
+        { "label": "_(Fiction)", "value": "Fict" },
+        { "label": "_(Foods)", "value": "Food" },
+        { "label": "_(Health)", "value": "Heal" },
+        { "label": "_(History)", "value": "Hist" },
+        { "label": "_(Holidays)", "value": "Holi" },
+        { "label": "_(Math and Science)", "value": "Math" },
+        { "label": "_(Nursery Rhymes)", "value": "Nurs" },
+        { "label": "_(People and Places)", "value": "Peop" },
+        { "label": "_(Poetry)", "value": "Poet" },
+        { "label": "_(Recreation and Leisure)", "value": "Recr" },
+        { "label": "_(Sports)", "value": "Spor" }
+]

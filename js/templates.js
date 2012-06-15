@@ -21,6 +21,18 @@ define([ "state",
             function renderTemplate(name, view) {
                 return mustache.render(getTemplate(name), view);
             }
+            function completeSearchForm() {
+                // flesh out the searchForm data with categories and language
+                var searchD = getTemplate('searchForm');
+                for (var j=0; j<searchD.controls.length; j++) {
+                    var control = searchD.controls[j];
+                    if (control.name == 'category') {
+                        control.options = control.options.slice(0,1).concat(getTemplate('categories'));
+                    } else if (control.name == 'language') {
+                        control.options = getTemplate('languages');
+                    }
+                }
+            }
             function searchForm() {
                 var searchD = getTemplate('searchForm');
                 for (var j=0; j<searchD.controls.length; j++) {
@@ -54,11 +66,13 @@ define([ "state",
                 var $def = $.Deferred();
                 var locale = state.get('locale');
                 if (locale in localeTemplates) {
+                    completeSearchForm();
                     $def.resolve();
                 } else {
                     $.get('/theme/Templates.' + locale + '.json',
                             function(data) {
                                 localeTemplates[locale] = data;
+                                completeSearchForm();
                                 $def.resolve();
                             }, 'json');
                 }

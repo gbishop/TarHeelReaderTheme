@@ -115,7 +115,19 @@ if ($json) {
 	echo $output;
 	die();
 }
-$searchFormData = setFormFromState($Templates['searchForm']);
+// construct the searchForm view object
+$searchFormData = $Templates['searchForm'];
+foreach( $searchFormData['controls'] as &$control) {
+    if ($control['name'] == 'category') {
+        $control['options'] = array_merge($control['options'], $Templates['categories']);
+    } elseif ($control['name'] == 'language') {
+        $control['options'] = $Templates['languages'];
+    }
+}
+echo "<!--";
+print_r($searchFormData);
+echo "-->";
+$searchFormData = setFormFromState($searchFormData);
 ?>
 <?php thr_header('find-page', true);
 $view = array();

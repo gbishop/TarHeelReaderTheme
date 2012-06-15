@@ -219,7 +219,7 @@ function striptrim_deep($value)
 }
 
 function ParseBookPost($post) {
-    global $LangNameToLangCode, $SynthLanguages;
+    global $LangNameToLangCode, $SynthLanguages, $CategoryAbbrv;
 
     $id = $post->ID;
 
@@ -282,7 +282,7 @@ function ParseBookPost($post) {
             } else if ($n == 'Other') {
                 $type = 'O';
             } else {
-                $categories[] = $n;
+                $categories[] = $CategoryAbbrv[$n];
             }
         }
     }
