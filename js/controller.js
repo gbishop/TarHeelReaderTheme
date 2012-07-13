@@ -71,6 +71,10 @@ define([ "jquery",
         return false;
     }
 
+    function gotoUrl(url) {
+        History.pushState(null,'test',url);
+    }
+
     function stateChange() {
         var url = History.getState().url;
 
@@ -156,6 +160,7 @@ define([ "jquery",
     }); // end on dom ready
 
     return {
-        stateChange: stateChange
+        stateChange: stateChange,
+        gotoUrl: gotoUrl
     };
 });

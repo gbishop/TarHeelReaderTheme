@@ -1,14 +1,17 @@
 define(['jquery',
         'route',
-        'templates'
+        'templates',
+        'controller',
+        'json2'
         ],
-    function($, route, templates) {
+    function($, route, templates, controller) {
 
         var galleryData = {}; // parameters for the photo search
         var $editDialog = null; // holds the page editor dialog which we'll create only once
         var editIndex = 0; // index of the current page in the editor
         var $galleryDialog = null; // holds the gallery preview dialog
         var isModified = false; // true when the book has been edited
+        var editId = null; // set to the id of the book we are editing
 
         function setupGallery() {
             var $page = $('.write-page.active-page');
@@ -118,13 +121,14 @@ define(['jquery',
                 // get the current image
                 var $img = $($imgs.get(index));
                 // extract image parameters
-                var url = $img.prop('src'),
+                var url = $img.attr('src'),
                     width = $img.attr('data-width'),
                     height = $img.attr('data-height'),
                     prop = width > height ? 'width' : 'height';
+                console.log('url is', url);
                 // create the preview image with the same
                 var $dimg = $('<img />')
-                    .prop('src', url.replace('_s', ''))
+                    .attr('src', url.replace('_s', ''))
                     .css(prop, '100%')
                     .attr('data-width', width)
                     .attr('data-height', height);
@@ -229,6 +233,8 @@ define(['jquery',
             });
             $('select[name=audience]').val(book.audience);
             $('select[name=type]').val(book.type);
+            $('input[name=tags]').val(book.tags.join(' '));
+            $('input[name=reviewed]').prop('checked', book.reviewed);
             $.each(book.pages.slice(1), function (index, page) {
                 addPage(page, true);
             });
@@ -238,13 +244,21 @@ define(['jquery',
             console.log('start extract');
 
             var book = {};
-            book.title = $('input[name=title]').val();
-            book.author = $('input[name=author]').val();
+            book.title = $.trim($('input[name=title]').val());
+            book.author = $.trim($('input[name=author]').val());
             book.categories = $('.categories input[type=checkbox]:checked').map(function(i, v) {
-                return $(v).prop('value'); });
+                return $(v).prop('value'); }).get();
+            book.type = $('select[name=type]').val();
+            book.audience = $('select[name=audience]').val();
+            book.language = $('select[name=language]').val();
+            var tags = $.trim($('input[name=tags]').val());
+            tags = tags.replace(/[-.,\/#!@#$%\^&*()_=+\[\]{};:'"<>?\\|`~]/g, " ");
+            tags = tags.replace(/\s{2,}/g, " ");
+            book.tags = tags.split(' ');
+            book.reviewed = $('input[name=reviewed]:checked').length > 0;
             book.pages = $('#write-pages li').map(function(i, p) {
                 var $p = $(p),
-                    caption = $p.find('.thr-caption').html(),
+                    caption = $.trim($p.find('.thr-caption').html()),
                     img = $p.find('img.thr-pic'),
                     width = parseInt(img.attr('data-width'), 10),
                     height = parseInt(img.attr('data-height'), 10);
@@ -258,14 +272,81 @@ define(['jquery',
             if (book.pages.length > 0) {
                 var p = book.pages[0];
                 var page = {
-                    caption: book.title,
+                    text: book.title,
                     url: p.url.replace('.jpg', '_t.jpg'),
                     width: p.width > p.height ? 100 : Math.round(100 * p.width / p.height),
                     height: p.width > p.height ? Math.round(100 * p.height / p.width) : 100
                 };
                 book.pages.unshift(page);
             }
-            console.log('extracted book', book);
+            return book;
+        }
+        function saveAsDraft() {
+            $('#save').attr('disabled', 'disabled'); // disable the button to prevent multiples
+            var book = extractBookState();
+            console.log('book is', book);
+            $.ajax({
+                url: '/book-as-json/',
+                type: 'post',
+                data: {
+                    book: JSON.stringify(book),
+                    publish: false,
+                    id: editId
+                },
+                dataType: 'json'
+            }).then(function(nBook) {
+                console.log('post returns', nBook);
+                editId = nBook.ID;
+                $('#save').removeAttr('disabled'); // renable button
+                clearModified();
+            });
+        }
+        function validate(condition, selector) {
+            if (!condition) {
+                $('#peMessage').show();
+                $(selector).show();
+            } else {
+                $(selector).hide();
+            }
+        }
+        function publish() {
+            $('#publish').attr('disabled', 'disabled'); // disable the button to prevent multiples
+            var book = extractBookState();
+            // validate the book locally
+            $('#peMessage').removeClass('show');
+            validate(book.title.length > 0, '#peTitle');
+            validate(book.author.length > 0, '#peAuthor');
+            validate(book.pages.length >= 3, '#peLength');
+            var cap = true;
+            for(var i=1; i < book.pages.length; i++) {
+                cap = cap && book.pages[i].text.length > 0;
+            }
+            validate(cap, '#peCaption');
+            validate(book.language != ' ', '#peLanguage');
+            validate(book.categories.length <= 4, '#peCategories');
+
+            if ($('#peMessage').hasClass('show')) {
+                $('#publishErrors').get(0).scrollIntoView(false);
+                $('#publish').removeAttr('disabled');
+                return;
+            }
+            console.log('publish', book);
+            $.ajax({
+                url: '/book-as-json/',
+                type: 'post',
+                data: {
+                    book: JSON.stringify(book),
+                    publish: true,
+                    id: editId
+                },
+                dataType: 'json'
+            }).then(function(nBook) {
+                console.log('post returns', nBook);
+                clearModified();
+                controller.gotoUrl(nBook.link);
+                editId = nBook.ID;
+                $('#publish').removeAttr('disabled'); // renable button
+            });
         }
         // create the page editor dialog
         function createPageEditDialog() {
@@ -441,15 +522,17 @@ define(['jquery',
         }
 
         // initialize the writing page.
-        function writeInit(url, id) {
+        function writeInit(url, id, copyId) {
             var $page = this;
 
             var bookContent = {};
-            if (id) { // if an id was provided, fetch that book for editing
+            var src = id || copyId;
+            editId = id;
+            if (src) { // if an id was provided, fetch that book for editing
                 bookContent = $.ajax({
                     url: '/book-as-json/',
                     data: {
-                        id: id
+                        id: src
                     },
                     dataType: 'json'
                 });
@@ -464,8 +547,31 @@ define(['jquery',
             }).appendTo('head');
 
             // nested require so these are only loaded by users who want to write.
-            require(['jquery-ui', 'jquery.ui.touch-punch', 'jquery.inlineedit' ],
-                function() {
+            require(['fileuploader', 'jquery-ui', 'jquery.ui.touch-punch', 'jquery.inlineedit'],
+                function(qq) {
+                    console.log('qq', qq);
+                    $(function() {
+                        var uploader = new qq.FileUploader({
+                            element: $('#file-uploader').get(0),
+                            action: '/upload-image/',
+                            allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
+                            sizeLimit: 2 * 1024 * 1024,
+                            onComplete: function(id, fileName, response) {
+                                console.log('upload complete', id, fileName, response);
+                                if (response.success) {
+                                    var page = {
+                                        url: response.url.replace(/.*\/uploads/, '/uploads'),
+                                        width: response.width,
+                                        height: response.height,
+                                        text: null
+                                    };
+                                    addPage(page, false);
+                                }
+                            },
+                            template: $('#wUploader').html(),
+                            fileTemplate: $('#wUploaderLi').html()
+                        });
+                    });
                     setupGallery();
                     $('#write-pages').on('click', 'li', editPage);
                     $('#write-pages').sortable({
@@ -491,7 +597,8 @@ define(['jquery',
                             });
                             console.log('help', $tip);
                     });
-                    $('#save').on('click', extractBookState);
+                    $('#save').on('click', saveAsDraft);
+                    $('#publish').on('click', publish);
                     $('#categorizeButton').on('click', function() {
                         $('#step3a').toggle();
                     });
@@ -513,4 +620,5 @@ define(['jquery',
 
         route.add('init', /^\/write\/(?:\?id=(\d+))?$/, writeInit);
 
-    });
+    }
+);

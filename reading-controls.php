@@ -9,7 +9,7 @@ Allow users to configure reading
 <?php
 
 // get the id if any
-$ID = getGet('id', '', '/[0-9]+/');
+$ID = getParam('id', '', '/[0-9]+/');
 $backto = getGet('backto', '/find/');
 $settingsFormData = setFormFromState($Templates['readingForm']);
 $settingsFormData['action'] = parse_url($backto, PHP_URL_PATH);

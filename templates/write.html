@@ -26,11 +26,7 @@
         <h3>_(Or upload your own pictures)</h2>
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Step 1 Upload Help)">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
-        <div class="aWrap">
-            <form method="post" action="/upload-image/" class="no-ajaxy">
-                <input type="file" name="imagefile" id="write-file-upload" />
-                <input type="submit" value="_(Upload)" />
-            </form>
+        <div id="file-uploader">
         </div>
     </div>
     <div class="steps" id="step2">
@@ -73,7 +69,7 @@
         <div id="aWrap">
             <div class="settings categories"><b>_(Library Classification):</b><br />
                 {{#categories}}
-                <label><input name="category" type="checkbox" value="{{value}}" />{{label}}</label>
+                <label><input name="category" type="checkbox" value="{{value}}" /> {{label}}</label>
                 {{/categories}}
             </div>
             <div class="settings">
@@ -88,12 +84,24 @@
             <div class="settings">
                 <label><b>Beginning Literacy Framework Type:</b>
                     <select name="type">
-                        <option value="" >_(None)</option>
+                        <option value=" " >_(None)</option>
                         <option value="T" />_(Transitional)</option>
                         <option value="C">_(Conventional)</option>
                         <option value="O">_(Other)</option>
                     </select>
                 </label>
+            </div>
+            <div class="settings">
+                <label><b>_(Tags):</b>
+                    <input style="width: 30em" type="text" name="tags"
+                        title="_(Enter a few descriptive words to make your book easier to find)" />
+                </label>
+                {{#canReview}}
+                <br/>
+                <label>
+                    <input name="reviewed" type="checkbox" /> <b>_(Reviewed)</b>
+                </label>
+                {{/canReview}}
             </div>
         </div>
     </div>
@@ -106,7 +114,16 @@
                 <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
             </div>
             <button id="save">Save as draft</button>
-            <button id="publish" disabled>Publish</button>
+            <button id="publish">Publish</button>
+            <div id="publishErrors">
+                <p id="peMessage">_(Your book will not be published until you fix these issues.)</p>
+                <p id="peTitle">_(It must have a title.)</p>
+                <p id="peAuthor">_(It must have an author.)</p>
+                <p id="peCaption">_(Each page must have some text.)</p>
+                <p id="peLength">_(It must have at least 3 pages.)</p>
+                <p id="peLanguage">_(It must specify the language.)</p>
+                <p id="peCategories">_(It must be in no more than 4 categories.)</p>
+            </div>
         </div>
     </div>
 </div>
@@ -123,4 +140,20 @@
     <span id="wlClickToEdit">_(Click to edit)</span>
     <span id="wDeleteThisPage">_(Delete this page)</span>
     <span id="wLoseWork">_(If you leave you will lose your work on this book.)</span>
+    <div id="wUploader"
+        ><div class="qq-uploader"
+            ><div class="qq-upload-drop-area"><span>_(Drop files here to upload)</span></div
+            ><div class="qq-upload-button">_(Upload)</div
+            ><ul class="qq-upload-list"></ul
+        ></div
+    ></div>
+    <div id="wUploaderLi"
+        ><li
+            ><span class="qq-upload-file"></span
+            ><span class="qq-upload-spinner"></span
+            ><span class="qq-upload-size"></span
+            ><a class="qq-upload-cancel" href="#">_(Cancel)</a
+            ><span class="qq-upload-failed-text">_(Failed)</span
+        ></li
+    ></div>
 </div>

@@ -54,11 +54,11 @@ define([ "state",
             function setImageSizes(p) {
                 if (p.width > p.height) {
                     p.pw = 100;
-                    p.ph = 100*p.height/p.width;
+                    p.ph = Math.round(100*p.height/p.width);
                     p.pm = (100 - p.ph) / 2;
                 } else {
                     p.ph = 100;
-                    p.pw = 100*p.width/p.height;
+                    p.pw = Math.round(100*p.width/p.height);
                     p.pm = 0;
                 }
             }

@@ -8,6 +8,7 @@ GET: Return a list of books that match the query
 <?php
 // construct the where clause
 $where = array();
+$where[] = "p.post_status = 'publish'";
 foreach(array('language', 'reviewed', 'type', 'audience') as $field) {
 	$value = THR($field);
 	if ($value) {

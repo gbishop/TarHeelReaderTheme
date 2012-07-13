@@ -148,7 +148,25 @@ function thr_footer($sidebar, $full) {
 function convert_image_url($url) {
     $root = '/var/www/TarHeelReader';
 
-    if(preg_match('/http:\\/\\/farm([0-9])\\.static\\.flickr\\.com\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
+    if(preg_match('/^\\/cache\\/images.*$|^\\/uploads.*$/', $url)) {
+        $nurl = $url;
+        $path = $root . $nurl;
+    } elseif(preg_match('/\\/photo([0-9])\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
+        $size = $m[5];
+        if (!$size) {
+            $size = '';
+        }
+        $nurl = '/cache/images/' . substr($m[3], -2) . '/' . $m[3] . '_' . $m[4] . $size . '.jpg';
+        $path = $root . $nurl;
+        if (!file_exists($path)) {
+            $furl = preg_replace('/\\/photo([0-9])/', 'http://farm$1.static.flickr.com', $url);
+            $r = copy($furl, $path);
+            if (!$r) {
+                BuG('copy failed');
+            }
+        }
+
+    } elseif(preg_match('/http:\\/\\/farm([0-9])\\.static\\.flickr\\.com\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
         $size = $m[5];
         if (!$size) {
             $size = '';
@@ -166,13 +184,8 @@ function convert_image_url($url) {
 function make_page($text, $url) {
     list($nurl, $path) = convert_image_url($url);
     if (!file_exists($path)) {
-        // try to fetch it
-        if (substr($nurl, 0, 6) == '/cache') {
-            copy('http://tarheelreader.org' . $nurl, $path);
-        } elseif (substr($nurl, 0, 8) == '/uploads') {
-            copy('http://tarheelreader.org/wp-content' . $nurl, $path);
-        } else {
-            echo "not found $nurl $path\n";
+        if (!copy($url, $path)) {
+            return false;
         }
     }
     list($width, $height, $type, $attr) = getimagesize($path);
@@ -223,22 +236,83 @@ function ParseBookPost($post) {
 
     $id = $post->ID;
 
-    // parse the post
-    $nimages = preg_match_all('/(?:width="(\d+)" height="(\d+)" )?src="([^"]+)"\\/?>([^<]*)/', $post->post_content, $matches);
-    $image_urls = $matches[3];
-    $image_widths = $matches[1];
-    $image_heights = $matches[2];
-    $captions = striptrim_deep(array_slice($matches[4], 1));
-    $title = trim($post->post_title);
-    $status = $post->post_status;
-    $author_id = $post->post_author;
-    //TODO: strip by: off the front of these
-    $author = trim(get_post_meta($id, 'author_pseudonym', true));
-    if(!$author) {
-        $authordata = get_userdata($author_id);
-        $author = $authordata->display_name;
+    $content = $post->post_content;
+    BuG("content $id |$content|");
+    if (preg_match('/^{.*}$/', $post->post_content)) {
+        BuG('json');
+        // new format is json in the post body
+        $res = json_decode($post->post_content, true);
+
+    } else {
+        BuG('old format');
+        // parse the old format
+        $nimages = preg_match_all('/(?:width="(\d+)" height="(\d+)" )?src="([^"]+)"\\/?>([^<]*)/', $post->post_content, $matches);
+        $image_urls = $matches[3];
+        $image_widths = $matches[1];
+        $image_heights = $matches[2];
+        $captions = striptrim_deep(array_slice($matches[4], 1));
+        $title = trim($post->post_title);
+        $pages = array();
+        $pages[] = make_page($title, $image_urls[0]);
+        for($i = 1; $i < count($image_urls); $i++) {
+            $pages[] = make_page($captions[$i-1], $image_urls[$i]);
+        }
+        $author_id = $post->post_author;
+        $author = trim(get_post_meta($id, 'author_pseudonym', true));
+        $tags = array();
+        $language = '??';
+        foreach(wp_get_post_tags($id) as $tag) {
+            $n = $tag->name;
+            if (array_key_exists($n, $LangNameToLangCode)) {
+                $language = $LangNameToLangCode[$n];
+            } else {
+                $tags[] = $n;
+            }
+        }
+        $audience = ' ';
+        $reviewed = false;
+        $type = ' ';
+        $categories = array();
+        foreach(get_the_category($id) as $cat) {
+            if ($cat->cat_ID != 3) {
+                $n = $cat->cat_name;
+                if ($n == 'Reviewed') {
+                    $reviewed = true;
+                } else if ($n == 'Rated E/Everyone') {
+                    $audience = 'E';
+                } else if ($n == 'Rated C/Caution') {
+                    $audience = 'C';
+                } else if ($n == 'Conventional') {
+                    $type = 'C';
+                } else if ($n == 'Transitional') {
+                    $type = 'T';
+                } else if ($n == 'Other') {
+                    $type = 'O';
+                } else {
+                    $categories[] = $CategoryAbbrv[$n];
+                }
+            }
+        }
+        $res = array('title'=>$title,
+                     'author'=>$author,
+                     'author_id'=>$author_id,
+                     'type'=>$type,
+                     'audience'=>$audience,
+                     'reviewed'=>$reviewed,
+                     'language'=>$language,
+                     'tags'=>$tags,
+                     'categories'=>$categories,
+                     'pages'=>$pages);
     }
-    $author = preg_replace('/^[bB][yY]:?\s*/', '', $author);
+
+    $res['status'] = $post->post_status;
+
+    //TODO: strip by: off the front of these
+    if (!$res['author']) {
+        $authordata = get_userdata($author_id);
+        $res['author'] = $authordata->display_name;
+    }
+    $res['author'] = preg_replace('/^[bB][yY]:?\s*/', '', $res['author']);
 
     $rating_count = get_post_meta($id, 'book_rating_count', true);
     if(!$rating_count) {
@@ -246,76 +320,85 @@ function ParseBookPost($post) {
     } else {
         $rating_count = intval($rating_count);
     }
+    $res['rating_count'] = $rating_count;
+
     $rating_value = get_post_meta($id, 'book_rating_value', true);
     if(!$rating_value) {
         $rating_value = 0;
     } else {
         $rating_value = floatval($rating_value);
     }
-    $tags = array();
-    $language = '??';
-    foreach(wp_get_post_tags($id) as $tag) {
-        $n = $tag->name;
-        if (array_key_exists($n, $LangNameToLangCode)) {
-            $language = $LangNameToLangCode[$n];
-        } else {
-            $tags[] = $n;
-        }
-    }
-    $audience = ' ';
-    $reviewed = false;
-    $type = ' ';
-    $categories = array();
-    foreach(get_the_category($id) as $cat) {
-        if ($cat->cat_ID != 3) {
-            $n = $cat->cat_name;
-            if ($n == 'Reviewed') {
-                $reviewed = true;
-            } else if ($n == 'Rated E/Everyone') {
-                $audience = 'E';
-            } else if ($n == 'Rated C/Caution') {
-                $audience = 'C';
-            } else if ($n == 'Conventional') {
-                $type = 'C';
-            } else if ($n == 'Transitional') {
-                $type = 'T';
-            } else if ($n == 'Other') {
-                $type = 'O';
-            } else {
-                $categories[] = $CategoryAbbrv[$n];
-            }
-        }
-    }
-    $modified = $post->post_modified;
-    $created = $post->post_date;
-    $slug = $post->post_name;
-    $link = preg_replace('/http:\/\/[a-z0-9.]+/', '', get_permalink($id));
-    $pages = array();
-    $pages[] = make_page($title, $image_urls[0]);
-    for($i = 1; $i < count($image_urls); $i++) {
-        $pages[] = make_page($captions[$i-1], $image_urls[$i]);
-    }
-    $res = array('title'=>$title,
-                 'author'=>$author,
-                 'author_id'=>$author_id,
-                 'status'=>$status,
-                 'type'=>$type,
-                 'audience'=>$audience,
-                 'reviewed'=>$reviewed,
-                 'language'=>$language,
-                 'has_speech'=>intval(in_array($language, $SynthLanguages)),
-                 'modified'=>$modified,
-                 'created'=>$created,
-                 'tags'=>$tags,
-                 'categories'=>$categories,
-                 'ID'=>$id,
-                 'slug'=>$slug,
-                 'link'=>$link,
-                 'rating_count' => $rating_count,
-                 'rating_total' => intval($rating_count * $rating_value),
-                 'rating_value' => round_rating($rating_value),
-                 'pages'=>$pages);
+    $res['rating_value'] = round_rating($rating_value);
+    $res['rating_total'] = intval($rating_count * $rating_value);
+
+    $res['modified'] = $post->post_modified;
+    $res['created'] = $post->post_date;
+    $res['slug'] = $post->post_name;
+    $res['link'] = preg_replace('/http:\/\/[a-z0-9.]+/', '', get_permalink($id));
+    $res['ID'] = $id;
+
+    $res['has_speech'] = intval(in_array($language, $SynthLanguages));
+
     return $res;
+}
+
+function SaveBookPost($id, $book) {
+    $content = json_encode($book);
+    $args = array('post_title' => $book['title'],
+                  'post_content' => $content,
+                  'post_status' => $book['status'],
+                  'post_category' => array(3));
+    if($id) {
+        $args['ID'] = $id;
+        $postid = wp_update_post($args);
+    } else {
+        $postid = wp_insert_post($args);
+    }
+
+    update_post_meta($id, 'book_rating_count', $content['rating_count']);
+    update_post_meta($id, 'book_rating_value', $content['rating_value']);
+
+    //$book['ID'] = $postid;
+    $post = get_post($postid);
+    $book = ParseBookPost($post);
+    updateIndex($book);
+
+    //TODO: update speech
+
+    return $book;
+}
+
+function updateIndex($book) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'book_search';
+
+    $content = array();
+    foreach($book['pages'] as $page) {
+      $content[] = html_entity_decode($page['text']);
+    }
+    foreach($book['tags'] as $tag) {
+      $content[] = preprocess_tag(html_entity_decode($tag));
+    }
+    $content[] = $book['author'];
+    $content = implode(' ', $content);
+
+    $categories = implode(' ', $book['categories']);
+    $row = array( );
+    $row['ID'] = $book['ID'];
+    $row['content'] = $content;
+    $row['categories'] = $categories;
+    $row['reviewed'] = $book['reviewed'] ? 'R' : 'N';
+    $row['audience'] = $book['audience'];
+    $row['language'] = $book['language'];
+    $row['type'] = $book['type'];
+    //print_r($row);
+    $rows_affected = $wpdb->insert($table_name, $row);
+    if ($rows_affected == 0) {
+      $result = $wpdb->update($table_name, $row, array('ID'=>$post->ID));
+      if ($result === false) {
+        BuG('update failed');
+      }
+    }
 }
 
 function preprocess_tag($tag) {
@@ -348,22 +431,21 @@ function update_book_rating($id, $rating) {
     }
 }
 
-function getGet($key, $default = null, $rule = null)
+function getParam($key, $default = null, $rule = null, $method='get')
 {
-    if(isset($_GET[$key])) {
-        if(is_array($_GET[$key])) {
-            $result = $_GET[$key];
-            for($i=0; $i<count($result); $i++)
-                if($rule && !preg_match($rule, $result[$i]))
-                    return $default;
-        } else {
-            $result = trim($_GET[$key]);
-            if($rule && !preg_match($rule, $result))
-                return $default;
-        }
-        return $result;
+    $ary = $method == 'get' ? $_GET : $_POST;
+    if (!isset($ary[$key])) {
+        return $default;
     }
-    return $default;
+    $result = $ary[$key];
+    if ($method == 'post') {
+        $result = stripslashes($result);
+    }
+    $result = trim($result);
+    if ($rule && !preg_match($rule, $result)) {
+        return $default;
+    }
+    return $result;
 }
 
 function audio($mp3) {
@@ -434,7 +516,6 @@ function removeHeadLinks() {
 
 }
 add_action('init', 'removeHeadLinks');
-remove_action('wp_head', 'wp_generator');
 
 function fixupLogInOut($link) {
     return str_replace('<a ', '<a class="no-ajaxy" ', $link);
@@ -450,4 +531,8 @@ add_filter('login_redirect', 'my_login_redirect');
 // I suddenly started getting redirect loops when accessing / this seems to fix it.
 remove_filter('template_redirect', 'redirect_canonical');
 
+// hack error logging
+function BuG($msg) {
+    error_log($msg . "\n", 3, '/var/tmp/BuG.txt');
+}
 ?>

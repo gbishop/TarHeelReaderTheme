@@ -584,6 +584,23 @@ h2 {
     button {
         font-size: 1em;
     }
+
+    div#publishErrors {
+        p {
+            color: red;
+            font-weight: bold;
+            margin-left: 1em;
+            display: none;
+        }
+
+        #peMessage {
+            margin-left: 0;
+        }
+
+        p.show {
+            display: block !important;
+        }
+    }
 }
 
 .help {
@@ -826,3 +843,5 @@ and (orientation: landscape) {
     background: white;
     font-weight: bold;
 }
+
+@import "fileuploader";
