@@ -282,6 +282,7 @@ define(['jquery',
             return book;
         }
         function saveAsDraft() {
+            clearErrors();
             $('#save').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
             console.log('book is', book);
@@ -299,33 +300,32 @@ define(['jquery',
                 editId = nBook.ID;
                 $('#save').removeAttr('disabled'); // renable button
                 clearModified();
+                showError('peSaved');
             });
         }
-        function validate(condition, selector) {
+        function validate(condition, id) {
             if (!condition) {
-                $('#peMessage').show();
-                $(selector).show();
-            } else {
-                $(selector).hide();
+                showError('peMessage');
+                showError(id);
             }
         }
         function publish() {
             $('#publish').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
             // validate the book locally
-            $('#peMessage').removeClass('show');
-            validate(book.title.length > 0, '#peTitle');
-            validate(book.author.length > 0, '#peAuthor');
-            validate(book.pages.length >= 3, '#peLength');
+            clearErrors();
+            validate(book.title.length > 0, 'peTitle');
+            validate(book.author.length > 0, 'peAuthor');
+            validate(book.pages.length >= 3, 'peLength');
             var cap = true;
             for(var i=1; i < book.pages.length; i++) {
                 cap = cap && book.pages[i].text.length > 0;
             }
-            validate(cap, '#peCaption');
-            validate(book.language != ' ', '#peLanguage');
-            validate(book.categories.length <= 4, '#peCategories');
+            validate(cap, 'peCaption');
+            validate(book.language != ' ', 'peLanguage');
+            validate(book.categories.length <= 4, 'peCategories');
 
-            if ($('#peMessage').hasClass('show')) {
+            if ($('#peMessage').hasClass('show-error')) {
                 $('#publishErrors').get(0).scrollIntoView(false);
                 $('#publish').removeAttr('disabled');
                 return;
@@ -470,6 +470,7 @@ define(['jquery',
             if (!isModified) {
                 isModified = true;
                 $(window).on('beforeunload', warnModified);
+                $('#save').removeAttr('disabled');
             }
         }
 
@@ -478,6 +479,7 @@ define(['jquery',
             if (isModified) {
                 isModified = false;
                 $(window).off('beforeunload');
+                $('#save').attr('disabled', 'disabled');
             }
         }
 

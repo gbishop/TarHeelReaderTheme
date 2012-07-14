@@ -587,18 +587,11 @@ h2 {
 
     div#publishErrors {
         p {
-            color: red;
             font-weight: bold;
             margin-left: 1em;
-            display: none;
         }
-
         #peMessage {
             margin-left: 0;
-        }
-
-        p.show {
-            display: block !important;
         }
     }
 }
