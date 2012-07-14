@@ -27,6 +27,10 @@ define(["jquery", "pubsub"], function($) {
     function onKeyDown(e) {
         var selector = e.data;
         if (!selector || $(selector).length === 0) return true;
+        if (e.target.nodeName == 'INPUT') { // don't handle events from input fields
+            console.log('caught input');
+            return true;
+        }
 
         // defeat key repeat
         var code = e.keyCode || e.which;
