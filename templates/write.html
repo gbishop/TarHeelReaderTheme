@@ -45,10 +45,10 @@
         <p class="help-text" title="_(Step 3 Help)">_(Fill in the title for your book and select its language from the list. You may use a psuedonym if you wish by changing the author field.)</p>
         <div class="aWrap">
             <label><b>_(Title):</b>
-                <input type="text" name="title" title="_(Enter a title for your book)" />
+                <input type="text" name="title" title="_(Enter a title for your book)" maxlength="50" />
             </label>
             <label><b>_(Author):</b>
-                <input type="text" name="author" title="_(Enter a pseudonym)" value="{{user}}"/>
+                <input type="text" name="author" title="_(Enter a pseudonym)" value="{{user}}" maxlength="25" />
             </label>
             <label><b>_(Language):</b>
                 <select name="language">
@@ -93,7 +93,7 @@
             </div>
             <div class="settings">
                 <label><b>_(Tags):</b>
-                    <input style="width: 30em" type="text" name="tags"
+                    <input style="width: 30em" type="text" name="tags" maxlength="100"
                         title="_(Enter a few descriptive words to make your book easier to find)" />
                 </label>
                 {{#canReview}}
