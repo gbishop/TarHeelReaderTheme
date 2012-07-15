@@ -394,7 +394,7 @@ function updateIndex($book) {
     //print_r($row);
     $rows_affected = $wpdb->insert($table_name, $row);
     if ($rows_affected == 0) {
-      $result = $wpdb->update($table_name, $row, array('ID'=>$post->ID));
+      $result = $wpdb->update($table_name, $row, array('ID'=>$book['ID']));
       if ($result === false) {
         BuG('update failed');
       }
