@@ -71,8 +71,8 @@ define([ "jquery",
         return false;
     }
 
-    function gotoUrl(url) {
-        History.pushState(null,'test',url);
+    function gotoUrl(url, title) {
+        History.pushState(null, title, url);
     }
 
     function stateChange() {

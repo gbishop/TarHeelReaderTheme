@@ -346,7 +346,7 @@ define(['jquery',
             }).then(function(nBook) {
                 console.log('post returns', nBook);
                 clearModified();
-                controller.gotoUrl(nBook.link);
+                controller.gotoUrl(nBook.link, nBook.title);
                 editId = nBook.ID;
                 $('#publish').removeAttr('disabled'); // renable button
             });
