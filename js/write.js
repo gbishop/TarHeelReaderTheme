@@ -5,6 +5,7 @@ define(['jquery',
         'json2'
         ],
     function($, route, templates, controller) {
+        var maxCaptionLength = 120;  // no page text may be longer than this
 
         var galleryData = {}; // parameters for the photo search
         var $editDialog = null; // holds the page editor dialog which we'll create only once
@@ -317,11 +318,13 @@ define(['jquery',
             validate(book.title.length > 0, 'peTitle');
             validate(book.author.length > 0, 'peAuthor');
             validate(book.pages.length >= 3, 'peLength');
-            var cap = true;
+            var cap = true, len = true;
             for(var i=1; i < book.pages.length; i++) {
                 cap = cap && book.pages[i].text.length > 0;
+                len = len && book.pages[i].text.length <= maxCaptionLength;
             }
             validate(cap, 'peCaption');
+            validate(len, 'peCaptionLength');
             validate(book.language != ' ', 'peLanguage');
             validate(book.categories.length <= 4, 'peCategories');
 
@@ -382,16 +385,14 @@ define(['jquery',
             $editDialog.on('click', 'img#deleteIcon', deletePage);
             // limit max caption length
             $editDialog.on('keyup input paste', 'textarea', function(){
-                var maxLength = 120,
-                    warnLength = 110,
+                var warnLength = maxCaptionLength - 10,
                     $this = $(this),
                     text = $this.val(),
                     length = text.length;
 
                 $this.toggleClass('text-too-long', length >= warnLength);
-                if(length > maxLength){
-                    var new_text = text.substr(0, maxLength);
-                    $(this).val(new_text);
+                if(length > maxCaptionLength) {
+                    $(this).val(text.substr(0, maxCaptionLength));
                 }
             });
         }
