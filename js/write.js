@@ -380,6 +380,20 @@ define(['jquery',
                 return false;
             });
             $editDialog.on('click', 'img#deleteIcon', deletePage);
+            // limit max caption length
+            $editDialog.on('keyup input paste', 'textarea', function(){
+                var maxLength = 120,
+                    warnLength = 110,
+                    $this = $(this),
+                    text = $this.val(),
+                    length = text.length;
+
+                $this.toggleClass('text-too-long', length >= warnLength);
+                if(length > maxLength){
+                    var new_text = text.substr(0, maxLength);
+                    $(this).val(new_text);
+                }
+            });
         }
 
         // initialize the page editor with its content

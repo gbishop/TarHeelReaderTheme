@@ -632,6 +632,10 @@ h2 {
         height: 5em / $captionFontSize * 1em;
         margin: auto;
         resize: none;
+
+        &.text-too-long {
+            background: yellow;
+        }
         //border: 1px solid black;
     }
 
