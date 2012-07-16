@@ -182,9 +182,12 @@ function convert_image_url($url) {
 }
 
 function make_page($text, $url) {
+    //BuG("make_page($text, $url)");
     list($nurl, $path) = convert_image_url($url);
     if (!file_exists($path)) {
+        //BuG("path=$path url=$url");
         if (!copy($url, $path)) {
+            BuG('Copy failed');
             return false;
         }
     }
@@ -237,14 +240,14 @@ function ParseBookPost($post) {
     $id = $post->ID;
 
     $content = $post->post_content;
-    BuG("content $id |$content|");
+    //BuG("content='$content'");
     if (preg_match('/^{.*}$/', $post->post_content)) {
-        BuG('json');
+        //BuG('json');
         // new format is json in the post body
         $res = json_decode($post->post_content, true);
 
     } else {
-        BuG('old format');
+        //BuG('old format');
         // parse the old format
         $nimages = preg_match_all('/(?:width="(\d+)" height="(\d+)" )?src="([^"]+)"\\/?>([^<]*)/', $post->post_content, $matches);
         $image_urls = $matches[3];
@@ -337,7 +340,9 @@ function ParseBookPost($post) {
     $res['link'] = preg_replace('/http:\/\/[a-z0-9.]+/', '', get_permalink($id));
     $res['ID'] = $id;
 
-    $res['has_speech'] = intval(in_array($language, $SynthLanguages));
+    $res['has_speech'] = in_array($res['language'], $SynthLanguages);
+
+    //BuG(print_r($res, true));
 
     return $res;
 }
@@ -363,7 +368,38 @@ function SaveBookPost($id, $book) {
     $book = ParseBookPost($post);
     updateIndex($book);
 
-    //TODO: update speech
+    // update speech
+    if ($book['has_speech']) {
+        //BuG('create speech');
+        // make sure we have the folder
+        $folder = $id . '';
+        $pfolder = substr($folder, -2);
+        $path = ABSPATH . 'cache/speech/' . $pfolder;
+        //BuG("path=$path");
+        if (!is_dir($path)) {
+            mkdir($path);
+        }
+        $path .= '/' . $folder;
+        //BuG("path=$path");
+        if (!is_dir($path)) {
+            mkdir($path);
+        }
+        $lang = $book['language'];
+        $data = array('language'=>$lang);
+        foreach(array('child', 'female', 'male') as $voice) {
+            $data['voice'] = $voice;
+            foreach($book['pages'] as $i => $page) {
+                $data['text'] = $page['text'];
+                // ask the speech server to generate a mp3
+                $params = array('http' => array('method' => 'POST', 'content' => http_build_query($data)));
+                $ctx = stream_context_create($params);
+                $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
+                // save it
+                $fname = $path . '/' . $lang . '-' . substr($voice, 0, 1) . '-' . ($i+1) . '.mp3';
+                file_put_contents($fname, $mp3);
+            }
+        }
+    }
 
     return $book;
 }
