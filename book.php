@@ -47,7 +47,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     $current_user = wp_get_current_user();
     if ($id) {
-        $book = ParseBookPost($id);
+        $post = get_post($id);
+        $book = ParseBookPost($post);
     } else {
         $book = array();
     }
