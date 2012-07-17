@@ -91,7 +91,6 @@ for($i=0; $i<$nrows; $i++) {
     $po['preview']['text'] = $po['title'];
 	$po['pages'] = count($book['pages']);
 	$po['language'] = $book['language'];
-	$po['has_speech'] = $book['has_speech'];
 	$books[] = $po;
 }
 

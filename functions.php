@@ -17,29 +17,18 @@ function template_render($name, $data=array()) {
     return $mustache->render($Templates[$name], $data);
 }
 
-$LangNameToLangCode = array(
-    'Arabic' => 'ar',
-    'Basque' => 'eu',
-    'Catalan' => 'ca',
-    'Danish' => 'da',
-    'English' => 'en',
-    'Filipino' => 'fil',
-    'Finnish' => 'fi',
-    'French' => 'fr',
-    'Galician' => 'gl',
-    'German' => 'de',
-    'Greek' => 'el',
-    'Hebrew' => 'he',
-    'Italian' => 'it',
-    'Japanese' => 'ja',
-    'Latin' => 'la',
-    'Polish' => 'pl',
-    'Portuguese' => 'pt',
-    'Spanish' => 'es',
-    'Swedish' => 'sv'
-);
-
-$SynthLanguages = array('en', 'fr', 'de', 'it', 'pt', 'es', 'sv');
+$LangNameToLangCode = array();
+$SynthLanguages = array();
+foreach($Templates['languages'] as $row) {
+    $LangNameToLangCode[$row['tag']] = $row['value'];
+    if ($row['value']) {
+        $SynthLanguages[] = $row['value'];
+    }
+}
+function has_speech($lang) {
+    global $SynthLanguages;
+    return in_array($lang, $SynthLanguages);
+}
 
 $CategoryAbbrv = array('Alphabet' => 'Alph',
                        'Animals and Nature' => 'Anim',
@@ -340,10 +329,6 @@ function ParseBookPost($post) {
     $res['link'] = preg_replace('/http:\/\/[a-z0-9.]+/', '', get_permalink($id));
     $res['ID'] = $id;
 
-    $res['has_speech'] = in_array($res['language'], $SynthLanguages);
-
-    //BuG(print_r($res, true));
-
     return $res;
 }
 
@@ -369,7 +354,7 @@ function SaveBookPost($id, $book) {
     updateIndex($book);
 
     // update speech
-    if ($book['has_speech']) {
+    if (has_speech($book['language'])) {
         //BuG('create speech');
         // make sure we have the folder
         $folder = $id . '';

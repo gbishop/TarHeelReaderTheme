@@ -83,12 +83,12 @@ define(["jquery",
         toSelect.addClass('selected');
         // speak the title
         var voice = state.get('voice');
-        if (toSelect.attr('data-has-speech') === '1') {
+        if (toSelect.attr('data-speech')) {
+            speech.play('site', state.get('locale'), voice, toSelect.attr('data-speech'));
+        } else {
             var id = toSelect.attr('data-id');
             var lang = toSelect.attr('lang');
             speech.play(id, lang, voice, 1);
-        } else if (toSelect.attr('data-speech')) {
-            speech.play('site', state.get('locale'), voice, toSelect.attr('data-speech'));
         }
         // make sure it is visible
         toSelect.scrollIntoView({

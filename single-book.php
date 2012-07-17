@@ -9,7 +9,7 @@
             $Npages = count($pages);
             $link = get_permalink();
             $mp3 = null;
-            if ($book['has_speech']) {
+            if (has_speech($book['language'])) {
                 $voice = THR('voice');
                 if ($voice != 'silent') {
                     $v = $voice[0];

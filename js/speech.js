@@ -1,5 +1,10 @@
 define(["jquery", "templates" ], function($, templates) {
     var SpeechBase = "/cache/speech/";
+    var languages = templates.get('languages');
+    var hasSpeech = {};
+    for(var i=0; i<languages.length; i++) {
+        hasSpeech[languages[i].value] = languages[i].speech;
+    }
     var audio = null; // the html5 audio node will go here if we use it
     function initialize () {
         if (audio) return;
@@ -42,7 +47,8 @@ define(["jquery", "templates" ], function($, templates) {
 
     function play(id, lang, voice, page) {
         voice = voice[0]; // assure we're only using the 1st letter
-        if (!audio || voice === 's') return;
+        console.log('play', id, lang, voice, page);
+        if (!audio || voice === 's' || !hasSpeech[lang]) return;
 
         var mp3 = SpeechBase;
         if (id == 'site') {
