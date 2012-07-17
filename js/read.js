@@ -174,7 +174,12 @@ define(["jquery",
                 }
             }
             choices.removeClass('selected');
-            $(choices.get(index)).addClass('selected');
+            var $choice = $(choices.get(index));
+            $choice.addClass('selected');
+            var toSay = $choice.attr('data-speech');
+            if (toSay) {
+                speech.play('site', state.get('locale'), state.get('voice'), toSay);
+            }
         } else {
             console.log('no choices');
         }
@@ -217,6 +222,10 @@ define(["jquery",
         var $page = $(this);
         scalePicture($page);
         $page.find('.thr-pic').fadeIn(200);
+        var toSay = $page.find('.thr-question').attr('data-speech');
+        if (toSay) {
+            speech.play('site', state.get('locale'), state.get('voice'), toSay);
+        }
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
