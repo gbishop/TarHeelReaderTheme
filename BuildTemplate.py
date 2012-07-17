@@ -1,3 +1,8 @@
+'''Extract strings from the templates, translate them, and generate a list of messages to be spoken
+
+_(Message to translate|Context of the message for the translator):FileNameForSpeech
+
+'''
 import re
 import os.path as osp
 import json
@@ -10,12 +15,14 @@ parser.add_argument('--lang')
 parser.add_argument('--extract')
 parser.add_argument('templates', nargs='+')
 parser.add_argument('--output')
+parser.add_argument('--speech')
 args = parser.parse_args()
 
 t = gettext.translation('thr', 'locale', [args.lang], fallback=True)
 
 templates = {}
 strings = {}
+speech_strings = {}
 
 for fname in args.templates:
     base = osp.basename(fname)
@@ -35,9 +42,11 @@ for fname in args.templates:
                     r = rr[1]
             else:
                 r = t.gettext(s[0])
+            if m.group(2):
+                speech_strings[m.group(2)[1:]] = r
             return r
 
-        text = re.sub(r'_\(([^\)]+)\)', translate, text)
+        text = re.sub(r'_\(([^\)]+)\)(:[0-9a-z]+)?', translate, text)
         text = re.sub(r' +', ' ', text)
         lines.append(text)
     value = ''.join(lines)
@@ -50,6 +59,9 @@ for fname in args.templates:
             print value
             sys.exit(1)
     templates[key] = value
+
+if args.speech:
+    file(args.speech, 'w').write(json.dumps(speech_strings, sort_keys=True))
 
 if args.output:
     file(args.output, 'w').write(json.dumps(templates, sort_keys=True))

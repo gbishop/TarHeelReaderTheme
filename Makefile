@@ -2,7 +2,7 @@ all: test
 
 test:
 	python MakeMediaQueries.py > _mediaqueries.scss
-	python BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json
+	python BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json --speech=../Speech/site/en.txt templates/*.html searchForm.json readingForm.json categories.json languages.json
 	sass --style=compact style.scss style.css
 	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
 	scp -q js/command.js gbserver3:/var/tmp/command.js
