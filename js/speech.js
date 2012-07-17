@@ -46,7 +46,7 @@ define(["jquery", "templates" ], function($, templates) {
 
         var mp3 = SpeechBase;
         if (id == 'site') {
-            mp3 += 'site' + lang + '-' + voice + '-' + page + '.mp3';
+            mp3 += 'site/' + lang + '-' + voice + '-' + page + '.mp3';
         } else {
             id = id + '';
             mp3 += id.substr(id.length-2) + '/' + id + '/' + lang + '-' + voice + '-' + page + '.mp3';
