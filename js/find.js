@@ -82,7 +82,7 @@ define(["jquery",
         }
         toSelect.addClass('selected');
         // speak the title
-        var voice = state.get('voice').substr(0,1);
+        var voice = state.get('voice');
         if (toSelect.attr('data-has-speech') === '1') {
             var id = toSelect.attr('data-id');
             var lang = toSelect.attr('lang');
