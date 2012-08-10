@@ -16,7 +16,9 @@ $THRDefault = array(
     'pageColor' => 'fff', // color of the background
     'textColor' => '000', // color of text
     'voice' => 'silent',  // voice to use silent, male, female, child
-    'locale' => 'en'      // users language for supporting translations of the site
+    'locale' => 'en',     // users language for supporting translations of the site
+    'favorites' => '',    // list of favorite ids
+    'findAnotherLink' => '/find/' // URL to return to book search
 );
 
 $THRState = $THRDefault;
@@ -34,7 +36,9 @@ $THRPatterns = array(
     'pageColor' => '/^[f0]{3}$/',  // color of the background
     'textColor' => '/^[f0]{3}$/',  // color of text
     'voice' => '/^silent|male|female|child$/',    // voice to use silent, male, female, child
-    'locale' => '/^[a-z]{2,3}$/'   // users language for supporting translations of the site
+    'locale' => '/^[a-z]{2,3}$/',  // users language for supporting translations of the site
+    'favorites' => '/^\d+(,\d+)*$/',   // comma separated integers
+    'findAnotherLink' => '/^.*$/'
 );
 
 function thrUpdateState(&$current, $update, $patterns) {
@@ -99,9 +103,20 @@ function THR($p = null) {
     return $THRState[$p];
 }
 
-// global function for constructing a URL to restore the query parts of the state.
+// global function for setting state values
+function setTHR($p, $v) {
+    global $THRState, $setCookie;
+    $old = $THRState[$p];
 
-function get_find_url($page = null) {
+    if ($old != $v) {
+        $setCookie = 1;
+        $THRState[$p] = $v;
+    }
+    return $old;
+}
+
+// global function for constructing a URL to restore the query parts of the state.
+function find_url($page = null) {
     global $THRState, $THRDefault;
     $p = array();
     foreach(array('search', 'category', 'reviewed', 'audience', 'language') as $parm) {
@@ -118,11 +133,24 @@ function get_find_url($page = null) {
     } else {
         return '/find/';
     }
-
 }
 
-function find_url($page = null) {
-    echo get_find_url($page);
-}
+function favorites_url($page = null) {
+    global $THRState, $THRDefault;
+    $p = array();
+    foreach(array('pageColor', 'textColor', 'voice', 'favorites') as $parm) {
+        $v = urlencode($THRState[$parm]);
+        $p[] = "$parm=$v";
+    }
+    if ($page === null) {
+        $page = $THRState['page'];
+    }
+    $p[] = "page=$page";
 
+    if (count($p) > 0) {
+        return '/favorites/?' . implode('&', $p);
+    } else {
+        return '/favorites/';
+    }
+}
 ?>

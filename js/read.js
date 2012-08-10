@@ -61,7 +61,7 @@ define(["jquery",
                 view.image = book.pages[Math.max(1, pageNumber-1)];
                 view.caption = view.image.text;
                 if (pageNumber === 1) {
-                    view.backLink = state.find_url();
+                    view.backLink = state.get('findAnotherLink');
                     view.nextLink = pageLink(book.link, pageNumber+1);
                 } else {
                     view.backLink = pageLink(book.link, pageNumber-1);
@@ -73,7 +73,7 @@ define(["jquery",
             } else {
                 view.nextPage = pageNumber+1;
                 view.link = book.link;
-                view.findLink = state.find_url();
+                view.findLink = state.get('findAnotherLink');
                 view.rating = book.rating_value; // TODO: handle updating the rating
                 view.what = pageNumber === N+1;
                 view.rate = pageNumber === N+2;

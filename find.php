@@ -124,10 +124,8 @@ foreach( $searchFormData['controls'] as &$control) {
         $control['options'] = $Templates['languages'];
     }
 }
-echo "<!--";
-print_r($searchFormData);
-echo "-->";
 $searchFormData = setFormFromState($searchFormData);
+setTHR('findAnotherLink', find_url()); // set the return to link to come back to this state
 ?>
 <?php thr_header('find-page', true);
 $view = array();
@@ -146,11 +144,12 @@ foreach( $result['books'] as &$book ) {
     }
 }
 $view['bookList'] = template_render('bookList', $result);
+
 if ($page > 1) {
-	$view['backLink'] = get_find_url($page-1);
+	$view['backLink'] = find_url($page-1);
 }
 if ($more) {
-	$view['nextLink'] = get_find_url($page+1);
+	$view['nextLink'] = find_url($page+1);
 }
 echo template_render('find', $view);
 

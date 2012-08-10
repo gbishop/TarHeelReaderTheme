@@ -1,25 +1,6 @@
 define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], function($, route, defaultState) {
     var state;
 
-    function find_url(page) {
-        var q = {};
-        var ps = ["search", "category", "reviewed", "audience", "language"];
-        for(var i=0; i<ps.length; i++) {
-            var p = ps[i];
-            q[p] = state[p];
-        }
-        if (!page) {
-            page = state['page'];
-        }
-        q['page'] = page;
-        var qs = $.param(q);
-        var url = '/find/';
-        if (qs) {
-            url += '?' + qs;
-        }
-        return url;
-    }
-
     function parseQuery(qstring) {
         var result = {},
             e,
@@ -56,6 +37,14 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         $.cookie('thr', JSON.stringify(state), {path: '/'});
     }
 
+    function set(key, value) {
+        var old = state[key];
+        if (old !== value) {
+            state[key] = value;
+            $.cookie('thr', JSON.stringify(state), {path: '/'});
+        }
+    }
+
     function dump(msg) {
         console.log('state dump', msg, state);
     }
@@ -64,7 +53,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
 
     return {
         get: function(key) { return state[key]; },
-        find_url: find_url,
+        set: set,
         update: stateUpdate,
         dump: dump
     };

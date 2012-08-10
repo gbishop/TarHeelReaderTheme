@@ -36,7 +36,7 @@
                 $view['image'] = $book['pages'][max(1, $pageNumber-1)];
                 $view['caption'] = $view['image']['text'];
                 if ($pageNumber == 1) {
-                    $view['backLink'] = get_find_url();
+                    $view['backLink'] = THR('findAnotherLink');
                     $view['nextLink'] = pageLink($book['link'], 2);
                 } else {
                     $view['backLink'] = pageLink($book['link'], $pageNumber-1);
@@ -48,7 +48,7 @@
             } else {
                 $view['nextPage'] = $pageNumber+1;
                 $view['link'] = $book['link'];
-                $view['findLink'] = get_find_url();
+                $view['findLink'] = THR('findAnotherLink');
                 $view['rating'] = $book['rating_value'];
                 $view['what'] = $pageNumber == $N+1;
                 $view['rate'] = $pageNumber == $N+2;

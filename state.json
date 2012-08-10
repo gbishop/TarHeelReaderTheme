@@ -9,5 +9,7 @@
     "pageColor": "fff",
     "textColor": "000",
     "voice": "silent",
-    "locale": "en"
+    "locale": "en",
+    "favorites": "",
+    "findAnotherLink": "/find/"
 }

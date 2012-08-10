@@ -12,11 +12,33 @@ define(["jquery",
          "jquery.scrollIntoView"
         ], function($, route, templates, state, keys, speech, page) {
 
+    // return the url that will restore the find page state
+    function find_url(page) {
+        var q = {};
+        var ps = ["search", "category", "reviewed", "audience", "language"];
+        for(var i=0; i<ps.length; i++) {
+            var p = ps[i];
+            q[p] = state.get(p);
+        }
+        if (!page) {
+            page = state.get('page');
+        }
+        q['page'] = page;
+        var qs = $.param(q);
+        var url = '/find/';
+        if (qs) {
+            url += '?' + qs;
+        }
+        return url;
+    }
+
     // handle find locally
     function findRender(url, query) {
         console.log('findRender', url);
         var view = {},
             $def = $.Deferred();
+        // record the state so we can come back here
+        state.set('findAnotherLink', find_url());
         // see if we can find one already rendered
         var $newPage = $('.find-page[data-key="' + url + '"]');
         if ($newPage.length == 1) {
@@ -40,10 +62,10 @@ define(["jquery",
                 view.bookList = templates.render('bookList', data);
                 var pageNumber = state.get('page');
                 if (data.more) {
-                    view.nextLink = state.find_url(pageNumber + 1);
+                    view.nextLink = find_url(pageNumber + 1);
                 }
                 if (pageNumber > 1) {
-                    view.backLink = state.find_url(pageNumber - 1);
+                    view.backLink = find_url(pageNumber - 1);
                 }
                 var $newPage = page.getInactive('find-page');
                 $newPage.empty()
@@ -155,11 +177,15 @@ define(["jquery",
     });
 
     // configure the keyboard controls
-    keys.setMap('.active-page.find-page', {
-        'left down enter c': '/find/select',
-        'right space m': '/find/next',
-        'up': '/find/prev'
-    });
+    function setFindKeyMap(page) {
+        keys.setMap(page, {
+            'left down enter c': '/find/select',
+            'right space m': '/find/next',
+            'up': '/find/prev'
+        });
+    }
+    setFindKeyMap('.active-page.find-page');
+    setFindKeyMap('.active-page.favorites-page');
 
     function findConfigure(url, query) {
         // set the colors based on the state
