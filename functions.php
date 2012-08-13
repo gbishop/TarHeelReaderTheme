@@ -422,6 +422,47 @@ function updateIndex($book) {
     }
 }
 
+// factored out of find, favorites, and collections
+function posts_to_find_results($posts, $nrows, $count) {
+    if ($nrows > $count) {
+        $more = 1;
+        $nrows = $count;
+    } else {
+        $more = 0;
+    }
+
+    $books = array();
+    for($i=0; $i<$nrows; $i++) {
+        $post = $posts[$i];
+        $book = ParseBookPost($post);
+        $po = array();
+        $po['title'] = $book['title'];
+        $po['ID'] = $post->ID;
+        $po['slug'] = $book['slug'];
+        $po['link'] = $book['link'];
+        $po['author'] = $book['author'];
+        $po['rating'] = round(round($book['rating_value']*2)/2, 1);
+        $po['tags'] = $book['tags'];
+        $po['categories'] = $book['categories'];
+        $po['reviewed'] = $book['reviewed'] == 'R';
+        $po['audience'] = $book['audience'];
+        $po['caution'] = $book['audience'] == 'C';
+        $po['cover'] = $book['pages'][0];
+        $po['preview'] = $book['pages'][1];
+        $po['preview']['text'] = $po['title'];
+        $po['pages'] = count($book['pages']);
+        $po['language'] = $book['language'];
+        $books[] = $po;
+    }
+
+    $result = array(); // result object
+    $result['books'] = $books;
+    $result['queries2'] = get_num_queries();
+    $result['time'] = timer_stop(0);
+    $result['more'] = $more;
+    return $result;
+}
+
 function preprocess_tag($tag) {
     // prepare tags for indexing with fulltext
     return preg_replace("/[-,:.`~!@#$%^&*()_=+\[{}\];?<>]+/", '', $tag);
