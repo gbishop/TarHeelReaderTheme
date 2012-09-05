@@ -25,10 +25,12 @@ define(["jquery", "pubsub"], function($) {
     };
 
     function onKeyDown(e) {
-        var selector = e.data;
-        if (!selector || $(selector).length === 0) return true;
-        if (e.target.nodeName == 'INPUT') { // don't handle events from input fields
-            console.log('caught input');
+        var selector = e.data,
+            selected = $(selector);
+        if (!selector || selected.length === 0) return true;
+        if (e.target.nodeName == 'INPUT' && $.contains(selected.get(0), e.target)) {
+            // don't handle events from input fields on the current page
+            console.log('caught input', e.target, selector);
             return true;
         }
 
