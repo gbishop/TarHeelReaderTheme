@@ -20,7 +20,6 @@
                     echo "<!-- $mp3 -->";
                 }
             }
-
             $pageNumber = $page;
             $view = array();
             $view['frontPage'] = $pageNumber == 1;
@@ -49,10 +48,19 @@
                 $view['nextPage'] = $pageNumber+1;
                 $view['link'] = $book['link'];
                 $view['findLink'] = THR('findAnotherLink');
-                $view['rating'] = $book['rating_value'];
                 $view['what'] = $pageNumber == $N+1;
                 $view['rate'] = $pageNumber == $N+2;
                 $view['thanks'] = $pageNumber >= $N+3;
+                $rating = getParam('rating', '', '/[123]/');
+                BuG('rating=$rating');
+                if ($rating && $view['thanks']) {
+                    $rating = intval($rating, 10);
+                    $view['rating'] = update_book_rating($post->ID, $rating);
+                    BuG('updated rating');
+                } else {
+                    $view['rating'] = $book['rating_value'];
+                    BuG('no update rating');
+                }
                 echo template_render('choicePage', $view);
             }
     endwhile; endif;

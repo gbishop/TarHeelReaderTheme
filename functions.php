@@ -477,7 +477,7 @@ function update_book_rating($id, $rating) {
     if(!$cnt) { /* first rating */
         add_post_meta($id, 'book_rating_count', 1);
         add_post_meta($id, 'book_rating_value', $rating);
-        return array($rating, 1);
+        return round_rating($rating);
     } else {
         $value = get_post_meta($id, 'book_rating_value', true);
         if(!$value) { /* should not happen */
@@ -489,7 +489,7 @@ function update_book_rating($id, $rating) {
         $value = $total / $cnt;
         update_post_meta($id, 'book_rating_count', $cnt);
         update_post_meta($id, 'book_rating_value', $value);
-        return array(round_rating($value), $cnt);
+        return round_rating($value);
     }
 }
 

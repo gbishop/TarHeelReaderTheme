@@ -74,10 +74,14 @@ define(["jquery",
                 view.nextPage = pageNumber+1;
                 view.link = book.link;
                 view.findLink = state.get('findAnotherLink');
-                view.rating = book.rating_value; // TODO: handle updating the rating
                 view.what = pageNumber === N+1;
                 view.rate = pageNumber === N+2;
                 view.thanks = pageNumber >= N+3;
+                if (view.thanks) {
+                    // we need to update the rating on the host
+                    updateRating(book, url);
+                }
+                view.rating = book.rating_value;
                 newContent = templates.render('choicePage', view);
             }
             var $oldPage = page.getInactive('thr-book-page');
@@ -197,6 +201,24 @@ define(["jquery",
             nextPage();
         } else {
             previousPage();
+        }
+    }
+
+    function updateRating(book, url) {
+        var ratingRE = /rating=([123])/;
+        var m = ratingRE.exec(url);
+        if (m) {
+            var rating = parseInt(m[1], 10);
+            book.rating_count += 1;
+            book.rating_total += rating;
+            book.rating_value = Math.round(2.0*book.rating_total / book.rating_count) * 0.5;
+            $.ajax({
+                url: '/rateajax/',
+                data: {
+                    id: book.ID,
+                    rating: rating
+                }
+            });
         }
     }
 
