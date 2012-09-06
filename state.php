@@ -44,36 +44,36 @@ $THRPatterns = array(
 function thrUpdateState(&$current, $update, $patterns) {
     $changed = 0; // track number of changes
     foreach($update as $param => $value) {
-        BuG("param=$param value=$value");
+        //BuG("param=$param value=$value");
         if (array_key_exists($param, $patterns)) {
             if (preg_match($patterns[$param], $value)) {
                 $changed += 1;
                 if ($param == 'favorites') {
-                    BuG("fav=".$current['favorites']);
-                    BuG("val=".$value);
+                    //BuG("fav=".$current['favorites']);
+                    //BuG("val=".$value);
                     if ($current['favorites']) {
                         $favs = explode(',', $current['favorites']);
                     } else {
                         $favs = array();
                     }
-                    BuG("favs before=".print_r($favs, true));
+                    //BuG("favs before=".print_r($favs, true));
                     if (strpos($value, 'A') === 0) {
                         // add the book
                         $ids = explode(',', substr($value, 1));
                         $favs = array_unique(array_merge($favs, $ids));
-                    BuG("favs after add=".print_r($favs, true));
+                    //BuG("favs after add=".print_r($favs, true));
                     } elseif (strpos($value, 'R') === 0) {
                         // remove the book
                         $ids = explode(',', substr($value, 1));
                         $favs = array_diff($favs, $ids);
-                    BuG("favs after remove=".print_r($favs, true));
+                    //BuG("favs after remove=".print_r($favs, true));
                     } else {
                         // replace all favorites
                         $favs = explode(',', $value);
-                        BuG("favs after replace".print_r($favs, true));
+                        //BuG("favs after replace".print_r($favs, true));
                     }
                     $current['favorites'] = implode(',', $favs);
-                    BuG("result=".$current['favorites']);
+                    //BuG("result=".$current['favorites']);
 
                 } else {
                     $current[$param] = stripslashes(urldecode($value));
