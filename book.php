@@ -113,6 +113,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $book['status'] = $publish && $canPublish ? 'publish' : 'draft';
     $book = SaveBookPost($id, $book);
+    if ($book === false) {
+        header("HTTP/1.0 400 Save Post Failed");
+        die();
+    }
 
     $output = json_encode($book);
     header('Content-Type: application/json');

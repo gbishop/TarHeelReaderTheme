@@ -340,16 +340,20 @@ function SaveBookPost($id, $book) {
                   'post_category' => array(3));
     if($id) {
         $args['ID'] = $id;
-        $postid = wp_update_post($args);
+        $id = wp_update_post($args);
     } else {
-        $postid = wp_insert_post($args);
+        $id = wp_insert_post($args);
+    }
+    if ($id == 0) {
+        BuG('SaveBookPost failed');
+        return false;
     }
 
     update_post_meta($id, 'book_rating_count', $content['rating_count']);
     update_post_meta($id, 'book_rating_value', $content['rating_value']);
 
     //$book['ID'] = $postid;
-    $post = get_post($postid);
+    $post = get_post($id);
     $book = ParseBookPost($post);
     updateIndex($book);
 
@@ -595,6 +599,8 @@ remove_filter('template_redirect', 'redirect_canonical');
 
 // hack error logging
 function BuG($msg) {
+    date_default_timezone_set('EDT');
+    $msg = date('m/d H:i:s') . ' ' . $msg;
     error_log($msg . "\n", 3, '/var/tmp/BuG.txt');
 }
 ?>
