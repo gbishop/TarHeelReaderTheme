@@ -597,6 +597,14 @@ add_filter('login_redirect', 'my_login_redirect');
 // I suddenly started getting redirect loops when accessing / this seems to fix it.
 remove_filter('template_redirect', 'redirect_canonical');
 
+// exclude books from blog
+add_action('pre_get_posts', 'thr_modify_query');
+function thr_modify_query( $query ) {
+    if (!is_admin() && $query->is_main_query() && !$query->get('cat')) {
+        $query->set('cat', '-3');
+    }
+}
+
 // hack error logging
 function BuG($msg) {
     date_default_timezone_set('EDT');
