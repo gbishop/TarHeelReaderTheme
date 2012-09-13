@@ -12,11 +12,19 @@ define(["jquery", "templates" ], function($, templates) {
         // use html5 audio if it is available and if it supports mp3. I'd rather use ogg but I need mp3 for
         // flash fallback anyway
         // to make it work on the iPad I apparently have to load a legal mp3. Use this one for now.
-        if (typeof(Audio) == 'function') {
+        if (typeof(Audio) === 'function') {
             audio = new Audio(SpeechBase + 'site/en-c-whatnow.mp3');
-            if (audio && audio.canPlayType &&
+         /*   if (audio && audio.canPlayType &&
                 ("no" != audio.canPlayType("audio/mpeg")) &&
-                ("" !== audio.canPlayType("audio/mpeg"))) {
+                ("" !== audio.canPlayType("audio/mpeg"))) {*/
+                   
+        // The above problem was causing a JavaScript error in IE9, and thus rendered any subsequent JavaScript code
+        // useless (hence the IE9 keybinds/arrows not working and image not showing). In FireFox, I got a warning 
+        // instead of an error (explains why the pictures show in FireFox) stating that audio/mpeg3 was not a valid format.
+        
+        if (audio && audio.canPlayType &&
+                ("no" != audio.canPlayType("audio/ogg; codecs=vorbis")) &&
+                ("" !== audio.canPlayType("audio/ogg; codecs=vorbis"))) {
                 $('.flashplayer').remove();
                 // we appear to have html5 audio so call load which is required on the iPod.
                 audio.load();
