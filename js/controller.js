@@ -68,8 +68,9 @@ define([ "jquery",
             alreadyPushedState = false; // for IE8 bug
             
             History.pushState(null,title,url);
-            alreadyPushedState = true; // for IE8 bug
+            
             alreadyRendered = false;
+            alreadyPushedState = true; // for IE8 bug
         });
         
         event.preventDefault();
@@ -87,6 +88,7 @@ define([ "jquery",
         if (!alreadyRendered && !alreadyPushedState) {
             renderUrl(url);
         }
+        alreadyPushedState = false;
     }
 
     function renderUrl(url) {
