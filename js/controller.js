@@ -84,7 +84,7 @@ define([ "jquery",
         console.log("State changed... alreadyRendered is " +  alreadyRendered);
         
         var url = History.getState().url;
-        if (!alreadyRendered && !alreadyStateChanged) {
+        if (!alreadyRendered && !alreadyPushedState) {
             renderUrl(url);
         }
     }
