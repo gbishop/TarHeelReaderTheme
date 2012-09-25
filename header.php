@@ -41,16 +41,11 @@
 			$tc = THR('textColor');
 			echo ".thr-colors { color: #$tc; background-color: #$pc; border-color: #$tc; }";
 		?></style>
-
-	<!--[if lt IE 9 ]>
+	<!-- For console bug in IE-->
 	<script>
-		if (typeof(window.console) == 'undefined') {
-			window.console = {
-		    	log: function(a) { /*alert(a);*/ }
-			};
-		}
+		if (!window.console) window.console = {};
+        if (!window.console.log) window.console.log = function () { };
 	</script>
-	<![endif]-->
 
 	<!-- I'm not sure I need modernizr but include it for now. -->
 	<script src="/theme/js/modernizr.custom.js"></script>
