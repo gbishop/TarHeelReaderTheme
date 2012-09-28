@@ -2,7 +2,8 @@ define(['jquery', 'templates'], function($, templates) {
 
     var $blocker = null;
 
-    var currentXHR = null;
+    var currentXHR = null,
+        pageLoaded = false;
 
     function cancel() {
         if (currentXHR) {
@@ -29,6 +30,8 @@ define(['jquery', 'templates'], function($, templates) {
 
     function done(jqXHR, textStatus) {
         console.log('ajax complete', textStatus);
+        pageLoaded = pageLoaded ? false : true; // whatever pageLoaded is, reverse it. Allows communication with controller.js
+        
         if (currentXHR !== jqXHR) {
             console.log('busy: not expecting this XHR to complete, ignoring');
         } else if (textStatus == 'success') {
@@ -62,6 +65,8 @@ define(['jquery', 'templates'], function($, templates) {
     return {
         cancel: cancel,
         wait: wait,
-        done: done
+        done: done,
+        isPageLoaded: function() { return pageLoaded; }, // getter for pageLoaded 
+        setPageLoaded: function(val) { pageLoaded = val; } // allow a setter function (can't directly modify from controller.js, pass by value)
     };
 });

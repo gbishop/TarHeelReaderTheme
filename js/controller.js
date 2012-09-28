@@ -4,13 +4,14 @@ define([ "jquery",
           "page",
           "state",
           "templates",
-          "history.adapter.jquery"
-         ], function($, route, page, state, templates) {
+          "busy",
+          "history.adapter.jquery",
+         ], function($, route, page, state, templates, busy) {
 
     var History = window.History,
         document = window.document,
         rootUrl = null,
-        alreadyRendered = false, alreadyPushedState = false;
+        alreadyRendered = false;
 
     if (!History.enabled) {
         console.log('History not enabled');
@@ -52,6 +53,7 @@ define([ "jquery",
                 console.log('not hijaxing post');
                 return true;
             }
+            
         }
 
        // Continue as normal for ctrl clicks or external links
@@ -65,12 +67,13 @@ define([ "jquery",
         // hijax this link
         renderUrl(url).then(function(title) {
             alreadyRendered = true;
-            alreadyPushedState = false; // for IE8 bug
+            busy.setPageLoaded(false); // Page has not fully loaded yet in any browser
             
-            History.pushState(null,title,url);
-            
+            History.pushState(null,title,url); // Normal Behavior: trigger stateChange() inside pushState (fails to do this in IE)
+           
+            // IE still hasn't called stateChanged yet
             alreadyRendered = false;
-            alreadyPushedState = true; // for IE8 bug
+
         });
         
         event.preventDefault();
@@ -79,16 +82,24 @@ define([ "jquery",
 
     function gotoUrl(url, title) {
         History.pushState(null, title, url);
+        
     }
 
     function stateChange() {
         console.log("State changed... alreadyRendered is " +  alreadyRendered);
+        console.log("busy.pageLoaded is " + busy.isPageLoaded());
         
         var url = History.getState().url;
-        if (!alreadyRendered && !alreadyPushedState) {
+        if (!alreadyRendered && !busy.isPageLoaded()) { // only render it if the page has not loaded yet
             renderUrl(url);
+        } else  { 
+            //   Normal Behavior: stateChange is called when alreadyRendered is true
+            // this will allow busy.js to set pageLoaded to false, thus allowing 'Back' to work
+            //   IE Behavior: if alreadyRendered is false, that means stateChanged was called sometime after renderUrl.then()
+            // so set pageLoaded to false to allow back button to work
+            alreadyRendered ? busy.setPageLoaded(true) : busy.setPageLoaded(false);
         }
-        alreadyPushedState = false;
+        
     }
 
     function renderUrl(url) {
