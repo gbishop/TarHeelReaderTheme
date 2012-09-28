@@ -9,8 +9,7 @@ define([ "jquery",
 
     var History = window.History,
         document = window.document,
-        rootUrl = null,
-        alreadyRendered = false, alreadyPushedState = false;
+        rootUrl = null;
 
     if (!History.enabled) {
         console.log('History not enabled');
@@ -63,16 +62,8 @@ define([ "jquery",
         }
 
         // hijax this link
-        renderUrl(url).then(function(title) {
-            alreadyRendered = true;
-            alreadyPushedState = false; // for IE8 bug
-            
-            History.pushState(null,title,url);
-            
-            alreadyRendered = false;
-            alreadyPushedState = true; // for IE8 bug
-        });
-        
+        History.pushState(null,'',url); // don't know the title here, fill it in later
+
         event.preventDefault();
         return false;
     }
@@ -82,13 +73,12 @@ define([ "jquery",
     }
 
     function stateChange() {
-        console.log("State changed... alreadyRendered is " +  alreadyRendered);
-        
+
         var url = History.getState().url;
-        if (!alreadyRendered && !alreadyPushedState) {
-            renderUrl(url);
-        }
-        alreadyPushedState = false;
+        console.log("State changed...", url);
+        renderUrl(url).then(function(title) {
+            document.title = title;
+        });
     }
 
     function renderUrl(url) {
