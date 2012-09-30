@@ -29,6 +29,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
             die();
         }
     }
+    if (!in_category('books', $post)) {
+        header("HTTP/1.0 404 Not Book");
+        die();
+    }
     $book = ParseBookPost($post);
     $output = json_encode($book);
     header('Content-Type: application/json');
