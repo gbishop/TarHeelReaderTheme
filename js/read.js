@@ -6,9 +6,8 @@ define(["jquery",
         "templates",
         "keyboard",
         "state",
-        "speech",
-        "busy"
-        ], function($, route, page, templates, keys, state, speech, busy) {
+        "speech"
+        ], function($, route, page, templates, keys, state, speech) {
 
     var book = null; // current book
 
@@ -22,12 +21,7 @@ define(["jquery",
                 data: {
                     slug: slug
                 },
-                dataType: 'json',
-                error: function(err) {
-                    console.log('book-as-json failed');
-                    busy.cancel();
-                    $def.reject();
-                }
+                dataType: 'json'
             }).done(function(data) {
                 book = data;
                 $def.resolve(book);
@@ -94,9 +88,6 @@ define(["jquery",
             $oldPage.addClass('thr-colors');
             $oldPage.empty().append('<div class="content-wrap">' + newContent + '</div>');
             $def.resolve($oldPage, {title: book.title, colors: true});
-        }, function() {
-            console.log('renderBook fails');
-            $def.reject();
         });
         return $def;
     }

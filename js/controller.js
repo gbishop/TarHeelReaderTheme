@@ -81,57 +81,9 @@ define([ "jquery",
         });
     }
 
-    function hostRenderUrl(url) {
-        console.log('hostRenderUrl', url);
-        var $render = $.Deferred();
-
-        // request the page
-        $.ajax({
-            url: url,
-            data: { ajax: 1 }, // signal this is a ajax request right in the URL
-            success: function(data, textStatus, jqXHR) {
-                console.log('controller ajax gets data');
-                var $newPage = $(data),
-                    cls = $newPage.attr('class'),
-                    type = (cls && cls.match(/[-a-z]+-page/)[0]) || 'server-page',
-                    $oldPage = page.getInactive(type);
-                $oldPage.replaceWith($newPage);
-                $render.resolve($newPage);
-            },
-
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log('ajax request failed for: ', url);
-                document.location.href = url; // what is this?
-                $render.reject(true); // passing true causes renderFailed (below) to not try again
-            }
-        }); // end ajax
-        return $render;
-    }
-
     function renderUrl(url) {
         console.log('renderUrl', url);
         var $pageReady = $.Deferred();
-
-        function postRender($newPage, options) {
-            console.log('newPage', $newPage);
-            // transition to the new page
-            page.transitionTo($newPage, options).then(function($newPage, title) {
-                $(window).off('beforeunload'); // be sure the beforeunload handler gets disabled
-                route.go('init', url, $newPage);
-                $(window).scrollTop(0);
-                $pageReady.resolve(title);
-            });
-        }
-
-        function renderFailed(die) {
-            console.log('renderFailed', die);
-            if (die) {
-                console.log('renderFailed quit');
-                return;
-            }
-            hostRenderUrl(url).then(postRender, renderFailed);
-            console.log('renderFailed returns');
-        }
 
         // update my app internal state from the cookie and any query parameters
         state.update(url);
@@ -143,10 +95,40 @@ define([ "jquery",
             var $render = route.go('render', url);
 
             if ($render === false) { // no local handler was found, fetch the page from the server
-                $render = hostRenderUrl(url);
+                $render = $.Deferred();
+
+                // request the page
+                $.ajax({
+                    url: url,
+                    data: { ajax: 1 }, // signal this is a ajax request right in the URL
+                    success: function(data, textStatus, jqXHR) {
+                        console.log('controller ajax gets data');
+                        var $newPage = $(data),
+                            cls = $newPage.attr('class'),
+                            type = (cls && cls.match(/[-a-z]+-page/)[0]) || 'server-page',
+                            $oldPage = page.getInactive(type);
+                        $oldPage.replaceWith($newPage);
+                        $render.resolve($newPage);
+                    },
+
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('ajax request failed for: ', url);
+                        document.location.href = url;
+                        $render.reject();
+                    }
+                }); // end ajax
             }
-            // now the deferred will be resolved when the page has been rendered either locally or from the server
-            $render.then(postRender, renderFailed);
+            // now the deferred with be resolved when the page has been rendered either locally or from the server
+            $render.then(function($newPage, options) {
+                console.log('newPage', $newPage);
+                // transition to the new page
+                page.transitionTo($newPage, options).then(function($newPage, title) {
+                    $(window).off('beforeunload'); // be sure the beforeunload handler gets disabled
+                    route.go('init', url, $newPage);
+                    $(window).scrollTop(0);
+                    $pageReady.resolve(title);
+                });
+            });
         });
         return $pageReady;
     } // end renderUrl
