@@ -124,9 +124,6 @@ define([ "jquery",
         }
 
         function renderFailed(die) {
-            // this is invoked if the render call failed. We allow for a retry from the host
-            // if the render that failed was client side allowing for backing out of client-side
-            // rendering.
             console.log('renderFailed', die);
             if (die) {
                 console.log('renderFailed quit');
@@ -145,10 +142,10 @@ define([ "jquery",
             // if there is a local handler for this url call it
             var $render = route.go('render', url);
 
-            if ($render === false) { // no local handler, fetch the page from the server
+            if ($render === false) { // no local handler was found, fetch the page from the server
                 $render = hostRenderUrl(url);
             }
-            // deferred will be resolved when page has been rendered either locally or on server
+            // now the deferred will be resolved when the page has been rendered either locally or from the server
             $render.then(postRender, renderFailed);
         });
         return $pageReady;
