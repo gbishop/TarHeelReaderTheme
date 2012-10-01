@@ -94,7 +94,7 @@ function thr_header($pageType, $heading, $disableCache=true) {
 
     // disable caching on our dynamically generated pages
     if ($disableCache) {
-        header('Cache-Control: max-age=10'); // 10 seconds should allow a quick forward and back without a trip to the server
+        header('Cache-Control: max-age=0');
     }
 
     if (is_ajax()) {
