@@ -247,6 +247,9 @@ define(["jquery",
     function configureBook(url, slug, pageNumber) {
         console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
+        if (!$page.is('.thr-book-page')) {
+            console.log('not book page, no configure');
+        }
         scalePicture($page);
         $page.find('.thr-pic').fadeIn(200);
         var toSay = $page.find('.thr-question').attr('data-speech');
