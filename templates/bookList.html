@@ -4,7 +4,7 @@
     <ul class="thr-book-list">
         {{#books}}
         <li class="selectable thr-colors" data-preview="{{preview.url}}" data-id="{{ID}}" lang="{{language}}" >
-            <a href="{{link}}">
+            <a href="{{link}}" data-type="book">
                 <h2>{{title}}</h2>
                 <p class="thr-author">_(by {{author}}|short for written by author name)</p>
                 <img src="/theme/images/{{rating}}stars_t.png" class="thr-stars"

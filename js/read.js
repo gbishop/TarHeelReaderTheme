@@ -39,7 +39,12 @@ define(["jquery",
     }
 
     function renderBook(url, slug, pageNumber) {
-        console.log('renderBook', url, slug, pageNumber);
+        console.log('renderBook', url, slug, pageNumber, this);
+        // only render a book locally when the link has data-type=book
+        if (!this || !this.data_type || this.data_type != 'book') {
+            console.log('renderBook rejects based on type');
+            return false; // it will get rendered by the host
+        }
         var $def = $.Deferred();
         fetchBook(slug).then(function(book) {
 

@@ -19,7 +19,8 @@ define([ "jquery",
     // load a link or submit a form via Ajax so we don't leave the page
     function hijaxLink(event) {
         var $this = $(this),
-            url;
+            url,
+            context = {}; // passed to the render function as this
 
         if ($this.is('a')) {
             // click on a link
@@ -30,6 +31,8 @@ define([ "jquery",
                 return false;
             }
             url = $this.attr('href');
+            // allows me to mark URLs for local handling
+            context.data_type = $this.attr('data-type');
             if (typeof(url) == 'undefined') {
                 e.preventDefault();
                 return true;
@@ -61,27 +64,29 @@ define([ "jquery",
             return true;
         }
 
-        // hijax this link
-        History.pushState(null,'',url); // don't know the title here, fill it in later
+        // hijax this link, pass in the context so it can be handed on
+        History.pushState(context,'',url); // don't know the title here, fill it in later
 
         event.preventDefault();
         return false;
     }
 
-    function gotoUrl(url, title) {
-        History.pushState(null, title, url);
+    function gotoUrl(url, title, context) {
+        History.pushState(context, title, url);
     }
 
     function stateChange() {
-
-        var url = History.getState().url;
-        console.log("State changed...", url);
-        renderUrl(url).then(function(title) {
+        // handle changes in the URL
+        var hist = History.getState(),
+            url = hist.url,
+            context = hist.data;
+        console.log("State changed...", url, context);
+        renderUrl(url, context).then(function(title) {
             document.title = title;
         });
     }
 
-    function renderUrl(url) {
+    function renderUrl(url, context) {
         console.log('renderUrl', url);
         var $pageReady = $.Deferred();
 
@@ -92,7 +97,7 @@ define([ "jquery",
         templates.setLocale().then(function() {
 
             // if there is a local handler for this url call it
-            var $render = route.go('render', url);
+            var $render = route.go('render', url, context);
 
             if ($render === false) { // no local handler was found, fetch the page from the server
                 $render = $.Deferred();
