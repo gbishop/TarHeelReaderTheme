@@ -9,7 +9,12 @@ GET: Return a list of books that match the query
 // construct the where clause
 $where = array();
 $where[] = "p.post_status = 'publish'";
-$where[] = "p.id in (" . THR('favorites') . ")";
+$favorites = THR('favorites');
+if ($favorites) {
+  $where[] = "p.id in (" . THR('favorites') . ")";
+} else {
+  $where[] = "p.id = 0";
+}
 
 $where = 'WHERE ' . implode(' AND ', $where);
 
@@ -25,8 +30,14 @@ SELECT p.*
   $where
   LIMIT $offset,$cp1";
 
+BuG($sql);
+
+
+
 $posts = $wpdb->get_results($sql);
 $nrows = $wpdb->num_rows;
+
+BuG($nrows);
 
 $result = posts_to_find_results($posts, $nrows, $count);
 
@@ -55,6 +66,7 @@ foreach( $result['books'] as &$book ) {
     $c = &$book['cover'];
     setImageSizes($c);
 }
+$result['favorites'] = true;
 $view['bookList'] = template_render('bookList', $result);
 if ($page > 1) {
 	$view['backLink'] = favorites_url($page-1);
