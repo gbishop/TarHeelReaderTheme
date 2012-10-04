@@ -30,14 +30,8 @@ SELECT p.*
   $where
   LIMIT $offset,$cp1";
 
-BuG($sql);
-
-
-
 $posts = $wpdb->get_results($sql);
 $nrows = $wpdb->num_rows;
-
-BuG($nrows);
 
 $result = posts_to_find_results($posts, $nrows, $count);
 
