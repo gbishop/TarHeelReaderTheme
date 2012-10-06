@@ -23,6 +23,10 @@ else:
 			</div>
 
 			<?php edit_post_link('Edit this entry','','.'); ?>
+			<div class="navigation">
+				<div class="next-posts"><?php next_post_link('%link', 'Next post', TRUE) ?></div>
+				<div class="prev-posts"><?php previous_post_link('%link', 'Previous post', TRUE) ?></div>
+			</div>
 
 		</div>
 	</article>
