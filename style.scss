@@ -105,6 +105,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 .thr-book-page .header {
     height: 0;
+    min-height: 0;
+    border-top: 0;
 
     h1 {
         display: none;
