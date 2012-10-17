@@ -1,4 +1,4 @@
-<?php thr_header('', true); ?>
+<?php thr_header(''); ?>
 
   <h2><?php _e('Error 404 - Page Not Found','html5reset'); ?></h2>
 

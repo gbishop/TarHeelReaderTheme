@@ -1,4 +1,4 @@
-<?php thr_header('', true); ?>
+<?php thr_header(''); ?>
 
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

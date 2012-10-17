@@ -74,11 +74,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .header {
     position: relative;
     width: 100%;
-    background-color: rgba(220, 220, 220, 0.5);
+    //background-color: rgba(220, 220, 220, 0.5);
     display: block;
     margin: 0px auto;
     text-align: center;
-    background:rgb(51,51,51);
+    // background:rgb(51,51,51);
     border-top: 0.25em solid #3399FF;
     height:3em;
     min-height: 32px;
@@ -101,6 +101,14 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         font-size: 0.9em;
     }
 
+}
+
+.thr-book-page .header {
+    height: 0;
+
+    h1 {
+        display: none;
+    }
 }
 
 .thr-home-icon {

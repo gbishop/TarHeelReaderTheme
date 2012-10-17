@@ -5,7 +5,7 @@ Template Name: ReadingControls
 Allow users to configure reading
 */
 ?>
-<?php thr_header('', true); ?>
+<?php thr_header(''); ?>
 <?php
 
 // get the id if any
