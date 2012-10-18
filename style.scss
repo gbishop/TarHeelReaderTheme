@@ -15,7 +15,7 @@ $pageLinkFontSize: 0.8em;
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
-    font-family: Helmet, Freesans, sans-serif;
+    //font-family: Helmet, Freesans, sans-serif;
     font-size: 100%;
     width: 100%;
     height: 100%;
@@ -24,6 +24,7 @@ body {
 html {
     width: 100%;
     height: 100%;
+    background: #F5F6F7;
 }
 
 /* using local fonts? make sure to read up on Paul Irish's
@@ -45,12 +46,37 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 /* And here begins the Wordpress fun.
 -------------------------------------------------------------------------------*/
 
+/*
+ * 
+ * TEMPORARY CODE
+ * 
+ * 
+ */
+
+.server-page {
+  .article {
+    float: left;
+  }
+}
+
+/*
+ * 
+ * END TEMPORARY CODE
+ * 
+ * 
+ */
 
 .content-wrap {
     width: 48em;
-    margin-left:auto;
-    margin-right:auto;
+    margin: .5em auto;
+    padding: 1em;
+    
     //position:relative; // why do we need this?
+    
+    border-radius: 1em;
+    box-shadow: 0 0 .5em #56A0D3;
+    overflow: auto;
+    
 }
 
 .page-wrap {
@@ -60,7 +86,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     padding: 0;
 }
 
-.find-page{
+.find-page {
     background:url('/theme/images/furley_bg.png');
     .description {
         display: none;
@@ -72,75 +98,87 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .header {
-    position: relative;
+    position: relative; // for positioning our navigation menu
     width: 100%;
-    background-color: rgba(220, 220, 220, 0.5);
-    display: block;
-    margin: 0px auto;
+    height: 4em;
     text-align: center;
-    background:rgb(51,51,51);
-    border-top: 0.25em solid #3399FF;
-    height:3em;
     min-height: 32px;
+    
+    //background:rgb(51,51,51);
+    //border-top: 0.25em solid #3399FF;
+    //height: 3em;
+    //background-color: rgba(220, 220, 220, 0.5);
+    //display: block;
 
     h1 {
-        font-size: 1.8em;
-        //height:1.7em;
-        //min-height: 57%;
+        font-size: 2em;
+        padding-top: 0.4em;
+        margin-top: 0.25em;
+        
+        height: 1.7em;
+        min-height: 57%;
 
         a {
             text-decoration: none;
-            color:#999;
+            color: #888;
             //font-family: 'Terminal Dosis', sans-serif;
             font-weight:200;
             //height:1.7em;
             //line-height:1.7em;
+            padding: 0;
         }
     }
+    
     .description {
         font-size: 0.9em;
     }
-
 }
 
 .thr-home-icon {
     position: absolute;
-    top: 0.5em;
-    left: 0.5em;
-    width: 2em;
+    top: .5em;
+    left: 2em;
+    
+    width: 2.5em;
     min-width: 24px;
-    height: 2em;
+    height: 2.5em;
     min-height: 24px;
+    
     img {
-        width: 2em;
+        width: 2.5em;
         min-width: 24px;
-        height: 2em;
+        height: 2.5em;
         min-height: 24px;
         opacity: 0.8;
         &:hover {
             opacity: 1;
         }
     }
+    
+    z-index: 99;
 }
 
 .thr-settings-icon {
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    width: 2em;
+    top: 0.65em;
+    right: 2em;
+    width: 2.5em;
     min-width: 24px;
-    height: 2em;
+    height: 2.5em;
     min-height: 24px;
+    
     img {
-        width: 2em;
+        width: 2.5em;
         min-width: 24px;
-        height: 2em;
+        height: 2.5em;
         min-height: 24px;
         opacity: 0.8;
         &:hover {
             opacity: 1;
         }
     }
+    
+    z-index: 99;
 }
 
 .footer, .footer a {
@@ -156,7 +194,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 .post {
     float: left;
-    width: 33em;
+    //width: 31em;
+    width: 46em;
+    padding: 1em;
+    border-bottom: .1em solid #56A0D3;
+    overflow: auto;
 }
 
 .entry { margin-left: 1em;}
@@ -179,44 +221,283 @@ h2 {
     margin: 0.5em 0;
 }
 
-
-.sidebar {
-    float:right;
-    width:12.5em;
-    margin-left: 2em;
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
+/* Panel CSS for Navigation and Settings menus */
+.panel {
+    position: absolute;
+    top: 3em;
+    padding: 0;
+    width: 12em;
+    
+    /* Background code... */
+    background: #676767; // If all else fails...
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#888)); /* Safari 4-5, Chrome 1-9 */ 
+    background: -webkit-linear-gradient(top, #555, #888); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, #555, #888); /* Firefox */
+    background: -ms-linear-gradient(top, #555, #888); /* IE 10+ */
+    background: -o-linear-gradient(top, #555, #888); /* Opera */
+     
+    border-radius: 1em;
+    border: .1em solid #DDD;
+    
+    li {
+      border-bottom: .1em solid #DDD;
+      position: relative; // in order to show submenus
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+      
+      .submenu {
+        position: absolute;
+        display: none; // Navigation.js is responsible for making it visible at appropriate times
+        top: -0.1em; // account for nav height + border
+        width: 10em;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+  
+        /* Set necessary background, border, and width */
+        background: #888;
+        border-radius: 0 1em 1em 0;
+        border: .1em solid #DDD;
+        border-left: 0;
+        z-index: 99;
+        
+        li {
+          border: 0;
+          border-bottom: .1em solid #DDD;
         }
+        
+        li:last-child {
+          border: 0;
+        }
+        
+        a {
+          font-size: 1em;
+          padding: 1em;
+          font-size: 1.1em;
+          text-align: center;
+        }
+      }
+   
     }
-
-    h2 {
-        font-size: 1.1em;
+     
+    li:last-child {
+      border: 0;
     }
+    
+    a {
+      display: block; 
+      text-decoration: none;
+      color: #DDD;
+      padding: 1em 0 1em 4em;
+  
+      text-align: left;
+      font-size: 1.3em;
 
-    .search {
-        width: 12em;
+      &:hover {
+         //text-decoration: underline;
+         color: #FFF;
+      }
+        
     }
 }
 
-.searchForm {
+.navigation {
+    display: none; // hide initially
+    left: 4em;
+    box-shadow: .1em .1em .1em #AAA;
+    
+    // display submenu to the right
+    .submenu {
+      left: 12em; // account for width of navigation
+    }
+    
+    a#home {
+      background: url(/theme/images/home_32.png) 1em center no-repeat;
+    }
+    
+    a#reading {
+       background: url(/theme/images/read_book.png) .75em center no-repeat;
+    }
+        
+    a#writing {
+       background: url(/theme/images/write_book.png) 1em center no-repeat;
+    }
+     
+    a#user {
+       background: url(/theme/images/user.png) 1em center no-repeat;
+     }
+     
+    a#help {
+       background: url(/theme/images/info.png) 1em center no-repeat;
+     }
+    
+}
+
+.mainSettings {
+  display: none; // hide initially
+  right: 4em;
+  
+  box-shadow: -.1em .1em .1em #AAA;
+  
+  li {
+    // display submenu to the left
+    .submenu {
+       right: 12.1em; // account for border
+       border-radius: 1em 0 0 1em;
+       border-right: 0;
+       border-left: .1em solid #DDD;
+       
+      li {
+        
+        height: auto;
+        width: auto;
+        
+        .innerSubmenu {
+          /* Set necessary background, border, and width */
+           display: none;
+           position: absolute;
+           right: 10em;
+           width: 10em;
+           top: -4em;
+           
+           background: #777;
+           border-radius: 1em 0 0 1em;
+           border: .1em solid #DDD;
+           z-index: 99;
+           
+           a {
+             text-align: left;
+             padding-left: 3.25em;
+             padding-right: 0.5em;
+           }
+           
+         }
+      }
+      
+      // Begin color icons for page color
+      #pageColors .innerSubmenu {
+        a.black {
+          background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
+        }
+           
+        a.blue {
+          background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
+        }
+           
+        a.cyan {
+          background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
+        }
+           
+        a.green {
+          background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
+        }
+           
+        a.magenta {
+          background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
+        }
+           
+        a.red {
+          background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
+        }
+           
+        a.white {
+           background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
+        }
+           
+        a.yellow {
+           background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
+          }
+          a.checked {
+            background: url(/theme/images/check_mark.png) right center no-repeat;
+          }
+        }
+         // End color icons for page color
+         
+         // Begin color icons for text color
+       #textColors .innerSubmenu {
+           a.black {
+             background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
+           }
+           
+           a.blue {
+             background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
+           }
+           
+           a.cyan {
+             background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
+           }
+           
+           a.green {
+             background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
+           }
+           
+           a.magenta {
+             background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
+           }
+           
+           a.red {
+             background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
+           }
+           
+           a.white {
+             background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
+           }
+           
+           a.yellow {
+             background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
+           }
+           a.checked {
+             background: url(/theme/images/check_mark.png) right center no-repeat;
+           }
+       }
+         // End color icons for text color
+    }
+   
+  }
+  
+  a#speech {
+    background: url(/theme/images/sound_32.png) 1em center no-repeat;
+  }
+  
+  a#colors {
+    background: url(/theme/images/colors_32.png) 1em center no-repeat;
+  }
+  
+  a#download {
+    background: url(/theme/images/download_32.png) 1em center no-repeat;
+  }
+  
+}
+
+.searchform {
     text-align: center;
-    width:100%;
-    padding-top:0.2em;
-    padding-bottom:0.2em;
+    width: 100%;
+    margin: 1.25em 1em;
+    
     select{
         width:7em;
     }
 
     [name=search]{
-        width:12em;
+        float: left;
+        width: 6em;
+        height: 1.5em;
         border-radius: 0.5em;
         border:1px solid grey;
         padding-left: 0.25em;
         padding-right: 0.25em;
+    }
+    
+    input[type='submit'] {
+        float: left;
+        font-size: 1em;
+        margin-left: .25em;
+        border-radius: 0.5em;
+        padding: .1em 1em;
+        background: #EEE;
+        width: 6em;
     }
 
 }
