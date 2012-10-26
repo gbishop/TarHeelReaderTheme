@@ -1,5 +1,5 @@
-// Code for navigation
-require(["jquery", "state", "controller"], function($, state, controller) {
+// Code for navigation and settings menus
+require(["jquery", "state", "controller", "hoverIntent"], function($, state, controller) {
     
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
@@ -35,27 +35,45 @@ require(["jquery", "state", "controller"], function($, state, controller) {
         var $body = $("body"),
             selectorString = ".navigation > li, .mainSettings > li",
             currentSettings = getCurrentSettings();
-            
-        $body.on("mouseover", selectorString, function(e) { // on mouseover, show the submenus accordingly
+        
+        /*
+         * Code to test hoverIntent
+         *
+         var config = {    
+            over: function(e) { // on mouseover, show the submenus accordingly
+             $(".submenu").hide(); // hide all menus and submenus
+             $(this).find(".submenu").show();
+            }, // end on mouseover  
+            //timeout: 500, // number = milliseconds delay before onMouseOut    
+            out: function() {
+                $(".submenu, .innerSubmenu").hide();
+            } // function = onMouseOut callback (REQUIRED)    
+        };
+
+        $(".navigation li").hoverIntent(config);
+        */
+       
+        $body.on("click", selectorString, function(e) { // on mouseover, show the submenus accordingly
              $(".submenu").hide(); // hide all menus and submenus
              $(this).find(".submenu").show();
         }); // end on mouseover
     
         // if the user mouses over anywhere in the document except the submenu, close the submenu
-        $(document).on("mouseover", "head, body", function() {
+        $(document).on("click", "head, body", function() {
             $(".submenu, .innerSubmenu").hide();
         }); // end on mouseover
         
-        $body.on("mouseover", ".mainSettings > li > .submenu > li", function() {
-            $(".innerSubmenu").hide();
-            $(this).find(".innerSubmenu").show();
-        }); // end mouseover
     
         // prevent the submenu from closing if the mouseover is inside the submenu
-        $body.on("mouseover", selectorString, function(e) {
+        $body.on("click", selectorString, function(e) {
             if($(this).find(".submenu").is(":visible")) { // only hide the submenu if it was visible to begin with
               e.stopPropagation();
             }
+        }); // end mouseover*/
+        
+        $body.on("click", ".mainSettings > li > .submenu > li", function() {
+            $(".innerSubmenu").hide();
+            $(this).find(".innerSubmenu").show();
         }); // end mouseover
         
         // if the click was made inside one of the menus, don't close the menu
@@ -89,13 +107,16 @@ require(["jquery", "state", "controller"], function($, state, controller) {
         // the user is changing a setting, adjust settings and update accordingly
         $body.on("click", ".mainSettings .submenu li > a", function() {
             // deal with the anchor's parent <li>
-            var $parent = $(this).parent();
-            if($parent !== null) {
-               text = $parent.text().toLowerCase();
-               changeSetting($parent, text);
+            var $this = $(this),
+                thisText = $this.text().toLowerCase(),
+                $parent = $this.parent(),
+                parentText = $parent.length ? $parent.text().toLowerCase() : 0;
+                
+            if(thisText != "page colors" && thisText != "text colors") {
+               changeSetting($parent, parentText);
+               return false;
             }
             
-            return false;
         });
         
         // if the user clicks anywhere other than one of the menus, hide the menus
@@ -103,8 +124,6 @@ require(["jquery", "state", "controller"], function($, state, controller) {
             $(".navigation, .mainSettings").hide();
         }); // end click
       
-      
-
       }); // end ready
       
       function getCurrentSettings() {
@@ -151,7 +170,7 @@ require(["jquery", "state", "controller"], function($, state, controller) {
       function updateCheckedOptions() {
           $(".checked").removeClass("checked");
           var currentSettings = getCurrentSettings();
-
+          console.log(currentSettings.speech);
           // update the currently set options with a check mark next to them
           $("#speechOptions " + "#" + currentSettings.speech).addClass("checked");
           $("#pageColorsOptions " + "." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
