@@ -35,14 +35,7 @@
 			<li><a href="#" id="user">_(User|section heading)</a>
 				<!-- Begin submenu -->
 				<ul class="submenu">
-    	    		{{^loggedIn}}
-					<li><a href="/wp-login.php?action=register">_(Register|link label)</a></li>
      	   			<li><a href="/login/">_(Log In|link label)</a></li>
-      	  			{{/loggedIn}}
-      	  			{{#loggedIn}}
-       				<li><a href="/wp-admin/" class="no-ajaxy">_(Site Admin|link label)</a></li>
-       		 		<li><a href="/wp-login.php?action=logout">_(Log out|link label)</a></li>
-       	 			{{/loggedIn}}
 				</ul>
 				<!-- End Submenu -->
 			</li> 
@@ -90,7 +83,7 @@
 			</li>
 			<!-- End Speech -->
 			<!-- Begin Colors -->
-			<li><a id="colors">_(Colors|section heading)</a>
+			<li><a href="#" id="colors">_(Colors|section heading)</a>
 				<!-- Begin first submenu -->
 				<ul class="submenu">
 					<li id="pageColors"><a href="#">_(Page Colors|section heading)</a>

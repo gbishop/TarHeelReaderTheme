@@ -415,7 +415,7 @@ define(['jquery',
                     width: $img.attr('data-width'),
                     height: $img.attr('data-height')
                 },
-                caption: caption
+                caption: caption ? caption : $('#wlClickToEdit').html()
             };
             templates.setImageSizes(view.image); // size the image
             var $content = $(templates.render('bookPage', view)); // render like any book page

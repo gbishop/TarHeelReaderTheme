@@ -15,7 +15,7 @@ $pageLinkFontSize: 0.8em;
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
-    //font-family: Helmet, Freesans, sans-serif;
+    font-family: Helmet, Freesans, sans-serif;
     font-size: 100%;
     width: 100%;
     height: 100%;
@@ -45,26 +45,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 /* And here begins the Wordpress fun.
 -------------------------------------------------------------------------------*/
-
-/*
- * 
- * TEMPORARY CODE
- * 
- * 
- */
-
-.server-page {
-  .article {
-    float: left;
-  }
-}
-
-/*
- * 
- * END TEMPORARY CODE
- * 
- * 
- */
 
 .content-wrap {
     width: 48em;
@@ -100,8 +80,14 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .header {
     position: relative; // for positioning our navigation menu
     width: 100%;
+
     height: 4em;
     text-align: center;
+    //background-color: rgba(220, 220, 220, 0.5);
+    display: block;
+    
+    // background:rgb(51,51,51);
+    border-top: 0.25em solid #3399FF;
     min-height: 32px;
     
     //background:rgb(51,51,51);
@@ -131,6 +117,16 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     
     .description {
         font-size: 0.9em;
+    }
+}
+
+.thr-book-page .header {
+    height: 0;
+    min-height: 0;
+    border-top: 0;
+
+    h1 {
+        display: none;
     }
 }
 
@@ -344,7 +340,7 @@ h2 {
   li {
     // display submenu to the left
     .submenu {
-       right: 12.1em; // account for border
+       right: 12em; // account for border
        border-radius: 1em 0 0 1em;
        border-right: 0;
        border-left: .1em solid #DDD;
@@ -358,7 +354,7 @@ h2 {
           /* Set necessary background, border, and width */
            display: none;
            position: absolute;
-           right: 10em;
+           right: 9.8em;
            width: 10em;
            top: -4em;
            
@@ -455,6 +451,9 @@ h2 {
          // End color icons for text color
     }
    
+  }
+  a.checked {
+    background: url(/theme/images/check_mark.png) right center no-repeat;
   }
   
   a#speech {
