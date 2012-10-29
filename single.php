@@ -2,7 +2,7 @@
 if (in_category('books')):
 	include('single-book.php');
 else:
-	thr_header('', true);
+	thr_header('');
 	if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 	<article>
@@ -23,6 +23,10 @@ else:
 			</div>
 
 			<?php edit_post_link('Edit this entry','','.'); ?>
+			<div class="navigation">
+				<div class="next-posts"><?php next_post_link('%link', 'Next post', TRUE) ?></div>
+				<div class="prev-posts"><?php previous_post_link('%link', 'Previous post', TRUE) ?></div>
+			</div>
 
 		</div>
 	</article>
