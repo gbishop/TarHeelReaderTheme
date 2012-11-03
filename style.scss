@@ -15,7 +15,7 @@ $pageLinkFontSize: 0.8em;
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
-    font-family: Helmet, Freesans, sans-serif;
+    font-family: Helmet, Freesans, Arial, Helvetica, Verdana, sans-serif;
     font-size: 100%;
     width: 100%;
     height: 100%;
@@ -77,25 +77,44 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     display: block;
 }
 
+// The following styles apply to the Home, Books You Wrote, Announcements, FAQ, and Photo Credits pages
+.server-page, .your-books-page {
+  // show navigation menu immediately in pages such as the home page or the announcements page
+  .header .navigation {
+    visibility: visible;
+    display: inline;
+  }
+  
+  h2 {
+    font-size: 1.7em; // this size is bigger than h1, but I am unable to edit the home page so stick with 1.7em for now
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid #56A0D3;
+    color: #666;
+    padding-left: .25em;
+  }
+  
+  p {
+    text-align: left;
+    margin: 1em 0.5em;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+}
+
 .header {
     position: relative; // for positioning our navigation menu
     width: 100%;
 
     height: 4em;
     text-align: center;
-    //background-color: rgba(220, 220, 220, 0.5);
     display: block;
     
-    // background:rgb(51,51,51);
-    border-top: 0.25em solid #3399FF;
     min-height: 32px;
-    
-    //background:rgb(51,51,51);
-    //border-top: 0.25em solid #3399FF;
-    //height: 3em;
-    //background-color: rgba(220, 220, 220, 0.5);
-    //display: block;
-
+   
     h1 {
         font-size: 2em;
         padding-top: 0.4em;
@@ -106,9 +125,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
         a {
             text-decoration: none;
-            color: #888;
-            //font-family: 'Terminal Dosis', sans-serif;
-            font-weight:200;
+            color: #666;
+            font-family: 'Terminal Dosis', sans-serif;
+            font-weight: 200;
             //height:1.7em;
             //line-height:1.7em;
             padding: 0;
@@ -117,16 +136,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     
     .description {
         font-size: 0.9em;
-    }
-}
-
-.thr-book-page .header {
-    height: 0;
-    min-height: 0;
-    border-top: 0;
-
-    h1 {
-        display: none;
     }
 }
 
@@ -155,6 +164,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .thr-settings-icon {
+    opacity: 0; // default settings
     position: absolute;
     top: 0.65em;
     right: 2em;
@@ -192,9 +202,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     float: left;
     //width: 31em;
     width: 46em;
-    padding: 1em;
-    border-bottom: .1em solid #56A0D3;
-    overflow: auto;
+    padding: .5em 1em;
 }
 
 .entry { margin-left: 1em;}
@@ -204,7 +212,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .postmetadata {}
 
 p {
-    margin-bottom: 0.5em;
+    margin: 0.5em;
 }
 
 li {
@@ -214,7 +222,17 @@ li {
 
 h2 {
     font-size: 1.3em;
-    margin: 0.5em 0;
+    margin: .25em;
+    /*
+     * background: #56A0D3;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    color: #DDDDDD;
+    font-size: 1.5em;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    margin: 0.25em;
+    padding: 0.75em 1em;
+     */
 }
 
 /* Panel CSS for Navigation and Settings menus */
@@ -264,9 +282,9 @@ h2 {
           border-bottom: .1em solid #DDD;
         }
         
-        li:last-child {
+        /*li:last-child {
           border: 0;
-        }
+        }*/
         
         a {
           font-size: 1em;
@@ -301,6 +319,7 @@ h2 {
 
 .navigation {
     display: none; // hide initially
+    z-index: 99;
     left: 4em;
     box-shadow: .1em .1em .1em #AAA;
     
@@ -334,6 +353,7 @@ h2 {
 .mainSettings {
   display: none; // hide initially
   right: 4em;
+  z-index: 99;
   
   box-shadow: -.1em .1em .1em #AAA;
   
@@ -356,13 +376,13 @@ h2 {
            position: absolute;
            right: 9.8em;
            width: 10em;
-           top: -4em;
+           top: -2em;
            
            background: #777;
            border-radius: 1em 0 0 1em;
            border: .1em solid #DDD;
            z-index: 99;
-           
+            
            a {
              text-align: left;
              padding-left: 3.25em;
@@ -370,8 +390,19 @@ h2 {
            }
            
          }
+         
+         // a little adjustment to the innersubmenus inside 'My Book'
+         .myBookInnerSubmenu {
+             right: 10em;
+             width: 9em;
+             a {
+               text-align: center;
+               padding: 1em;
+             }
+         }
+  
       }
-      
+
       // Begin color icons for page color
       #pageColors .innerSubmenu {
         a.black {
@@ -404,9 +435,6 @@ h2 {
            
         a.yellow {
            background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
-          }
-          a.checked {
-            background: url(/theme/images/check_mark.png) right center no-repeat;
           }
         }
          // End color icons for page color
@@ -444,16 +472,15 @@ h2 {
            a.yellow {
              background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
            }
-           a.checked {
-             background: url(/theme/images/check_mark.png) right center no-repeat;
-           }
        }
-         // End color icons for text color
-    }
-   
-  }
+         
+         
+    } // end submenu
+    
+  } // end li
+
   a.checked {
-    background: url(/theme/images/check_mark.png) right center no-repeat;
+    background: url(/theme/images/check_mark.png) right center no-repeat !important;
   }
   
   a#speech {
@@ -464,24 +491,33 @@ h2 {
     background: url(/theme/images/colors_32.png) 1em center no-repeat;
   }
   
-  a#download {
-    background: url(/theme/images/download_32.png) 1em center no-repeat;
+  a#myBook {
+    background: url(/theme/images/my_book_32.png) 1em center no-repeat;
+  }
+  
+  a#default {
+    background: url(/theme/images/default_settings.png) 1em center no-repeat;
   }
   
 }
 
-.searchform {
+.searchForm {
     text-align: center;
     width: 100%;
-    margin: 1.25em 1em;
+    margin: 1em;
     
-    select{
-        width:7em;
+    select {
+        width: 10em;
+        margin: .15em;
+        padding: .2em;
+    }
+    
+    select[name=audience] {
+      width: 14em;
     }
 
     [name=search]{
-        float: left;
-        width: 6em;
+        width: 16em;
         height: 1.5em;
         border-radius: 0.5em;
         border:1px solid grey;
@@ -490,13 +526,12 @@ h2 {
     }
     
     input[type='submit'] {
-        float: left;
         font-size: 1em;
         margin-left: .25em;
         border-radius: 0.5em;
         padding: .1em 1em;
         background: #EEE;
-        width: 6em;
+        width: 8em;
     }
 
 }
@@ -656,11 +691,14 @@ h2 {
 }
 
 .thr-back-link {
-    left: 0px;
+    //left: 0px;
+    left: 1em;
     bottom: 0px;
 }
+
 .thr-next-link {
-    right: 0px;
+    //right: 0px;
+    right: 1em;
     bottom: 0px;
 }
 
@@ -683,8 +721,8 @@ h2 {
 }
 .thr-page-number {
     position: absolute;
-    top: 0.25em;
-    right: 0.25em;
+    top: 1em;
+    right: 1em;
     font-size: 1em;
 }
 
@@ -699,6 +737,21 @@ h2 {
         width: auto;
         height: 100%;
     }
+    
+   .header {
+      height: 0;
+      min-height: 0;
+      border-top: 0;
+
+      h1 {
+          display: none;
+      }
+      
+      .thr-home-icon { // make the home icon less opaque
+        opacity: 0.3;
+      }
+    }
+    
     h1 {
         font-size: 2em;
         height: 2.5em;
@@ -770,7 +823,9 @@ h2 {
     }
 }
 
-.navgation {}
+.your-books-page {
+  
+}
 .next-posts {}
 .prev-posts {}
 
