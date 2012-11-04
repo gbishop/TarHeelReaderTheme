@@ -54,6 +54,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     //position:relative; // why do we need this?
     
     border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
+    border-radius: 1em;
+    
     box-shadow: 0 0 .5em #56A0D3;
     overflow: auto;
     
@@ -71,6 +77,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     .description {
         display: none;
     }
+    .header .thr-settings-icon {
+      opacity: 1;
+    }
 }
 
 .active-page {
@@ -81,8 +90,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .server-page, .your-books-page {
   // show navigation menu immediately in pages such as the home page or the announcements page
   .header .navigation {
-    visibility: visible;
-    display: inline;
+    opacity: 1;
   }
   
   h2 {
@@ -235,7 +243,46 @@ h2 {
      */
 }
 
-/* Panel CSS for Navigation and Settings menus */
+// code for the decoratedButton class (for those buttons which we want to look fancy)
+.decoratedButton {
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+    background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: linear-gradient(top, #eeeeee, #cccccc);
+    border: 1px solid grey;
+    -webkit-border-radius: 0.25em;
+    -moz-border-radius: 0.25em;
+    -ms-border-radius: 0.25em;
+    -o-border-radius: 0.25em;
+    border-radius: 0.25em;
+    color: #333;
+    font: bold 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    padding: 0.5em 0;
+    text-align: center;
+    text-shadow: 0 1px 0 #eee;
+    width: 11em;
+    text-decoration:none;
+    
+    &:hover {
+      background-color: #dddddd;
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
+      background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: linear-gradient(top, #dddddd, #bbbbbb);
+      border: 1px solid #bbb;
+      border-bottom: 1px solid #999;
+      cursor: pointer;
+      text-shadow: 0 1px 0 #ddd;
+      color:#333;
+    }
+}
+
+// Panel CSS for Navigation and Settings menus
 .panel {
     position: absolute;
     top: 3em;
@@ -559,7 +606,7 @@ h2 {
     li {
         width: 11em;
         height: 11em;
-        border: 1px solid grey;
+        border: 1px solid #56A0D3;
         margin: 0.2em;
         float: left;
         text-align: center;
@@ -570,7 +617,7 @@ h2 {
         border-radius: 0.25em;
         //-webkit-box-shadow: 0.2em 0.2em 0.25em 2px #aaaaaa;
         //-moz-box-shadow: 0.1em 0.1em 0.1em 2px #aaaaaa;
-        box-shadow: 0.1em 0.1em 0.0em 2px #aaaaaa;
+        box-shadow: 0.1em 0.1em 0.0em 1px #aaaaaa;
 
     }
 
@@ -634,7 +681,7 @@ h2 {
     }
 }
 
-.thr-find-next, .thr-find-back {
+/*.thr-find-next, .thr-find-back {
     background-color: #eeeeee;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
     background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
@@ -670,7 +717,7 @@ h2 {
     cursor: pointer;
     text-shadow: 0 1px 0 #ddd;
     color:#333;
-}
+}*/
 
 .thr-find-next:active, .thr-find-back:hover:active {
     border: 1px solid #aaa;
@@ -824,8 +871,79 @@ h2 {
 }
 
 .your-books-page {
+  #publishedBooksContainer {
+    margin: 1em 0;
+  }
+  
+  p {
+    margin-left: 1em;
+  }
+  
+  .list { // begin .list code
+    
+    margin-bottom: 1em;
+    
+    background-color: #DFDFDF;
+    background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
+    background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: linear-gradient(top, #F0F2F7, #DDD);
+    
+    border: .1em solid #AAA;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    border-radius: 0.3em;
+    box-shadow: .1em .1em .1em #56A0D3;
+
+    li {
+      list-style: none;
+      padding: .5em .75em;
+      margin: 0;
+      border-bottom: 1px solid #555;
+    }
+    
+    li:last-child {
+      border: 0;
+    }
+    
+    a {
+      color: #666666;
+      font-weight: bold;
+      letter-spacing: .1em;
+      padding-left: .5em;
+      padding-right: 1.5em;
+      
+      &:hover {
+        color: #FFF;
+      }
+    }
+    
+    a.book {
+      background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
+      
+    }
+    
+    a.edit {
+      background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
+      padding-left: 1.5em;
+    }
+  } // end .list code
+  
+  // modify the button (which is of class decoratedButton) a little bit
+  
+  .decoratedButton {
+    font-weight: normal;
+    letter-spacing: .05em;
+    width: auto;
+    padding: .25em .5em;
+  }
   
 }
+
 .next-posts {}
 .prev-posts {}
 
@@ -833,7 +951,9 @@ h2 {
     .content-wrap {
         width: auto;
         overflow: hidden;
+        margin: 0.5em 1em;
     }
+    
     #writing-controls {
         display: none;
     }
