@@ -90,11 +90,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .server-page, .your-books-page {
   // show navigation menu immediately in pages such as the home page or the announcements page
   .header .navigation {
-    opacity: 1;
+    display: block;
   }
   
   h2 {
-    font-size: 1.7em; // this size is bigger than h1, but I am unable to edit the home page so stick with 1.7em for now
+    font-size: 1.7em;
     font-weight: normal;
     letter-spacing: 0.1em;
     border-bottom: 2px solid #56A0D3;
@@ -126,6 +126,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     h1 {
         font-size: 2em;
         padding-top: 0.4em;
+        letter-spacing: .05em;
         margin-top: 0.25em;
         
         height: 1.7em;
@@ -282,6 +283,75 @@ h2 {
     }
 }
 
+.decoratedList { // begin .list code
+    
+    margin-bottom: 1em;
+    
+    background-color: #DFDFDF;
+    background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
+    background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: linear-gradient(top, #F0F2F7, #DDD);
+    
+    border: .1em solid #AAA;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    border-radius: 0.3em;
+    box-shadow: .1em .1em .1em #56A0D3;
+
+    li {
+      list-style: none;
+      padding: .5em .75em;
+      margin: 0;
+      border-bottom: 1px solid #555;
+      
+      a {
+      color: #666666;
+      font-weight: bold;
+      letter-spacing: .1em;
+      padding-left: .5em;
+      padding-right: 1.5em;
+      
+       &:hover {
+          color: #56A0D3;
+        }
+      }
+    }
+    
+    li:last-child {
+      border: 0;
+    }
+    
+ }
+
+.decoratedLink {
+    background-color: #ccc;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc, color-stop(100%, #aaa)));
+    background-image: -webkit-linear-gradient(top, #ccc, #aaa);
+    background-image: -moz-linear-gradient(top, #ccc, #aaa);
+    background-image: -ms-linear-gradient(top, #ccc, #aaa);
+    background-image: -o-linear-gradient(top, #ccc, #aaa);
+    background-image: linear-gradient(top, #ccc, #aaa);
+    
+    border: 1px solid #666;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    -o-border-radius: 0.5em;
+    border-radius: 0.5em;
+    
+    color: #FFF;
+    padding: .25em .5em;
+    
+    &:hover {
+      color: #56A0D3;
+    }
+}
+
 // Panel CSS for Navigation and Settings menus
 .panel {
     position: absolute;
@@ -329,9 +399,9 @@ h2 {
           border-bottom: .1em solid #DDD;
         }
         
-        /*li:last-child {
+        li:last-child {
           border: 0;
-        }*/
+        }
         
         a {
           font-size: 1em;
@@ -753,14 +823,32 @@ h2 {
     width: 6em;
     height: 4em;
     display: block;
+    
     text-decoration: none;
-    border: 2px solid; // red;
+    letter-spacing: .05em;
+    color: #EFEFEF;
+    
+    border: 2px solid #CECECE; // red;
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    -ms-border-radius: .5em;
+    -o-border-radius: .5em;
+    border-radius: .5em;
+    
+    background-color: #EEE;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #EFEFEF));
+    background-image: -webkit-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: -moz-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: -ms-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: -o-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: linear-gradient(top, #EEE, #EFEFEF);
+    
     position: absolute; // fixed works fine but isn't supported before ios5?
     bottom: 0;
     font-size: $pageLinkFontSize;
 
     img {
-        margin: 0.25em auto 0 auto;
+        margin: 0.5em auto 0.25em auto;
         width: 1.5em;
         height: 1.5em;
         display: block;
@@ -804,6 +892,13 @@ h2 {
         height: 2.5em;
         overflow: hidden;
     }
+    
+    .thr-question {
+        letter-spacing: 0.1em;
+        border-bottom: 2px solid #56A0D3;
+        color: #666;
+        margin: 1em auto;
+    }
 
     .thr-pic-box {
         width: 29em;
@@ -823,11 +918,13 @@ h2 {
         margin: 0 auto;
     }
     .thr-choices {
-        width: 12em;
+        //width: 12em;
+        width: 18em; // make the list a bit bigger so that the text fits in nicely
         margin: auto;
+        margin-top: .5em;
         font-size: 2em;
         text-align: left;
-
+        
         li {
             padding: 0.25em 0.25em;
             .thr-stars {
@@ -839,11 +936,18 @@ h2 {
 
         a {
             text-decoration: none;
+            font-weight: normal;
             color: inherit;
         }
 
         li:hover, li.selected {
-            border: 0.25em solid;
+            border: 0.2em solid #56A0D3;
+            border-radius: .1em;
+            -webkit-border-radius: .1em;
+            -moz-border-radius: .1em;
+            -ms-border-radius: .1em;
+            -o-border-radius: .1em;
+            border-radius: .1em;
             padding: 0px 0px;
         }
 
@@ -879,59 +983,15 @@ h2 {
     margin-left: 1em;
   }
   
-  .list { // begin .list code
+  // icons for the list items
+   a.book {
+     background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
+   }
     
-    margin-bottom: 1em;
-    
-    background-color: #DFDFDF;
-    background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
-    background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: linear-gradient(top, #F0F2F7, #DDD);
-    
-    border: .1em solid #AAA;
-    -webkit-border-radius: 0.3em;
-    -moz-border-radius: 0.3em;
-    -ms-border-radius: 0.3em;
-    -o-border-radius: 0.3em;
-    border-radius: 0.3em;
-    box-shadow: .1em .1em .1em #56A0D3;
-
-    li {
-      list-style: none;
-      padding: .5em .75em;
-      margin: 0;
-      border-bottom: 1px solid #555;
-    }
-    
-    li:last-child {
-      border: 0;
-    }
-    
-    a {
-      color: #666666;
-      font-weight: bold;
-      letter-spacing: .1em;
-      padding-left: .5em;
-      padding-right: 1.5em;
-      
-      &:hover {
-        color: #FFF;
-      }
-    }
-    
-    a.book {
-      background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
-      
-    }
-    
-    a.edit {
-      background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
-      padding-left: 1.5em;
-    }
-  } // end .list code
+   a.edit {
+     background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
+     padding-left: 1.5em;
+   }
   
   // modify the button (which is of class decoratedButton) a little bit
   

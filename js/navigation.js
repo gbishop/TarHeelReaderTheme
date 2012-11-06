@@ -39,12 +39,12 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         // Let's initialize the keybinding
         initNavKeybindings();
             
-        $body.on("click", selectorString, function(e) { // on mouseover, show the submenus accordingly
+        $body.on("click", selectorString, function(e) { // on click, show the submenus accordingly
              $(".submenu").hide(); // hide all menus and submenus
              $(this).find(".submenu").show();
         });
     
-        // if the user mouses over anywhere in the document except the submenu, close the submenu
+        // if the user clicks anywhere in the document except the submenu, close the submenu
         $(document).on("click", "head, body", function() {
             $(".submenu, .innerSubmenu").hide();
         });
@@ -70,19 +70,24 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         
         // Show the nav panel on home icon click, and the settings panel on settings icon click
         $body.on('click', ".thr-home-icon img", function() {
-            $(".navigation").toggle(0);
-            $(".mainSettings").hide(); // hide settings
+            $(".navigation").stop().slideToggle();
+            $(".mainSettings").stop().slideUp(); // hide settings
             return false; // for those who have JavaScript enabled, don't allow the click to go to the home page
         });
         
         $body.on("click", ".thr-settings-icon img", function() {
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             
-            $(".mainSettings").toggle(0);
-            $(".navigation").hide(); // hide navigation
+            $(".mainSettings").stop().slideToggle();
+            $(".navigation").stop().slideUp(); // hide navigation
             
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         }); // end click
+
+        // if the user clicks anywhere other than one of the menus, hide the menus
+        $(document).on("click", "head, body", function() {
+            $(".navigation, .mainSettings").stop().slideUp();
+        }); 
         
         // the user is changing a setting, adjust settings and update accordingly
         $body.on("click", "#speechOptions li > a, #pageColorsOptions li > a, #textColorsOptions li > a", function() {
@@ -96,11 +101,6 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         $body.on("click", ".mainSettings #default", function() {
             resetSettings();
         });
-        
-        // if the user clicks anywhere other than one of the menus, hide the menus
-        $(document).on("click", "head, body", function() {
-            $(".navigation, .mainSettings").hide();
-        }); 
       
       }); // end ready
       

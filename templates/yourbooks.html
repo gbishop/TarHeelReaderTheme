@@ -4,7 +4,7 @@
     	{{#has_drafts}}
     	<p>_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the "Delete selected drafts" button. Deleting a draft is not reversible.)</p>
     	<form method="POST" action="/your-books/">
-        	<ul class="list">
+        	<ul class="decoratedList">
             	{{#drafts}}
             	<li>
                	 	<input type='checkbox' name='del[]' value='{{ID}}' title='delete' />
@@ -25,7 +25,7 @@
     	<h2>_(Your Published Books)</h2>
     	{{#has_published}}
     	<p>_(Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title.)</p>
-    	<ul class="list">
+    	<ul class="decoratedList">
         	{{#published}}
         	<li>
             	<a href="{{link}}" class="book">{{title}}</a>
