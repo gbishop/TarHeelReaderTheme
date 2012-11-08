@@ -1,39 +1,43 @@
 {{#user}}
-    <h2>_(Your Draft Books)</h2>
-    {{#has_drafts}}
-    <p>_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the "Delete selected drafts" button. Deleting a draft is not reversible.)</p>
-    <form method="POST" action="/your-books/">
-        <ul>
-            {{#drafts}}
-            <li>
-                <input type='checkbox' name='del[]' value='{{ID}}' title='delete' />
-                <a href="/write/?id={{ID}}">{{title}}{{^title}}_(untitled){{/title}}</a>
-            </li>
-            {{/drafts}}
-        </ul>
-        <input type="submit" value="_(Delete checked drafts)" name="delete" />
-    </form>
-    {{/has_drafts}}
-    {{^has_drafts}}
-    <p>_(If you had any books saved as drafts they would appear here.)</p>
-    {{/has_drafts}}
+	<div id="draftsContainer">
+    	<h2>_(Your Draft Books)</h2>
+    	{{#has_drafts}}
+    	<p>_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the "Delete selected drafts" button. Deleting a draft is not reversible.)</p>
+    	<form method="POST" action="/your-books/">
+        	<ul class="decoratedList">
+            	{{#drafts}}
+            	<li>
+               	 	<input type='checkbox' name='del[]' value='{{ID}}' title='delete' />
+                	<a href="/write/?id={{ID}}" class="book">{{title}}{{^title}}_(untitled){{/title}}</a>
+            	</li>
+         	   {{/drafts}}
+        	</ul>
+        	<input class="decoratedButton" type="submit" value="_(Delete checked drafts)" name="delete" />
+   	 	</form>
+   	
+    	{{/has_drafts}}
+    	{{^has_drafts}}
+    	<p>_(If you had any books saved as drafts they would appear here.)</p>
+    	{{/has_drafts}}
+   </div>
 
-
-    <h2>_(Your Published Books)</h2>
-    {{#has_published}}
-    <p>_(Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title.)</p>
-    <ul>
-        {{#published}}
-        <li>
-            <a href="{{link}}">{{title}}</a>
-            <a href="/write/?id={{ID}}">_(Edit)</a>
-        </li>
-        {{/published}}
-    </ul>
-    {{/has_published}}
-    {{^has_published}}
-    <p>_(If you had any published books they would be listed here.)</p>
-    {{/has_published}}
+	<div id="publishedBooksContainer">
+    	<h2>_(Your Published Books)</h2>
+    	{{#has_published}}
+    	<p>_(Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title.)</p>
+    	<ul class="decoratedList">
+        	{{#published}}
+        	<li>
+            	<a href="{{link}}" class="book">{{title}}</a>
+            	<a href="/write/?id={{ID}}" class="edit">_(Edit)</a>
+        	</li>
+        	{{/published}}
+    	</ul>
+    	{{/has_published}}
+    	{{^has_published}}
+    	<p>_(If you had any published books they would be listed here.)</p>
+   </div>
+    	{{/has_published}}
 {{/user}}
 {{^user}}
 <p>_(You must be logged in to see your draft and published books.)</p>

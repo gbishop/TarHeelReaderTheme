@@ -91,7 +91,9 @@ define(["jquery",
             }
             var $oldPage = page.getInactive('thr-book-page');
             $oldPage.addClass('thr-colors');
-            $oldPage.empty().append('<div class="content-wrap">' + newContent + '</div>');
+            $oldPage.empty()
+                .append(templates.render('heading'))
+                .append('<div class="content-wrap">' + newContent + '</div>');
             $def.resolve($oldPage, {title: book.title, colors: true});
         });
         return $def;

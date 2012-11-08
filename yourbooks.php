@@ -47,7 +47,7 @@ if(is_user_logged_in()) {
     $view['has_published'] = count($published) > 0;
 }
 
-thr_header('your-books-page', true);
+thr_header('your-books-page');
 echo template_render('yourbooks', $view);
 thr_footer(false, false);
 ?>
