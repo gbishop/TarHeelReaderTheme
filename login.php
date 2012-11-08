@@ -26,6 +26,7 @@ Display the login form
 }
 ?>
 <?php thr_header(''); ?>
+<!-- login.php -->
 <h1>Login to Tar Heel Reader</h1>
 <p><?php echo $msg ?></p>
 <form class="loginForm" action="/login/" method="post">

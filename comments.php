@@ -1,3 +1,4 @@
+<!-- comments.php -->
 <?php
 
 	if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))

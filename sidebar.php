@@ -1,3 +1,4 @@
+<!-- sidebar.php -->
 <?php
 $view = array();
 $view['loggedIn'] = is_user_logged_in();

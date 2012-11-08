@@ -1,4 +1,4 @@
-<?php thr_header('thr-book-page thr-colors'); ?>
+<?php thr_header('thr-book-page thr-colors'); ?> <!-- single-book.php -->
 
     <?php if (have_posts()):
         while (have_posts()):

@@ -1,3 +1,4 @@
+        <!-- footing.php -->
         <footer>
             <div class="footer clear">
                 <!--

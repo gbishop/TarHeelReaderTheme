@@ -92,7 +92,9 @@ foreach( $searchFormData['controls'] as &$control) {
 $searchFormData = setFormFromState($searchFormData);
 setTHR('findAnotherLink', find_url()); // set the return to link to come back to this state
 ?>
-<?php thr_header('find-page');
+<?php thr_header('find-page'); ?>
+<!-- find.php -->
+<?php
 $view = array();
 $view['searchForm'] = template_render('form', $searchFormData);
 // edit the data to create the view for the template

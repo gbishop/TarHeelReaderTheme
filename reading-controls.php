@@ -6,6 +6,7 @@ Allow users to configure reading
 */
 ?>
 <?php thr_header(''); ?>
+<!-- reading-controls.php -->
 <?php
 
 // get the id if any
