@@ -48,8 +48,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 .content-wrap {
     width: 48em;
-    margin: .5em auto;
-    padding: 1em;
+    margin: 0 auto 1em;
+    padding: 0 1em 1em;
     
     //position:relative; // why do we need this?
     
@@ -88,11 +88,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 // The following styles apply to the Home, Books You Wrote, Announcements, FAQ, and Photo Credits pages
 .server-page, .your-books-page {
-  // show navigation menu immediately in pages such as the home page or the announcements page
-  .header .navigation {
-    display: block;
-  }
-  
   h2 {
     font-size: 1.7em;
     font-weight: normal;
@@ -125,9 +120,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
    
     h1 {
         font-size: 2em;
-        padding-top: 0.4em;
+        padding-top: 0.25em;
         letter-spacing: .05em;
-        margin-top: 0.25em;
+        margin-top: 0.1em;
         
         height: 1.7em;
         min-height: 57%;
@@ -137,8 +132,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             color: #666;
             font-family: 'Terminal Dosis', sans-serif;
             font-weight: 200;
-            //height:1.7em;
-            //line-height:1.7em;
             padding: 0;
         }
     }
@@ -358,14 +351,6 @@ h2 {
     top: 3em;
     padding: 0;
     width: 12em;
-    
-    /* Background code... */
-    background: #676767; // If all else fails...
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#888)); /* Safari 4-5, Chrome 1-9 */ 
-    background: -webkit-linear-gradient(top, #555, #888); /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, #555, #888); /* Firefox */
-    background: -ms-linear-gradient(top, #555, #888); /* IE 10+ */
-    background: -o-linear-gradient(top, #555, #888); /* Opera */
      
     border-radius: 1em;
     border: .1em solid #DDD;
@@ -381,15 +366,16 @@ h2 {
       .submenu {
         position: absolute;
         display: none; // Navigation.js is responsible for making it visible at appropriate times
-        top: -0.1em; // account for nav height + border
-        width: 10em;
+        top: -0.05em; // line up with border
+        width: 11em;
         padding: 0;
         margin: 0;
         list-style: none;
   
         /* Set necessary background, border, and width */
-        background: #888;
+        background: #8E8E8E;
         border-radius: 0 1em 1em 0;
+        box-shadow: 0 0 .1em #666;
         border: .1em solid #DDD;
         border-left: 0;
         z-index: 99;
@@ -440,9 +426,17 @@ h2 {
     left: 4em;
     box-shadow: .1em .1em .1em #AAA;
     
+    /* Background code... */
+    background: #888; // If all else fails...
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6F6F6F), to(#8E8E8E)); /* Safari 4-5, Chrome 1-9 */ 
+    background: -webkit-linear-gradient(left, #6F6F6F, #8E8E8E); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(left, #6F6F6F, #8E8E8E); /* Firefox */
+    background: -ms-linear-gradient(left, #6F6F6F, #8E8E8E); /* IE 10+ */
+    background: -o-linear-gradient(left, #6F6F6F, #8E8E8E); /* Opera */
+    
     // display submenu to the right
     .submenu {
-      left: 12em; // account for width of navigation
+      left: 12.05em; // account for width of navigation
     }
     
     a#home {
@@ -474,10 +468,18 @@ h2 {
   
   box-shadow: -.1em .1em .1em #AAA;
   
+   /* Background code... */
+   background: #888; // If all else fails...
+   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */ 
+   background: -webkit-linear-gradient(left, #8E8E8E, #6F6F6F); /* Safari 5.1, Chrome 10+ */
+   background: -moz-linear-gradient(left, #8E8E8E, #6F6F6F); /* Firefox */
+   background: -ms-linear-gradient(left, #8E8E8E, #6F6F6F); /* IE 10+ */
+   background: -o-linear-gradient(left, #8E8E8E, #6F6F6F); /* Opera */
+  
   li {
     // display submenu to the left
     .submenu {
-       right: 12em; // account for border
+       right: 12.05em; // account for border
        border-radius: 1em 0 0 1em;
        border-right: 0;
        border-left: .1em solid #DDD;
@@ -491,11 +493,11 @@ h2 {
           /* Set necessary background, border, and width */
            display: none;
            position: absolute;
-           right: 9.8em;
+           right: 11em;
            width: 10em;
            top: -2em;
            
-           background: #777;
+           background: #8E8E8E;
            border-radius: 1em 0 0 1em;
            border: .1em solid #DDD;
            z-index: 99;
@@ -510,8 +512,9 @@ h2 {
          
          // a little adjustment to the innersubmenus inside 'My Book'
          .myBookInnerSubmenu {
-             right: 10em;
+             right: 11em;
              width: 9em;
+             
              a {
                text-align: center;
                padding: 1em;
@@ -621,7 +624,7 @@ h2 {
 .searchForm {
     text-align: center;
     width: 100%;
-    margin: 1em;
+    margin: 0.75em auto 0.5em;
     
     select {
         width: 10em;
@@ -810,13 +813,11 @@ h2 {
 .thr-back-link {
     //left: 0px;
     left: 1em;
-    bottom: 0px;
 }
 
 .thr-next-link {
     //right: 0px;
     right: 1em;
-    bottom: 0px;
 }
 
 .thr-next-link, .thr-back-link {
@@ -844,7 +845,7 @@ h2 {
     background-image: linear-gradient(top, #EEE, #EFEFEF);
     
     position: absolute; // fixed works fine but isn't supported before ios5?
-    bottom: 0;
+    bottom: .5em;
     font-size: $pageLinkFontSize;
 
     img {
@@ -871,6 +872,12 @@ h2 {
     .content-wrap {
         width: auto;
         height: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        
+        border-radius: 0;
+        box-shadow: 0;
     }
     
    .header {
@@ -942,7 +949,6 @@ h2 {
 
         li:hover, li.selected {
             border: 0.2em solid #56A0D3;
-            border-radius: .1em;
             -webkit-border-radius: .1em;
             -moz-border-radius: .1em;
             -ms-border-radius: .1em;
@@ -1016,6 +1022,7 @@ h2 {
     
     #writing-controls {
         display: none;
+        margin: .5em 0;
     }
 
     noscript {
@@ -1038,9 +1045,17 @@ h2 {
         position: relative;
         font-size: 1em;
         padding: 0.3em;
+        padding-left: 0.5em;
         margin: 0 0 0.25em 0;
-        background-color: #FFF;
+        background-color: #FEFEFE;
+        background-image: -webkit-gradient(linear, left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -webkit-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -moz-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -ms-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -o-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: linear-gradient(left, #FEFEFE 30%, #F8F8F8);
         border-radius: 1em;
+        color: #333;
     }
 
     h3 {

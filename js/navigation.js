@@ -40,8 +40,9 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         initNavKeybindings();
             
         $body.on("click", selectorString, function(e) { // on click, show the submenus accordingly
-             $(".submenu").hide(); // hide all menus and submenus
+             $(".submenu:visible, .innerSubmenu:visible").hide();
              $(this).find(".submenu").show();
+             console.log("clicked submenu");
         });
     
         // if the user clicks anywhere in the document except the submenu, close the submenu
@@ -56,9 +57,10 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
             }
         }); 
         
-        $body.on("click", ".mainSettings > li > .submenu > li", function() {
-            $(".innerSubmenu").hide();
+        $body.on("click", ".mainSettings > li > .submenu > li", function(e) {
+            $(".innerSubmenu:visible").hide();
             $(this).find(".innerSubmenu").show();
+            return false;
         }); 
         
         // if the click was made inside one of the menus, don't close the menu
@@ -70,23 +72,23 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         
         // Show the nav panel on home icon click, and the settings panel on settings icon click
         $body.on('click', ".thr-home-icon img", function() {
-            $(".navigation").stop().slideToggle();
-            $(".mainSettings").stop().slideUp(); // hide settings
+            $(".navigation").slideToggle();
+            $(".mainSettings").slideUp(); // hide settings
             return false; // for those who have JavaScript enabled, don't allow the click to go to the home page
         });
         
         $body.on("click", ".thr-settings-icon img", function() {
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             
-            $(".mainSettings").stop().slideToggle();
-            $(".navigation").stop().slideUp(); // hide navigation
+            $(".mainSettings").slideToggle();
+            $(".navigation").slideUp(); // hide navigation
             
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         }); // end click
 
         // if the user clicks anywhere other than one of the menus, hide the menus
         $(document).on("click", "head, body", function() {
-            $(".navigation, .mainSettings").stop().slideUp();
+            $(".navigation, .mainSettings").slideUp();
         }); 
         
         // the user is changing a setting, adjust settings and update accordingly
