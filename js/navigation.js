@@ -29,25 +29,29 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                              }
                         }
                     }
-                  };
+          };
       
     $(function() {
         var $body = $("body"),
             selectorString = ".navigation > li, .mainSettings > li",
             currentSettings = getCurrentSettings();
             
-        // Let's initialize the keybinding
+            /*$navIcon = $("a.thr-home-icon"),
+            $settingsIcon = $("a.thr-settings-icon"),
+            $navigation = $(".navigation"),
+            $settings = $(".mainSettings");*/
+            
+        // Let's initialize the keybindings
         initNavKeybindings();
+        
+        /*
+         * Begin Navigation Code
+         */
             
         $body.on("click", selectorString, function(e) { // on click, show the submenus accordingly
              $(".submenu:visible, .innerSubmenu:visible").hide();
              $(this).find(".submenu").show();
              console.log("clicked submenu");
-        });
-    
-        // if the user clicks anywhere in the document except the submenu, close the submenu
-        $(document).on("click", "head, body", function() {
-            $(".submenu, .innerSubmenu").hide();
         });
         
         // prevent the submenu from closing if the mouseover is inside the submenu
@@ -56,6 +60,11 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
               e.stopPropagation();
             }
         }); 
+        
+        // if the user clicks anywhere in the document except the submenu, close the submenu
+        $(document).on("click", "head, body", function() {
+            $(".submenu, .innerSubmenu").hide();
+        });
         
         $body.on("click", ".mainSettings > li > .submenu > li", function(e) {
             $(".innerSubmenu:visible").hide();
@@ -84,12 +93,20 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
             $(".navigation").slideUp(); // hide navigation
             
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
-        }); // end click
+        });
 
         // if the user clicks anywhere other than one of the menus, hide the menus
         $(document).on("click", "head, body", function() {
             $(".navigation, .mainSettings").slideUp();
         }); 
+        
+        /*
+         * End Navigation Code
+         */
+        
+        /* 
+         * Begin Settings Code
+         */
         
         // the user is changing a setting, adjust settings and update accordingly
         $body.on("click", "#speechOptions li > a, #pageColorsOptions li > a, #textColorsOptions li > a", function() {
@@ -103,6 +120,10 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         $body.on("click", ".mainSettings #default", function() {
             resetSettings();
         });
+        
+        /*
+         * End Settings Code
+         */
       
       }); // end ready
       
@@ -166,12 +187,62 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
           $("#textColorsOptions " + "." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
       }
       
+      // function for navigation via key bindings
       function initNavKeybindings() {
-          $("body").on("keyup", function(e) {
-              var $focusedElement = $("*:focus"),
-                  $mainSettings = $(".mainSettings");
+          
+         var  currIndices = {
+                  mainMenu: 0,
+                  subMenu: 0,
+                  innerSubMenu: 0,
+                  resetIndices: function() {
+                      for(var key in this) {
+                         if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
+                             this[key] = 0;
+                         }
+                      }
+                  }, // end function
+                  incrementIndex: function(key) {
+                      if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
+                          this[key] += 1; // increment the index by 1
+                      }
+                  }, // end function
+                  getIndex: function(key) {
+                      if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
+                          return this[key];
+                      }
+                  } // end function
+              };
+          
+          console.log(currIndices.getIndex("mainMenu"));
+          currIndices.incrementIndex("mainMenu");
+          console.log(currIndices.getIndex("mainMenu"));
+          
+              
+          $("body").on("keydown", function(e) {
+              var keyCode = e.keyCode || e.which;
+              
+              // if tab is pressed...
+              if(e.keyCode == 9) {
+                  var $focusedElement = $("*:focus");
+                  // if we are focused on a menu icon, show the menu
+                  if($focusedElement.is($(".thr-home-icon"))) {
+                      $(".thr-home-icon img").click();
+                      currIndices.resetIndices();
+                      console.log("clicking home");
+                      
+                  } else if($focusedElement.is($(".thr-settings-icon"))) {
+                      $(".thr-settings-icon img").click();
+                      currIndices.resetIndices();
+                      console.log("clicking settings");
+                  } else {
+                      //$(".navigation, .mainSettings").slideUp();
+                  }
+                  e.stopPropagation();
+              } else if(e.keyCode == 37 && isVisible($navigation)) { // left and navigation is open
                   
-             // if($focusedElement === $())
+              }
+              
+             
           });
       }
       
