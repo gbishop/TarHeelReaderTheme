@@ -26,23 +26,33 @@ Display the login form
 }
 ?>
 <?php thr_header(''); ?>
-<h2>Login to Tar Heel Reader</h2>
+<!-- login.php -->
+<?php
+if ( ! is_user_logged_in() ): ?>
+<h1>Login to Tar Heel Reader</h1>
 <p><?php echo $msg ?></p>
 <form class="loginForm" action="/login/" method="post">
-    <p>
-        <label>Username<br />
-        <input type="text" name="log" class="input" value="" size="20" tabindex="10" /></label>
-    </p>
-    <p>
-        <label>Password<br />
+<p>
+<label>Username<br />
+<input type="text" name="log" class="input" value="" size="20" tabindex="10" /></label>
+</p>
+<p>
+<label>Password<br />
 
-        <input type="password" name="pwd" class="input" value="" size="20" tabindex="20" /></label>
-    </p>
-    <p class="forgetmenot"><label><input name="rememberme" type="checkbox" value="forever" tabindex="90" /> Remember Me</label></p>
-    <p class="submit">
-        <input type="submit" name="wp-submit" class="button-primary" value="Log In" tabindex="100" />
-        <input type="hidden" name="redirect_to" value="/" />
-        <input type="hidden" name="testcookie" value="1" />
-    </p>
+<input type="password" name="pwd" class="input" value="" size="20" tabindex="20" /></label>
+</p>
+<p class="forgetmenot"><label><input name="rememberme" type="checkbox" value="forever" tabindex="90" /> Remember Me</label></p>
+<p class="submit">
+<input type="submit" name="wp-submit" class="button-primary" value="Log In" tabindex="100" />
+<input type="hidden" name="redirect_to" value="/" />
+<input type="hidden" name="testcookie" value="1" />
+</p>
 </form>
-<?php thr_footer(true, true); ?>
+<?php
+    wp_register('<br/>', '<br/>');
+else:
+    wp_loginout( home_url() ); // display log out link
+    wp_register('<br/>', '<br/>');
+endif;
+
+thr_footer(true, true); ?>

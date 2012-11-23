@@ -418,6 +418,17 @@ h2 {
       }
         
     }
+    
+    li.selectedLink {
+      border: .2em solid red !important;
+      -webkit-border-radius: 0.25em;
+      -moz-border-radius: 0.25em;
+      -ms-border-radius: 0.25em;
+      -o-border-radius: 0.25em;
+      border-radius: 0.25em;
+    }
+    
+
 }
 
 .navigation {
