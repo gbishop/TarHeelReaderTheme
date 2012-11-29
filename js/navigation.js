@@ -395,8 +395,11 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                         
                                                 
                     }
-                 }
-              }
+                 } else if(keyCode == 9 && $openMenu.is(".mainSettings:visible")) { // tab pressed and mainSettings is open
+                    $openMenu.slideUp();
+                    
+                 } // end if clauses for key codes
+              } // end isNavMenu open or isSettingsMenu open if
           }); // end on keydown
           
       } // end initNavKeyBinds
