@@ -33,7 +33,6 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
       
     $(function() {
         var $body = $("body"),
-            selectorString = ".navigation > li, .mainSettings > li",
             currentSettings = getCurrentSettings();
             
         // initialize the keybindings
@@ -42,29 +41,27 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         /*
          * Begin Navigation Code
          */
-        $body.on("click", selectorString, function(e) { // on click, show the submenus accordingly
+        $body.on("click", ".navigation:visible > li, .mainSettings:visible > li", function(e) { // on click, show the submenus accordingly
              $(".submenu:visible, .innerSubmenu:visible").hide();
              $(this).find(".submenu").show();
              console.log("clicked submenu");
         });
         
-        $body.on("click", ".mainSettings > li > .submenu > li", function(e) {
+        $body.on("click", ".mainSettings:visible > li > .submenu:visible > li", function(e) {
             $(".innerSubmenu:visible").hide();
             $(this).find(".innerSubmenu").show();
             return false;
         }); 
     
-        $body.on("click", ".navigation, .mainSettings", function(e) { // if the click was made inside one of the menus, don't close the menu
-            if($(this).is(":visible")) {
-                e.stopPropagation();
-            }
+        $body.on("click", ".navigation:visible, .mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
+            e.stopPropagation();
         });
         
         // Show the nav panel on home icon click, and the settings panel on settings icon click
         $body.on('click', ".thr-home-icon img", function(e, data) {
             data === 'keybind' ? $(".navigation").slideDown() : $(".navigation").slideToggle();
             $(".mainSettings:visible").slideUp(); // hide settings
-            $(".submenu").hide();
+            $(".submenu:visible").hide();
             
             /*
              *              Why is the click event fired multiple times when it 
@@ -80,12 +77,12 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             data === 'keybind' ? $(".mainSettings").slideDown() : $(".mainSettings").slideToggle();
             $(".navigation:visible").slideUp(); // hide navigation
-            $(".submenu").hide();
+            $(".submenu:visible").hide();
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         });
 
         $(document).on("click", "head, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
-            $(".navigation, .mainSettings").slideUp();
+            $(".navigation:visible, .mainSettings:visible").slideUp();
             e.stopPropagation();
         }); 
         /*
@@ -104,7 +101,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
             return false;
         });
         
-        $body.on("click", ".mainSettings #default", function() {
+        $body.on("click", ".mainSettings:visible #default", function() {
             resetSettings();
         });
         /*
@@ -249,30 +246,27 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
           settingsState.setBounds($(".mainSettings > li").length, 'mainMenu');
           
           // open up navigation or settings menu on tab
-          //$("body").off("keypress", ".thr-home-icon").on("keypress", ".thr-home-icon", function(e) {
             $("body").on("keydown", ".thr-home-icon, .thr-settings-icon", function(e) {
-               keyCode = e.keyCode || e.which;
-              
-              //if(!$(".navigation").is(":visible")) navState.resetIndices();
-              
+               
+               eyCode = e.keyCode || e.which;
               if(keyCode == 9) { // if tab is pressed...
-                  //$(".thr-home-icon img").trigger('click', "keybind");
                   
                   var $this = $(this);
                   console.log($this);
+                  if($this.css("opacity") == 0) { return true; } // only show the corresponding menu if its icon is visible
+                  console.log($this.css("opacity"));
                   $this.find("img").trigger('click', 'keybind');
                   if($this.is($(".thr-home-icon"))) {
                       console.log('resetting indices');
                       navState.resetIndices();
-                      $(".navigation > li:first-child").addClass("selectedLink");
+                      $(".navigation:visible > li:first-child").addClass("selectedLink");
                   } else {
                       console.log('resetting settings');
                       settingsState.resetIndices();
-                      $(".mainSettings > li:first-child").addClass("selectedLink");
+                      $(".mainSettings:visible > li:first-child").addClass("selectedLink");
                   }
               }
-              
-             //e.stopPropagation();
+             
           }); // end on
           
           $("body").on("keydown", function(e) {
@@ -306,9 +300,10 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                                                 .addClass("selectedLink");
                     } else if(isSubMenuOpen && isInnerSubMenuOpen) {
                         openMenuState.decrementIndex('innerSubMenu');
-                        $openMenu.children("li").find(".submenu:visible .innerSubmenu > li")
+                        $openMenu.children("li").find(".submenu:visible .innerSubmenu:visible > li")
                                                 .eq(openMenuState.getIndex('innerSubMenu'))
                                                 .addClass("selectedLink");
+                        console.log(openMenuState.getIndex('innerSubMenu'));
                     } else {
                         openMenuState.decrementIndex('mainMenu');
                         $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
@@ -317,6 +312,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                     }
                     
                     return false;
+                    
                  } else if(keyCode == 40) { // DOWN KEY
                     $(".selectedLink").removeClass("selectedLink");
                     
@@ -329,9 +325,10 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                                         
                     } else if(isSubMenuOpen && isInnerSubMenuOpen) {
                         openMenuState.incrementIndex('innerSubMenu');
-                        $openMenu.children("li").find(".submenu:visible .innerSubmenu > li")
+                        $openMenu.children("li").find(".submenu:visible .innerSubmenu:visible > li")
                                                 .eq(openMenuState.getIndex('innerSubMenu'))
                                                 .addClass("selectedLink");
+                        console.log(openMenuState.getIndex('innerSubMenu'));
                     } else {
                         openMenuState.incrementIndex('mainMenu');
                         $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
@@ -343,6 +340,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                     
                  } else if(keyCode == 37 && $openMenu.is(".navigation:visible")  || // LEFT for navigation
                                 (keyCode == 39 && $openMenu.is(".mainSettings:visible"))) { // RIGHT for mainSettings
+                                    
                      $(".selectedLink").removeClass("selectedLink");
                     
                     if(isSubMenuOpen && !isInnerSubMenuOpen) {
@@ -381,6 +379,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                         $(".innerSubmenu:visible > li").eq(openMenuState.getIndex("innerSubMenu"))
                                                        .find("a")
                                                        .click();
+                            console.log(openMenuState.getIndex("innerSubMenu"));
                         
                     } else { // only mainMenu is open
                        var mainMenuLink = $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'));
@@ -393,11 +392,10 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                            mainMenuLink.find("a").trigger('click');
                        }
                         
-                                                
                     }
                  } else if(keyCode == 9 && $openMenu.is(".mainSettings:visible")) { // tab pressed and mainSettings is open
                     $openMenu.slideUp();
-                    
+                    console.log("tab pressed, mainSettings visible")
                  } // end if clauses for key codes
               } // end isNavMenu open or isSettingsMenu open if
           }); // end on keydown

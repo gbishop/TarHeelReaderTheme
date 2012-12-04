@@ -10,6 +10,92 @@ Version: 1
 $captionFontSize: 1.8em;
 $pageLinkFontSize: 0.8em;
 
+// define mixin for the alternative navigation/menu layout used for handheld devices
+@mixin phoneNavigation {
+   
+   .header {
+      padding-top: 4em; // for the navigation bar
+   }
+   
+  .thr-home-icon, .thr-settings-icon { // hide the menu and navigation icons
+    display: none;
+   }
+   
+   // Adjust navigation accordingly
+   .navigation {
+   
+      background-color: #56A0D3;
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
+      background-image: -webkit-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: -moz-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: -ms-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: -o-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: linear-gradient(bottom, #56A0D3, #286DA3);
+      
+      height: 4em;
+      width: 100%;
+      margin: 0 auto;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      border-bottom: 1px solid #FFF;
+      
+      li {
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 18%;
+        border: 0;
+        border-right: 1px solid #FFF;
+        position: relative;
+        
+        .submenu {
+          position: absolute;
+          top: 4.1em;
+          left: 0;
+          height: auto;
+          
+          background: #56A0D3;
+          border: 0;
+          -webkit-border-radius: 0 0 2em 2em;
+          -moz-border-radius: 0 0 2em 2em;
+          border-radius: 0 0 2em 2em;
+          
+          li {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid #FFF;
+          }
+        
+        }
+        
+        &:last-child {
+          .submenu { // modify the position of the submenu of the last link so that it doesn't go out of the page
+            left: -4.5em;
+           }
+        }
+        
+        &:nth-child(2), &:nth-child(3) { // the links 'Reading' and 'Writing' require more space
+          width: 22%;
+        }
+        
+      }
+      
+      a {
+        padding-left: 2.25em;
+        padding-right: 0;
+        background-position: 0.25em center !important;
+        color: #DDD;
+        text-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+       }
+    }
+}
+
 @import "reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
@@ -50,8 +136,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     width: 48em;
     margin: 0 auto 1em;
     padding: 0.25em 1em 1em;
-    
-    //position:relative; // why do we need this?
+    max-width: 95%;
+    //position: relative; // why do we need this?
     
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
@@ -74,10 +160,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       
       a.homeLink {
         padding: 1em 2em;
+        width: 10em;
         
         background-color: #56A0D3;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56A0D3), color-stop(100%, #EFEFEF));
-        background-image: -webkit-linear-gradient(top, #EEE, #286DA3);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
+        background-image: -webkit-linear-gradient(top, #56A0D3, #286DA3);
         background-image: -moz-linear-gradient(top, #56A0D3, #286DA3);
         background-image: -ms-linear-gradient(top, #56A0D3, #286DA3);
         background-image: -o-linear-gradient(top, #56A0D3, #286DA3);
@@ -102,7 +189,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         -moz-transition: all 0.5s ease-in;
         transition: all 0.5s ease-in;
         
-        &:hover, &:focus{
+        &:hover, &:focus {
           color: #FFF;
           background: #81BEF0;
         }
@@ -208,7 +295,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         min-width: 24px;
         height: 2.5em;
         min-height: 24px;
-        opacity: 0.8;
+        opacity: 0.6;
         &:hover {
             opacity: 1;
         }
@@ -253,9 +340,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .post {
-    float: left;
     //width: 31em;
-    width: 46em;
+    max-width: 100%;
     padding: .5em 1em;
 }
 
@@ -299,12 +385,16 @@ h2 {
     background-image: linear-gradient(top, #eee, #ccc);
     
     border: 1px solid grey;
+    -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
+    
     -webkit-border-radius: 0.25em;
     -moz-border-radius: 0.25em;
     border-radius: 0.25em;
     
     color: #333;
-    font: bold 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    font: normal 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
     text-align: center;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
     
@@ -313,7 +403,11 @@ h2 {
     width: 11em;
     text-decoration:none;
     
-    &:hover {
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+    
+    &:hover, &:focus {
       background-color: #dddddd;
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
       background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
@@ -321,10 +415,10 @@ h2 {
       background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
       background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
       background-image: linear-gradient(top, #dddddd, #bbbbbb);
+      
       border: 1px solid #bbb;
       border-bottom: 1px solid #999;
       cursor: pointer;
-      text-shadow: 0 1px 0 #ddd;
       color:#333;
     }
 }
@@ -345,7 +439,7 @@ h2 {
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
-    box-shadow: .1em .1em .1em #56A0D3;
+    box-shadow: 0 0 .1em #56A0D3;
 
     li {
       list-style: none;
@@ -363,11 +457,12 @@ h2 {
        &:hover {
           color: #56A0D3;
         }
+       
       }
-    }
-    
-    li:last-child {
-      border: 0;
+      
+      &:last-child {
+        border: 0;
+      }
     }
     
  }
@@ -470,11 +565,19 @@ h2 {
       }
       
       &:first-child.selectedLink {
+        -webkit-border-top-left-radius: 0.75em;
+        -webkit-border-top-right-radius: 0.75em;
+        -moz-border-radius-topleft: 0.75em;
+        -moz-border-radius-topright: 0.75em;
         border-top-left-radius: 0.75em;
         border-top-right-radius: 0.75em;
       }
       
       &:last-child.selectedLink {
+        -webkit-border-bottom-left-radius: 0.75em;
+        -webkit-border-bottom-right-radius: 0.75em;
+        -moz-border-radius-bottomleft: 0.75em;
+        -moz-border-radius-bottomright: 0.75em;
         border-bottom-left-radius: 0.75em;
         border-bottom-right-radius: 0.75em;
       }
@@ -488,6 +591,8 @@ h2 {
   
       text-align: left;
       font-size: 1.3em;
+      
+      background-size: 1.5em !important; // resize the images for fluid layout
       
       -webkit-transition: color 0.1s;
       -moz-transition: color 0.1s;
@@ -589,7 +694,7 @@ h2 {
           /* Set necessary background, border, and width */
            display: none;
            position: absolute;
-           right: 11em;
+           right: 12em;
            width: 10em;
            top: -2em;
            
@@ -608,7 +713,7 @@ h2 {
          
          // a little adjustment to the innersubmenus inside 'My Book'
          .myBookInnerSubmenu {
-             right: 11em;
+             right: 12em;
              width: 9em;
              
              a {
@@ -696,7 +801,7 @@ h2 {
   } // end li
 
   a {
-    &#checked {
+    &.checked {
       background: url(/theme/images/check_mark.png) right center no-repeat !important;
     }
     
@@ -736,14 +841,28 @@ h2 {
     [name=search]{
         width: 16em;
         height: 1.5em;
+        border:1px solid grey;
+        padding: 0.15em 0.3em;
         
         -webkit-border-radius: 0.5em;
         -moz-border-radius: 0.5em;
         border-radius: 0.5em;
         
-        border:1px solid grey;
-        padding-left: 0.25em;
-        padding-right: 0.25em;
+        -webkit-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+        -moz-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+        
+        -webkit-transition: all linear 1s;
+        -moz-transition: all linear 1s;
+        transition: all linear 1s;
+        
+        &:focus, &:hover {
+          -webkit-box-shadow: 0 0 0.25em #56A0D3;;
+          -moz-box-shadow: 0 0 0.25em #56A0D3;
+          box-shadow: 0 0 0.25em #56A0D3;
+          
+          border: 1px solid #66A0D3;
+        }
     }
     
     input[type='submit'] {
@@ -782,6 +901,7 @@ h2 {
     display: block;
     text-align: center;
     margin-left: 1em;
+    overflow: auto;
 
     li {
         width: 11em;
@@ -1100,14 +1220,19 @@ h2 {
   }
   
   // icons for the list items
-   a.book {
-     background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
-   }
+  a {
+    &.book {
+      background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
+    }
     
-   a.edit {
-     background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
-     padding-left: 1.5em;
-   }
+    &.edit {
+      background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
+      
+    }
+    
+    padding-right: 2.5em !important;
+    background-size: 1.75em !important;
+  }
   
   // modify the button (which is of class decoratedButton) a little bit
   
@@ -1144,6 +1269,8 @@ h2 {
         padding: 0.5em;
         background-color: #EEE;
         position: relative;
+        max-width: 100%;
+        overflow: auto;
     }
 
     #gallery {
@@ -1216,6 +1343,7 @@ h2 {
     label {
         white-space: nowrap;
         line-height: 2.5em;
+        margin: 0 0.5em;
     }
     .categories input {
         vertical-align: baseline;
@@ -1341,7 +1469,7 @@ h2 {
 
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-
+      
     .js {
         // hide the search form until the search button is pressed
         .searchForm {
@@ -1356,6 +1484,11 @@ h2 {
 
         .searchShowButton {
             display: block;
+            margin: 0 auto;
+            margin-top: 0.5em;
+            font-size: 1.5em;
+            line-height: 2.5em;
+            width: 80% !important;
         }
 
     }
@@ -1363,17 +1496,24 @@ h2 {
     #writing-controls {
         font-size: 1.5em;
     }
-
-
+    
+    @include phoneNavigation;
 }
 
 /* iPod landscape */
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (min-width: 321px) and (max-width: 480px) {
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px) 
+and (min-width: 321px) 
+and (max-width: 480px) {
     body {
         font-size: 10px;
     }
-
+    .content-wrap {
+      width: 48em;
+      margin-bottom: 1em;
+    }
     .thr-pic-box {
         width: 15em;
         height: 15em;
@@ -1381,15 +1521,43 @@ h2 {
 }
 
 /* iPod portrait */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (max-width: 320px) and (min-width: 320px) {
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px) 
+and (max-width: 320px) 
+and (min-width: 320px) {
     body {
         font-size: 8.33px;
     }
     .content-wrap {
-        width: 38em;
+        width: 34em;
+        margin-bottom: 1em;
     }
     .thr-book-list {
-        margin-left: 2em;
+        margin: 2%;
+        li {
+          max-width: 30%; // 3 books displayed per line => 3*30% = 90%
+          margin: 1.5%; // 3% margin per book => 3*3% = 9%
+        }
+    }
+    
+    .write-page {
+      label {
+        display: block;
+        width: 100%;
+        margin: 0.5em 0;
+        
+        span {
+          width: 30%;
+          display: inline-block;
+        }
+        
+        input[type="text"], input[type="select"] {
+          width: 65%;
+        }
+       
+      }
+
     }
 }
 
