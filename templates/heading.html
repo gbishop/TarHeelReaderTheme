@@ -1,8 +1,158 @@
 <header>
     <div class="header">
-        <a href="/" class="thr-home-icon" title="_(Go home|icon explanatory text)"><img src="/theme/images/home.png" alt="go home"/></a>
+        <a href="/" class="thr-home-icon" title="_(Go home|icon explanatory text)"><img src="/theme/images/home.png" alt="Main Menu"/></a>
         <a href="/reading-controls/" class="thr-settings-icon" title="_(Settings|icon explanatory text)"><img src="/theme/images/settings.png" alt="settings"/></a>
         <h1><a href="/" title="_(Books for beginning readers of all ages|site sub-heading)">_(Tar Heel Reader|site name)</a></h1>
-    </div>
+        <!-- Begin Navigation -->
+        <ul class="panel navigation">
+        	<li><a href="/" id="home">Home</a></li>
+        	
+        	<!-- Begin Reading Section -->
+    		<li><a href="#" id="reading">_(Reading|section heading)</a>
+    			<!-- Begin submenu -->
+    			<ul class="submenu">
+    				<!--<li><a href="{{findUrl}}">_(Find a Book)</a>-->
+    				<li><a href="/find/">_(Find a Book)</a>
+        			<li><a href="/favorites/">_(Favorites)</a></li>
+        			<li><a href="/reading-controls/">_(Collections)</a></li>
+    			</ul>
+    			<!-- End submenu -->
+    		</li>
+    		<!-- End Reading Section -->
+    	
+    		<!-- Begin Writing Section -->
+    		<li><a href="#" id="writing">_(Writing|section heading)</a>
+    			<!-- Begin submenu -->
+ 	 	  		<ul class="submenu">
+   	   		  		<li><a href="/write/">_(Write a Book)</a></li>
+   	     			<li><a href="/your-books/">_(Books You Wrote)</a></li>
+   	 			</ul>
+   	 			<!-- End submenu -->
+   			</li>
+			<!-- End Writing Section -->
+			
+			<!-- Begin User Seciton -->
+			<li><a href="/login/" id="user">_(User|section heading)</a></li> 
+			<!-- End User Section -->
+			
+			<!-- Begin Info Section-->
+   	 		<li><a href="#" id="help">_(Help|section heading)</a>
+   	 			<!-- Begin submenu -->
+    			<ul class="submenu">
+        			<li><a href="/blog/">_(Announcements)</a></li>
+        			<li><a href="/frequently-asked-questions/" title="_(Frequently Asked Questions|link explanatory text)">_(FAQ|link label)</a></li>
+        			<li><a href="/photo-credits/">_(Photo Credits)</a></li>
+    			</ul>
+    			<!-- End submenu -->
+    		</li>
+    		<!-- End Info Section -->
+		
+			<!-- Begin Search Section -->
+			<!--
+			<li>
+				<form action="/find/" class="searchform" method="get">
+        			<div>
+            			<label>_(Search for|label for search box)</label>
+            			<input type="search" name="search" value="" />
+            			<input type="hidden" name="page" value="1" />
+            			<input type="submit" value="Search" />
+        			</div>
+   			 	</form>
+			</li>
+			End Search Section -->
+        </ul>
+	<!-- End Navigation -->
+	<!-- Begin mainSettings Panel -->
+		<ul class="panel mainSettings">
+			<!-- Begin Speech -->
+			<li><a href="#" id="speech">_(Speech|section heading)</a>
+				<!-- Begin submenu -->
+				<ul id="speechOptions" class="submenu">
+					<li><a href="#" id="silent">_(Silent)</a></li>
+					<li><a href="#" id="child">_(Child)</a></li>
+					<li><a href="#" id="female">_(Woman)</a></li>
+					<li><a href="#" id="male">_(Man)</a></li>
+				</ul>
+				<!-- End submenu -->
+			</li>
+			<!-- End Speech -->
+			<!-- Begin Colors -->
+			<li><a href="#" id="colors">_(Colors|section heading)</a>
+				<!-- Begin first submenu -->
+				<ul class="submenu">
+					<li id="pageColors"><a href="#">_(Page Colors|section heading)</a>
+						<!-- Begin inner submenu -->
+						<ul id="pageColorsOptions" class="innerSubmenu">
+							<li><a href="#" class="black">_(Black)</a></li>
+							<li><a href="#" class="blue">_(Blue)</a></li>
+							<li><a href="#" class="cyan">_(Cyan)</a></li>
+							<li><a href="#" class="green">_(Green)</a></li>
+							<li><a href="#" class="magenta">_(Magenta)</a></li>
+							<li><a href="#" class="red">_(Red)</a></li>
+							<li><a href="#" class="white">_(White)</a></li>
+							<li><a href="#" class="yellow">_(Yellow)</a></li>
+						</ul>
+						<!-- End inner submenu -->
+					</li>
+					<li id="textColors"><a href="#">_(Text Colors|section heading)</a>
+						<!-- Begin inner submenu -->
+						<ul id="textColorsOptions" class="innerSubmenu">
+							<li><a href="#" class="black">_(Black)</a></li>
+							<li><a href="#" class="blue">_(Blue)</a></li>
+							<li><a href="#" class="cyan">_(Cyan)</a></li>
+							<li><a href="#" class="green">_(Green)</a></li>
+							<li><a href="#" class="magenta">_(Magenta)</a></li>
+							<li><a href="#" class="red">_(Red)</a></li>
+							<li><a href="#" class="white">_(White)</a></li>
+							<li><a href="#" class="yellow">_(Yellow)</a></li>
+						</ul>
+						<!-- End inner submenu -->
+					</li>
+				</ul>
+				<!-- End first submenu -->
+			</li>
+			<!-- End Colors -->
+			<!-- Begin Book Options -->
+			<li id="myBookOptions"><a id="myBook" href="#">_(My Book|section heading)</a>
+				<!-- Begin submenu -->
+				<ul class="submenu">
+					<!-- Begin submenu -->
+					<li><a id="download" href="#">_(Download|section heading)</a>
+						<!-- Begin inner submenu -->
+						<ul id="downloadOptions" class="innerSubmenu myBookInnerSubmenu">
+							<li><a id="powerpoint">_(PowerPoint)</a></li>
+							<li><a id="impress">_(Impress)</a></li>
+							<li><a id="flash">_(Flash)</a></li>
+						</ul>
+						<!-- End inner submenu -->
+					</li>
+					<!-- End Download -->
+					<!-- Begin Collections -->
+					<li><a id="collections" href="#">_(Collections|section heading)</a>
+						<!-- Begin inner submenu -->
+						<ul id="collectionsOptions" class="innerSubmenu myBookInnerSubmenu">
+							<li><a class="add" id="addToCollections">_(Add)</a></li>
+							<li><a class="remove" id="removeFromCollections">_(Remove)</a></li>
+						</ul>
+						<!-- End inner submenu -->
+					</li>
+					<!-- End Collections -->
+					<!-- Begin Favorites -->
+					<li><a id="favorites" href="#">_(Favorites|section heading)</a>
+						<!-- Begin inner submenu -->
+						<ul id="favoritesOptions" class="innerSubmenu myBookInnerSubmenu">
+							<li><a class="add" id="addToFavorites">_(Add)</a></li>
+							<li><a class="remove" id="removeFromFavorites">_(Remove)</a></li>
+						</ul>
+						<!-- End inner submenu -->
+					</li>
+					<!-- End Favorites -->
+				</ul>
+				<!-- End submenu -->
+			</li>
+			<!-- End Download -->
+			<li><a id="default" href="#">_(Default)</a></li>
+		</ul>
+	<!-- End Settings Panel -->
+	</div>
 </header>
-

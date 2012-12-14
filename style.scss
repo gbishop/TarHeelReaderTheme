@@ -10,12 +10,98 @@ Version: 1
 $captionFontSize: 1.8em;
 $pageLinkFontSize: 0.8em;
 
+// define mixin for the alternative navigation/menu layout used for handheld devices
+@mixin phoneNavigation {
+   
+   .header {
+      padding-top: 4em; // for the navigation bar
+   }
+   
+  .thr-home-icon, .thr-settings-icon { // hide the menu and navigation icons
+    display: none;
+   }
+   
+   // Adjust navigation accordingly
+   .navigation {
+   
+      background-color: #56A0D3;
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
+      background-image: -webkit-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: -moz-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: -ms-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: -o-linear-gradient(bottom, #56A0D3, #286DA3);
+      background-image: linear-gradient(bottom, #56A0D3, #286DA3);
+      
+      height: 4em;
+      width: 100%;
+      margin: 0 auto;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      border-bottom: 1px solid #FFF;
+      
+      li {
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 18%;
+        border: 0;
+        border-right: 1px solid #FFF;
+        position: relative;
+        
+        .submenu {
+          position: absolute;
+          top: 4.1em;
+          left: 0;
+          height: auto;
+          
+          background: #56A0D3;
+          border: 0;
+          -webkit-border-radius: 0 0 2em 2em;
+          -moz-border-radius: 0 0 2em 2em;
+          border-radius: 0 0 2em 2em;
+          
+          li {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid #FFF;
+          }
+        
+        }
+        
+        &:last-child {
+          .submenu { // modify the position of the submenu of the last link so that it doesn't go out of the page
+            left: -4.5em;
+           }
+        }
+        
+        &:nth-child(2), &:nth-child(3) { // the links 'Reading' and 'Writing' require more space
+          width: 22%;
+        }
+        
+      }
+      
+      a {
+        padding-left: 2.25em;
+        padding-right: 0;
+        background-position: 0.25em center !important;
+        color: #DDD;
+        text-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+       }
+    }
+}
+
 @import "reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
-    font-family: Helmet, Freesans, sans-serif;
+    font-family: Helmet, Freesans, Arial, Helvetica, Verdana, sans-serif;
     font-size: 100%;
     width: 100%;
     height: 100%;
@@ -24,6 +110,7 @@ body {
 html {
     width: 100%;
     height: 100%;
+    background: #F5F6F7;
 }
 
 /* using local fonts? make sure to read up on Paul Irish's
@@ -45,12 +132,76 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 /* And here begins the Wordpress fun.
 -------------------------------------------------------------------------------*/
 
-
 .content-wrap {
     width: 48em;
-    margin-left:auto;
-    margin-right:auto;
-    //position:relative; // why do we need this?
+    margin: 0 auto 1em;
+    padding: 0.25em 1em 1em;
+    max-width: 95%;
+    //position: relative; // why do we need this?
+    
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    
+    -webkit-box-shadow: 0 0 0.25 #56A0D3;
+    -moz-box-shadow: 0 0 0.25em #56A0D3;
+    box-shadow: 0 0 0.25em #56A0D3;
+    overflow: auto;
+    
+    #homeLinkList {
+      overflow: auto;
+      text-align: center;
+      
+      li {
+        margin: 2em 0;
+        width: 50%;
+        float: left;
+      }
+      
+      a.homeLink {
+        padding: 1em 2em;
+        width: 10em;
+        
+        background-color: #56A0D3;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
+        background-image: -webkit-linear-gradient(top, #56A0D3, #286DA3);
+        background-image: -moz-linear-gradient(top, #56A0D3, #286DA3);
+        background-image: -ms-linear-gradient(top, #56A0D3, #286DA3);
+        background-image: -o-linear-gradient(top, #56A0D3, #286DA3);
+        background-image: linear-gradient(top, #56A0D3, #286DA3);
+        
+        border: 0.1em solid #61A0B3;
+        -webkit-border-radius: 0.5em;
+        -moz-border-radius: 0.5em;
+        border-radius: 0.5em;
+        
+        -webkit-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
+        
+        color: #DDD;
+        font-size: 1.25em;
+        letter-spacing: .05em;
+        text-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        
+        -webkit-transition: all 0.5s ease-in;
+        -moz-transition: all 0.5s ease-in;
+        transition: all 0.5s ease-in;
+        
+        &:hover, &:focus {
+          color: #FFF;
+          background: #81BEF0;
+        }
+        
+     }
+     
+    }
+    
+    #homeLinkList + p {
+      clear: both;
+    }
+    
 }
 
 .page-wrap {
@@ -60,10 +211,13 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     padding: 0;
 }
 
-.find-page{
+.find-page {
     background:url('/theme/images/furley_bg.png');
     .description {
         display: none;
+    }
+    .header .thr-settings-icon {
+      opacity: 1;
     }
 }
 
@@ -71,76 +225,107 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     display: block;
 }
 
-.header {
-    position: relative;
-    width: 100%;
-    background-color: rgba(220, 220, 220, 0.5);
-    display: block;
-    margin: 0px auto;
-    text-align: center;
-    background:rgb(51,51,51);
-    border-top: 0.25em solid #3399FF;
-    height:3em;
-    min-height: 32px;
+// The following styles apply to the Home, Books You Wrote, Announcements, FAQ, and Photo Credits pages
+.server-page, .your-books-page {
+  h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid #56A0D3;
+    color: #666;
+    padding-left: .25em;
+  }
+  
+  p {
+    text-align: left;
+    margin: 1em 0.5em;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+}
 
+.header {
+    position: relative; // for positioning our navigation menu
+    width: 100%;
+
+    height: 4em;
+    text-align: center;
+    display: block;
+    
+    min-height: 32px;
+   
     h1 {
-        font-size: 1.8em;
-        //height:1.7em;
-        //min-height: 57%;
+        font-size: 2em;
+        padding-top: 0.25em;
+        letter-spacing: .05em;
+        margin-top: 0.1em;
+        
+        height: 1.7em;
+        min-height: 57%;
 
         a {
             text-decoration: none;
-            color:#999;
-            //font-family: 'Terminal Dosis', sans-serif;
-            font-weight:200;
-            //height:1.7em;
-            //line-height:1.7em;
+            color: #666;
+            font-family: 'Terminal Dosis', sans-serif;
+            font-weight: 200;
+            padding: 0;
         }
     }
+    
     .description {
         font-size: 0.9em;
     }
-
 }
 
 .thr-home-icon {
     position: absolute;
-    top: 0.5em;
-    left: 0.5em;
-    width: 2em;
+    top: .5em;
+    left: 2em;
+    
+    width: 2.5em;
     min-width: 24px;
-    height: 2em;
+    height: 2.5em;
     min-height: 24px;
+    
     img {
-        width: 2em;
+        width: 2.5em;
         min-width: 24px;
-        height: 2em;
+        height: 2.5em;
         min-height: 24px;
-        opacity: 0.8;
+        opacity: 0.6;
         &:hover {
             opacity: 1;
         }
     }
+    
+    z-index: 99;
 }
 
 .thr-settings-icon {
+    opacity: 0; // default settings
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    width: 2em;
+    top: 0.65em;
+    right: 2em;
+    width: 2.5em;
     min-width: 24px;
-    height: 2em;
+    height: 2.5em;
     min-height: 24px;
+    
     img {
-        width: 2em;
+        width: 2.5em;
         min-width: 24px;
-        height: 2em;
+        height: 2.5em;
         min-height: 24px;
         opacity: 0.8;
         &:hover {
             opacity: 1;
         }
     }
+    
+    z-index: 99;
 }
 
 .footer, .footer a {
@@ -155,8 +340,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .post {
-    float: left;
-    width: 33em;
+    //width: 31em;
+    max-width: 100%;
+    padding: .5em 1em;
 }
 
 .entry { margin-left: 1em;}
@@ -166,7 +352,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .postmetadata {}
 
 p {
-    margin-bottom: 0.5em;
+    margin: 0.5em;
 }
 
 li {
@@ -176,47 +362,520 @@ li {
 
 h2 {
     font-size: 1.3em;
-    margin: 0.5em 0;
+    margin: .25em;
+    /*
+     * background: #56A0D3;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    color: #DDDDDD;
+    font-size: 1.5em;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    margin: 0.25em;
+    padding: 0.75em 1em;
+     */
 }
 
+// code for the decoratedButton class (for those buttons which we want to look fancy)
+.decoratedButton {
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(top, #eee, #ccc);
+    background-image: -moz-linear-gradient(top, #eee, #ccc);
+    background-image: -o-linear-gradient(top, #eee, #ccc);
+    background-image: -ms-linear-gradient(top, #eee, #ccc);
+    background-image: linear-gradient(top, #eee, #ccc);
+    
+    border: 1px solid grey;
+    -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
+    
+    -webkit-border-radius: 0.25em;
+    -moz-border-radius: 0.25em;
+    border-radius: 0.25em;
+    
+    color: #333;
+    font: normal 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    text-align: center;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+    
+    padding: 0.5em 0;
+    
+    width: 11em;
+    text-decoration:none;
+    
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+    
+    &:hover, &:focus {
+      background-color: #dddddd;
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
+      background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+      background-image: linear-gradient(top, #dddddd, #bbbbbb);
+      
+      border: 1px solid #bbb;
+      border-bottom: 1px solid #999;
+      cursor: pointer;
+      color:#333;
+    }
+}
 
-.sidebar {
-    float:right;
-    width:12.5em;
-    margin-left: 2em;
+.decoratedList { // begin .list code
+    
+    margin-bottom: 1em;
+    
+    background-color: #DFDFDF;
+    background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
+    background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
+    background-image: linear-gradient(top, #F0F2F7, #DDD);
+    
+    border: .1em solid #AAA;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    border-radius: 0.3em;
+    box-shadow: 0 0 .1em #56A0D3;
 
-    a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
+    li {
+      list-style: none;
+      padding: .5em .75em;
+      margin: 0;
+      border-bottom: 1px solid #555;
+      
+      a {
+      color: #666666;
+      font-weight: bold;
+      letter-spacing: .1em;
+      padding-left: .5em;
+      padding-right: 1.5em;
+      
+       &:hover {
+          color: #56A0D3;
         }
+       
+      }
+      
+      &:last-child {
+        border: 0;
+      }
     }
+    
+ }
 
-    h2 {
-        font-size: 1.1em;
+.decoratedLink {
+    background-color: #ccc;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc, color-stop(100%, #aaa)));
+    background-image: -webkit-linear-gradient(top, #ccc, #aaa);
+    background-image: -moz-linear-gradient(top, #ccc, #aaa);
+    background-image: -ms-linear-gradient(top, #ccc, #aaa);
+    background-image: -o-linear-gradient(top, #ccc, #aaa);
+    background-image: linear-gradient(top, #ccc, #aaa);
+    
+    border: 1px solid #666;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    
+    color: #FFF;
+    padding: .25em .5em;
+    
+    &:hover {
+      color: #56A0D3;
     }
+}
 
-    .search {
+// Panel CSS for Navigation and Settings menus
+.panel {
+    position: absolute;
+    top: 3em;
+    padding: 0;
+    width: 12em;
+    
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    border: .1em solid #DDD;
+    
+    li {
+      border-bottom: .1em solid #DDD;
+      position: relative; // in order to show submenus
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+      
+      .submenu {
+        list-style: none;
+        position: absolute;
+        display: none;
+        top: -0.05em; // line up with border
         width: 12em;
+        padding: 0;
+        margin: 0;
+        
+  
+        /* Set necessary background, border, and width */
+        background: #8E8E8E;
+        
+        -webkit-box-shadow: 0 0 0.1em #667;
+        -moz-box-shadow: 0 0 0 0.1em #667;
+        box-shadow: 0 0 .1em #667;
+        
+        border: 0.1em solid #DDD;
+        border-left: 0;
+        z-index: 99;
+        
+        li {
+          border: 0;
+          border-bottom: 0.1em solid #DDD;
+          
+          &.selectedLink {
+            -webkit-border-radius: 0.25em;
+            -moz-border-radius: 0.25em;
+            border-radius: 0.25em;
+          }
+          
+          &:last-child {
+            border: 0;
+          }
+        }
+        
+        a {
+          font-size: 1em;
+          padding: 1em;
+          font-size: 1.1em;
+          text-align: center;
+        }
+      }
+      
+      &:last-child {
+        border: 0;
+      }
+      
+      &.selectedLink {
+        border: .2em solid #EEE !important;
+        -webkit-border-radius: 0.25em;
+        -moz-border-radius: 0.25em;
+        border-radius: 0.25em;
+      }
+      
+      &:first-child.selectedLink {
+        -webkit-border-top-left-radius: 0.75em;
+        -webkit-border-top-right-radius: 0.75em;
+        -moz-border-radius-topleft: 0.75em;
+        -moz-border-radius-topright: 0.75em;
+        border-top-left-radius: 0.75em;
+        border-top-right-radius: 0.75em;
+      }
+      
+      &:last-child.selectedLink {
+        -webkit-border-bottom-left-radius: 0.75em;
+        -webkit-border-bottom-right-radius: 0.75em;
+        -moz-border-radius-bottomleft: 0.75em;
+        -moz-border-radius-bottomright: 0.75em;
+        border-bottom-left-radius: 0.75em;
+        border-bottom-right-radius: 0.75em;
+      }
     }
+    
+    a {
+      display: block; 
+      text-decoration: none;
+      color: #DDD;
+      padding: 1em 0 1em 4em;
+  
+      text-align: left;
+      font-size: 1.3em;
+      
+      background-size: 1.5em !important; // resize the images for fluid layout
+      
+      -webkit-transition: color 0.1s;
+      -moz-transition: color 0.1s;
+      -o-transition: color 0.1s;
+      -ms-transition: color 0.1s;
+      transition: color 0.1s;
+
+      &:hover {
+         color: #FFF;
+      }
+    }
+}
+
+.navigation {
+    display: none; // hide initially
+    z-index: 99;
+    left: 4em;
+    -webkit-box-shadow: .1em .1em .1em #AAA;
+    -moz-box-shadow: .1em .1em .1em #AAA;
+    box-shadow: .1em .1em .1em #AAA;
+    
+    /* Background code... */
+    background: #888; // If all else fails...
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6F6F6F), to(#8E8E8E)); /* Safari 4-5, Chrome 1-9 */ 
+    background: -webkit-linear-gradient(left, #6F6F6F, #8E8E8E); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(left, #6F6F6F, #8E8E8E); /* Firefox */
+    background: -ms-linear-gradient(left, #6F6F6F, #8E8E8E); /* IE 10+ */
+    background: -o-linear-gradient(left, #6F6F6F, #8E8E8E); /* Opera */
+    
+    // display submenu to the right
+    li {
+      .submenu {
+        left: 12.05em; // account for width of navigation
+        
+        -webkit-border-radius: 0 1em 1em 0em;
+        -moz-border-radius: 0 1em 1em 0em;
+         border-radius: 0 1em 1em 0em;
+      }
+    }
+   
+    a {
+      &#home {
+        background: url(/theme/images/home_32.png) 1em center no-repeat;
+      }
+      
+      &#reading {
+        background: url(/theme/images/read_book.png) .75em center no-repeat;
+      }
+      
+      &#writing {
+        background: url(/theme/images/write_book.png) 1em center no-repeat;
+      }
+      
+      &#user {
+        background: url(/theme/images/user.png) 1em center no-repeat;
+      }
+      
+      &#help {
+        background: url(/theme/images/info.png) 1em center no-repeat;
+      }
+      
+    }
+    
+}
+
+.mainSettings {
+  display: none; // hide initially
+  right: 4em;
+  z-index: 99;
+  
+  -webkit-box-shadow: -.1em .1em .1em #AAA;
+  -moz-box-shadow: -.1em .1em .1em #AAA;
+  box-shadow: -.1em .1em .1em #AAA;
+  
+   /* Background code... */
+   background: #888; // If all else fails...
+   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */ 
+   background: -webkit-linear-gradient(left, #8E8E8E, #6F6F6F); /* Safari 5.1, Chrome 10+ */
+   background: -moz-linear-gradient(left, #8E8E8E, #6F6F6F); /* Firefox */
+   background: -ms-linear-gradient(left, #8E8E8E, #6F6F6F); /* IE 10+ */
+   background: -o-linear-gradient(left, #8E8E8E, #6F6F6F); /* Opera */
+  
+  li {
+    // display submenu to the left
+    .submenu {
+       right: 12.05em; // account for border
+       -webkit-border-radius: 1em 0 0 1em;
+       -moz-border-radius: 1em 0 0 1em;
+       border-radius: 1em 0 0 1em;
+       border-right: 0;
+       border-left: .1em solid #DDD;
+       
+      li {
+        
+        height: auto;
+        width: auto;
+        
+        .innerSubmenu {
+          /* Set necessary background, border, and width */
+           display: none;
+           position: absolute;
+           right: 12em;
+           width: 10em;
+           top: -2em;
+           
+           background: #8E8E8E;
+           border-radius: 1em 0 0 1em;
+           border: .1em solid #DDD;
+           z-index: 99;
+            
+           a {
+             text-align: left;
+             padding-left: 3.25em;
+             padding-right: 0.5em;
+           }
+           
+         }
+         
+         // a little adjustment to the innersubmenus inside 'My Book'
+         .myBookInnerSubmenu {
+             right: 12em;
+             width: 9em;
+             
+             a {
+               text-align: center;
+               padding: 1em;
+             }
+         }
+  
+      }
+
+      // Begin color icons for page color
+      #pageColors .innerSubmenu {
+        a.black {
+          background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
+        }
+           
+        a.blue {
+          background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
+        }
+           
+        a.cyan {
+          background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
+        }
+           
+        a.green {
+          background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
+        }
+           
+        a.magenta {
+          background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
+        }
+           
+        a.red {
+          background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
+        }
+           
+        a.white {
+           background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
+        }
+           
+        a.yellow {
+           background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
+          }
+        }
+         // End color icons for page color
+         
+         // Begin color icons for text color
+       #textColors .innerSubmenu {
+           a.black {
+             background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
+           }
+           
+           a.blue {
+             background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
+           }
+           
+           a.cyan {
+             background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
+           }
+           
+           a.green {
+             background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
+           }
+           
+           a.magenta {
+             background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
+           }
+           
+           a.red {
+             background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
+           }
+           
+           a.white {
+             background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
+           }
+           
+           a.yellow {
+             background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
+           }
+       }
+         
+         
+    } // end submenu
+    
+  } // end li
+
+  a {
+    &.checked {
+      background: url(/theme/images/check_mark.png) right center no-repeat !important;
+    }
+    
+    &#speech {
+      background: url(/theme/images/sound_32.png) 1em center no-repeat;
+    }
+    
+    &#colors {
+      background: url(/theme/images/colors_32.png) 1em center no-repeat;
+    }
+    
+    &#myBook {
+      background: url(/theme/images/my_book_32.png) 1em center no-repeat;
+    }
+    
+    &#default {
+      background: url(/theme/images/default_settings.png) 1em center no-repeat;
+    }
+  }
 }
 
 .searchForm {
     text-align: center;
-    width:100%;
-    padding-top:0.2em;
-    padding-bottom:0.2em;
-    select{
-        width:7em;
+    width: 100%;
+    margin: 0.75em auto 0.5em;
+    
+    select {
+        width: 10em;
+        margin: .15em;
+        padding: .2em;
+    }
+    
+    select[name=audience] {
+      width: 14em;
     }
 
     [name=search]{
-        width:12em;
-        border-radius: 0.5em;
+        width: 16em;
+        height: 1.5em;
         border:1px solid grey;
-        padding-left: 0.25em;
-        padding-right: 0.25em;
+        padding: 0.15em 0.3em;
+        
+        -webkit-border-radius: 0.5em;
+        -moz-border-radius: 0.5em;
+        border-radius: 0.5em;
+        
+        -webkit-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+        -moz-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+        
+        -webkit-transition: all linear 1s;
+        -moz-transition: all linear 1s;
+        transition: all linear 1s;
+        
+        &:focus, &:hover {
+          -webkit-box-shadow: 0 0 0.25em #56A0D3;;
+          -moz-box-shadow: 0 0 0.25em #56A0D3;
+          box-shadow: 0 0 0.25em #56A0D3;
+          
+          border: 1px solid #66A0D3;
+        }
+    }
+    
+    input[type='submit'] {
+        font-size: 1em;
+        margin-left: .25em;
+        
+        -webkit-border-radius: 0.5em;
+        -moz-border-radius: 0.5em;
+        border-radius: 0.5em;
+        
+        padding: .1em 1em;
+        background: #EEE;
+        width: 8em;
     }
 
 }
@@ -230,6 +889,8 @@ h2 {
     text-decoration: none;
     vertical-align: middle;
     -webkit-appearance: push-button;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
     border-radius: 2em;
     //font-size: 1.5em;
     text-align: center;
@@ -240,11 +901,12 @@ h2 {
     display: block;
     text-align: center;
     margin-left: 1em;
+    overflow: auto;
 
     li {
         width: 11em;
         height: 11em;
-        border: 1px solid grey;
+        border: 1px solid #56A0D3;
         margin: 0.2em;
         float: left;
         text-align: center;
@@ -252,10 +914,12 @@ h2 {
         line-height: 1em;
         overflow: hidden;
         //background:white;
+        -webkit-border-radius: 0.25em;
+        -moz-border-radius: 0.25em;
         border-radius: 0.25em;
-        //-webkit-box-shadow: 0.2em 0.2em 0.25em 2px #aaaaaa;
-        //-moz-box-shadow: 0.1em 0.1em 0.1em 2px #aaaaaa;
-        box-shadow: 0.1em 0.1em 0.0em 2px #aaaaaa;
+        -webkit-box-shadow: 0.1em 0.1em 0.0em 1px #aaaaaa;
+        -moz-box-shadow: 0.1em 0.1em 0.0em 1px #aaaaaa;
+        box-shadow: 0.1em 0.1em 0.0em 1px #aaaaaa;
 
     }
 
@@ -319,7 +983,7 @@ h2 {
     }
 }
 
-.thr-find-next, .thr-find-back {
+/*.thr-find-next, .thr-find-back {
     background-color: #eeeeee;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
     background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
@@ -355,7 +1019,7 @@ h2 {
     cursor: pointer;
     text-shadow: 0 1px 0 #ddd;
     color:#333;
-}
+}*/
 
 .thr-find-next:active, .thr-find-back:hover:active {
     border: 1px solid #aaa;
@@ -376,26 +1040,43 @@ h2 {
 }
 
 .thr-back-link {
-    left: 0px;
-    bottom: 0px;
+    //left: 0px;
+    left: 1em;
 }
+
 .thr-next-link {
-    right: 0px;
-    bottom: 0px;
+    //right: 0px;
+    right: 1em;
 }
 
 .thr-next-link, .thr-back-link {
     width: 6em;
     height: 4em;
     display: block;
+    
     text-decoration: none;
-    border: 2px solid; // red;
+    letter-spacing: .05em;
+    color: #EFEFEF;
+    
+    border: 2px solid #CECECE; // red;
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    
+    background-color: #EEE;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #EFEFEF));
+    background-image: -webkit-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: -moz-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: -ms-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: -o-linear-gradient(top, #EEE, #EFEFEF);
+    background-image: linear-gradient(top, #EEE, #EFEFEF);
+    
     position: absolute; // fixed works fine but isn't supported before ios5?
-    bottom: 0;
+    bottom: .5em;
     font-size: $pageLinkFontSize;
 
     img {
-        margin: 0.25em auto 0 auto;
+        margin: 0.5em auto 0.25em auto;
         width: 1.5em;
         height: 1.5em;
         display: block;
@@ -403,8 +1084,8 @@ h2 {
 }
 .thr-page-number {
     position: absolute;
-    top: 0.25em;
-    right: 0.25em;
+    top: 1em;
+    right: 1em;
     font-size: 1em;
 }
 
@@ -418,11 +1099,44 @@ h2 {
     .content-wrap {
         width: auto;
         height: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        
+        -webkit-box-shadow: 0;
+        -moz-box-shadow: 0;
+        box-shadow: 0;
     }
+    
+   .header {
+      height: 0;
+      min-height: 0;
+      border-top: 0;
+
+      h1 {
+          display: none;
+      }
+      
+      .thr-home-icon { // make the home icon less opaque
+        opacity: 0.3;
+      }
+    }
+    
     h1 {
         font-size: 2em;
         height: 2.5em;
         overflow: hidden;
+    }
+    
+    .thr-question {
+        letter-spacing: 0.1em;
+        border-bottom: 2px solid #56A0D3;
+        color: #666;
+        margin: 1em auto;
     }
 
     .thr-pic-box {
@@ -443,11 +1157,13 @@ h2 {
         margin: 0 auto;
     }
     .thr-choices {
-        width: 12em;
+        //width: 12em;
+        width: 18em; // make the list a bit bigger so that the text fits in nicely
         margin: auto;
+        margin-top: .5em;
         font-size: 2em;
         text-align: left;
-
+        
         li {
             padding: 0.25em 0.25em;
             .thr-stars {
@@ -459,11 +1175,15 @@ h2 {
 
         a {
             text-decoration: none;
+            font-weight: normal;
             color: inherit;
         }
 
         li:hover, li.selected {
-            border: 0.25em solid;
+            border: 0.2em solid #56A0D3;
+            -webkit-border-radius: .1em;
+            -moz-border-radius: .1em;
+            border-radius: .1em;
             padding: 0px 0px;
         }
 
@@ -490,7 +1210,41 @@ h2 {
     }
 }
 
-.navgation {}
+.your-books-page {
+  #publishedBooksContainer {
+    margin: 1em 0;
+  }
+  
+  p {
+    margin-left: 1em;
+  }
+  
+  // icons for the list items
+  a {
+    &.book {
+      background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
+    }
+    
+    &.edit {
+      background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
+      
+    }
+    
+    padding-right: 2.5em !important;
+    background-size: 1.75em !important;
+  }
+  
+  // modify the button (which is of class decoratedButton) a little bit
+  
+  .decoratedButton {
+    font-weight: normal;
+    letter-spacing: .05em;
+    width: auto;
+    padding: .25em .5em;
+  }
+  
+}
+
 .next-posts {}
 .prev-posts {}
 
@@ -498,9 +1252,12 @@ h2 {
     .content-wrap {
         width: auto;
         overflow: hidden;
+        margin: 0.5em 1em;
     }
+    
     #writing-controls {
         display: none;
+        margin: .5em 0;
     }
 
     noscript {
@@ -512,6 +1269,8 @@ h2 {
         padding: 0.5em;
         background-color: #EEE;
         position: relative;
+        max-width: 100%;
+        overflow: auto;
     }
 
     #gallery {
@@ -523,9 +1282,20 @@ h2 {
         position: relative;
         font-size: 1em;
         padding: 0.3em;
+        padding-left: 0.5em;
         margin: 0 0 0.25em 0;
-        background-color: #FFF;
+        background-color: #FEFEFE;
+        background-image: -webkit-gradient(linear, left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -webkit-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -moz-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -ms-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: -o-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
+        background-image: linear-gradient(left, #FEFEFE 30%, #F8F8F8);
+        
+        -webkit-border-radius: 1em;
+        -moz-border-radius: 1em;
         border-radius: 1em;
+        color: #333;
     }
 
     h3 {
@@ -573,6 +1343,7 @@ h2 {
     label {
         white-space: nowrap;
         line-height: 2.5em;
+        margin: 0 0.5em;
     }
     .categories input {
         vertical-align: baseline;
@@ -698,7 +1469,7 @@ h2 {
 
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-
+      
     .js {
         // hide the search form until the search button is pressed
         .searchForm {
@@ -713,6 +1484,11 @@ h2 {
 
         .searchShowButton {
             display: block;
+            margin: 0 auto;
+            margin-top: 0.5em;
+            font-size: 1.5em;
+            line-height: 2.5em;
+            width: 80% !important;
         }
 
     }
@@ -720,17 +1496,24 @@ h2 {
     #writing-controls {
         font-size: 1.5em;
     }
-
-
+    
+    @include phoneNavigation;
 }
 
 /* iPod landscape */
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (min-width: 321px) and (max-width: 480px) {
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px) 
+and (min-width: 321px) 
+and (max-width: 480px) {
     body {
         font-size: 10px;
     }
-
+    .content-wrap {
+      width: 48em;
+      margin-bottom: 1em;
+    }
     .thr-pic-box {
         width: 15em;
         height: 15em;
@@ -738,15 +1521,43 @@ h2 {
 }
 
 /* iPod portrait */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (max-width: 320px) and (min-width: 320px) {
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px) 
+and (max-width: 320px) 
+and (min-width: 320px) {
     body {
         font-size: 8.33px;
     }
     .content-wrap {
-        width: 38em;
+        width: 34em;
+        margin-bottom: 1em;
     }
     .thr-book-list {
-        margin-left: 2em;
+        margin: 2%;
+        li {
+          max-width: 30%; // 3 books displayed per line => 3*30% = 90%
+          margin: 1.5%; // 3% margin per book => 3*3% = 9%
+        }
+    }
+    
+    .write-page {
+      label {
+        display: block;
+        width: 100%;
+        margin: 0.5em 0;
+        
+        span {
+          width: 30%;
+          display: inline-block;
+        }
+        
+        input[type="text"], input[type="select"] {
+          width: 65%;
+        }
+       
+      }
+
     }
 }
 

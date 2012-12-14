@@ -52,7 +52,7 @@ if ($json) {
 }
 setTHR('findAnotherLink', favorites_url());
 ?>
-<?php thr_header('favorites-page', true);
+<?php thr_header('favorites-page');
 $view = array();
 $view['searchForm'] = '';
 // edit the data to create the view for the template

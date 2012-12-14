@@ -12,7 +12,8 @@ require([ "jquery",
           "find",
           "read",
           "write",
-          "busy"
+          "busy",
+          "navigation"
           ],
     function($, route, state) {
         $(function() {

@@ -2,7 +2,7 @@
 if (in_category('books')):
 	include('single-book.php');
 else:
-	thr_header('', true);
+	thr_header('');
 	if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 	<article>

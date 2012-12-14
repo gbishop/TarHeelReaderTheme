@@ -82,7 +82,7 @@ function is_ajax() {
 }
 
 // output the header with some tweaks
-function thr_header($pageType, $heading, $disableCache=true) {
+function thr_header($pageType, $disableCache=true) {
     thr_setcookie();
 
     // tell IE8 how to render and to prefer chrome frame
@@ -109,9 +109,7 @@ function thr_header($pageType, $heading, $disableCache=true) {
         echo "<body>\n";
         echo "<div class=\"$pageType page-wrap active-page\" >\n";
     }
-    if ($heading) {
-        echo template_render('heading');
-    }
+    echo template_render('heading');
     echo "<div class=\"content-wrap\">\n";
 }
 
@@ -119,12 +117,12 @@ function thr_footer($sidebar, $full) {
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header
         if ($sidebar) {
-            get_sidebar();
+            //get_sidebar();
         }
         echo "</div></div>\n";
     } else {
         if ($sidebar) {
-            get_sidebar();
+            //get_sidebar();
         }
         if ($full) {
             include('footing.php');
