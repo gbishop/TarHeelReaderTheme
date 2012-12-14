@@ -1,3 +1,4 @@
+<!-- single.php -->
 <?php
 if (in_category('books')):
 	include('single-book.php');

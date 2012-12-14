@@ -48,6 +48,9 @@ if(is_user_logged_in()) {
 }
 
 thr_header('your-books-page');
+?>
+<!-- yourbooks.php -->
+<?php
 echo template_render('yourbooks', $view);
 thr_footer(false, false);
 ?>

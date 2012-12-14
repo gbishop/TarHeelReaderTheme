@@ -1,4 +1,4 @@
-<?php thr_header(''); ?>
+<?php thr_header(''); ?> <!-- search.php -->
 	<?php if (have_posts()) : ?>
 
 		<h2>Search Results</h2>
