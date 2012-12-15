@@ -52,6 +52,8 @@ define(['jquery',
                 fetchAnotherGallery(+1);
                 return false;
             });
+            
+            $(window).resize(updateThumbnailSize); // update the thumbnails' size on window resize
         }
 
         function fetchAnotherGallery(step) {
@@ -67,7 +69,11 @@ define(['jquery',
                     var p = result.photos,
                         g = $('#gallery'),
                         gwidth = g.width(),
-                        iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
+                        //iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
+                        
+                        // if gwidth > 640, then allow 8 pictures per row, if not allow for 4 per row. Divide by base font-size for ems
+                        iwidth = Math.floor(gwidth /(gwidth > 640 ? 8 : 4) / parseInt($("body").css("font-size"), 10));
+                    
                     g.empty();
                     if (p.photo.length === 0) {
                         showError('em-g-not-found');
@@ -80,7 +86,7 @@ define(['jquery',
                             .prop('title', photo.title)
                             .attr('data-width', w)
                             .attr('data-height', h)
-                            .css({width: iwidth + 'px', height: iwidth + 'px', border: '1px solid black', marginRight: '1px'})
+                            .css({width: iwidth + 'em', height: iwidth + 'em', border: '1px solid black', marginRight: '1px'})
                             .appendTo(g);
                     });
                     $('#gallery-back').button(p.page > 1 ? 'enable' : 'disable');
@@ -88,13 +94,32 @@ define(['jquery',
                 }
             });
         }
-
+        
+        // Not sure whether this would be a useful feature: update thumbnails' size on window resize
+        function updateThumbnailSize() {
+            
+            var $g = $("#gallery"),
+                $images = $g.find("img"),
+                gwidth = $g.width(),
+                imgWidth; // also its height
+                
+            if(($images.length === 0)) { // no images to adjust, return
+                return; 
+            } else {
+                imgWidth = Math.floor(gwidth /(gwidth > 640 ? 8 : 4) / parseInt($("body").css("font-size"), 10));
+                $images.css({
+                    width: imgWidth + 'em',
+                    height: imgWidth + 'em'
+                });
+            }
+        }
+        
         function fetchGallery(options) {
             console.log('fetchGallery', options);
             // TODO: set loading here
             galleryData = {
                 page: 1,
-                per_page: 15,
+                per_page: 16, // 16 per page would allow an even number of pictures per row
                 extras: 'url_m' // ask for the medium url so I can get the size
             };
             if ('query' in options) {
@@ -180,8 +205,8 @@ define(['jquery',
                                         position: 'absolute',
                                         margin: 0,
                                         zIndex: 1003,
-                                        width: $img.width() + 'px',
-                                        height: $img.height() + 'px'
+                                        width: $img.width()/16 + 'em',
+                                        height: $img.height()/16 + 'em'
                                     }).css($img.offset())
                                     .animate({
                                         top: step2.top,
@@ -471,6 +496,7 @@ define(['jquery',
                     return false;
                 }
             }
+            $(".navigation").empty();
             return true;
         }
 
@@ -595,7 +621,8 @@ define(['jquery',
                         change: setModified
                     });
                     $('a.thr-settings-icon').hide();
-                    $('a.thr-home-icon').on('click', confirmLeaving);
+                    // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
+                    $(".navigation li:not(:has(>ul)) a").click(confirmLeaving);
 
                     $('body').on('click', '.help,.help-text', function(e) {
                         // dialog doc claims it restores the source element but it does not do that for me, clone below

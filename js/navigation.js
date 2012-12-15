@@ -58,7 +58,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         });
         
         // Show the nav panel on home icon click, and the settings panel on settings icon click
-        $body.on('click', ".thr-home-icon img", function(e, data) {
+        $body.on('click', ".thr-well-icon img", function(e, data) {
             data === 'keybind' ? $(".navigation").slideDown() : $(".navigation").slideToggle();
             $(".mainSettings:visible").slideUp(); // hide settings
             $(".submenu:visible").hide();
@@ -246,7 +246,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
           settingsState.setBounds($(".mainSettings > li").length, 'mainMenu');
           
           // open up navigation or settings menu on tab
-            $("body").on("keydown", ".thr-home-icon, .thr-settings-icon", function(e) {
+            $("body").on("keydown", ".thr-well-icon, .thr-settings-icon", function(e) {
                
                eyCode = e.keyCode || e.which;
               if(keyCode == 9) { // if tab is pressed...
@@ -255,8 +255,9 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                   console.log($this);
                   if($this.css("opacity") == 0) { return true; } // only show the corresponding menu if its icon is visible
                   console.log($this.css("opacity"));
+                  
                   $this.find("img").trigger('click', 'keybind');
-                  if($this.is($(".thr-home-icon"))) {
+                  if($this.is($(".thr-well-icon"))) {
                       console.log('resetting indices');
                       navState.resetIndices();
                       $(".navigation:visible > li:first-child").addClass("selectedLink");

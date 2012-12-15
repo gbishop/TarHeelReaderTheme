@@ -17,7 +17,7 @@ $pageLinkFontSize: 0.8em;
       padding-top: 4em; // for the navigation bar
    }
    
-  .thr-home-icon, .thr-settings-icon { // hide the menu and navigation icons
+  .thr-well-icon, .thr-settings-icon { // hide the menu and navigation icons
     display: none;
    }
    
@@ -280,7 +280,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     }
 }
 
-.thr-home-icon {
+.thr-well-icon {
     position: absolute;
     top: .5em;
     left: 2em;
@@ -439,13 +439,17 @@ h2 {
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
+    
+    -webkit-box-shadow: 0 0 .1em #56A0D3;
+    -moz-box-shadow: 0 0 .1em #56A0D3;
     box-shadow: 0 0 .1em #56A0D3;
+
 
     li {
       list-style: none;
       padding: .5em .75em;
       margin: 0;
-      border-bottom: 1px solid #555;
+      border-bottom: .1em solid #555;
       
       a {
       color: #666666;
@@ -1107,9 +1111,9 @@ h2 {
         -moz-border-radius: 0;
         border-radius: 0;
         
-        -webkit-box-shadow: 0;
-        -moz-box-shadow: 0;
-        box-shadow: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
     }
     
    .header {
@@ -1121,7 +1125,7 @@ h2 {
           display: none;
       }
       
-      .thr-home-icon { // make the home icon less opaque
+      .thr-well-icon { // make the home icon less opaque
         opacity: 0.3;
       }
     }
@@ -1180,11 +1184,15 @@ h2 {
         }
 
         li:hover, li.selected {
-            border: 0.2em solid #56A0D3;
-            -webkit-border-radius: .1em;
-            -moz-border-radius: .1em;
-            border-radius: .1em;
-            padding: 0px 0px;
+            background-color: #FEFEF;
+            background-image: -ms-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: -moz-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: -o-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FAFAFA), color-stop(100%, #FAFAFA));
+            background-image: -webkit-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: linear-gradient(top, #FFF, #FAFAFA);
+            
+            color: #56A0D3;
         }
 
     }
@@ -1274,7 +1282,8 @@ h2 {
     }
 
     #gallery {
-        margin-top: 1em;
+        margin: 1em auto;
+        width: 90%;
         //height: 6em;
     }
 
