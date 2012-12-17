@@ -70,10 +70,15 @@ define(['jquery',
                         g = $('#gallery'),
                         gwidth = g.width(),
                         //iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
-                        
                         // if gwidth > 640, then allow 8 pictures per row, if not allow for 4 per row. Divide by base font-size for ems
-                        iwidth = Math.floor(gwidth /(gwidth > 640 ? 8 : 4) / parseInt($("body").css("font-size"), 10));
-                    
+                        picsPerRow = gwidth > 720 ? 9 : 6,
+                        marginRight = gwidth > 720 ? .2 : .1,
+                        borderWidth = 1,
+                        baseFont = parseInt($("body").css("font-size")),
+                        iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
+                        
+                        console.log(iwidth*picsPerRow*baseFont);
+                        console.log(gwidth);
                     g.empty();
                     if (p.photo.length === 0) {
                         showError('em-g-not-found');
@@ -86,7 +91,7 @@ define(['jquery',
                             .prop('title', photo.title)
                             .attr('data-width', w)
                             .attr('data-height', h)
-                            .css({width: iwidth + 'em', height: iwidth + 'em', border: '1px solid black', marginRight: '1px'})
+                            .css({width: iwidth + 'em', height: iwidth + 'em', border: borderWidth + 'px solid black', marginRight: marginRight + "em"})
                             .appendTo(g);
                     });
                     $('#gallery-back').button(p.page > 1 ? 'enable' : 'disable');
@@ -101,15 +106,24 @@ define(['jquery',
             var $g = $("#gallery"),
                 $images = $g.find("img"),
                 gwidth = $g.width(),
-                imgWidth; // also its height
+                picsPerRow,
+                baseFont,
+                marginRight,
+                iWidth; // also its height
                 
             if(($images.length === 0)) { // no images to adjust, return
                 return; 
             } else {
-                imgWidth = Math.floor(gwidth /(gwidth > 640 ? 8 : 4) / parseInt($("body").css("font-size"), 10));
+                picsPerRow = gwidth > 720 ? 9 : 6;
+                marginRight = gwidth > 720 ? .2 : .1;
+                borderWidth = 1;
+                baseFont = parseInt($("body").css("font-size"));
+                iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
+                
                 $images.css({
-                    width: imgWidth + 'em',
-                    height: imgWidth + 'em'
+                    width: iwidth + 'em',
+                    height: iwidth + 'em',
+                    marginRight: marginRight + 'em'
                 });
             }
         }
@@ -119,7 +133,7 @@ define(['jquery',
             // TODO: set loading here
             galleryData = {
                 page: 1,
-                per_page: 16, // 16 per page would allow an even number of pictures per row
+                per_page: 18, // 16 per page would allow an even number of pictures per row
                 extras: 'url_m' // ask for the medium url so I can get the size
             };
             if ('query' in options) {
@@ -496,7 +510,7 @@ define(['jquery',
                     return false;
                 }
             }
-            $(".navigation").empty();
+            $(".navigation").hide();
             return true;
         }
 
@@ -622,7 +636,7 @@ define(['jquery',
                     });
                     $('a.thr-settings-icon').hide();
                     // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
-                    $(".navigation li:not(:has(>ul)) a").click(confirmLeaving);
+                    $(".write-page .navigation li:not(:has(>ul)) a").on('click', confirmLeaving);
 
                     $('body').on('click', '.help,.help-text', function(e) {
                         // dialog doc claims it restores the source element but it does not do that for me, clone below

@@ -43,7 +43,7 @@ if ( ! is_user_logged_in() ): ?>
 </p>
 <p class="forgetmenot"><label><input name="rememberme" type="checkbox" value="forever" tabindex="90" /> Remember Me</label></p>
 <p class="submit">
-<input type="submit" name="wp-submit" class="button-primary" value="Log In" tabindex="100" />
+<input type="submit" class="thr-button" name="wp-submit" class="button-primary" value="Log In" tabindex="100" />
 <input type="hidden" name="redirect_to" value="/" />
 <input type="hidden" name="testcookie" value="1" />
 </p>

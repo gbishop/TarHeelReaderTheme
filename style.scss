@@ -9,95 +9,53 @@ Version: 1
 
 $captionFontSize: 1.8em;
 $pageLinkFontSize: 0.8em;
-
-// define mixin for the alternative navigation/menu layout used for handheld devices
-@mixin phoneNavigation {
-   
-   .header {
-      padding-top: 4em; // for the navigation bar
-   }
-   
-  .thr-well-icon, .thr-settings-icon { // hide the menu and navigation icons
-    display: none;
-   }
-   
-   // Adjust navigation accordingly
-   .navigation {
-   
-      background-color: #56A0D3;
-      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
-      background-image: -webkit-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: -moz-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: -ms-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: -o-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: linear-gradient(bottom, #56A0D3, #286DA3);
-      
-      height: 4em;
-      width: 100%;
-      margin: 0 auto;
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      border-bottom: 1px solid #FFF;
-      
-      li {
-        margin: 0;
-        padding: 0;
-        float: left;
-        width: 18%;
-        border: 0;
-        border-right: 1px solid #FFF;
-        position: relative;
-        
-        .submenu {
-          position: absolute;
-          top: 4.1em;
-          left: 0;
-          height: auto;
-          
-          background: #56A0D3;
-          border: 0;
-          -webkit-border-radius: 0 0 2em 2em;
-          -moz-border-radius: 0 0 2em 2em;
-          border-radius: 0 0 2em 2em;
-          
-          li {
-            display: block;
-            width: 100%;
-            border-bottom: 1px solid #FFF;
-          }
-        
-        }
-        
-        &:last-child {
-          .submenu { // modify the position of the submenu of the last link so that it doesn't go out of the page
-            left: -4.5em;
-           }
-        }
-        
-        &:nth-child(2), &:nth-child(3) { // the links 'Reading' and 'Writing' require more space
-          width: 22%;
-        }
-        
-      }
-      
-      a {
-        padding-left: 2.25em;
-        padding-right: 0;
-        background-position: 0.25em center !important;
-        color: #DDD;
-        text-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
-       }
-    }
-}
+$carolinaBlue: #56A0D3;
 
 @import "reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
+
+@mixin decoratedButton($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $gradientStartColor, $gradientEndColor,  $fontSize, 
+                       $yPadding, $xPadding, $textColor, $transitionBackgroundColor, $transitionColor, $transitionDuration, $width) {
+                         
+    background-color: $gradientEndColor;
+    background-image: -webkit-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $gradientStartColor), color-stop(100%, $gradientEndColor));
+    background-image: -moz-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: -o-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: -ms-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    
+    border: $borderWidth solid $borderColor;
+    cursor: pointer;
+    
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
+    
+    -webkit-border-radius: $borderRadius;
+    -moz-border-radius: $borderRadius;
+    border-radius: $borderRadius;
+    
+    color: $textColor;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    font-size: $fontSize;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    
+    padding: $yPadding $xPadding;
+    
+    width: $width;
+    text-decoration: none;
+    
+    -webkit-transition: all $transitionDuration ease-in;
+    -moz-transition: all $transitionDuration ease-in;
+    transition: all $transitionDuration ease-in;
+    
+    &:hover, &:focus {
+      background: $transitionBackgroundColor;
+      color: $transitionColor;
+    }    
+}
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
@@ -143,9 +101,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     -moz-border-radius: 1em;
     border-radius: 1em;
     
-    -webkit-box-shadow: 0 0 0.25 #56A0D3;
-    -moz-box-shadow: 0 0 0.25em #56A0D3;
-    box-shadow: 0 0 0.25em #56A0D3;
+    -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
+    -moz-box-shadow: 0 0 0.2em $carolinaBlue;
+    box-shadow: 0 0 0.2em $carolinaBlue;
     overflow: auto;
     
     #homeLinkList {
@@ -156,45 +114,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         margin: 2em 0;
         width: 50%;
         float: left;
+        .homeLink {
+           @include decoratedButton(0.1em, #61A0B3, 0.5em, 0.25em, $carolinaBlue, #286DA3, 1.25em, 1em, 2em, #DDD, #81BEF0, #FFF, 0.5s, 10em);
+         }
       }
-      
-      a.homeLink {
-        padding: 1em 2em;
-        width: 10em;
-        
-        background-color: #56A0D3;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
-        background-image: -webkit-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: -moz-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: -ms-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: -o-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: linear-gradient(top, #56A0D3, #286DA3);
-        
-        border: 0.1em solid #61A0B3;
-        -webkit-border-radius: 0.5em;
-        -moz-border-radius: 0.5em;
-        border-radius: 0.5em;
-        
-        -webkit-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
-        box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
-        
-        color: #DDD;
-        font-size: 1.25em;
-        letter-spacing: .05em;
-        text-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
-        text-decoration: none;
-        
-        -webkit-transition: all 0.5s ease-in;
-        -moz-transition: all 0.5s ease-in;
-        transition: all 0.5s ease-in;
-        
-        &:hover, &:focus {
-          color: #FFF;
-          background: #81BEF0;
-        }
-        
-     }
      
     }
     
@@ -214,10 +137,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .find-page {
     background:url('/theme/images/furley_bg.png');
     .description {
-        display: none;
+      display: none;
     }
-    .header .thr-settings-icon {
-      opacity: 1;
+    .thr-settings-icon {
+      display: block;
     }
 }
 
@@ -231,7 +154,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     font-size: 1.7em;
     font-weight: normal;
     letter-spacing: 0.1em;
-    border-bottom: 2px solid #56A0D3;
+    border-bottom: 2px solid $carolinaBlue;
     color: #666;
     padding-left: .25em;
   }
@@ -265,11 +188,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         
         height: 1.7em;
         min-height: 57%;
-
+        
         a {
             text-decoration: none;
-            color: #666;
+            color: #555;
             font-family: 'Terminal Dosis', sans-serif;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
             font-weight: 200;
             padding: 0;
         }
@@ -305,10 +229,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .thr-settings-icon {
-    opacity: 0; // default settings
+    display: none;
     position: absolute;
     top: 0.65em;
     right: 2em;
+    z-index: 999;
+    
     width: 2.5em;
     min-width: 24px;
     height: 2.5em;
@@ -319,13 +245,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         min-width: 24px;
         height: 2.5em;
         min-height: 24px;
-        opacity: 0.8;
+        opacity: 0.6;
         &:hover {
-            opacity: 1;
+           opacity: 1;
         }
     }
     
-    z-index: 99;
 }
 
 .footer, .footer a {
@@ -340,7 +265,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .post {
-    //width: 31em;
     max-width: 100%;
     padding: .5em 1em;
 }
@@ -363,20 +287,11 @@ li {
 h2 {
     font-size: 1.3em;
     margin: .25em;
-    /*
-     * background: #56A0D3;
-    border-radius: 0.5em 0.5em 0.5em 0.5em;
-    color: #DDDDDD;
-    font-size: 1.5em;
-    font-weight: normal;
-    letter-spacing: 0.05em;
-    margin: 0.25em;
-    padding: 0.75em 1em;
-     */
 }
 
-// code for the decoratedButton class (for those buttons which we want to look fancy)
-.decoratedButton {
+// use the decoratedButton mixin
+
+/*.decoratedButton {
     background-color: #eee;
     background-image: -webkit-linear-gradient(top, #eee, #ccc);
     background-image: -moz-linear-gradient(top, #eee, #ccc);
@@ -409,12 +324,6 @@ h2 {
     
     &:hover, &:focus {
       background-color: #dddddd;
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
-      background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: linear-gradient(top, #dddddd, #bbbbbb);
       
       border: 1px solid #bbb;
       border-bottom: 1px solid #999;
@@ -423,11 +332,51 @@ h2 {
     }
 }
 
-.decoratedList { // begin .list code
-    
+.decoratedButton2 {
+        padding: 1em 2em;
+        width: 10em;
+        
+        background-color: $carolinaBlue;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $carolinaBlue), color-stop(100%, #286DA3));
+        background-image: -webkit-linear-gradient(top, $carolinaBlue, #286DA3);
+        background-image: -moz-linear-gradient(top, $carolinaBlue, #286DA3);
+        background-image: -ms-linear-gradient(top, $carolinaBlue, #286DA3);
+        background-image: -o-linear-gradient(top, $carolinaBlue, #286DA3);
+        background-image: linear-gradient(top, $carolinaBlue, #286DA3);
+        
+        border: 0.1em solid #61A0B3;
+        -webkit-border-radius: 0.5em;
+        -moz-border-radius: 0.5em;
+        border-radius: 0.5em;
+        
+        -webkit-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
+        
+        color: #DDD;
+        font-size: 1.25em;
+        letter-spacing: .05em;
+        text-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        
+        -webkit-transition: all 0.5s ease-in;
+        -moz-transition: all 0.5s ease-in;
+        transition: all 0.5s ease-in;
+        
+        &:hover, &:focus {
+          color: #FFF;
+          background: #81BEF0;
+        }       
+}*/
+
+.thr-button {
+   @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.25em, 0.25em, 0.25em, #DDD, #81BEF0, #FFF, 0.5s, 8em);
+}
+
+.decoratedList {
     margin-bottom: 1em;
     
-    background-color: #DFDFDF;
+    background-color: #DDD;
     background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
     background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
     background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
@@ -440,10 +389,9 @@ h2 {
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
     
-    -webkit-box-shadow: 0 0 .1em #56A0D3;
-    -moz-box-shadow: 0 0 .1em #56A0D3;
-    box-shadow: 0 0 .1em #56A0D3;
-
+    -webkit-box-shadow: 0 0 .05em $carolinaBlue;
+    -moz-box-shadow: 0 0 .05em $carolinaBlue;
+    box-shadow: 0 0 .05em $carolinaBlue;
 
     li {
       list-style: none;
@@ -452,16 +400,17 @@ h2 {
       border-bottom: .1em solid #555;
       
       a {
-      color: #666666;
-      font-weight: bold;
-      letter-spacing: .1em;
-      padding-left: .5em;
-      padding-right: 1.5em;
+        color: #676;
+        font-weight: bold;
+        letter-spacing: .1em;
+        padding-left: .5em;
+        padding-right: 1.5em;
+        
+        text-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
       
-       &:hover {
-          color: #56A0D3;
+        &:hover {
+          color: $carolinaBlue;
         }
-       
       }
       
       &:last-child {
@@ -470,28 +419,6 @@ h2 {
     }
     
  }
-
-.decoratedLink {
-    background-color: #ccc;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc, color-stop(100%, #aaa)));
-    background-image: -webkit-linear-gradient(top, #ccc, #aaa);
-    background-image: -moz-linear-gradient(top, #ccc, #aaa);
-    background-image: -ms-linear-gradient(top, #ccc, #aaa);
-    background-image: -o-linear-gradient(top, #ccc, #aaa);
-    background-image: linear-gradient(top, #ccc, #aaa);
-    
-    border: 1px solid #666;
-    -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    border-radius: 0.5em;
-    
-    color: #FFF;
-    padding: .25em .5em;
-    
-    &:hover {
-      color: #56A0D3;
-    }
-}
 
 // Panel CSS for Navigation and Settings menus
 .panel {
@@ -861,9 +788,9 @@ h2 {
         transition: all linear 1s;
         
         &:focus, &:hover {
-          -webkit-box-shadow: 0 0 0.25em #56A0D3;;
-          -moz-box-shadow: 0 0 0.25em #56A0D3;
-          box-shadow: 0 0 0.25em #56A0D3;
+          -webkit-box-shadow: 0 0 0.25em $carolinaBlue;;
+          -moz-box-shadow: 0 0 0.25em $carolinaBlue;
+          box-shadow: 0 0 0.25em $carolinaBlue;
           
           border: 1px solid #66A0D3;
         }
@@ -910,7 +837,7 @@ h2 {
     li {
         width: 11em;
         height: 11em;
-        border: 1px solid #56A0D3;
+        border: 1px solid $carolinaBlue;
         margin: 0.2em;
         float: left;
         text-align: center;
@@ -1126,7 +1053,7 @@ h2 {
       }
       
       .thr-well-icon { // make the home icon less opaque
-        opacity: 0.3;
+        opacity: 0.6;
       }
     }
     
@@ -1138,7 +1065,7 @@ h2 {
     
     .thr-question {
         letter-spacing: 0.1em;
-        border-bottom: 2px solid #56A0D3;
+        border-bottom: 2px solid $carolinaBlue;
         color: #666;
         margin: 1em auto;
     }
@@ -1192,11 +1119,19 @@ h2 {
             background-image: -webkit-linear-gradient(top, #FFF, #FAFAFA);
             background-image: linear-gradient(top, #FFF, #FAFAFA);
             
-            color: #56A0D3;
+            color: $carolinaBlue;
         }
 
     }
 }
+
+// show the settings icon in the front-page and the choice-page (at the end of the book)
+.front-page, .choice-page {
+  .thr-settings-icon {
+    display: block;
+  }
+}
+
 .js .thr-pic {  // hide the picture initially when javascript is enabled so we can size it without a jump
     display: none;
 }
@@ -1273,6 +1208,19 @@ h2 {
         font-weight: bold;
         font-size: 2em;
     }
+    
+    p#notLoggedIn {
+      color: #555;
+      font-size: 1.25em;
+      margin: 1em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+      
+      a {
+        display: block;
+        margin-top: 0.5em;
+      }
+    }
+    
     .steps {
         padding: 0.5em;
         background-color: #EEE;
@@ -1475,6 +1423,92 @@ h2 {
 /* include my automatically generated media queries */
 
 @import "mediaqueries";
+
+// define mixin for the alternative navigation/menu layout used for handheld devices
+@mixin phoneNavigation {
+   
+   .header {
+      padding-top: 4em; // for the navigation bar
+   }
+   
+  .thr-well-icon, .thr-settings-icon { // hide the menu and navigation icons
+    display: none;
+   }
+   
+   // Adjust navigation accordingly
+   .navigation {
+   
+      background-color: $carolinaBlue;
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, $carolinaBlue), color-stop(100%, #286DA3));
+      background-image: -webkit-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: -moz-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: -ms-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: -o-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: linear-gradient(bottom, $carolinaBlue, #286DA3);
+      
+      height: 4em;
+      width: 100%;
+      margin: 0 auto;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      border-bottom: 1px solid #FFF;
+      
+      li {
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 18%;
+        border: 0;
+        border-right: 1px solid #FFF;
+        position: relative;
+        
+        .submenu {
+          position: absolute;
+          top: 4.1em;
+          left: 0;
+          height: auto;
+          
+          background: $carolinaBlue;
+          border: 0;
+          -webkit-border-radius: 0 0 2em 2em;
+          -moz-border-radius: 0 0 2em 2em;
+          border-radius: 0 0 2em 2em;
+          
+          li {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid #FFF;
+          }
+        
+        }
+        
+        &:last-child {
+          .submenu { // modify the position of the submenu of the last link so that it doesn't go out of the page
+            left: -4.5em;
+           }
+        }
+        
+        &:nth-child(2), &:nth-child(3) { // the links 'Reading' and 'Writing' require more space
+          width: 22%;
+        }
+        
+      }
+      
+      a {
+        padding-left: 2.25em;
+        padding-right: 0;
+        background-position: 0.25em center !important;
+        color: #DDD;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+       }
+    }
+}
 
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
