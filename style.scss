@@ -12,18 +12,18 @@ $pageLinkFontSize: 0.8em;
 
 // define mixin for the alternative navigation/menu layout used for handheld devices
 @mixin phoneNavigation {
-   
+
    .header {
       padding-top: 4em; // for the navigation bar
    }
-   
+
   .thr-home-icon, .thr-settings-icon { // hide the menu and navigation icons
     display: none;
    }
-   
+
    // Adjust navigation accordingly
    .navigation {
-   
+
       background-color: #56A0D3;
       background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
       background-image: -webkit-linear-gradient(bottom, #56A0D3, #286DA3);
@@ -31,7 +31,7 @@ $pageLinkFontSize: 0.8em;
       background-image: -ms-linear-gradient(bottom, #56A0D3, #286DA3);
       background-image: -o-linear-gradient(bottom, #56A0D3, #286DA3);
       background-image: linear-gradient(bottom, #56A0D3, #286DA3);
-      
+
       height: 4em;
       width: 100%;
       margin: 0 auto;
@@ -39,12 +39,12 @@ $pageLinkFontSize: 0.8em;
       position: fixed;
       top: 0;
       left: 0;
-      
+
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
       border-radius: 0;
       border-bottom: 1px solid #FFF;
-      
+
       li {
         margin: 0;
         padding: 0;
@@ -53,39 +53,39 @@ $pageLinkFontSize: 0.8em;
         border: 0;
         border-right: 1px solid #FFF;
         position: relative;
-        
+
         .submenu {
           position: absolute;
           top: 4.1em;
           left: 0;
           height: auto;
-          
+
           background: #56A0D3;
           border: 0;
           -webkit-border-radius: 0 0 2em 2em;
           -moz-border-radius: 0 0 2em 2em;
           border-radius: 0 0 2em 2em;
-          
+
           li {
             display: block;
             width: 100%;
             border-bottom: 1px solid #FFF;
           }
-        
+
         }
-        
+
         &:last-child {
           .submenu { // modify the position of the submenu of the last link so that it doesn't go out of the page
             left: -4.5em;
            }
         }
-        
+
         &:nth-child(2), &:nth-child(3) { // the links 'Reading' and 'Writing' require more space
           width: 22%;
         }
-        
+
       }
-      
+
       a {
         padding-left: 2.25em;
         padding-right: 0;
@@ -138,30 +138,30 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     padding: 0.25em 1em 1em;
     max-width: 95%;
     //position: relative; // why do we need this?
-    
+
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
-    
+
     -webkit-box-shadow: 0 0 0.25 #56A0D3;
     -moz-box-shadow: 0 0 0.25em #56A0D3;
     box-shadow: 0 0 0.25em #56A0D3;
     overflow: auto;
-    
+
     #homeLinkList {
       overflow: auto;
       text-align: center;
-      
+
       li {
         margin: 2em 0;
         width: 50%;
         float: left;
       }
-      
+
       a.homeLink {
         padding: 1em 2em;
         width: 10em;
-        
+
         background-color: #56A0D3;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
         background-image: -webkit-linear-gradient(top, #56A0D3, #286DA3);
@@ -169,39 +169,39 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         background-image: -ms-linear-gradient(top, #56A0D3, #286DA3);
         background-image: -o-linear-gradient(top, #56A0D3, #286DA3);
         background-image: linear-gradient(top, #56A0D3, #286DA3);
-        
+
         border: 0.1em solid #61A0B3;
         -webkit-border-radius: 0.5em;
         -moz-border-radius: 0.5em;
         border-radius: 0.5em;
-        
+
         -webkit-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
         -moz-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
         box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
-        
+
         color: #DDD;
         font-size: 1.25em;
         letter-spacing: .05em;
         text-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
         text-decoration: none;
-        
+
         -webkit-transition: all 0.5s ease-in;
         -moz-transition: all 0.5s ease-in;
         transition: all 0.5s ease-in;
-        
+
         &:hover, &:focus {
           color: #FFF;
           background: #81BEF0;
         }
-        
+
      }
-     
+
     }
-    
+
     #homeLinkList + p {
       clear: both;
     }
-    
+
 }
 
 .page-wrap {
@@ -235,16 +235,16 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     color: #666;
     padding-left: .25em;
   }
-  
+
   p {
     text-align: left;
     margin: 1em 0.5em;
   }
-  
+
   a {
     text-decoration: none;
   }
-  
+
 }
 
 .header {
@@ -254,15 +254,15 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     height: 4em;
     text-align: center;
     display: block;
-    
+
     min-height: 32px;
-   
+
     h1 {
         font-size: 2em;
         padding-top: 0.25em;
         letter-spacing: .05em;
         margin-top: 0.1em;
-        
+
         height: 1.7em;
         min-height: 57%;
 
@@ -274,7 +274,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             padding: 0;
         }
     }
-    
+
     .description {
         font-size: 0.9em;
     }
@@ -284,12 +284,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     position: absolute;
     top: .5em;
     left: 2em;
-    
+
     width: 2.5em;
     min-width: 24px;
     height: 2.5em;
     min-height: 24px;
-    
+
     img {
         width: 2.5em;
         min-width: 24px;
@@ -300,7 +300,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             opacity: 1;
         }
     }
-    
+
     z-index: 99;
 }
 
@@ -313,7 +313,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     min-width: 24px;
     height: 2.5em;
     min-height: 24px;
-    
+
     img {
         width: 2.5em;
         min-width: 24px;
@@ -324,7 +324,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             opacity: 1;
         }
     }
-    
+
     z-index: 99;
 }
 
@@ -383,30 +383,30 @@ h2 {
     background-image: -o-linear-gradient(top, #eee, #ccc);
     background-image: -ms-linear-gradient(top, #eee, #ccc);
     background-image: linear-gradient(top, #eee, #ccc);
-    
+
     border: 1px solid grey;
     -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
-    
+
     -webkit-border-radius: 0.25em;
     -moz-border-radius: 0.25em;
     border-radius: 0.25em;
-    
+
     color: #333;
     font: normal 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
     text-align: center;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
-    
+
     padding: 0.5em 0;
-    
+
     width: 11em;
     text-decoration:none;
-    
+
     -webkit-transition: all 1s;
     -moz-transition: all 1s;
     transition: all 1s;
-    
+
     &:hover, &:focus {
       background-color: #dddddd;
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
@@ -415,7 +415,7 @@ h2 {
       background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
       background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
       background-image: linear-gradient(top, #dddddd, #bbbbbb);
-      
+
       border: 1px solid #bbb;
       border-bottom: 1px solid #999;
       cursor: pointer;
@@ -424,9 +424,9 @@ h2 {
 }
 
 .decoratedList { // begin .list code
-    
+
     margin-bottom: 1em;
-    
+
     background-color: #DFDFDF;
     background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
     background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
@@ -434,7 +434,7 @@ h2 {
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
     background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
     background-image: linear-gradient(top, #F0F2F7, #DDD);
-    
+
     border: .1em solid #AAA;
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
@@ -446,25 +446,25 @@ h2 {
       padding: .5em .75em;
       margin: 0;
       border-bottom: 1px solid #555;
-      
+
       a {
       color: #666666;
       font-weight: bold;
       letter-spacing: .1em;
       padding-left: .5em;
       padding-right: 1.5em;
-      
+
        &:hover {
           color: #56A0D3;
         }
-       
+
       }
-      
+
       &:last-child {
         border: 0;
       }
     }
-    
+
  }
 
 .decoratedLink {
@@ -475,15 +475,15 @@ h2 {
     background-image: -ms-linear-gradient(top, #ccc, #aaa);
     background-image: -o-linear-gradient(top, #ccc, #aaa);
     background-image: linear-gradient(top, #ccc, #aaa);
-    
+
     border: 1px solid #666;
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
-    
+
     color: #FFF;
     padding: .25em .5em;
-    
+
     &:hover {
       color: #56A0D3;
     }
@@ -495,12 +495,12 @@ h2 {
     top: 3em;
     padding: 0;
     width: 12em;
-    
+
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
     border: .1em solid #DDD;
-    
+
     li {
       border-bottom: .1em solid #DDD;
       position: relative; // in order to show submenus
@@ -508,7 +508,7 @@ h2 {
       padding: 0;
       height: auto;
       width: auto;
-      
+
       .submenu {
         list-style: none;
         position: absolute;
@@ -517,34 +517,34 @@ h2 {
         width: 12em;
         padding: 0;
         margin: 0;
-        
-  
+
+
         /* Set necessary background, border, and width */
         background: #8E8E8E;
-        
+
         -webkit-box-shadow: 0 0 0.1em #667;
         -moz-box-shadow: 0 0 0 0.1em #667;
         box-shadow: 0 0 .1em #667;
-        
+
         border: 0.1em solid #DDD;
         border-left: 0;
         z-index: 99;
-        
+
         li {
           border: 0;
           border-bottom: 0.1em solid #DDD;
-          
+
           &.selectedLink {
             -webkit-border-radius: 0.25em;
             -moz-border-radius: 0.25em;
             border-radius: 0.25em;
           }
-          
+
           &:last-child {
             border: 0;
           }
         }
-        
+
         a {
           font-size: 1em;
           padding: 1em;
@@ -552,18 +552,18 @@ h2 {
           text-align: center;
         }
       }
-      
+
       &:last-child {
         border: 0;
       }
-      
+
       &.selectedLink {
         border: .2em solid #EEE !important;
         -webkit-border-radius: 0.25em;
         -moz-border-radius: 0.25em;
         border-radius: 0.25em;
       }
-      
+
       &:first-child.selectedLink {
         -webkit-border-top-left-radius: 0.75em;
         -webkit-border-top-right-radius: 0.75em;
@@ -572,7 +572,7 @@ h2 {
         border-top-left-radius: 0.75em;
         border-top-right-radius: 0.75em;
       }
-      
+
       &:last-child.selectedLink {
         -webkit-border-bottom-left-radius: 0.75em;
         -webkit-border-bottom-right-radius: 0.75em;
@@ -582,18 +582,18 @@ h2 {
         border-bottom-right-radius: 0.75em;
       }
     }
-    
+
     a {
-      display: block; 
+      display: block;
       text-decoration: none;
       color: #DDD;
       padding: 1em 0 1em 4em;
-  
+
       text-align: left;
       font-size: 1.3em;
-      
+
       background-size: 1.5em !important; // resize the images for fluid layout
-      
+
       -webkit-transition: color 0.1s;
       -moz-transition: color 0.1s;
       -o-transition: color 0.1s;
@@ -613,68 +613,68 @@ h2 {
     -webkit-box-shadow: .1em .1em .1em #AAA;
     -moz-box-shadow: .1em .1em .1em #AAA;
     box-shadow: .1em .1em .1em #AAA;
-    
+
     /* Background code... */
     background: #888; // If all else fails...
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6F6F6F), to(#8E8E8E)); /* Safari 4-5, Chrome 1-9 */ 
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6F6F6F), to(#8E8E8E)); /* Safari 4-5, Chrome 1-9 */
     background: -webkit-linear-gradient(left, #6F6F6F, #8E8E8E); /* Safari 5.1, Chrome 10+ */
     background: -moz-linear-gradient(left, #6F6F6F, #8E8E8E); /* Firefox */
     background: -ms-linear-gradient(left, #6F6F6F, #8E8E8E); /* IE 10+ */
     background: -o-linear-gradient(left, #6F6F6F, #8E8E8E); /* Opera */
-    
+
     // display submenu to the right
     li {
       .submenu {
         left: 12.05em; // account for width of navigation
-        
+
         -webkit-border-radius: 0 1em 1em 0em;
         -moz-border-radius: 0 1em 1em 0em;
          border-radius: 0 1em 1em 0em;
       }
     }
-   
+
     a {
       &#home {
         background: url(/theme/images/home_32.png) 1em center no-repeat;
       }
-      
+
       &#reading {
         background: url(/theme/images/read_book.png) .75em center no-repeat;
       }
-      
+
       &#writing {
         background: url(/theme/images/write_book.png) 1em center no-repeat;
       }
-      
+
       &#user {
         background: url(/theme/images/user.png) 1em center no-repeat;
       }
-      
+
       &#help {
         background: url(/theme/images/info.png) 1em center no-repeat;
       }
-      
+
     }
-    
+
 }
 
 .mainSettings {
   display: none; // hide initially
   right: 4em;
   z-index: 99;
-  
+
   -webkit-box-shadow: -.1em .1em .1em #AAA;
   -moz-box-shadow: -.1em .1em .1em #AAA;
   box-shadow: -.1em .1em .1em #AAA;
-  
+
    /* Background code... */
    background: #888; // If all else fails...
-   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */ 
+   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */
    background: -webkit-linear-gradient(left, #8E8E8E, #6F6F6F); /* Safari 5.1, Chrome 10+ */
    background: -moz-linear-gradient(left, #8E8E8E, #6F6F6F); /* Firefox */
    background: -ms-linear-gradient(left, #8E8E8E, #6F6F6F); /* IE 10+ */
    background: -o-linear-gradient(left, #8E8E8E, #6F6F6F); /* Opera */
-  
+
   li {
     // display submenu to the left
     .submenu {
@@ -684,12 +684,12 @@ h2 {
        border-radius: 1em 0 0 1em;
        border-right: 0;
        border-left: .1em solid #DDD;
-       
+
       li {
-        
+
         height: auto;
         width: auto;
-        
+
         .innerSubmenu {
           /* Set necessary background, border, and width */
            display: none;
@@ -697,31 +697,31 @@ h2 {
            right: 12em;
            width: 10em;
            top: -2em;
-           
+
            background: #8E8E8E;
            border-radius: 1em 0 0 1em;
            border: .1em solid #DDD;
            z-index: 99;
-            
+
            a {
              text-align: left;
              padding-left: 3.25em;
              padding-right: 0.5em;
            }
-           
+
          }
-         
+
          // a little adjustment to the innersubmenus inside 'My Book'
          .myBookInnerSubmenu {
              right: 12em;
              width: 9em;
-             
+
              a {
                text-align: center;
                padding: 1em;
              }
          }
-  
+
       }
 
       // Begin color icons for page color
@@ -729,94 +729,94 @@ h2 {
         a.black {
           background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
         }
-           
+
         a.blue {
           background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
         }
-           
+
         a.cyan {
           background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
         }
-           
+
         a.green {
           background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
         }
-           
+
         a.magenta {
           background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
         }
-           
+
         a.red {
           background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
         }
-           
+
         a.white {
            background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
         }
-           
+
         a.yellow {
            background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
           }
         }
          // End color icons for page color
-         
+
          // Begin color icons for text color
        #textColors .innerSubmenu {
            a.black {
              background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
            }
-           
+
            a.blue {
              background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
            }
-           
+
            a.cyan {
              background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
            }
-           
+
            a.green {
              background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
            }
-           
+
            a.magenta {
              background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
            }
-           
+
            a.red {
              background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
            }
-           
+
            a.white {
              background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
            }
-           
+
            a.yellow {
              background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
            }
        }
-         
-         
+
+
     } // end submenu
-    
+
   } // end li
 
   a {
     &.checked {
       background: url(/theme/images/check_mark.png) right center no-repeat !important;
     }
-    
+
     &#speech {
       background: url(/theme/images/sound_32.png) 1em center no-repeat;
     }
-    
+
     &#colors {
       background: url(/theme/images/colors_32.png) 1em center no-repeat;
     }
-    
+
     &#myBook {
       background: url(/theme/images/my_book_32.png) 1em center no-repeat;
     }
-    
+
     &#default {
       background: url(/theme/images/default_settings.png) 1em center no-repeat;
     }
@@ -827,13 +827,13 @@ h2 {
     text-align: center;
     width: 100%;
     margin: 0.75em auto 0.5em;
-    
+
     select {
         width: 10em;
         margin: .15em;
         padding: .2em;
     }
-    
+
     select[name=audience] {
       width: 14em;
     }
@@ -843,36 +843,36 @@ h2 {
         height: 1.5em;
         border:1px solid grey;
         padding: 0.15em 0.3em;
-        
+
         -webkit-border-radius: 0.5em;
         -moz-border-radius: 0.5em;
         border-radius: 0.5em;
-        
+
         -webkit-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
         -moz-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
         box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
-        
+
         -webkit-transition: all linear 1s;
         -moz-transition: all linear 1s;
         transition: all linear 1s;
-        
+
         &:focus, &:hover {
           -webkit-box-shadow: 0 0 0.25em #56A0D3;;
           -moz-box-shadow: 0 0 0.25em #56A0D3;
           box-shadow: 0 0 0.25em #56A0D3;
-          
+
           border: 1px solid #66A0D3;
         }
     }
-    
+
     input[type='submit'] {
         font-size: 1em;
         margin-left: .25em;
-        
+
         -webkit-border-radius: 0.5em;
         -moz-border-radius: 0.5em;
         border-radius: 0.5em;
-        
+
         padding: .1em 1em;
         background: #EEE;
         width: 8em;
@@ -1053,16 +1053,16 @@ h2 {
     width: 6em;
     height: 4em;
     display: block;
-    
+
     text-decoration: none;
     letter-spacing: .05em;
     color: #EFEFEF;
-    
+
     border: 2px solid #CECECE; // red;
     -webkit-border-radius: .5em;
     -moz-border-radius: .5em;
     border-radius: .5em;
-    
+
     background-color: #EEE;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #EFEFEF));
     background-image: -webkit-linear-gradient(top, #EEE, #EFEFEF);
@@ -1070,7 +1070,7 @@ h2 {
     background-image: -ms-linear-gradient(top, #EEE, #EFEFEF);
     background-image: -o-linear-gradient(top, #EEE, #EFEFEF);
     background-image: linear-gradient(top, #EEE, #EFEFEF);
-    
+
     position: absolute; // fixed works fine but isn't supported before ios5?
     bottom: .5em;
     font-size: $pageLinkFontSize;
@@ -1102,16 +1102,16 @@ h2 {
         overflow: hidden;
         padding: 0;
         margin: 0;
-        
+
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
         border-radius: 0;
-        
+
         -webkit-box-shadow: 0;
         -moz-box-shadow: 0;
         box-shadow: 0;
     }
-    
+
    .header {
       height: 0;
       min-height: 0;
@@ -1120,18 +1120,18 @@ h2 {
       h1 {
           display: none;
       }
-      
+
       .thr-home-icon { // make the home icon less opaque
         opacity: 0.3;
       }
     }
-    
+
     h1 {
         font-size: 2em;
         height: 2.5em;
         overflow: hidden;
     }
-    
+
     .thr-question {
         letter-spacing: 0.1em;
         border-bottom: 2px solid #56A0D3;
@@ -1163,7 +1163,7 @@ h2 {
         margin-top: .5em;
         font-size: 2em;
         text-align: left;
-        
+
         li {
             padding: 0.25em 0.25em;
             .thr-stars {
@@ -1214,35 +1214,35 @@ h2 {
   #publishedBooksContainer {
     margin: 1em 0;
   }
-  
+
   p {
     margin-left: 1em;
   }
-  
+
   // icons for the list items
   a {
     &.book {
       background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
     }
-    
+
     &.edit {
       background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
-      
+
     }
-    
+
     padding-right: 2.5em !important;
     background-size: 1.75em !important;
   }
-  
+
   // modify the button (which is of class decoratedButton) a little bit
-  
+
   .decoratedButton {
     font-weight: normal;
     letter-spacing: .05em;
     width: auto;
     padding: .25em .5em;
   }
-  
+
 }
 
 .next-posts {}
@@ -1254,7 +1254,7 @@ h2 {
         overflow: hidden;
         margin: 0.5em 1em;
     }
-    
+
     #writing-controls {
         display: none;
         margin: .5em 0;
@@ -1291,7 +1291,7 @@ h2 {
         background-image: -ms-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
         background-image: -o-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
         background-image: linear-gradient(left, #FEFEFE 30%, #F8F8F8);
-        
+
         -webkit-border-radius: 1em;
         -moz-border-radius: 1em;
         border-radius: 1em;
@@ -1449,6 +1449,12 @@ h2 {
         }
     }
 }
+
+.photoCreditsBox {
+  height: 5em;
+  width: 5em;
+  display: inline-block;
+}
 /* Print styles!
 -------------------------------------------------------------------------------*/
 @media print {
@@ -1469,7 +1475,7 @@ h2 {
 
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-      
+
     .js {
         // hide the search form until the search button is pressed
         .searchForm {
@@ -1496,16 +1502,16 @@ h2 {
     #writing-controls {
         font-size: 1.5em;
     }
-    
+
     @include phoneNavigation;
 }
 
 /* iPod landscape */
 
-@media only screen 
-and (min-device-width: 320px) 
-and (max-device-width: 480px) 
-and (min-width: 321px) 
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (min-width: 321px)
 and (max-width: 480px) {
     body {
         font-size: 10px;
@@ -1521,10 +1527,10 @@ and (max-width: 480px) {
 }
 
 /* iPod portrait */
-@media only screen 
-and (min-device-width: 320px) 
-and (max-device-width: 480px) 
-and (max-width: 320px) 
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (max-width: 320px)
 and (min-width: 320px) {
     body {
         font-size: 8.33px;
@@ -1540,22 +1546,22 @@ and (min-width: 320px) {
           margin: 1.5%; // 3% margin per book => 3*3% = 9%
         }
     }
-    
+
     .write-page {
       label {
         display: block;
         width: 100%;
         margin: 0.5em 0;
-        
+
         span {
           width: 30%;
           display: inline-block;
         }
-        
+
         input[type="text"], input[type="select"] {
           width: 65%;
         }
-       
+
       }
 
     }
