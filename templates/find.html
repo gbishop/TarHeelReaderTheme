@@ -1,13 +1,13 @@
 <div class="searchForm">
     {{&searchForm}}
 </div>
-<a class="searchShowButton no-ajaxy decoratedButton">_(Press to search|label for button to expose search fields on small devices)</a>
+<a class="searchShowButton no-ajaxy">_(Press to search|label for button to expose search fields on small devices)</a>
 {{&bookList}}
 <div class="clearfix"></div>
 {{#backLink}}
-<a class="thr-find-back selectable decoratedButton" href="{{backLink}}" data-speech="previous">_(Previous Books|button label):previous</a>
+<a class="thr-find-back selectable thr-gray-button" href="{{backLink}}" data-speech="previous">_(Previous Books|button label):previous</a>
 {{/backLink}}
 {{#nextLink}}
-<a class="thr-find-next selectable decoratedButton" href="{{nextLink}}" data-speech="next">_(More Books|button label):next</a>
+<a class="thr-find-next selectable thr-gray-button" href="{{nextLink}}" data-speech="next">_(More Books|button label):next</a>
 {{/nextLink}}
 <div class="clearfix"></div>

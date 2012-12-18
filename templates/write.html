@@ -2,7 +2,7 @@
 <p>_(You must have Javascript enabled in order to write a book.)</p>
 </noscript>
 {{^loggedIn}}
-<p id="notLoggedIn">_(You must be logged in to write a book. Please log in below.)<a class="thr-button" href="/login/">_(Log In|link label)</a></p>
+<p id="notLoggedIn">_(You must be logged in to write a book. Please log in below.)<a class="thr-blue-button" href="/login/">_(Log In|link label)</a></p>
 {{/loggedIn}}
 <div id="writing-controls">
     <div class="steps" id="step1">
@@ -11,8 +11,8 @@
         <p class="help-text" title="_(Step 1 Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
         <div class="aWrap">
             <form id="image-search" method="get" class="no-ajaxy">
-                <input type="search" name="query" id="write-image-search" />
-                <input type="submit" value="_(Search)" />
+                <input class="thr-input" type="search" name="query" id="write-image-search" />
+                <input class="thr-blue-button" type="submit" value="_(Search)" />
             </form>
             <div id="gallery"></div>
             <div class="error-messages">
@@ -45,10 +45,10 @@
         <p class="help-text" title="_(Step 3 Help)">_(Fill in the title for your book and select its language from the list. You may use a psuedonym if you wish by changing the author field.)</p>
         <div class="aWrap">
             <label><span>_(Title):</span>
-                <input type="text" name="title" title="_(Enter a title for your book)" maxlength="50" />
+                <input class="thr-input" type="text" name="title" title="_(Enter a title for your book)" maxlength="50" />
             </label>
             <label><span>_(Author):</span>
-                <input type="text" name="author" title="_(Enter a pseudonym)" value="{{user}}" maxlength="25" />
+                <input class="thr-input" type="text" name="author" title="_(Enter a pseudonym)" value="{{user}}" maxlength="25" />
             </label>
             <label><span>_(Language):</span>
                 <select name="language">
@@ -58,7 +58,7 @@
                     {{/languages}}
                 </select>
             </label>
-            <label><span>_(Optionally):</span><button id="categorizeButton">_(Categorize your book)</button></label>
+            <label><span>_(Optionally):</span><button class="thr-gray-button" id="categorizeButton">_(Categorize your book)</button></label>
         </div>
     </div>
     <div class="steps" id="step3a">
@@ -93,7 +93,7 @@
             </div>
             <div class="settings">
                 <label><b>_(Tags):</b>
-                    <input style="width: 30em" type="text" name="tags" maxlength="100"
+                    <input class="thr-input" style="width: 30em" type="text" name="tags" maxlength="100"
                         title="_(Enter a few descriptive words to make your book easier to find)" />
                 </label>
                 {{#canReview}}
@@ -113,8 +113,8 @@
             <div class="aWrap">
                 <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
             </div>
-            <button id="save">Save as draft</button>
-            <button id="publish">Publish</button>
+            <button class="thr-gray-button" id="save">Save as draft</button>
+            <button class="thr-gray-button" id="publish">Publish</button>
             <div id="publishErrors" class="error-messages">
                 <p id="peMessage">_(Your book will not be published until you fix these issues.)</p>
                 <p id="peTitle">_(It must have a title.)</p>

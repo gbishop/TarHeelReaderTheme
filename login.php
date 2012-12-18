@@ -30,20 +30,20 @@ Display the login form
 <?php
 if ( ! is_user_logged_in() ): ?>
 <h2>Login to Tar Heel Reader</h2>
-<p><?php echo $msg ?></p>
+<p id="message"><?php echo $msg ?></p>
 <form class="loginForm" action="/login/" method="post">
 <p>
 <label>Username<br />
-<input type="text" name="log" class="input" value="" size="20" tabindex="10" /></label>
+<input class="thr-input" type="text" name="log" class="input" value="" size="20" tabindex="10" /></label>
 </p>
 <p>
 <label>Password<br />
 
-<input type="password" name="pwd" class="input" value="" size="20" tabindex="20" /></label>
+<input class="thr-input" type="password" name="pwd" class="input" value="" size="20" tabindex="20" /></label>
 </p>
 <p class="forgetmenot"><label><input name="rememberme" type="checkbox" value="forever" tabindex="90" /> Remember Me</label></p>
 <p class="submit">
-<input type="submit" class="thr-button" name="wp-submit" class="button-primary" value="Log In" tabindex="100" />
+<input class="thr-blue-button"type="submit" name="wp-submit" class="button-primary" value="Log In" tabindex="100" />
 <input type="hidden" name="redirect_to" value="/" />
 <input type="hidden" name="testcookie" value="1" />
 </p>
