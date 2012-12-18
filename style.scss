@@ -80,7 +80,7 @@ $carolinaBlue: #56A0D3;
     height: $height;
     width: $width;
     
-    &:hover, &:focus {
+    &:focus {
       -webkit-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
       -moz-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
       box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
@@ -198,7 +198,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     &#message {
       color: $carolinaBlue;
       font-size: 1.25em;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
     }
   }
   
@@ -232,7 +232,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             text-decoration: none;
             color: #555;
             font-family: 'Terminal Dosis', sans-serif;
-            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
             font-weight: 200;
             padding: 0;
         }
@@ -344,9 +344,9 @@ h2 {
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
     
-    -webkit-box-shadow: 0 0 .05em $carolinaBlue;
-    -moz-box-shadow: 0 0 .05em $carolinaBlue;
-    box-shadow: 0 0 .05em $carolinaBlue;
+    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
 
     li {
       list-style: none;
@@ -367,17 +367,7 @@ h2 {
           color: $carolinaBlue;
         }
       }
-      
-      &:nth-child(even) {
-        background-color: #DDD;
-        background-image: -ms-linear-gradient(top, #FAFAFA, #EDEDED);
-        background-image: -moz-linear-gradient(top, #FAFAFA, #EDEDED);
-        background-image: -o-linear-gradient(top, #FAFAFA, #EDEDED);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FAFAFA), color-stop(100%, #EDEDED));
-        background-image: -webkit-linear-gradient(top, #FAFAFA, #EDEDED);
-        background-image: linear-gradient(top, #FAFAFA, #EDEDED);
-      }
-      
+            
       &:last-child {
         border: 0;
       }
@@ -1095,6 +1085,15 @@ h2 {
         color: red;
         font-weight: bold;
         font-size: 2em;
+    }
+    
+    .aWrap {
+      input[type='search'] {
+        width: 8em;
+        &:focus {
+          width: 16em;
+        }
+      }
     }
     
     p#notLoggedIn {
