@@ -90,7 +90,9 @@ define(["jquery",
                 newContent = templates.render('choicePage', view);
             }
             var $oldPage = page.getInactive('thr-book-page');
-            $oldPage.addClass('thr-colors');
+            // add classes to specific pages for styling purposes
+            pageNumber === 1 ? $oldPage.addClass('thr-colors front-page') : pageNumber <= N ? 
+                               $oldPage.addClass('thr-colors').removeClass('front-page choice-page') : $oldPage.addClass("choice-page");
             $oldPage.empty()
                 .append(templates.render('heading'))
                 .append('<div class="content-wrap">' + newContent + '</div>');

@@ -9,95 +9,85 @@ Version: 1
 
 $captionFontSize: 1.8em;
 $pageLinkFontSize: 0.8em;
-
-// define mixin for the alternative navigation/menu layout used for handheld devices
-@mixin phoneNavigation {
-
-   .header {
-      padding-top: 4em; // for the navigation bar
-   }
-
-  .thr-home-icon, .thr-settings-icon { // hide the menu and navigation icons
-    display: none;
-   }
-
-   // Adjust navigation accordingly
-   .navigation {
-
-      background-color: #56A0D3;
-      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
-      background-image: -webkit-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: -moz-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: -ms-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: -o-linear-gradient(bottom, #56A0D3, #286DA3);
-      background-image: linear-gradient(bottom, #56A0D3, #286DA3);
-
-      height: 4em;
-      width: 100%;
-      margin: 0 auto;
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      border-bottom: 1px solid #FFF;
-
-      li {
-        margin: 0;
-        padding: 0;
-        float: left;
-        width: 18%;
-        border: 0;
-        border-right: 1px solid #FFF;
-        position: relative;
-
-        .submenu {
-          position: absolute;
-          top: 4.1em;
-          left: 0;
-          height: auto;
-
-          background: #56A0D3;
-          border: 0;
-          -webkit-border-radius: 0 0 2em 2em;
-          -moz-border-radius: 0 0 2em 2em;
-          border-radius: 0 0 2em 2em;
-
-          li {
-            display: block;
-            width: 100%;
-            border-bottom: 1px solid #FFF;
-          }
-
-        }
-
-        &:last-child {
-          .submenu { // modify the position of the submenu of the last link so that it doesn't go out of the page
-            left: -4.5em;
-           }
-        }
-
-        &:nth-child(2), &:nth-child(3) { // the links 'Reading' and 'Writing' require more space
-          width: 22%;
-        }
-
-      }
-
-      a {
-        padding-left: 2.25em;
-        padding-right: 0;
-        background-position: 0.25em center !important;
-        color: #DDD;
-        text-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
-       }
-    }
-}
+$carolinaBlue: #56A0D3;
 
 @import "reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
+
+@mixin decoratedButton($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $gradientStartColor, $gradientEndColor,  $fontSize, 
+                       $yPadding, $xPadding, $textColor, $transitionBackgroundColor, $transitionColor, $transitionDuration, $width) {
+                         
+    background-color: $gradientEndColor;
+    background-image: -webkit-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $gradientStartColor), color-stop(100%, $gradientEndColor));
+    background-image: -moz-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: -o-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: -ms-linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    background-image: linear-gradient(top, $gradientStartColor, $gradientEndColor);
+    
+    border: $borderWidth solid $borderColor;
+    cursor: pointer;
+    
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
+    
+    -webkit-border-radius: $borderRadius;
+    -moz-border-radius: $borderRadius;
+    border-radius: $borderRadius;
+    
+    color: $textColor;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    font-size: $fontSize;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    
+    padding: $yPadding $xPadding;
+    
+    width: $width;
+    text-decoration: none;
+    
+    -webkit-transition: all $transitionDuration ease-in;
+    -moz-transition: all $transitionDuration ease-in;
+    transition: all $transitionDuration ease-in;
+    
+    &:hover {
+      background: $transitionBackgroundColor;
+      color: $transitionColor !important;
+    }    
+}
+
+@mixin decoratedInput($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $fontSize, $yPadding, $xPadding, 
+                       $textColor, $transitionBorderColor, $transitionBoxShadowColor, $transitionBoxShadowBlur, $transitionDuration, $height, $width) {
+    border: $borderWidth solid $borderColor;
+    -webkit-border-radius: $borderRadius;
+    -moz-border-radius: $borderRadius;
+    border-radius: $borderRadius;
+    
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(255, 255, 255, 0.4);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 $boxShadowBlur rgba(255, 255, 255, 0.4);
+    
+    color: $textColor;
+    font-size: $fontSize;
+    
+    padding: $yPadding $xPadding;
+    
+    -webkit-transition: all $transitionDuration ease-in;
+    -moz-transition: all $transitionDuration ease-in;
+    transition: all $transitionDuration ease-in;
+    
+    height: $height;
+    width: $width;
+    
+    &:focus {
+      -webkit-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
+      -moz-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
+      box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
+      
+      border: $borderWidth solid $transitionBorderColor;
+    }
+}
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
@@ -138,70 +128,35 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     padding: 0.25em 1em 1em;
     max-width: 95%;
     //position: relative; // why do we need this?
-
+    
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
-
-    -webkit-box-shadow: 0 0 0.25 #56A0D3;
-    -moz-box-shadow: 0 0 0.25em #56A0D3;
-    box-shadow: 0 0 0.25em #56A0D3;
+    
+    -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
+    -moz-box-shadow: 0 0 0.2em $carolinaBlue;
+    box-shadow: 0 0 0.2em $carolinaBlue;
     overflow: auto;
-
+    
     #homeLinkList {
       overflow: auto;
       text-align: center;
-
+      
       li {
         margin: 2em 0;
         width: 50%;
         float: left;
+        .homeLink {
+           @include decoratedButton(0.1em, #61A0B3, 0.5em, 0.25em, $carolinaBlue, #286DA3, 1.25em, 1em, 2em, #DDD, #81BEF0, #FFF, 0.5s, 10em);
+         }
       }
-
-      a.homeLink {
-        padding: 1em 2em;
-        width: 10em;
-
-        background-color: #56A0D3;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56A0D3), color-stop(100%, #286DA3));
-        background-image: -webkit-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: -moz-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: -ms-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: -o-linear-gradient(top, #56A0D3, #286DA3);
-        background-image: linear-gradient(top, #56A0D3, #286DA3);
-
-        border: 0.1em solid #61A0B3;
-        -webkit-border-radius: 0.5em;
-        -moz-border-radius: 0.5em;
-        border-radius: 0.5em;
-
-        -webkit-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 0 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
-        box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.3);
-
-        color: #DDD;
-        font-size: 1.25em;
-        letter-spacing: .05em;
-        text-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
-        text-decoration: none;
-
-        -webkit-transition: all 0.5s ease-in;
-        -moz-transition: all 0.5s ease-in;
-        transition: all 0.5s ease-in;
-
-        &:hover, &:focus {
-          color: #FFF;
-          background: #81BEF0;
-        }
-
-     }
-
+     
     }
-
+    
     #homeLinkList + p {
       clear: both;
     }
-
+    
 }
 
 .page-wrap {
@@ -214,10 +169,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .find-page {
     background:url('/theme/images/furley_bg.png');
     .description {
-        display: none;
+      display: none;
     }
-    .header .thr-settings-icon {
-      opacity: 1;
+    .thr-settings-icon {
+      display: block;
     }
 }
 
@@ -231,20 +186,27 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     font-size: 1.7em;
     font-weight: normal;
     letter-spacing: 0.1em;
-    border-bottom: 2px solid #56A0D3;
+    border-bottom: 2px solid $carolinaBlue;
     color: #666;
     padding-left: .25em;
   }
-
+  
   p {
     text-align: left;
     margin: 1em 0.5em;
+    
+    &#message {
+      color: $carolinaBlue;
+      font-size: 1.25em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    }
   }
-
+  
   a {
     text-decoration: none;
   }
-
+  
+  
 }
 
 .header {
@@ -254,42 +216,43 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     height: 4em;
     text-align: center;
     display: block;
-
+    
     min-height: 32px;
-
+   
     h1 {
         font-size: 2em;
         padding-top: 0.25em;
         letter-spacing: .05em;
         margin-top: 0.1em;
-
+        
         height: 1.7em;
         min-height: 57%;
-
+        
         a {
             text-decoration: none;
-            color: #666;
+            color: #555;
             font-family: 'Terminal Dosis', sans-serif;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
             font-weight: 200;
             padding: 0;
         }
     }
-
+    
     .description {
         font-size: 0.9em;
     }
 }
 
-.thr-home-icon {
+.thr-well-icon {
     position: absolute;
     top: .5em;
     left: 2em;
-
+    
     width: 2.5em;
     min-width: 24px;
     height: 2.5em;
     min-height: 24px;
-
+    
     img {
         width: 2.5em;
         min-width: 24px;
@@ -300,32 +263,33 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             opacity: 1;
         }
     }
-
+    
     z-index: 99;
 }
 
 .thr-settings-icon {
-    opacity: 0; // default settings
+    display: none;
     position: absolute;
     top: 0.65em;
     right: 2em;
+    z-index: 999;
+    
     width: 2.5em;
     min-width: 24px;
     height: 2.5em;
     min-height: 24px;
-
+    
     img {
         width: 2.5em;
         min-width: 24px;
         height: 2.5em;
         min-height: 24px;
-        opacity: 0.8;
+        opacity: 0.6;
         &:hover {
-            opacity: 1;
+           opacity: 1;
         }
     }
-
-    z-index: 99;
+    
 }
 
 .footer, .footer a {
@@ -340,7 +304,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .post {
-    //width: 31em;
     max-width: 100%;
     padding: .5em 1em;
 }
@@ -363,131 +326,54 @@ li {
 h2 {
     font-size: 1.3em;
     margin: .25em;
-    /*
-     * background: #56A0D3;
-    border-radius: 0.5em 0.5em 0.5em 0.5em;
-    color: #DDDDDD;
-    font-size: 1.5em;
-    font-weight: normal;
-    letter-spacing: 0.05em;
-    margin: 0.25em;
-    padding: 0.75em 1em;
-     */
 }
 
-// code for the decoratedButton class (for those buttons which we want to look fancy)
-.decoratedButton {
-    background-color: #eee;
-    background-image: -webkit-linear-gradient(top, #eee, #ccc);
-    background-image: -moz-linear-gradient(top, #eee, #ccc);
-    background-image: -o-linear-gradient(top, #eee, #ccc);
-    background-image: -ms-linear-gradient(top, #eee, #ccc);
-    background-image: linear-gradient(top, #eee, #ccc);
-
-    border: 1px solid grey;
-    -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
-
-    -webkit-border-radius: 0.25em;
-    -moz-border-radius: 0.25em;
-    border-radius: 0.25em;
-
-    color: #333;
-    font: normal 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-    text-align: center;
-    text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
-
-    padding: 0.5em 0;
-
-    width: 11em;
-    text-decoration:none;
-
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
-
-    &:hover, &:focus {
-      background-color: #dddddd;
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
-      background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
-      background-image: linear-gradient(top, #dddddd, #bbbbbb);
-
-      border: 1px solid #bbb;
-      border-bottom: 1px solid #999;
-      cursor: pointer;
-      color:#333;
-    }
-}
-
-.decoratedList { // begin .list code
-
+.decoratedList {
     margin-bottom: 1em;
-
-    background-color: #DFDFDF;
+    
+    background-color: #DDD;
     background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
     background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
     background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
     background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
     background-image: linear-gradient(top, #F0F2F7, #DDD);
-
+    
     border: .1em solid #AAA;
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
-    box-shadow: 0 0 .1em #56A0D3;
+    
+    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
 
     li {
       list-style: none;
       padding: .5em .75em;
       margin: 0;
-      border-bottom: 1px solid #555;
-
+      border-bottom: .1em solid #555;
+      
       a {
-      color: #666666;
-      font-weight: bold;
-      letter-spacing: .1em;
-      padding-left: .5em;
-      padding-right: 1.5em;
-
-       &:hover {
-          color: #56A0D3;
+        color: #555;
+        font-weight: bold;
+        letter-spacing: .1em;
+        padding-left: .5em;
+        padding-right: 1.5em;
+        
+        text-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
+      
+        &:hover {
+          color: $carolinaBlue;
         }
-
       }
-
+            
       &:last-child {
         border: 0;
       }
     }
-
+    
  }
-
-.decoratedLink {
-    background-color: #ccc;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc, color-stop(100%, #aaa)));
-    background-image: -webkit-linear-gradient(top, #ccc, #aaa);
-    background-image: -moz-linear-gradient(top, #ccc, #aaa);
-    background-image: -ms-linear-gradient(top, #ccc, #aaa);
-    background-image: -o-linear-gradient(top, #ccc, #aaa);
-    background-image: linear-gradient(top, #ccc, #aaa);
-
-    border: 1px solid #666;
-    -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    border-radius: 0.5em;
-
-    color: #FFF;
-    padding: .25em .5em;
-
-    &:hover {
-      color: #56A0D3;
-    }
-}
 
 // Panel CSS for Navigation and Settings menus
 .panel {
@@ -495,12 +381,12 @@ h2 {
     top: 3em;
     padding: 0;
     width: 12em;
-
+    
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
     border: .1em solid #DDD;
-
+    
     li {
       border-bottom: .1em solid #DDD;
       position: relative; // in order to show submenus
@@ -508,7 +394,7 @@ h2 {
       padding: 0;
       height: auto;
       width: auto;
-
+      
       .submenu {
         list-style: none;
         position: absolute;
@@ -517,34 +403,34 @@ h2 {
         width: 12em;
         padding: 0;
         margin: 0;
-
-
+        
+  
         /* Set necessary background, border, and width */
         background: #8E8E8E;
-
+        
         -webkit-box-shadow: 0 0 0.1em #667;
         -moz-box-shadow: 0 0 0 0.1em #667;
         box-shadow: 0 0 .1em #667;
-
+        
         border: 0.1em solid #DDD;
         border-left: 0;
         z-index: 99;
-
+        
         li {
           border: 0;
           border-bottom: 0.1em solid #DDD;
-
+          
           &.selectedLink {
             -webkit-border-radius: 0.25em;
             -moz-border-radius: 0.25em;
             border-radius: 0.25em;
           }
-
+          
           &:last-child {
             border: 0;
           }
         }
-
+        
         a {
           font-size: 1em;
           padding: 1em;
@@ -552,18 +438,18 @@ h2 {
           text-align: center;
         }
       }
-
+      
       &:last-child {
         border: 0;
       }
-
+      
       &.selectedLink {
         border: .2em solid #EEE !important;
         -webkit-border-radius: 0.25em;
         -moz-border-radius: 0.25em;
         border-radius: 0.25em;
       }
-
+      
       &:first-child.selectedLink {
         -webkit-border-top-left-radius: 0.75em;
         -webkit-border-top-right-radius: 0.75em;
@@ -572,7 +458,7 @@ h2 {
         border-top-left-radius: 0.75em;
         border-top-right-radius: 0.75em;
       }
-
+      
       &:last-child.selectedLink {
         -webkit-border-bottom-left-radius: 0.75em;
         -webkit-border-bottom-right-radius: 0.75em;
@@ -582,18 +468,18 @@ h2 {
         border-bottom-right-radius: 0.75em;
       }
     }
-
+    
     a {
-      display: block;
+      display: block; 
       text-decoration: none;
       color: #DDD;
       padding: 1em 0 1em 4em;
-
+  
       text-align: left;
       font-size: 1.3em;
-
+      
       background-size: 1.5em !important; // resize the images for fluid layout
-
+      
       -webkit-transition: color 0.1s;
       -moz-transition: color 0.1s;
       -o-transition: color 0.1s;
@@ -613,68 +499,68 @@ h2 {
     -webkit-box-shadow: .1em .1em .1em #AAA;
     -moz-box-shadow: .1em .1em .1em #AAA;
     box-shadow: .1em .1em .1em #AAA;
-
+    
     /* Background code... */
     background: #888; // If all else fails...
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6F6F6F), to(#8E8E8E)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6F6F6F), to(#8E8E8E)); /* Safari 4-5, Chrome 1-9 */ 
     background: -webkit-linear-gradient(left, #6F6F6F, #8E8E8E); /* Safari 5.1, Chrome 10+ */
     background: -moz-linear-gradient(left, #6F6F6F, #8E8E8E); /* Firefox */
     background: -ms-linear-gradient(left, #6F6F6F, #8E8E8E); /* IE 10+ */
     background: -o-linear-gradient(left, #6F6F6F, #8E8E8E); /* Opera */
-
+    
     // display submenu to the right
     li {
       .submenu {
         left: 12.05em; // account for width of navigation
-
+        
         -webkit-border-radius: 0 1em 1em 0em;
         -moz-border-radius: 0 1em 1em 0em;
          border-radius: 0 1em 1em 0em;
       }
     }
-
+   
     a {
       &#home {
         background: url(/theme/images/home_32.png) 1em center no-repeat;
       }
-
+      
       &#reading {
         background: url(/theme/images/read_book.png) .75em center no-repeat;
       }
-
+      
       &#writing {
         background: url(/theme/images/write_book.png) 1em center no-repeat;
       }
-
+      
       &#user {
         background: url(/theme/images/user.png) 1em center no-repeat;
       }
-
+      
       &#help {
         background: url(/theme/images/info.png) 1em center no-repeat;
       }
-
+      
     }
-
+    
 }
 
 .mainSettings {
   display: none; // hide initially
   right: 4em;
   z-index: 99;
-
+  
   -webkit-box-shadow: -.1em .1em .1em #AAA;
   -moz-box-shadow: -.1em .1em .1em #AAA;
   box-shadow: -.1em .1em .1em #AAA;
-
+  
    /* Background code... */
    background: #888; // If all else fails...
-   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */
+   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */ 
    background: -webkit-linear-gradient(left, #8E8E8E, #6F6F6F); /* Safari 5.1, Chrome 10+ */
    background: -moz-linear-gradient(left, #8E8E8E, #6F6F6F); /* Firefox */
    background: -ms-linear-gradient(left, #8E8E8E, #6F6F6F); /* IE 10+ */
    background: -o-linear-gradient(left, #8E8E8E, #6F6F6F); /* Opera */
-
+  
   li {
     // display submenu to the left
     .submenu {
@@ -684,12 +570,12 @@ h2 {
        border-radius: 1em 0 0 1em;
        border-right: 0;
        border-left: .1em solid #DDD;
-
+       
       li {
-
+        
         height: auto;
         width: auto;
-
+        
         .innerSubmenu {
           /* Set necessary background, border, and width */
            display: none;
@@ -697,31 +583,31 @@ h2 {
            right: 12em;
            width: 10em;
            top: -2em;
-
+           
            background: #8E8E8E;
            border-radius: 1em 0 0 1em;
            border: .1em solid #DDD;
            z-index: 99;
-
+            
            a {
              text-align: left;
              padding-left: 3.25em;
              padding-right: 0.5em;
            }
-
+           
          }
-
+         
          // a little adjustment to the innersubmenus inside 'My Book'
          .myBookInnerSubmenu {
              right: 12em;
              width: 9em;
-
+             
              a {
                text-align: center;
                padding: 1em;
              }
          }
-
+  
       }
 
       // Begin color icons for page color
@@ -729,94 +615,94 @@ h2 {
         a.black {
           background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
         }
-
+           
         a.blue {
           background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
         }
-
+           
         a.cyan {
           background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
         }
-
+           
         a.green {
           background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
         }
-
+           
         a.magenta {
           background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
         }
-
+           
         a.red {
           background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
         }
-
+           
         a.white {
            background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
         }
-
+           
         a.yellow {
            background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
           }
         }
          // End color icons for page color
-
+         
          // Begin color icons for text color
        #textColors .innerSubmenu {
            a.black {
              background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
            }
-
+           
            a.blue {
              background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
            }
-
+           
            a.cyan {
              background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
            }
-
+           
            a.green {
              background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
            }
-
+           
            a.magenta {
              background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
            }
-
+           
            a.red {
              background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
            }
-
+           
            a.white {
              background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
            }
-
+           
            a.yellow {
              background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
            }
        }
-
-
+         
+         
     } // end submenu
-
+    
   } // end li
 
   a {
     &.checked {
       background: url(/theme/images/check_mark.png) right center no-repeat !important;
     }
-
+    
     &#speech {
       background: url(/theme/images/sound_32.png) 1em center no-repeat;
     }
-
+    
     &#colors {
       background: url(/theme/images/colors_32.png) 1em center no-repeat;
     }
-
+    
     &#myBook {
       background: url(/theme/images/my_book_32.png) 1em center no-repeat;
     }
-
+    
     &#default {
       background: url(/theme/images/default_settings.png) 1em center no-repeat;
     }
@@ -826,60 +712,49 @@ h2 {
 .searchForm {
     text-align: center;
     width: 100%;
-    margin: 0.75em auto 0.5em;
-
+    margin: 0.25em auto 0;
+    
     select {
-        width: 10em;
-        margin: .15em;
-        padding: .2em;
-    }
-
-    select[name=audience] {
-      width: 14em;
-    }
-
-    [name=search]{
-        width: 16em;
-        height: 1.5em;
-        border:1px solid grey;
-        padding: 0.15em 0.3em;
-
-        -webkit-border-radius: 0.5em;
-        -moz-border-radius: 0.5em;
-        border-radius: 0.5em;
-
-        -webkit-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
-        -moz-box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
-
-        -webkit-transition: all linear 1s;
-        -moz-transition: all linear 1s;
-        transition: all linear 1s;
-
-        &:focus, &:hover {
-          -webkit-box-shadow: 0 0 0.25em #56A0D3;;
-          -moz-box-shadow: 0 0 0.25em #56A0D3;
-          box-shadow: 0 0 0.25em #56A0D3;
-
-          border: 1px solid #66A0D3;
+        border: 1px solid #DEDEDE;
+        color: #333;
+        padding: 0.1em;
+        margin: 0.15em 0.25em;
+        width: 9em;
+        &[name='audience'] {
+          width: 14em;
         }
     }
-
-    input[type='submit'] {
-        font-size: 1em;
-        margin-left: .25em;
-
-        -webkit-border-radius: 0.5em;
-        -moz-border-radius: 0.5em;
-        border-radius: 0.5em;
-
-        padding: .1em 1em;
-        background: #EEE;
-        width: 8em;
+    
+    input {
+        &[type='search'] {
+          @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
+        }
+        
+        &[type='submit'] {
+          margin: 0.25em 0.75em;
+          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
+        }
     }
 
 }
 
+// Mixin arguments for decorated gray/blue buttons and input
+.thr-gray-button {
+  @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
+}
+
+.thr-blue-button {
+  @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0.25s, 7em);
+}
+
+.thr-input {
+  @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
+}
+
+/*
+ *  Import the decoratedButton mixin for this button with a few changes
+ * 
+ */
 .searchShowButton {
     display: none; // displayed by media query if js is on and screen is small
     height: 2em;
@@ -906,7 +781,7 @@ h2 {
     li {
         width: 11em;
         height: 11em;
-        border: 1px solid #56A0D3;
+        border: 1px solid $carolinaBlue;
         margin: 0.2em;
         float: left;
         text-align: center;
@@ -917,9 +792,10 @@ h2 {
         -webkit-border-radius: 0.25em;
         -moz-border-radius: 0.25em;
         border-radius: 0.25em;
-        -webkit-box-shadow: 0.1em 0.1em 0.0em 1px #aaaaaa;
-        -moz-box-shadow: 0.1em 0.1em 0.0em 1px #aaaaaa;
-        box-shadow: 0.1em 0.1em 0.0em 1px #aaaaaa;
+        
+        -webkit-box-shadow: 0.1em 0.1em 0.1em #aaa;
+        -moz-box-shadow: 0.1em 0.1em 0.1em #aaa;
+        box-shadow: 0.1em 0.1em 0.1em #aaa;
 
     }
 
@@ -983,52 +859,6 @@ h2 {
     }
 }
 
-/*.thr-find-next, .thr-find-back {
-    background-color: #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
-    background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: linear-gradient(top, #eeeeee, #cccccc);
-    border: 1px solid grey;
-    -webkit-border-radius: 0.25em;
-    -moz-border-radius: 0.25em;
-    -ms-border-radius: 0.25em;
-    -o-border-radius: 0.25em;
-    border-radius: 0.25em;
-    color: #333;
-    font: bold 1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-    padding: 0.5em 0;
-    text-align: center;
-    text-shadow: 0 1px 0 #eee;
-    width: 11em;
-    text-decoration:none;
-}
-
-.thr-find-next:hover, .thr-find-back:hover {
-    background-color: #dddddd;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
-    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: linear-gradient(top, #dddddd, #bbbbbb);
-    border: 1px solid #bbb;
-    border-bottom: 1px solid #999;
-    cursor: pointer;
-    text-shadow: 0 1px 0 #ddd;
-    color:#333;
-}*/
-
-.thr-find-next:active, .thr-find-back:hover:active {
-    border: 1px solid #aaa;
-    border-bottom: 1px solid #888;
-    -webkit-box-shadow: inset 0 0 0.25em 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -moz-box-shadow: inset 0 0 0.25em 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    box-shadow: inset 0 0 0.25em 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-}
-
 .thr-find-next {
     float: right;
     margin: 1em 1.2em 0 0;
@@ -1050,30 +880,14 @@ h2 {
 }
 
 .thr-next-link, .thr-back-link {
-    width: 6em;
-    height: 4em;
-    display: block;
-
-    text-decoration: none;
-    letter-spacing: .05em;
-    color: #EFEFEF;
-
-    border: 2px solid #CECECE; // red;
-    -webkit-border-radius: .5em;
-    -moz-border-radius: .5em;
-    border-radius: .5em;
-
-    background-color: #EEE;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #EFEFEF));
-    background-image: -webkit-linear-gradient(top, #EEE, #EFEFEF);
-    background-image: -moz-linear-gradient(top, #EEE, #EFEFEF);
-    background-image: -ms-linear-gradient(top, #EEE, #EFEFEF);
-    background-image: -o-linear-gradient(top, #EEE, #EFEFEF);
-    background-image: linear-gradient(top, #EEE, #EFEFEF);
-
+    
+    @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 6em);
+    
     position: absolute; // fixed works fine but isn't supported before ios5?
-    bottom: .5em;
+    bottom: 0.5em;
+    
     font-size: $pageLinkFontSize;
+    height: 4em;
 
     img {
         margin: 0.5em auto 0.25em auto;
@@ -1102,16 +916,16 @@ h2 {
         overflow: hidden;
         padding: 0;
         margin: 0;
-
+        
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
         border-radius: 0;
-
-        -webkit-box-shadow: 0;
-        -moz-box-shadow: 0;
-        box-shadow: 0;
+        
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
     }
-
+    
    .header {
       height: 0;
       min-height: 0;
@@ -1120,21 +934,21 @@ h2 {
       h1 {
           display: none;
       }
-
-      .thr-home-icon { // make the home icon less opaque
-        opacity: 0.3;
+      
+      .thr-well-icon { // make the home icon less opaque
+        opacity: 0.6;
       }
     }
-
+    
     h1 {
         font-size: 2em;
         height: 2.5em;
         overflow: hidden;
     }
-
+    
     .thr-question {
         letter-spacing: 0.1em;
-        border-bottom: 2px solid #56A0D3;
+        border-bottom: 2px solid $carolinaBlue;
         color: #666;
         margin: 1em auto;
     }
@@ -1163,7 +977,7 @@ h2 {
         margin-top: .5em;
         font-size: 2em;
         text-align: left;
-
+        
         li {
             padding: 0.25em 0.25em;
             .thr-stars {
@@ -1180,15 +994,27 @@ h2 {
         }
 
         li:hover, li.selected {
-            border: 0.2em solid #56A0D3;
-            -webkit-border-radius: .1em;
-            -moz-border-radius: .1em;
-            border-radius: .1em;
-            padding: 0px 0px;
+            background-color: #FEFEF;
+            background-image: -ms-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: -moz-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: -o-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FAFAFA), color-stop(100%, #FAFAFA));
+            background-image: -webkit-linear-gradient(top, #FFF, #FAFAFA);
+            background-image: linear-gradient(top, #FFF, #FAFAFA);
+            
+            color: $carolinaBlue;
         }
 
     }
 }
+
+// show the settings icon in the front-page and the choice-page (at the end of the book)
+.front-page, .choice-page {
+  .thr-settings-icon {
+    display: block;
+  }
+}
+
 .js .thr-pic {  // hide the picture initially when javascript is enabled so we can size it without a jump
     display: none;
 }
@@ -1214,33 +1040,28 @@ h2 {
   #publishedBooksContainer {
     margin: 1em 0;
   }
-
+  
   p {
     margin-left: 1em;
   }
-
+  
   // icons for the list items
   a {
     &.book {
       background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
     }
-
+    
     &.edit {
       background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
-
+      
     }
-
+    
     padding-right: 2.5em !important;
     background-size: 1.75em !important;
   }
-
-  // modify the button (which is of class decoratedButton) a little bit
-
-  .decoratedButton {
-    font-weight: normal;
-    letter-spacing: .05em;
-    width: auto;
-    padding: .25em .5em;
+  
+  input[type='submit'] {
+    width: 13em;
   }
 
 }
@@ -1254,7 +1075,7 @@ h2 {
         overflow: hidden;
         margin: 0.5em 1em;
     }
-
+    
     #writing-controls {
         display: none;
         margin: .5em 0;
@@ -1265,20 +1086,52 @@ h2 {
         font-weight: bold;
         font-size: 2em;
     }
+    
+    .aWrap {
+      input[type='search'] {
+        width: 8em;
+        &:focus {
+          width: 16em;
+        }
+      }
+    }
+    
+    p#notLoggedIn {
+      color: #555;
+      font-size: 1.25em;
+      margin: 1.5em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+      
+      a {
+        display: block;
+        margin: 0.5em 1em;
+        width: 7em;
+      }
+    }
+    
     .steps {
         padding: 0.5em;
         background-color: #EEE;
         position: relative;
         max-width: 100%;
         overflow: auto;
+        span {
+          margin-right: .25em;
+        }
+        
+        #categorizeButton {
+          width: 12em;
+          margin-left: 0.25em;
+        }
     }
 
     #gallery {
-        margin-top: 1em;
+        margin: 1em auto;
+        width: 90%;
         //height: 6em;
     }
 
-    h2,h3 {
+    h2, h3 {
         position: relative;
         font-size: 1em;
         padding: 0.3em;
@@ -1291,7 +1144,7 @@ h2 {
         background-image: -ms-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
         background-image: -o-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
         background-image: linear-gradient(left, #FEFEFE 30%, #F8F8F8);
-
+        
         -webkit-border-radius: 1em;
         -moz-border-radius: 1em;
         border-radius: 1em;
@@ -1300,10 +1153,6 @@ h2 {
 
     h3 {
         background-color: #F8F8F8;
-    }
-
-    .aWrap {
-        // margin-right: 2em;
     }
 
     #write-pages {
@@ -1449,12 +1298,6 @@ h2 {
         }
     }
 }
-
-.photoCreditsBox {
-  height: 5em;
-  width: 5em;
-  display: inline-block;
-}
 /* Print styles!
 -------------------------------------------------------------------------------*/
 @media print {
@@ -1473,9 +1316,95 @@ h2 {
 
 @import "mediaqueries";
 
+// define mixin for the alternative navigation/menu layout used for handheld devices
+@mixin phoneNavigation {
+   
+   .header {
+      padding-top: 4em; // for the navigation bar
+   }
+   
+  .thr-well-icon, .thr-settings-icon { // hide the menu and navigation icons
+    display: none;
+   }
+   
+   // Adjust navigation accordingly
+   .navigation {
+   
+      background-color: $carolinaBlue;
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, $carolinaBlue), color-stop(100%, #286DA3));
+      background-image: -webkit-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: -moz-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: -ms-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: -o-linear-gradient(bottom, $carolinaBlue, #286DA3);
+      background-image: linear-gradient(bottom, $carolinaBlue, #286DA3);
+      
+      height: 4em;
+      width: 100%;
+      margin: 0 auto;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      border-bottom: 1px solid #FFF;
+      
+      li {
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 18%;
+        border: 0;
+        border-right: 1px solid #FFF;
+        position: relative;
+        
+        .submenu {
+          position: absolute;
+          top: 4.1em;
+          left: 0;
+          height: auto;
+          
+          background: $carolinaBlue;
+          border: 0;
+          -webkit-border-radius: 0 0 2em 2em;
+          -moz-border-radius: 0 0 2em 2em;
+          border-radius: 0 0 2em 2em;
+          
+          li {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid #FFF;
+          }
+        
+        }
+        
+        &:last-child {
+          .submenu { // modify the position of the submenu of the last link so that it doesn't go out of the page
+            left: -4.5em;
+           }
+        }
+        
+        &:nth-child(2), &:nth-child(3) { // the links 'Reading' and 'Writing' require more space
+          width: 22%;
+        }
+        
+      }
+      
+      a {
+        padding-left: 2.25em;
+        padding-right: 0;
+        background-position: 0.25em center !important;
+        color: #DDD;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+       }
+    }
+}
+
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-
+      
     .js {
         // hide the search form until the search button is pressed
         .searchForm {
@@ -1502,16 +1431,16 @@ h2 {
     #writing-controls {
         font-size: 1.5em;
     }
-
+    
     @include phoneNavigation;
 }
 
 /* iPod landscape */
 
-@media only screen
-and (min-device-width: 320px)
-and (max-device-width: 480px)
-and (min-width: 321px)
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px) 
+and (min-width: 321px) 
 and (max-width: 480px) {
     body {
         font-size: 10px;
@@ -1527,10 +1456,10 @@ and (max-width: 480px) {
 }
 
 /* iPod portrait */
-@media only screen
-and (min-device-width: 320px)
-and (max-device-width: 480px)
-and (max-width: 320px)
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px) 
+and (max-width: 320px) 
 and (min-width: 320px) {
     body {
         font-size: 8.33px;
@@ -1546,22 +1475,22 @@ and (min-width: 320px) {
           margin: 1.5%; // 3% margin per book => 3*3% = 9%
         }
     }
-
+    
     .write-page {
       label {
         display: block;
         width: 100%;
         margin: 0.5em 0;
-
+        
         span {
           width: 30%;
           display: inline-block;
         }
-
+        
         input[type="text"], input[type="select"] {
           width: 65%;
         }
-
+       
       }
 
     }
