@@ -35,54 +35,52 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         var $body = $("body"),
             currentSettings = getCurrentSettings();
             
-        // initialize the keybindings
-        initNavKeybindings();
+        initNavKeybindings(); // initialize the keybindings for the menu
         
         /*
          * Begin Navigation Code
          */
-        $body.on("click", ".navigation:visible > li, .mainSettings:visible > li", function(e) { // on click, show the submenus accordingly
+        $body.on("click", ".active-page #navigation:visible > li, .active-page #mainSettings:visible > li", function(e) { // on click, show the submenus accordingly
              $(".submenu:visible, .innerSubmenu:visible").hide();
              $(this).find(".submenu").show();
              console.log("clicked submenu");
         });
         
-        $body.on("click", ".mainSettings:visible > li > .submenu:visible > li", function(e) {
+        $body.on("click", ".active-page #mainSettings:visible > li > .submenu:visible > li", function(e) {
             $(".innerSubmenu:visible").hide();
             $(this).find(".innerSubmenu").show();
             return false;
         }); 
-    
-        $body.on("click", ".navigation:visible, .mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
+        
+        // hide the menu if we are pressing an actual link that doesn't open up a submenu, or any link inside an element with .post class                                
+        $body.on("click", ".active-page #navigation li:not(:has(>ul)) a, .post a", function() { 
+            $(".active-page #navigation:visible").hide();
+        });
+        
+        $body.on("click", ".active-page #navigation:visible, .active-page #mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
             e.stopPropagation();
         });
         
-        // Show the nav panel on home icon click, and the settings panel on settings icon click
         $body.on('click', ".thr-well-icon img", function(e, data) {
-            data === 'keybind' ? $(".navigation").slideDown() : $(".navigation").slideToggle();
-            $(".mainSettings:visible").slideUp(); // hide settings
+            console.log($(".active-page .active-page #navigation"));
+            data === 'keybind' ? $(".active-page #navigation").slideDown() : $(".active-page #navigation").slideToggle();
+            $(".active-page #mainSettings:visible").slideUp(); // hide settings
             $(".submenu:visible").hide();
-            
-            /*
-             *              Why is the click event fired multiple times when it 
-             *              is clearly only fired once (console verifies that it is triggered only once)?
-             * 
-             */
-            console.log(data || "not triggered by a keypress");
-            console.log(e.target);
+            console.log("clicked well");
             return false; // for those who have JavaScript enabled, don't allow the click to go to the home page
         });
         
         $body.on("click", ".thr-settings-icon img", function(e, data) {
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
-            data === 'keybind' ? $(".mainSettings").slideDown() : $(".mainSettings").slideToggle();
-            $(".navigation:visible").slideUp(); // hide navigation
+            data === 'keybind' ? $(".active-page #mainSettings").slideDown() : $(".active-page #mainSettings").slideToggle();
+            $(".active-page #navigation:visible").slideUp(); // hide navigation
             $(".submenu:visible").hide();
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         });
 
         $(document).on("click", "head, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
-            $(".navigation:visible, .mainSettings:visible").slideUp();
+            $("#navigation, #mainSettings").slideUp();
+            console.log("sliding up");
             e.stopPropagation();
         }); 
         /*
@@ -101,11 +99,24 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
             return false;
         });
         
-        $body.on("click", ".mainSettings:visible #default", function() {
+        $body.on("click", ".active-page #mainSettings:visible #default", function() {
             resetSettings();
         });
         /*
          * End Settings Code
+         */
+        
+        /*
+         * Begin Language Selection Code
+         */
+        $body.on("change", "#languages", function() {
+            var href = $(this).attr("value");
+            if(href !== '') {
+                window.location.href = href;
+            }
+        });
+        /*
+         * End Language Selection Code
          */
       
       }); // end ready
@@ -227,23 +238,13 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
               $openMenu,
               openMenuState,
               keyCode;
-          /*
-          // allows us to create two objects that will inherit from menuState
-          if(typeof Object.create !== 'function') {
-              Object.create = function(object) {
-                  var F = function() {};
-                  F.prototype = object;
-                  return new F();
-              };
-          }
-          */
 
           $.extend(true, settingsState, navState); // create the new object with deep copy
           console.log('Deeply copied object');
           
           console.log('Setting bounds');
-          navState.setBounds($(".navigation > li").length, 'mainMenu');
-          settingsState.setBounds($(".mainSettings > li").length, 'mainMenu');
+          navState.setBounds($(".active-page #navigation > li").length, 'mainMenu');
+          settingsState.setBounds($(".active-page #mainSettings > li").length, 'mainMenu');
           
           // open up navigation or settings menu on tab
             $("body").on("keydown", ".thr-well-icon, .thr-settings-icon", function(e) {
@@ -260,11 +261,11 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                   if($this.is($(".thr-well-icon"))) {
                       console.log('resetting indices');
                       navState.resetIndices();
-                      $(".navigation:visible > li:first-child").addClass("selectedLink");
+                      $(".active-page #navigation:visible > li:first-child").addClass("selectedLink");
                   } else {
                       console.log('resetting settings');
                       settingsState.resetIndices();
-                      $(".mainSettings:visible > li:first-child").addClass("selectedLink");
+                      $(".active-page #mainSettings:visible > li:first-child").addClass("selectedLink");
                   }
               }
              
@@ -274,13 +275,13 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
              keyCode = e.keyCode || e.which;
               
               // are any of the menus open?
-             if((isNavMenuOpen = $(".navigation").is(":visible")) || $(".mainSettings").is(":visible")) { 
+             if((isNavMenuOpen = $(".active-page #navigation").is(":visible")) || $(".active-page #mainSettings").is(":visible")) { 
                 // decide which menu is open
                 if(isNavMenuOpen) {
-                    $openMenu = $(".navigation:visible");
+                    $openMenu = $(".active-page #navigation:visible");
                     openMenuState = navState;
                 } else {
-                    $openMenu = $(".mainSettings:visible");
+                    $openMenu = $(".active-page #mainSettings:visible");
                     openMenuState = settingsState;
                 }
                 
@@ -339,8 +340,8 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                     
                     return false;
                     
-                 } else if(keyCode == 37 && $openMenu.is(".navigation:visible")  || // LEFT for navigation
-                                (keyCode == 39 && $openMenu.is(".mainSettings:visible"))) { // RIGHT for mainSettings
+                 } else if(keyCode == 37 && $openMenu.is(".active-page #navigation:visible")  || // LEFT for navigation
+                                (keyCode == 39 && $openMenu.is(".active-page #mainSettings:visible"))) { // RIGHT for mainSettings
                                     
                      $(".selectedLink").removeClass("selectedLink");
                     
@@ -359,8 +360,8 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                        // Do nothing if we are on the main menu
                     }
                      
-                 } else if(keyCode == 39 && $openMenu.is(".navigation:visible")  || // RIGHT for navigation
-                                (keyCode == 37 && $openMenu.is(".mainSettings:visible"))) { // LEFT for settings
+                 } else if(keyCode == 39 && $openMenu.is(".active-page #navigation:visible")  || // RIGHT for navigation
+                                (keyCode == 37 && $openMenu.is(".active-page #mainSettings:visible"))) { // LEFT for settings
                                     
                      $(".selectedLink").removeClass("selectedLink");
                     
@@ -394,7 +395,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                        }
                         
                     }
-                 } else if(keyCode == 9 && $openMenu.is(".mainSettings:visible")) { // tab pressed and mainSettings is open
+                 } else if(keyCode == 9 && $openMenu.is(".active-page #mainSettings:visible")) { // tab pressed and mainSettings is open
                     $openMenu.slideUp();
                     console.log("tab pressed, mainSettings visible")
                  } // end if clauses for key codes

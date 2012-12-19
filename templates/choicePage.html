@@ -1,6 +1,6 @@
     {{#what}}
     <h1 class="thr-question" data-speech="whatnow">_(What would you like to do now?):whatnow</h1>
-    <ul class="thr-choices decoratedList">
+    <ul class="thr-colors thr-choices decoratedList">
         <li data-speech="again"><a class="key-a" href="{{link}}" data-type="book">_(Read this book again.):again</a></li>
         <li data-speech="rate"><a class="key-r" href="{{link}}{{nextPage}}/" data-type="book">_(Rate this book.):rate</a></li>
         <li data-speech="another"><a class="key-d" href="{{findLink}}">_(Read another book.):another</a></li>
@@ -8,7 +8,7 @@
     {{/what}}
     {{#rate}}
     <h1 class="thr-question" data-speech="howrate">_(How do you rate this book?)</h1>
-    <ul class="thr-choices decoratedList">
+    <ul class="thr-colors thr-choices decoratedList">
         <li data-speech="1star"><a class="key-1" href="{{link}}{{nextPage}}/?rating=1" data-type="book">
             <img src="/theme/images/1stars.png" class="thr-stars">_(1 star):1star</a></li>
         <li data-speech="2stars"><a class="key-2" href="{{link}}{{nextPage}}/?rating=2" data-type="book">
@@ -22,7 +22,7 @@
     <img src="/theme/images/{{rating}}stars.png" />
     <p>_(Average Rating): {{rating}}</p>
     <h1 class="thr-question" data-speech="whatnow">_(What would you like to do now?):whatnow</h1>
-    <ul class="thr-choices decoratedList">
+    <ul class="thr-colors thr-choices decoratedList">
         <li data-speech="again"><a class="key-a" href="{{link}}" data-type="book">_(Read this book again.):again</a></li>
         <li data-speech="another"><a class="key-d" href="{{findLink}}">_(Read another book.):another</a></li>
     </ul>
