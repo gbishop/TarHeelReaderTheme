@@ -39,7 +39,7 @@
 	<style type="text/css"><?php
 			$pc = THR('pageColor');
 			$tc = THR('textColor');
-			echo ".thr-colors { color: #$tc; background-color: #$pc; border-color: #$tc; }";
+			echo ".thr-colors { color: #$tc; background: #$pc; border-color: #$tc; }";
 		?></style>
 	<!-- For console bug in IE-->
 	<script>

@@ -54,7 +54,7 @@ foreach($CategoryAbbrv as $CN=>$CA) {
 function thr_colors() {
     $t = THR('textColor');
     $p = THR('pageColor');
-    echo "style=\"color: #$t; background-color: #$p; border-color: #$t\"";
+    echo "style=\"color: #$t; background: #$p; border-color: #$t\"";
 }
 
 function thr_title() {

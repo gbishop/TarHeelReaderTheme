@@ -28,9 +28,9 @@ $carolinaBlue: #56A0D3;
     border: $borderWidth solid $borderColor;
     cursor: pointer;
     
-    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     
     -webkit-border-radius: $borderRadius;
     -moz-border-radius: $borderRadius;
@@ -64,9 +64,9 @@ $carolinaBlue: #56A0D3;
     -moz-border-radius: $borderRadius;
     border-radius: $borderRadius;
     
-    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(255, 255, 255, 0.4);
-    -moz-box-shadow: 0 0 $boxShadowBlur rgba(255, 255, 255, 0.4);
-    box-shadow: 0 0 $boxShadowBlur rgba(255, 255, 255, 0.4);
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
     
     color: $textColor;
     font-size: $fontSize;
@@ -204,6 +204,37 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   
   a {
     text-decoration: none;
+  }
+  
+  .navigation {
+    margin-top: 1em;
+    width: 100%;
+    a {
+      @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
+    }
+    
+    :first-child {
+      float: right;
+    }
+      
+    :nth-child(2) {
+      float: left;
+    }
+    
+  }
+  
+  #languages {
+    border: .1em solid #777;
+    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
+    -moz-box-shadwo: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
+    
+    color: #333;
+    font: small-caps 300 1em arial, sans-serif;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+    
+    margin-left: 1em;
+    width: 12em;
   }
   
   
@@ -492,7 +523,7 @@ h2 {
     }
 }
 
-.navigation {
+#navigation {
     display: none; // hide initially
     z-index: 99;
     left: 4em;
@@ -544,7 +575,7 @@ h2 {
     
 }
 
-.mainSettings {
+#mainSettings {
   display: none; // hide initially
   right: 4em;
   z-index: 99;
@@ -712,14 +743,22 @@ h2 {
 .searchForm {
     text-align: center;
     width: 100%;
-    margin: 0.25em auto 0;
+    margin: 0.5em auto 0.25em;
     
     select {
-        border: 1px solid #DEDEDE;
-        color: #333;
-        padding: 0.1em;
+        border: 0.1em solid #DDD;
+        -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+        
+        padding: 0;
         margin: 0.15em 0.25em;
+        line-height: 2em;
         width: 9em;
+        
+        color: #333;
+        font-size: 1.1em;
+        
         &[name='audience'] {
           width: 14em;
         }
@@ -727,7 +766,7 @@ h2 {
     
     input {
         &[type='search'] {
-          @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
+          @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1.1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
         }
         
         &[type='submit'] {
@@ -957,6 +996,7 @@ h2 {
         width: 29em;
         height: 29em;
         margin: auto;
+        margin-top: 0.5em;
     }
     .thr-credit {
         font-size: 0.5em;
@@ -1328,7 +1368,7 @@ h2 {
    }
    
    // Adjust navigation accordingly
-   .navigation {
+   #navigation {
    
       background-color: $carolinaBlue;
       background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%, $carolinaBlue), color-stop(100%, #286DA3));

@@ -26,7 +26,7 @@ define(["jquery", "pubsub"], function($) {
 
     function onKeyDown(e) {
         // so as to not interfere with navigation keybindings... a better solution? integrate nav key events with keyboard.js?
-        if($(".navigation").is(":visible") || $(".mainSettings").is(":visible")) { return true; } 
+        if($(".active-page #navigation").is(":visible") || $(".active-page #mainSettings").is(":visible")) { return true; } 
         
         var selector = e.data,
             selected = $(selector);

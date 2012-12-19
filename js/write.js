@@ -508,9 +508,10 @@ define(['jquery',
                 if (!confirm(warnModified())) {
                     e.preventDefault();
                     return false;
+                } else {
+                    clearModified(); // if the user insists on leaving the page, then set isModified to false
                 }
             }
-            $(".navigation").hide();
             return true;
         }
 
@@ -636,7 +637,7 @@ define(['jquery',
                     });
                     $('a.thr-settings-icon').hide();
                     // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
-                    $(".write-page .navigation li:not(:has(>ul)) a").on('click', confirmLeaving);
+                    $(".active-page #navigation li:not(:has(>ul)) a").on('click', confirmLeaving);
 
                     $('body').on('click', '.help,.help-text', function(e) {
                         // dialog doc claims it restores the source element but it does not do that for me, clone below
