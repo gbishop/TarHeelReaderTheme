@@ -30,7 +30,7 @@ if ($ID) {
     $view['ID'] = $ID;
     $photos = array_slice($book['pages'], 1);
     foreach ($photos as &$photo) {
-        if (strpos($url, '/uploads/') === false) {
+        if (strpos($photo['url'], '/uploads/') === false) {
             $parts = explode('/', $photo['url']);
             $id = explode('_', $parts[count($parts)-1]);
             $id = $id[0];
