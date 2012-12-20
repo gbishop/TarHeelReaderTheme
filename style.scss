@@ -27,7 +27,7 @@ $carolinaBlue: #56A0D3;
 
     border: $borderWidth solid $borderColor;
     cursor: pointer;
-    
+
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
@@ -63,7 +63,7 @@ $carolinaBlue: #56A0D3;
     -webkit-border-radius: $borderRadius;
     -moz-border-radius: $borderRadius;
     border-radius: $borderRadius;
-    
+
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
@@ -205,38 +205,38 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   a {
     text-decoration: none;
   }
-  
+
   .navigation {
     margin-top: 1em;
     width: 100%;
     a {
       @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
     }
-    
+
     :first-child {
       float: right;
     }
-      
+
     :nth-child(2) {
       float: left;
     }
-    
+
   }
-  
+
   #languages {
     border: .1em solid #777;
     -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
     -moz-box-shadwo: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
     box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
-    
+
     color: #333;
     font: small-caps 300 1em arial, sans-serif;
     text-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
-    
+
     margin-left: 1em;
     width: 12em;
   }
-  
+
   .photoCreditsBox {
     width: 5em;
     height: 5em;
@@ -748,21 +748,21 @@ h2 {
     text-align: center;
     width: 100%;
     margin: 0.5em auto 0.25em;
-    
+
     select {
         border: 0.1em solid #DDD;
         -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-        
+
         padding: 0;
         margin: 0.15em 0.25em;
         line-height: 2em;
         width: 9em;
-        
+
         color: #333;
         font-size: 1.1em;
-        
+
         &[name='audience'] {
           width: 14em;
         }
@@ -1050,6 +1050,11 @@ h2 {
         }
 
     }
+}
+
+.tinyicon {
+  width: 1em;
+  height: 1em;
 }
 
 // show the settings icon in the front-page and the choice-page (at the end of the book)
