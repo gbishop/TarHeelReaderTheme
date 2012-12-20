@@ -162,53 +162,9 @@ msgctxt "no speech at all"
 msgid "Silent"
 msgstr ""
 
-# readingForm.json:8
-msgid "Child"
-msgstr ""
-
-# readingForm.json:9
-msgid "Woman"
-msgstr ""
-
-# readingForm.json:10
-msgid "Man"
-msgstr ""
-
 # readingForm.json:13
 msgctxt "pulldown label for selecting the background color"
 msgid "Page Color"
-msgstr ""
-
-# readingForm.json:17, readingForm.json:31
-msgid "Black"
-msgstr ""
-
-# readingForm.json:18, readingForm.json:32
-msgid "Blue"
-msgstr ""
-
-# readingForm.json:19, readingForm.json:33
-msgid "Cyan"
-msgstr ""
-
-# readingForm.json:20, readingForm.json:34
-msgid "Green"
-msgstr ""
-
-# readingForm.json:21, readingForm.json:35
-msgid "Magenta"
-msgstr ""
-
-# readingForm.json:22, readingForm.json:36
-msgid "Red"
-msgstr ""
-
-# readingForm.json:23, readingForm.json:37
-msgid "White"
-msgstr ""
-
-# readingForm.json:24, readingForm.json:38
-msgid "Yellow"
 msgstr ""
 
 # readingForm.json:27
@@ -268,56 +224,54 @@ msgctxt "button label"
 msgid "Search"
 msgstr ""
 
-# templates/bookList.html:2
+# templates/bookList.html:3
+msgid "Your favorites page is empty."
+msgstr ""
+
+# templates/bookList.html:4
+msgid "You may add books to the favorites by clicking on the checkbox in the upper right corner of each book on pages where you choose a book to read and on the Index of Titles page. You may remove books from the favorites by clicking on the red X in the upper right of each book in the list of favorites."
+msgstr ""
+
+# templates/bookList.html:9
 msgid "No books found. Try another search."
 msgstr ""
 
-# templates/bookList.html:9, templates/bookPage.html:9
+# templates/bookList.html:17, templates/bookPage.html:3
 msgctxt "short for written by author name"
 msgid "by {{author}}"
 msgstr ""
 
-# templates/bookList.html:12
+# templates/bookList.html:20
 msgid "{{rating}} stars"
 msgstr ""
 
-# templates/bookList.html:15
+# templates/bookList.html:23
 msgid "not yet rated"
 msgstr ""
 
-# templates/bookList.html:20
+# templates/bookList.html:28
 msgctxt "icon explanatory text"
 msgid "Reviewed for educational quality."
 msgstr ""
 
-# templates/bookList.html:24
+# templates/bookList.html:32
 msgctxt "icon explanatory text"
 msgid "May not be appropriate for all readers."
 msgstr ""
 
-# templates/bookPage.html:1, templates/choicePage.html:1, templates/heading.html:8
-msgctxt "icon explanatory text"
-msgid "Go home"
-msgstr ""
-
-# templates/bookPage.html:5, templates/heading.html:77
-msgctxt "icon explanatory text"
-msgid "Settings"
-msgstr ""
-
-# templates/bookPage.html:20
+# templates/bookPage.html:14
 msgctxt "link text below images"
 msgid "Photo credits"
 msgstr ""
 
-# templates/bookPage.html:25
+# templates/bookPage.html:19
 msgctxt "button label"
-msgid "Go back"
+msgid "Previous"
 msgstr ""
 
-# templates/bookPage.html:27
+# templates/bookPage.html:21
 msgctxt "button label"
-msgid "Next page"
+msgid "Next"
 msgstr ""
 
 # templates/busy.html:5
@@ -338,43 +292,43 @@ msgctxt "Button label"
 msgid "Try again"
 msgstr ""
 
-# templates/choicePage.html:5, templates/choicePage.html:27
+# templates/choicePage.html:2, templates/choicePage.html:24
 msgid "What would you like to do now?"
 msgstr ""
 
-# templates/choicePage.html:7, templates/choicePage.html:29
+# templates/choicePage.html:4, templates/choicePage.html:26
 msgid "Read this book again."
 msgstr ""
 
-# templates/choicePage.html:8
+# templates/choicePage.html:5
 msgid "Rate this book."
 msgstr ""
 
-# templates/choicePage.html:9, templates/choicePage.html:30
+# templates/choicePage.html:6, templates/choicePage.html:27
 msgid "Read another book."
 msgstr ""
 
-# templates/choicePage.html:13
+# templates/choicePage.html:10
 msgid "How do you rate this book?"
 msgstr ""
 
-# templates/choicePage.html:16
+# templates/choicePage.html:13
 msgid "1 star"
 msgstr ""
 
-# templates/choicePage.html:18
+# templates/choicePage.html:15
 msgid "2 stars"
 msgstr ""
 
-# templates/choicePage.html:20
+# templates/choicePage.html:17
 msgid "3 stars"
 msgstr ""
 
-# templates/choicePage.html:24
+# templates/choicePage.html:21
 msgid "Thank you for your opinion."
 msgstr ""
 
-# templates/choicePage.html:26
+# templates/choicePage.html:23
 msgid "Average Rating"
 msgstr ""
 
@@ -393,97 +347,239 @@ msgctxt "button label"
 msgid "More Books"
 msgstr ""
 
-# templates/heading.html:9
+# templates/frontPage.html:1
+msgid "Welcome"
+msgstr ""
+
+# templates/frontPage.html:3
+msgid "This site will work much better if you enable Javascript. You'll get switch accessibility, pictures that automatically size to your window, and the ability to write books of your own. Please enable Javascript for the best Tar Heel Reader experience."
+msgstr ""
+
+# templates/frontPage.html:5
+msgid "Click here to learn more about alternative access methods."
+msgstr ""
+
+# templates/frontPage.html:5
+msgid "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and accessible books on a wide range of topics. Each book can be speech enabled and accessed using multiple interfaces, including touch screens, the IntelliKeys with custom overlays, and 1 to 3 switches."
+msgstr ""
+
+# templates/frontPage.html:7
+msgid "You may write your own books using pictures from the huge collection at {{{Flickr}}} or pictures you upload. All books should be complete, edited, and revised to the best of your ability before publishing them to the site. While you are working on them, please save them as drafts."
+msgstr ""
+
+# templates/frontPage.html:9
+msgid "Note the little well icon {{{wellicon}} in the upper left corner of the page; clicking it will allow you to access the main menu. You can also click the settings icon {{{gearicon}}} to change settings on some pages."
+msgstr ""
+
+# templates/frontPage.html:11
+msgid "Ready to get started?"
+msgstr ""
+
+# templates/frontPage.html:13
+msgid "Find a book"
+msgstr ""
+
+# templates/frontPage.html:14
+msgid "Write a book"
+msgstr ""
+
+# templates/frontPage.html:17
+msgid "This site is also available in other languages. To help with translation, contact us."
+msgstr ""
+
+# templates/heading.html:3
+msgctxt "icon explanatory text"
+msgid "Open Menu"
+msgstr ""
+
+# templates/heading.html:4
+msgctxt "icon explanatory text"
+msgid "Settings"
+msgstr ""
+
+# templates/heading.html:5
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
 msgstr ""
 
-# templates/heading.html:9
+# templates/heading.html:5
 msgctxt "site name"
 msgid "Tar Heel Reader"
 msgstr ""
 
-# templates/heading.html:13, templates/sidebar.html:13, templates/sidebar_old.html:11
+# templates/heading.html:11, templates/sidebar.html:6, templates/sidebar_old.html:11
 msgctxt "section heading"
 msgid "Reading"
 msgstr ""
 
-# templates/heading.html:16, templates/sidebar.html:16, templates/sidebar_old.html:13
-msgid "Find Books"
+# templates/heading.html:14, templates/heading.html:15, templates/sidebar.html:9
+msgid "Find a Book"
 msgstr ""
 
-# templates/heading.html:17, templates/sidebar.html:17, templates/sidebar_old.html:14
+# templates/heading.html:16, templates/sidebar.html:10, templates/sidebar_old.html:14
 msgid "Favorites"
 msgstr ""
 
-# templates/heading.html:18, templates/sidebar.html:18, templates/sidebar_old.html:15
-msgid "Settings"
+# templates/heading.html:17, templates/sidebar.html:11
+msgid "Collections"
 msgstr ""
 
-# templates/heading.html:25, templates/sidebar.html:25, templates/sidebar_old.html:18
+# templates/heading.html:24, templates/sidebar.html:18, templates/sidebar_old.html:18
 msgctxt "section heading"
 msgid "Writing"
 msgstr ""
 
-# templates/heading.html:28, templates/sidebar.html:28, templates/sidebar_old.html:20
+# templates/heading.html:27, templates/sidebar.html:21, templates/sidebar_old.html:20
 msgid "Write a Book"
 msgstr ""
 
-# templates/heading.html:29, templates/sidebar.html:29, templates/sidebar_old.html:21
-msgid "Books you wrote"
+# templates/heading.html:28, templates/sidebar.html:22
+msgid "Books You Wrote"
 msgstr ""
 
-# templates/heading.html:36, templates/sidebar.html:36, templates/sidebar_old.html:24
-msgctxt "section heading"
-msgid "Info"
-msgstr ""
-
-# templates/heading.html:39, templates/sidebar.html:39, templates/sidebar_old.html:26
-msgid "Announcements"
-msgstr ""
-
-# templates/heading.html:40, templates/sidebar.html:40, templates/sidebar_old.html:27
-msgctxt "link label"
-msgid "FAQ"
-msgstr ""
-
-# templates/heading.html:40, templates/sidebar.html:40, templates/sidebar_old.html:27
-msgctxt "link explanatory text"
-msgid "Frequently Asked Questions"
-msgstr ""
-
-# templates/heading.html:41, templates/sidebar.html:41, templates/sidebar_old.html:28
-msgid "Photo Credits"
-msgstr ""
-
-# templates/heading.html:48
+# templates/heading.html:35, templates/sidebar.html:29
 msgctxt "section heading"
 msgid "User"
 msgstr ""
 
-# templates/heading.html:52, templates/sidebar.html:52, templates/sidebar_old.html:34
-msgctxt "link label"
-msgid "Register"
+# templates/heading.html:39, templates/sidebar.html:46
+msgctxt "section heading"
+msgid "Help"
 msgstr ""
 
-# templates/heading.html:53, templates/sidebar.html:53, templates/sidebar_old.html:35, templates/write.html:5
-msgctxt "link label"
-msgid "Log In"
+# templates/heading.html:42, templates/sidebar.html:49, templates/sidebar_old.html:26
+msgid "Announcements"
 msgstr ""
 
-# templates/heading.html:56, templates/sidebar.html:56, templates/sidebar_old.html:38
+# templates/heading.html:43, templates/sidebar.html:50, templates/sidebar_old.html:27
 msgctxt "link label"
-msgid "Site Admin"
+msgid "FAQ"
 msgstr ""
 
-# templates/heading.html:57, templates/sidebar.html:57, templates/sidebar_old.html:39
-msgctxt "link label"
-msgid "Log out"
+# templates/heading.html:43, templates/sidebar.html:50, templates/sidebar_old.html:27
+msgctxt "link explanatory text"
+msgid "Frequently Asked Questions"
 msgstr ""
 
-# templates/heading.html:67, templates/sidebar.html:4, templates/sidebar_old.html:4, searchForm.json:4
+# templates/heading.html:44, templates/sidebar.html:51, templates/sidebar_old.html:28
+msgid "Photo Credits"
+msgstr ""
+
+# templates/heading.html:55, templates/sidebar.html:62, templates/sidebar_old.html:4, searchForm.json:4
 msgctxt "label for search box"
 msgid "Search for"
+msgstr ""
+
+# templates/heading.html:68
+msgctxt "section heading"
+msgid "Speech"
+msgstr ""
+
+# templates/heading.html:71
+msgid "Silent"
+msgstr ""
+
+# templates/heading.html:72, readingForm.json:8
+msgid "Child"
+msgstr ""
+
+# templates/heading.html:73, readingForm.json:9
+msgid "Woman"
+msgstr ""
+
+# templates/heading.html:74, readingForm.json:10
+msgid "Man"
+msgstr ""
+
+# templates/heading.html:80
+msgctxt "section heading"
+msgid "Colors"
+msgstr ""
+
+# templates/heading.html:83
+msgctxt "section heading"
+msgid "Page Colors"
+msgstr ""
+
+# templates/heading.html:86, templates/heading.html:100, readingForm.json:17, readingForm.json:31
+msgid "Black"
+msgstr ""
+
+# templates/heading.html:87, templates/heading.html:101, readingForm.json:18, readingForm.json:32
+msgid "Blue"
+msgstr ""
+
+# templates/heading.html:88, templates/heading.html:102, readingForm.json:19, readingForm.json:33
+msgid "Cyan"
+msgstr ""
+
+# templates/heading.html:89, templates/heading.html:103, readingForm.json:20, readingForm.json:34
+msgid "Green"
+msgstr ""
+
+# templates/heading.html:90, templates/heading.html:104, readingForm.json:21, readingForm.json:35
+msgid "Magenta"
+msgstr ""
+
+# templates/heading.html:91, templates/heading.html:105, readingForm.json:22, readingForm.json:36
+msgid "Red"
+msgstr ""
+
+# templates/heading.html:92, templates/heading.html:106, readingForm.json:23, readingForm.json:37
+msgid "White"
+msgstr ""
+
+# templates/heading.html:93, templates/heading.html:107, readingForm.json:24, readingForm.json:38
+msgid "Yellow"
+msgstr ""
+
+# templates/heading.html:97
+msgctxt "section heading"
+msgid "Text Colors"
+msgstr ""
+
+# templates/heading.html:116
+msgctxt "section heading"
+msgid "My Book"
+msgstr ""
+
+# templates/heading.html:120
+msgctxt "section heading"
+msgid "Download"
+msgstr ""
+
+# templates/heading.html:123
+msgid "PowerPoint"
+msgstr ""
+
+# templates/heading.html:124
+msgid "Impress"
+msgstr ""
+
+# templates/heading.html:125
+msgid "Flash"
+msgstr ""
+
+# templates/heading.html:131
+msgctxt "section heading"
+msgid "Collections"
+msgstr ""
+
+# templates/heading.html:134, templates/heading.html:144
+msgid "Add"
+msgstr ""
+
+# templates/heading.html:135, templates/heading.html:145
+msgid "Remove"
+msgstr ""
+
+# templates/heading.html:141
+msgctxt "section heading"
+msgid "Favorites"
+msgstr ""
+
+# templates/heading.html:154
+msgid "Default"
 msgstr ""
 
 # templates/readingControls.html:1
@@ -510,7 +606,44 @@ msgstr ""
 msgid "Download this book"
 msgstr ""
 
-# templates/sidebar.html:48, templates/sidebar_old.html:31
+# templates/sidebar.html:33, templates/sidebar_old.html:34
+msgctxt "link label"
+msgid "Register"
+msgstr ""
+
+# templates/sidebar.html:34, templates/sidebar_old.html:35, templates/write.html:5
+msgctxt "link label"
+msgid "Log In"
+msgstr ""
+
+# templates/sidebar.html:37, templates/sidebar_old.html:38
+msgctxt "link label"
+msgid "Site Admin"
+msgstr ""
+
+# templates/sidebar.html:38, templates/sidebar_old.html:39
+msgctxt "link label"
+msgid "Log out"
+msgstr ""
+
+# templates/sidebar_old.html:13
+msgid "Find Books"
+msgstr ""
+
+# templates/sidebar_old.html:15
+msgid "Settings"
+msgstr ""
+
+# templates/sidebar_old.html:21
+msgid "Books you wrote"
+msgstr ""
+
+# templates/sidebar_old.html:24
+msgctxt "section heading"
+msgid "Info"
+msgstr ""
+
+# templates/sidebar_old.html:31
 msgctxt "section heading"
 msgid "Admin"
 msgstr ""
@@ -520,7 +653,7 @@ msgid "You must have Javascript enabled in order to write a book."
 msgstr ""
 
 # templates/write.html:5
-msgid "You must be logged in, to write a book."
+msgid "You must be logged in to write a book. Please log in below."
 msgstr ""
 
 # templates/write.html:9
@@ -785,50 +918,50 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-# templates/yourbooks.html:2
+# templates/yourbooks.html:3
 msgid "Your Draft Books"
 msgstr ""
 
-# templates/yourbooks.html:4
-msgid "Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the "Delete selected drafts" button. Deleting a draft is not reversible."
+# templates/yourbooks.html:5
+msgid "Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible."
 msgstr ""
 
-# templates/yourbooks.html:10
+# templates/yourbooks.html:11
 msgid "untitled"
 msgstr ""
 
-# templates/yourbooks.html:14
+# templates/yourbooks.html:15
 msgid "Delete checked drafts"
 msgstr ""
 
-# templates/yourbooks.html:18
+# templates/yourbooks.html:20
 msgid "If you had any books saved as drafts they would appear here."
 msgstr ""
 
-# templates/yourbooks.html:22
+# templates/yourbooks.html:25
 msgid "Your Published Books"
 msgstr ""
 
-# templates/yourbooks.html:24
+# templates/yourbooks.html:27
 msgid "Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title."
 msgstr ""
 
-# templates/yourbooks.html:29
+# templates/yourbooks.html:32
 msgid "Edit"
 msgstr ""
 
-# templates/yourbooks.html:35
+# templates/yourbooks.html:38
 msgid "If you had any published books they would be listed here."
 msgstr ""
 
-# templates/yourbooks.html:39
+# templates/yourbooks.html:43
 msgid "You must be logged in to see your draft and published books."
 msgstr ""
 
-# templates/yourbooks.html:42
+# templates/yourbooks.html:46
 msgid "Where in the world are these books read?"
 msgstr ""
 
-# templates/yourbooks.html:43
+# templates/yourbooks.html:47
 msgid "Check out our map showing where these books have been read."
 msgstr ""

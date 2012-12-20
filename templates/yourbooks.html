@@ -2,7 +2,7 @@
 	<div id="draftsContainer">
     	<h2>_(Your Draft Books)</h2>
     	{{#has_drafts}}
-    	<p>_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the "Delete selected drafts" button. Deleting a draft is not reversible.)</p>
+    	<p>_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible.)</p>
     	<form method="POST" action="/your-books/">
         	<ul class="decoratedList">
             	{{#drafts}}
@@ -14,7 +14,7 @@
         	</ul>
         	<input class="thr-gray-button" type="submit" value="_(Delete checked drafts)" name="delete" />
    	 	</form>
-   	
+
     	{{/has_drafts}}
     	{{^has_drafts}}
     	<p>_(If you had any books saved as drafts they would appear here.)</p>
