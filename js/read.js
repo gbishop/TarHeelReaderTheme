@@ -10,6 +10,25 @@ define(["jquery",
         ], function($, route, page, templates, keys, state, speech) {
 
     var book = null; // current book
+    
+    // set text and background color of a jQuery element
+    jQuery.fn.setHoverColors = function(bgColor, textColor) { 
+        var $this = $(this);
+        console.log("HERE");
+        $this.find(".thr-colors:not(ul), .thr-colors > li").hover(function() { // swap text and background colors on hover
+            $(this).css({ background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') });
+        }, function() {
+            $(this).css({ background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') });
+        });
+        $("body").keypress(function(e) {
+            var keyCode = e.keyCode | e.which;
+            console.log('keypressed');
+            if(keyCode > 36 && keyCode < 41) {
+                $this.find(".thr-colors > li.selected").css({background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') });
+                $this.find(".thr-colors > li:not(.selected)").css({background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') });
+            }
+        }); // end keydown
+    }
 
     function fetchBook(slug) {
         var $def = $.Deferred();
@@ -93,9 +112,12 @@ define(["jquery",
             // add classes to specific pages for styling purposes
             pageNumber === 1 ? $oldPage.addClass('thr-colors front-page') : pageNumber <= N ? 
                                $oldPage.addClass('thr-colors').removeClass('front-page choice-page') : $oldPage.addClass("choice-page");
+            
             $oldPage.empty()
                 .append(templates.render('heading'))
-                .append('<div class="content-wrap">' + newContent + '</div>');
+                .append('<div class="content-wrap">' + newContent + '</div>')
+                .setHoverColors(); 
+                    
             $def.resolve($oldPage, {title: book.title, colors: true});
         });
         return $def;
