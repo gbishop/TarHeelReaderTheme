@@ -53,7 +53,7 @@ $carolinaBlue: #56A0D3;
 
     &:hover {
       background: $transitionBackgroundColor;
-      color: $transitionColor !important;
+      color: $transitionColor;
     }
 }
 
@@ -139,11 +139,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     overflow: auto;
 
     #homeLinkList {
-      overflow: auto;
       text-align: center;
+      overflow: auto;
 
       li {
-        margin: 2em 0;
+        margin: 1.5em 0;
         width: 50%;
         float: left;
         .homeLink {
@@ -167,7 +167,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .find-page {
-    background:url('/theme/images/furley_bg.png');
+
     .description {
       display: none;
     }
@@ -225,16 +225,23 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   
   #languages {
     border: .1em solid #777;
-    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
-    -moz-box-shadwo: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
-    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
+    margin-left: 1em;
+    padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
+    
+    -webkit-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
+    -moz-box-shadwo: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
+    background: url(/theme/images/globe.png) no-repeat 9em center;
+    background-size: 1.3em;
     
     color: #333;
-    font: small-caps 300 1em arial, sans-serif;
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+    font: small-caps 300 1.25em arial, sans-serif;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
     
-    margin-left: 1em;
+    height: 1.5em;
+    min-height: 1.5em;
     width: 12em;
+    min-width: 12em;
   }
   
   .photoCreditsBox {
@@ -374,7 +381,7 @@ h2 {
     background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
     background-image: linear-gradient(top, #F0F2F7, #DDD);
 
-    border: .1em solid #AAA;
+    border: .1em solid #AAA !important;
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
@@ -968,7 +975,7 @@ h2 {
         -moz-box-shadow: none;
         box-shadow: none;
     }
-
+   
    .header {
       height: 0;
       min-height: 0;
@@ -988,10 +995,14 @@ h2 {
         height: 2.5em;
         overflow: hidden;
     }
+    
+    .decoratedList { // changing background color of list items in choices looks ugly with large border-radius
+        -webkit-border-radius: 0.1em;
+        -moz-border-radius: 0.1em;
+        border-radius: 0.1em;
+    }
 
     .thr-question {
-        letter-spacing: 0.1em;
-        border-bottom: 2px solid $carolinaBlue;
         color: #666;
         margin: 1em auto;
     }
