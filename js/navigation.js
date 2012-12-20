@@ -54,7 +54,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         
         // hide the menu if we are pressing an actual link that doesn't open up a submenu, or any link inside an element with .post class                                
         $body.on("click", ".active-page #navigation li:not(:has(>ul)) a, .post a", function() { 
-            $(".active-page #navigation:visible").hide();
+            $(".active-page #navigation").hide();
         });
         
         $body.on("click", ".active-page #navigation:visible, .active-page #mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
