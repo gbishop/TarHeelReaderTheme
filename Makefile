@@ -5,6 +5,9 @@ build:
 	python BuildTemplate.py --lang=en --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json
 	sass --style=compact style.scss style.css
 
+translate:
+	python BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json
+
 gb: build
 	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
 	launch.py http://gbserver3.cs.unc.edu/

@@ -923,7 +923,7 @@ msgid "Your Draft Books"
 msgstr ""
 
 # templates/yourbooks.html:5
-msgid "Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the "Delete selected drafts" button. Deleting a draft is not reversible."
+msgid "Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible."
 msgstr ""
 
 # templates/yourbooks.html:11
