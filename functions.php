@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 require('state.php'); // manage shared state in a cookie so both client and host have access
