@@ -156,6 +156,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     #homeLinkList + p {
       clear: both;
     }
+    
+    .tinyicon {
+      max-width: 1em;
+      max-height: 1em;
+    }
 
 }
 
@@ -229,10 +234,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
     
     -webkit-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-    -moz-box-shadwo: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-    background: url(/theme/images/globe.png) no-repeat 9em center;
-    background-size: 1.3em;
     
     color: #333;
     font: small-caps 300 1.25em arial, sans-serif;
@@ -240,8 +243,20 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     
     height: 1.5em;
     min-height: 1.5em;
-    width: 12em;
-    min-width: 12em;
+    width: 10em;
+    min-width: 10em;
+  }
+  
+  #goButton {
+    background: url(/theme/images/globe.png) no-repeat center center;
+    border: 0.15em solid #DDD;
+    margin-left: 0.5em;
+    
+    width: 6em;
+    &:hover{
+      background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
+    }
+    
   }
   
   .photoCreditsBox {
@@ -563,7 +578,7 @@ h2 {
 
     a {
       &#home {
-        background: url(/theme/images/home_32.png) 1em center no-repeat;
+        background: url(/theme/images/home.png) 1em center no-repeat;
       }
 
       &#reading {
@@ -1175,11 +1190,15 @@ h2 {
         }
 
         #categorizeButton {
-          width: 12em;
+          width: auto;
           margin-left: 0.25em;
         }
     }
-
+    
+    #image-search {
+      margin-top: 0.5em;
+    }
+    
     #gallery {
         margin: 1em auto;
         width: 90%;
@@ -1371,6 +1390,98 @@ h2 {
 
 @import "mediaqueries";
 
+/*
+ * Small width
+ */
+@media only screen and (max-width: 624px) {
+  
+  // generic server page
+  .server-page {
+    #homeLinkList li {
+      width: 100%;
+      display: block;
+    }
+    
+    #languageForm {
+      #languages {
+        width: 90%;
+        height: 1.5em;
+      }
+      
+      #goButton {
+        background-size: 1.5em;
+        margin: 0.5em 1em;
+        width: 90%;
+      }
+    }
+  }
+  
+  
+  // *** Begin code for .write-page
+  .write-page {
+    
+    #image-search {
+      
+      input {
+        width: 10em;
+        margin: 0.25em;
+        &[type='search'] {
+          width: 90% !important;
+          margin: 0.25em;
+        }
+      } // end input
+      
+    } // end image-search
+    
+    .aWrap {
+      .button {
+        margin: 0 2%;
+        &:first-child {
+          width: 35%; 
+        }
+        &:last-child {
+          width: 55%;
+        }
+      }
+    }
+  
+     div#step4 {
+      button {
+        margin: 0 2%;
+        width: 45%;
+      }
+    }
+     
+    .steps {
+      
+      h2 {
+        padding-right: 2.5em; // acount for the question mark picture and word-wrap accordingly
+        word-wrap: break-word;
+      }
+      
+      label {
+        display: block;
+        width: 100%;
+        margin: 0.5em 0;
+
+       span {
+         width: 20%;
+         display: inline-block;
+        }
+        
+        input {
+          width: 75% !important;
+        }
+        select, button {
+          width: 78% !important; // selects and buttons take up a little less space for some reason
+        }
+        
+      }
+      
+    }
+  } // *** End code for .write-page ****
+}
+
 // define mixin for the alternative navigation/menu layout used for handheld devices
 @mixin phoneNavigation {
 
@@ -1485,7 +1596,10 @@ h2 {
     #writing-controls {
         font-size: 1.5em;
     }
-
+    #gallery {
+      width: 100%;
+      margin: 0;
+    }
     @include phoneNavigation;
 }
 
@@ -1497,7 +1611,7 @@ and (max-device-width: 480px)
 and (min-width: 321px)
 and (max-width: 480px) {
     body {
-        font-size: 10px;
+        font-size: 8px;
     }
     .content-wrap {
       width: 48em;
@@ -1528,25 +1642,6 @@ and (min-width: 320px) {
           max-width: 30%; // 3 books displayed per line => 3*30% = 90%
           margin: 1.5%; // 3% margin per book => 3*3% = 9%
         }
-    }
-
-    .write-page {
-      label {
-        display: block;
-        width: 100%;
-        margin: 0.5em 0;
-
-        span {
-          width: 30%;
-          display: inline-block;
-        }
-
-        input[type="text"], input[type="select"] {
-          width: 65%;
-        }
-
-      }
-
     }
 }
 
