@@ -105,19 +105,6 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
         /*
          * End Settings Code
          */
-        
-        /*
-         * Begin Language Selection Code
-         */
-        $body.on("change", "#languages", function() {
-            var href = $(this).attr("value");
-            if(href !== '') {
-                window.location.href = href;
-            }
-        });
-        /*
-         * End Language Selection Code
-         */
       
       }); // end ready
       
