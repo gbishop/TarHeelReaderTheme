@@ -16,16 +16,20 @@ define(["jquery",
         var $this = $(this);
         console.log("HERE");
         $this.find(".thr-colors:not(ul), .thr-colors > li").hover(function() { // swap text and background colors on hover
-            $(this).css({ background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') });
+            $(this).css({ background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') })
+                    .find("a").css({color: '#' + state.get('pageColor') });
         }, function() {
-            $(this).css({ background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') });
+            $(this).css({ background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') })
+                    .find("a").css({color: '#' + state.get('textColor') });
         });
         $("body").keypress(function(e) {
             var keyCode = e.keyCode | e.which;
             console.log('keypressed');
             if(keyCode > 36 && keyCode < 41) {
-                $this.find(".thr-colors > li.selected").css({background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') });
-                $this.find(".thr-colors > li:not(.selected)").css({background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') });
+                $this.find(".thr-colors > li.selected").css({background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') })
+                     .find("a").css({color: '#' + state.get('pageColor') });
+                $this.find(".thr-colors > li:not(.selected)").css({background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') })
+                     .find("a").css({color: '#' + state.get('textColor') });
             }
         }); // end keydown
     }
