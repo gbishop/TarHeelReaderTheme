@@ -1,4 +1,7 @@
-<?php thr_header(''); ?> <!-- front-page.php -->
+<?php 
+ob_start();
+thr_header(''); 
+?> <!-- front-page.php -->
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -16,10 +19,14 @@
 					'Flickr' => '<a href="http://flickr.com">Flickr</a>'
 				);
 				echo template_render('frontPage', $view);
+				if(isset($_POST['go'])) {
+					header("Location: http://gbserver3s.cs.unc.edu{$_POST['lang']}");
+					ob_flush();
+				}
 				?>
-
+				
 				<?php the_content(); ?>
-
+				
 			</div>
 
 			<?php edit_post_link('Edit this entry.', '<p>', '</p>'); ?>
