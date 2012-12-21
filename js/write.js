@@ -70,8 +70,8 @@ define(['jquery',
                         g = $('#gallery'),
                         gwidth = g.width(),
                         //iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
-                        // if gwidth > 640, then allow 8 pictures per row, if not allow for 4 per row. Divide by base font-size for ems
-                        picsPerRow = gwidth > 720 ? 9 : 6,
+                        // if gwidth > 720, then allow 9 pictures per row, if not allow for 6 per row. Divide by base font-size for ems
+                        picsPerRow = gwidth > 720 ? 9: 6,
                         marginRight = gwidth > 720 ? .2 : .1,
                         borderWidth = 1,
                         baseFont = parseInt($("body").css("font-size")),
@@ -133,7 +133,7 @@ define(['jquery',
             // TODO: set loading here
             galleryData = {
                 page: 1,
-                per_page: 18, // 16 per page would allow an even number of pictures per row
+                per_page: 18, // 18 per page would allow an even number of pictures per row
                 extras: 'url_m' // ask for the medium url so I can get the size
             };
             if ('query' in options) {
