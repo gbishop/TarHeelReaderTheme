@@ -245,6 +245,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     min-height: 1.5em;
     width: 10em;
     min-width: 10em;
+    vertical-align: middle;
   }
   
   #goButton {
@@ -257,6 +258,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
     }
     
+  }
+  
+  #mapButton {
+    width: auto;
+    margin: 0.5em;
   }
   
   .photoCreditsBox {
@@ -396,7 +402,7 @@ h2 {
     background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
     background-image: linear-gradient(top, #F0F2F7, #DDD);
 
-    border: .1em solid #AAA !important;
+    border: 1px solid #AAA !important;
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
@@ -409,7 +415,7 @@ h2 {
       list-style: none;
       padding: .5em .75em;
       margin: 0;
-      border-bottom: .1em solid #555;
+      border-bottom: 1px solid #555;
 
       a {
         color: #555;
@@ -1395,17 +1401,30 @@ h2 {
  */
 @media only screen and (max-width: 624px) {
   
-  // generic server page
+  // ***Begin code for .find-page ***
+  .find-page {
+    .thr-book-list {
+        margin: 2%; // 4% total
+        li {
+          max-width: 30%; // 3 books displayed per line => 3*30% = 90% total
+          margin: 1%;  // 3*2% = 6% total
+        }
+    }
+  } // ***End code for .find-page***
+  
+  // *** Begin code for .server-page ***
   .server-page {
     #homeLinkList li {
       width: 100%;
       display: block;
+      margin: 1.5em auto;
+      font-size: 1.3em;
     }
     
     #languageForm {
       #languages {
+        font-size: 1.5em;
         width: 90%;
-        height: 1.5em;
       }
       
       #goButton {
@@ -1414,31 +1433,35 @@ h2 {
         width: 90%;
       }
     }
-  }
+  } // *** End code for .server-page
   
   
-  // *** Begin code for .write-page
+  // *** Begin code for .write-page ***
   .write-page {
     
     #image-search {
-      
+      overflow: auto;
       input {
         width: 10em;
-        margin: 0.25em;
-        &[type='search'] {
-          width: 90% !important;
-          margin: 0.25em;
+        margin: 0.25em auto;
+        width: 95% !important;
+        vertical-align: middle;
+        
+        &[type='submit'] {
+          margin-left: 0.25em;
         }
-      } // end input
+      }
       
     } // end image-search
     
     .aWrap {
       .button {
         margin: 0 2%;
+        
         &:first-child {
           width: 35%; 
         }
+        
         &:last-child {
           width: 55%;
         }
@@ -1465,26 +1488,85 @@ h2 {
         margin: 0.5em 0;
 
        span {
-         width: 20%;
+         width: 30%;
          display: inline-block;
         }
         
         input {
-          width: 75% !important;
+          width: 65% !important;
         }
         select, button {
-          width: 78% !important; // selects and buttons take up a little less space for some reason
+          width: 68% !important; // selects and buttons take up a little less space for some reason
         }
         
       }
       
     }
   } // *** End code for .write-page ****
-}
+  
+} // end media queries for max-width: 624px
 
 // define mixin for the alternative navigation/menu layout used for handheld devices
-@mixin phoneNavigation {
-
+@mixin phoneDisplay {
+  
+   // make the buttons easier to press
+   .thr-gray-button, .thr-blue-button {
+     font-size: 1.25em;
+     padding: 0.5em 1em; 
+   }
+   
+   #languageForm{
+     #languages {
+       height: 2em;
+       line-height: 1.5em;
+     }
+   }
+   
+   // input text areas need to be bigger (easier to press on)
+   input[type='text'], input[type='search'], input[type='password'], select {
+     font-size: 1.1em;
+     height: 1.75em;
+     line-height: 1.5em;
+   }
+   
+   .navigation a {
+     font-size: 1.25em !important;
+     padding: 0.5em 1em !important;
+   }
+   
+   label {
+     font-size: 1.1em;
+   }
+   
+    // *** Begin code for .your-books-page***
+  .your-books-page {
+    .decoratedList {
+      li {
+        font-size: 1.25em;
+        height: 2em;
+        line-height: 2em;
+      }
+     
+    }
+    
+    #mapButton {
+      margin: 0.5em 0;
+      width: 100%;
+    }
+    
+  } // *** End code for .your-books-page***
+   
+   // *** Begin .write-page code ***
+   .write-page {
+     #image-search {
+       input {
+         &[type='submit'] {
+           margin-left: 0em;
+         }
+       }
+     }
+   } // *** End .write-page code ***
+   
    .header {
       padding-top: 4em; // for the navigation bar
    }
@@ -1492,7 +1574,7 @@ h2 {
   .thr-well-icon, .thr-settings-icon { // hide the menu and navigation icons
     display: none;
    }
-
+   
    // Adjust navigation accordingly
    #navigation {
       background-color: $carolinaBlue;
@@ -1575,9 +1657,14 @@ h2 {
         .searchForm {
             input, select {
                 width: 100%;
-                height: 3em;
+                margin-top: 0.25em;
+                height: 3em !important;
                 vertical-align: middle;
                 font-size: 1.2em;
+                
+                &[type='submit'] {
+                  margin-left: 0.25em;
+                }
             }
             display: none;
         }
@@ -1600,7 +1687,7 @@ h2 {
       width: 100%;
       margin: 0;
     }
-    @include phoneNavigation;
+    @include phoneDisplay;
 }
 
 /* iPod landscape */
@@ -1635,13 +1722,6 @@ and (min-width: 320px) {
     .content-wrap {
         width: 34em;
         margin-bottom: 1em;
-    }
-    .thr-book-list {
-        margin: 2%;
-        li {
-          max-width: 30%; // 3 books displayed per line => 3*30% = 90%
-          margin: 1.5%; // 3% margin per book => 3*3% = 9%
-        }
     }
 }
 
