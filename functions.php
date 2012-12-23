@@ -82,7 +82,7 @@ function is_ajax() {
 }
 
 // output the header with some tweaks
-function thr_header($pageType, $disableCache=true) {
+function thr_header($pageType, $view=array()) {
     thr_setcookie();
 
     // tell IE8 how to render and to prefer chrome frame
@@ -93,9 +93,8 @@ function thr_header($pageType, $disableCache=true) {
     }
 
     // disable caching on our dynamically generated pages
-    if ($disableCache) {
-        header('Expires: -1');
-    }
+    // TODO: can we cache some pages? Do we need this?
+    header('Expires: -1');
 
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header
@@ -109,7 +108,7 @@ function thr_header($pageType, $disableCache=true) {
         echo "<body>\n";
         echo "<div class=\"$pageType page-wrap active-page\" >\n";
     }
-    echo template_render('heading');
+    echo template_render('heading', $view);
     echo "<div class=\"content-wrap\">\n";
 }
 
