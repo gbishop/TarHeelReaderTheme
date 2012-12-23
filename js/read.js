@@ -91,8 +91,9 @@ define(["jquery",
             }
             var $oldPage = page.getInactive('thr-book-page');
             // add classes to specific pages for styling purposes
-            pageNumber === 1 ? $oldPage.addClass('thr-colors front-page') : pageNumber <= N ? 
+            pageNumber === 1 ? $oldPage.addClass('thr-colors front-page') : pageNumber <= N ?
                                $oldPage.addClass('thr-colors').removeClass('front-page choice-page') : $oldPage.addClass("choice-page");
+            $oldPage.removeClass('favoriteYes favoriteNo').addClass(state.isFavorite(book.ID) ? 'favoriteYes' : 'favoriteNo');
             $oldPage.empty()
                 .append(templates.render('heading'))
                 .append('<div class="content-wrap">' + newContent + '</div>');
@@ -246,6 +247,20 @@ define(["jquery",
         'down': '/read/makeChoice',
         'p n m c a r d 1 2 3': '/read/key',
         'swipe': '/read/swipe'
+    });
+
+    // handle toggling favorites
+    $(document).on('click', '.front-page .thr-favorites-icon', function(ev) {
+        ev.preventDefault();
+        var $page = $('.front-page.active-page'),
+            id = $page.find('.content-wrap h1').attr('data-id');
+        if ($page.hasClass('favoriteYes')) {
+            $page.removeClass('favoriteYes').addClass('favoriteNo');
+            state.removeFavorite(id);
+        } else {
+            $page.removeClass('favoriteNo').addClass('favoriteYes');
+            state.addFavorite(id);
+        }
     });
 
     function configureBook(url, slug, pageNumber) {

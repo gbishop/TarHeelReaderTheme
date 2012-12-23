@@ -23,6 +23,9 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         state = cookieValue || $.extend({}, defaultState);
 
         // update from the query string
+
+        // TODO: special handling for favorites?
+
         var i = url.indexOf('?');
         if (i > 0) {
             qvals = parseQuery(url.substring(i));
@@ -49,12 +52,42 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         console.log('state dump', msg, state);
     }
 
+    function addFavorite(id) {
+        var favList = state['favorites'].split(',');
+        if ($.inArray(id, favList) === -1) {
+            if (favList[0]) {
+                favList.push(id);
+            } else {
+                favList[0] = id;
+            }
+            set('favorites', favList.join(','));
+            console.log('favorites now', state['favorites']);
+        }
+    }
+
+    function removeFavorite(id) {
+        var favList = state['favorites'].split(','),
+            index = $.inArray(id, favList);
+        if (index !== -1) {
+            favList.splice(index, 1);
+            set('favorites', favList.join(','));
+            console.log('favorites now', state['favorites']);
+        }
+    }
+
+    function isFavorite(id) {
+        return new RegExp('(^|,)' + id + '(,|$)').test(state['favorites']);
+    }
+
     stateUpdate(window.location.href);
 
     return {
         get: function(key) { return state[key]; },
         set: set,
         update: stateUpdate,
-        dump: dump
+        dump: dump,
+        addFavorite: addFavorite,
+        removeFavorite: removeFavorite,
+        isFavorite: isFavorite
     };
 });

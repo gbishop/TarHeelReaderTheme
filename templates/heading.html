@@ -2,11 +2,17 @@
     <div class="header">
         <a href="/" class="thr-well-icon" title="_(Open Menu|icon explanatory text)"><img src="/theme/images/well.png" alt="Main Menu"/></a>
         <a href="/reading-controls/" class="thr-settings-icon" title="_(Settings|icon explanatory text)"><img src="/theme/images/settings.png" alt="settings"/></a>
+        {{#setFavorite}}
+        <a href="{{{setFavorite}}}" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"></a>
+        {{/setFavorite}}
+        {{^setFavorite}}
+        <a href="" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"></a>
+        {{/setFavorite}}
         <h1><a href="/" title="_(Books for beginning readers of all ages|site sub-heading)">_(Tar Heel Reader|site name)</a></h1>
         <!-- Begin Navigation -->
         <ul class="panel" id="navigation">
         	<li><a href="/" id="home">Home</a></li>
-        	
+
         	<!-- Begin Reading Section -->
     		<li><a href="#" id="reading">_(Reading|section heading)</a>
     			<!-- Begin submenu -->
@@ -19,7 +25,7 @@
     			<!-- End submenu -->
     		</li>
     		<!-- End Reading Section -->
-    	
+
     		<!-- Begin Writing Section -->
     		<li><a href="#" id="writing">_(Writing|section heading)</a>
     			<!-- Begin submenu -->
@@ -30,11 +36,11 @@
    	 			<!-- End submenu -->
    			</li>
 			<!-- End Writing Section -->
-			
+
 			<!-- Begin User Seciton -->
-			<li><a href="/login/" id="user">_(User|section heading)</a></li> 
+			<li><a href="/login/" id="user">_(User|section heading)</a></li>
 			<!-- End User Section -->
-			
+
 			<!-- Begin Info Section-->
    	 		<li><a href="#" id="help">_(Help|section heading)</a>
    	 			<!-- Begin submenu -->
@@ -46,7 +52,7 @@
     			<!-- End submenu -->
     		</li>
     		<!-- End Info Section -->
-		
+
 			<!-- Begin Search Section -->
 			<!--
 			<li>

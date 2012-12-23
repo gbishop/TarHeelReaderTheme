@@ -1,5 +1,3 @@
-<?php thr_header('thr-book-page thr-colors'); ?> <!-- single-book.php -->
-
     <?php if (have_posts()):
         while (have_posts()):
             the_post();
@@ -21,6 +19,22 @@
                 }
             }
             $pageNumber = $page;
+            // setup page classes
+            $addClass = '';
+            if ($pageNumber == 1) {
+                $addClass = ' front-page';
+            } elseif ($pageNumber > $N) {
+                $addClass = ' choice-page';
+            }
+            if (preg_match('/(^|,)' . $id . '(,|$)/', THR('favorites'))) {
+                $addClass .= ' favoriteYes';
+                $view = array('setFavorite'=>'?favorites=R' . $id);
+            } else {
+                $addClass .= ' favoriteNo';
+                $view = array('setFavorite'=>'?favorites=A' . $id);
+            }
+            thr_header('thr-book-page thr-colors' . $addClass, $view);
+
             $view = array();
             $view['frontPage'] = $pageNumber == 1;
             $view['title'] = $book['title'];
