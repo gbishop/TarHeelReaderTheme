@@ -61,7 +61,6 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
                 favList[0] = id;
             }
             set('favorites', favList.join(','));
-            console.log('favorites now', state['favorites']);
         }
     }
 
@@ -71,7 +70,6 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         if (index !== -1) {
             favList.splice(index, 1);
             set('favorites', favList.join(','));
-            console.log('favorites now', state['favorites']);
         }
     }
 
