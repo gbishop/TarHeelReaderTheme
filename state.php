@@ -37,49 +37,44 @@ $THRPatterns = array(
     'textColor' => '/^[f0]{3}$/',  // color of text
     'voice' => '/^silent|male|female|child$/',    // voice to use silent, male, female, child
     'locale' => '/^[a-z]{2,3}$/',  // users language for supporting translations of the site
-    'favorites' => '/^[AR]?\d+(,\d+)*$/',   // comma separated integers
+    'favorites' => '/(^[AR]?\d+(,+\d+)*$)|(^$)/',   // comma separated integers or empty
     'findAnotherLink' => '/^.*$/'
 );
 
+function splitFavorites($str) {
+    if ($str) {
+        preg_match_all('/\d+/', $str, $matches);
+        $favs = $matches[0];
+    } else {
+        $favs = array();
+    }
+    return $favs;
+}
+
 function thrUpdateState(&$current, $update, $patterns) {
+    global $THRDefault;
     $changed = 0; // track number of changes
     foreach($update as $param => $value) {
-        //BuG("param=$param value=$value");
         if (array_key_exists($param, $patterns)) {
             if (preg_match($patterns[$param], $value)) {
                 $changed += 1;
                 if ($param == 'favorites') {
-                    //BuG("fav=".$current['favorites']);
-                    //BuG("val=".$value);
-                    if ($current['favorites']) {
-                        $favs = explode(',', $current['favorites']);
-                    } else {
-                        $favs = array();
-                    }
-                    //BuG("favs before=".print_r($favs, true));
-                    if (strpos($value, 'A') === 0) {
-                        // add the book
-                        $ids = explode(',', substr($value, 1));
+                    $favs = splitFavorites($current['favorites']);
+                    $ids = splitFavorites($value);
+                    if (strpos($value, 'A') === 0) { // add the book
                         $favs = array_unique(array_merge($favs, $ids));
-                    //BuG("favs after add=".print_r($favs, true));
-                    } elseif (strpos($value, 'R') === 0) {
-                        // remove the book
-                        $ids = explode(',', substr($value, 1));
+                    } elseif (strpos($value, 'R') === 0) { // remove the book
                         $favs = array_diff($favs, $ids);
-                    //BuG("favs after remove=".print_r($favs, true));
-                    } else {
-                        // replace all favorites
-                        $favs = explode(',', $value);
-                        //BuG("favs after replace".print_r($favs, true));
+                    } else { // replace all favorites
+                        $favs = $ids;
                     }
                     $current['favorites'] = implode(',', $favs);
-                    //BuG("result=".$current['favorites']);
 
                 } else {
                     $current[$param] = stripslashes(urldecode($value));
                 }
             } else {
-                return false; // signal error
+                $current[$param] = $THRDefault[$param];
             }
         }
     }

@@ -39,13 +39,23 @@ function new_favorites_url($q) {
 }
 ?>
 <?php
+// redirect on old style favorites URLs to convert them to new style
+if (array_key_exists('books', $_GET)) { // old format URL, convert it before redirect
+  $loc = new_favorites_url($_GET);
+  header('Location: ' . $loc);
+  die();
+}
+
 // redirect on an empty URL so the page is bookmarkable
-if (! array_key_exists('favorites', $_GET)) {
-  if (array_key_exists('books', $_GET)) { // old format URL, convert it before redirect
-    $loc = new_favorites_url($_GET);
-  } else {
-    $loc = favorites_url();
-  }
+if (! array_key_exists('favorites', $_GET) && THR('favorites')) {
+  $loc = favorites_url();
+  header('Location: ' . $loc);
+  die();
+}
+
+// redirect on A or R URLs so the resulting URL reflects the state
+if (array_key_exists('favorites', $_GET) && preg_match('/^[AR]/', $_GET['favorites'])) {
+  $loc = favorites_url();
   header('Location: ' . $loc);
   die();
 }
