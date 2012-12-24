@@ -69,7 +69,7 @@ define(["jquery",
                 }
                 var $newPage = page.getInactive('find-page');
                 $newPage.empty()
-                    .append(templates.get('heading'))
+                    .append(templates.render('heading'))
                     .append('<div class="content-wrap">' +
                             templates.render('find', view) +
                             '</div>');
@@ -203,11 +203,46 @@ define(["jquery",
             return false;
         });
         $page.attr('data-key', url);
+        // signal if book is in favorites
+        var favorites = state.get('favorites');
+        $page.find('li.selectable')
+            .removeClass('favoriteYes favoriteNo')
+            .each(function(i, li) {
+                var $li = $(li),
+                    id = $li.attr('data-id');
+                if (state.isFavorite(id)) {
+                    $li.addClass('favoriteYes');
+                } else {
+                    $li.addClass('favoriteNo');
+                }
+            });
 
         return {title: 'Find - Tar Heel Reader', colors: true};
     }
+    $(document).on('click', '.chooseFavorites img.favoriteNo, .chooseFavorites img.favoriteYes', function(ev) {
+        console.log('favorite click', ev);
+        var $li = $(ev.target).parent('li'),
+            id = $li.attr('data-id');
+        if ($li.hasClass('favoriteNo')) {
+            $li.removeClass('favoriteNo').addClass('favoriteYes');
+            state.addFavorite(id);
+        } else if ($li.hasClass('favoriteYes')) {
+            $li.removeClass('favoriteYes').addClass('favoriteNo');
+            state.removeFavorite(id);
+        }
+    });
+    $(document).on('click', '.find-page .thr-favorites-icon, .favorites-page .thr-favorites-icon', function(ev) {
+        console.log('click favorites icon');
+        $('.active-page').toggleClass('chooseFavorites');
+        ev.preventDefault();
+    });
+    $(document).on('click', '.favorites-page.chooseFavorites .thr-favorites-icon', function(ev) {
+        window.location.reload(true); // force a refresh after changing favorites on favorites page
+    })
+
     route.add('render', /^\/find\/(\?.*)?$/, findRender);
     route.add('init', /^\/find\/(\?.*)?$/, findConfigure);
+    route.add('init', /^\/favorites\/(\?.*)?$/, findConfigure);
 
     // I don't really need to define anything but I need it to be called before main runs.
     return {};

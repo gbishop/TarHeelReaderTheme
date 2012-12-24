@@ -355,6 +355,24 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 }
 
+.thr-favorites-icon {
+    display: none;
+    position: absolute;
+    top: 0.65em;
+    right: 5em;
+    z-index: 999;
+
+    width: 2.5em;
+    min-width: 24px;
+    height: 2.5em;
+    min-height: 24px;
+
+    opacity: 0.6;
+    &:hover {
+       opacity: 1;
+    }
+}
+
 .footer, .footer a {
     width: 100%;
     text-align: center;
@@ -1085,10 +1103,27 @@ h2 {
 }
 
 // show the settings icon in the front-page and the choice-page (at the end of the book)
-.front-page, .choice-page {
+.front-page, .choice-page, .favorites-page, .find-page {
   .thr-settings-icon {
     display: block;
   }
+}
+
+.js .find-page .thr-favorites-icon, .js .favorites-page .thr-favorites-icon {
+  display: block;
+  background-image: url('/theme/images/FavoriteYesIcon.png');
+  background-size: contain;
+}
+
+.front-page.favoriteYes .thr-favorites-icon {
+  display: block;
+  background-image: url('/theme/images/FavoriteYesIcon.png');
+  background-size: contain;
+}
+.front-page.favoriteNo .thr-favorites-icon {
+  display: block;
+  background-image: url('/theme/images/FavoriteNoIcon.png');
+  background-size: contain;
 }
 
 .js .thr-pic {  // hide the picture initially when javascript is enabled so we can size it without a jump
@@ -1814,6 +1849,23 @@ and (orientation: landscape) {
     color: red;
     background: white;
     font-weight: bold;
+}
+
+img.favoriteYes, img.favoriteNo {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.chooseFavorites li.favoriteYes img.favoriteYes {
+  display: block !important;
+}
+
+.chooseFavorites li.favoriteNo img.favoriteNo {
+  display: block !important;
 }
 
 @import "fileuploader";

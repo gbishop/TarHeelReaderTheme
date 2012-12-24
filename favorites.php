@@ -6,12 +6,56 @@ GET: Return a list of books that match the query
 */
 ?>
 <?php
+// handle converting old format favorites URL's to new format
+function new_favorites_url($q) {
+  global $THRPatterns;
+  $p = array();
+  if (array_key_exists('books', $q)) {
+    if (preg_match($THRPatterns['favorites'], $q['books'])) {
+      $v = $q['books'];
+      $p[] = "favorites=$v";
+    } else {
+      return favorites_url();
+    }
+  } else {
+    return favorites_url();
+  }
+  foreach (array('bgcolor'=>'pageColor', 'fgcolor'=>'textColor') as $old=>$new) {
+    if (array_key_exists($old, $q)) {
+      $cname = $q[$old];
+      $c = array('black'=>'000', 'blue'=>'00f', 'green'=>'0f0', 'cyan'=>'0ff', 'red'=>'f00', 'magenta'=>'f0f', 'yellow'=>'ff0', 'white'=>'fff');
+      $d = array('pageColor'=>'fff', 'textColor'=>'000');
+      $v = $c[$cname] ?: $d[$new];
+      $p[] = "$new=$v";
+    }
+  }
+  if (array_key_exists('speech', $q)) {
+    $voice = array('silent', 'child', 'woman', 'man');
+    $v = $voice[$q['speech'] + 0];
+    $p[] = "voice=$v";
+  }
+  $result = '/favorites/?' . implode('&', $p);
+  return $result;
+}
+?>
+<?php
+// redirect on an empty URL so the page is bookmarkable
+if (! array_key_exists('favorites', $_GET)) {
+  if (array_key_exists('books', $_GET)) { // old format URL, convert it before redirect
+    $loc = new_favorites_url($_GET);
+  } else {
+    $loc = favorites_url();
+  }
+  header('Location: ' . $loc);
+  die();
+}
+
 // construct the where clause
 $where = array();
 $where[] = "p.post_status = 'publish'";
 $favorites = THR('favorites');
 if ($favorites) {
-  $where[] = "p.id in (" . THR('favorites') . ")";
+  $where[] = "p.id in (" . $favorites . ")";
 } else {
   $where[] = "p.id = 0";
 }

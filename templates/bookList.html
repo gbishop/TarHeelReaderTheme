@@ -1,7 +1,6 @@
     {{#favorites}}
         {{^books}}
         <p>_(Your favorites page is empty.)</p>
-        <p>_(You may add books to the favorites by clicking on the checkbox in the upper right corner of each book on pages where you choose a book to read and on the Index of Titles page. You may remove books from the favorites by clicking on the red X in the upper right of each book in the list of favorites.)</p>
         {{/books}}
     {{/favorites}}
     {{^favorites}}
@@ -38,6 +37,8 @@
                 {{/cover}}
                 <p class="thr-pages">{{pages}}</p>
             </a>
+            <img src="/theme/images/FavoriteYesOverlay.png" class="favoriteYes" />
+            <img src="/theme/images/FavoriteNoOverlay.png" class="favoriteNo" />
         </li>
         {{/books}}
     </ul>
