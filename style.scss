@@ -171,6 +171,18 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     padding: 0;
 }
 
+.navigation #navigation {
+  #mainNav {
+    li:last-child {
+      display: none; // don't display the 'More' option
+    }
+  }
+  
+  #secondaryNav {
+    display: block; // display the secondary navigation immediately
+  }
+}
+
 .find-page {
 
     .description {
@@ -456,7 +468,7 @@ h2 {
 
  }
 
-// Panel CSS for Navigation and Settings menus
+// Panel CSS for Settings menus
 .panel {
     position: absolute;
     top: 3em;
@@ -574,55 +586,95 @@ h2 {
 }
 
 #navigation {
-    display: none; // hide initially
-    z-index: 99;
-    left: 4em;
+    #secondaryNav {
+      display: none;
+    }
+    
+    background: $carolinaBlue; // If all else fails...
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($carolinaBlue), to(#286DA3)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, $carolinaBlue, #286DA3); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, $carolinaBlue, #286DA3); /* Firefox */
+    background: -ms-linear-gradient(top, $carolinaBlue, #286DA3); /* IE 10+ */
+    background: -o-linear-gradient(top, $carolinaBlue, #286DA3); /* Opera */
+   
     -webkit-box-shadow: .1em .1em .1em #AAA;
     -moz-box-shadow: .1em .1em .1em #AAA;
     box-shadow: .1em .1em .1em #AAA;
-
-    /* Background code... */
-    background: #888; // If all else fails...
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6F6F6F), to(#8E8E8E)); /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(left, #6F6F6F, #8E8E8E); /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(left, #6F6F6F, #8E8E8E); /* Firefox */
-    background: -ms-linear-gradient(left, #6F6F6F, #8E8E8E); /* IE 10+ */
-    background: -o-linear-gradient(left, #6F6F6F, #8E8E8E); /* Opera */
-
-    // display submenu to the right
+    
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    border-radius: 0.4em;
+    
+    border: 1px solid #EFEFEF;
+    
+    margin-top: 0.5em;
+    width: 100%;
+    height: auto;
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    
     li {
-      .submenu {
-        left: 12.05em; // account for width of navigation
+      border-bottom: 1px solid #DFDFDF;
+      color: #DFDFDF;
+      cursor: pointer;
+      margin: 0;
+      height: 3em;
+      overflow: hidden;
 
-        -webkit-border-radius: 0 1em 1em 0em;
-        -moz-border-radius: 0 1em 1em 0em;
-         border-radius: 0 1em 1em 0em;
+      &:last-child {
+        border-bottom: 0;
       }
-    }
-
-    a {
-      &#home {
-        background: url(/theme/images/home.png) 1em center no-repeat;
+      
+      &:focus, &:hover {
+        background: #FFF;
+        color: $carolinaBlue;
       }
-
-      &#reading {
-        background: url(/theme/images/read_book.png) .75em center no-repeat;
+      
+      &.divider {
+        border-bottom: 1px solid #DFDFDF;
       }
+      
+      a {
+        display: inline-block;
+        color: inherit;
+        font-size: 1.5em;
+        line-height: 2em;
+        padding: 0 3em;
+        text-decoration: none;
+        width: 100%;
+        
+        &#homeLink {
+          background: url(/theme/images/home_32.png) 1em center no-repeat;
+        }
 
-      &#writing {
-        background: url(/theme/images/write_book.png) 1em center no-repeat;
-      }
+        &#findLink {
+          background: url(/theme/images/read_book.png) 1em center no-repeat;
+        }
+        
+        &#collectionsLink {
+          background: url(/theme/images/collections_32.png) 1em center no-repeat;
+        }
+        
+        &#favLink {
+          background: url(/theme/images/favorite_book_32.png) 1em center no-repeat;
+        }
 
-      &#user {
-        background: url(/theme/images/user.png) 1em center no-repeat;
-      }
+        &#writeLink {
+          background: url(/theme/images/write_book.png) 1em center no-repeat;
+        }
 
-      &#help {
-        background: url(/theme/images/info.png) 1em center no-repeat;
-      }
+        &#loginLink {
+          background: url(/theme/images/user.png) 1em center no-repeat;
+        }
 
-    }
-
+        &#helpLink {
+          background: url(/theme/images/info.png) 1em center no-repeat;
+        }
+        
+      } // end a
+      
+    } // end li
+   
 }
 
 #mainSettings {
