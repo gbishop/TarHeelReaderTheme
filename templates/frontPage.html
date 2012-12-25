@@ -20,3 +20,14 @@
     <option value="/?locale=de">Deutsch</option>
     <option value="/?locale=en" selected="">English</option>
 </select>
+
+<!-- content -->
+<p>{{{content}}}</p>
+<!-- content end -->
+
+<p><b>_(Latest Announcements)</b></p>
+<ul>
+{{#announcements}}
+    <li><a href="{{{link}}}">{{title}}</a></li>
+{{/announcements}}
+</ul>
