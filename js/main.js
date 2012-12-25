@@ -17,8 +17,11 @@ require([ "jquery",
           ],
     function($, route, state) {
         $(function() {
-            var url = window.location.href;
+            var url = window.location.href,
+                $page = $('.active-page');
             // run any configure hooks
-            route.go('init', url, $('.active-page'));
+            $page.trigger('PageRendered');
+            route.go('init', url, $page);
+            $page.trigger('PageVisible');
         });
     });
