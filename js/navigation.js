@@ -33,7 +33,9 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
       
     $(function() {
         var $body = $("body"),
-            currentSettings = getCurrentSettings();
+            currentSettings = getCurrentSettings(),
+            currentURL,
+            hostname = location.hostname;
             
         initNavKeybindings(); // initialize the keybindings for the menu
         
@@ -42,13 +44,10 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
          */
         
         $body.on("click", ".thr-well-icon img", function(e, data) {
-            //data === 'keybind' ? $(".active-page .navigationMenu").slideDown() : $(".active-page .navigationMenu").slideToggle();
-            //$(".active-page #mainSettings:visible").slideUp(); // hide settings
-            //$(".submenu:visible").hide();
             
             var $contentWrap = $(".active-page .content-wrap"),
                 $navigation = $contentWrap.find(".navigationMenu"),
-                $hiddenContent = $(".active-page .hiddenContent");
+                $hiddenContent = $contentWrap.find(".hiddenContent");
             
             if($navigation.length === 0) { // nav doesn't exist, load it
                 $contentWrap.wrapInner("<div class='hiddenContent' />").
@@ -72,11 +71,6 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
         });
         
-        $body.on("click", ".active-page .navigationMenu a:not(.more)", function() {
-            $(".active-page").find(".navigationMenu").fadeOut().remove()
-                             .end().find(".hiddenContent").fadeIn();
-        });
-        
         $body.on("click", ".active-page .navigationMenu:visible .more", function() {
             var $secondaryNav = $(".active-page .secondaryNav"),
                 $this = $(this);
@@ -91,9 +85,35 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                 $secondaryNav.slideUp(300);
                 $("html, body").animate({ scrollTop: 0 }, 600);
             }
-            
         });
         
+        $body.on("PageRendered", ".find-page", function() {
+            $(this).find(".navigationMenu").show();
+        });
+        
+        // update current URL
+        $body.on("PageVisible", function() {
+            currentURL = $(location).attr("href");
+        });
+        
+       $body.on("click", ".active-page .navigationMenu a:not(.more)", function() {
+            var href = $(this).attr("href"),
+                strippedURL = currentURL.substring(currentURL.indexOf(hostname)).replace(hostname, ""),
+                newPage = true;
+                
+            console.log(href);
+            console.log(strippedURL);
+            
+            if(href === "/") { // exact match of home page?
+                newPage = strippedURL === "/" ? false : true; // is currentURL also the home page? Then we're not going to a new page
+        
+            } else if(strippedURL.indexOf(href) > -1) {
+                newPage = false;
+            }
+            // if it's a new page, then just slide the navigation up; else, slide up navigation and show hiddenContent
+            newPage ? $(".active-page .navigationMenu").slideUp(100) : 
+                                        $(".active-page .thr-well-icon img").trigger("click", href);
+        });
         /*
          * End Navigation Code
          */
