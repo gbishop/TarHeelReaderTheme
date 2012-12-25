@@ -126,7 +126,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     width: 48em;
     margin: 0 auto 1em;
     padding: 0.25em 1em 1em;
-    max-width: 95%;
     //position: relative; // why do we need this?
 
     -webkit-border-radius: 1em;
@@ -171,14 +170,14 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     padding: 0;
 }
 
-.navigation #navigation {
-  #mainNav {
+.navigation .navigationMenu {
+  .mainNav {
     li:last-child {
       display: none; // don't display the 'More' option
     }
   }
   
-  #secondaryNav {
+  .secondaryNav {
     display: block; // display the secondary navigation immediately
   }
 }
@@ -585,8 +584,8 @@ h2 {
     }
 }
 
-#navigation {
-    #secondaryNav {
+.navigationMenu {
+    .secondaryNav {
       display: none;
     }
     
@@ -643,32 +642,44 @@ h2 {
         text-decoration: none;
         width: 100%;
         
-        &#homeLink {
+        &.homeLink {
           background: url(/theme/images/home_32.png) 1em center no-repeat;
         }
 
-        &#findLink {
-          background: url(/theme/images/read_book.png) 1em center no-repeat;
+        &.findLink {
+          background: url(/theme/images/find_book_icon.png) 1em center no-repeat;
         }
         
-        &#collectionsLink {
+        &.collectionsLink {
           background: url(/theme/images/collections_32.png) 1em center no-repeat;
         }
         
-        &#favLink {
+        &.favLink {
           background: url(/theme/images/favorite_book_32.png) 1em center no-repeat;
         }
 
-        &#writeLink {
+        &.writeLink {
           background: url(/theme/images/write_book.png) 1em center no-repeat;
         }
 
-        &#loginLink {
+        &.loginLink {
           background: url(/theme/images/user.png) 1em center no-repeat;
         }
 
-        &#helpLink {
+        &.faqLink {
           background: url(/theme/images/info.png) 1em center no-repeat;
+        }
+        
+        &.yourBooksLink {
+          background: url(/theme/images/book_32.png) 1em center no-repeat;
+        }
+        
+        &.announcementsLink {
+          background: url(/theme/images/announcements_icon.png) 1em center no-repeat;
+        }
+        
+        &.photoCreditsLink {
+          background: url(/theme/images/photo_credits_icon.png) 1em center no-repeat;
         }
         
       } // end a
@@ -1488,17 +1499,6 @@ h2 {
  */
 @media only screen and (max-width: 624px) {
   
-  // ***Begin code for .find-page ***
-  .find-page {
-    .thr-book-list {
-        margin: 2%; // 4% total
-        li {
-          max-width: 30%; // 3 books displayed per line => 3*30% = 90% total
-          margin: 1%;  // 3*2% = 6% total
-        }
-    }
-  } // ***End code for .find-page***
-  
   // *** Begin code for .server-page ***
   .server-page {
     #homeLinkList li {
@@ -1735,6 +1735,10 @@ h2 {
        }
     }
 }
+
+/*
+ * min-width: 823px
+ */
 
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {

@@ -1,5 +1,5 @@
 // Code for navigation and settings menus
-require(["jquery", "state", "controller", "templates", "hoverIntent"], function($, state, controller, templates) {
+require(["jquery", "state", "controller", "templates"], function($, state, controller, templates) {
     
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
@@ -42,19 +42,21 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
          */
         
         $body.on("click", ".thr-well-icon img", function(e, data) {
-            //data === 'keybind' ? $(".active-page #navigation").slideDown() : $(".active-page #navigation").slideToggle();
+            //data === 'keybind' ? $(".active-page .navigationMenu").slideDown() : $(".active-page .navigationMenu").slideToggle();
             //$(".active-page #mainSettings:visible").slideUp(); // hide settings
             //$(".submenu:visible").hide();
             
             var $contentWrap = $(".active-page .content-wrap"),
-                $navigation = $contentWrap.find("#navigation"),
-                $hiddenContent = $(".active-page #hiddenContent");
+                $navigation = $contentWrap.find(".navigationMenu"),
+                $hiddenContent = $(".active-page .hiddenContent");
             
             if($navigation.length === 0) { // nav doesn't exist, load it
-                $contentWrap.wrapInner("<div id='hiddenContent' />").
-                             append(templates.render('navigation', null));
+                $contentWrap.wrapInner("<div class='hiddenContent' />").
+                             prepend(templates.render('navigation', null));
                 
-                $(".active-page #hiddenContent").slideUp(600);
+                $(".active-page").find(".navigationMenu").
+                                  hide().slideDown(600).end().
+                                  find(".hiddenContent").fadeOut(200);
                               
             } else if(!$navigation.is(":visible")) {
                 $hiddenContent.fadeOut(function() {
@@ -70,8 +72,13 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
         });
         
-        $body.on('click', ".active-page #navigation:visible #more", function() {
-            var $secondaryNav = $(".active-page #secondaryNav"),
+        $body.on("click", ".active-page .navigationMenu a:not(.more)", function() {
+            $(".active-page").find(".navigationMenu").fadeOut().remove()
+                             .end().find(".hiddenContent").fadeIn();
+        });
+        
+        $body.on("click", ".active-page .navigationMenu:visible .more", function() {
+            var $secondaryNav = $(".active-page .secondaryNav"),
                 $this = $(this);
             
             if(!$secondaryNav.is(":visible")) {
@@ -96,7 +103,7 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
         $body.on("click", ".thr-settings-icon img", function(e, data) {
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             data === 'keybind' ? $(".active-page #mainSettings").slideDown() : $(".active-page #mainSettings").slideToggle();
-            //$(".active-page #navigation:visible").slideUp(); // hide navigation
+            //$(".active-page .navigationMenu:visible").slideUp(); // hide navigation
             $(".submenu:visible").hide();
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         });
@@ -258,7 +265,7 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
           console.log('Deeply copied object');
           
           console.log('Setting bounds');
-          navState.setBounds($(".active-page #navigation > li").length, 'mainMenu');
+          navState.setBounds($(".active-page .navigationMenu > li").length, 'mainMenu');
           settingsState.setBounds($(".active-page #mainSettings > li").length, 'mainMenu');
           
           // open up navigation or settings menu on tab
@@ -276,7 +283,7 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
                   if($this.is($(".thr-well-icon"))) {
                       console.log('resetting indices');
                       navState.resetIndices();
-                      $(".active-page #navigation:visible > li:first-child").addClass("selectedLink");
+                      $(".active-page .navigationMenu:visible > li:first-child").addClass("selectedLink");
                   } else {
                       console.log('resetting settings');
                       settingsState.resetIndices();
@@ -290,10 +297,10 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
              keyCode = e.keyCode || e.which;
               
               // are any of the menus open?
-             if((isNavMenuOpen = $(".active-page #navigation").is(":visible")) || $(".active-page #mainSettings").is(":visible")) { 
+             if((isNavMenuOpen = $(".active-page .navigationMenu").is(":visible")) || $(".active-page #mainSettings").is(":visible")) { 
                 // decide which menu is open
                 if(isNavMenuOpen) {
-                    $openMenu = $(".active-page #navigation:visible");
+                    $openMenu = $(".active-page .navigationMenu:visible");
                     openMenuState = navState;
                 } else {
                     $openMenu = $(".active-page #mainSettings:visible");
@@ -355,7 +362,7 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
                     
                     return false;
                     
-                 } else if(keyCode == 37 && $openMenu.is(".active-page #navigation:visible")  || // LEFT for navigation
+                 } else if(keyCode == 37 && $openMenu.is(".active-page .navigationMenu:visible")  || // LEFT for navigation
                                 (keyCode == 39 && $openMenu.is(".active-page #mainSettings:visible"))) { // RIGHT for mainSettings
                                     
                      $(".selectedLink").removeClass("selectedLink");
@@ -375,7 +382,7 @@ require(["jquery", "state", "controller", "templates", "hoverIntent"], function(
                        // Do nothing if we are on the main menu
                     }
                      
-                 } else if(keyCode == 39 && $openMenu.is(".active-page #navigation:visible")  || // RIGHT for navigation
+                 } else if(keyCode == 39 && $openMenu.is(".active-page .navigationMenu:visible")  || // RIGHT for navigation
                                 (keyCode == 37 && $openMenu.is(".active-page #mainSettings:visible"))) { // LEFT for settings
                                     
                      $(".selectedLink").removeClass("selectedLink");

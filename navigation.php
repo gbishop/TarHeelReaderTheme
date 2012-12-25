@@ -1,7 +1,7 @@
 <?php 
 /*
 Template Name: Navigation
-Display the login form
+Display the navigation
 */
 
 thr_header('navigation');
