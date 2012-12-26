@@ -1,5 +1,5 @@
 // Code for navigation and settings menus
-require(["jquery", "state", "controller", "hoverIntent"], function($, state, controller) {
+require(["jquery", "state", "controller", "templates"], function($, state, controller, templates) {
     
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
@@ -29,21 +29,120 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                              }
                         }
                     }
-          };
+                  };
       
     $(function() {
         var $body = $("body"),
-            currentSettings = getCurrentSettings();
+            currentSettings = getCurrentSettings(),
+            currentURL,
+            hostname = location.hostname;
             
         initNavKeybindings(); // initialize the keybindings for the menu
         
         /*
          * Begin Navigation Code
          */
-        $body.on("click", ".active-page #navigation:visible > li, .active-page #mainSettings:visible > li", function(e) { // on click, show the submenus accordingly
+        
+        $body.on("click", ".thr-well-icon img", function(e, data) {
+            
+            var $contentWrap = $(".active-page .content-wrap"),
+                $navigation = $contentWrap.find(".navigationMenu"),
+                $hiddenContent = $contentWrap.find(".hiddenContent");
+            
+            if($navigation.length === 0) { // nav doesn't exist, load it
+                $contentWrap.wrapInner("<div class='hiddenContent' />").
+                             prepend(templates.render('navigation', null));
+                
+                $(".active-page").find(".navigationMenu").
+                                  hide().slideDown().end().
+                                  find(".hiddenContent").fadeOut(200);
+                              
+            } else if(!$navigation.is(":visible")) {
+                $hiddenContent.fadeOut(function() {
+                    $navigation.slideDown();
+                }); // end fadeOut
+                
+            } else {
+                $navigation.fadeOut(50, function() {
+                    $hiddenContent.fadeIn();
+                }); // end slideUp
+            }
+            
+            return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
+        });
+        
+        $body.on("click", ".active-page .navigationMenu:visible .more", function() {
+            var $secondaryNav = $(".active-page .secondaryNav"),
+                $this = $(this);
+            $this.blur(); // remove fuzzy border
+            
+            if(!$secondaryNav.is(":visible")) {
+                $this.parent("li").addClass("divider").end().text("Less");
+                $secondaryNav.slideDown(300);
+                $("html, body").animate({ scrollTop: 1000 }, 600);
+                
+            } else {
+                $this.parent("li").removeClass("divider").end().text("More");
+                $secondaryNav.slideUp(300);
+                $("html, body").animate({ scrollTop: 0 }, 600);
+            }
+        });
+        
+        // hack for .find-page since we reuse this page
+        $body.on("PageRendered", ".find-page", function() {
+            var $navMenu = $(this).find(".navigationMenu");
+            $navMenu.show();
+            // if secondaryNav was open, close it since we are reusing the navigation
+            if($navMenu.find(".more").text() === "Less") {
+                $navMenu.find(".more").text("More").parent().removeClass("divider");
+                $navMenu.find(".secondaryNav").hide();
+            }
+        });
+       
+        $body.on("PageVisible", function() {
+            currentURL = $(location).attr("href"); // update current URL
+            if($(".content-wrap").length === 1) { return; } // initial entrance to website, avoid "double slidedown" bug
+            
+            $(".active-page").find(".content-wrap").
+                              hide().slideDown(600, "swing");
+        });
+        
+       $body.on("click", ".active-page .navigationMenu a:not(.more), a.homeLink", function() {
+            var href = $(this).attr("href"),
+                strippedURL = currentURL.substring(currentURL.indexOf(hostname)).replace(hostname, ""),
+                newPage = true;
+                
+            console.log(href);
+            console.log(strippedURL);
+            
+            if(href === "/") { // exact match of home page?
+                newPage = strippedURL === "/" ? false : true; // is currentURL also the home page? Then we're not going to a new page
+        
+            } else if(strippedURL.indexOf(href) > -1) {
+                newPage = false;
+            }
+            // if it's a new page, then just slide the navigation up; else, slide up navigation and show .hiddenContent
+            newPage ? $(".active-page .navigationMenu").slideUp(150) : 
+                                        $(".active-page .thr-well-icon img").trigger("click", href);
+        });
+        /*
+         * End Navigation Code
+         */
+        
+        /* 
+         * Begin Settings Code
+         */
+        $body.on("click", ".thr-settings-icon img", function(e, data) {
+            updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
+            data === 'keybind' ? $(".active-page #mainSettings").slideDown() : $(".active-page #mainSettings").slideToggle();
+            //$(".active-page .navigationMenu:visible").slideUp(); // hide navigation
+            $(".submenu:visible").hide();
+            return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
+        });
+        
+        $body.on("click", ".active-page #mainSettings:visible > li", function(e) {
              $(".submenu:visible, .innerSubmenu:visible").hide();
              $(this).find(".submenu").show();
-             console.log("clicked submenu");
         });
         
         $body.on("click", ".active-page #mainSettings:visible > li > .submenu:visible > li", function(e) {
@@ -52,44 +151,9 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
             return false;
         }); 
         
-        // hide the menu if we are pressing an actual link that doesn't open up a submenu, or any link inside an element with .post class                                
-        $body.on("click", ".active-page #navigation li:not(:has(>ul)) a, .post a", function() { 
-            $(".active-page #navigation:visible").hide();
-        });
-        
-        $body.on("click", ".active-page #navigation:visible, .active-page #mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
+        $body.on("click", ".active-page #mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
             e.stopPropagation();
         });
-        
-        $body.on('click', ".thr-well-icon img", function(e, data) {
-            console.log($(".active-page .active-page #navigation"));
-            data === 'keybind' ? $(".active-page #navigation").slideDown() : $(".active-page #navigation").slideToggle();
-            $(".active-page #mainSettings:visible").slideUp(); // hide settings
-            $(".submenu:visible").hide();
-            console.log("clicked well");
-            return false; // for those who have JavaScript enabled, don't allow the click to go to the home page
-        });
-        
-        $body.on("click", ".thr-settings-icon img", function(e, data) {
-            updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
-            data === 'keybind' ? $(".active-page #mainSettings").slideDown() : $(".active-page #mainSettings").slideToggle();
-            $(".active-page #navigation:visible").slideUp(); // hide navigation
-            $(".submenu:visible").hide();
-            return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
-        });
-
-        $(document).on("click", "head, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
-            $("#navigation, #mainSettings").slideUp();
-            console.log("sliding up");
-            e.stopPropagation();
-        }); 
-        /*
-         * End Navigation Code
-         */
-        
-        /* 
-         * Begin Settings Code
-         */
         
         // the user is changing a setting, adjust settings and update accordingly
         $body.on("click", "#speechOptions li > a, #pageColorsOptions li > a, #textColorsOptions li > a", function() {
@@ -98,25 +162,15 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
             changeSetting($parent, $parent.text().toLowerCase());
             return false;
         });
+
+        $body.on("click", ".active-page #mainSettings:visible #default", function() { resetSettings(); });
         
-        $body.on("click", ".active-page #mainSettings:visible #default", function() {
-            resetSettings();
-        });
+        $(document).on("click", "head, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
+            $(".active-page #mainSettings").slideUp();
+            e.stopPropagation();
+        }); 
         /*
          * End Settings Code
-         */
-        
-        /*
-         * Begin Language Selection Code
-         */
-        $body.on("change", "#languages", function() {
-            var href = $(this).attr("value");
-            if(href !== '') {
-                window.location.href = href;
-            }
-        });
-        /*
-         * End Language Selection Code
          */
       
       }); // end ready
@@ -243,7 +297,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
           console.log('Deeply copied object');
           
           console.log('Setting bounds');
-          navState.setBounds($(".active-page #navigation > li").length, 'mainMenu');
+          navState.setBounds($(".active-page .navigationMenu > li").length, 'mainMenu');
           settingsState.setBounds($(".active-page #mainSettings > li").length, 'mainMenu');
           
           // open up navigation or settings menu on tab
@@ -261,7 +315,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                   if($this.is($(".thr-well-icon"))) {
                       console.log('resetting indices');
                       navState.resetIndices();
-                      $(".active-page #navigation:visible > li:first-child").addClass("selectedLink");
+                      $(".active-page .navigationMenu:visible > li:first-child").addClass("selectedLink");
                   } else {
                       console.log('resetting settings');
                       settingsState.resetIndices();
@@ -275,10 +329,10 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
              keyCode = e.keyCode || e.which;
               
               // are any of the menus open?
-             if((isNavMenuOpen = $(".active-page #navigation").is(":visible")) || $(".active-page #mainSettings").is(":visible")) { 
+             if((isNavMenuOpen = $(".active-page .navigationMenu").is(":visible")) || $(".active-page #mainSettings").is(":visible")) { 
                 // decide which menu is open
                 if(isNavMenuOpen) {
-                    $openMenu = $(".active-page #navigation:visible");
+                    $openMenu = $(".active-page .navigationMenu:visible");
                     openMenuState = navState;
                 } else {
                     $openMenu = $(".active-page #mainSettings:visible");
@@ -340,7 +394,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                     
                     return false;
                     
-                 } else if(keyCode == 37 && $openMenu.is(".active-page #navigation:visible")  || // LEFT for navigation
+                 } else if(keyCode == 37 && $openMenu.is(".active-page .navigationMenu:visible")  || // LEFT for navigation
                                 (keyCode == 39 && $openMenu.is(".active-page #mainSettings:visible"))) { // RIGHT for mainSettings
                                     
                      $(".selectedLink").removeClass("selectedLink");
@@ -360,7 +414,7 @@ require(["jquery", "state", "controller", "hoverIntent"], function($, state, con
                        // Do nothing if we are on the main menu
                     }
                      
-                 } else if(keyCode == 39 && $openMenu.is(".active-page #navigation:visible")  || // RIGHT for navigation
+                 } else if(keyCode == 39 && $openMenu.is(".active-page .navigationMenu:visible")  || // RIGHT for navigation
                                 (keyCode == 37 && $openMenu.is(".active-page #mainSettings:visible"))) { // LEFT for settings
                                     
                      $(".selectedLink").removeClass("selectedLink");

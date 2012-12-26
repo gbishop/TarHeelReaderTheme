@@ -16,10 +16,13 @@
 
 <p>_(This site is also available in other languages. To help with translation, contact us.)</p>
 
-<select id="languages">
-    <option value="/?locale=de">Deutsch</option>
-    <option value="/?locale=en" selected="">English</option>
-</select>
+<form id="languageForm" action="" method="post">
+	<select name="lang" id="languages">
+    	<option value="/?locale=de">Deutsch</option>
+    	<option value="/?locale=en" selected="selected">English</option>
+	</select>
+	<input title="change language" id="goButton" name="go" class="thr-gray-button" type="submit" value=" ">
+</form>
 
 <!-- content -->
 <p>{{{content}}}</p>

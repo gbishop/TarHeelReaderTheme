@@ -1,4 +1,6 @@
-<?php thr_header(''); ?> <!-- front-page.php -->
+<?php
+ob_start();
+thr_header(''); ?> <!-- front-page.php -->
 
 <?php
 	$content = '';
