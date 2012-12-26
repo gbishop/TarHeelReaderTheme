@@ -19,8 +19,8 @@ thr_header('');
 					'Flickr' => '<a href="http://flickr.com">Flickr</a>'
 				);
 				echo template_render('frontPage', $view);
-				if(isset($_POST['go'])) {
-					header("Location: http://gbserver3s.cs.unc.edu{$_POST['lang']}");
+				if(isset($_GET['go'])) {
+					header("Location: http://gbserver3s.cs.unc.edu{$_GET['locale']}");
 					ob_flush();
 				}
 				?>
