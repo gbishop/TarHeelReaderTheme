@@ -89,6 +89,7 @@ $carolinaBlue: #56A0D3;
     }
 }
 
+
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
     font-family: Helmet, Freesans, Arial, Helvetica, Verdana, sans-serif;
@@ -261,14 +262,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   
   #goButton {
     background: url(/theme/images/globe.png) no-repeat center center;
-    background-size: contain;
     border: 0.15em solid #DDD;
     margin-left: 0.5em;
     
     width: 6em;
     &:hover{
       background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
-      background-size: contain;
     }
     
   }
@@ -608,11 +607,14 @@ h2 {
     
     border: 1px solid #EFEFEF;
     
-    margin-top: 0.5em;
-    width: 100%;
-    height: auto;
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
+    margin: 0.5em auto;
+    margin-bottom: 0;
+    max-width: 48em !important;
+    width: 100%;
+    height: auto;
+    overflow: auto;
     
     li {
       border-bottom: 1px solid #DFDFDF;
@@ -636,57 +638,77 @@ h2 {
       }
       
       a {
-        background-size: contain;
-        display: inline-block;
+        display: block;
+        padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
+        text-decoration: none;
+        width: 80%; // not 100% on purpose
+        
         color: inherit;
         font-size: 1.5em;
         line-height: 2em;
-        padding: 0 3em;
-        text-decoration: none;
-        width: 100%;
+        text-align: left;
         
         &.homeLink {
-          background: url(/theme/images/home_32.png) 1em center no-repeat;
+          background: url(/theme/images/home_32.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
 
         &.findLink {
-          background: url(/theme/images/find_book_icon.png) 1em center no-repeat;
+          background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
         
         &.collectionsLink {
-          background: url(/theme/images/collections_32.png) 1em center no-repeat;
+          background: url(/theme/images/collections_32.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
         
         &.favoritesLink {
-          background: url(/theme/images/favorite_book_32.png) 1em center no-repeat;
+          background: url(/theme/images/favorite_book_32.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
 
         &.writeLink {
-          background: url(/theme/images/write_book.png) 1em center no-repeat;
+          background: url(/theme/images/write_book.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
 
         &.loginLink {
-          background: url(/theme/images/user.png) 1em center no-repeat;
+          background: url(/theme/images/user.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
 
         &.helpLink {
-          background: url(/theme/images/info.png) 1em center no-repeat;
+          background: url(/theme/images/info.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+        
+        &.more {
+          background: url(/theme/images/down_menu_icon.png) right center no-repeat;
         }
         
         &.yourBooksLink {
-          background: url(/theme/images/book_32.png) 1em center no-repeat;
+          background: url(/theme/images/book_32.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
         
         &.blogLink {
-          background: url(/theme/images/announcements_icon.png) 1em center no-repeat;
+          background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
         
         &.photoCreditsLink {
-          background: url(/theme/images/photo_credits_icon.png) 1em center no-repeat;
+          background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
         
       } // end a
       
+      &.divider {
+        a {
+          background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
+        }
+      }
     } // end li
    
 }
@@ -1403,6 +1425,7 @@ h2 {
             margin-left: 0;
         }
     }
+    
 }
 
 .help {
@@ -1680,9 +1703,8 @@ h2 {
 }
 
 /*
- * max-width: 864px
+ * max-width: 637px
  */
-
 @media only screen and(max-width: 637px) {
   
   .content-wrap {
@@ -1719,6 +1741,13 @@ h2 {
     li {
       width: 31.79549%; // remaining percentage/3 = width (also accounts for border)
       margin: 0.4167%; // 0.2/48 = 0.004167...
+    }
+  }
+  
+  .navigationMenu {
+    a {
+      padding: 0 19% !important;
+      width: 60% !important;
     }
   }
 }

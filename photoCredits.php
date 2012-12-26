@@ -13,7 +13,7 @@ Link back to Flickr to give photographers credit
     <article>
         <div <?php post_class() ?> >
 
-            <h1 class="entry-title"><?php the_title(); ?></h1>
+            <h2 class="entry-title"><?php the_title(); ?></h2>
 
             <div class="entry-content">
 

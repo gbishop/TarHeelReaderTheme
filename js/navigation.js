@@ -54,7 +54,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                              prepend(templates.render('navigation', null));
                 
                 $(".active-page").find(".navigationMenu").
-                                  hide().slideDown(600).end().
+                                  hide().slideDown().end().
                                   find(".hiddenContent").fadeOut(200);
                               
             } else if(!$navigation.is(":visible")) {
@@ -63,7 +63,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                 }); // end fadeOut
                 
             } else {
-                $navigation.slideUp(600, function() {
+                $navigation.fadeOut(50, function() {
                     $hiddenContent.fadeIn();
                 }); // end slideUp
             }
@@ -74,6 +74,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
         $body.on("click", ".active-page .navigationMenu:visible .more", function() {
             var $secondaryNav = $(".active-page .secondaryNav"),
                 $this = $(this);
+            $this.blur(); // remove fuzzy border
             
             if(!$secondaryNav.is(":visible")) {
                 $this.parent("li").addClass("divider").end().text("Less");
@@ -87,16 +88,26 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             }
         });
         
+        // hack for .find-page since we reuse this page
         $body.on("PageRendered", ".find-page", function() {
-            $(this).find(".navigationMenu").show();
+            var $navMenu = $(this).find(".navigationMenu");
+            $navMenu.show();
+            // if secondaryNav was open, close it since we are reusing the navigation
+            if($navMenu.find(".more").text() === "Less") {
+                $navMenu.find(".more").text("More").parent().removeClass("divider");
+                $navMenu.find(".secondaryNav").hide();
+            }
         });
-        
-        // update current URL
+       
         $body.on("PageVisible", function() {
-            currentURL = $(location).attr("href");
+            currentURL = $(location).attr("href"); // update current URL
+            if($(".content-wrap").length === 1) { return; } // initial entrance to website, avoid "double slidedown" bug
+            
+            $(".active-page").find(".content-wrap").
+                              hide().slideDown(600, "swing");
         });
         
-       $body.on("click", ".active-page .navigationMenu a:not(.more)", function() {
+       $body.on("click", ".active-page .navigationMenu a:not(.more), a.homeLink", function() {
             var href = $(this).attr("href"),
                 strippedURL = currentURL.substring(currentURL.indexOf(hostname)).replace(hostname, ""),
                 newPage = true;
@@ -110,13 +121,14 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             } else if(strippedURL.indexOf(href) > -1) {
                 newPage = false;
             }
-            // if it's a new page, then just slide the navigation up; else, slide up navigation and show hiddenContent
-            newPage ? $(".active-page .navigationMenu").slideUp(100) : 
+            // if it's a new page, then just slide the navigation up; else, slide up navigation and show .hiddenContent
+            newPage ? $(".active-page .navigationMenu").slideUp(150) : 
                                         $(".active-page .thr-well-icon img").trigger("click", href);
         });
         /*
          * End Navigation Code
          */
+        
         /* 
          * Begin Settings Code
          */
@@ -154,7 +166,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
         $body.on("click", ".active-page #mainSettings:visible #default", function() { resetSettings(); });
         
         $(document).on("click", "head, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
-            $("#mainSettings").slideUp();
+            $(".active-page #mainSettings").slideUp();
             e.stopPropagation();
         }); 
         /*
