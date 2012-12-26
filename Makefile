@@ -3,6 +3,8 @@ all: gb
 build:
 	python MakeMediaQueries.py > _mediaqueries.scss
 	python BuildTemplate.py --lang=en --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json
+	python BuildTemplate.py --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json
+
 	sass --style=compact style.scss style.css
 
 translate:
