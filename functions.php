@@ -93,7 +93,17 @@ function thr_header($pageType, $view=array()) {
     }
 
     // disable caching on our dynamically generated pages
-    // TODO: can we cache some pages? Do we need this?
+    /*
+        I keep forgetting why we need this so I'll write it down. Anytime you return different content for the same URL
+        you must disable caching, otherwise the user may see the wrong content. For example, we switch languages with a query parameter
+        but we don't require the parameter on every page, instead we remember the state in a cookie. For example, consider the following
+        sequence:
+            1. visit / see the English content
+            2. switch languages by going to /?locale=de, see the German content
+            3. Later return to / expecting to see the German content but see the cached English content instead.
+
+        The only way I see around this is to carry the query paramters that determine content everywhere.
+    */
     header('Expires: -1');
 
     if (is_ajax()) {
