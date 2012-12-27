@@ -1,6 +1,7 @@
 _mediaqueries.scss
 style.css
 .sass-cache
-Templates.php
 Templates.json
+Templates.*.json
 theme.sublime-workspace
+*.mo
