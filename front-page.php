@@ -3,16 +3,12 @@ thr_header(''); ?> <!-- front-page.php -->
 
 <?php
 	$content = '';
-	BuG('here');
 	if (have_posts()) {
 		while (have_posts()) {
-			BuG('here2');
 			the_post();
 			$content .= get_the_content();
-			BuG("content = '$content'");
 		}
 	}
-	BuG('there');
 	query_posts("cat=9&posts_per_page=2");
 	$announcements = array();
 	if (have_posts()) {
