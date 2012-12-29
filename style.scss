@@ -14,6 +14,15 @@ $carolinaBlue: #56A0D3;
 @import "reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
+@mixin thrBackground($gradientStart, $gradientEnd) {
+    background: $carolinaBlue; // If all else fails...
+    background: -webkit-gradient(linear, $gradientStart, $gradientEnd, from($carolinaBlue), to(#286DA3)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* Firefox */
+    background: -ms-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* IE 10+ */
+    background: -o-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* Opera */
+}
+
 @mixin decoratedButton($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $gradientStartColor, $gradientEndColor,  $fontSize,
                        $yPadding, $xPadding, $textColor, $transitionBackgroundColor, $transitionColor, $transitionDuration, $width) {
 
@@ -89,6 +98,45 @@ $carolinaBlue: #56A0D3;
     }
 }
 
+// used for the navigation and settings menus
+@mixin decoratedMenu {
+  
+    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
+    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
+    box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
+    
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    border-radius: 0.4em;
+    border: 1px solid #EFEFEF;
+    
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    height: auto;
+    
+    li {
+      border-bottom: 1px solid #DFDFDF;
+      color: #DFDFDF;
+      cursor: pointer;
+      margin: 0;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+      
+      &:focus, &:hover, &.selectedLink {
+        background: #FFF !important;
+        color: $carolinaBlue;
+      }
+      
+      a {
+        display: block;
+        font-size: 1.3em;
+        text-align: left;
+        text-decoration: none;
+      } // end a
+    } // end li
+}
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
@@ -188,9 +236,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     .description {
       display: none;
     }
-    .thr-settings-icon {
-      display: block;
-    }
 }
 
 .active-page {
@@ -199,13 +244,19 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 // The following styles apply to the Home, Books You Wrote, Announcements, FAQ, and Photo Credits pages
 .server-page, .your-books-page {
-  h2 {
-    font-size: 1.7em;
-    font-weight: normal;
-    letter-spacing: 0.1em;
+  h1, h2 {
     border-bottom: 2px solid $carolinaBlue;
-    color: #666;
+    color: #676767;
+    font-size: 1.8em;
+    font-weight: normal;
     padding-left: .25em;
+    a {
+      color: $carolinaBlue;
+    }
+  }
+  
+  h2 {
+    font-size: 1.6em;
   }
 
   p {
@@ -273,8 +324,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   }
   
   #mapButton {
-    width: auto;
+    display: block;
     margin: 0.5em;
+    width: 20em;
   }
   
   .photoCreditsBox {
@@ -295,9 +347,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     min-height: 32px;
 
     h1 {
+        border: 0;
         font-size: 2em;
         padding-top: 0.25em;
-        letter-spacing: .05em;
         margin-top: 0.1em;
 
         height: 1.7em;
@@ -307,7 +359,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             text-decoration: none;
             color: #555;
             font-family: 'Terminal Dosis', sans-serif;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
+            text-shadow: 0 1px 0 rgba(170, 170, 170, 0.25);
             font-weight: 200;
             padding: 0;
         }
@@ -468,179 +520,33 @@ h2 {
 
  }
 
-// Panel CSS for Settings menus
-.panel {
-    position: absolute;
-    top: 3em;
-    padding: 0;
-    width: 12em;
-
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    border-radius: 1em;
-    border: .1em solid #DDD;
-
-    li {
-      border-bottom: .1em solid #DDD;
-      position: relative; // in order to show submenus
-      margin: 0;
-      padding: 0;
-      height: auto;
-      width: auto;
-
-      .submenu {
-        list-style: none;
-        position: absolute;
-        display: none;
-        top: -0.05em; // line up with border
-        width: 12em;
-        padding: 0;
-        margin: 0;
-
-
-        /* Set necessary background, border, and width */
-        background: #8E8E8E;
-
-        -webkit-box-shadow: 0 0 0.1em #667;
-        -moz-box-shadow: 0 0 0 0.1em #667;
-        box-shadow: 0 0 .1em #667;
-
-        border: 0.1em solid #DDD;
-        border-left: 0;
-        z-index: 99;
-
-        li {
-          border: 0;
-          border-bottom: 0.1em solid #DDD;
-
-          &.selectedLink {
-            -webkit-border-radius: 0.25em;
-            -moz-border-radius: 0.25em;
-            border-radius: 0.25em;
-          }
-
-          &:last-child {
-            border: 0;
-          }
-        }
-
-        a {
-          font-size: 1em;
-          padding: 1em;
-          font-size: 1.1em;
-          text-align: center;
-        }
-      }
-
-      &:last-child {
-        border: 0;
-      }
-
-      &.selectedLink {
-        border: .2em solid #EEE !important;
-        -webkit-border-radius: 0.25em;
-        -moz-border-radius: 0.25em;
-        border-radius: 0.25em;
-      }
-
-      &:first-child.selectedLink {
-        -webkit-border-top-left-radius: 0.75em;
-        -webkit-border-top-right-radius: 0.75em;
-        -moz-border-radius-topleft: 0.75em;
-        -moz-border-radius-topright: 0.75em;
-        border-top-left-radius: 0.75em;
-        border-top-right-radius: 0.75em;
-      }
-
-      &:last-child.selectedLink {
-        -webkit-border-bottom-left-radius: 0.75em;
-        -webkit-border-bottom-right-radius: 0.75em;
-        -moz-border-radius-bottomleft: 0.75em;
-        -moz-border-radius-bottomright: 0.75em;
-        border-bottom-left-radius: 0.75em;
-        border-bottom-right-radius: 0.75em;
-      }
-    }
-
-    a {
-      display: block;
-      text-decoration: none;
-      color: #DDD;
-      padding: 1em 0 1em 4em;
-
-      text-align: left;
-      font-size: 1.3em;
-
-      background-size: 1.5em !important; // resize the images for fluid layout
-
-      -webkit-transition: color 0.1s;
-      -moz-transition: color 0.1s;
-      -o-transition: color 0.1s;
-      -ms-transition: color 0.1s;
-      transition: color 0.1s;
-
-      &:hover {
-         color: #FFF;
-      }
-    }
-}
-
 .navigationMenu {
+    @include thrBackground(top, bottom);
+    @include decoratedMenu;
+    
     .secondaryNav {
       display: none;
     }
     
-    background: $carolinaBlue; // If all else fails...
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($carolinaBlue), to(#286DA3)); /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(top, $carolinaBlue, #286DA3); /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, $carolinaBlue, #286DA3); /* Firefox */
-    background: -ms-linear-gradient(top, $carolinaBlue, #286DA3); /* IE 10+ */
-    background: -o-linear-gradient(top, $carolinaBlue, #286DA3); /* Opera */
-   
-    -webkit-box-shadow: .1em .1em .1em #AAA;
-    -moz-box-shadow: .1em .1em .1em #AAA;
-    box-shadow: .1em .1em .1em #AAA;
-    
-    -webkit-border-radius: 0.4em;
-    -moz-border-radius: 0.4em;
-    border-radius: 0.4em;
-    
-    border: 1px solid #EFEFEF;
-    
-    background-clip: padding-box;
-    -webkit-background-clip: padding-box;
     margin: 0.5em auto;
     margin-bottom: 0;
-    max-width: 48em !important;
+    max-width: 48em;
     width: 100%;
-    height: auto;
     overflow: auto;
     
     li {
-      border-bottom: 1px solid #DFDFDF;
-      color: #DFDFDF;
-      cursor: pointer;
-      margin: 0;
       height: 3em;
       overflow: hidden;
-
-      &:last-child {
-        border-bottom: 0;
-      }
-      
-      &:focus, &:hover {
-        background: #FFF;
-        color: $carolinaBlue;
-      }
       
       &.divider {
         border-bottom: 1px solid #DFDFDF;
+        a {
+          background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
+        }
       }
       
       a {
-        display: block;
         padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
-        text-decoration: none;
         width: 80%; // not 100% on purpose
         
         color: inherit;
@@ -659,12 +565,12 @@ h2 {
         }
         
         &.collectionsLink {
-          background: url(/theme/images/collections_32.png) 0.75em center no-repeat,
+          background: url(/theme/images/collections.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
         
         &.favoritesLink {
-          background: url(/theme/images/favorite_book_32.png) 0.75em center no-repeat,
+          background: url(/theme/images/favorite_book.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
 
@@ -688,7 +594,7 @@ h2 {
         }
         
         &.yourBooksLink {
-          background: url(/theme/images/book_32.png) 0.75em center no-repeat,
+          background: url(/theme/images/my_book.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
         
@@ -701,181 +607,265 @@ h2 {
           background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
       } // end a
-      
-      &.divider {
-        a {
-          background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
-        }
-      }
     } // end li
    
 }
 
-#mainSettings {
-  display: none; // hide initially
-  right: 4em;
-  z-index: 99;
-
-  -webkit-box-shadow: -.1em .1em .1em #AAA;
-  -moz-box-shadow: -.1em .1em .1em #AAA;
-  box-shadow: -.1em .1em .1em #AAA;
-
-   /* Background code... */
-   background: #888; // If all else fails...
-   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */
-   background: -webkit-linear-gradient(left, #8E8E8E, #6F6F6F); /* Safari 5.1, Chrome 10+ */
-   background: -moz-linear-gradient(left, #8E8E8E, #6F6F6F); /* Firefox */
-   background: -ms-linear-gradient(left, #8E8E8E, #6F6F6F); /* IE 10+ */
-   background: -o-linear-gradient(left, #8E8E8E, #6F6F6F); /* Opera */
-
-  li {
-    // display submenu to the left
-    .submenu {
-       right: 12.05em; // account for border
-       -webkit-border-radius: 1em 0 0 1em;
-       -moz-border-radius: 1em 0 0 1em;
-       border-radius: 1em 0 0 1em;
-       border-right: 0;
-       border-left: .1em solid #DDD;
-
-      li {
-
-        height: auto;
-        width: auto;
-
-        .innerSubmenu {
-          /* Set necessary background, border, and width */
-           display: none;
-           position: absolute;
-           right: 12em;
-           width: 10em;
-           top: -2em;
-
-           background: #8E8E8E;
-           border-radius: 1em 0 0 1em;
-           border: .1em solid #DDD;
-           z-index: 99;
-
-           a {
-             text-align: left;
-             padding-left: 3.25em;
-             padding-right: 0.5em;
-           }
-
-         }
-
-         // a little adjustment to the innersubmenus inside 'My Book'
-         .myBookInnerSubmenu {
-             right: 12em;
-             width: 9em;
-
-             a {
-               text-align: center;
-               padding: 1em;
-             }
-         }
-
-      }
-
-      // Begin color icons for page color
-      #pageColors .innerSubmenu {
-        a.black {
-          background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
+.mainSettings {
+    @include thrBackground(left, right);
+    @include decoratedMenu;
+    
+    display: none;
+    position: absolute;
+    top: 3em;
+    right: 4em;
+    
+    padding: 0;
+    margin: 0;
+    width: 12em;
+    z-index: 100;
+    
+    -webkit-border-radius: 0.25em 0.4em 0.4em 0.25em;
+    -moz-border-radius: 0.25em 0.4em 0.4em 0.25em;
+    border-radius: 0.25em 0.4em 0.4em 0.25em;
+    
+    li {
+      position: relative; // in order to show submenus
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+    
+      a {
+        color: inherit;
+        font-size: 1.3em;
+        padding: 1em 0 1em 3.5em;
+        
+        &.speech {
+          background: url(/theme/images/sound.png) 1em center no-repeat;
         }
 
-        a.blue {
-          background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
+        &.colors {
+          background: url(/theme/images/colors.png) 1em center no-repeat;
         }
 
-        a.cyan {
-          background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
+        &.download {
+          background: url(/theme/images/download.png) 1em center no-repeat;
         }
 
-        a.green {
-          background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
+        &.default {
+          background: url(/theme/images/default_settings.png) 1em center no-repeat;
         }
-
-        a.magenta {
-          background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
-        }
-
-        a.red {
-          background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
-        }
-
-        a.white {
-           background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
-        }
-
-        a.yellow {
-           background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
+      } // end a
+    
+      .submenu {
+        @include thrBackground(right, left);
+        background-clip: padding-box;
+        -webkit-background-clip: padding-box;
+        -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
+        -moz-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
+        box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
+        
+        position: absolute;
+        display: none;
+        top: -1px;
+        right: 12.05em; 
+        z-index: 999;
+        list-style: none;
+       
+        width: 12em;
+        padding: 0;
+        margin: 0;
+       
+        -webkit-border-radius: 0.5em 0 0 0.5em;
+        -moz-border-radius: 0.5em 0 0 0.5em;
+        border-radius: 0.5em 0 0 0.5em;
+        border: 1px solid #EFEFEF;
+        border-right: 0;
+        
+        a {
+          &.checked {
+                background: url(/theme/images/check_mark.png) right center no-repeat;
           }
         }
-         // End color icons for page color
+      
+        li {
+          height: auto;
+          width: auto;
+          
+          a {
+            font-size: 1em;
+            padding: 1em;
+            font-size: 1.1em;
+            text-align: center;
+          }
+        
+          .innerSubmenu {
+            @include thrBackground(left, right);
+            background-clip: padding-box;
+            -webkit-background-clip: padding-box;
+            display: none;
+            position: absolute;
+            right: 12em;
+            width: 10em;
+            top: -2em;
 
-         // Begin color icons for text color
-       #textColors .innerSubmenu {
-           a.black {
-             background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
-           }
+            -webkit-border-radius: 0.5em 0 0 0.5em;
+            -moz-border-radius: 0.5em 0 0 0.5em;
+            border-radius: 0.5em 0 0 0.5em;
+            border: 1px solid #EFEFEF;
+            z-index: 999;
 
-           a.blue {
-             background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
-           }
+            a {
+              text-align: left;
+              padding-left: 3.25em;
+              padding-right: 0.5em;
+              
+              &.checked {
+                background: url(/theme/images/check_mark.png) right center no-repeat;
+              }
+            }
+          } // end .innerSubmenu
+        } // end li
+        
+        // Begin color icons for text color
+        .textColors .innerSubmenu a {
+            &.black {
+              background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.blue {
+              background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.cyan {
+              background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.green {
+              background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.magenta {
+              background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.red {
+              background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.white {
+              background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.yellow {
+              background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          } // End color icons for text color
 
-           a.cyan {
-             background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
-           }
-
-           a.green {
-             background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
-           }
-
-           a.magenta {
-             background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
-           }
-
-           a.red {
-             background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
-           }
-
-           a.white {
-             background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
-           }
-
-           a.yellow {
-             background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
-           }
-       }
-
-
-    } // end submenu
-
-  } // end li
-
-  a {
-    &.checked {
-      background: url(/theme/images/check_mark.png) right center no-repeat !important;
-    }
-
-    &#speech {
-      background: url(/theme/images/sound_32.png) 1em center no-repeat;
-    }
-
-    &#colors {
-      background: url(/theme/images/colors_32.png) 1em center no-repeat;
-    }
-
-    &#myBook {
-      background: url(/theme/images/my_book_32.png) 1em center no-repeat;
-    }
-
-    &#default {
-      background: url(/theme/images/default_settings.png) 1em center no-repeat;
-    }
-  }
+          // Begin color icons for page color
+          .pageColors .innerSubmenu a {
+            &.black {
+              background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.blue {
+              background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.cyan {
+              background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.green {
+              background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.magenta {
+              background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.red {
+              background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.white {
+              background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          
+            &.yellow {
+              background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          } // end color icons for page color
+       
+      } // end submenu
+    } // end li
 }
 
 .searchForm {
@@ -1201,7 +1191,7 @@ h2 {
 // show the settings icon in the front-page and the choice-page (at the end of the book)
 .front-page, .choice-page, .favorites-page, .find-page {
   .thr-settings-icon {
-    display: block;
+    display: block !important;
   }
 }
 
@@ -1270,6 +1260,8 @@ h2 {
   input[type='submit'] {
     width: 13em;
   }
+  
+
 
 }
 
