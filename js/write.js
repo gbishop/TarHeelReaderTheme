@@ -17,18 +17,18 @@ define(['jquery',
         function setupGallery() {
             var $page = $('.write-page.active-page');
 
-            $('#gallery').on('click', 'img', function(e) {
-                var $imgs = $('#gallery img'),
+            $('.gallery').on('click', 'img', function(e) {
+                var $imgs = $('.gallery img'),
                     index = $imgs.index(this);
                 showGalleryPreview(index);
             });
-            var $form = $page.find('#image-search');
+            var $form = $page.find('.image-search');
             $form.submit(function(e) {
                 e.preventDefault();
                 console.log('submit');
                 clearErrors();
-                $('#gallery-back,#gallery-more').button('disable');
-                $('#gallery').empty();
+                $('.gallery-back,.gallery-more').button('disable');
+                $('.gallery').empty();
                 var query = $page.find('input[name=query]').val();
                 var emailRe = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})\b/i;
                 var match = query.match(emailRe);
@@ -43,12 +43,12 @@ define(['jquery',
                 return false;
             });
 
-            $('.button', '#writing-controls').button().button('disable');
-            $('#gallery-back').click(function() {
+            $('.button', '.writing-controls').button().button('disable');
+            $('.gallery-back').click(function() {
                 fetchAnotherGallery(-1);
                 return false;
             });
-            $('#gallery-more').click(function() {
+            $('.gallery-more').click(function() {
                 fetchAnotherGallery(+1);
                 return false;
             });
@@ -67,7 +67,7 @@ define(['jquery',
                 success: function (result) {
                     console.log('success!', result);
                     var p = result.photos,
-                        g = $('#gallery'),
+                        g = $('.gallery'),
                         gwidth = g.width(),
                         //iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
                         // if gwidth > 720, then allow 9 pictures per row, if not allow for 6 per row. Divide by base font-size for ems
@@ -77,8 +77,8 @@ define(['jquery',
                         baseFont = parseInt($("body").css("font-size")),
                         iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
 
-                        console.log(iwidth*picsPerRow*baseFont);
-                        console.log(gwidth);
+                    console.log(iwidth*picsPerRow*baseFont);
+                    console.log(gwidth);
                     g.empty();
                     if (p.photo.length === 0) {
                         showError('em-g-not-found');
@@ -94,8 +94,8 @@ define(['jquery',
                             .css({width: iwidth + 'em', height: iwidth + 'em', border: borderWidth + 'px solid black', marginRight: marginRight + "em"})
                             .appendTo(g);
                     });
-                    $('#gallery-back').button(p.page > 1 ? 'enable' : 'disable');
-                    $('#gallery-more').button(p.page < p.pages ? 'enable' : 'disable');
+                    $('.gallery-back').button(p.page > 1 ? 'enable' : 'disable');
+                    $('.gallery-more').button(p.page < p.pages ? 'enable' : 'disable');
                 }
             });
         }
@@ -103,7 +103,7 @@ define(['jquery',
         // Not sure whether this would be a useful feature: update thumbnails' size on window resize
         function updateThumbnailSize() {
 
-            var $g = $("#gallery"),
+            var $g = $(".gallery"),
                 $images = $g.find("img"),
                 gwidth = $g.width(),
                 picsPerRow,
@@ -151,7 +151,7 @@ define(['jquery',
 
             function showPreviewImage() { // display the currently selected image in the preview dialog
                 // get all the images
-                var $imgs = $('#gallery img');
+                var $imgs = $('.gallery img');
                 // restrict the index to the range
                 if (index >= $imgs.length) {
                     index = 0;
@@ -195,11 +195,11 @@ define(['jquery',
                     },
                     buttons: [
                         {
-                            text: $('#wlPrevious').html(),
+                            text: $('.wlPrevious').html(),
                             click: function() { index -= 1; showPreviewImage(); }
                         },
                         {
-                            text: $('#wlAddToBook').html(),
+                            text: $('.wlAddToBook').html(),
                             click: function() {
                                 var $img = $(this).find('>img');
                                 console.log('img', $img);
@@ -212,8 +212,8 @@ define(['jquery',
                                 console.log('page', page);
                                 addPage(page);
                                 // confirm the page creation in the dialog title
-                                $(this).dialog('option', 'title', $('#wlPageAdded').html());
-                                var step2 = $('#step2').offset();
+                                $(this).dialog('option', 'title', $('.wlPageAdded').html());
+                                var step2 = $('.step2').offset();
                                 $img.clone().appendTo('body')
                                     .css({
                                         position: 'absolute',
@@ -230,12 +230,12 @@ define(['jquery',
                                         opacity: 0
                                     },1000, function() {
                                         $(this).remove();
-                                        $('#step2 h3').effect('highlight', {}, 1000);
+                                        $('.step2 h3').effect('highlight', {}, 1000);
                                     });
                             }
                         },
                         {
-                            text: $('#wlNext').html(), // pulling the labels from the page
+                            text: $('.wlNext').html(), // pulling the labels from the page
                             click: function() { index += 1; showPreviewImage(); }
                         }
                     ]
@@ -255,8 +255,8 @@ define(['jquery',
             templates.setImageSizes(view.image);
             var $p = $('<li class="thr-book-page">' + templates.render('bookPage', view) + '</li>');
             $p.find('a').remove();
-            $('#write-pages').append($p);
-            $('#noPicturesMessage').hide();
+            $('.write-pages').append($p);
+            $('.noPicturesMessage').hide();
             if (!isInit) {
                 setModified();
             }
@@ -296,7 +296,7 @@ define(['jquery',
             tags = tags.replace(/\s{2,}/g, " ");
             book.tags = tags.split(' ');
             book.reviewed = $('input[name=reviewed]:checked').length > 0;
-            book.pages = $('#write-pages li').map(function(i, p) {
+            book.pages = $('.write-pages li').map(function(i, p) {
                 var $p = $(p),
                     caption = $.trim($p.find('.thr-caption').html()),
                     img = $p.find('img.thr-pic'),
@@ -323,7 +323,7 @@ define(['jquery',
         }
         function saveAsDraft() {
             clearErrors();
-            $('#save').attr('disabled', 'disabled'); // disable the button to prevent multiples
+            $('.save').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
             console.log('book is', book);
             $.ajax({
@@ -338,7 +338,7 @@ define(['jquery',
             }).then(function(nBook) {
                 console.log('post returns', nBook);
                 editId = nBook.ID;
-                $('#save').removeAttr('disabled'); // renable button
+                $('.save').removeAttr('disabled'); // renable button
                 clearModified();
                 showError('peSaved');
             });
@@ -350,7 +350,7 @@ define(['jquery',
             }
         }
         function publish() {
-            $('#publish').attr('disabled', 'disabled'); // disable the button to prevent multiples
+            $('.publish').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
             // validate the book locally
             clearErrors();
@@ -367,9 +367,9 @@ define(['jquery',
             validate(book.language != ' ', 'peLanguage');
             validate(book.categories.length <= 4, 'peCategories');
 
-            if ($('#peMessage').hasClass('show-error')) {
-                $('#publishErrors').get(0).scrollIntoView(false);
-                $('#publish').removeAttr('disabled');
+            if ($('.peMessage').hasClass('show-error')) {
+                $('.publishErrors').get(0).scrollIntoView(false);
+                $('.publish').removeAttr('disabled');
                 return;
             }
             console.log('publish', book);
@@ -387,7 +387,7 @@ define(['jquery',
                 clearModified();
                 controller.gotoUrl(nBook.link, nBook.title);
                 editId = nBook.ID;
-                $('#publish').removeAttr('disabled'); // renable button
+                $('.publish').removeAttr('disabled'); // renable button
             });
         }
         // create the page editor dialog
@@ -403,7 +403,7 @@ define(['jquery',
                         buttons: '',
                         saveOnBlur: true,
                         control: 'textarea',
-                        placeholder: $('#wlClickToEdit').html(),
+                        placeholder: $('.wlClickToEdit').html(),
                         save: saveEditCaption
                     });
 
@@ -421,7 +421,7 @@ define(['jquery',
                 setupEditContent();
                 return false;
             });
-            $editDialog.on('click', 'img#deleteIcon', deletePage);
+            $editDialog.on('click', 'img.deleteIcon', deletePage);
             // limit max caption length
             $editDialog.on('keyup input paste', 'textarea', function(){
                 var warnLength = maxCaptionLength - 10,
@@ -438,7 +438,7 @@ define(['jquery',
 
         // initialize the page editor with its content
         function setupEditContent() {
-            var $wp = $('#write-pages li'); // the list of book pages
+            var $wp = $('.write-pages li'); // the list of book pages
             // make sure the index is in bound wrapping at the ends
             if (editIndex < 0) {
                 editIndex = $wp.length - 1;
@@ -454,20 +454,20 @@ define(['jquery',
                     width: $img.attr('data-width'),
                     height: $img.attr('data-height')
                 },
-                caption: caption ? caption : $('#wlClickToEdit').html()
+                caption: caption ? caption : $('.wlClickToEdit').html()
             };
             templates.setImageSizes(view.image); // size the image
             var $content = $(templates.render('bookPage', view)); // render like any book page
             $content.filter('a.thr-credit,a.thr-home-icon,a.thr-settings-icon').hide(); // remove some unneeded links
-            $editDialog.empty().append($('#wEditHelp').html()).append($content); // update dialog body
-            var $deleteIcon = $('<img id="deleteIcon" src="/theme/images/delete.png" />');
-            $deleteIcon.attr('title', $('#wDeleteThisPage').html());
+            $editDialog.empty().append($('.wEditHelp').html()).append($content); // update dialog body
+            var $deleteIcon = $('<img class="deleteIcon" src="/theme/images/delete.png" />');
+            $deleteIcon.attr('title', $('.DeleteThisPage').html());
             $editDialog.append($deleteIcon);
         }
 
         // save the edited caption
         function saveEditCaption(e, data) {
-            var $wp = $('#write-pages li'); // the list of book pages
+            var $wp = $('.write-pages li'); // the list of book pages
             var $page = $($wp.get(editIndex)); // the current page
             var $caption = $page.find('p.thr-caption');
             console.log('saving', data.value, 'was', $caption.html());
@@ -477,7 +477,7 @@ define(['jquery',
 
         // delete a book page
         function deletePage() {
-            var $wp = $('#write-pages li'); // the list of book pages
+            var $wp = $('.write-pages li'); // the list of book pages
             var $page = $($wp.get(editIndex)); // the current page
             $page.remove(); // remove it
             setupEditContent();
@@ -489,7 +489,7 @@ define(['jquery',
             if (!$editDialog) {
                 createPageEditDialog();
             }
-            editIndex = $('#write-pages li').index(this);
+            editIndex = $('.write-pages li').index(this);
 
             var $window = $(window),
                 ww = $window.width(),
@@ -517,7 +517,7 @@ define(['jquery',
 
         // warning message for beforeunload
         function warnModified() {
-            return $('#wLoseWork').html();
+            return $('.wLoseWork').html();
         }
 
         // set the indicator that the book has been modified
@@ -526,7 +526,7 @@ define(['jquery',
             if (!isModified) {
                 isModified = true;
                 $(window).on('beforeunload', warnModified);
-                $('#save').removeAttr('disabled');
+                $('.save').removeAttr('disabled');
             }
         }
 
@@ -535,13 +535,13 @@ define(['jquery',
             if (isModified) {
                 isModified = false;
                 $(window).off('beforeunload');
-                $('#save').attr('disabled', 'disabled');
+                $('.save').attr('disabled', 'disabled');
             }
         }
 
         // show an error message
-        function showError(id) {
-            $('#' + id).addClass('show-error');
+        function showError(className) {
+            $('.' + className).addClass('show-error');
         }
 
         // hide error messages
@@ -596,23 +596,13 @@ define(['jquery',
                 });
             }
 
-            // load the jquery-ui css
-            /*
-            $('<link>', {
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css',
-                id: 'theme'
-            }).appendTo('head');
-            */
-
             // nested require so these are only loaded by users who want to write.
             require(['fileuploader', 'jquery-ui', 'jquery.ui.touch-punch', 'jquery.inlineedit'],
                 function(qq) {
                     console.log('qq', qq);
                     $(function() {
                         var uploader = new qq.FileUploader({
-                            element: $('#file-uploader').get(0),
+                            element: $('.file-uploader').get(0),
                             action: '/upload-image/',
                             allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
                             sizeLimit: 2 * 1024 * 1024,
@@ -628,34 +618,33 @@ define(['jquery',
                                     addPage(page, false);
                                 }
                             },
-                            template: $('#wUploader').html(),
-                            fileTemplate: $('#wUploaderLi').html()
+                            template: $('.wUploader').html(),
+                            fileTemplate: $('.wUploaderLi').html()
                         });
                     });
                     setupGallery();
-                    $('#write-pages').on('click', 'li', editPage);
-                    $('#write-pages').sortable({
+                    $('.write-pages').on('click', 'li', editPage);
+                    $('.write-pages').sortable({
                         change: setModified
                     });
                     $('a.thr-settings-icon').hide();
                     // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
-                    $(".active-page #navigation li:not(:has(>ul)) a").on('click', confirmLeaving);
-
-                    $('#save').on('click', saveAsDraft);
-                    $('#publish').on('click', publish);
-                    $('#categorizeButton').on('click', function() {
-                        $('#step3a').toggle();
+                    $(".active-page .navigationMenu li:not(:has(>ul)) a").on('click', confirmLeaving);
+                    $('.save').on('click', saveAsDraft);
+                    $('.publish').on('click', publish);
+                    $('.categorizeButton').on('click', function() {
+                        $('.step3a').toggle();
                     });
                     if ($('input[name=imagefile]').attr('disabled')) {
-                        $('#step1a').hide();
+                        $('.step1a').hide();
                     }
 
                     $.when(bookContent).then(function(book) {
                         if (book.ID) { // editing an existing book
                             initializeBookState(book);
                         }
-                        if ($('#notLoggedIn').length === 0) {
-                            $('#writing-controls').show();
+                        if ($('.notLoggedIn').length === 0) {
+                            $('.writing-controls').show();
                         }
                     });
 

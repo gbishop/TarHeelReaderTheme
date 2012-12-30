@@ -1,6 +1,5 @@
 // Code for navigation and settings menus
 require(["jquery", "state", "controller", "templates"], function($, state, controller, templates) {
-
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
         options = { // list of available options
@@ -34,8 +33,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
     $(function() {
         var $body = $("body"),
             currentSettings = getCurrentSettings(),
-            currentURL,
-            hostname = location.hostname;
+            currentURL;
 
         initNavKeybindings(); // initialize the keybindings for the menu
 
@@ -61,12 +59,12 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                 $hiddenContent.fadeOut(function() {
                     $navigation.slideDown();
                 }); // end fadeOut
-
             } else {
                 $navigation.fadeOut(50, function() {
                     $hiddenContent.fadeIn();
                 }); // end slideUp
             }
+            $navigation.find(".secondaryNav").hide();
 
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
         });
@@ -94,8 +92,8 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             $navMenu.show();
             // if secondaryNav was open, close it since we are reusing the navigation
             if($navMenu.find(".more").text() === "Less") {
-                $navMenu.find(".more").text("More").parent().removeClass("divider");
-                $navMenu.find(".secondaryNav").hide();
+                $navMenu.find(".more").text("More").parent().removeClass("divider").
+                         end().find(".secondaryNav").hide();
             }
         });
 
@@ -109,12 +107,10 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
 
        $body.on("click", ".active-page .navigationMenu a:not(.more), a.homeLink", function() {
             var href = $(this).attr("href"),
-                strippedURL = currentURL.substring(currentURL.indexOf(hostname)).replace(hostname, ""),
+                strippedURL = currentURL.match(/\/[a-zA-Z\-]+\//) || "/", // "/" denotes home page
                 newPage = true;
 
-            console.log(href);
             console.log(strippedURL);
-
             if(href === "/") { // exact match of home page?
                 newPage = strippedURL === "/" ? false : true; // is currentURL also the home page? Then we're not going to a new page
 
@@ -134,39 +130,47 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
          */
         $body.on("click", ".thr-settings-icon img", function(e, data) {
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
-            data === 'keybind' ? $(".active-page #mainSettings").slideDown() : $(".active-page #mainSettings").slideToggle();
-            //$(".active-page .navigationMenu:visible").slideUp(); // hide navigation
-            $(".submenu:visible").hide();
+            $(".active-page .submenu, .active-page .innerSubmenu").hide();
+            console.log("hiding submenu and innersubmenu");
+            data === 'keybind' ? $(".active-page .mainSettings").slideDown() : $(".active-page .mainSettings").slideToggle();
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         });
 
-        $body.on("click", ".active-page #mainSettings:visible > li", function(e) {
+        $body.on("click", ".active-page .mainSettings:visible > li", function(e) {
              $(".submenu:visible, .innerSubmenu:visible").hide();
              $(this).find(".submenu").show();
         });
 
-        $body.on("click", ".active-page #mainSettings:visible > li > .submenu:visible > li", function(e) {
+        $body.on("click", ".active-page .mainSettings:visible > li > .submenu:visible > li", function(e) {
             $(".innerSubmenu:visible").hide();
             $(this).find(".innerSubmenu").show();
             return false;
         });
 
-        $body.on("click", ".active-page #mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
+        $body.on("click", ".active-page .mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
             e.stopPropagation();
         });
 
         // the user is changing a setting, adjust settings and update accordingly
-        $body.on("click", "#speechOptions li > a, #pageColorsOptions li > a, #textColorsOptions li > a", function() {
-            // deal with the anchor's parent <li>
-            var $parent = $(this).parent();
+        $body.on("click", ".speechOptions li > a, .pageColorsOptions li > a, .textColorsOptions li > a", function() {
+            var $parent = $(this).parent(); // deal with the anchor's parent <li>
             changeSetting($parent, $parent.text().toLowerCase());
+            $(".find-page:visible").find(".navigationMenu").hide(). // hack for find.page
+                              end().find(".hiddenContent").show();
             return false;
         });
 
-        $body.on("click", ".active-page #mainSettings:visible #default", function() { resetSettings(); });
+        $body.on("click", ".active-page .mainSettings:visible .default", function() {
+            resetSettings();
+            $(".active-page").find(".thr-settings-icon img").click();
+
+            if($(".find-page").is(":visible") && $(".find-page").find(".navigationMenu").length !== 0) { // hack for find-page
+                $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
+            }
+        });
 
         $(document).on("click", "head, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
-            $(".active-page #mainSettings").slideUp();
+            $(".active-page .mainSettings").slideUp();
             e.stopPropagation();
         });
         /*
@@ -176,25 +180,27 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
       }); // end ready
 
       function changeSetting($element, text) {
-          var parentID = $element.parent().attr("id").toLowerCase().replace("#", ""),
-              value;
+          var parentClass = $element.parent().attr("class").toLowerCase().
+                            replace(/(\s?)\binnersubmenu\b(\s?)|(\s?)\bsubmenu\b(\s?)/, ""), // remove "submenu" and "innerSubmenu"
+              value,
+              option = "";
 
-          // which option are we dealing with?
-          if(parentID == "speechoptions") {
+          if(parentClass === "speechoptions") { // which option are we dealing with?
               value = getOptionValue("speech", text);
-              state.set("voice", value);
+              option = "voice";
 
-          } else if(parentID == "pagecolorsoptions") {
+          } else if(parentClass === "pagecolorsoptions") {
               value = getOptionValue("colors", text);
-              state.set("pageColor", value);
+              option = "pageColor";
 
-          } else if(parentID == "textcolorsoptions") {
+          } else if(parentClass === "textcolorsoptions") {
               value = getOptionValue("colors", text);
-              state.set("textColor", value);
+              option = "textColor";
           } else {// not a valid option, return
               return;
           }
 
+          state.set(option, value);
           controller.stateChange(); // update the page
           updateCheckedOptions(); // update the check marks next to the currently selected options
       }
@@ -229,9 +235,9 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
           var currentSettings = getCurrentSettings();
 
           // update the currently set options with a check mark next to them
-          $("#speechOptions " + "#" + currentSettings.speech).addClass("checked");
-          $("#pageColorsOptions " + "." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
-          $("#textColorsOptions " + "." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
+          $(".speechOptions ." + currentSettings.speech).addClass("checked");
+          $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
+          $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
       }
 
       // function for navigation via key bindings
@@ -253,7 +259,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                   resetIndices: function() {
                       for(var key in this) {
                          if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
-                             this[key].index = 0;
+                             this[key].index = this[key] === this.mainMenu ? -1 : 0;
                          }
                       }
                   }, // end function
@@ -291,35 +297,36 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
               isInnerSubMenuOpen,
               $openMenu,
               openMenuState,
-              keyCode;
+              keyCode,
+              menuString,
+              selectorString,
+              selectedClassName = "selectedLink",
+              $mainMenuLink,
+              $submenuLink,
+              $innerSubmenuLink,
+              $submenu,
+              $innerSubmenu;
 
+          navState.resetIndices();
           $.extend(true, settingsState, navState); // create the new object with deep copy
-          console.log('Deeply copied object');
 
-          console.log('Setting bounds');
-          navState.setBounds($(".active-page .navigationMenu > li").length, 'mainMenu');
-          settingsState.setBounds($(".active-page #mainSettings > li").length, 'mainMenu');
+          // open up navigation or settings menu on enter
+          $("body").on("keydown", ".thr-well-icon, .thr-settings-icon", function(e) {
 
-          // open up navigation or settings menu on tab
-            $("body").on("keydown", ".thr-well-icon, .thr-settings-icon", function(e) {
-
-               eyCode = e.keyCode || e.which;
-              if(keyCode == 9) { // if tab is pressed...
-
-                  var $this = $(this);
-                  console.log($this);
-                  if($this.css("opacity") == 0) { return true; } // only show the corresponding menu if its icon is visible
-                  console.log($this.css("opacity"));
-
-                  $this.find("img").trigger('click', 'keybind');
-                  if($this.is($(".thr-well-icon"))) {
-                      console.log('resetting indices');
-                      navState.resetIndices();
-                      $(".active-page .navigationMenu:visible > li:first-child").addClass("selectedLink");
-                  } else {
-                      console.log('resetting settings');
-                      settingsState.resetIndices();
-                      $(".active-page #mainSettings:visible > li:first-child").addClass("selectedLink");
+              keyCode = e.keyCode || e.which;
+              if(keyCode === 13) { // if enter is pressed on an icon, show menu
+                  var $this = $(this),
+                      $activePage = $(".active-page");
+                  if($this.is(":focus") && !($activePage.find(".navigationMenu").is(":visible")) &&
+                                            !($activePage.find(".mainSettings").is(":visible"))) {
+                      $this.find("img").trigger('click', 'keybind');
+                      if($this.is($(".thr-well-icon"))) {
+                         navState.resetIndices();
+                      } else if($this.is($(".thr-settings-icon"))){
+                         settingsState.resetIndices();
+                      }
+                      $this.blur();
+                      return false;
                   }
               }
 
@@ -328,131 +335,175 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
           $("body").on("keydown", function(e) {
              keyCode = e.keyCode || e.which;
 
+             isNavMenuOpen = $(".active-page .navigationMenu").is(":visible");
+
               // are any of the menus open?
-             if((isNavMenuOpen = $(".active-page .navigationMenu").is(":visible")) || $(".active-page #mainSettings").is(":visible")) {
-                // decide which menu is open
-                if(isNavMenuOpen) {
-                    $openMenu = $(".active-page .navigationMenu:visible");
+             if(isNavMenuOpen || $(".active-page .mainSettings").is(":visible")) {
+                if(isNavMenuOpen) { // decide which menu is open
+                    var $nav = $(".active-page .navigationMenu"),
+                        $mainNav = $nav.find(".mainNav"),
+                        $secondaryNav = $nav.find(".secondaryNav"),
+                        mainNavLength = $mainNav.find("li").length,
+                        secondaryNavLength = $secondaryNav.find("li").length;
+
                     openMenuState = navState;
+                    if($secondaryNav.is(":visible")) { // adjust $openMenu and navState accordingly if .secondaryNav is visible
+                        if(navState.getIndex("mainMenu") === (mainNavLength - 1) && (keyCode === 32 || keyCode === 39)) {
+                           $openMenu = $secondaryNav;
+                           navState.setBounds(secondaryNavLength, "mainMenu");
+                           navState.setIndex(-1, "mainMenu");
+
+                       } else if($(".selectedLink").parent().is($secondaryNav)) {
+
+                           if((keyCode === 32 || keyCode === 39) && navState.getIndex("mainMenu") === (secondaryNavLength - 1)) {
+                               $openMenu = $mainNav;
+                               navState.setBounds(mainNavLength, "mainMenu");
+                               navState.setIndex(-1, "mainMenu");
+                           } else if(keyCode === 38 && navState.getIndex("mainMenu") === 0) {
+                               $openMenu = $mainNav;
+                               navState.setBounds(mainNavLength, "mainMenu");
+                               navState.setIndex(mainNavLength, "mainMenu");
+                           }
+
+                       } else if($(".selectedLink").parent().is($mainNav) && keyCode === 38 &&
+                                                         navState.getIndex("mainMenu") === 0) {
+                           $openMenu = $secondaryNav;
+                           navState.setBounds(secondaryNavLength, "mainMenu");
+                           navState.setIndex(secondaryNavLength, "mainMenu");
+                       }
+
+                    } else {
+                        $openMenu = $mainNav;
+                        navState.setBounds(mainNavLength, "mainMenu");
+                    }
+
                 } else {
-                    $openMenu = $(".active-page #mainSettings:visible");
                     openMenuState = settingsState;
+                    $openMenu = $(".active-page .mainSettings:visible");
+                    settingsState.setBounds($(".active-page .mainSettings > li").length, 'mainMenu');
                 }
 
                 isSubMenuOpen = $openMenu.find(".submenu").is(":visible");
-                if(isSubMenuOpen) openMenuState.setBounds($(".submenu:visible > li").length, 'subMenu'); // set bounds
+                if(isSubMenuOpen) {
+                    openMenuState.setBounds($(".submenu:visible > li").length, 'subMenu'); // set bounds
+                }
 
                 isInnerSubMenuOpen = isSubMenuOpen && $openMenu.find(".submenu:visible .innerSubmenu").is(":visible");
-                if(isInnerSubMenuOpen) openMenuState.setBounds($(".submenu:visible .innerSubmenu:visible > li").length, 'innerSubMenu');
+                if(isInnerSubMenuOpen) {
+                    openMenuState.setBounds($(".submenu:visible .innerSubmenu:visible > li").length, 'innerSubMenu');
+                }
 
                 // handle the key events
-                if(keyCode == 38) { // UP KEY
-                    $(".selectedLink").removeClass("selectedLink");
+                if(keyCode === 38) { // Up Arrow: Previous Choice
+                    $("." + selectedClassName).removeClass(selectedClassName);
 
-                    if(isSubMenuOpen && !isInnerSubMenuOpen) {
-                        openMenuState.decrementIndex('subMenu');
-                        $openMenu.children("li").find(".submenu:visible > li")
-                                                .eq(openMenuState.getIndex('subMenu'))
-                                                .addClass("selectedLink");
-                    } else if(isSubMenuOpen && isInnerSubMenuOpen) {
-                        openMenuState.decrementIndex('innerSubMenu');
-                        $openMenu.children("li").find(".submenu:visible .innerSubmenu:visible > li")
-                                                .eq(openMenuState.getIndex('innerSubMenu'))
-                                                .addClass("selectedLink");
-                        console.log(openMenuState.getIndex('innerSubMenu'));
+                    if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
+                        menuString = "subMenu";
+                        selectorString = ".submenu:visible > li";
+                    } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .submenu and .innerSubmenu open
+                        menuString = "innerSubMenu";
+                        selectorString = "submenu:visible .innerSubmenu:visible > li";
+
                     } else {
                         openMenuState.decrementIndex('mainMenu');
                         $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
                                                 .addClass("selectedLink");
-
+                        return false;
                     }
+
+                    openMenuState.decrementIndex(menuString);
+                    $openMenu.children("li").find(selectorString)
+                                            .eq(openMenuState.getIndex(menuString))
+                                            .addClass(selectedClassName);
 
                     return false;
 
-                 } else if(keyCode == 40) { // DOWN KEY
-                    $(".selectedLink").removeClass("selectedLink");
+                 } else if(keyCode === 32 || keyCode === 39) { // Space/Right Arrow: Next Choice
+                    $("." + selectedClassName).removeClass(selectedClassName);
 
-                    if(isSubMenuOpen && !isInnerSubMenuOpen) {
-                        console.log('submenu is open');
-                        openMenuState.incrementIndex('subMenu');
-                        $openMenu.children("li").find(".submenu:visible > li")
-                                                .eq(openMenuState.getIndex('subMenu'))
-                                                .addClass("selectedLink");
+                    if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
+                        menuString = "subMenu";
+                        selectorString = ".submenu:visible > li";
+                    } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .submenu and .innerSubmenu open
+                        menuString = "innerSubMenu";
+                        selectorString = ".submenu:visible .innerSubmenu:visible > li";
 
-                    } else if(isSubMenuOpen && isInnerSubMenuOpen) {
-                        openMenuState.incrementIndex('innerSubMenu');
-                        $openMenu.children("li").find(".submenu:visible .innerSubmenu:visible > li")
-                                                .eq(openMenuState.getIndex('innerSubMenu'))
-                                                .addClass("selectedLink");
-                        console.log(openMenuState.getIndex('innerSubMenu'));
                     } else {
                         openMenuState.incrementIndex('mainMenu');
                         $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
                                                 .addClass("selectedLink");
-
+                        return false;
                     }
 
+                    openMenuState.incrementIndex(menuString);
+                    $openMenu.children("li").find(selectorString)
+                                            .eq(openMenuState.getIndex(menuString))
+                                            .addClass(selectedClassName);
                     return false;
 
-                 } else if(keyCode == 37 && $openMenu.is(".active-page .navigationMenu:visible")  || // LEFT for navigation
-                                (keyCode == 39 && $openMenu.is(".active-page #mainSettings:visible"))) { // RIGHT for mainSettings
+                  } else if(keyCode === 37) { // Left Arrow: Back one level/Close menu
 
-                     $(".selectedLink").removeClass("selectedLink");
+                    $("." + selectedClassName).removeClass(selectedClassName);
 
                     if(isSubMenuOpen && !isInnerSubMenuOpen) {
                         $(".submenu").hide();
                         openMenuState.setIndex(0, 'subMenu');
                         $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
-                                                .addClass("selectedLink");
+                                                .addClass(selectedClassName);
 
                     } else if(isSubMenuOpen && isInnerSubMenuOpen) {
                         $(".innerSubmenu").hide();
                         openMenuState.setIndex(0, 'innerSubMenu');
                         $openMenu.find(".submenu:visible > li").eq(openMenuState.getIndex('subMenu'))
-                                                                .addClass("selectedLink");
-                    } else { // only mainMenu is open
-                       // Do nothing if we are on the main menu
+                                                                .addClass(selectedClassName);
+                    } else { // only mainMenu is open, hide it
+                       var $activePage = $(".active-page");
+                       if($openMenu.is($activePage.find(".mainNav")) || $openMenu.is($activePage.find(".secondaryNav"))) {
+                           $activePage.find(".thr-well-icon img").trigger("click");
+                       } else {
+                           $activePage.find(".thr-settings-icon img").trigger("click");
+                       }
                     }
 
-                 } else if(keyCode == 39 && $openMenu.is(".active-page .navigationMenu:visible")  || // RIGHT for navigation
-                                (keyCode == 37 && $openMenu.is(".active-page #mainSettings:visible"))) { // LEFT for settings
+                 } else if(keyCode === 13 || keyCode === 40) { // Enter or Down Arrow: Chooser
 
-                     $(".selectedLink").removeClass("selectedLink");
+                    $("." + selectedClassName).removeClass(selectedClassName);
 
-                    if(isSubMenuOpen && !isInnerSubMenuOpen) {
-                        var submenuLink = $openMenu.children("li").find(".submenu:visible > li")
-                                          .eq(openMenuState.getIndex('subMenu')),
-                            innerSubmenu;
-                        if((innerSubmenu = submenuLink.find(".innerSubmenu")).length > 0) { // is there an innerSubmenu?
-                            submenuLink.trigger('click');
-                            innerSubmenu.children("li").first()
-                                                       .addClass("selectedLink");
-                        } else { // if not execute the action
-                            submenuLink.find("a").trigger('click');
+                    if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
+                        $submenuLink = $openMenu.children("li").find(".submenu:visible > li")
+                                                               .eq(openMenuState.getIndex('subMenu'));
+                        $innerSubmenu = $submenuLink.find(".innerSubmenu");
+
+                        if($innerSubmenu.length > 0) { // is there an innerSubmenu?
+                            $submenuLink.trigger('click'); // then click the link
+                            $innerSubmenu.children("li").first()
+                                                        .addClass(selectedClassName);
+                        } else {
+                            // if no .innerSubmenu exists, execute the action
+                            $submenuLink.find("a").trigger("click").parent()
+                                                                   .addClass(selectedClassName);
                         }
 
-                    } else if(isSubMenuOpen && isInnerSubMenuOpen) {
+                    } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .innerSubmenu and .submenu are open, click it
                         $(".innerSubmenu:visible > li").eq(openMenuState.getIndex("innerSubMenu"))
-                                                       .find("a")
-                                                       .click();
-                            console.log(openMenuState.getIndex("innerSubMenu"));
+                                                       .find("a").trigger("click")
+                                                       .parent().addClass(selectedClassName);
 
                     } else { // only mainMenu is open
-                       var mainMenuLink = $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'));
+                       var $mainMenuLink = $openMenu.children("li").eq(openMenuState.getIndex("mainMenu")),
+                           $submenu = $mainMenuLink.find(".submenu");
 
-                       if(mainMenuLink.find(".submenu").length > 0) { // does the link have a submenu?
-                           mainMenuLink.trigger('click')
-                                       .find('.submenu li:first-child')
-                                       .addClass('selectedLink');
+
+                       if($submenu.length > 0) { // does the link have a submenu?
+                           $mainMenuLink.trigger("click");
+                           $submenu.find("li:first-child").addClass(selectedClassName);
                        } else {
-                           mainMenuLink.find("a").trigger('click');
+                           $mainMenuLink.find("a").trigger("click")
+                                        .end().addClass(selectedClassName);
                        }
-
                     }
-                 } else if(keyCode == 9 && $openMenu.is(".active-page #mainSettings:visible")) { // tab pressed and mainSettings is open
-                    $openMenu.slideUp();
-                    console.log("tab pressed, mainSettings visible")
-                 } // end if clauses for key codes
+                    return false;
+                 } // end Enter or Down Arrow key events
               } // end isNavMenu open or isSettingsMenu open if
           }); // end on keydown
 

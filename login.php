@@ -30,7 +30,7 @@ Display the login form
 <?php
 if ( ! is_user_logged_in() ): ?>
 <h2>Login to Tar Heel Reader</h2>
-<p id="message"><?php echo $msg ?></p>
+<p class="message"><?php echo $msg ?></p>
 <form class="loginForm" action="/login/" method="post">
 <p>
 <label>Username<br />

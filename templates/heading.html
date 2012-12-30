@@ -10,26 +10,26 @@
         {{/setFavorite}}
         <h1><a href="/" title="_(Books for beginning readers of all ages|site sub-heading)">_(Tar Heel Reader|site name)</a></h1>
 		<!-- Begin mainSettings Panel -->
-		<ul class="panel" id="mainSettings">
+		<ul class="mainSettings">
 			<!-- Begin Speech -->
-			<li><a href="#" id="speech">_(Speech|section heading)</a>
+			<li><a href="#" class="speech">_(Speech|section heading)</a>
 				<!-- Begin submenu -->
-				<ul id="speechOptions" class="submenu">
-					<li><a href="#" id="silent">_(Silent)</a></li>
-					<li><a href="#" id="child">_(Child)</a></li>
-					<li><a href="#" id="female">_(Woman)</a></li>
-					<li><a href="#" id="male">_(Man)</a></li>
+				<ul class="submenu speechOptions">
+					<li><a href="#" class="silent">_(Silent)</a></li>
+					<li><a href="#" class="child">_(Child)</a></li>
+					<li><a href="#" class="female">_(Woman)</a></li>
+					<li><a href="#" class="male">_(Man)</a></li>
 				</ul>
 				<!-- End submenu -->
 			</li>
 			<!-- End Speech -->
 			<!-- Begin Colors -->
-			<li><a href="#" id="colors">_(Colors|section heading)</a>
+			<li><a href="#" class="colors">_(Colors|section heading)</a>
 				<!-- Begin first submenu -->
 				<ul class="submenu">
-					<li id="pageColors"><a href="#">_(Page Colors|section heading)</a>
+					<li class="pageColors"><a href="#">_(Page Colors|section heading)</a>
 						<!-- Begin inner submenu -->
-						<ul id="pageColorsOptions" class="innerSubmenu">
+						<ul class="innerSubmenu pageColorsOptions">
 							<li><a href="#" class="black">_(Black)</a></li>
 							<li><a href="#" class="blue">_(Blue)</a></li>
 							<li><a href="#" class="cyan">_(Cyan)</a></li>
@@ -41,9 +41,9 @@
 						</ul>
 						<!-- End inner submenu -->
 					</li>
-					<li id="textColors"><a href="#">_(Text Colors|section heading)</a>
+					<li class="textColors"><a href="#">_(Text Colors|section heading)</a>
 						<!-- Begin inner submenu -->
-						<ul id="textColorsOptions" class="innerSubmenu">
+						<ul class="innerSubmenu textColorsOptions">
 							<li><a href="#" class="black">_(Black)</a></li>
 							<li><a href="#" class="blue">_(Blue)</a></li>
 							<li><a href="#" class="cyan">_(Cyan)</a></li>
@@ -59,46 +59,18 @@
 				<!-- End first submenu -->
 			</li>
 			<!-- End Colors -->
-			<!-- Begin Book Options -->
-			<li id="myBookOptions"><a id="myBook" href="#">_(My Book|section heading)</a>
+			<!-- Begin Download -->
+			<li><a class="download" href="#">_(Download|section heading)</a>
 				<!-- Begin submenu -->
 				<ul class="submenu">
-					<!-- Begin submenu -->
-					<li><a id="download" href="#">_(Download|section heading)</a>
-						<!-- Begin inner submenu -->
-						<ul id="downloadOptions" class="innerSubmenu myBookInnerSubmenu">
-							<li><a id="powerpoint">_(PowerPoint)</a></li>
-							<li><a id="impress">_(Impress)</a></li>
-							<li><a id="flash">_(Flash)</a></li>
-						</ul>
-						<!-- End inner submenu -->
-					</li>
-					<!-- End Download -->
-					<!-- Begin Collections -->
-					<li><a id="collections" href="#">_(Collections|section heading)</a>
-						<!-- Begin inner submenu -->
-						<ul id="collectionsOptions" class="innerSubmenu myBookInnerSubmenu">
-							<li><a class="add" id="addToCollections">_(Add)</a></li>
-							<li><a class="remove" id="removeFromCollections">_(Remove)</a></li>
-						</ul>
-						<!-- End inner submenu -->
-					</li>
-					<!-- End Collections -->
-					<!-- Begin Favorites -->
-					<li><a id="favorites" href="#">_(Favorites|section heading)</a>
-						<!-- Begin inner submenu -->
-						<ul id="favoritesOptions" class="innerSubmenu myBookInnerSubmenu">
-							<li><a class="add" id="addToFavorites">_(Add)</a></li>
-							<li><a class="remove" id="removeFromFavorites">_(Remove)</a></li>
-						</ul>
-						<!-- End inner submenu -->
-					</li>
-					<!-- End Favorites -->
+					<li><a class="powerpoint">_(PowerPoint)</a></li>
+					<li><a class="impress">_(Impress)</a></li>
+					<li><a class="flash">_(Flash)</a></li>
 				</ul>
 				<!-- End submenu -->
 			</li>
 			<!-- End Download -->
-			<li><a id="default" href="#">_(Default)</a></li>
+			<li><a class="default" href="#">_(Default)</a></li>
 		</ul>
 	<!-- End Settings Panel -->
 	</div>
