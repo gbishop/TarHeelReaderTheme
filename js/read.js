@@ -10,9 +10,9 @@ define(["jquery",
         ], function($, route, page, templates, keys, state, speech) {
 
     var book = null; // current book
-    
+
     // set text and background color of a jQuery element
-    jQuery.fn.setHoverColors = function(bgColor, textColor) { 
+    jQuery.fn.setHoverColors = function(bgColor, textColor) {
         var $this = $(this);
 
         $this.find(".thr-colors:not(ul), .thr-colors > li").hover(function() { // swap text and background colors on hover
@@ -22,7 +22,7 @@ define(["jquery",
             $(this).css({ background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') })
                     .find("a").css({color: '#' + state.get('textColor') });
         });
-        
+
         $("body").keypress(function(e) {
             $this.find(".thr-colors > li.selected").css({background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') })
                  .find("a").css({color: '#' + state.get('pageColor') });
@@ -117,8 +117,8 @@ define(["jquery",
             $oldPage.empty()
                 .append(templates.render('heading'))
                 .append('<div class="content-wrap">' + newContent + '</div>')
-                .setHoverColors(); 
-                    
+                .setHoverColors();
+
             $def.resolve($oldPage, {title: book.title, colors: true});
         });
         return $def;

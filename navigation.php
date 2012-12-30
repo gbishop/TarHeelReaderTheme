@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Template Name: Navigation
 Display the navigation
