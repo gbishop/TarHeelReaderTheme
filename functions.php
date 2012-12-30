@@ -613,6 +613,53 @@ function thr_modify_query( $query ) {
     }
 }
 
+// rewrite collections URLs
+add_action( 'init', 'collections_init' );
+function collections_init()
+{
+    add_rewrite_rule( 'collections/([^/]+)/?$', 'index.php?collections_filter=$matches[1]&pagename=collections', 'top' );
+    add_rewrite_tag( '%collections_filter%', '/.*/');
+}
+
+add_filter( 'query_vars', 'collections_query_vars' );
+function collections_query_vars( $query_vars )
+{
+    $query_vars[] = 'collections_filter';
+    return $query_vars;
+}
+
+$collections_table = $wpdb->prefix . 'book_collections';
+
+function updateCollection($id, $title, $description) {
+    global $wpdb, $collections_table;
+
+    $userid = get_current_user_id();
+    if ($userid == 0) {
+        return false;
+    }
+
+    $favs = THR('favorites');
+    $data = array(
+        'title' => $title,
+        'description' => $description,
+        'booklist' => $favs);
+    if ($id) {
+        $r = $wpdb->update($collections_table, $data, array('ID' => $id));
+        return $r;
+    }
+    $slug = substr(sanitize_title_with_dashes($title), 0, 195);
+    // TODO: make it unique
+    $data['slug'] = $slug;
+    $data['owner'] = $userid;
+    $data['language'] = 'en';  // compute from the books included, used 'xxx' if they aren't all the same
+    $r = $wpdb->insert($collections_table, $data);
+    return $r;
+}
+
+function fetchCollections($query=null) {
+    global $wpdb, $collections_table;
+}
+
 // hack error logging
 function BuG($msg) {
     date_default_timezone_set('EDT');
