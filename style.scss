@@ -186,7 +186,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     box-shadow: 0 0 0.2em $carolinaBlue;
     overflow: auto;
 
-    #homeLinkList {
+    .homeLinkList {
       text-align: center;
       overflow: auto;
 
@@ -198,11 +198,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
            @include decoratedButton(0.1em, #61A0B3, 0.5em, 0.25em, $carolinaBlue, #286DA3, 1.25em, 1em, 2em, #DDD, #81BEF0, #FFF, 0.5s, 10em);
          }
       }
-
-    }
-
-    #homeLinkList + p {
-      clear: both;
+      
+      & + p {
+        clear: both;
+      }
     }
     
     .tinyicon {
@@ -263,7 +262,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     text-align: left;
     margin: 1em 0.5em;
 
-    &#message {
+    &.message {
       color: $carolinaBlue;
       font-size: 1.25em;
       text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
@@ -291,7 +290,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     
   }
   
-  #languages {
+  .languages {
     border: .1em solid #777;
     margin-left: 1em;
     padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
@@ -311,7 +310,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     vertical-align: middle;
   }
   
-  #goButton {
+  .goButton {
     background: url(/theme/images/globe.png) no-repeat center center;
     border: 0.15em solid #DDD;
     margin-left: 0.5em;
@@ -323,7 +322,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     
   }
   
-  #mapButton {
+  .mapButton {
     display: block;
     margin: 0.5em;
     width: 20em;
@@ -546,6 +545,7 @@ h2 {
       }
       
       a {
+        background-size: 1.5em !important;
         padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
         width: 80%; // not 100% on purpose
         
@@ -639,6 +639,7 @@ h2 {
       width: auto;
     
       a {
+        background-size: 1.5em !important;
         color: inherit;
         font-size: 1.3em;
         padding: 1em 0 1em 3.5em;
@@ -1234,7 +1235,7 @@ h2 {
 }
 
 .your-books-page {
-  #publishedBooksContainer {
+  .publishedBooksContainer {
     margin: 1em 0;
   }
 
@@ -1275,7 +1276,7 @@ h2 {
         margin: 0.5em 1em;
     }
 
-    #writing-controls {
+    .writing-controls {
         display: none;
         margin: .5em 0;
     }
@@ -1295,7 +1296,7 @@ h2 {
       }
     }
 
-    p#notLoggedIn {
+    p.notLoggedIn {
       color: #555;
       font-size: 1.25em;
       margin: 1.5em;
@@ -1318,17 +1319,17 @@ h2 {
           margin-right: .25em;
         }
 
-        #categorizeButton {
+        .categorizeButton {
           width: auto;
           margin-left: 0.25em;
         }
     }
     
-    #image-search {
+    .image-search {
       margin-top: 0.5em;
     }
     
-    #gallery {
+    .gallery {
         margin: 1em auto;
         width: 90%;
         //height: 6em;
@@ -1358,7 +1359,7 @@ h2 {
         background-color: #F8F8F8;
     }
 
-    #write-pages {
+    .write-pages {
         font-size: 3px;
         width: 100%;
         margin: 1em auto;
@@ -1401,19 +1402,19 @@ h2 {
         vertical-align: baseline;
     }
 
-    #step3a {
+    .step3a {
         display: none;
     }
     button {
         font-size: 1em;
     }
 
-    div#publishErrors {
+    div.publishErrors {
         p {
             font-weight: bold;
             margin-left: 1em;
         }
-        #peMessage {
+        .peMessage {
             margin-left: 0;
         }
     }
@@ -1463,7 +1464,7 @@ h2 {
         //border: 1px solid black;
     }
 
-    #deleteIcon {
+    .deleteIcon {
         width: 2em;
         height: 2em;
         position: absolute;
@@ -1527,20 +1528,20 @@ h2 {
   
   // *** Begin code for .server-page ***
   .server-page {
-    #homeLinkList li {
+    .homeLinkList li {
       width: 100%;
       display: block;
       margin: 1.5em auto;
       font-size: 1.3em;
     }
     
-    #languageForm {
-      #languages {
+    .languageForm {
+      .languages {
         font-size: 1.5em;
         width: 90%;
       }
       
-      #goButton {
+      .goButton {
         background-size: 1.5em;
         margin: 0.5em 1em;
         width: 90%;
@@ -1552,7 +1553,7 @@ h2 {
   // *** Begin code for .write-page ***
   .write-page {
     
-    #image-search {
+    .image-search {
       overflow: auto;
       input {
         width: 10em;
@@ -1581,7 +1582,7 @@ h2 {
       }
     }
   
-     div#step4 {
+     div.step4 {
       button {
         margin: 0 2%;
         width: 45%;
@@ -1635,8 +1636,8 @@ h2 {
      padding: 0.5em 1em; 
    }
    
-   #languageForm{
-     #languages {
+   .languageForm {
+     .languages {
        height: 2em;
        line-height: 1.5em;
      }
@@ -1669,7 +1670,7 @@ h2 {
      
     }
     
-    #mapButton {
+    .mapButton {
       margin: 0.5em 0;
       width: 100%;
     }
@@ -1678,7 +1679,7 @@ h2 {
    
    // *** Begin .write-page code ***
    .write-page {
-     #image-search {
+     .image-search {
        input {
          &[type='submit'] {
            margin-left: 0em;
@@ -1686,12 +1687,6 @@ h2 {
        }
      }
    } // *** End .write-page code ***
-   
-   .navigationMenu {
-     a {
-       background-size: 16px 16px !important;
-     }
-   }
 }
 
 /*
@@ -1774,10 +1769,10 @@ h2 {
 
     }
     // bump up the font size on the writing page to make it easier to hit buttons
-    #writing-controls {
+    .writing-controls {
         font-size: 1.5em;
     }
-    #gallery {
+    .gallery {
       width: 100%;
       margin: 0;
     }
@@ -1867,7 +1862,7 @@ and (orientation: landscape) {
     height: 1px;
 }
 
-#busyBlocker {
+.busyBlocker {
     display: none;
     position: absolute;
     width: 50%;
@@ -1878,7 +1873,7 @@ and (orientation: landscape) {
 
 }
 
-#busyMessage {
+.busyMessage {
     font-size: 1.5em;
     //position: absolute;
     //width: 50%;
@@ -1895,11 +1890,11 @@ and (orientation: landscape) {
     }
 }
 
-.isBusy #busyMessage #loadingMessage {
+.isBusy .busyMessage .loadingMessage {
     display: block;
 }
 
-.isError #busyMessage #errorMessage {
+.isError .busyMessage .errorMessage {
     display: block;
 }
 

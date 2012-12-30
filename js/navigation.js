@@ -350,14 +350,14 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                     
                     openMenuState = navState;
                     if($secondaryNav.is(":visible")) { // adjust $openMenu and navState accordingly if .secondaryNav is visible
-                        if(navState.getIndex("mainMenu") === (mainNavLength - 1) && keyCode === 32) {
+                        if(navState.getIndex("mainMenu") === (mainNavLength - 1) && (keyCode === 32 || keyCode === 39)) {
                            $openMenu = $secondaryNav;
                            navState.setBounds(secondaryNavLength, "mainMenu");
                            navState.setIndex(-1, "mainMenu");
                            
                        } else if($(".selectedLink").parent().is($secondaryNav)) {
                            
-                           if(keyCode === 32 && navState.getIndex("mainMenu") === (secondaryNavLength - 1)) {
+                           if((keyCode === 32 || keyCode === 39) && navState.getIndex("mainMenu") === (secondaryNavLength - 1)) {
                                $openMenu = $mainNav;
                                navState.setBounds(mainNavLength, "mainMenu");
                                navState.setIndex(-1, "mainMenu");
@@ -420,7 +420,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                     
                     return false;
                     
-                 } else if(keyCode === 32) { // Space: Next Choice
+                 } else if(keyCode === 32 || keyCode === 39) { // Space/Right Arrow: Next Choice
                     $("." + selectedClassName).removeClass(selectedClassName);
                     
                     if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
@@ -443,7 +443,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                                             .addClass(selectedClassName);
                     return false;
                     
-                  } else if(keyCode === 39) { // Right Arrow: Back one level/Close menu
+                  } else if(keyCode === 37) { // Left Arrow: Back one level/Close menu
                                     
                     $("." + selectedClassName).removeClass(selectedClassName);
                     

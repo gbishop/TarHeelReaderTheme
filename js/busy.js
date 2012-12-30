@@ -21,7 +21,7 @@ define(['jquery', 'templates'], function($, templates) {
         }
         currentXHR = jqXHR;
         //$blocker.height($(document).height()).addClass('isBusy').removeClass('isError');
-        //$('#busyMessage')
+        //$('.busyMessage')
         $blocker.addClass('isBusy').removeClass('isError')
             .css('top', $(window).scrollTop() + $(window).height() / 3 + 'px');
         $blocker.delay(500).fadeIn(1000);
@@ -43,7 +43,7 @@ define(['jquery', 'templates'], function($, templates) {
         if (currentXHR !== jqXHR) {
             console.log('busy: not expecting error on this XHR, ignoring');
         } else {
-            $('#errorMessage span').html(textStatus + ': ' + errorThrown);
+            $('.errorMessage span').html(textStatus + ': ' + errorThrown);
             $blocker.removeClass('isBusy').addClass('isError');
         }
     }

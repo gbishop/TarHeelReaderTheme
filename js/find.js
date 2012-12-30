@@ -82,7 +82,7 @@ define(["jquery",
         // operate on the active page only
         var $page = $('.active-page');
         // stop any animation of the preview and remove it
-        $('#preview').stop(true, false).remove();
+        $('.preview').stop(true, false).remove();
         // get a list of the selectable elements
         var targets = $page.find('.selectable');
         // and find the selected one
@@ -129,7 +129,7 @@ define(["jquery",
                 var left = (ww - b) / 2;
                 var top = wt + (wh - b) / 2;
                 toSelect.clone()
-                .attr('id', 'preview') // make a copy of the selected book
+                .attr('class', 'preview') // make a copy of the selected book
                     .appendTo($page.find('.thr-book-list')) // add it to the end of the list
                     .css({
                         position: 'absolute',
@@ -148,7 +148,7 @@ define(["jquery",
                         $(this).remove(); // then remove it.
                     });
                 // replace the images with high res versions
-                $page.find('#preview')
+                $page.find('.preview')
                     .find('img')
                     .each(function(i, img){
                         img.src = img.src.replace('_t', '');
