@@ -1,0 +1,46 @@
+// style for the your-books page.
+
+.your-books-page {
+    .controlList {
+        max-height: 25em;
+        overflow-y: auto;
+        border: inset;
+        padding: 0.1em;
+
+        li {
+            border: 1px solid black;
+            margin-left: 0px;
+
+            span {
+                display: block;
+            }
+
+            div {
+                display: none;
+
+                button {
+                    display: block;
+                    width: 100%;
+                }
+
+                input {
+                    display: block;
+                }
+
+                textarea {
+                    display: block;
+                }
+            }
+        }
+
+        li.active {
+            span {
+                display: none;
+            }
+
+            div {
+                display: block;
+            }
+        }
+    }
+}

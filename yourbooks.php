@@ -45,6 +45,23 @@ if(is_user_logged_in()) {
     }
     $view['published'] = $published;
     $view['has_published'] = count($published) > 0;
+
+    // list collections
+    $view['count'] = count(splitFavorites(THR('favorites')));
+
+    $rows = $wpdb->get_results("SELECT ID, title, description, slug, owner, booklist FROM $collections_table WHERE owner = $user_ID");
+    BuG("rows = " . print_r($rows, 1));
+
+    $mycols = array();
+    foreach ($rows as $row) {
+        $mycols = array(
+            'title' => $row->title,
+            'ID' => $row->ID,
+            'description' => $row->description,
+            'count' => count(splitFavorites($row->booklist)),
+            'slug' => $row->slug);
+    }
+    $view['collections'] = $mycols;
 }
 
 thr_header('your-books-page');

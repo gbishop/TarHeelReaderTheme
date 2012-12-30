@@ -47,10 +47,10 @@ function BSBuild($create, $count, $start, $limit) {
 /*
     $posts = $wpdb->get_results("
 SELECT p.*
-  FROM wpreader_posts p 
-  WHERE 
-    ((SELECT COUNT(1) FROM wpreader_term_relationships 
-      WHERE term_taxonomy_id IN (3) AND object_id = p.ID) = 1 ) AND 
+  FROM wpreader_posts p
+  WHERE
+    ((SELECT COUNT(1) FROM wpreader_term_relationships
+      WHERE term_taxonomy_id IN (3) AND object_id = p.ID) = 1 ) AND
     p.post_status = 'publish'
   LIMIT $start,$count");
 
@@ -60,7 +60,7 @@ SELECT p.*
     }
 */
     $query = new WP_Query(array(
-        'cat'=>3, 
+        'cat'=>3,
         'post_type' => 'post',
         'post_status' => 'publish',
         'posts_per_page' => $count,

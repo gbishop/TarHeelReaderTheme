@@ -41,6 +41,7 @@
 			$tc = THR('textColor');
 			echo ".thr-colors { color: #$tc; background: #$pc; border-color: #$tc; }";
 		?></style>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
 	<!-- For console bug in IE-->
 	<script>
 		if (!window.console) window.console = {};

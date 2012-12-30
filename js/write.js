@@ -52,7 +52,7 @@ define(['jquery',
                 fetchAnotherGallery(+1);
                 return false;
             });
-            
+
             $(window).resize(updateThumbnailSize); // update the thumbnails' size on window resize
         }
 
@@ -76,7 +76,7 @@ define(['jquery',
                         borderWidth = 1,
                         baseFont = parseInt($("body").css("font-size")),
                         iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
-                        
+
                         console.log(iwidth*picsPerRow*baseFont);
                         console.log(gwidth);
                     g.empty();
@@ -99,10 +99,10 @@ define(['jquery',
                 }
             });
         }
-        
+
         // Not sure whether this would be a useful feature: update thumbnails' size on window resize
         function updateThumbnailSize() {
-            
+
             var $g = $("#gallery"),
                 $images = $g.find("img"),
                 gwidth = $g.width(),
@@ -110,16 +110,16 @@ define(['jquery',
                 baseFont,
                 marginRight,
                 iWidth; // also its height
-                
+
             if(($images.length === 0)) { // no images to adjust, return
-                return; 
+                return;
             } else {
                 picsPerRow = gwidth > 720 ? 9 : 6;
                 marginRight = gwidth > 720 ? .2 : .1;
                 borderWidth = 1;
                 baseFont = parseInt($("body").css("font-size"));
                 iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
-                
+
                 $images.css({
                     width: iwidth + 'em',
                     height: iwidth + 'em',
@@ -127,7 +127,7 @@ define(['jquery',
                 });
             }
         }
-        
+
         function fetchGallery(options) {
             console.log('fetchGallery', options);
             // TODO: set loading here
@@ -597,12 +597,14 @@ define(['jquery',
             }
 
             // load the jquery-ui css
+            /*
             $('<link>', {
                 rel: 'stylesheet',
                 type: 'text/css',
                 href: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css',
                 id: 'theme'
             }).appendTo('head');
+            */
 
             // nested require so these are only loaded by users who want to write.
             require(['fileuploader', 'jquery-ui', 'jquery.ui.touch-punch', 'jquery.inlineedit'],
@@ -639,23 +641,6 @@ define(['jquery',
                     // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
                     $(".active-page #navigation li:not(:has(>ul)) a").on('click', confirmLeaving);
 
-                    $('body').on('click', '.help,.help-text', function(e) {
-                        // dialog doc claims it restores the source element but it does not do that for me, clone below
-                        var $openTips = $('.ui-dialog .help-text:visible');
-                        if ($openTips.length > 0) {
-                            $openTips.dialog('destroy');
-                            return;
-                        }
-                        var $this = $(this),
-                            offset = $this.offset(),
-                            ww = $(window).width(),
-                            tw = Math.max(200, ww/3),
-                            $tip = $this.next().clone().dialog({
-                                position: [offset.left - tw - 20, offset.top],
-                                width: tw
-                            });
-                            console.log('help', $tip);
-                    });
                     $('#save').on('click', saveAsDraft);
                     $('#publish').on('click', publish);
                     $('#categorizeButton').on('click', function() {

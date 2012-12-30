@@ -27,7 +27,7 @@ $carolinaBlue: #56A0D3;
 
     border: $borderWidth solid $borderColor;
     cursor: pointer;
-    
+
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
@@ -63,7 +63,7 @@ $carolinaBlue: #56A0D3;
     -webkit-border-radius: $borderRadius;
     -moz-border-radius: $borderRadius;
     border-radius: $borderRadius;
-    
+
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
@@ -156,7 +156,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     #homeLinkList + p {
       clear: both;
     }
-    
+
     .tinyicon {
       max-width: 1em;
       max-height: 1em;
@@ -177,7 +177,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       display: none; // don't display the 'More' option
     }
   }
-  
+
   .secondaryNav {
     display: block; // display the secondary navigation immediately
   }
@@ -222,61 +222,61 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   a {
     text-decoration: none;
   }
-  
+
   .navigation {
     margin-top: 1em;
     width: 100%;
     a {
       @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
     }
-    
+
     :first-child {
       float: right;
     }
-      
+
     :nth-child(2) {
       float: left;
     }
-    
+
   }
-  
+
   #languages {
     border: .1em solid #777;
     margin-left: 1em;
     padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
-    
+
     -webkit-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-    
+
     color: #333;
     font: small-caps 300 1.25em arial, sans-serif;
     text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-    
+
     height: 1.5em;
     min-height: 1.5em;
     width: 10em;
     min-width: 10em;
     vertical-align: middle;
   }
-  
+
   #goButton {
     background: url(/theme/images/globe.png) no-repeat center center;
     border: 0.15em solid #DDD;
     margin-left: 0.5em;
-    
+
     width: 6em;
     &:hover{
       background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
     }
-    
+
   }
-  
+
   #mapButton {
     width: auto;
     margin: 0.5em;
   }
-  
+
   .photoCreditsBox {
     width: 5em;
     height: 5em;
@@ -589,24 +589,24 @@ h2 {
     .secondaryNav {
       display: none;
     }
-    
+
     background: $carolinaBlue; // If all else fails...
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($carolinaBlue), to(#286DA3)); /* Safari 4-5, Chrome 1-9 */
     background: -webkit-linear-gradient(top, $carolinaBlue, #286DA3); /* Safari 5.1, Chrome 10+ */
     background: -moz-linear-gradient(top, $carolinaBlue, #286DA3); /* Firefox */
     background: -ms-linear-gradient(top, $carolinaBlue, #286DA3); /* IE 10+ */
     background: -o-linear-gradient(top, $carolinaBlue, #286DA3); /* Opera */
-   
+
     -webkit-box-shadow: .1em .1em .1em #AAA;
     -moz-box-shadow: .1em .1em .1em #AAA;
     box-shadow: .1em .1em .1em #AAA;
-    
+
     -webkit-border-radius: 0.4em;
     -moz-border-radius: 0.4em;
     border-radius: 0.4em;
-    
+
     border: 1px solid #EFEFEF;
-    
+
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
     margin: 0.5em auto;
@@ -615,7 +615,7 @@ h2 {
     width: 100%;
     height: auto;
     overflow: auto;
-    
+
     li {
       border-bottom: 1px solid #DFDFDF;
       color: #DFDFDF;
@@ -627,27 +627,27 @@ h2 {
       &:last-child {
         border-bottom: 0;
       }
-      
+
       &:focus, &:hover {
         background: #FFF;
         color: $carolinaBlue;
       }
-      
+
       &.divider {
         border-bottom: 1px solid #DFDFDF;
       }
-      
+
       a {
         display: block;
         padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
         text-decoration: none;
         width: 80%; // not 100% on purpose
-        
+
         color: inherit;
         font-size: 1.5em;
         line-height: 2em;
         text-align: left;
-        
+
         &.homeLink {
           background: url(/theme/images/home_32.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -657,12 +657,12 @@ h2 {
           background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.collectionsLink {
           background: url(/theme/images/collections_32.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.favoritesLink {
           background: url(/theme/images/favorite_book_32.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -682,35 +682,35 @@ h2 {
           background: url(/theme/images/info.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.more {
           background: url(/theme/images/down_menu_icon.png) right center no-repeat;
         }
-        
+
         &.yourBooksLink {
           background: url(/theme/images/book_32.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.blogLink {
           background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.photoCreditsLink {
           background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
       } // end a
-      
+
       &.divider {
         a {
           background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
         }
       }
     } // end li
-   
+
 }
 
 #mainSettings {
@@ -882,21 +882,21 @@ h2 {
     text-align: center;
     width: 100%;
     margin: 0.5em auto 0.25em;
-    
+
     select {
         border: 0.1em solid #DDD;
         -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-        
+
         padding: 0;
         margin: 0.15em 0.25em;
         line-height: 2em;
         width: 9em;
-        
+
         color: #333;
         font-size: 1.1em;
-        
+
         &[name='audience'] {
           width: 14em;
         }
@@ -1102,7 +1102,7 @@ h2 {
         -moz-box-shadow: none;
         box-shadow: none;
     }
-   
+
    .header {
       height: 0;
       min-height: 0;
@@ -1122,13 +1122,13 @@ h2 {
         height: 2.5em;
         overflow: hidden;
     }
-    
+
     .decoratedList { // changing background color of list items in choices looks ugly with large border-radius
         -webkit-border-radius: 0.1em;
         -moz-border-radius: 0.1em;
         border-radius: 0.1em;
     }
-    
+
     .navigationMenu {
       margin: 4em auto;
       width: 80%;
@@ -1331,11 +1331,11 @@ h2 {
           margin-left: 0.25em;
         }
     }
-    
+
     #image-search {
       margin-top: 0.5em;
     }
-    
+
     #gallery {
         margin: 1em auto;
         width: 90%;
@@ -1425,16 +1425,21 @@ h2 {
             margin-left: 0;
         }
     }
-    
+
 }
 
 .help {
-    width: 2em;
-    height: 2em;
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    cursor: pointer;
+  width: 2em;
+  height: 2em;
+  float: right;
+}
+.write-page .help {
+  width: 2em;
+  height:2em;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  cursor: pointer;
 }
 
 .help-text {
@@ -1532,7 +1537,7 @@ h2 {
  * Small width
  */
 @media only screen and (max-width: 624px) {
-  
+
   // *** Begin code for .server-page ***
   .server-page {
     #homeLinkList li {
@@ -1541,13 +1546,13 @@ h2 {
       margin: 1.5em auto;
       font-size: 1.3em;
     }
-    
+
     #languageForm {
       #languages {
         font-size: 1.5em;
         width: 90%;
       }
-      
+
       #goButton {
         background-size: 1.5em;
         margin: 0.5em 1em;
@@ -1555,11 +1560,11 @@ h2 {
       }
     }
   } // *** End code for .server-page
-  
-  
+
+
   // *** Begin code for .write-page ***
   .write-page {
-    
+
     #image-search {
       overflow: auto;
       input {
@@ -1567,42 +1572,42 @@ h2 {
         margin: 0.25em auto;
         width: 95% !important;
         vertical-align: middle;
-        
+
         &[type='submit'] {
           margin-left: 0.25em;
         }
       }
-      
+
     } // end image-search
-    
+
     .aWrap {
       .button {
         margin: 0 2%;
-        
+
         &:first-child {
-          width: 35%; 
+          width: 35%;
         }
-        
+
         &:last-child {
           width: 55%;
         }
       }
     }
-  
+
      div#step4 {
       button {
         margin: 0 2%;
         width: 45%;
       }
     }
-     
+
     .steps {
-      
+
       h2 {
         padding-right: 2.5em; // acount for the question mark picture and word-wrap accordingly
         word-wrap: break-word;
       }
-      
+
       label {
         display: block;
         width: 100%;
@@ -1612,60 +1617,60 @@ h2 {
          width: 30%;
          display: inline-block;
         }
-        
+
         input {
           width: 65% !important;
         }
         select, button {
           width: 68% !important; // selects and buttons take up a little less space for some reason
         }
-        
+
       }
-      
+
     }
   } // *** End code for .write-page ****
-  
+
 } // end media queries for max-width: 624px
 
 // define mixin for the alternative navigation/menu layout used for handheld devices
 @mixin phoneDisplay {
-   
+
    .header {
      h1 {
        margin-top: 0.5em;
        font-size: 2em !important;
      }
    }
-   
+
    // make the buttons easier to press
    .thr-gray-button, .thr-blue-button {
      font-size: 1.25em;
-     padding: 0.5em 1em; 
+     padding: 0.5em 1em;
    }
-   
+
    #languageForm{
      #languages {
        height: 2em;
        line-height: 1.5em;
      }
    }
-   
+
    // input text areas need to be bigger (easier to press on)
    input[type='text'], input[type='search'], input[type='password'], select {
      font-size: 1.1em;
      height: 1.75em;
      line-height: 1.5em;
    }
-   
+
    .navigation a {
      font-size: 1.25em !important;
      padding: 0.5em 1em !important;
    }
-   
+
    label {
      font-size: 1.1em;
    }
-   
+
     // *** Begin code for .your-books-page***
   .your-books-page {
     .decoratedList {
@@ -1674,16 +1679,16 @@ h2 {
         height: 2em;
         line-height: 2em;
       }
-     
+
     }
-    
+
     #mapButton {
       margin: 0.5em 0;
       width: 100%;
     }
-    
+
   } // *** End code for .your-books-page***
-   
+
    // *** Begin .write-page code ***
    .write-page {
      #image-search {
@@ -1694,7 +1699,7 @@ h2 {
        }
      }
    } // *** End .write-page code ***
-   
+
    .navigationMenu {
      a {
        background-size: 16px 16px !important;
@@ -1706,36 +1711,36 @@ h2 {
  * max-width: 637px
  */
 @media only screen and(max-width: 637px) {
-  
+
   .content-wrap {
     width: 90%;
   }
-  
+
   // header adjustments for the heart and gear
   .header {
     margin-top: 0.25em;
-    
+
     h1 {
       font-size: 1.25em;
       margin-top: 0.75em;
     }
-    
+
     .thr-well-icon {
       top: 0.25em;
     }
-    
+
     .thr-settings-icon {
       top: 0;
       right: 0.5em;
     }
-    
+
     .thr-favorites-icon {
       top: 0;
       right: 4.5em;
     }
-    
+
   }
-  
+
   .thr-book-list { // want to display 3 books per row
     margin-left: 2.083333%; // 1/48
     li {
@@ -1743,7 +1748,7 @@ h2 {
       margin: 0.4167%; // 0.2/48 = 0.004167...
     }
   }
-  
+
   .navigationMenu {
     a {
       padding: 0 19% !important;
@@ -1764,7 +1769,7 @@ h2 {
                 height: 3em !important;
                 vertical-align: middle;
                 font-size: 1.2em;
-                
+
                 &[type='submit'] {
                   margin-left: 0.25em;
                 }
@@ -1936,3 +1941,5 @@ img.favoriteYes, img.favoriteNo {
 }
 
 @import "fileuploader";
+
+@import "yourbooks";

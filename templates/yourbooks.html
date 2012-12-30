@@ -1,47 +1,91 @@
 {{#user}}
-	<div id="draftsContainer">
+	<div class="container">
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Your Draft Books)">_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible.)</p>
     	<h2>_(Your Draft Books)</h2>
     	{{#has_drafts}}
-    	<p>_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible.)</p>
-    	<form method="POST" action="/your-books/">
-        	<ul class="decoratedList">
-            	{{#drafts}}
-            	<li>
-               	 	<input type='checkbox' name='del[]' value='{{ID}}' title='delete' />
-                	<a href="/write/?id={{ID}}" class="book">{{title}}{{^title}}_(untitled){{/title}}</a>
-            	</li>
-         	   {{/drafts}}
-        	</ul>
-        	<input class="thr-gray-button" type="submit" value="_(Delete checked drafts)" name="delete" />
-   	 	</form>
-
+    	<ul class="controlList">
+        	{{#drafts}}
+        	<li data-id="{{ID}}">
+                <span>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</span>
+                <div>
+                    <p>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</p>
+                    <button data-action="edit">_(Edit)</button>
+                    <button data-action="delete">_(Delete)</button>
+                    <button data-action="cancel">_(Cancel)</button>
+                </div>
+        	</li>
+     	   {{/drafts}}
+    	</ul>
     	{{/has_drafts}}
     	{{^has_drafts}}
     	<p>_(If you had any books saved as drafts they would appear here.)</p>
     	{{/has_drafts}}
    </div>
 
-	<div id="publishedBooksContainer">
+	<div id="container">
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Your Published Books)">_(Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title.)</p>
     	<h2>_(Your Published Books)</h2>
     	{{#has_published}}
-    	<p>_(Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title.)</p>
-    	<ul class="decoratedList">
+    	<ul class="controlList">
         	{{#published}}
-        	<li>
-            	<a href="{{link}}" class="book">{{title}}</a>
-            	<a href="/write/?id={{ID}}" class="edit">_(Edit)</a>
+        	<li data-id="{{ID}}">
+                <span>{{title}}</span>
+                <div>
+                    <p>{{title}}</p>
+                    <button data-action="edit">_(Edit)</button>
+                    <button data-action="cancel">_(Cancel)</button>
+                </div>
         	</li>
         	{{/published}}
     	</ul>
     	{{/has_published}}
     	{{^has_published}}
     	<p>_(If you had any published books they would be listed here.)</p>
-   </div>
-    	{{/has_published}}
+        {{/has_published}}
+    </div>
+
+    <div id="container">
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <p class="help-text" title="_(Your Collections)">_(Your collections are listed below.)</p>
+        <h2>_(Your Collections)</h2>
+        <ul class="controlList">
+            <li data-id="0" class="favoritesCollection">
+                <span>Favorites</span>
+                <div>
+                    <p>Favorites</p>
+                    <p>_({{count}} books)</p>
+                    <input title="_(title)" type="text" name="title" value="" placeholder="Enter title"/>
+                    <textarea title="_(description)" name="description" placeholder="Enter description"></textarea>
+                    <button data-action="save">_(Save as a new Collection)</button>
+                    <button data-action="clear">_(Clear Favorites list)</button>
+                    <button data-action="cancel">_(Cancel)</button>
+                </div>
+            </li>
+            {{#collections}}
+            <li data-id="{{ID}}">
+                <span>{{title}}</span>
+                <div>
+                    <input title="_(title)" type="text" name="title" value="{{title}}" />
+                    <textarea title="_(description)" name="description">{{description}}</textarea>
+                    <p>_({{count}} books)</p>
+                    <button data-action="update">_(Update)</button>
+                    <button data-action="add">_(Add to Favorites)</button>
+                    <button data-action="merge">_(Merge Favorites into here)</button>
+                    <button data-action="replace">_(Replace with Favorites)</button>
+                    <button data-action="delete">_(Delete)</button>
+                    <button data-action="cancel">_(Cancel)</button>
+                </div>
+            </li>
+            {{/collections}}
+        </ul>
+    </div>
+
 {{/user}}
 {{^user}}
 <p>_(You must be logged in to see your draft and published books.)</p>
 {{/user}}
 
 <h2>_(Where in the world are these books read?)</h2>
-<button id="mapButton" class="thr-gray-button" href="/where-are-the-readers/">_(Check out our map of readers!)</button>
+<button id="mapButton" class="thr-gray-button" href="/where-are-the-readers/">_(Check out our map of readers.)</button>

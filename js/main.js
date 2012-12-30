@@ -13,7 +13,9 @@ require([ "jquery",
           "read",
           "write",
           "busy",
-          "navigation"
+          "navigation",
+          "help",
+          "yourbooks"
           ],
     function($, route, state) {
         $(function() {
