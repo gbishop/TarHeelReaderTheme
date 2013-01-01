@@ -7,7 +7,7 @@ define([
 
     function hideControls() {
         $('.active-page .controlList li.active').removeClass('active')
-                                                .find("div").slideUp();
+                                                .find("div").slideUp(300);
                                                 
     }
 
@@ -20,9 +20,8 @@ define([
         hideControls();
 
         // activate this one
-        $(this).parent().addClass('active')
-                        .find("div").slideDown();
-        console.log($(this).parent().find("div"));
+        $(this).parent().addClass('active').find("div")
+                        .slideDown(300).scrollIntoView();
 
         // signal that it is open so I can validate the state of some buttons
         $(this).parent().trigger('activated');

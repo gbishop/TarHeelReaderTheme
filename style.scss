@@ -14,13 +14,20 @@ $carolinaBlue: #56A0D3;
 @import "reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
-@mixin thrBackground($gradientStart, $gradientEnd) {
-    background: $carolinaBlue; // If all else fails...
-    background: -webkit-gradient(linear, $gradientStart, $gradientEnd, from($carolinaBlue), to(#286DA3)); /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* Firefox */
-    background: -ms-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* IE 10+ */
-    background: -o-linear-gradient($gradientStart, $carolinaBlue, #286DA3); /* Opera */
+/*
+ * TODO: Replace all gradients with code using this mixin
+ */
+@mixin linearGradient($gradientStart, $gradientEnd, $colorStart, $colorEnd) {
+    background: $colorStart; // If all else fails...
+    background: -webkit-gradient(linear, $gradientStart, $gradientEnd, from($colorStart), to($colorEnd)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Firefox */
+    background: -ms-linear-gradient($gradientStart, $colorStart, $colorEnd); /* IE 10+ */
+    background: -o-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Opera */
+}
+
+@mixin thrBackground($gradientStart, $gradientEnd) { // special gradient that is used often
+    @include linearGradient($gradientStart, $gradientEnd, $carolinaBlue, #286DA3);
 }
 
 @mixin decoratedButton($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $gradientStartColor, $gradientEndColor,  $fontSize,
@@ -73,9 +80,9 @@ $carolinaBlue: #56A0D3;
     -moz-border-radius: $borderRadius;
     border-radius: $borderRadius;
     
-    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
 
     color: $textColor;
     font-size: $fontSize;
@@ -1560,6 +1567,9 @@ h2 {
         margin: 0.25em auto;
         width: 95% !important;
         vertical-align: middle;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
         
         &[type='submit'] {
           margin-left: 0.25em;
@@ -1606,6 +1616,11 @@ h2 {
          display: inline-block;
         }
         
+        input, select, button {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        }
         input {
           width: 65% !important;
         }
@@ -1673,6 +1688,9 @@ h2 {
     .mapButton {
       margin: 0.5em 0;
       width: 100%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
     }
     
   } // *** End code for .your-books-page***
