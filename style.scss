@@ -36,6 +36,7 @@ $carolinaBlue: #56A0D3;
 
     border: $borderWidth solid $borderColor;
     cursor: pointer;
+    
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
@@ -71,7 +72,7 @@ $carolinaBlue: #56A0D3;
     -webkit-border-radius: $borderRadius;
     -moz-border-radius: $borderRadius;
     border-radius: $borderRadius;
-
+    
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
@@ -99,20 +100,20 @@ $carolinaBlue: #56A0D3;
 
 // used for the navigation and settings menus
 @mixin decoratedMenu {
-
+  
     -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
     -moz-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
     box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
-
+    
     -webkit-border-radius: 0.4em;
     -moz-border-radius: 0.4em;
     border-radius: 0.4em;
     border: 1px solid #EFEFEF;
-
+    
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
     height: auto;
-
+    
     li {
       border-bottom: 1px solid #DFDFDF;
       color: #DFDFDF;
@@ -122,12 +123,12 @@ $carolinaBlue: #56A0D3;
       &:last-child {
         border-bottom: 0;
       }
-
+      
       &:focus, &:hover, &.selectedLink {
         background: #FFF !important;
         color: $carolinaBlue;
       }
-
+      
       a {
         display: block;
         font-size: 1.3em;
@@ -197,12 +198,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
            @include decoratedButton(0.1em, #61A0B3, 0.5em, 0.25em, $carolinaBlue, #286DA3, 1.25em, 1em, 2em, #DDD, #81BEF0, #FFF, 0.5s, 10em);
          }
       }
-
+      
       & + p {
         clear: both;
       }
     }
-
+    
     .tinyicon {
       max-width: 1em;
       max-height: 1em;
@@ -223,7 +224,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       display: none; // don't display the 'More' option
     }
   }
-
+  
   .secondaryNav {
     display: block; // display the secondary navigation immediately
   }
@@ -252,7 +253,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       color: $carolinaBlue;
     }
   }
-
+  
   h2 {
     font-size: 1.6em;
   }
@@ -271,62 +272,62 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   a {
     text-decoration: none;
   }
-
+  
   .navigation {
     margin-top: 1em;
     width: 100%;
     a {
       @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
     }
-
+    
     :first-child {
       float: right;
     }
-
+      
     :nth-child(2) {
       float: left;
     }
-
+    
   }
-
+  
   .languages {
     border: .1em solid #777;
     margin-left: 1em;
     padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
-
+    
     -webkit-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-
+    
     color: #333;
     font: small-caps 300 1.25em arial, sans-serif;
     text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-
+    
     height: 1.5em;
     min-height: 1.5em;
     width: 10em;
     min-width: 10em;
     vertical-align: middle;
   }
-
+  
   .goButton {
     background: url(/theme/images/globe.png) no-repeat center center;
     border: 0.15em solid #DDD;
     margin-left: 0.5em;
-
+    
     width: 6em;
     &:hover{
       background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
     }
-
+    
   }
-
+  
   .mapButton {
     display: block;
     margin: 0.5em;
     width: 20em;
   }
-
+  
   .photoCreditsBox {
     width: 5em;
     height: 5em;
@@ -358,316 +359,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
             color: #555;
             font-family: 'Terminal Dosis', sans-serif;
             text-shadow: 0 1px 0 rgba(170, 170, 170, 0.25);
-            font-weight: 200;
-            padding: 0;
-        }
-    }
-
-    .description {
-        font-size: 0.9em;
-    }
-}
-
-.thr-well-icon {
-    position: absolute;
-    top: .5em;
-    left: 2em;
-
-    width: 2.5em;
-    min-width: 24px;
-    height: 2.5em;
-    min-height: 24px;
-
-    img {
-        width: 2.5em;
-        min-width: 24px;
-        height: 2.5em;
-        min-height: 24px;
-        opacity: 0.6;
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    z-index: 99;
-}
-
-.thr-settings-icon {
-    display: none;
-    position: absolute;
-    top: 0.65em;
-    right: 2em;
-    z-index: 999;
-
-    width: 2.5em;
-    min-width: 24px;
-    height: 2.5em;
-    min-height: 24px;
-
-    img {
-        width: 2.5em;
-        min-width: 24px;
-        height: 2.5em;
-        min-height: 24px;
-        opacity: 0.6;
-        &:hover {
-           opacity: 1;
-        }
-    }
-
-}
-
-@mixin decoratedInput($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $fontSize, $yPadding, $xPadding,
-                       $textColor, $transitionBorderColor, $transitionBoxShadowColor, $transitionBoxShadowBlur, $transitionDuration, $height, $width) {
-    border: $borderWidth solid $borderColor;
-    -webkit-border-radius: $borderRadius;
-    -moz-border-radius: $borderRadius;
-    border-radius: $borderRadius;
-
-    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.4);
-
-    color: $textColor;
-    font-size: $fontSize;
-
-    padding: $yPadding $xPadding;
-
-    -webkit-transition: all $transitionDuration ease-in;
-    -moz-transition: all $transitionDuration ease-in;
-    transition: all $transitionDuration ease-in;
-
-    height: $height;
-    width: $width;
-
-    &:focus {
-      -webkit-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
-      -moz-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
-      box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
-
-      border: $borderWidth solid $transitionBorderColor;
-    }
-}
-
-
-/* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
-body {
-    font-family: Helmet, Freesans, Arial, Helvetica, Verdana, sans-serif;
-    font-size: 100%;
-    width: 100%;
-    height: 100%;
-}
-
-html {
-    width: 100%;
-    height: 100%;
-    background: #F5F6F7;
-}
-
-/* using local fonts? make sure to read up on Paul Irish's
-    Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
-
-a {color: #03f;}
-a:hover {color: #69f;}
-
-/* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
-::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
-::selection {background: #fcd700; color: #fff; text-shadow: none;}
-
-/*  j.mp/webkit-tap-highlight-color */
-a:link {-webkit-tap-highlight-color: #fcd700;}
-
-ins {background-color: #fcd700; color: #000; text-decoration: none;}
-mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
-
-/* And here begins the Wordpress fun.
--------------------------------------------------------------------------------*/
-
-.content-wrap {
-    width: 48em;
-    margin: 0 auto 1em;
-    padding: 0.25em 1em 1em;
-    //position: relative; // why do we need this?
-
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    border-radius: 1em;
-
-    -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
-    -moz-box-shadow: 0 0 0.2em $carolinaBlue;
-    box-shadow: 0 0 0.2em $carolinaBlue;
-    overflow: auto;
-
-    #homeLinkList {
-      text-align: center;
-      overflow: auto;
-
-      li {
-        margin: 1.5em 0;
-        width: 50%;
-        float: left;
-        .homeLink {
-           @include decoratedButton(0.1em, #61A0B3, 0.5em, 0.25em, $carolinaBlue, #286DA3, 1.25em, 1em, 2em, #DDD, #81BEF0, #FFF, 0.5s, 10em);
-         }
-      }
-
-    }
-
-    #homeLinkList + p {
-      clear: both;
-    }
-
-    .tinyicon {
-      max-width: 1em;
-      max-height: 1em;
-    }
-
-}
-
-.page-wrap {
-    //width: 100%;
-    display: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navigation .navigationMenu {
-  .mainNav {
-    li:last-child {
-      display: none; // don't display the 'More' option
-    }
-  }
-
-  .secondaryNav {
-    display: block; // display the secondary navigation immediately
-  }
-}
-
-.find-page {
-
-    .description {
-      display: none;
-    }
-    .thr-settings-icon {
-      display: block;
-    }
-}
-
-.active-page {
-    display: block;
-}
-
-// The following styles apply to the Home, Books You Wrote, Announcements, FAQ, and Photo Credits pages
-.server-page, .your-books-page {
-  h2 {
-    font-size: 1.7em;
-    font-weight: normal;
-    letter-spacing: 0.1em;
-    border-bottom: 2px solid $carolinaBlue;
-    color: #666;
-    padding-left: .25em;
-  }
-
-  p {
-    text-align: left;
-    margin: 1em 0.5em;
-
-    &#message {
-      color: $carolinaBlue;
-      font-size: 1.25em;
-      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  .navigation {
-    margin-top: 1em;
-    width: 100%;
-    a {
-      @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
-    }
-
-    :first-child {
-      float: right;
-    }
-
-    :nth-child(2) {
-      float: left;
-    }
-
-  }
-
-  #languages {
-    border: .1em solid #777;
-    margin-left: 1em;
-    padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
-
-    -webkit-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-
-    color: #333;
-    font: small-caps 300 1.25em arial, sans-serif;
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-
-    height: 1.5em;
-    min-height: 1.5em;
-    width: 10em;
-    min-width: 10em;
-    vertical-align: middle;
-  }
-
-  #goButton {
-    background: url(/theme/images/globe.png) no-repeat center center;
-    border: 0.15em solid #DDD;
-    margin-left: 0.5em;
-
-    width: 6em;
-    &:hover{
-      background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
-    }
-
-  }
-
-  #mapButton {
-    width: auto;
-    margin: 0.5em;
-  }
-
-  .photoCreditsBox {
-    width: 5em;
-    height: 5em;
-    display: inline-block;
-  }
-}
-
-.header {
-    position: relative; // for positioning our navigation menu
-    width: 100%;
-
-    height: 4em;
-    text-align: center;
-    display: block;
-
-    min-height: 32px;
-
-    h1 {
-        font-size: 2em;
-        padding-top: 0.25em;
-        letter-spacing: .05em;
-        margin-top: 0.1em;
-
-        height: 1.7em;
-        min-height: 57%;
-
-        a {
-            text-decoration: none;
-            color: #555;
-            font-family: 'Terminal Dosis', sans-serif;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
             font-weight: 200;
             padding: 0;
         }
@@ -828,854 +519,41 @@ h2 {
 
  }
 
-// Panel CSS for Settings menus
-.panel {
-    position: absolute;
-    top: 3em;
-    padding: 0;
-    width: 12em;
-
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    border-radius: 1em;
-    border: .1em solid #DDD;
-
-    li {
-      border-bottom: .1em solid #DDD;
-      position: relative; // in order to show submenus
-      margin: 0;
-      padding: 0;
-      height: auto;
-      width: auto;
-
-      .submenu {
-        list-style: none;
-        position: absolute;
-        display: none;
-        top: -0.05em; // line up with border
-        width: 12em;
-        padding: 0;
-        margin: 0;
-
-
-        /* Set necessary background, border, and width */
-        background: #8E8E8E;
-
-        -webkit-box-shadow: 0 0 0.1em #667;
-        -moz-box-shadow: 0 0 0 0.1em #667;
-        box-shadow: 0 0 .1em #667;
-
-        border: 0.1em solid #DDD;
-        border-left: 0;
-        z-index: 99;
-
-        li {
-          border: 0;
-          border-bottom: 0.1em solid #DDD;
-
-          &.selectedLink {
-            -webkit-border-radius: 0.25em;
-            -moz-border-radius: 0.25em;
-            border-radius: 0.25em;
-          }
-
-          &:last-child {
-            border: 0;
-          }
-        }
-
-        a {
-          font-size: 1em;
-          padding: 1em;
-          font-size: 1.1em;
-          text-align: center;
-        }
-      }
-
-      &:last-child {
-        border: 0;
-      }
-
-      &.selectedLink {
-        border: .2em solid #EEE !important;
-        -webkit-border-radius: 0.25em;
-        -moz-border-radius: 0.25em;
-        border-radius: 0.25em;
-      }
-
-      &:first-child.selectedLink {
-        -webkit-border-top-left-radius: 0.75em;
-        -webkit-border-top-right-radius: 0.75em;
-        -moz-border-radius-topleft: 0.75em;
-        -moz-border-radius-topright: 0.75em;
-        border-top-left-radius: 0.75em;
-        border-top-right-radius: 0.75em;
-      }
-
-      &:last-child.selectedLink {
-        -webkit-border-bottom-left-radius: 0.75em;
-        -webkit-border-bottom-right-radius: 0.75em;
-        -moz-border-radius-bottomleft: 0.75em;
-        -moz-border-radius-bottomright: 0.75em;
-        border-bottom-left-radius: 0.75em;
-        border-bottom-right-radius: 0.75em;
-      }
-    }
-
-    a {
-      display: block;
-      text-decoration: none;
-      color: #DDD;
-      padding: 1em 0 1em 4em;
-
-      text-align: left;
-      font-size: 1.3em;
-
-      background-size: 1.5em !important; // resize the images for fluid layout
-
-      -webkit-transition: color 0.1s;
-      -moz-transition: color 0.1s;
-      -o-transition: color 0.1s;
-      -ms-transition: color 0.1s;
-      transition: color 0.1s;
-
-      &:hover {
-         color: #FFF;
-      }
-    }
-}
-
-.navigationMenu {
-    .secondaryNav {
-      display: none;
-    }
-
-    background: $carolinaBlue; // If all else fails...
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($carolinaBlue), to(#286DA3)); /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(top, $carolinaBlue, #286DA3); /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, $carolinaBlue, #286DA3); /* Firefox */
-    background: -ms-linear-gradient(top, $carolinaBlue, #286DA3); /* IE 10+ */
-    background: -o-linear-gradient(top, $carolinaBlue, #286DA3); /* Opera */
-
-    -webkit-box-shadow: .1em .1em .1em #AAA;
-    -moz-box-shadow: .1em .1em .1em #AAA;
-    box-shadow: .1em .1em .1em #AAA;
-
-    -webkit-border-radius: 0.4em;
-    -moz-border-radius: 0.4em;
-    border-radius: 0.4em;
-
-    border: 1px solid #EFEFEF;
-
-    background-clip: padding-box;
-    -webkit-background-clip: padding-box;
-    margin: 0.5em auto;
-    margin-bottom: 0;
-    max-width: 48em !important;
-    width: 100%;
-    height: auto;
-    overflow: auto;
-
-    li {
-      border-bottom: 1px solid #DFDFDF;
-      color: #DFDFDF;
-      cursor: pointer;
-      margin: 0;
-      height: 3em;
-      overflow: hidden;
-
-      &:last-child {
-        border-bottom: 0;
-      }
-
-      &:focus, &:hover {
-        background: #FFF;
-        color: $carolinaBlue;
-      }
-
-      &.divider {
-        border-bottom: 1px solid #DFDFDF;
-      }
-
-      a {
-        display: block;
-        padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
-        text-decoration: none;
-        width: 80%; // not 100% on purpose
-
-        color: inherit;
-        font-size: 1.5em;
-        line-height: 2em;
-        text-align: left;
-
-        &.homeLink {
-          background: url(/theme/images/home_32.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.findLink {
-          background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.collectionsLink {
-          background: url(/theme/images/collections_32.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.favoritesLink {
-          background: url(/theme/images/favorite_book_32.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.writeLink {
-          background: url(/theme/images/write_book.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.loginLink {
-          background: url(/theme/images/user.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.helpLink {
-          background: url(/theme/images/info.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.more {
-          background: url(/theme/images/down_menu_icon.png) right center no-repeat;
-        }
-
-        &.yourBooksLink {
-          background: url(/theme/images/book_32.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.blogLink {
-          background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.photoCreditsLink {
-          background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-      } // end a
-
-      &.divider {
-        a {
-          background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
-        }
-      }
-    } // end li
-
-}
-
-#mainSettings {
-  display: none; // hide initially
-  right: 4em;
-  z-index: 99;
-
-  -webkit-box-shadow: -.1em .1em .1em #AAA;
-  -moz-box-shadow: -.1em .1em .1em #AAA;
-  box-shadow: -.1em .1em .1em #AAA;
-
-   /* Background code... */
-   background: #888; // If all else fails...
-   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8E8E8E), to(#6F6F6F)); /* Safari 4-5, Chrome 1-9 */
-   background: -webkit-linear-gradient(left, #8E8E8E, #6F6F6F); /* Safari 5.1, Chrome 10+ */
-   background: -moz-linear-gradient(left, #8E8E8E, #6F6F6F); /* Firefox */
-   background: -ms-linear-gradient(left, #8E8E8E, #6F6F6F); /* IE 10+ */
-   background: -o-linear-gradient(left, #8E8E8E, #6F6F6F); /* Opera */
-
-  li {
-    // display submenu to the left
-    .submenu {
-       right: 12.05em; // account for border
-       -webkit-border-radius: 1em 0 0 1em;
-       -moz-border-radius: 1em 0 0 1em;
-       border-radius: 1em 0 0 1em;
-       border-right: 0;
-       border-left: .1em solid #DDD;
-
-      li {
-
-        height: auto;
-        width: auto;
-
-        .innerSubmenu {
-          /* Set necessary background, border, and width */
-           display: none;
-           position: absolute;
-           right: 12em;
-           width: 10em;
-           top: -2em;
-
-           background: #8E8E8E;
-           border-radius: 1em 0 0 1em;
-           border: .1em solid #DDD;
-           z-index: 99;
-
-           a {
-             text-align: left;
-             padding-left: 3.25em;
-             padding-right: 0.5em;
-           }
-
-         }
-
-         // a little adjustment to the innersubmenus inside 'My Book'
-         .myBookInnerSubmenu {
-             right: 12em;
-             width: 9em;
-
-             a {
-               text-align: center;
-               padding: 1em;
-             }
-         }
-
-      }
-
-      // Begin color icons for page color
-      #pageColors .innerSubmenu {
-        a.black {
-          background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
-        }
-
-        a.blue {
-          background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
-        }
-
-        a.cyan {
-          background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
-        }
-
-        a.green {
-          background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
-        }
-
-        a.magenta {
-          background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
-        }
-
-        a.red {
-          background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
-        }
-
-        a.white {
-           background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
-        }
-
-        a.yellow {
-           background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
-          }
-        }
-         // End color icons for page color
-
-         // Begin color icons for text color
-       #textColors .innerSubmenu {
-           a.black {
-             background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
-           }
-
-           a.blue {
-             background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
-           }
-
-           a.cyan {
-             background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
-           }
-
-           a.green {
-             background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
-           }
-
-           a.magenta {
-             background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
-           }
-
-           a.red {
-             background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
-           }
-
-           a.white {
-             background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
-           }
-
-           a.yellow {
-             background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
-           }
-       }
-
-
-    } // end submenu
-
-  } // end li
-
-  a {
-    &.checked {
-      background: url(/theme/images/check_mark.png) right center no-repeat !important;
-    }
-
-    &#speech {
-      background: url(/theme/images/sound_32.png) 1em center no-repeat;
-    }
-
-    &#colors {
-      background: url(/theme/images/colors_32.png) 1em center no-repeat;
-    }
-
-    &#myBook {
-      background: url(/theme/images/my_book_32.png) 1em center no-repeat;
-    }
-
-    &#default {
-      background: url(/theme/images/default_settings.png) 1em center no-repeat;
-    }
-  }
-}
-
-.searchForm {
-    text-align: center;
-    width: 100%;
-    margin: 0.5em auto 0.25em;
-
-    select {
-        border: 0.1em solid #DDD;
-        -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-        box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-
-        padding: 0;
-        margin: 0.15em 0.25em;
-        line-height: 2em;
-        width: 9em;
-
-        color: #333;
-        font-size: 1.1em;
-
-        &[name='audience'] {
-          width: 14em;
-        }
-    }
-
-    input {
-        &[type='search'] {
-          @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1.1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
-        }
-
-        &[type='submit'] {
-          margin: 0.25em 0.75em;
-          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
-        }
-    }
-
-}
-
-// Mixin arguments for decorated gray/blue buttons and input
-.thr-gray-button {
-  @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
-}
-
-.thr-blue-button {
-  @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0.25s, 7em);
-}
-
-.thr-input {
-  @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
-}
-
-/*
- *  Import the decoratedButton mixin for this button with a few changes
- *
- */
-.searchShowButton {
-    display: none; // displayed by media query if js is on and screen is small
-    height: 2em;
-    min-height: 32px;
-    font-size: 1.5em;
-    border: solid black 1px;
-    text-decoration: none;
-    vertical-align: middle;
-    -webkit-appearance: push-button;
-    -webkit-border-radius: 2em;
-    -moz-border-radius: 2em;
-    border-radius: 2em;
-    //font-size: 1.5em;
-    text-align: center;
-    color: black;
-}
-
-.thr-book-list {
-    display: block;
-    text-align: center;
-    margin-left: 1em;
-    overflow: auto;
-
-    li {
-        width: 11em;
-        height: 11em;
-        border: 1px solid $carolinaBlue;
-        margin: 0.2em;
-        float: left;
-        text-align: center;
-        position: relative;
-        line-height: 1em;
-        overflow: hidden;
-        //background:white;
-        -webkit-border-radius: 0.25em;
-        -moz-border-radius: 0.25em;
-        border-radius: 0.25em;
-
-        -webkit-box-shadow: 0.1em 0.1em 0.1em #aaa;
-        -moz-box-shadow: 0.1em 0.1em 0.1em #aaa;
-        box-shadow: 0.1em 0.1em 0.1em #aaa;
-
-    }
-
-    li.selected {
-        border-color: red !important;
-    }
-
-    h2 {
-        height: 2.2em;
-        font-size: 1em;
-        line-height: 1.1em;
-        overflow: hidden;
-        margin: 0.2em 0 0 0;
-    }
-
-    .thr-author {
-        font-size: 0.8em;
-        overflow: hidden;
-        height: 1.3em;
-        margin: 0;
-    }
-
-    a, a:hover {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .thr-pages {
-        position: absolute;
-        bottom: 0.25em;
-        right: 0.625em;
-        font-size: 0.7em;
-    }
-
-    .thr-thumb-box {
-        width: 6.25em;
-        height: 6.25em;
-        margin: 0 auto;
-    }
-
-    .thr-stars {
-        width: 3em;
-        height: 1em;
-    }
-
-    .thr-reviewed {
-        width: 1em;
-        height: 1em;
-        position: absolute;
-        left: 0.5em;
-        bottom: 0.5em;
-    }
-
-    .thr-caution {
-        width: 1em;
-        height: 1em;
-        position: absolute;
-        left: 0.5em;
-        bottom: 1.7em;
-    }
-}
-
-.thr-find-next {
-    float: right;
-    margin: 1em 1.2em 0 0;
-}
-
-.thr-find-back {
-    float: left;
-    margin: 1em 0 0 1em;
-}
-
-.thr-back-link {
-    //left: 0px;
-    left: 1em;
-}
-
-.thr-next-link {
-    //right: 0px;
-    right: 1em;
-}
-
-.thr-next-link, .thr-back-link {
-
-    @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 6em);
-
-    position: absolute; // fixed works fine but isn't supported before ios5?
-    bottom: 0.5em;
-
-    font-size: $pageLinkFontSize;
-    height: 4em;
-
-    img {
-        margin: 0.5em auto 0.25em auto;
-        width: 1.5em;
-        height: 1.5em;
-        display: block;
-    }
-}
-.thr-page-number {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    font-size: 1em;
-}
-
-/* This default page design is for browsers wtihout media queries.
-   It is designed to fit in 768 by 600 pixels, that is 48em by 37.5em
-*/
-.thr-book-page {
-    text-align: center;
-    height: 100%;
-
-    .content-wrap {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        padding: 0;
-        margin: 0;
-
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
-
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-    }
-
-   .header {
-      height: 0;
-      min-height: 0;
-      border-top: 0;
-
-      h1 {
-          display: none;
-      }
-
-      .thr-well-icon { // make the home icon less opaque
-        opacity: 0.6;
-      }
-    }
-
-    h1 {
-        font-size: 2em;
-        height: 2.5em;
-        overflow: hidden;
-    }
-
-    .decoratedList { // changing background color of list items in choices looks ugly with large border-radius
-        -webkit-border-radius: 0.1em;
-        -moz-border-radius: 0.1em;
-        border-radius: 0.1em;
-    }
-
-    .navigationMenu {
-      margin: 4em auto;
-      width: 80%;
-      a {
-        width: 80%;
-      }
-    }
-
-    .thr-question {
-        color: #666;
-        margin: 1em auto;
-    }
-
-    .thr-pic-box {
-        width: 29em;
-        height: 29em;
-        margin: auto;
-        margin-top: 0.5em;
-    }
-    .thr-credit {
-        font-size: 0.5em;
-        color: #DDD;
-    }
-    .thr-caption {
-        font-size: $captionFontSize;
-        line-height: 1.2em;
-        width: (48em - 2 * 6 * $pageLinkFontSize) / $captionFontSize * 1em + 0.2em;
-        height: 6em / $captionFontSize * 1em + 0.2em;
-        overflow: hidden;
-        margin: 0 auto;
-    }
-    .thr-choices {
-        //width: 12em;
-        width: 18em; // make the list a bit bigger so that the text fits in nicely
-        margin: auto;
-        margin-top: .5em;
-        font-size: 2em;
-        text-align: left;
-
-        li {
-            padding: 0.25em 0.25em;
-            .thr-stars {
-                width: 3em; // font-size is 2em so these are halved
-                height: 1em;
-                margin-right: 1em;
-            }
-        }
-
-        a {
-            text-decoration: none;
-            font-weight: normal;
-            color: inherit;
-        }
-
-        li:hover, li.selected {
-            background-color: #FEFEF;
-            background-image: -ms-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: -moz-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: -o-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FAFAFA), color-stop(100%, #FAFAFA));
-            background-image: -webkit-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: linear-gradient(top, #FFF, #FAFAFA);
-
-            color: $carolinaBlue;
-        }
-
-    }
-}
-
-.footer, .footer a {
-    width: 100%;
-    text-align: center;
-    font-size: 0.7em;
-    color: #888;
-}
-
-.thr-colors a, .thr-colors a:hover {
-    color: inherit;
-}
-
-.post {
-    max-width: 100%;
-    padding: .5em 1em;
-}
-
-.entry { margin-left: 1em;}
-.entry a { text-decoration: none;}
-.entry a:hover { text-decoration: underline;}
-
-.postmetadata {}
-
-p {
-    margin: 0.5em;
-}
-
-li {
-    margin-left: 1.2em;
-    margin-bottom: 0.5em;
-}
-
-h2 {
-    font-size: 1.3em;
-    margin: .25em;
-}
-
-.decoratedList {
-    margin-bottom: 1em;
-
-    background-color: #DDD;
-    background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
-    background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: linear-gradient(top, #F0F2F7, #DDD);
-
-    border: 1px solid #AAA !important;
-    -webkit-border-radius: 0.3em;
-    -moz-border-radius: 0.3em;
-    border-radius: 0.3em;
-
-    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
-    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
-
-    li {
-      list-style: none;
-      padding: .5em .75em;
-      margin: 0;
-      border-bottom: 1px solid #555;
-
-      a {
-        color: #555;
-        font-weight: bold;
-        letter-spacing: .1em;
-        padding-left: .5em;
-        padding-right: 1.5em;
-
-        text-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
-
-        &:hover {
-          color: $carolinaBlue;
-        }
-      }
-
-      &:last-child {
-        border: 0;
-      }
-    }
-
- }
-
 .navigationMenu {
     @include thrBackground(top, bottom);
     @include decoratedMenu;
-
+    
     .secondaryNav {
       display: none;
     }
-
+    
     margin: 0.5em auto;
     margin-bottom: 0;
     max-width: 48em;
     width: 100%;
     overflow: auto;
-
+    
     li {
       height: 3em;
       overflow: hidden;
-
+      
       &.divider {
         border-bottom: 1px solid #DFDFDF;
         a {
           background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
         }
       }
-
+      
       a {
         background-size: 1.5em !important;
         padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
         width: 80%; // not 100% on purpose
-
+        
         color: inherit;
         font-size: 1.5em;
         line-height: 2em;
         text-align: left;
-
+        
         &.homeLink {
           background: url(/theme/images/home_32.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -1685,12 +563,12 @@ h2 {
           background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-
+        
         &.collectionsLink {
           background: url(/theme/images/collections.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-
+        
         &.favoritesLink {
           background: url(/theme/images/favorite_book.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -1710,21 +588,21 @@ h2 {
           background: url(/theme/images/info.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-
+        
         &.more {
           background: url(/theme/images/down_menu_icon.png) right center no-repeat;
         }
-
+        
         &.yourBooksLink {
           background: url(/theme/images/my_book.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-
+        
         &.blogLink {
           background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-
+        
         &.photoCreditsLink {
           background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -1732,40 +610,40 @@ h2 {
 
       } // end a
     } // end li
-
+   
 }
 
 .mainSettings {
     @include thrBackground(left, right);
     @include decoratedMenu;
-
+    
     display: none;
     position: absolute;
     top: 3em;
     right: 4em;
-
+    
     padding: 0;
     margin: 0;
     width: 12em;
     z-index: 100;
-
+    
     -webkit-border-radius: 0.25em 0.4em 0.4em 0.25em;
     -moz-border-radius: 0.25em 0.4em 0.4em 0.25em;
     border-radius: 0.25em 0.4em 0.4em 0.25em;
-
+    
     li {
       position: relative; // in order to show submenus
       margin: 0;
       padding: 0;
       height: auto;
       width: auto;
-
+    
       a {
         background-size: 1.5em !important;
         color: inherit;
         font-size: 1.3em;
         padding: 1em 0 1em 3.5em;
-
+        
         &.speech {
           background: url(/theme/images/sound.png) 1em center no-repeat;
         }
@@ -1782,7 +660,7 @@ h2 {
           background: url(/theme/images/default_settings.png) 1em center no-repeat;
         }
       } // end a
-
+    
       .submenu {
         @include thrBackground(right, left);
         background-clip: padding-box;
@@ -1790,41 +668,41 @@ h2 {
         -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
         -moz-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
         box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
-
+        
         position: absolute;
         display: none;
         top: -1px;
-        right: 12.05em;
+        right: 12.05em; 
         z-index: 999;
         list-style: none;
-
+       
         width: 12em;
         padding: 0;
         margin: 0;
-
+       
         -webkit-border-radius: 0.5em 0 0 0.5em;
         -moz-border-radius: 0.5em 0 0 0.5em;
         border-radius: 0.5em 0 0 0.5em;
         border: 1px solid #EFEFEF;
         border-right: 0;
-
+        
         a {
           &.checked {
                 background: url(/theme/images/check_mark.png) right center no-repeat;
           }
         }
-
+      
         li {
           height: auto;
           width: auto;
-
+          
           a {
             font-size: 1em;
             padding: 1em;
             font-size: 1.1em;
             text-align: center;
           }
-
+        
           .innerSubmenu {
             @include thrBackground(left, right);
             background-clip: padding-box;
@@ -1845,14 +723,14 @@ h2 {
               text-align: left;
               padding-left: 3.25em;
               padding-right: 0.5em;
-
+              
               &.checked {
                 background: url(/theme/images/check_mark.png) right center no-repeat;
               }
             }
           } // end .innerSubmenu
         } // end li
-
+        
         // Begin color icons for text color
         .textColors .innerSubmenu a {
             &.black {
@@ -1862,7 +740,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.blue {
               background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
               &.checked {
@@ -1870,7 +748,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.cyan {
               background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
               &.checked {
@@ -1878,7 +756,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.green {
               background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
               &.checked {
@@ -1886,7 +764,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.magenta {
               background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
               &.checked {
@@ -1894,7 +772,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.red {
               background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
               &.checked {
@@ -1902,7 +780,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.white {
               background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
               &.checked {
@@ -1910,7 +788,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.yellow {
               background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
               &.checked {
@@ -1929,7 +807,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.blue {
               background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
               &.checked {
@@ -1937,7 +815,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.cyan {
               background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
               &.checked {
@@ -1945,7 +823,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.green {
               background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
               &.checked {
@@ -1953,7 +831,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.magenta {
               background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
               &.checked {
@@ -1961,7 +839,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.red {
               background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
               &.checked {
@@ -1969,7 +847,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.white {
               background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
               &.checked {
@@ -1977,7 +855,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-
+          
             &.yellow {
               background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
               &.checked {
@@ -1986,7 +864,7 @@ h2 {
                }
             }
           } // end color icons for page color
-
+       
       } // end submenu
     } // end li
 }
@@ -1995,21 +873,21 @@ h2 {
     text-align: center;
     width: 100%;
     margin: 0.5em auto 0.25em;
-
+    
     select {
         border: 0.1em solid #DDD;
         -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-
+        
         padding: 0;
         margin: 0.15em 0.25em;
         line-height: 2em;
         width: 9em;
-
+        
         color: #333;
         font-size: 1.1em;
-
+        
         &[name='audience'] {
           width: 14em;
         }
@@ -2215,7 +1093,7 @@ h2 {
         -moz-box-shadow: none;
         box-shadow: none;
     }
-
+   
    .header {
       height: 0;
       min-height: 0;
@@ -2235,13 +1113,13 @@ h2 {
         height: 2.5em;
         overflow: hidden;
     }
-
+    
     .decoratedList { // changing background color of list items in choices looks ugly with large border-radius
         -webkit-border-radius: 0.1em;
         -moz-border-radius: 0.1em;
         border-radius: 0.1em;
     }
-
+    
     .navigationMenu {
       margin: 4em auto;
       width: 80%;
@@ -2383,6 +1261,9 @@ h2 {
   input[type='submit'] {
     width: 13em;
   }
+  
+
+
 }
 
 .next-posts {}
@@ -2443,11 +1324,11 @@ h2 {
           margin-left: 0.25em;
         }
     }
-
+    
     .image-search {
       margin-top: 0.5em;
     }
-
+    
     .gallery {
         margin: 1em auto;
         width: 90%;
@@ -2537,7 +1418,7 @@ h2 {
             margin-left: 0;
         }
     }
-
+    
 }
 
 .help {
@@ -2644,7 +1525,7 @@ h2 {
  * Small width
  */
 @media only screen and (max-width: 624px) {
-
+  
   // *** Begin code for .server-page ***
   .server-page {
     .homeLinkList li {
@@ -2653,13 +1534,13 @@ h2 {
       margin: 1.5em auto;
       font-size: 1.3em;
     }
-
+    
     .languageForm {
       .languages {
         font-size: 1.5em;
         width: 90%;
       }
-
+      
       .goButton {
         background-size: 1.5em;
         margin: 0.5em 1em;
@@ -2667,11 +1548,11 @@ h2 {
       }
     }
   } // *** End code for .server-page
-
-
+  
+  
   // *** Begin code for .write-page ***
   .write-page {
-
+    
     .image-search {
       overflow: auto;
       input {
@@ -2679,41 +1560,42 @@ h2 {
         margin: 0.25em auto;
         width: 95% !important;
         vertical-align: middle;
-
+        
         &[type='submit'] {
           margin-left: 0.25em;
         }
       }
-
+      
     } // end image-search
-
+    
     .aWrap {
       .button {
         margin: 0 2%;
-
+        
         &:first-child {
-          width: 35%;
+          width: 35%; 
         }
-
+        
         &:last-child {
           width: 55%;
         }
       }
     }
-
+  
      div.step4 {
       button {
         margin: 0 2%;
         width: 45%;
       }
     }
-
+     
     .steps {
-
+      
       h2 {
         padding-right: 2.5em; // acount for the question mark picture and word-wrap accordingly
         word-wrap: break-word;
       }
+      
       label {
         display: block;
         width: 100%;
@@ -2723,57 +1605,60 @@ h2 {
          width: 30%;
          display: inline-block;
         }
-
+        
         input {
           width: 65% !important;
         }
         select, button {
           width: 68% !important; // selects and buttons take up a little less space for some reason
         }
-
+        
       }
-
+      
     }
   } // *** End code for .write-page ****
-
+  
 } // end media queries for max-width: 624px
 
 // define mixin for the alternative navigation/menu layout used for handheld devices
 @mixin phoneDisplay {
+   
    .header {
      h1 {
        margin-top: 0.5em;
        font-size: 2em !important;
      }
    }
-
+   
    // make the buttons easier to press
    .thr-gray-button, .thr-blue-button {
      font-size: 1.25em;
-     padding: 0.5em 1em;
+     padding: 0.5em 1em; 
    }
-
+   
    .languageForm {
      .languages {
        height: 2em;
        line-height: 1.5em;
      }
    }
+   
    // input text areas need to be bigger (easier to press on)
    input[type='text'], input[type='search'], input[type='password'], select {
      font-size: 1.1em;
      height: 1.75em;
      line-height: 1.5em;
    }
+   
    .navigation a {
      font-size: 1.25em !important;
      padding: 0.5em 1em !important;
    }
-
+   
    label {
      font-size: 1.1em;
    }
-
+   
     // *** Begin code for .your-books-page***
   .your-books-page {
     .decoratedList {
@@ -2782,16 +1667,16 @@ h2 {
         height: 2em;
         line-height: 2em;
       }
-
+     
     }
-
+    
     .mapButton {
       margin: 0.5em 0;
       width: 100%;
     }
-
+    
   } // *** End code for .your-books-page***
-
+   
    // *** Begin .write-page code ***
    .write-page {
      .image-search {
@@ -2808,35 +1693,36 @@ h2 {
  * max-width: 637px
  */
 @media only screen and(max-width: 637px) {
-
+  
   .content-wrap {
     width: 90%;
   }
-
+  
   // header adjustments for the heart and gear
   .header {
     margin-top: 0.25em;
-
+    
     h1 {
       font-size: 1.25em;
       margin-top: 0.75em;
     }
-
+    
     .thr-well-icon {
       top: 0.25em;
     }
-
+    
     .thr-settings-icon {
       top: 0;
       right: 0.5em;
     }
+    
     .thr-favorites-icon {
       top: 0;
       right: 4.5em;
     }
-
+    
   }
-
+  
   .thr-book-list { // want to display 3 books per row
     margin-left: 2.083333%; // 1/48
     li {
@@ -2844,6 +1730,7 @@ h2 {
       margin: 0.4167%; // 0.2/48 = 0.004167...
     }
   }
+  
   .navigationMenu {
     a {
       padding: 0 19% !important;
@@ -2864,6 +1751,7 @@ h2 {
                 height: 3em !important;
                 vertical-align: middle;
                 font-size: 1.2em;
+                
                 &[type='submit'] {
                   margin-left: 0.25em;
                 }
@@ -3035,5 +1923,4 @@ img.favoriteYes, img.favoriteNo {
 }
 
 @import "fileuploader";
-
 @import "yourbooks";

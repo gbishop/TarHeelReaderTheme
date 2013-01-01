@@ -6,7 +6,9 @@ define([
 ], function($, route, state) {
 
     function hideControls() {
-        $('.active-page .controlList li').removeClass('active');
+        $('.active-page .controlList li.active').removeClass('active')
+                                                .find("div").slideUp();
+                                                
     }
 
     // display the controls on click
@@ -18,7 +20,9 @@ define([
         hideControls();
 
         // activate this one
-        $(this).parent().addClass('active').scrollIntoView();
+        $(this).parent().addClass('active')
+                        .find("div").slideDown();
+        console.log($(this).parent().find("div"));
 
     });
 
