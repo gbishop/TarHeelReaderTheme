@@ -56,7 +56,7 @@ define([
 
 
     // handle collections buttons
-    $(document).on('click', '.controlList.collectionsList button', function(event) {
+    $(document).on('click', '.controlList.collectionsList button[data-action!="cancel"]', function(event) {
         var $this = $(this),
             $li = $this.parents('li'),
             id = $li.attr('data-id'),
