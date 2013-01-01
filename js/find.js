@@ -204,7 +204,6 @@ define(["jquery",
         });
         $page.attr('data-key', url);
         // signal if book is in favorites
-        var favorites = state.get('favorites');
         $page.find('li.selectable')
             .removeClass('favoriteYes favoriteNo')
             .each(function(i, li) {

@@ -77,6 +77,14 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         return new RegExp('(^|,)' + id + '(,|$)').test(state['favorites']);
     }
 
+    function favoritesArray() {
+        var r = state['favorites'].match(/\d+/g);
+        if (! r) {
+            r = [];
+        }
+        return r;
+    }
+
     stateUpdate(window.location.href);
 
     return {
@@ -86,6 +94,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         dump: dump,
         addFavorite: addFavorite,
         removeFavorite: removeFavorite,
-        isFavorite: isFavorite
+        isFavorite: isFavorite,
+        favoritesArray: favoritesArray
     };
 });

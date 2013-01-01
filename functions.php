@@ -630,7 +630,7 @@ function collections_query_vars( $query_vars )
 
 $collections_table = $wpdb->prefix . 'book_collections';
 
-function updateCollection($id, $title, $description) {
+function updateCollection($id, $title, $description, $favs=null) {
     global $wpdb, $collections_table;
 
     $userid = get_current_user_id();
@@ -638,22 +638,49 @@ function updateCollection($id, $title, $description) {
         return false;
     }
 
-    $favs = THR('favorites');
     $data = array(
         'title' => $title,
-        'description' => $description,
-        'booklist' => $favs);
-    if ($id) {
-        $r = $wpdb->update($collections_table, $data, array('ID' => $id));
-        return $r;
+        'description' => $description);
+
+    if ($favs) {
+        $data['booklist'] = $favs;
     }
+
+    if ($id != 'new') {
+        // updating an existing collection
+        $r = $wpdb->update($collections_table, $data, array('ID' => $id));
+        if ($r == 1)
+            return $id;
+        else
+            return false;
+    }
+
+    // saving favorites
+    $data['booklist'] = THR('favorites');
     $slug = substr(sanitize_title_with_dashes($title), 0, 195);
     // TODO: make it unique
     $data['slug'] = $slug;
     $data['owner'] = $userid;
     $data['language'] = 'en';  // compute from the books included, used 'xxx' if they aren't all the same
     $r = $wpdb->insert($collections_table, $data);
-    return $r;
+    if ($r == 1) {
+        $id = $wpdb->insert_id;
+    } else {
+        $id = false;
+    }
+    return $id;
+}
+
+function deleteCollection($id) {
+    global $wpdb, $collections_table;
+
+    $userid = get_current_user_id();
+    if ($userid == 0) {
+        return false;
+    }
+
+    $r = $wpdb->query("DELETE FROM $collections_table WHERE ID=$id AND owner=$userid");
+    return $r == 1;
 }
 
 function fetchCollections($query=null) {
