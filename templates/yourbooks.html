@@ -4,7 +4,7 @@
         <p class="help-text" title="_(Your Draft Books)">_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible.)</p>
     	<h2>_(Your Draft Books)</h2>
     	{{#has_drafts}}
-    	<ul class="controlList">
+    	<ul class="controlList booksList">
         	{{#drafts}}
         	<li data-id="{{ID}}">
                 <span>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</span>
@@ -28,7 +28,7 @@
         <p class="help-text" title="_(Your Published Books)">_(Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title.)</p>
     	<h2>_(Your Published Books)</h2>
     	{{#has_published}}
-    	<ul class="controlList">
+    	<ul class="controlList booksList">
         	{{#published}}
         	<li data-id="{{ID}}">
                 <span>{{title}}</span>
@@ -50,19 +50,21 @@
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Your Collections)">_(Your collections are listed below.)</p>
         <h2>_(Your Collections)</h2>
-        <ul class="controlList">
-            <li data-id="0" class="favoritesCollection">
+        <ul class="controlList collectionsList">
+            {{#count}}
+            <li data-id="new" class="favoritesCollection">
                 <span>Favorites</span>
                 <div>
                     <p>Favorites</p>
                     <p>_({{count}} books)</p>
                     <input title="_(title)" type="text" name="title" value="" placeholder="Enter title"/>
                     <textarea title="_(description)" name="description" placeholder="Enter description"></textarea>
-                    <button data-action="save">_(Save as a new Collection)</button>
+                    <button data-action="save" disabled class="validateTitle">_(Save as a new Collection)</button>
                     <button data-action="clear">_(Clear Favorites list)</button>
                     <button data-action="cancel">_(Cancel)</button>
                 </div>
             </li>
+            {{/count}}
             {{#collections}}
             <li data-id="{{ID}}">
                 <span>{{title}}</span>
@@ -70,10 +72,10 @@
                     <input title="_(title)" type="text" name="title" value="{{title}}" />
                     <textarea title="_(description)" name="description">{{description}}</textarea>
                     <p>_({{count}} books)</p>
-                    <button data-action="update">_(Update)</button>
+                    <button data-action="save" class="validateTitle">_(Update)</button>
                     <button data-action="add">_(Add to Favorites)</button>
-                    <button data-action="merge">_(Merge Favorites into here)</button>
-                    <button data-action="replace">_(Replace with Favorites)</button>
+                    <button data-action="merge" class="requireFavs">_(Merge Favorites into here)</button>
+                    <button data-action="set" class="requireFavs">_(Replace with Favorites)</button>
                     <button data-action="delete">_(Delete)</button>
                     <button data-action="cancel">_(Cancel)</button>
                 </div>
