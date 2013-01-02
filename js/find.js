@@ -236,8 +236,8 @@ define(["jquery",
         ev.preventDefault();
     });
     $(document).on('click', '.favorites-page.chooseFavorites .thr-favorites-icon', function(ev) {
-        window.location.reload(true); // force a refresh after changing favorites on favorites page
-    })
+        window.location.href = '/favorites/'; // force a refresh after changing favorites on favorites page
+    });
 
     route.add('render', /^\/find\/(\?.*)?$/, findRender);
     route.add('init', /^\/find\/(\?.*)?$/, findConfigure);

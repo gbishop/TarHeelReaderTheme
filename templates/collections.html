@@ -1,0 +1,22 @@
+<h1>_(Collections)</h1>
+<form action="/collections/" method="get">
+    <input name="search" type="search" placeholder="_(Enter text to search)" />
+    <input type="submit" value="_(Search)" />
+</form>
+{{^has_collections}}
+<p>_(No collections matching that query. Try again.)</p>
+{{/has_collections}}
+{{#has_collections}}
+<dl>
+    {{#collections}}
+    <dt><a href="/favorites/?collection={{slug}}">{{title}}</a></dt>
+    <dd>{{description}}</dd>
+    {{/collections}}
+</dl>
+{{/has_collections}}
+{{#prevLink}}
+<a href="{{prevLink}}">_(Back)</a>
+{{/prevLink}}
+{{#nextLink}}
+<a href="{{nextLink}}">_(Next)</a>
+{{/nextLink}}

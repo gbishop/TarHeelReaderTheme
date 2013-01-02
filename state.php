@@ -18,6 +18,7 @@ $THRDefault = array(
     'voice' => 'silent',  // voice to use silent, male, female, child
     'locale' => 'en',     // users language for supporting translations of the site
     'favorites' => '',    // list of favorite ids
+    'collection' => '',   // collection slug
     'findAnotherLink' => '/find/' // URL to return to book search
 );
 
@@ -38,6 +39,7 @@ $THRPatterns = array(
     'voice' => '/^silent|male|female|child$/',    // voice to use silent, male, female, child
     'locale' => '/^[a-z]{2,3}$/',  // users language for supporting translations of the site
     'favorites' => '/(^[AR]?\d+(,+\d+)*$)|(^$)/',   // comma separated integers or empty
+    'collection' => '/^[-\w\d]*$/',  // letters, numbers, and dash
     'findAnotherLink' => '/^.*$/'
 );
 
@@ -52,13 +54,14 @@ function splitFavorites($str) {
 }
 
 function thrUpdateState(&$current, $update, $patterns) {
-    global $THRDefault;
+    global $THRDefault, $wpdb, $collections_table;
     $changed = 0; // track number of changes
     foreach($update as $param => $value) {
         if (array_key_exists($param, $patterns)) {
             if (preg_match($patterns[$param], $value)) {
                 $changed += 1;
                 if ($param == 'favorites') {
+                    $current['collection'] = ''; // clear the collection anytime favorites are directly set
                     $favs = splitFavorites($current['favorites']);
                     $ids = splitFavorites($value);
                     if (strpos($value, 'A') === 0) { // add the book
@@ -163,7 +166,13 @@ function find_url($page = null) {
 function favorites_url($page = null) {
     global $THRState, $THRDefault;
     $p = array();
-    foreach(array('pageColor', 'textColor', 'voice', 'favorites') as $parm) {
+    $parms = array('pageColor', 'textColor', 'voice');
+    if ($THRState['collection']) {
+        $parms[] = 'collection';
+    } else {
+        $parms[] = 'favorites';
+    }
+    foreach($parms as $parm) {
         $v = urlencode($THRState[$parm]);
         $p[] = "$parm=$v";
     }

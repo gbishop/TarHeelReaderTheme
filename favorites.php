@@ -47,7 +47,7 @@ if (array_key_exists('books', $_GET)) { // old format URL, convert it before red
 }
 
 // redirect on an empty URL so the page is bookmarkable
-if (! array_key_exists('favorites', $_GET) && THR('favorites')) {
+if (! array_key_exists('favorites', $_GET) && ! array_key_exists('collection', $_GET) && THR('favorites')) {
   $loc = favorites_url();
   header('Location: ' . $loc);
   die();
@@ -63,7 +63,13 @@ if (array_key_exists('favorites', $_GET) && preg_match('/^[AR]/', $_GET['favorit
 // construct the where clause
 $where = array();
 $where[] = "p.post_status = 'publish'";
-$favorites = THR('favorites');
+$collection = THR('collection');
+if ($collection) {
+  $favorites = $wpdb->get_var($wpdb->prepare("SELECT booklist FROM $collections_table WHERE slug = %s", $collection));
+  setTHR('favorites', $favorites);
+} else {
+  $favorites = THR('favorites');
+}
 if ($favorites) {
   $where[] = "p.id in (" . $favorites . ")";
 } else {

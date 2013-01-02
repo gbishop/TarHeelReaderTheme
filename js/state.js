@@ -62,6 +62,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
             }
             set('favorites', favList.join(','));
         }
+        set('collection', ''); // clear collection if favorites changes
     }
 
     function removeFavorite(id) {
@@ -71,6 +72,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
             favList.splice(index, 1);
             set('favorites', favList.join(','));
         }
+        set('collection', ''); // clear collection if favorites changes
     }
 
     function isFavorite(id) {

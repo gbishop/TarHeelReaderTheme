@@ -8,7 +8,7 @@ define([
     function hideControls() {
         $('.active-page .controlList li.active').removeClass('active')
                                                 .find("div").slideUp(300);
-                                                
+
     }
 
     // display the controls on click
@@ -18,16 +18,17 @@ define([
 
         // hide any that are shown
         hideControls();
-        
+
         // scroll into view and show the options div
         $optionsDiv.slideDown(300, "swing", function() {
-            $(this).scrollIntoView(200, "swing", function() {
+            /* disable for now, it mostly works without it
+                $(this).scrollIntoView(200, "swing", function() {
                 var parentList = $parentLi.parent();
                 $optionsDiv.parents("ul").animate({scrollTop: $optionsDiv.position().top - parentList.position().top}, 600);
-            });
+            }); */
         }); // can't chain functions here
-        
-        
+
+
         // signal that it is open so I can validate the state of some buttons
         $parentLi.addClass("active").trigger('activated');
     });
@@ -55,12 +56,12 @@ define([
         });
 
     }
-    
+
     // function to remove the book from the list so we don't need a page refresh to update the lists
     function removeFromList(data, status, $li, $div) {
         var success = true,
             $bookList;
-            
+
         if(status === 'success' && data) {
             // all of the results in the data object must be true to indicate success
             for(var key in data) {
@@ -68,7 +69,7 @@ define([
                     success = false;
                 }
             }
-            
+
             if(success) { // remove the list item
                 $div.slideUp(300, "swing", function() {
                     $li.remove();
@@ -77,7 +78,7 @@ define([
                         $bookList.replaceWith("<p>If you had any books saved as drafts they would appear here.</p>");
                     }
                 }); // end slideUp
-                
+
             } else { // something went wrong... just slide up
                 $li.removeClass("active");
                 $div.slideUp(300);
@@ -86,30 +87,30 @@ define([
     }
 
     route.add('init', /^\/your-books\/(\?.*)?$/, initYourBooks);
-    
-    
+
+
     /* This is what I originally intended, but it is probably safer to check that the ajax call succeeded
      * and that the deletion was also successful
      *
-     * 
+     *
      * if it is a delete button, update the list accordingly without needing a page refresh
      $(document).on('click', '.controlList.bookList button[data-action="delete"]', function(event) {
         var $li = $(this).parents('li'),
             $div = $li.find('div');
-        
+
         $div.slideUp(300, function() {
             $li.remove(); // remove the list item entirely
         });
-        
+
     });*/
-    
+
     // handle drafts/books buttons
     $(document).on('click', '.controlList.booksList button[data-action!="cancel"]', function(event) {
         var $this = $(this),
             $li = $(this).parents('li'),
             bookID = $this.parents('li').attr('data-id'),
             action = $this.attr('data-action');
-            
+
         if(action === 'edit') {
            window.location.pathname = "/write/?id=" + bookID; // simply change URL, this is all we need to do, right?
         } else if(action === 'delete') {

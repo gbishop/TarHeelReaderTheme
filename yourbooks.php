@@ -49,12 +49,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $userid != 0) {
                 'title' => $title,
                 'description' => $description);
             if ($id == 'new') {
-                $data['booklist'] = THR('favorites');
+                $favs = THR('favorites');
+                $data['booklist'] = $favs;
                 $slug = substr(sanitize_title_with_dashes($title), 0, 195);
-                // TODO: make it unique
-                $data['slug'] = $slug;
+                // make slug unique
+                $alt_slug = $slug;
+                $num = 1;
+                while (true) {
+                    $slug_check = $wpdb->get_var($wpdb->prepare( "SELECT slug FROM $collections_table WHERE slug = %s", $alt_slug ) );
+                    if (! $slug_check) break;
+                    $num = $num + 1;
+                    $alt_slug = $slug . '-' . $num;
+                } while($slug_check);
+                $data['slug'] = $alt_slug;
                 $data['owner'] = $userid;
-                $data['language'] = 'en';  // compute from the books included, used 'xxx' if they aren't all the same
+                // get the language of all the books in the collection
+                $langs = $wpdb->get_col("SELECT language from $collections_table WHERE id in ($favs)");
+                $lang = $langs[0];
+                if (count(array_unique($langs)) > 1) {
+                    $lang = 'xx';
+                }
+                $data['language'] = $lang;  // compute from the books included, used 'xxx' if they aren't all the same
                 $r = $wpdb->insert($collections_table, $data);
                 if ($r == 1) {
                     $result = $wpdb->insert_id;
