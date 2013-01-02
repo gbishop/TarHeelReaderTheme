@@ -33,7 +33,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
     $(function() {
         var $body = $("body"),
             currentSettings = getCurrentSettings(),
-            currentURL;
+            pathname;
 
         initNavKeybindings(); // initialize the keybindings for the menu
 
@@ -98,7 +98,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
         });
 
         $body.on("PageVisible", function() {
-            currentURL = $(location).attr("href"); // update current URL
+            pathname = $(location).attr("pathname"); // update current URL
             if($(".content-wrap").length === 1) { return; } // initial entrance to website, avoid "double slidedown" bug
 
             $(".active-page").find(".content-wrap").
@@ -107,14 +107,12 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
 
        $body.on("click", ".active-page .navigationMenu a:not(.more), a.homeLink", function() {
             var href = $(this).attr("href"),
-                strippedURL = currentURL.match(/\/[a-zA-Z\-]+\//) || "/", // "/" denotes home page
                 newPage = true;
 
-            console.log(strippedURL);
             if(href === "/") { // exact match of home page?
-                newPage = strippedURL === "/" ? false : true; // is currentURL also the home page? Then we're not going to a new page
+                newPage = pathname === "/" ? false : true; // is pathname also the home page? Then we're not going to a new page
 
-            } else if(strippedURL.indexOf(href) > -1) {
+            } else if(pathname.indexOf(href) > -1) {
                 newPage = false;
             }
             // if it's a new page, then just slide the navigation up; else, slide up navigation and show .hiddenContent
