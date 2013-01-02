@@ -4,7 +4,7 @@
         <p class="help-text" title="_(Your Draft Books)">_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible.)</p>
     	<h2>_(Your Draft Books)</h2>
     	{{#has_drafts}}
-    	<ul class="controlList booksList">
+    	<ul class="controlList booksList draftBooks">
         	{{#drafts}}
         	<li data-id="{{ID}}">
                 <span>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</span>

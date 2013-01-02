@@ -32,7 +32,7 @@ $collections_table = $wpdb->prefix . 'book_collections';
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $userid != 0) {
     $action = getParam('action', '', '/[-a-z]+/', 'post');
     $id = getParam('id', 'new', '/\d+/', 'post');
-    if ($action == 'delete-draft' && $id != 'new') {
+    if ($action == 'delete' && $id != 'new') {
         $post = get_post($id);
         if($post && $post->post_author == $userid) {
             $r = wp_delete_post($id);
