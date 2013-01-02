@@ -24,6 +24,7 @@ $carolinaBlue: #56A0D3;
     background: -moz-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Firefox */
     background: -ms-linear-gradient($gradientStart, $colorStart, $colorEnd); /* IE 10+ */
     background: -o-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Opera */
+    background: linear-gradient($gradientStart, $colorStart, $colorEnd);
 }
 
 @mixin thrBackground($gradientStart, $gradientEnd) { // special gradient that is used often
@@ -1245,6 +1246,10 @@ h2 {
   .publishedBooksContainer {
     margin: 1em 0;
   }
+  
+  h2 {
+    padding-top: 0.2em; // just for border alignment with the help icons
+  }
 
   p {
     margin-left: 1em;
@@ -1431,10 +1436,16 @@ h2 {
 .help {
     width: 2em;
     height: 2em;
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    cursor: pointer;
+    float: right;
+}
+
+.write-page .help {
+  width: 2em;
+  height: 2em;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  cursor: pointer;
 }
 
 .help-text {
