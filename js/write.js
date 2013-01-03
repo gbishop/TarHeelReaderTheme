@@ -259,6 +259,7 @@ define(['jquery',
             templates.setImageSizes(view.image);
             var $p = $('<li class="thr-book-page">' + templates.render('bookPage', view) + '</li>');
             $p.find('a').remove();
+            $p.find('.thr-colors').removeClass('.thr-colors');
             $('.write-pages').append($p);
             $('.noPicturesMessage').hide();
             if (!isInit) {
