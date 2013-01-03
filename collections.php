@@ -12,7 +12,7 @@ $collections_table = $wpdb->prefix . 'book_collections';
 $where = array();
 $page = 1;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $query = getParam('search', '');
+    $query = getParam('q', '');
     $terms = array();
     if ($query) {
         $words = array();
