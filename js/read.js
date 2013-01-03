@@ -10,24 +10,36 @@ define(["jquery",
         ], function($, route, page, templates, keys, state, speech) {
 
     var book = null; // current book
-
+    
+    $(".active-page").on("PageRendered", function() {
+        $(this).setHoverColors();
+    });
     // set text and background color of a jQuery element
-    jQuery.fn.setHoverColors = function(bgColor, textColor) {
-        var $this = $(this);
+    jQuery.fn.setHoverColors = function() {
+        var $this = $(this),
+            pageColor = "#" + state.get('pageColor'),
+            textColor = "#" + state.get('textColor');
 
         $this.find(".thr-colors:not(ul), .thr-colors > li").hover(function() { // swap text and background colors on hover
-            $(this).css({ background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') })
-                    .find("a").css({color: '#' + state.get('pageColor') });
+            $(this).css({ background: textColor, color: pageColor })
+                    .find("a")
+                    .css({color: pageColor });
         }, function() {
-            $(this).css({ background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') })
-                    .find("a").css({color: '#' + state.get('textColor') });
+            $(this).css({ background: pageColor, color: textColor })
+                    .find("a")
+                    .css({color: textColor });
         });
 
-        $("body").keypress(function(e) {
-            $this.find(".thr-colors > li.selected").css({background: '#' + state.get('textColor'), color: '#' + state.get('pageColor') })
-                 .find("a").css({color: '#' + state.get('pageColor') });
-            $this.find(".thr-colors > li:not(.selected)").css({background: '#' + state.get('pageColor'), color: '#' + state.get('textColor') })
-                 .find("a").css({color: '#' + state.get('textColor') });
+        $(document).keypress(function(e) {
+            $this.find(".thr-colors > li.selected")
+                 .css({background: textColor, color: pageColor })
+                 .find("a")
+                 .css({color: pageColor });
+            
+            $this.find(".thr-colors > li:not(.selected)")
+                 .css({background: pageColor, color: textColor })
+                 .find("a")
+                 .css({color: textColor });
         }); // end keydown
     }
 

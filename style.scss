@@ -249,13 +249,13 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 // The following styles apply to the Home, Books You Wrote, Announcements, FAQ, and Photo Credits pages
-.server-page, .your-books-page {
+.server-page, .your-books-page, .collections-page {
   h1, h2 {
     border-bottom: 2px solid $carolinaBlue;
     color: #676767;
     font-size: 1.8em;
     font-weight: normal;
-    padding-left: .25em;
+    padding-left: 0.25em;
     a {
       color: $carolinaBlue;
     }
@@ -280,6 +280,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     text-decoration: none;
   }
   
+  /*     This is not the navigation menu that is used for navigation around the site. 
+         This is for "next", "previous" links for navigation around posts/collections
+   */
   .navigation {
     margin-top: 1em;
     width: 100%;
@@ -287,11 +290,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
     }
     
-    :first-child {
+    .next-posts, .next {
       float: right;
     }
       
-    :nth-child(2) {
+    .prev-posts, .back {
       float: left;
     }
     
@@ -481,22 +484,16 @@ li {
     margin-bottom: 0.5em;
 }
 
+h1, h2{
+  margin: 0.25em;
+}
+
 h2 {
     font-size: 1.3em;
-    margin: .25em;
 }
 
 .decoratedList {
     margin-bottom: 1em;
-
-    background-color: #DDD;
-    background-image: -ms-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -moz-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -o-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F2F7), color-stop(100%, #DDD));
-    background-image: -webkit-linear-gradient(top, #F0F2F7, #DDD);
-    background-image: linear-gradient(top, #F0F2F7, #DDD);
-
     border: 1px solid #AAA !important;
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
@@ -508,22 +505,19 @@ h2 {
 
     li {
       list-style: none;
-      padding: .5em .75em;
       margin: 0;
       border-bottom: 1px solid #555;
+      overflow: auto;
 
       a {
-        color: #555;
         font-weight: bold;
-        letter-spacing: .1em;
-        padding-left: .5em;
+        padding: 0.5em;
         padding-right: 1.5em;
-
-        text-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
-
-        &:hover {
-          color: $carolinaBlue;
-        }
+        display: block;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
       }
 
       &:last-child {
@@ -963,7 +957,7 @@ h2 {
     li {
         width: 11em;
         height: 11em;
-        border: 1px solid $carolinaBlue;
+        border: 1px solid black;
         margin: 0.2em;
         float: left;
         text-align: center;
@@ -1143,7 +1137,6 @@ h2 {
     }
 
     .thr-question {
-        color: #666;
         margin: 1em auto;
     }
 
@@ -1174,7 +1167,6 @@ h2 {
         text-align: left;
 
         li {
-            padding: 0.25em 0.25em;
             .thr-stars {
                 width: 3em; // font-size is 2em so these are halved
                 height: 1em;
@@ -1188,7 +1180,7 @@ h2 {
             color: inherit;
         }
 
-        li:hover, li.selected {
+        /*li:hover, li.selected {
             background-color: #FEFEF;
             background-image: -ms-linear-gradient(top, #FFF, #FAFAFA);
             background-image: -moz-linear-gradient(top, #FFF, #FAFAFA);
@@ -1198,7 +1190,7 @@ h2 {
             background-image: linear-gradient(top, #FFF, #FAFAFA);
 
             color: $carolinaBlue;
-        }
+        }*/
 
     }
 }
@@ -1410,6 +1402,7 @@ h2 {
     width: 2em;
     height: 2em;
     float: right;
+    cursor: pointer;
 }
 
 .write-page .help {
@@ -1418,7 +1411,6 @@ h2 {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
-  cursor: pointer;
 }
 
 .help-text {
@@ -1926,3 +1918,4 @@ img.favoriteYes, img.favoriteNo {
 
 @import "fileuploader";
 @import "yourbooks";
+@import "collections";
