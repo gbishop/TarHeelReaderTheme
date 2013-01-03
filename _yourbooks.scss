@@ -1,6 +1,5 @@
 // style for the your-books page.
 @mixin controlList { // mixin in case we want to provide arguments to help distinguish different lists
-    
     @include linearGradient(top, bottom, #F0F2F7, #DDD);
 
     border: 1px solid #AAA;
@@ -38,35 +37,52 @@
       &:last-child {
         border: 0;
       }
-    }
+    } // end li
 }
 
 .your-books-page {
+    .quickNavigation { 
+        ul {
+          @include thrBackground(top, bottom);
+          @include decoratedMenu;
+          
+          li {
+            height: auto;
+            overflow: hidden;
+            a {
+              color: inherit;
+              font-size: 1.3em;
+              line-height: 1.8em;
+              padding-left: 0.5em;
+              text-align: left;
+            }
+          }
+        }
+        display: none; // displayed if # of books published + # of draft books >= 20
+    }
+    
     .controlList {
         @include controlList; // include mixin
-        max-height: 25em;
         margin: 0.5em 0;
-        overflow-y: auto;
-        //border: inset;
+        overflow: auto;
+        //height: auto;
         
         li {
-            //border: 1px solid black;
             margin-left: 0px;
             overflow: hidden;
-
+            
             span {
                 display: block;
                 width: 100%;
             }
-
+            
             div {
                 display: none;
-
                 button, input, textarea {
                     display: block;
-                    box-sizing: border-box;
-                    -moz-box-sizing: border-box;
                     -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
                     margin-bottom: 1px;
                     height: auto;
                     width: 100%;
@@ -74,16 +90,13 @@
                 
                 input[type='text'], textarea {
                   // mixin for a fancier input (see style.scss)
-                  @include decoratedInput(1px, #B2B2B2, 0.25em, 1px, 1.1em, 0.15em, 0.3em, #333, 
-                                          $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, auto, 100%);
-                  
+                  @include decoratedInput(1px, #B2B2B2, 0.25em, 1px, 1.1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, auto, 100%);
                   margin-bottom: 0.2em;
                 }
                 
                 button, input[type='submit'] {
                   // mixin for better looking buttons (see style.scss)
-                  @include decoratedButton(1px, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 
-                                           0.1em, 1em, #EEE, #81BEF0, #FFF, 0s, 100%);
+                  @include decoratedButton(1px, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 100%);
                 }
                 
                 p {
@@ -93,7 +106,7 @@
                   padding-left: 0.25em;
                 }
             }
-        }
+        } // end li
 
         li.active {
             -webkit-box-shadow: inset 0 0 0.1em 0.2em rgba(0, 0, 0, 0.5);
@@ -108,5 +121,5 @@
               margin-bottom: 0.6em;
             }
         }
-    }
+    } // end .controlList
 }

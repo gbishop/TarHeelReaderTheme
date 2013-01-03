@@ -40,7 +40,6 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
         /*
          * Begin Navigation Code
          */
-
         $body.on("click", ".thr-well-icon img", function(e, data) {
 
             var $contentWrap = $(".active-page .content-wrap"),
@@ -51,9 +50,12 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                 $contentWrap.wrapInner("<div class='hiddenContent' />").
                              prepend(templates.render('navigation', null));
 
-                $(".active-page").find(".navigationMenu").
-                                  hide().slideDown().end().
-                                  find(".hiddenContent").fadeOut(200);
+                $(".active-page").find(".navigationMenu")
+                                 .hide()
+                                 .slideDown()
+                                 .end()
+                                 .find(".hiddenContent")
+                                 .fadeOut(200);
 
             } else if(!$navigation.is(":visible")) {
                 $hiddenContent.fadeOut(function() {
@@ -75,9 +77,12 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             $this.blur(); // remove fuzzy border
 
             if(!$secondaryNav.is(":visible")) {
-                $this.parent("li").addClass("divider").end().text("Less");
+                $this.parent("li")
+                     .addClass("divider")
+                     .end()
+                     .text("Less");
                 $secondaryNav.slideDown(300);
-                $("html, body").animate({ scrollTop: 1000 }, 600);
+                $("html, body").animate({ scrollTop: 1000 }, 600); 
 
             } else {
                 $this.parent("li").removeClass("divider").end().text("More");

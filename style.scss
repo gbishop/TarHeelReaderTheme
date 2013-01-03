@@ -108,7 +108,6 @@ $carolinaBlue: #56A0D3;
 
 // used for the navigation and settings menus
 @mixin decoratedMenu {
-  
     -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
     -moz-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
     box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
@@ -330,12 +329,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     
   }
   
-  .mapButton {
-    display: block;
-    margin: 0.5em;
-    width: 20em;
-  }
-  
   .photoCreditsBox {
     width: 5em;
     height: 5em;
@@ -468,6 +461,19 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 p {
     margin: 0.5em;
+    
+    &.notLoggedIn {
+      color: #555;
+      font-size: 1.25em;
+      margin: 1.5em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+
+      a {
+        display: block;
+        margin: 0.5em 1em;
+        width: 7em;
+      }
+    } // end .notLoggedIn
 }
 
 li {
@@ -1243,10 +1249,6 @@ h2 {
 }
 
 .your-books-page {
-  .publishedBooksContainer {
-    margin: 1em 0;
-  }
-  
   h2 {
     padding-top: 0.2em; // just for border alignment with the help icons
   }
@@ -1254,28 +1256,12 @@ h2 {
   p {
     margin-left: 1em;
   }
-
-  // icons for the list items
-  a {
-    &.book {
-      background: url(/theme/images/your_books_book_icon.png) right center no-repeat;
-    }
-
-    &.edit {
-      background: url(/theme/images/your_books_edit_icon.png) right center no-repeat;
-
-    }
-
-    padding-right: 2.5em !important;
-    background-size: 1.75em !important;
-  }
-
-  input[type='submit'] {
-    width: 13em;
-  }
   
-
-
+  .mapButton {
+    display: block;
+    margin: 0.5em;
+    width: 20em;
+  }
 }
 
 .next-posts {}
@@ -1305,19 +1291,6 @@ h2 {
         &:focus {
           width: 16em;
         }
-      }
-    }
-
-    p.notLoggedIn {
-      color: #555;
-      font-size: 1.25em;
-      margin: 1.5em;
-      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-
-      a {
-        display: block;
-        margin: 0.5em 1em;
-        width: 7em;
       }
     }
 
