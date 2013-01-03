@@ -18,6 +18,7 @@ $THRDefault = array(
     'voice' => 'silent',  // voice to use silent, male, female, child
     'locale' => 'en',     // users language for supporting translations of the site
     'favorites' => '',    // list of favorite ids
+    'fpage' => 1,         // current favorites page
     'collection' => '',   // collection slug
     'findAnotherLink' => '/find/' // URL to return to book search
 );
@@ -39,6 +40,7 @@ $THRPatterns = array(
     'voice' => '/^silent|male|female|child$/',    // voice to use silent, male, female, child
     'locale' => '/^[a-z]{2,3}$/',  // users language for supporting translations of the site
     'favorites' => '/(^[AR]?\d+(,+\d+)*$)|(^$)/',   // comma separated integers or empty
+    'fpage' => '/^\d+$/',        // current favorites page starting from 1
     'collection' => '/^[-\w\d]*$/',  // letters, numbers, and dash
     'findAnotherLink' => '/^.*$/'
 );
@@ -152,7 +154,7 @@ function find_url($page = null) {
         $p[] = "$parm=$v";
     }
     if ($page === null) {
-        $page = $THRState['page'];
+        $page = 1; // $THRState['page'];
     }
     $p[] = "page=$page";
 
@@ -177,9 +179,9 @@ function favorites_url($page = null) {
         $p[] = "$parm=$v";
     }
     if ($page === null) {
-        $page = $THRState['page'];
+        $page = 1; // $THRState['fpage'];
     }
-    $p[] = "page=$page";
+    $p[] = "fpage=$page";
 
     if (count($p) > 0) {
         return '/favorites/?' . implode('&', $p);
