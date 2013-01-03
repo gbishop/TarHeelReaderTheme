@@ -2,8 +2,9 @@ define([
     'jquery',
     'route',
     'state',
+    'controller',
     "jquery.scrollIntoView"
-], function($, route, state) {
+], function($, route, state, controller) {
 
      $('body').on('PageRendered', '.your-books-page', function() {
         var $this = $(this),
@@ -11,7 +12,7 @@ define([
             numDraftBooks = $this.find('.draftBooks').children().length,
             numPublishedBooks = $this.find('.publishedBooks').children().length,
             scrollTop = 0;
-        
+
         // show the div for quick navigation if the added total of books equals or exceeds 20
         if((numDraftBooks + numPublishedBooks) >= 2) {
             $quickNav.slideDown()
@@ -29,7 +30,7 @@ define([
                                                 .find("div")
                                                 .slideUp(300);
     }
-    
+
     // display the controls on click
     $(document).on('click', '.controlList li span', function(ev) {
         var $parentLi = $(this).parent(),
@@ -37,7 +38,7 @@ define([
 
         // hide any that are shown
         hideControls();
-        
+
         // signal that it is open so I can validate the state of some buttons
         $parentLi.addClass("active").trigger('activated');
         // scroll into view and show the options div
@@ -106,7 +107,7 @@ define([
             action = $this.attr('data-action');
 
         if(action === 'edit') {
-           window.location.pathname = "/write/?id=" + bookID; // simply change URL, this is all we need to do, right?
+           controller.gotoUrl("/write/?id=" + bookID); // simply change URL, this is all we need to do, right?
         } else if(action === 'delete') {
            $.post('/your-books/', {action: action + '-draft', id: bookID }, function(data, status) {
                // removeFromList(data, status, $li, $li.find('div')); // we can use this for deletion without reload
@@ -141,7 +142,7 @@ define([
         }
         if (args) {
             $.post('/your-books/', args, function(data, txtStatus) {
-                window.location.reload(false); 
+                window.location.reload(false);
             }, 'json');
         }
     });
