@@ -4,15 +4,15 @@
         <p class="help-text" title="_(Quick Navigation)">_(Links to the main sections of this page are listed below. You may choose to use these links to help you get to the different sections of this page.)</p>
    		<h2>_(Quick Navigation)</h2>
    		<ul>
-   			<li><a href="#draftBooksListLink">_(Your Draft Books)</a></li>
-   			<li><a href="#publishedBooksListLink">_(Your Published Books)</a></li>
-   			<li><a href="#collectionsListLink">_(Your Collections)</a></li>
+   			<li class="draftBooksHeaderLink">_(Your Draft Books)</li>
+   			<li class="publishedBooksHeaderLink">_(Your Published Books)</li>
+   			<li class="collectionsHeaderLink">_(Your Collections)</li>
    		</ul>
    </div>
    <div class="container">
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Your Draft Books)">_(Your draft books are listed below. To return to work on one, click on its title. To delete it, click the little check box next to its title and then press the 'Delete selected drafts' button. Deleting a draft is not reversible.)</p>
-    	<h2><a name="draftBooksListLink">_(Your Draft Books)</a></h2>
+    	<h2 class="draftBooksHeader">_(Your Draft Books)</h2>
     	{{#has_drafts}}
     	<ul class="controlList booksList draftBooks">
         	{{#drafts}}
@@ -36,7 +36,7 @@
 	<div id="container">
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Your Published Books)">_(Your published books are listed below. You may read a book by clicking on its title. You may edit your book by clicking the Edit link after the title.)</p>
-    	<h2><a name="publishedBooksListLink">_(Your Published Books)</a></h2>
+    	<h2 class="publishedBooksHeader">_(Your Published Books)</h2>
     	{{#has_published}}
     	<ul class="controlList booksList publishedBooks">
         	{{#published}}
@@ -59,7 +59,7 @@
     <div id="container">
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Your Collections)">_(Your collections are listed below.)</p>
-        <h2><a name="collectionsListLink">_(Your Collections)</a></h2>
+        <h2 class="collectionsHeader">_(Your Collections)</h2>
         <ul class="controlList collectionsList">
             {{#count}}
             <li data-id="new" class="favoritesCollection">

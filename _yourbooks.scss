@@ -13,7 +13,6 @@
 
     li { 
       border-bottom: 1px solid #888;
-      list-style: none;
       margin: 0;
       color: #555;
       cursor: pointer;
@@ -49,13 +48,10 @@
           li {
             height: auto;
             overflow: hidden;
-            a {
-              color: inherit;
-              font-size: 1.3em;
-              line-height: 1.8em;
-              padding-left: 0.5em;
-              text-align: left;
-            }
+            font-size: 1.3em;
+            line-height: 1.8em;
+            padding-left: 0.5em;
+            text-align: left;
           }
         }
         display: none; // displayed if # of books published + # of draft books >= 20

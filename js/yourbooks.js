@@ -7,14 +7,21 @@ define([
 
      $('body').on('PageRendered', '.your-books-page', function() {
         var $this = $(this),
-        numDraftBooks = $this.find('.draftBooks').children().length,
-        numPublishedBooks = $this.find('.publishedBooks').children().length;
+            $quickNav = $this.find('.quickNavigation'),
+            numDraftBooks = $this.find('.draftBooks').children().length,
+            numPublishedBooks = $this.find('.publishedBooks').children().length,
+            scrollTop = 0;
+        
         // show the div for quick navigation if the added total of books equals or exceeds 20
-        if((numDraftBooks + numPublishedBooks) >= 20) {
-            $this.find('.quickNavigation')
-                 .slideDown();
+        if((numDraftBooks + numPublishedBooks) >= 2) {
+            $quickNav.slideDown()
+                     .find('li')
+                     .on('click', function() {
+                            scrollTop = $('.' + $(this).attr('class').replace('Link', '')).offset()
+                                                                                          .top;
+                            $("html").animate({scrollTop: scrollTop}, 400); // header should be at the top of the screen
+                     }); // end click
         }
-        console.log('in page rendered');
     }); // end PageRendered
 
     function hideControls() {
@@ -26,8 +33,7 @@ define([
     // display the controls on click
     $(document).on('click', '.controlList li span', function(ev) {
         var $parentLi = $(this).parent(),
-            $optionsDiv = $parentLi.find("div"),
-            numChildren = $optionsDiv.children();
+            $optionsDiv = $parentLi.find("div");
 
         // hide any that are shown
         hideControls();
@@ -104,7 +110,7 @@ define([
         } else if(action === 'delete') {
            $.post('/your-books/', {action: action + '-draft', id: bookID }, function(data, status) {
                // removeFromList(data, status, $li, $li.find('div')); // we can use this for deletion without reload
-               window.location.reload(true);  // keep the deletion behavior consistent: refresh page
+               window.location.reload(false);  // keep the deletion behavior consistent: refresh page
            }, 'json');
         }
     }); // end click
