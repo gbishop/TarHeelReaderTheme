@@ -1,22 +1,29 @@
 <h1>_(Collections)</h1>
-<form action="/collections/" method="get">
-    <input name="search" type="search" placeholder="_(Enter text to search)" />
-    <input type="submit" value="_(Search)" />
+<form class="collectionsSearchForm" action="/collections/" method="get">
+    <input class="thr-input" name="search" type="search" placeholder="_(Enter text to search)" />
+    <input class="thr-blue-button" type="submit" value="_(Search)" />
 </form>
 {{^has_collections}}
 <p>_(No collections matching that query. Try again.)</p>
 {{/has_collections}}
 {{#has_collections}}
-<dl>
-    {{#collections}}
-    <dt><a href="/favorites/?collection={{slug}}">{{title}}</a></dt>
-    <dd>{{description}}</dd>
-    {{/collections}}
-</dl>
+<ul class="collections">
+	{{#collections}}
+	<li>
+		<a href="/favorites/?collection={{slug}}">
+			<p class="title">{{title}}</p>
+			<p class="description">{{description}}</p>
+		</a>
+	</li>
+	{{/collections}}
+</ul>
 {{/has_collections}}
-{{#prevLink}}
-<a href="{{prevLink}}">_(Back)</a>
-{{/prevLink}}
-{{#nextLink}}
-<a href="{{nextLink}}">_(Next)</a>
-{{/nextLink}}
+<div class="navigation">
+	{{#nextLink}}
+	<a class="next" href="{{nextLink}}">_(Next)</a>
+	{{/nextLink}}
+	{{#prevLink}}
+	<a class="back" href="{{prevLink}}">_(Back)</a>
+	{{/prevLink}}
+</div>
+
