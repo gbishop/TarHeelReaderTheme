@@ -17,11 +17,11 @@ define([
         if((numDraftBooks + numPublishedBooks) >= 2) {
             $quickNav.slideDown()
                      .find('li')
-                     .on('click', function() {
-                            scrollTop = $('.' + $(this).attr('class').replace('Link', '')).offset()
-                                                                                          .top;
-                            $("html").animate({scrollTop: scrollTop}, 400); // header should be at the top of the screen
-                     }); // end click
+                     .on('click', function()
+                        {
+                            scrollTop = $('.' + $(this).attr('class').replace('Link', '')).offset().top;
+                            $('html, body').animate({scrollTop: scrollTop}, 400); // header should be at the top of the screen
+                        }); // end click
         }
     }); // end PageRendered
 
