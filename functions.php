@@ -60,23 +60,9 @@ function thr_colors() {
 }
 
 function thr_title() {
-    if (function_exists('is_tag') && is_tag()) {
-       single_tag_title("Tag Archive for &quot;"); echo '&quot; - '; }
-    elseif (is_archive()) {
-       $str = get_the_ID() == 99066 ? 'Your Books' : ' Archive';
-       wp_title(''); echo $str.' - '; }
-    elseif (is_search()) {
-       echo 'Search for &quot;'.wp_specialchars($s).'&quot; - '; }
-    elseif (!(is_404()) && (is_single()) || (is_page())) {
-       wp_title(''); echo ' - '; }
-    elseif (is_404()) {
-       echo 'Not Found - '; }
-    if (is_home()) {
-        bloginfo('name'); echo ' - '; bloginfo('description'); }
-    else {
-        bloginfo('name'); }
-    if ($paged>1) {
-       echo ' - page '. $paged; }
+    bloginfo('name');
+    echo ' | ';
+    is_front_page() ? bloginfo('description') : wp_title('');
 }
 
 function is_ajax() {
