@@ -81,7 +81,7 @@ $where = 'WHERE ' . implode(' AND ', $where);
 $json = array_key_exists('json', $_GET) && $_GET['json'] == 1;
 $count = 24;
 $cp1 = $count + 1; // ask for one more to determine if there are more
-$page = THR('page');
+$page = THR('fpage');
 $offset = ($page - 1) * $count;
 
 $sql = "

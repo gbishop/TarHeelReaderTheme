@@ -44,7 +44,7 @@ $carolinaBlue: #56A0D3;
 
     border: $borderWidth solid $borderColor;
     cursor: pointer;
-    
+
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
@@ -80,7 +80,7 @@ $carolinaBlue: #56A0D3;
     -webkit-border-radius: $borderRadius;
     -moz-border-radius: $borderRadius;
     border-radius: $borderRadius;
-    
+
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
@@ -111,16 +111,16 @@ $carolinaBlue: #56A0D3;
     -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
     -moz-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
     box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
-    
+
     -webkit-border-radius: 0.4em;
     -moz-border-radius: 0.4em;
     border-radius: 0.4em;
     border: 1px solid #EFEFEF;
-    
+
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
     height: auto;
-    
+
     li {
       border-bottom: 1px solid #DFDFDF;
       color: #DFDFDF;
@@ -130,12 +130,12 @@ $carolinaBlue: #56A0D3;
       &:last-child {
         border-bottom: 0;
       }
-      
+
       &:focus, &:hover, &.selectedLink {
         background: #FFF !important;
         color: $carolinaBlue;
       }
-      
+
       a {
         display: block;
         font-size: 1.3em;
@@ -205,12 +205,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
            @include decoratedButton(0.1em, #61A0B3, 0.5em, 0.25em, $carolinaBlue, #286DA3, 1.25em, 1em, 2em, #DDD, #81BEF0, #FFF, 0.5s, 10em);
          }
       }
-      
+
       & + p {
         clear: both;
       }
     }
-    
+
     .tinyicon {
       max-width: 1em;
       max-height: 1em;
@@ -231,7 +231,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       display: none; // don't display the 'More' option
     }
   }
-  
+
   .secondaryNav {
     display: block; // display the secondary navigation immediately
   }
@@ -260,7 +260,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       color: $carolinaBlue;
     }
   }
-  
+
   h2 {
     font-size: 1.6em;
   }
@@ -297,41 +297,41 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     .prev-posts, .back {
       float: left;
     }
-    
+
   }
-  
+
   .languages {
     border: .1em solid #777;
     margin-left: 1em;
     padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
-    
+
     -webkit-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
-    
+
     color: #333;
     font: small-caps 300 1.25em arial, sans-serif;
     text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-    
+
     height: 1.5em;
     min-height: 1.5em;
     width: 10em;
     min-width: 10em;
     vertical-align: middle;
   }
-  
+
   .goButton {
     background: url(/theme/images/globe.png) no-repeat center center;
     border: 0.15em solid #DDD;
     margin-left: 0.5em;
-    
+
     width: 6em;
     &:hover{
       background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
     }
-    
+
   }
-  
+
   .photoCreditsBox {
     width: 5em;
     height: 5em;
@@ -464,7 +464,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 p {
     margin: 0.5em;
-    
+
     &.notLoggedIn {
       color: #555;
       font-size: 1.25em;
@@ -530,38 +530,38 @@ h2 {
 .navigationMenu {
     @include thrBackground(top, bottom);
     @include decoratedMenu;
-    
+
     .secondaryNav {
       display: none;
     }
-    
+
     margin: 0.5em auto;
     margin-bottom: 0;
     max-width: 48em;
     width: 100%;
     overflow: auto;
-    
+
     li {
       height: 3em;
       overflow: hidden;
-      
+
       &.divider {
         border-bottom: 1px solid #DFDFDF;
         a {
           background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
         }
       }
-      
+
       a {
         background-size: 1.5em !important;
         padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
         width: 80%; // not 100% on purpose
-        
+
         color: inherit;
         font-size: 1.5em;
         line-height: 2em;
         text-align: left;
-        
+
         &.homeLink {
           background: url(/theme/images/home_32.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -571,12 +571,12 @@ h2 {
           background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.collectionsLink {
           background: url(/theme/images/collections.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.favoritesLink {
           background: url(/theme/images/favorite_book.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -596,21 +596,21 @@ h2 {
           background: url(/theme/images/info.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.more {
           background: url(/theme/images/down_menu_icon.png) right center no-repeat;
         }
-        
+
         &.yourBooksLink {
           background: url(/theme/images/my_book.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.blogLink {
           background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
         }
-        
+
         &.photoCreditsLink {
           background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
@@ -618,40 +618,40 @@ h2 {
 
       } // end a
     } // end li
-   
+
 }
 
 .mainSettings {
     @include thrBackground(left, right);
     @include decoratedMenu;
-    
+
     display: none;
     position: absolute;
     top: 3em;
     right: 4em;
-    
+
     padding: 0;
     margin: 0;
     width: 12em;
     z-index: 100;
-    
+
     -webkit-border-radius: 0.25em 0.4em 0.4em 0.25em;
     -moz-border-radius: 0.25em 0.4em 0.4em 0.25em;
     border-radius: 0.25em 0.4em 0.4em 0.25em;
-    
+
     li {
       position: relative; // in order to show submenus
       margin: 0;
       padding: 0;
       height: auto;
       width: auto;
-    
+
       a {
         background-size: 1.5em !important;
         color: inherit;
         font-size: 1.3em;
         padding: 1em 0 1em 3.5em;
-        
+
         &.speech {
           background: url(/theme/images/sound.png) 1em center no-repeat;
         }
@@ -668,7 +668,7 @@ h2 {
           background: url(/theme/images/default_settings.png) 1em center no-repeat;
         }
       } // end a
-    
+
       .submenu {
         @include thrBackground(right, left);
         background-clip: padding-box;
@@ -676,41 +676,41 @@ h2 {
         -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
         -moz-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
         box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
-        
+
         position: absolute;
         display: none;
         top: -1px;
-        right: 12.05em; 
+        right: 12.05em;
         z-index: 999;
         list-style: none;
-       
+
         width: 12em;
         padding: 0;
         margin: 0;
-       
+
         -webkit-border-radius: 0.5em 0 0 0.5em;
         -moz-border-radius: 0.5em 0 0 0.5em;
         border-radius: 0.5em 0 0 0.5em;
         border: 1px solid #EFEFEF;
         border-right: 0;
-        
+
         a {
           &.checked {
                 background: url(/theme/images/check_mark.png) right center no-repeat;
           }
         }
-      
+
         li {
           height: auto;
           width: auto;
-          
+
           a {
             font-size: 1em;
             padding: 1em;
             font-size: 1.1em;
             text-align: center;
           }
-        
+
           .innerSubmenu {
             @include thrBackground(left, right);
             background-clip: padding-box;
@@ -731,14 +731,14 @@ h2 {
               text-align: left;
               padding-left: 3.25em;
               padding-right: 0.5em;
-              
+
               &.checked {
                 background: url(/theme/images/check_mark.png) right center no-repeat;
               }
             }
           } // end .innerSubmenu
         } // end li
-        
+
         // Begin color icons for text color
         .textColors .innerSubmenu a {
             &.black {
@@ -748,7 +748,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.blue {
               background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
               &.checked {
@@ -756,7 +756,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.cyan {
               background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
               &.checked {
@@ -764,7 +764,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.green {
               background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
               &.checked {
@@ -772,7 +772,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.magenta {
               background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
               &.checked {
@@ -780,7 +780,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.red {
               background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
               &.checked {
@@ -788,7 +788,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.white {
               background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
               &.checked {
@@ -796,7 +796,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.yellow {
               background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
               &.checked {
@@ -815,7 +815,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.blue {
               background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
               &.checked {
@@ -823,7 +823,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.cyan {
               background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
               &.checked {
@@ -831,7 +831,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.green {
               background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
               &.checked {
@@ -839,7 +839,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.magenta {
               background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
               &.checked {
@@ -847,7 +847,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.red {
               background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
               &.checked {
@@ -855,7 +855,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.white {
               background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
               &.checked {
@@ -863,7 +863,7 @@ h2 {
                             url(/theme/images/check_mark.png) right center no-repeat;
                }
             }
-          
+
             &.yellow {
               background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
               &.checked {
@@ -872,7 +872,7 @@ h2 {
                }
             }
           } // end color icons for page color
-       
+
       } // end submenu
     } // end li
 }
@@ -881,21 +881,21 @@ h2 {
     text-align: center;
     width: 100%;
     margin: 0.5em auto 0.25em;
-    
+
     select {
         border: 0.1em solid #DDD;
         -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
         box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-        
+
         padding: 0;
         margin: 0.15em 0.25em;
         line-height: 2em;
         width: 9em;
-        
+
         color: #333;
         font-size: 1.1em;
-        
+
         &[name='audience'] {
           width: 14em;
         }
@@ -1101,7 +1101,7 @@ h2 {
         -moz-box-shadow: none;
         box-shadow: none;
     }
-   
+
    .header {
       height: 0;
       min-height: 0;
@@ -1121,13 +1121,13 @@ h2 {
         height: 2.5em;
         overflow: hidden;
     }
-    
+
     .decoratedList { // changing background color of list items in choices looks ugly with large border-radius
         -webkit-border-radius: 0.1em;
         -moz-border-radius: 0.1em;
         border-radius: 0.1em;
     }
-    
+
     .navigationMenu {
       margin: 4em auto;
       width: 80%;
@@ -1248,7 +1248,7 @@ h2 {
   p {
     margin-left: 1em;
   }
-  
+
   .mapButton {
     display: block;
     margin: 0.5em;
@@ -1301,11 +1301,11 @@ h2 {
           margin-left: 0.25em;
         }
     }
-    
+
     .image-search {
       margin-top: 0.5em;
     }
-    
+
     .gallery {
         margin: 1em auto;
         width: 90%;
@@ -1395,7 +1395,7 @@ h2 {
             margin-left: 0;
         }
     }
-    
+
 }
 
 .help {
@@ -1508,7 +1508,7 @@ h2 {
  * Small width
  */
 @media only screen and (max-width: 624px) {
-  
+
   // *** Begin code for .server-page ***
   .server-page {
     .homeLinkList li {
@@ -1517,13 +1517,13 @@ h2 {
       margin: 1.5em auto;
       font-size: 1.3em;
     }
-    
+
     .languageForm {
       .languages {
         font-size: 1.5em;
         width: 90%;
       }
-      
+
       .goButton {
         background-size: 1.5em;
         margin: 0.5em 1em;
@@ -1531,11 +1531,11 @@ h2 {
       }
     }
   } // *** End code for .server-page
-  
-  
+
+
   // *** Begin code for .write-page ***
   .write-page {
-    
+
     .image-search {
       overflow: auto;
       input {
@@ -1546,42 +1546,42 @@ h2 {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        
+
         &[type='submit'] {
           margin-left: 0.25em;
         }
       }
-      
+
     } // end image-search
-    
+
     .aWrap {
       .button {
         margin: 0 2%;
-        
+
         &:first-child {
-          width: 35%; 
+          width: 35%;
         }
-        
+
         &:last-child {
           width: 55%;
         }
       }
     }
-  
+
      div.step4 {
       button {
         margin: 0 2%;
         width: 45%;
       }
     }
-     
+
     .steps {
-      
+
       h2 {
         padding-right: 2.5em; // acount for the question mark picture and word-wrap accordingly
         word-wrap: break-word;
       }
-      
+
       label {
         display: block;
         width: 100%;
@@ -1591,7 +1591,7 @@ h2 {
          width: 30%;
          display: inline-block;
         }
-        
+
         input, select, button {
           -webkit-box-sizing: border-box;
           -moz-box-sizing: border-box;
@@ -1603,53 +1603,53 @@ h2 {
         select, button {
           width: 68% !important; // selects and buttons take up a little less space for some reason
         }
-        
+
       }
-      
+
     }
   } // *** End code for .write-page ****
-  
+
 } // end media queries for max-width: 624px
 
 // define mixin for the alternative navigation/menu layout used for handheld devices
 @mixin phoneDisplay {
-   
+
    .header {
      h1 {
        margin-top: 0.5em;
        font-size: 2em !important;
      }
    }
-   
+
    // make the buttons easier to press
    .thr-gray-button, .thr-blue-button {
      font-size: 1.25em;
-     padding: 0.5em 1em; 
+     padding: 0.5em 1em;
    }
-   
+
    .languageForm {
      .languages {
        height: 2em;
        line-height: 1.5em;
      }
    }
-   
+
    // input text areas need to be bigger (easier to press on)
    input[type='text'], input[type='search'], input[type='password'], select {
      font-size: 1.1em;
      height: 1.75em;
      line-height: 1.5em;
    }
-   
+
    .navigation a {
      font-size: 1.25em !important;
      padding: 0.5em 1em !important;
    }
-   
+
    label {
      font-size: 1.1em;
    }
-   
+
     // *** Begin code for .your-books-page***
   .your-books-page {
     .decoratedList {
@@ -1658,9 +1658,9 @@ h2 {
         height: 2em;
         line-height: 2em;
       }
-     
+
     }
-    
+
     .mapButton {
       margin: 0.5em 0;
       width: 100%;
@@ -1668,9 +1668,9 @@ h2 {
       -moz-box-sizing: border-box;
       box-sizing: border-box;
     }
-    
+
   } // *** End code for .your-books-page***
-   
+
    // *** Begin .write-page code ***
    .write-page {
      .image-search {
@@ -1687,36 +1687,36 @@ h2 {
  * max-width: 637px
  */
 @media only screen and(max-width: 637px) {
-  
+
   .content-wrap {
     width: 90%;
   }
-  
+
   // header adjustments for the heart and gear
   .header {
     margin-top: 0.25em;
-    
+
     h1 {
       font-size: 1.25em;
       margin-top: 0.75em;
     }
-    
+
     .thr-well-icon {
       top: 0.25em;
     }
-    
+
     .thr-settings-icon {
       top: 0;
       right: 0.5em;
     }
-    
+
     .thr-favorites-icon {
       top: 0;
       right: 4.5em;
     }
-    
+
   }
-  
+
   .thr-book-list { // want to display 3 books per row
     margin-left: 2.083333%; // 1/48
     li {
@@ -1724,7 +1724,7 @@ h2 {
       margin: 0.4167%; // 0.2/48 = 0.004167...
     }
   }
-  
+
   .navigationMenu {
     a {
       padding: 0 19% !important;
@@ -1745,7 +1745,7 @@ h2 {
                 height: 3em !important;
                 vertical-align: middle;
                 font-size: 1.2em;
-                
+
                 &[type='submit'] {
                   margin-left: 0.25em;
                 }

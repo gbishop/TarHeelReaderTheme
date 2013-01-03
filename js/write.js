@@ -2,9 +2,13 @@ define(['jquery',
         'route',
         'templates',
         'controller',
+        'fileuploader',
+        'jquery-ui',
+        'jquery.ui.touch-punch',
+        'jquery.inlineedit',
         'json2'
         ],
-    function($, route, templates, controller) {
+    function($, route, templates, controller, fileuploader) {
         var maxCaptionLength = 120;  // no page text may be longer than this
 
         var galleryData = {}; // parameters for the photo search
@@ -596,59 +600,54 @@ define(['jquery',
                 });
             }
 
-            // nested require so these are only loaded by users who want to write.
-            require(['fileuploader', 'jquery-ui', 'jquery.ui.touch-punch', 'jquery.inlineedit'],
-                function(qq) {
-                    console.log('qq', qq);
-                    $(function() {
-                        var uploader = new qq.FileUploader({
-                            element: $('.file-uploader').get(0),
-                            action: '/upload-image/',
-                            allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
-                            sizeLimit: 2 * 1024 * 1024,
-                            onComplete: function(id, fileName, response) {
-                                console.log('upload complete', id, fileName, response);
-                                if (response.success) {
-                                    var page = {
-                                        url: response.url.replace(/.*\/uploads/, '/uploads'),
-                                        width: response.width,
-                                        height: response.height,
-                                        text: null
-                                    };
-                                    addPage(page, false);
-                                }
-                            },
-                            template: $('.wUploader').html(),
-                            fileTemplate: $('.wUploaderLi').html()
-                        });
-                    });
-                    setupGallery();
-                    $('.write-pages').on('click', 'li', editPage);
-                    $('.write-pages').sortable({
-                        change: setModified
-                    });
-                    $('a.thr-settings-icon').hide();
-                    // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
-                    $(".active-page .navigationMenu li:not(:has(>ul)) a").on('click', confirmLeaving);
-                    $('.save').on('click', saveAsDraft);
-                    $('.publish').on('click', publish);
-                    $('.categorizeButton').on('click', function() {
-                        $('.step3a').toggle();
-                    });
-                    if ($('input[name=imagefile]').attr('disabled')) {
-                        $('.step1a').hide();
-                    }
-
-                    $.when(bookContent).then(function(book) {
-                        if (book.ID) { // editing an existing book
-                            initializeBookState(book);
+            $(function() {
+                var uploader = new fileuploader.FileUploader({
+                    element: $('.file-uploader').get(0),
+                    action: '/upload-image/',
+                    allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
+                    sizeLimit: 2 * 1024 * 1024,
+                    onComplete: function(id, fileName, response) {
+                        console.log('upload complete', id, fileName, response);
+                        if (response.success) {
+                            var page = {
+                                url: response.url.replace(/.*\/uploads/, '/uploads'),
+                                width: response.width,
+                                height: response.height,
+                                text: null
+                            };
+                            addPage(page, false);
                         }
-                        if ($('.notLoggedIn').length === 0) {
-                            $('.writing-controls').show();
-                        }
-                    });
-
+                    },
+                    template: $('.wUploader').html(),
+                    fileTemplate: $('.wUploaderLi').html()
                 });
+            });
+            setupGallery();
+            $('.write-pages').on('click', 'li', editPage);
+            $('.write-pages').sortable({
+                change: setModified
+            });
+            $('a.thr-settings-icon').hide();
+            // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
+            $(".active-page .navigationMenu li:not(:has(>ul)) a").on('click', confirmLeaving);
+            $('.save').on('click', saveAsDraft);
+            $('.publish').on('click', publish);
+            $('.categorizeButton').on('click', function() {
+                $('.step3a').toggle();
+            });
+            if ($('input[name=imagefile]').attr('disabled')) {
+                $('.step1a').hide();
+            }
+
+            $.when(bookContent).then(function(book) {
+                if (book.ID) { // editing an existing book
+                    initializeBookState(book);
+                }
+                if ($('.notLoggedIn').length === 0) {
+                    $('.writing-controls').show();
+                }
+            });
+
         }
 
         route.add('init', /^\/write\/(?:\?id=(\d+))?$/, writeInit);
