@@ -87,6 +87,21 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         return r;
     }
 
+    function favoritesURL() {
+        var p = {
+            voice: state.voice,
+            pageColor: state.pageColor,
+            textColor: state.textColor,
+            fpage: 1
+        };
+        if (state.collection) {
+            p.collection = state.collection;
+        } else {
+            p.favorites = state.favorites;
+        }
+        return $.param(p);
+    }
+
     stateUpdate(window.location.href);
 
     return {

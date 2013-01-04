@@ -64,6 +64,11 @@ define([ "jquery",
             return true;
         }
 
+        // rewrite plain favorites links so they will be bookmarkable
+        if (url == '/favorites/') {
+            url = state.favoritesURL();
+        }
+
         // hijax this link, pass in the context so it can be handed on
         History.pushState(context,'',url); // don't know the title here, fill it in later
 
