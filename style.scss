@@ -447,8 +447,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     color: #888;
 }
 
-.thr-colors a, .thr-colors a:hover {
+.thr-colors:not(.thr-gray-button) a {
     color: inherit;
+    &:hover {
+      color: inherit;
+    }
 }
 
 .post {
@@ -920,7 +923,7 @@ h2 {
 }
 
 .thr-blue-button {
-  @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0.25s, 7em);
+  @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 7em);
 }
 
 .thr-input {
