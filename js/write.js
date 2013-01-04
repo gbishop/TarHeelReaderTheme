@@ -627,8 +627,7 @@ define(['jquery',
             $('.write-pages').sortable({
                 change: setModified
             });
-            $('a.thr-settings-icon').hide();
-            $(".active-page .navigationMenu a").on('click', confirmLeaving);
+            $('.active-page .thr-well-icon img').on('click', confirmLeaving);
             $('.save').on('click', saveAsDraft);
             $('.publish').on('click', publish);
             $('.categorizeButton').on('click', function() {
@@ -646,10 +645,8 @@ define(['jquery',
                     $('.writing-controls').show();
                 }
             });
-
         }
-
+        
         route.add('init', /^\/write\/(?:\?id=(\d+))?$/, writeInit);
-
     }
 );
