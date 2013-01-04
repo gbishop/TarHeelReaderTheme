@@ -11,7 +11,7 @@ define(["jquery",
 
     var book = null; // current book
     
-    $(".active-page").on("PageRendered", function() {
+    $(".active-page").on("PageVisible", function() {
         $(this).setHoverColors();
     });
     // set text and background color of a jQuery element
@@ -20,16 +20,16 @@ define(["jquery",
             pageColor = "#" + state.get('pageColor'),
             textColor = "#" + state.get('textColor');
 
-        $this.find(".thr-colors:not(ul), .thr-colors > li").hover(function() { // swap text and background colors on hover
+        $this.find(".thr-back-link, .thr-next-link, .decoratedList > li").hover(function() { // swap text and background colors on hover
             $(this).css({ background: textColor, color: pageColor })
-                    .find("a")
-                    .css({color: pageColor });
+                   .find("a")
+                   .css({color: pageColor });
         }, function() {
             $(this).css({ background: pageColor, color: textColor })
-                    .find("a")
-                    .css({color: textColor });
+                   .find("a")
+                   .css({color: textColor });
         });
-
+        
         $(document).keypress(function(e) {
             $this.find(".thr-colors > li.selected")
                  .css({background: textColor, color: pageColor })
