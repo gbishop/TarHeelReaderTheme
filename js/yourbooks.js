@@ -66,7 +66,7 @@ define([
             var $this = $(this),
                 favCount = state.favoritesArray().length,
                 $buttons = $this.find('.requireFavs');
-            $buttons.prop('disabled', favCount == 0);
+            $buttons.prop('disabled', favCount === 0);
         });
     }
 
@@ -130,13 +130,13 @@ define([
                 action: 'update-collection',
                 id: id,
                 title: $div.find('input[name="title"]').val(),
-                description: $div.find('textarea[name="description"]').val(),
-            }
+                description: $div.find('textarea[name="description"]').val()
+            };
         } else if (action == 'merge' || action == 'replace' || action == 'delete' || action == 'add') {
             args = {
                 action: action + '-collection',
                 id: id
-            }
+            };
         } else if (action == 'clear') {
             state.set('favorites', '');
             state.set('collection', '');
