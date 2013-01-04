@@ -41,7 +41,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
          * Begin Navigation Code
          */
         $body.on("click", ".thr-well-icon img", function(e, data) {
-
+            e.preventDefault();
             var $contentWrap = $(".active-page .content-wrap"),
                 $navigation = $contentWrap.find(".navigationMenu"),
                 $hiddenContent = $contentWrap.find(".hiddenContent");
@@ -104,10 +104,11 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
 
         $body.on("PageVisible", function() {
             pathname = $(location).attr("pathname"); // update current URL
+            $(".thr-well-icon").attr("href", "");
             if($(".content-wrap").length === 1) { return; } // initial entrance to website, avoid "double slidedown" bug
 
-            $(".active-page").find(".content-wrap").
-                              hide().slideDown(600, "swing");
+            $(".active-page").find(".content-wrap")
+                             .hide().slideDown(600, "swing");
         });
 
        $body.on("click", ".active-page .navigationMenu a:not(.more), a.homeLink", function() {
@@ -184,9 +185,10 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
 
       function changeSetting($element, text) {
           var parentClass = $element.parent().attr("class").toLowerCase().
-                            replace(/(\s?)\binnersubmenu\b(\s?)|(\s?)\bsubmenu\b(\s?)/, ""), // remove "submenu" and "innerSubmenu"
+                            replace(/inner|submenu|\s{1}/g, ""), // remove "submenu" and "innerSubmenu"
               value,
               option = "";
+          console.log(parentClass);
 
           if(parentClass === "speechoptions") { // which option are we dealing with?
               value = getOptionValue("speech", text);
@@ -241,6 +243,11 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
           $(".speechOptions ." + currentSettings.speech).addClass("checked");
           $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
           $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
+          $('.thr-colors').css({ // update .thr-colors
+                    color: '#' + state.get('textColor'),
+                    backgroundColor: '#' + state.get('pageColor'),
+                    borderColor: '#' + state.get('textColor')
+         });
       }
 
       // function for navigation via key bindings
