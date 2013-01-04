@@ -17,10 +17,6 @@ $settingsFormData['action'] = parse_url($backto, PHP_URL_PATH);
 $view = array();
 $view['settingsForm'] = template_render('form', $settingsFormData);
 $view['ID'] = $ID;
-$favorites = THR('favorites');
-$favorites = $favorites ? explode(',', $favorites) : array();
-$view['FavCount'] = count($favorites);
-$view['FavAdd'] = !in_array($ID, $favorites);
 $view['backto'] = $backto;
 echo template_render('readingControls', $view);
 ?>
