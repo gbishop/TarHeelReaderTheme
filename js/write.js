@@ -81,8 +81,6 @@ define(['jquery',
                         baseFont = parseInt($("body").css("font-size")),
                         iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
 
-                    console.log(iwidth*picsPerRow*baseFont);
-                    console.log(gwidth);
                     g.empty();
                     if (p.photo.length === 0) {
                         showError('em-g-not-found');
@@ -115,7 +113,7 @@ define(['jquery',
                 marginRight,
                 iWidth; // also its height
 
-            if(($images.length === 0)) { // no images to adjust, return
+            if(!$images.length) { // no images to adjust, return
                 return;
             } else {
                 picsPerRow = gwidth > 720 ? 9 : 6;
@@ -624,13 +622,13 @@ define(['jquery',
                 });
             });
             setupGallery();
-            $('.write-pages').on('click', 'li', editPage);
+            // click shouldn't trigger edit dialog when dragging and dropping pages
+            $('.write-pages').on('mouseup', 'li:not(.ui-sortable-helper)', editPage);
             $('.write-pages').sortable({
                 change: setModified
             });
             $('a.thr-settings-icon').hide();
-            // don't call confirmLeaving if the links open up a submenu (parent li of the link has ul as a child)
-            $(".active-page .navigationMenu li:not(:has(>ul)) a").on('click', confirmLeaving);
+            $(".active-page .navigationMenu a").on('click', confirmLeaving);
             $('.save').on('click', saveAsDraft);
             $('.publish').on('click', publish);
             $('.categorizeButton').on('click', function() {
