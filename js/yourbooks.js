@@ -139,6 +139,9 @@ define([
             }
         } else if (action == 'clear') {
             state.set('favorites', '');
+            state.set('collection', '');
+            window.location.reload(false);
+            return;
         }
         if (args) {
             $.post('/your-books/', args, function(data, txtStatus) {
