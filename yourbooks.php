@@ -5,6 +5,8 @@ Template Name: YourBooks
 ?>
 <?php
 
+thr_header('your-books-page');
+
 function returnJson($result) {
     if (!is_array($result)) {
         $result = array('result' => $result);
@@ -173,7 +175,6 @@ if($userid != 0) {
     $view['collections'] = $mycols;
 }
 
-thr_header('your-books-page');
 ?>
 <!-- yourbooks.php -->
 <?php
