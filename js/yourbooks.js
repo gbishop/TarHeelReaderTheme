@@ -14,11 +14,10 @@ define([
             scrollTop = 0;
 
         // show the div for quick navigation if the added total of books equals or exceeds 20
-        if((numDraftBooks + numPublishedBooks) >= 2) {
+        if((numDraftBooks + numPublishedBooks) >= 20) {
             $quickNav.slideDown()
                      .find('li')
-                     .on('click', function()
-                        {
+                     .on('click', function() {
                             scrollTop = $('.' + $(this).attr('class').replace('Link', '')).offset().top;
                             $('html, body').animate({scrollTop: scrollTop}, 400); // header should be at the top of the screen
                         }); // end click
