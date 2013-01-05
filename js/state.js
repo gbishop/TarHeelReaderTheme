@@ -99,7 +99,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         } else {
             p.favorites = state.favorites;
         }
-        return $.param(p);
+        return '/favorites/?' + $.param(p);
     }
 
     stateUpdate(window.location.href);
@@ -112,6 +112,7 @@ define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], fu
         addFavorite: addFavorite,
         removeFavorite: removeFavorite,
         isFavorite: isFavorite,
-        favoritesArray: favoritesArray
+        favoritesArray: favoritesArray,
+        favoritesURL: favoritesURL
     };
 });
