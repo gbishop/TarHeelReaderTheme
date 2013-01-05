@@ -23,7 +23,7 @@ define(["jquery", "state"], function($, state) {
             colors: false
         };
         var $def = $.Deferred();
-        options = $.extend({title:null, effect:'fade'}, options);
+            options = $.extend({title:null, effect:'fade'}, options);
         $('.active-page').fadeOut(0, function() {
             if (options.colors) {
                 $('.thr-colors').css({
@@ -31,6 +31,8 @@ define(["jquery", "state"], function($, state) {
                     backgroundColor: '#' + state.get('pageColor'),
                     borderColor: '#' + state.get('textColor')
                 });
+                setHoverColors($page);  // set the hover colors as well
+                console.log('Hover colors are set');
             }
             $('.active-page').removeClass('active-page');
             $page.css('display', 'none').addClass('active-page').fadeIn(0);
@@ -48,9 +50,39 @@ define(["jquery", "state"], function($, state) {
         });
         return $def;
     }
+    
+    // set text and background color of a jQuery element
+    function setHoverColors($page) {
+        var pageColor = "#" + state.get('pageColor'),
+            textColor = "#" + state.get('textColor');
+
+        // swap text and background colors on hover
+        $page.find(".thr-back-link, .thr-next-link, .findPageNavButton, .decoratedList > li").hover(function() {
+            $(this).css({ background: textColor, color: pageColor })
+                   .find("a")
+                   .css({color: pageColor });
+        }, function() {
+            $(this).css({ background: pageColor, color: textColor })
+                   .find("a")
+                   .css({color: textColor });
+        }); // end hover
+        
+        $(document).keypress(function(e) {
+            $page.find(".thr-colors > li.selected")
+                 .css({background: textColor, color: pageColor })
+                 .find("a")
+                 .css({color: pageColor });
+            
+            $page.find(".thr-colors > li:not(.selected)")
+                 .css({background: pageColor, color: textColor })
+                 .find("a")
+                 .css({color: textColor });
+        }); // end keypress
+    }
 
     return {
         getInactive: getInactive,
-        transitionTo: transitionTo
+        transitionTo: transitionTo,
+        setHoverColors: setHoverColors // needed by read.js in case the user refreshes the page while reading a book
     };
 });
