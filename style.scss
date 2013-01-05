@@ -116,9 +116,8 @@ $carolinaBlue: #56A0D3;
     -moz-border-radius: 0.4em;
     border-radius: 0.4em;
     border: 1px solid #EFEFEF;
-
-    background-clip: padding-box;
     -webkit-background-clip: padding-box;
+    background-clip: padding-box;
     height: auto;
 
     li {
@@ -136,11 +135,16 @@ $carolinaBlue: #56A0D3;
         color: $carolinaBlue;
       }
 
-      a {
-        display: block;
+      a, span {
+        display: inline-block;
         font-size: 1.3em;
         text-align: left;
         text-decoration: none;
+        
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
       } // end a
     } // end li
 }
@@ -177,13 +181,13 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 /* And here begins the Wordpress fun.
 -------------------------------------------------------------------------------*/
-
 .content-wrap {
-    width: 48em;
     margin: 0 auto 1em;
+    overflow: auto;
+    width: 48em;
     // This next line causes shift right on iPad. Why do we need it?
-    //padding: 0.25em 1em 1em;
-    //position: relative; // why do we need this?
+    padding: 1%;
+    padding-top: 0.5%;
 
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
@@ -192,7 +196,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
     -moz-box-shadow: 0 0 0.2em $carolinaBlue;
     box-shadow: 0 0 0.2em $carolinaBlue;
-    overflow: auto;
 
     .homeLinkList {
       text-align: center;
@@ -220,28 +223,23 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 .page-wrap {
-    //width: 100%;
     display: none;
     margin: 0;
     padding: 0;
 }
 
-.navigation .navigationMenu {
-  .mainNav {
-    li:last-child {
-      display: none; // don't display the 'More' option
-    }
-  }
-
-  .secondaryNav {
-    display: block; // display the secondary navigation immediately
-  }
-}
-
 .find-page {
-
+    .content-wrap { // remove horizontal padding from the find page for centering
+      padding-left: 0;
+      padding-right: 0;
+    }
+    
     .description {
       display: none;
+    }
+    
+    .navigationMenu {
+      width: 95%; // no padding on .find-page, so make the width a little smaller
     }
 }
 
@@ -249,8 +247,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     display: block;
 }
 
-// The following styles apply to the Home, Books You Wrote, Announcements, FAQ, and Photo Credits pages
-.server-page, .your-books-page, .collections-page {
+// The following styles apply to the Home, Books You Wrote, Collections, Login, Announcements, FAQ, and Photo Credits pages
+.server-page, .your-books-page, .collections-page, .login-page {
   h1, h2 {
     border-bottom: 2px solid $carolinaBlue;
     color: #676767;
@@ -338,6 +336,17 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     height: 5em;
     display: inline-block;
   }
+  
+  .downloadLinks {
+      h2 {
+        margin: 0.5em;
+      }
+      a {
+        width: 10em;
+        display: block;
+        margin: 0.25em;
+      }
+   }
 }
 
 .header {
@@ -372,6 +381,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     .description {
         font-size: 0.9em;
     }
+    
 }
 
 .thr-well-icon {
@@ -448,7 +458,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     color: #888;
 }
 
-.thr-colors:not(.thr-gray-button) a {
+.thr-colors:not(.findPageNavButton) a {
     color: inherit;
     &:hover {
       color: inherit;
@@ -457,7 +467,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 .post {
     max-width: 100%;
-    padding: .5em 1em;
+    padding: 0.5em 1em;
 }
 
 .entry { margin-left: 1em;}
@@ -535,10 +545,6 @@ h2 {
     @include thrBackground(top, bottom);
     @include decoratedMenu;
 
-    .secondaryNav {
-      display: none;
-    }
-
     margin: 0.5em auto;
     margin-bottom: 0;
     max-width: 48em;
@@ -557,6 +563,10 @@ h2 {
       }
 
       a {
+        display: block;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
         background-size: 1.5em !important;
         padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
         width: 80%; // not 100% on purpose
@@ -599,10 +609,6 @@ h2 {
         &.helpLink {
           background: url(/theme/images/info.png) 0.75em center no-repeat,
                       url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.more {
-          background: url(/theme/images/down_menu_icon.png) right center no-repeat;
         }
 
         &.yourBooksLink {
@@ -650,7 +656,7 @@ h2 {
       height: auto;
       width: auto;
 
-      a {
+      span {
         background-size: 1.5em !important;
         color: inherit;
         font-size: 1.3em;
@@ -671,7 +677,7 @@ h2 {
         &.default {
           background: url(/theme/images/default_settings.png) 1em center no-repeat;
         }
-      } // end a
+      } // end span
 
       .submenu {
         @include thrBackground(right, left);
@@ -698,21 +704,18 @@ h2 {
         border: 1px solid #EFEFEF;
         border-right: 0;
 
-        a {
-          &.checked {
-                background: url(/theme/images/check_mark.png) right center no-repeat;
-          }
-        }
-
         li {
           height: auto;
           width: auto;
 
-          a {
+          a, span {
             font-size: 1em;
             padding: 1em;
             font-size: 1.1em;
             text-align: center;
+            &.checked {
+              background: url(/theme/images/check_mark.png) right center no-repeat;
+            }
           }
 
           .innerSubmenu {
@@ -731,7 +734,7 @@ h2 {
             border: 1px solid #EFEFEF;
             z-index: 999;
 
-            a {
+            span {
               text-align: left;
               padding-left: 3.25em;
               padding-right: 0.5em;
@@ -744,7 +747,7 @@ h2 {
         } // end li
 
         // Begin color icons for text color
-        .textColors .innerSubmenu a {
+        .textColors .innerSubmenu span {
             &.black {
               background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
               &.checked {
@@ -811,7 +814,7 @@ h2 {
           } // End color icons for text color
 
           // Begin color icons for page color
-          .pageColors .innerSubmenu a {
+          .pageColors .innerSubmenu span {
             &.black {
               background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
               &.checked {
@@ -998,7 +1001,7 @@ h2 {
         margin: 0;
     }
 
-    a, a:hover {
+    a:not(.findPageNavButton), a:not(.findPageNavButton):hover {
         text-decoration: none;
         color: inherit;
         display: block;
@@ -1039,9 +1042,32 @@ h2 {
     }
 }
 
+.findPageNavButton {
+    border: 0.1em solid #DCDCDC;
+    cursor: pointer;
+
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+
+    font-family: 1.1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+
+    padding: 0.25em 0.5em;
+
+    width: 8em;
+    text-decoration: none;
+}
+
 .thr-find-next {
     float: right;
     margin: 1em 1.2em 0 0;
+   
 }
 
 .thr-find-back {
@@ -1153,6 +1179,10 @@ h2 {
     .thr-credit {
         font-size: 0.5em;
         color: #DDD;
+        opacity: 0.3;
+        &:hover {
+          opacity: 1;
+        }
     }
     .thr-caption {
         font-size: $captionFontSize;
@@ -1241,6 +1271,9 @@ h2 {
         margin-top: 1em;
         display: block;
         width: 10em;
+        &[type=submit] {
+          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
+        }
     }
 }
 
@@ -1687,14 +1720,16 @@ h2 {
    } // *** End .write-page code ***
 }
 
+
+@media only screen and(max-width: 948px) {
+  .content-wrap {
+    width: 90%;
+  }
+}
 /*
  * max-width: 637px
  */
 @media only screen and(max-width: 637px) {
-
-  .content-wrap {
-    width: 90%;
-  }
 
   // header adjustments for the heart and gear
   .header {
