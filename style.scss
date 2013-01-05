@@ -181,7 +181,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 .content-wrap {
     width: 48em;
     margin: 0 auto 1em;
-    padding: 0.25em 1em 1em;
+    // This next line causes shift right on iPad. Why do we need it?
+    //padding: 0.25em 1em 1em;
     //position: relative; // why do we need this?
 
     -webkit-border-radius: 1em;
@@ -279,8 +280,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   a {
     text-decoration: none;
   }
-  
-  /*     This is not the navigation menu that is used for navigation around the site. 
+
+  /*     This is not the navigation menu that is used for navigation around the site.
          This is for "next", "previous" links for navigation around posts/collections
    */
   .navigation {
@@ -289,11 +290,11 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     a {
       @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
     }
-    
+
     .next-posts, .next {
       float: right;
     }
-      
+
     .prev-posts, .back {
       float: left;
     }
