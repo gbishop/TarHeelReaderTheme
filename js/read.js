@@ -11,37 +11,9 @@ define(["jquery",
 
     var book = null; // current book
     
-    $(".active-page").on("PageVisible", function() {
-        $(this).setHoverColors();
-    });
-    // set text and background color of a jQuery element
-    jQuery.fn.setHoverColors = function() {
-        var $this = $(this),
-            pageColor = "#" + state.get('pageColor'),
-            textColor = "#" + state.get('textColor');
-
-        $this.find(".thr-back-link, .thr-next-link, .decoratedList > li").hover(function() { // swap text and background colors on hover
-            $(this).css({ background: textColor, color: pageColor })
-                   .find("a")
-                   .css({color: pageColor });
-        }, function() {
-            $(this).css({ background: pageColor, color: textColor })
-                   .find("a")
-                   .css({color: textColor });
-        });
-        
-        $(document).keypress(function(e) {
-            $this.find(".thr-colors > li.selected")
-                 .css({background: textColor, color: pageColor })
-                 .find("a")
-                 .css({color: pageColor });
-            
-            $this.find(".thr-colors > li:not(.selected)")
-                 .css({background: pageColor, color: textColor })
-                 .find("a")
-                 .css({color: textColor });
-        }); // end keydown
-    }
+    $("body").on("PageRendered", function() {
+        page.setHoverColors($(this));
+    }); // end PageVisible
 
     function fetchBook(slug) {
         var $def = $.Deferred();
@@ -127,9 +99,8 @@ define(["jquery",
                                $oldPage.addClass('thr-colors').removeClass('front-page choice-page') : $oldPage.addClass("choice-page");
             $oldPage.removeClass('favoriteYes favoriteNo').addClass(state.isFavorite(book.ID) ? 'favoriteYes' : 'favoriteNo');
             $oldPage.empty()
-                .append(templates.render('heading'))
-                .append('<div class="content-wrap">' + newContent + '</div>')
-                .setHoverColors();
+                .append(templates.render('heading', view)) // need to pass in view for book ID
+                .append('<div class="content-wrap">' + newContent + '</div>');
 
             $def.resolve($oldPage, {title: book.title, colors: true});
         });
