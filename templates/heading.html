@@ -1,7 +1,12 @@
 <header>
     <div class="header">
         <a href="/navigation/" class="thr-well-icon" title="_(Open Menu|icon explanatory text)"><img src="/theme/images/well.png" alt="Main Menu"/></a>
+        {{#ID}}
+        <a href="/reading-controls/?id={{ID}}" class="thr-settings-icon" title="_(Settings|icon explanatory text)"><img src="/theme/images/settings.png" alt="settings"/></a>
+        {{/ID}}
+        {{^ID}}
         <a href="/reading-controls/" class="thr-settings-icon" title="_(Settings|icon explanatory text)"><img src="/theme/images/settings.png" alt="settings"/></a>
+        {{/ID}}
         {{#setFavorite}}
         <a href="{{{setFavorite}}}" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"></a>
         {{/setFavorite}}
@@ -12,46 +17,46 @@
 		<!-- Begin mainSettings Panel -->
 		<ul class="mainSettings">
 			<!-- Begin Speech -->
-			<li><a href="#" class="speech">_(Speech|section heading)</a>
+			<li><span class="speech">_(Speech|section heading)</span>
 				<!-- Begin submenu -->
 				<ul class="submenu speechOptions">
-					<li><a href="#" class="silent">_(Silent)</a></li>
-					<li><a href="#" class="child">_(Child)</a></li>
-					<li><a href="#" class="female">_(Woman)</a></li>
-					<li><a href="#" class="male">_(Man)</a></li>
+					<li><span class="silent">_(Silent)</span></li>
+					<li><span class="child">_(Child)</span></li>
+					<li><span class="female">_(Woman)</span></li>
+					<li><span class="male">_(Man)</span></li>
 				</ul>
 				<!-- End submenu -->
 			</li>
 			<!-- End Speech -->
 			<!-- Begin Colors -->
-			<li><a href="#" class="colors">_(Colors|section heading)</a>
+			<li><span class="colors">_(Colors|section heading)</span>
 				<!-- Begin first submenu -->
 				<ul class="submenu">
-					<li class="pageColors"><a href="#">_(Page Colors|section heading)</a>
+					<li class="pageColors"><span>_(Page Colors|section heading)</span>
 						<!-- Begin inner submenu -->
 						<ul class="innerSubmenu pageColorsOptions">
-							<li><a href="#" class="black">_(Black)</a></li>
-							<li><a href="#" class="blue">_(Blue)</a></li>
-							<li><a href="#" class="cyan">_(Cyan)</a></li>
-							<li><a href="#" class="green">_(Green)</a></li>
-							<li><a href="#" class="magenta">_(Magenta)</a></li>
-							<li><a href="#" class="red">_(Red)</a></li>
-							<li><a href="#" class="white">_(White)</a></li>
-							<li><a href="#" class="yellow">_(Yellow)</a></li>
+							<li><span class="black">_(Black)</span></li>
+							<li><span class="blue">_(Blue)</span></li>
+							<li><span class="cyan">_(Cyan)</span></li>
+							<li><span class="green">_(Green)</span></li>
+							<li><span class="magenta">_(Magenta)</span></li>
+							<li><span class="red">_(Red)</span></li>
+							<li><span class="white">_(White)</span></li>
+							<li><span class="yellow">_(Yellow)</span></li>
 						</ul>
 						<!-- End inner submenu -->
 					</li>
-					<li class="textColors"><a href="#">_(Text Colors|section heading)</a>
+					<li class="textColors"><span>_(Text Colors|section heading)</span>
 						<!-- Begin inner submenu -->
 						<ul class="innerSubmenu textColorsOptions">
-							<li><a href="#" class="black">_(Black)</a></li>
-							<li><a href="#" class="blue">_(Blue)</a></li>
-							<li><a href="#" class="cyan">_(Cyan)</a></li>
-							<li><a href="#" class="green">_(Green)</a></li>
-							<li><a href="#" class="magenta">_(Magenta)</a></li>
-							<li><a href="#" class="red">_(Red)</a></li>
-							<li><a href="#" class="white">_(White)</a></li>
-							<li><a href="#" class="yellow">_(Yellow)</a></li>
+							<li><span class="black">_(Black)</span></li>
+							<li><span class="blue">_(Blue)</span></li>
+							<li><span class="cyan">_(Cyan)</span></li>
+							<li><span class="green">_(Green)</span></li>
+							<li><span class="magenta">_(Magenta)</span></li>
+							<li><span class="red">_(Red)</span></li>
+							<li><span class="white">_(White)</span></li>
+							<li><span class="yellow">_(Yellow)</span></li>
 						</ul>
 						<!-- End inner submenu -->
 					</li>
@@ -59,18 +64,20 @@
 				<!-- End first submenu -->
 			</li>
 			<!-- End Colors -->
-			<!-- Begin Download -->
-			<li><a class="download" href="#">_(Download|section heading)</a>
+			<!-- Begin Download (only show if we have book ID)-->
+			{{#ID}}
+			<li><span class="download">_(Download|section heading)</span>
 				<!-- Begin submenu -->
 				<ul class="submenu">
-					<li><a class="powerpoint">_(PowerPoint)</a></li>
-					<li><a class="impress">_(Impress)</a></li>
-					<li><a class="flash">_(Flash)</a></li>
+					<li><a class="powerpoint" href="/download/?fmt=ppt&id={{ID}}">_(PowerPoint)</a></li>
+					<li><a class="impress" href="/download/?fmt=imp&id={{ID}}">_(Impress)</a></li>
+					<li><a class="flash" href="/download/?fmt=imp&id={{ID}}">_(Flash)</a></li>
 				</ul>
 				<!-- End submenu -->
 			</li>
+			{{/ID}}
 			<!-- End Download -->
-			<li><a class="default" href="#">_(Default)</a></li>
+			<li><span class="default">_(Default)</span></li>
 		</ul>
 	<!-- End Settings Panel -->
 	</div>

@@ -71,47 +71,22 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
         });
 
-        $body.on("click", ".active-page .navigationMenu:visible .more", function() {
-            var $secondaryNav = $(".active-page .secondaryNav"),
-                $this = $(this);
-            $this.blur(); // remove fuzzy border
-
-            if(!$secondaryNav.is(":visible")) {
-                $this.parent("li")
-                     .addClass("divider")
-                     .end()
-                     .text("Less");
-                $secondaryNav.slideDown(300);
-                $("html, body").animate({ scrollTop: 1000 }, 600); 
-
-            } else {
-                $this.parent("li").removeClass("divider").end().text("More");
-                $secondaryNav.slideUp(300);
-                $("html, body").animate({ scrollTop: 0 }, 600);
-            }
-        });
-
         // hack for .find-page since we reuse this page
         $body.on("PageRendered", ".find-page", function() {
-            var $navMenu = $(this).find(".navigationMenu");
-            $navMenu.show();
-            // if secondaryNav was open, close it since we are reusing the navigation
-            if($navMenu.find(".more").text() === "Less") {
-                $navMenu.find(".more").text("More").parent().removeClass("divider").
-                         end().find(".secondaryNav").hide();
-            }
+            $(this).find(".navigationMenu").show();
         });
 
         $body.on("PageVisible", function() {
             pathname = $(location).attr("pathname"); // update current URL
-            $(".thr-well-icon").attr("href", "");
+            $(".thr-well-icon").attr("href", ""); // fix iPad "/navigation" blinking bug
             if($(".content-wrap").length === 1) { return; } // initial entrance to website, avoid "double slidedown" bug
 
             $(".active-page").find(".content-wrap")
-                             .hide().slideDown(600, "swing");
+                             .hide()
+                             .slideDown(600, "swing");
         });
 
-       $body.on("click", ".active-page .navigationMenu a:not(.more), a.homeLink", function() {
+       $body.on("click", ".active-page .navigationMenu a, a.homeLink", function() {
             var href = $(this).attr("href"),
                 newPage = true;
 
@@ -122,8 +97,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                 newPage = false;
             }
             // if it's a new page, then just slide the navigation up; else, slide up navigation and show .hiddenContent
-            newPage ? $(".active-page .navigationMenu").slideUp(150) :
-                                        $(".active-page .thr-well-icon img").trigger("click", href);
+            newPage ? $(".active-page .navigationMenu").slideUp(150) : $(".active-page .thr-well-icon img").trigger("click", href);
         });
         /*
          * End Navigation Code
@@ -135,7 +109,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
         $body.on("click", ".thr-settings-icon img", function(e, data) {
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             $(".active-page .submenu, .active-page .innerSubmenu").hide();
-            console.log("hiding submenu and innersubmenu");
+
             data === 'keybind' ? $(".active-page .mainSettings").slideDown() : $(".active-page .mainSettings").slideToggle();
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         });
@@ -150,45 +124,45 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             $(this).find(".innerSubmenu").show();
             return false;
         });
-
-        $body.on("click", ".active-page .mainSettings:visible", function(e) { // if the click was made inside one of the menus, don't close the menu
+        
+        // if the click was made inside one of the menus, don't close the menu
+        $body.on("click", ".active-page .mainSettings:visible", function(e) { 
             e.stopPropagation();
         });
 
         // the user is changing a setting, adjust settings and update accordingly
-        $body.on("click", ".speechOptions li > a, .pageColorsOptions li > a, .textColorsOptions li > a", function() {
+        $body.on("click", ".speechOptions li > span, .pageColorsOptions li > span, .textColorsOptions li > span", function() {
             var $parent = $(this).parent(); // deal with the anchor's parent <li>
             changeSetting($parent, $parent.text().toLowerCase());
-            $(".find-page:visible").find(".navigationMenu").hide(). // hack for find.page
-                              end().find(".hiddenContent").show();
+            $(".find-page:visible").find(".navigationMenu").hide() // hack for find.page
+                                   .end().find(".hiddenContent").show();
             return false;
         });
 
         $body.on("click", ".active-page .mainSettings:visible .default", function() {
             resetSettings();
-            $(".active-page").find(".thr-settings-icon img").click();
-
-            if($(".find-page").is(":visible") && $(".find-page").find(".navigationMenu").length !== 0) { // hack for find-page
+            $(".active-page .mainSettings").slideUp();
+            
+            // hack for find-page
+            if($(".find-page").is(":visible") && $(".find-page").find(".navigationMenu").length !== 0) { 
                 $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
             }
         });
-
-        $(document).on("click", "head, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
+        // touchstart for i
+        $(document).on("click, touchstart", "html:not(.mainSettings), body:not(.mainSettings)", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
             $(".active-page .mainSettings").slideUp();
             e.stopPropagation();
         });
         /*
          * End Settings Code
          */
-
       }); // end ready
 
       function changeSetting($element, text) {
-          var parentClass = $element.parent().attr("class").toLowerCase().
-                            replace(/inner|submenu|\s{1}/g, ""), // remove "submenu" and "innerSubmenu"
+          var parentClass = $element.parent().attr("class").toLowerCase()
+                                             .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
               value,
               option = "";
-          console.log(parentClass);
 
           if(parentClass === "speechoptions") { // which option are we dealing with?
               value = getOptionValue("speech", text);
@@ -201,7 +175,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
           } else if(parentClass === "textcolorsoptions") {
               value = getOptionValue("colors", text);
               option = "textColor";
-          } else {// not a valid option, return
+          } else { // not a valid option, return
               return;
           }
 
@@ -244,15 +218,14 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
           $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
           $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
           $('.thr-colors').css({ // update .thr-colors
-                    color: '#' + state.get('textColor'),
-                    backgroundColor: '#' + state.get('pageColor'),
-                    borderColor: '#' + state.get('textColor')
+                 color: '#' + currentSettings.textColor,
+                 backgroundColor: '#' + currentSettings.pageColor,
+                 borderColor: '#' + currentSettings.textColor
          });
       }
 
       // function for navigation via key bindings
       function initNavKeybindings() {
-
          var navState = {
                   mainMenu: {
                       index: 0,
@@ -327,6 +300,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
               if(keyCode === 13) { // if enter is pressed on an icon, show menu
                   var $this = $(this),
                       $activePage = $(".active-page");
+                      
                   if($this.is(":focus") && !($activePage.find(".navigationMenu").is(":visible")) &&
                                             !($activePage.find(".mainSettings").is(":visible"))) {
                       $this.find("img").trigger('click', 'keybind');
@@ -335,7 +309,6 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                       } else if($this.is($(".thr-settings-icon"))){
                          settingsState.resetIndices();
                       }
-                      $this.blur();
                       return false;
                   }
               }
@@ -344,53 +317,19 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
 
           $("body").on("keydown", function(e) {
              keyCode = e.keyCode || e.which;
-
              isNavMenuOpen = $(".active-page .navigationMenu").is(":visible");
 
               // are any of the menus open?
              if(isNavMenuOpen || $(".active-page .mainSettings").is(":visible")) {
                 if(isNavMenuOpen) { // decide which menu is open
-                    var $nav = $(".active-page .navigationMenu"),
-                        $mainNav = $nav.find(".mainNav"),
-                        $secondaryNav = $nav.find(".secondaryNav"),
-                        mainNavLength = $mainNav.find("li").length,
-                        secondaryNavLength = $secondaryNav.find("li").length;
-
                     openMenuState = navState;
-                    if($secondaryNav.is(":visible")) { // adjust $openMenu and navState accordingly if .secondaryNav is visible
-                        if(navState.getIndex("mainMenu") === (mainNavLength - 1) && (keyCode === 32 || keyCode === 39)) {
-                           $openMenu = $secondaryNav;
-                           navState.setBounds(secondaryNavLength, "mainMenu");
-                           navState.setIndex(-1, "mainMenu");
-
-                       } else if($(".selectedLink").parent().is($secondaryNav)) {
-
-                           if((keyCode === 32 || keyCode === 39) && navState.getIndex("mainMenu") === (secondaryNavLength - 1)) {
-                               $openMenu = $mainNav;
-                               navState.setBounds(mainNavLength, "mainMenu");
-                               navState.setIndex(-1, "mainMenu");
-                           } else if(keyCode === 38 && navState.getIndex("mainMenu") === 0) {
-                               $openMenu = $mainNav;
-                               navState.setBounds(mainNavLength, "mainMenu");
-                               navState.setIndex(mainNavLength, "mainMenu");
-                           }
-
-                       } else if($(".selectedLink").parent().is($mainNav) && keyCode === 38 &&
-                                                         navState.getIndex("mainMenu") === 0) {
-                           $openMenu = $secondaryNav;
-                           navState.setBounds(secondaryNavLength, "mainMenu");
-                           navState.setIndex(secondaryNavLength, "mainMenu");
-                       }
-
-                    } else {
-                        $openMenu = $mainNav;
-                        navState.setBounds(mainNavLength, "mainMenu");
-                    }
+                    $openMenu = $('.active-page .navigationMenu:visible');
+                    navState.setBounds($openMenu.children('li').length, 'mainMenu');
 
                 } else {
                     openMenuState = settingsState;
-                    $openMenu = $(".active-page .mainSettings:visible");
-                    settingsState.setBounds($(".active-page .mainSettings > li").length, 'mainMenu');
+                    $openMenu = $('.active-page .mainSettings:visible');
+                    settingsState.setBounds($openMenu.children('li').length, 'mainMenu');
                 }
 
                 isSubMenuOpen = $openMenu.find(".submenu").is(":visible");
@@ -490,13 +429,17 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                                                         .addClass(selectedClassName);
                         } else {
                             // if no .innerSubmenu exists, execute the action
-                            $submenuLink.find("a").trigger("click").parent()
-                                                                   .addClass(selectedClassName);
+                            var $anchor = $submenuLink.find("a"),
+                                $element =  $anchor ? $anchor : $submenuLink.find("span");
+                                
+                                
+                            $element.trigger("click").parent().addClass(selectedClassName)
+                          
                         }
 
                     } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .innerSubmenu and .submenu are open, click it
                         $(".innerSubmenu:visible > li").eq(openMenuState.getIndex("innerSubMenu"))
-                                                       .find("a").trigger("click")
+                                                       .find("span").trigger("click")
                                                        .parent().addClass(selectedClassName);
 
                     } else { // only mainMenu is open
