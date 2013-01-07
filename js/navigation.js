@@ -78,7 +78,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
 
         $body.on("PageVisible", function() {
             pathname = $(location).attr("pathname"); // update current URL
-            $(".thr-well-icon").attr("href", ""); // fix iPad "/navigation" blinking bug
+            $(".thr-well-icon, .thr-settings-icon").attr("href", ""); // fix iPad "/navigation" blinking bug
             if($(".content-wrap").length === 1) { return; } // initial entrance to website, avoid "double slidedown" bug
 
             $(".active-page").find(".content-wrap")
@@ -126,7 +126,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
         });
         
         // if the click was made inside one of the menus, don't close the menu
-        $body.on("click", ".active-page .mainSettings:visible", function(e) { 
+        $body.on("click touchstart", ".active-page .mainSettings:visible", function(e) { 
             e.stopPropagation();
         });
 
@@ -148,8 +148,8 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                 $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
             }
         });
-        // touchstart for i
-        $(document).on("click, touchstart", "html:not(.mainSettings), body:not(.mainSettings)", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
+        // touchstart for touch-screen display
+        $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
             $(".active-page .mainSettings").slideUp();
             e.stopPropagation();
         });
