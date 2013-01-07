@@ -160,8 +160,9 @@ function convert_image_url($url) {
         $path = $root . $nurl;
     } elseif(preg_match('/http:.*\\/wp-content(\\/uploads\\/.*)(_[ts])?\\.jpg/', $url, $m)) {
         $nurl = $m[1] . $m[2] . '.jpg';
+        $nurl = str_replace(' ', '_', $nurl);
         $path = $root . '/wp-content' . $nurl;
-        $nurl = preg_replace('/ /', '%20', $nurl);
+        //$nurl = preg_replace('/ /', '%20', $nurl);
     }
     return array($nurl, $path);
 }

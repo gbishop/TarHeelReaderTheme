@@ -63,7 +63,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 function imgPath($url) {
     $result = ABSPATH . str_replace('%20', ' ', substr($url, 1));
-    BuG($result);
     return $result;
 }
 
