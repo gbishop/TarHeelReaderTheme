@@ -1,11 +1,10 @@
 
-define([ "jquery",
-          "route",
+define([  "route",
           "page",
           "state",
           "templates",
           "history.adapter.jquery"
-         ], function($, route, page, state, templates) {
+         ], function(route, page, state, templates) {
 
     var History = window.History,
         document = window.document,

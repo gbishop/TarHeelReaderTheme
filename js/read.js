@@ -1,16 +1,15 @@
 /* book.js render a book page */
 
-define(["jquery",
-        "route",
+define(["route",
         "page",
         "templates",
         "keyboard",
         "state",
         "speech"
-        ], function($, route, page, templates, keys, state, speech) {
+        ], function(route, page, templates, keys, state, speech) {
 
     var book = null; // current book
-    
+
     $("body").on("PageRendered", function() {
         page.setHoverColors($(this));
     }); // end PageVisible

@@ -1,7 +1,7 @@
 /*
     Convert keyboard input into events used by other modules for switch selection
 */
-define(["jquery", "pubsub"], function($) {
+define(["pubsub"], function() {
 
     var keyIsDown = {};
     var keyMaps = {};
@@ -26,8 +26,8 @@ define(["jquery", "pubsub"], function($) {
 
     function onKeyDown(e) {
         // so as to not interfere with navigation keybindings... a better solution? integrate nav key events with keyboard.js?
-        if($(".active-page .navigationMenu").is(":visible") || $(".active-page .mainSettings").is(":visible")) { return true; } 
-        
+        if($(".active-page .navigationMenu").is(":visible") || $(".active-page .mainSettings").is(":visible")) { return true; }
+
         var selector = e.data,
             selected = $(selector);
         if (!selector || selected.length === 0) return true;

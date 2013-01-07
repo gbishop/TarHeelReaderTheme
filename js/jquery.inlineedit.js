@@ -9,7 +9,7 @@
  * Inline (in-place) editing.
  */
 
-define(['jquery'], function($) {
+define([], function() {
 
     // cached values
     var namespace = '.inlineedit',

@@ -2,7 +2,7 @@
  * http://benalman.com/
  * Copyright (c) 2011 "Cowboy" Ben Alman; Licensed MIT, GPL */
 
-define(['jquery'], function($) {
+define([], function() {
 
   var o = $({});
 

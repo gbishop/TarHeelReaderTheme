@@ -1,4 +1,4 @@
-define(['jquery', 'jquery-ui', 'jquery.ui.touch-punch'], function($) {
+define(['jquery.ui.touch-punch'], function() {
     $(function() {
         $(document).on('click', '.help,.help-text', function(e) {
             // dialog doc claims it restores the source element but it does not do that for me, clone below

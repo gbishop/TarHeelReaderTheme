@@ -1,4 +1,4 @@
-define(['jquery'], function($){
+define([], function(){
     /* poll for commands to run. I mostly use it with window.location.reload(true); */
 
     function remoteCommand() {

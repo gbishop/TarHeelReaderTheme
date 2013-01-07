@@ -1,10 +1,9 @@
 define([
-    'jquery',
     'route',
     'state',
     'controller',
     "jquery.scrollIntoView"
-], function($, route, state, controller) {
+], function(route, state, controller) {
 
      $('body').on('PageRendered', '.your-books-page', function() {
         var $this = $(this),

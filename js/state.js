@@ -1,4 +1,4 @@
-define([ "jquery", "route", "json!../state.json", "jquery.cookie", "json2" ], function($, route, defaultState) {
+define([ "route", "json!../state.json", "jquery.cookie", "json2" ], function(route, defaultState) {
     var state;
 
     function parseQuery(qstring) {

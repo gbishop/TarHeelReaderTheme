@@ -6,7 +6,7 @@
  */
 
 // Closure
-define(['jquery', 'history', 'history.html4'], function(){
+define(['history', 'history.html4'], function(){
 	"use strict";
 
 	// Localise Globals

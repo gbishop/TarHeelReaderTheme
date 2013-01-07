@@ -1,14 +1,12 @@
-define(['jquery',
-        'route',
+define(['route',
         'templates',
         'controller',
         'fileuploader',
-        'jquery-ui',
         'jquery.ui.touch-punch',
         'jquery.inlineedit',
         'json2'
         ],
-    function($, route, templates, controller, fileuploader) {
+    function(route, templates, controller, fileuploader) {
         var maxCaptionLength = 120;  // no page text may be longer than this
 
         var galleryData = {}; // parameters for the photo search
@@ -646,7 +644,7 @@ define(['jquery',
                 }
             });
         }
-        
+
         route.add('init', /^\/write\/(?:\?id=(\d+))?$/, writeInit);
     }
 );

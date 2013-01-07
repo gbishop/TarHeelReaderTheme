@@ -2,15 +2,14 @@
 generate the find page locally and enable switch selection of items
 */
 
-define(["jquery",
-         "route",
+define([ "route",
          "templates",
          "state",
          "keyboard",
          "speech",
          "page",
          "jquery.scrollIntoView"
-        ], function($, route, templates, state, keys, speech, page) {
+        ], function(route, templates, state, keys, speech, page) {
 
     // return the url that will restore the find page state
     function find_url(page) {
@@ -119,7 +118,7 @@ define(["jquery",
                 // when the scrolling is complete, compute the parameters of the preview
                 var $window = $(window),
                     regexResult = /(findPageNavButton)/.exec(toSelect.attr('class')),
-                    buttonClass = regexResult ? ' ' + regexResult[1] : ''; 
+                    buttonClass = regexResult ? ' ' + regexResult[1] : '';
                 var ww = $window.width();
                 var wh = $window.height();
                 var wt = $window.scrollTop();

@@ -11,7 +11,7 @@
  * @author Arwid Bancewicz http://arwid.ca
  * @version 0.2
  */
- define(['jquery'], function($) {
+ define([], function() {
     $.fn.scrollIntoView = function(duration, easing, complete) {
         // The arguments are optional.
         // The first argment can be false for no animation or a duration.

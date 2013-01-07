@@ -1,4 +1,4 @@
-define(["jquery", "templates" ], function($, templates) {
+define(["templates" ], function(templates) {
     var SpeechBase = "/cache/speech/";
     var languages = templates.get('languages');
     var hasSpeech = {};

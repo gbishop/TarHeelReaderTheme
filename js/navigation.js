@@ -1,5 +1,5 @@
 // Code for navigation and settings menus
-require(["jquery", "state", "controller", "templates"], function($, state, controller, templates) {
+require(["state", "controller", "templates"], function(state, controller, templates) {
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
         options = { // list of available options
@@ -124,9 +124,9 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
             $(this).find(".innerSubmenu").show();
             return false;
         });
-        
+
         // if the click was made inside one of the menus, don't close the menu
-        $body.on("click touchstart", ".active-page .mainSettings:visible", function(e) { 
+        $body.on("click touchstart", ".active-page .mainSettings:visible", function(e) {
             e.stopPropagation();
         });
 
@@ -142,9 +142,9 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
         $body.on("click", ".active-page .mainSettings:visible .default", function() {
             resetSettings();
             $(".active-page .mainSettings").slideUp();
-            
+
             // hack for find-page
-            if($(".find-page").is(":visible") && $(".find-page").find(".navigationMenu").length !== 0) { 
+            if($(".find-page").is(":visible") && $(".find-page").find(".navigationMenu").length !== 0) {
                 $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
             }
         });
@@ -300,7 +300,7 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
               if(keyCode === 13) { // if enter is pressed on an icon, show menu
                   var $this = $(this),
                       $activePage = $(".active-page");
-                      
+
                   if($this.is(":focus") && !($activePage.find(".navigationMenu").is(":visible")) &&
                                             !($activePage.find(".mainSettings").is(":visible"))) {
                       $this.find("img").trigger('click', 'keybind');
@@ -431,10 +431,10 @@ require(["jquery", "state", "controller", "templates"], function($, state, contr
                             // if no .innerSubmenu exists, execute the action
                             var $anchor = $submenuLink.find("a"),
                                 $element =  $anchor ? $anchor : $submenuLink.find("span");
-                                
-                                
+
+
                             $element.trigger("click").parent().addClass(selectedClassName)
-                          
+
                         }
 
                     } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .innerSubmenu and .submenu are open, click it

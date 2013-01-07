@@ -1,6 +1,6 @@
 /* page.js manage multiple pages in the DOM */
 
-define(["jquery", "state"], function($, state) {
+define(["state"], function(state) {
 
     // find or create an inactive page of the indicated type
     function getInactive(type) {
@@ -50,7 +50,7 @@ define(["jquery", "state"], function($, state) {
         });
         return $def;
     }
-    
+
     // set text and background color of a jQuery element
     function setHoverColors($page) {
         var pageColor = "#" + state.get('pageColor'),
@@ -66,13 +66,13 @@ define(["jquery", "state"], function($, state) {
                    .find("a")
                    .css({color: textColor });
         }); // end hover
-        
+
         $(document).keypress(function(e) {
             $page.find(".thr-colors > li.selected")
                  .css({background: textColor, color: pageColor })
                  .find("a")
                  .css({color: pageColor });
-            
+
             $page.find(".thr-colors > li:not(.selected)")
                  .css({background: pageColor, color: textColor })
                  .find("a")

@@ -3,6 +3,9 @@
 
 	<?php wp_footer(); ?>
 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
   <!-- load everything else dynamically -->
   <script data-main="/theme/js/main" src="/theme/js/require.js"></script>
 <!-- Asynchronous google analytics; this is the official snippet.
