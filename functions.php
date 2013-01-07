@@ -603,7 +603,6 @@ function thr_modify_query( $query ) {
 
 // hack error logging
 function BuG($msg) {
-    date_default_timezone_set('EDT');
     $msg = date('m/d H:i:s') . ' ' . $msg;
     error_log($msg . "\n", 3, '/var/tmp/BuG.txt');
 }
