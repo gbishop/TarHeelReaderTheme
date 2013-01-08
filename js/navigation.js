@@ -122,7 +122,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
         $body.on("click", ".active-page .mainSettings:visible > li > .submenu:visible > li", function(e) {
             $(".innerSubmenu:visible").hide();
             $(this).find(".innerSubmenu").show();
-            return false;
         });
 
         // if the click was made inside one of the menus, don't close the menu
