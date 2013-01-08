@@ -73,7 +73,8 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
         // hack for .find-page since we reuse this page
         $body.on("PageRendered", ".find-page", function() {
-            $(this).find(".navigationMenu").show();
+            $(this).find(".navigationMenu").show().end()
+                   .find(".mainSettings").hide();
         });
 
         $body.on("PageVisible", function() {
@@ -122,6 +123,12 @@ require(["state", "controller", "templates"], function(state, controller, templa
         $body.on("click", ".active-page .mainSettings:visible > li > .submenu:visible > li", function(e) {
             $(".innerSubmenu:visible").hide();
             $(this).find(".innerSubmenu").show();
+            e.stopPropagation(); // so that the menu does not close (see above handler)
+        });
+        
+        // slide up when a download type is clicked
+        $body.on("click", ".active-page .downloadOptions a ", function() {
+            $(".active-page .mainSettings:visible").slideUp();
         });
 
         // if the click was made inside one of the menus, don't close the menu
@@ -147,6 +154,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
             }
         });
+        
         // touchstart for touch-screen display
         $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
           var $menu = $(".active-page .mainSettings");
