@@ -33,7 +33,6 @@ define(["pubsub"], function() {
         if (!selector || selected.length === 0) return true;
         if (e.target.nodeName == 'INPUT' && $.contains(selected.get(0), e.target)) {
             // don't handle events from input fields on the current page
-            console.log('caught input', e.target, selector);
             return true;
         }
 
@@ -44,7 +43,6 @@ define(["pubsub"], function() {
         }
         keyIsDown[code] = true;
 
-        console.log('kd', e, e.data);
         var keyMap = keyMaps[selector];
 
         var name = keyName[code];
@@ -72,7 +70,6 @@ define(["pubsub"], function() {
         $('body').css('overflow', 'hidden');
         var touch = e.originalEvent.changedTouches[0];
         touchStart = { t: e.timeStamp, x: touch.clientX, y: touch.clientY };
-        console.log('ts' + touchStart);
     }
 
     function onTouchEnd(e) {
