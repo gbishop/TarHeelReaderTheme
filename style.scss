@@ -11,7 +11,7 @@ $captionFontSize: 1.8em;
 $pageLinkFontSize: 0.8em;
 $carolinaBlue: #56A0D3;
 
-@import "reset";
+@import "css/reset";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
 
 /*
@@ -1539,7 +1539,7 @@ h2 {
 
 /* include my automatically generated media queries */
 
-@import "mediaqueries";
+@import "css/mediaqueries";
 
 /*
  * Small width
@@ -1955,6 +1955,6 @@ img.favoriteYes, img.favoriteNo {
   display: block !important;
 }
 
-@import "fileuploader";
-@import "yourbooks";
-@import "collections";
+@import "css/fileuploader";
+@import "css/yourbooks";
+@import "css/collections";
