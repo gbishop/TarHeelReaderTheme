@@ -1,30 +1,51 @@
 '''Edit files in Theme-build so that references are versioned to enable caching in production'''
 
-import os
 import os.path as osp
-import json
+import shelve
+import hashlib
 import re
+import argparse
 
-versionFile = '../version.json'
-staticHost = "http://tarheelreader3s.cs.unc.edu"
+parser = argparse.ArgumentParser(description="Process templates to produce locale specific json files.")
+parser.add_argument('--staticHost', default='')
+parser.add_argument('--db', default='../gbVersion')
+parser.add_argument('files', nargs='+')
+args = parser.parse_args()
 
-versionInfo = json.loads(file(versionFile, 'r').read())
-version = versionInfo['version'] + 1
+staticHost = args.staticHost
 
-for root, dirs, files in os.walk('../Theme-build'):
-    if '.git' in dirs:
-        dirs.remove('.git')
-    for fname in files:
-        p, ext = osp.splitext(fname)
-        if ext not in ['.php', '.js', '.json', '.css']:
-            continue
-        path = osp.join(root, fname)
-        obytes = file(path, 'r').read()
-        nbytes = re.sub(r'(%s)?/theme(V\d+)?/' % staticHost, '%s/themeV%d/' % (staticHost, version), obytes)
-        nbytes = nbytes.replace('{{staticHost}}', staticHost)
-        if obytes != nbytes:
-            print fname
-            file(path, 'w').write(nbytes)
+target = re.compile(r'''(?<=['"(])/theme(V[0-9]+)?/([^'"\\)]*)''')
 
-versionInfo['version'] = version
-file(versionFile, 'w').write(json.dumps(versionInfo) + '\n')
+db = shelve.open(args.db)
+
+
+def insertVersion(m):
+    name = m.group(2)
+    fullname = name
+    if fullname == 'js/main':
+        fullname = fullname + '.js'
+    if not osp.exists(fullname):
+        print 'missing', fname, name
+        return m.group(0)
+
+    newhash = hashlib.md5(file(fullname).read()).hexdigest()
+    if fullname not in db:
+        version = 1
+        db[fullname] = (version, newhash)
+    else:
+        version, oldhash = db[fullname]
+        if oldhash != newhash:
+            version += 1
+            db[fullname] = (version, newhash)
+
+    name = ('%s/themeV%d/' % (staticHost, version)) + name
+    return name
+
+for fname in args.files:
+    p, ext = osp.splitext(fname)
+    obytes = file(fname, 'r').read()
+    nbytes = target.sub(insertVersion, obytes)
+    if obytes != nbytes:
+        print fname
+        file(fname, 'w').write(nbytes)
+db.close()

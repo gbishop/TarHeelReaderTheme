@@ -78,12 +78,12 @@ define([ "state",
                         }
                     }
                     if (url) {
-                        $.get('/theme/Templates.' + locale + '.json',
-                                function(data) {
-                                    localeTemplates[locale] = data;
-                                    completeSearchForm();
-                                    $def.resolve();
-                                }, 'json');
+                        $.get(url,
+                            function(data) {
+                                localeTemplates[locale] = data;
+                                completeSearchForm();
+                                $def.resolve();
+                            }, 'json');
                     } else {
                         console.log('setTemplateLocale failed on', locale);
                         completeSearchForm();
