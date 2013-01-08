@@ -150,8 +150,12 @@ require(["state", "controller", "templates"], function(state, controller, templa
         });
         // touchstart for touch-screen display
         $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
-            $(".active-page .mainSettings").slideUp();
+          var $menu = $(".active-page .mainSettings");
+          if ($menu.is(":visible")) {
+            $menu.slideUp();
             e.stopPropagation();
+            e.preventDefault();
+          }
         });
         /*
          * End Settings Code
