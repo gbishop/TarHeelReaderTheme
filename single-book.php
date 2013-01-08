@@ -69,9 +69,9 @@
                 $rating = getParam('rating', '', '/[123]/');
                 if ($rating && $view['thanks']) {
                     $rating = intval($rating, 10);
-                    $view['rating'] = update_book_rating($post->ID, $rating);
+                    $view['rating'] = rating_info(update_book_rating($post->ID, $rating));
                 } else {
-                    $view['rating'] = $book['rating_value'];
+                    $view['rating'] = rating_info($book['rating_value']);
                 }
                 echo template_render('choicePage', $view);
             }

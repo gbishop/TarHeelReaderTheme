@@ -14,14 +14,9 @@
             <a href="{{link}}" data-type="book">
                 <h2>{{title}}</h2>
                 <p class="thr-author">_(by {{author}}|short for written by author name)</p>
-                <img src="/theme/images/{{rating}}stars_t.png" class="thr-stars"
-                     {{#rating}}
-                     alt="{{rating}} stars" title="_({{rating}} stars)"
-                     {{/rating}}
-                     {{^rating}}
-                     alt="not yet rated" title="_(not yet rated)"
-                     {{/rating}}
-                />
+                {{#rating}}
+                <img src="{{icon}}" class="thr-stars" alt="{{text}}" title="{{text}}" />
+                {{/rating}}
                 {{#reviewed}}
                 <img src="/theme/images/reviewed_t.png" class="thr-reviewed"
                      alt="reviewed for educational quality" title="_(Reviewed for educational quality.|icon explanatory text)" />

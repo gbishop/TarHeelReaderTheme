@@ -89,7 +89,7 @@ define(["route",
                     // we need to update the rating on the host
                     updateRating(book, url);
                 }
-                view.rating = book.rating_value;
+                view.rating = templates.rating_info(book.rating_value);
                 newContent = templates.render('choicePage', view);
             }
             var $oldPage = page.getInactive('thr-book-page');

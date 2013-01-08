@@ -21,7 +21,8 @@ function template_render($name, $data=array()) {
 
 $LangNameToLangCode = array();
 $SynthLanguages = array();
-foreach($Templates['languages'] as $row) {
+$lang = $Templates['languages'];
+foreach($lang as $row) {
     $LangNameToLangCode[$row['tag']] = $row['value'];
     if ($row['value']) {
         $SynthLanguages[] = $row['value'];
@@ -423,6 +424,18 @@ function updateIndex($book) {
     }
 }
 
+function rating_info($rating_value) {
+    global $Templates;
+    $ratings = $Templates['ratings'];
+    if ($rating_value == 0) {
+        $result = $ratings[0];
+    } else {
+        $index = intval(round(2*$rating_value) - 1);
+        $result = $ratings[$index];
+    }
+    return $result;
+}
+
 // factored out of find, favorites, and collections
 function posts_to_find_results($posts, $nrows, $count) {
     if ($nrows > $count) {
@@ -442,7 +455,7 @@ function posts_to_find_results($posts, $nrows, $count) {
         $po['slug'] = $book['slug'];
         $po['link'] = $book['link'];
         $po['author'] = $book['author'];
-        $po['rating'] = round(round($book['rating_value']*2)/2, 1);
+        $po['rating'] = rating_info($book['rating_value']);
         $po['tags'] = $book['tags'];
         $po['categories'] = $book['categories'];
         $po['reviewed'] = $book['reviewed'] == 'R';

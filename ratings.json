@@ -1,0 +1,26 @@
+[
+    { "text": "_(Not yet rated)",
+      "img": "/theme/images/0stars.png",
+      "icon": "/theme/images/0stars_t.png"
+    },
+    { "text": "_(1 star)",
+      "img": "/theme/images/1stars.png",
+      "icon": "/theme/images/1stars_t.png"
+    },
+    { "text": "_(1.5 stars)",
+      "img": "/theme/images/1.5stars.png",
+      "icon": "/theme/images/1.5stars_t.png"
+    },
+    { "text": "_(2 stars)",
+      "img": "/theme/images/2stars.png",
+      "icon": "/theme/images/2stars_t.png"
+    },
+    { "text": "_(2.5 stars)",
+      "img": "/theme/images/2.5stars.png",
+      "icon": "/theme/images/2.5stars_t.png"
+    },
+    { "text": "_(3 stars)",
+      "img": "/theme/images/3stars.png",
+      "icon": "/theme/images/3stars_t.png"
+    }
+]

@@ -79,11 +79,22 @@ define([ "state",
                 return $def;
             }
 
+            function rating_info(rating_value) {
+                ratings = getTemplate('ratings');
+                if (rating_value === 0) {
+                    return ratings[0];
+                } else {
+                    index = Math.round(rating_value * 2) - 1;
+                    return ratings[index];
+                }
+            }
+
             return {
                 render: renderTemplate,
                 searchForm: searchForm,
                 get: getTemplate,
                 setImageSizes: setImageSizes,
-                setLocale: setTemplateLocale
+                setLocale: setTemplateLocale,
+                rating_info: rating_info
             };
         });

@@ -19,8 +19,10 @@
     {{/rate}}
     {{#thanks}}
     <h1 class="thr-thanks thr-colors">_(Thank you for your opinion.)</h1>
-    <img src="/theme/images/{{rating}}stars.png" />
-    <p class="thr_colors">_(Average Rating): {{rating}}</p>
+    {{#rating}}
+    <img src="{{img}}" title="{{text}}" alt="{{text}}" />
+    <p class="thr_colors">_(Average Rating): {{text}}</p>
+    {{/rating}}
     <h1 class="thr-question thr_colors" data-speech="whatnow">_(What would you like to do now?):whatnow</h1>
     <ul class="thr-colors thr-choices decoratedList">
         <li data-speech="again"><a class="key-a" href="{{link}}" data-type="book">_(Read this book again.):again</a></li>
