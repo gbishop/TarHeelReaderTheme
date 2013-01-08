@@ -24,15 +24,16 @@ cenk: build
 
 
 optimized:
-	rm -r ../Theme-build/*
+	rm -rf ../Theme-build/*
 	cd js; node ../../r.js -o app.build.js
 	cd ../Theme-build; make versioned
 
 versioned: build
-	python EditFileVersions.py *.php js/main.js style.css Templates*.json
+	python EditFileVersions.py --staticHost=$(STATICHOST) *.php js/main.js style.css Templates*.json
 
 gbopt: optimized
 	cd ../Theme-build; make copygb
 
-production: optimized
+production:
+	make optimized STATICHOST=http://tarheelreader3s.cs.unc.edu
 	cd ../Theme-build; make copyproduction
