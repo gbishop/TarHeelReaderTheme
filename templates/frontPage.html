@@ -18,10 +18,11 @@
 
 <form class="languageForm" action="" method="get">
 	<select name="locale" class="languages">
-    	<option value="de">Deutsch</option>
-    	<option value="en" selected="selected">English</option>
+        {{#locales}}
+        <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>{{label}}</option>
+        {{/locales}}
 	</select>
-	<input title="change language" class="goButton thr-gray-button" name="go" type="submit" value=" ">
+	<input title="_(change language)" class="goButton thr-gray-button" name="go" type="submit" value=" ">
 </form>
 
 <!-- content -->

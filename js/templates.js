@@ -69,12 +69,26 @@ define([ "state",
                     completeSearchForm();
                     $def.resolve();
                 } else {
-                    $.get('/theme/Templates.' + locale + '.json',
-                            function(data) {
-                                localeTemplates[locale] = data;
-                                completeSearchForm();
-                                $def.resolve();
-                            }, 'json');
+                    var locales = getTemplate('locales');
+                    var url = '';
+                    for(var i=0; i < locales.length; i++) {
+                        if (locales[i].value == locale) {
+                            url = locales[i].templates;
+                            break;
+                        }
+                    }
+                    if (url) {
+                        $.get('/theme/Templates.' + locale + '.json',
+                                function(data) {
+                                    localeTemplates[locale] = data;
+                                    completeSearchForm();
+                                    $def.resolve();
+                                }, 'json');
+                    } else {
+                        console.log('setTemplateLocale failed on', locale);
+                        completeSearchForm();
+                        $def.resolve();
+                    }
                 }
                 return $def;
             }

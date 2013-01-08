@@ -33,6 +33,7 @@ thr_header(''); ?> <!-- front-page.php -->
 					'wellicon' => '<img src="/theme/images/well.png" class="tinyicon" title="old well icon" />',
 					'gearicon' => '<img src="/theme/images/settings.png" class="tinyicon" title="gear icon" />',
 					'Flickr' => '<a href="http://flickr.com">Flickr</a>',
+					'locales' => $Templates['locales'],
 					'content' => $content,
 					'announcements' => $announcements
 				);

@@ -1,0 +1,4 @@
+[
+    { "label": "Deutsch", "value":"de", "templates":"/theme/Templates.de.json" },
+    { "label": "English", "value":"en", "selected":true }
+]
