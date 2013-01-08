@@ -117,6 +117,7 @@ define([  "route",
                             type = (cls && cls.match(/[-a-z]+-page/)[0]) || 'server-page',
                             $oldPage = page.getInactive(type);
                         $oldPage.replaceWith($newPage);
+                        state.update(''); // pick up any cookie updates from the host
                         $render.resolve($newPage);
                     },
 
