@@ -1,0 +1,562 @@
+/*
+ * Contains fundamental classes which are used in most pages (i.e. header, navigation, settings)
+ */
+.header {
+    position: relative; // for positioning the settings menu
+    width: 100%;
+
+    text-align: center;
+    display: block;
+    height: 4em;
+    min-height: 2em;
+
+    h1 {
+        border: 0;
+        font-size: 2em;
+        padding-top: 0.25em;
+        margin-top: 0.1em;
+
+        height: 1.7em;
+        min-height: 57%;
+
+        a {
+            text-decoration: none;
+            color: #555;
+            font-family: 'Terminal Dosis', sans-serif;
+            text-shadow: 0 1px 0 rgba(170, 170, 170, 0.25);
+            font-weight: 200;
+            padding: 0;
+        }
+    }
+
+    .description {
+        font-size: 0.9em;
+    }
+}
+
+.thr-well-icon {
+    position: absolute;
+    top: 0.5em;
+    left: 2em;
+    z-index: 99;
+
+    width: 2.5em;
+    min-width: 24px;
+    height: 2.5em;
+    min-height: 24px;
+
+    img {
+        width: 2.5em;
+        min-width: 24px;
+        height: 2.5em;
+        min-height: 24px;
+        opacity: 0.6;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.thr-settings-icon {
+    display: none;
+    position: absolute;
+    top: 0.65em;
+    right: 2em;
+    z-index: 999;
+
+    width: 2.5em;
+    min-width: 24px;
+    height: 2.5em;
+    min-height: 24px;
+
+    img {
+        width: 2.5em;
+        min-width: 24px;
+        height: 2.5em;
+        min-height: 24px;
+        opacity: 0.6;
+        &:hover {
+           opacity: 1;
+        }
+    }
+}
+
+.thr-favorites-icon {
+    display: none;
+    position: absolute;
+    top: 0.65em;
+    right: 5em;
+    z-index: 999;
+
+    width: 2.5em;
+    min-width: 24px;
+    height: 2.5em;
+    min-height: 24px;
+
+    opacity: 0.6;
+    &:hover {
+       opacity: 1;
+    }
+}
+
+.footer, .footer a {
+    width: 100%;
+    text-align: center;
+    font-size: 0.7em;
+    color: #888;
+}
+
+/*
+ * TODO: Don't use CSS3's not selector
+ */
+.thr-colors:not(.findPageNavButton) a {
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+}
+
+.decoratedList {
+    margin-bottom: 1em;
+    border: 1px solid #AAA !important;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    border-radius: 0.3em;
+
+    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+
+    li {
+      list-style: none;
+      margin: 0;
+      border-bottom: 1px solid #555;
+      overflow: auto;
+
+      a {
+        font-weight: bold;
+        padding: 0.5em;
+        padding-right: 1.5em;
+        display: block;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      &:last-child {
+        border: 0;
+      }
+    }
+
+ }
+
+.navigationMenu {
+    @include thrBackground(top, bottom);
+    @include decoratedMenu;
+
+    margin: 0.5em auto;
+    margin-bottom: 0;
+    max-width: 48em;
+    width: 100%;
+    overflow: auto;
+
+    li {
+      height: 3em;
+      overflow: hidden;
+
+      &.divider {
+        border-bottom: 1px solid #DFDFDF;
+        a {
+          background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
+        }
+      }
+
+      a {
+        display: block;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        background-size: 1.5em !important;
+        padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
+        width: 80%; // not 100% on purpose
+
+        color: inherit;
+        font-size: 1.5em;
+        line-height: 2em;
+        text-align: left;
+
+        &.homeLink {
+          background: url(/theme/images/home_32.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.findLink {
+          background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.collectionsLink {
+          background: url(/theme/images/collections.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.favoritesLink {
+          background: url(/theme/images/favorite_book.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.writeLink {
+          background: url(/theme/images/write_book.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.loginLink {
+          background: url(/theme/images/user.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.helpLink {
+          background: url(/theme/images/info.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.yourBooksLink {
+          background: url(/theme/images/my_book.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.blogLink {
+          background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+        &.photoCreditsLink {
+          background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
+                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+        }
+
+      } // end a
+    } // end li
+
+}
+
+.mainSettings {
+    @include thrBackground(left, right);
+    @include decoratedMenu;
+
+    display: none;
+    position: absolute;
+    top: 3em;
+    right: 4em;
+
+    padding: 0;
+    margin: 0;
+    width: 12em;
+    z-index: 100;
+
+    -webkit-border-radius: 0.25em 0.4em 0.4em 0.25em;
+    -moz-border-radius: 0.25em 0.4em 0.4em 0.25em;
+    border-radius: 0.25em 0.4em 0.4em 0.25em;
+
+    li {
+      position: relative; // in order to show submenus
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+
+      span {
+        background-size: 1.5em !important;
+        color: inherit;
+        font-size: 1.3em;
+        padding: 1em 0 1em 3.5em;
+
+        &.speech {
+          background: url(/theme/images/sound.png) 1em center no-repeat;
+        }
+
+        &.colors {
+          background: url(/theme/images/colors.png) 1em center no-repeat;
+        }
+
+        &.download {
+          background: url(/theme/images/download.png) 1em center no-repeat;
+        }
+
+        &.default {
+          background: url(/theme/images/default_settings.png) 1em center no-repeat;
+        }
+      } // end span
+
+      .submenu {
+        @include thrBackground(right, left);
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        
+        -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
+        -moz-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
+        box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
+
+        position: absolute;
+        display: none;
+        top: -1px;
+        right: 12.05em;
+        z-index: 999;
+        list-style: none;
+
+        width: 12em;
+        padding: 0;
+        margin: 0;
+
+        -webkit-border-radius: 0.5em 0 0 0.5em;
+        -moz-border-radius: 0.5em 0 0 0.5em;
+        border-radius: 0.5em 0 0 0.5em;
+        border: 1px solid #EFEFEF;
+        border-right: 0;
+
+        li {
+          height: auto;
+          width: auto;
+
+          a, span {
+            font-size: 1em;
+            padding: 1em;
+            font-size: 1.1em;
+            text-align: center;
+            &.checked {
+              background: url(/theme/images/check_mark.png) right center no-repeat;
+            }
+          }
+
+          .innerSubmenu {
+            @include thrBackground(left, right);
+            background-clip: padding-box;
+            -webkit-background-clip: padding-box;
+            display: none;
+            position: absolute;
+            right: 12em;
+            width: 10em;
+            top: -2em;
+
+            -webkit-border-radius: 0.5em 0 0 0.5em;
+            -moz-border-radius: 0.5em 0 0 0.5em;
+            border-radius: 0.5em 0 0 0.5em;
+            border: 1px solid #EFEFEF;
+            z-index: 999;
+
+            span {
+              text-align: left;
+              padding-left: 3.25em;
+              padding-right: 0.5em;
+
+              &.checked {
+                background: url(/theme/images/check_mark.png) right center no-repeat;
+              }
+            }
+          } // end .innerSubmenu
+        } // end li
+
+        // Begin color icons for text color
+        .textColors .innerSubmenu span {
+            &.black {
+              background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.blue {
+              background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.cyan {
+              background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.green {
+              background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.magenta {
+              background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.red {
+              background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.white {
+              background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.yellow {
+              background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          } // End color icons for text color
+
+          // Begin color icons for page color
+          .pageColors .innerSubmenu span {
+            &.black {
+              background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.blue {
+              background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.cyan {
+              background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.green {
+              background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.magenta {
+              background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.red {
+              background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.white {
+              background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+
+            &.yellow {
+              background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
+              &.checked {
+                background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat,
+                            url(/theme/images/check_mark.png) right center no-repeat;
+               }
+            }
+          } // end color icons for page color
+
+      } // end submenu
+    } // end li
+}
+
+// Mixin arguments for decorated gray/blue buttons and input
+.thr-gray-button {
+  @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
+}
+
+.thr-blue-button {
+  @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 7em);
+}
+
+.thr-input {
+  @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
+}
+
+/*
+ *  TODO: Import the decoratedButton mixin for this button with a few changes
+ *
+ */
+.searchShowButton {
+    display: none; // displayed by media query if js is on and screen is small
+    height: 2em;
+    min-height: 32px;
+    font-size: 1.5em;
+    border: solid black 1px;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-appearance: push-button;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+    //font-size: 1.5em;
+    text-align: center;
+    color: black;
+}
+
+// used in .write-page for picture preview
+.galleryPreviewDialog {
+    width: 20em !important;
+    height: 20em !important;
+
+    img {
+        margin: auto;
+        display: block;
+    }
+
+    a {
+        height: 100%;
+        opacity: 0;
+        width: 45%;
+        position: absolute;
+        top: 0;
+
+        img {
+            margin-top: 2em;
+        }
+        &.p {
+            left: 0;
+        }
+        &.n {
+            right: 0;
+        }
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}

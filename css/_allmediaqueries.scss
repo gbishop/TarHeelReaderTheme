@@ -1,0 +1,339 @@
+/*
+ * All media queries (including automatically generated ones) are in this file
+ */
+@import "css/mediaqueries";
+
+/*
+ * Small width
+ */
+@media only screen and (max-width: 624px) {
+
+  // *** Begin code for .server-page ***
+  .server-page {
+    .homeLinkList li {
+      width: 100%;
+      display: block;
+      margin: 1.5em auto;
+      font-size: 1.3em;
+    }
+
+    .languageForm {
+      .languages {
+        font-size: 1.5em;
+        width: 90%;
+      }
+
+      .goButton {
+        background-size: 1.5em;
+        margin: 0.5em 1em;
+        width: 90%;
+      }
+    }
+  } // *** End code for .server-page
+
+
+  // *** Begin code for .write-page ***
+  .write-page {
+
+    .image-search {
+      overflow: auto;
+      input {
+        width: 10em;
+        margin: 0.25em auto;
+        width: 95% !important;
+        vertical-align: middle;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        &[type='submit'] {
+          margin-left: 0.25em;
+        }
+      }
+
+    } // end image-search
+
+    .aWrap {
+      .button {
+        margin: 0 2%;
+
+        &:first-child {
+          width: 35%;
+        }
+
+        &:last-child {
+          width: 55%;
+        }
+      }
+    }
+
+     div.step4 {
+      button {
+        margin: 0 2%;
+        width: 45%;
+      }
+    }
+
+    .steps {
+
+      h2 {
+        padding-right: 2.5em; // acount for the question mark picture and word-wrap accordingly
+        word-wrap: break-word;
+      }
+
+      label {
+        display: block;
+        width: 100%;
+        margin: 0.5em 0;
+
+       span {
+         width: 30%;
+         display: inline-block;
+        }
+
+        input, select, button {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+        input {
+          width: 65% !important;
+        }
+        select, button {
+          width: 68% !important; // selects and buttons take up a little less space for some reason
+        }
+
+      }
+
+    }
+  } // *** End code for .write-page ****
+
+} // end media queries for max-width: 624px
+
+// define mixin for the alternative navigation/menu layout used for handheld devices
+@mixin phoneDisplay {
+
+   .header {
+     h1 {
+       margin-top: 0.5em;
+       font-size: 2em !important;
+     }
+   }
+
+   // make the buttons easier to press
+   .thr-gray-button, .thr-blue-button {
+     font-size: 1.25em;
+     padding: 0.5em 1em;
+   }
+
+   .languageForm {
+     .languages {
+       height: 2em;
+       line-height: 1.5em;
+     }
+   }
+
+   // input text areas need to be bigger (easier to press on)
+   input[type='text'], input[type='search'], input[type='password'], select {
+     font-size: 1.1em;
+     height: 1.75em;
+     line-height: 1.5em;
+   }
+
+   .navigation a {
+     font-size: 1.25em !important;
+     padding: 0.5em 1em !important;
+   }
+
+   label {
+     font-size: 1.1em;
+   }
+
+    // *** Begin code for .your-books-page***
+  .your-books-page {
+    .decoratedList {
+      li {
+        font-size: 1.25em;
+        height: 2em;
+        line-height: 2em;
+      }
+
+    }
+
+    .mapButton {
+      margin: 0.5em 0;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+  } // *** End code for .your-books-page***
+
+   // *** Begin .write-page code ***
+   .write-page {
+     .image-search {
+       input {
+         &[type='submit'] {
+           margin-left: 0em;
+         }
+       }
+     }
+   } // *** End .write-page code ***
+}
+
+
+@media only screen and(max-width: 948px) {
+  .content-wrap {
+    width: 90%;
+  }
+}
+/*
+ * max-width: 637px
+ */
+@media only screen and(max-width: 637px) {
+
+  // header adjustments for the heart and gear
+  .header {
+    margin-top: 0.25em;
+
+    h1 {
+      font-size: 1.25em;
+      margin-top: 0.75em;
+    }
+
+    .thr-well-icon {
+      top: 0.25em;
+    }
+
+    .thr-settings-icon {
+      top: 0;
+      right: 0.5em;
+    }
+
+    .thr-favorites-icon {
+      top: 0;
+      right: 4.5em;
+    }
+
+  }
+
+  .thr-book-list { // want to display 3 books per row
+    margin-left: 2.083333%; // 1/48
+    li {
+      width: 31.79549%; // remaining percentage/3 = width (also accounts for border)
+      margin: 0.4167%; // 0.2/48 = 0.004167...
+    }
+  }
+
+  .navigationMenu {
+    a {
+      padding: 0 19% !important;
+      width: 60% !important;
+    }
+  }
+}
+
+/* iPod all */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .js {
+        // hide the search form until the search button is pressed
+        .searchForm {
+            input, select {
+                width: 100%;
+                margin-top: 0.25em;
+                height: 3em !important;
+                vertical-align: middle;
+                font-size: 1.2em;
+
+                &[type='submit'] {
+                  margin-left: 0.25em;
+                }
+            }
+            display: none;
+        }
+
+        .searchShowButton {
+            display: block;
+            margin: 0.5em auto;
+            font-size: 1.5em;
+            line-height: 2.5em;
+            width: 80% !important;
+        }
+
+    }
+    // bump up the font size on the writing page to make it easier to hit buttons
+    .writing-controls {
+        font-size: 1.5em;
+    }
+    .gallery {
+      width: 100%;
+      margin: 0;
+    }
+    @include phoneDisplay;
+}
+
+/* iPod landscape */
+
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (min-width: 321px)
+and (max-width: 480px) {
+    body {
+        font-size: 8px;
+    }
+    .content-wrap {
+      width: 48em;
+      margin-bottom: 1em;
+    }
+    .thr-pic-box {
+        width: 15em;
+        height: 15em;
+    }
+}
+
+/* iPod portrait */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (max-width: 320px)
+and (min-width: 320px) {
+    body {
+        font-size: 8.33px;
+    }
+    .content-wrap {
+        width: 36em;
+        margin-bottom: 1em;
+    }
+}
+
+/* iPad portrait */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation: portrait) {
+    body {
+        font-size: 16px;
+    }
+    .thr-pic-box {
+        width: 48em;
+        height: 48em;
+    }
+}
+
+/* iPad landscape */
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (min-height: 650px) // prevent ie9 from hitting this one
+and (orientation: landscape) {
+    body {
+        font-size: 16px;
+    }
+    .thr-pic-box {
+        width: 33em;
+        height: 33em;
+    }
+}

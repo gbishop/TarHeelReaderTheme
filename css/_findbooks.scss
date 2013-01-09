@@ -1,0 +1,161 @@
+.find-page {
+    .content-wrap { // remove horizontal padding from the find page for centering
+      padding-left: 0;
+      padding-right: 0;
+    }
+    
+    .description {
+      display: none;
+    }
+    
+    .navigationMenu {
+      width: 95%; // no padding on .find-page, so make the width a little smaller
+    }
+    
+    // ***begin .searchForm***
+    .searchForm {
+      text-align: center;
+      width: 100%;
+      margin: 0.5em auto 0.25em;
+
+      select {
+          border: 0.1em solid #DDD;
+          -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+          -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+
+          padding: 0;
+          margin: 0.15em 0.25em;
+          line-height: 2em;
+          width: 9em;
+
+          color: #333;
+          font-size: 1.1em;
+
+          &[name='audience'] {
+            width: 14em;
+          }
+      }
+
+      input {
+          &[type='search'] {
+            @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1.1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
+          }
+
+          &[type='submit'] {
+            margin: 0.25em 0.75em;
+            @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
+          }
+      }
+    } // ***end .searchForm***
+    
+    // ***begin .thr-book-list***
+    .thr-book-list {
+      display: block;
+      text-align: center;
+      margin-left: 1em;
+      overflow: auto;
+
+      li {
+        width: 11em;
+        height: 11em;
+        border: 1px solid black;
+        margin: 0.2em;
+        float: left;
+        text-align: center;
+        position: relative;
+        line-height: 1em;
+        overflow: hidden;
+        //background:white;
+        -webkit-border-radius: 0.25em;
+        -moz-border-radius: 0.25em;
+        border-radius: 0.25em;
+
+        -webkit-box-shadow: 0.1em 0.1em 0.1em #aaa;
+        -moz-box-shadow: 0.1em 0.1em 0.1em #aaa;
+        box-shadow: 0.1em 0.1em 0.1em #aaa;
+      }
+
+      li.selected {
+        border-color: red !important;
+      }
+
+      h2 {
+        height: 2.2em;
+        font-size: 1em;
+        line-height: 1.1em;
+        overflow: hidden;
+        margin: 0.2em 0 0 0;
+      }
+
+      .thr-author {
+        font-size: 0.8em;
+        overflow: hidden;
+        height: 1.3em;
+        margin: 0;
+      }
+    /*
+     * TODO: Don't use CSS3's not selector
+     */
+      a:not(.findPageNavButton), a:not(.findPageNavButton):hover {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .thr-pages {
+        position: absolute;
+        bottom: 0.25em;
+        right: 0.625em;
+        font-size: 0.7em;
+      }
+
+      .thr-thumb-box {
+        width: 6.25em;
+        height: 6.25em;
+        margin: 0 auto;
+      }
+
+      .thr-stars {
+        width: 3em;
+        height: 1em;
+      }
+
+      .thr-reviewed {
+        width: 1em;
+        height: 1em;
+        position: absolute;
+        left: 0.5em;
+        bottom: 0.5em;
+      }
+
+      .thr-caution {
+        width: 1em;
+        height: 1em;
+        position: absolute;
+        left: 0.5em;
+        bottom: 1.7em;
+      }
+  } // ***end .thr-book-list***
+   
+   .findPageNavButton {
+      border: 0.1em solid #DCDCDC;
+      cursor: pointer;
+
+      -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+
+      -webkit-border-radius: 0.5em;
+      -moz-border-radius: 0.5em;
+      border-radius: 0.5em;
+
+      font-family: 1.1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+
+      padding: 0.25em 0.5em;
+      width: 8em;
+   }
+}

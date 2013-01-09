@@ -1,0 +1,163 @@
+@mixin linearGradient($gradientStart, $gradientEnd, $colorStart, $colorEnd) {
+    background: $colorStart; // If all else fails...
+    background: -webkit-gradient(linear, $gradientStart, $gradientEnd, from($colorStart), to($colorEnd)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Firefox */
+    background: -ms-linear-gradient($gradientStart, $colorStart, $colorEnd); /* IE 10+ */
+    background: -o-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Opera */
+    background: linear-gradient($gradientStart, $colorStart, $colorEnd);
+}
+
+@mixin thrBackground($gradientStart, $gradientEnd) { // special gradient that is used often
+    @include linearGradient($gradientStart, $gradientEnd, $carolinaBlue, #286DA3);
+}
+
+@mixin decoratedButton($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $gradientStartColor, $gradientEndColor,  $fontSize,
+                       $yPadding, $xPadding, $textColor, $transitionBackgroundColor, $transitionColor, $transitionDuration, $width) {
+
+    @include linearGradient(top, bottom, $gradientStartColor, $gradientEndColor);
+    border: $borderWidth solid $borderColor;
+    cursor: pointer;
+
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+
+    -webkit-border-radius: $borderRadius;
+    -moz-border-radius: $borderRadius;
+    border-radius: $borderRadius;
+
+    color: $textColor;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    font-size: $fontSize;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+
+    padding: $yPadding $xPadding;
+
+    width: $width;
+    text-decoration: none;
+
+    -webkit-transition: all $transitionDuration ease-in;
+    -moz-transition: all $transitionDuration ease-in;
+    transition: all $transitionDuration ease-in;
+
+    &:hover {
+      background: $transitionBackgroundColor;
+      color: $transitionColor;
+    }
+}
+
+@mixin decoratedInput($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $fontSize, $yPadding, $xPadding,
+                       $textColor, $transitionBorderColor, $transitionBoxShadowColor, $transitionBoxShadowBlur, $transitionDuration, $height, $width) {
+    border: $borderWidth solid $borderColor;
+    -webkit-border-radius: $borderRadius;
+    -moz-border-radius: $borderRadius;
+    border-radius: $borderRadius;
+
+    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
+
+    color: $textColor;
+    font-size: $fontSize;
+
+    padding: $yPadding $xPadding;
+
+    -webkit-transition: all $transitionDuration ease-in;
+    -moz-transition: all $transitionDuration ease-in;
+    transition: all $transitionDuration ease-in;
+
+    height: $height;
+    width: $width;
+
+    &:focus {
+      -webkit-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
+      -moz-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
+      box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
+      border: $borderWidth solid $transitionBorderColor;
+    }
+}
+
+// used for the navigation and settings menus
+@mixin decoratedMenu {
+    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
+    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
+    box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
+
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    border-radius: 0.4em;
+    border: 1px solid #EFEFEF;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    height: auto;
+
+    li {
+      border-bottom: 1px solid #DFDFDF;
+      color: #DFDFDF;
+      cursor: pointer;
+      margin: 0;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &:focus, &:hover, &.selectedLink {
+        background: #FFF !important;
+        color: $carolinaBlue;
+      }
+
+      a, span {
+        display: inline-block;
+        font-size: 1.3em;
+        text-align: left;
+        text-decoration: none;
+        
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+      } // end a, span
+    } // end li
+}
+
+@mixin controlList { // mixin in case we want to provide arguments to help distinguish different lists
+    @include linearGradient(top, bottom, #F0F2F7, #DDD);
+
+    border: 1px solid #AAA;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    border-radius: 0.3em;
+
+    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
+
+    li { 
+      border-bottom: 1px solid #888;
+      margin: 0;
+      color: #555;
+      cursor: pointer;
+      
+      span {
+        color: inherit;
+        font-size: 1.25em;
+        padding: 0.75em;
+        text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+      }
+      
+      &:hover , &.active{
+        @include linearGradient(top, bottom, #FFF, #EEE);
+        color: $carolinaBlue;
+      }
+      
+      &.active {
+        color: #777;
+      }
+
+      &:last-child {
+        border: 0;
+      }
+    } // end li
+}
