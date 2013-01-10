@@ -106,13 +106,141 @@
     color: #888;
 }
 
+// ***begin .searchForm***
+.searchForm {
+    text-align: center;
+    width: 100%;
+    margin: 0.5em auto 0.25em;
+
+    select {
+        border: 0.1em solid #DDD;
+        -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
+
+        padding: 0;
+        margin: 0.15em 0.25em;
+        line-height: 2em;
+        width: 9em;
+        color: #333;
+        font-size: 1.1em;
+
+        &[name='audience'] {
+          width: 14em;
+        }
+     }
+
+     input {
+        &[type='search'] {
+          @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1.1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
+        }
+
+        &[type='submit'] {
+          margin: 0.25em 0.75em;
+          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
+        }
+    }
+} // ***end .searchForm***
+    
+// ***begin .thr-book-list***
+.thr-book-list {
+    display: block;
+    text-align: center;
+    margin-left: 1em;
+    overflow: auto;
+
+     li {
+      position: relative;
+      float: left;
+      width: 11em;
+      height: 11em;
+      overflow: hidden;
+        
+      margin: 0.2em;
+      text-align: center;
+      line-height: 1em;
+        
+      -webkit-border-radius: 0.25em;
+      -moz-border-radius: 0.25em;
+      border-radius: 0.25em;
+      border: 1px solid black;
+
+      -webkit-box-shadow: 0.1em 0.1em 0.1em #aaa;
+      -moz-box-shadow: 0.1em 0.1em 0.1em #aaa;
+      box-shadow: 0.1em 0.1em 0.1em #aaa;
+    }
+
+    li.selected {
+      border-color: red !important;
+    }
+
+    h2 {
+      height: 2.2em;
+      font-size: 1em;
+      line-height: 1.1em;
+      overflow: hidden;
+      margin: 0.2em 0 0 0;
+    }
+    
+    .thr-author {
+      font-size: 0.8em;
+      overflow: hidden;
+      height: 1.3em;
+      margin: 0;
+    }
+  /*
+   * TODO: Don't use CSS3's not selector
+   */
+   // a:not(.findPageNavButton), a:not(.findPageNavButton):hover {
+    li > a, li > a:hover {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .thr-pages {
+      position: absolute;
+      bottom: 0.25em;
+      right: 0.625em;
+      font-size: 0.7em;
+    }
+
+    .thr-thumb-box {
+      width: 6.25em;
+      height: 6.25em;
+      margin: 0 auto;
+    }
+
+    .thr-stars {
+      width: 3em;
+      height: 1em;
+    }
+
+    .thr-reviewed {
+      width: 1em;
+      height: 1em;
+      position: absolute;
+      left: 0.5em;
+      bottom: 0.5em;
+    }
+
+    .thr-caution {
+      width: 1em;
+      height: 1em;
+      position: absolute;
+      left: 0.5em;
+      bottom: 1.7em;
+    }
+} // ***end .thr-book-list***
+
 /*
  * TODO: Don't use CSS3's not selector
  */
-.thr-colors:not(.findPageNavButton) a {
+//.thr-colors:not(.findPageNavButton) a {
+.thr-colors {
     color: inherit;
     &:hover {
-      color: inherit;
+      //color: inherit;
     }
 }
 
@@ -164,6 +292,7 @@
     li {
       height: 3em;
       overflow: hidden;
+      position: relative; // for positioning the disclosure icon
 
       &.divider {
         border-bottom: 1px solid #DFDFDF;
@@ -171,69 +300,67 @@
           background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
         }
       }
-
+      
+      // position disclosure icon to the right
+      img.disclosure-icon {
+        position: absolute;
+        right: 0.5em;
+        top: 0.5em;
+        max-width: 2em;
+        max-height: 2em;
+      }
+      
       a {
-        display: block;
         -webkit-box-sizing: content-box;
         -moz-box-sizing: content-box;
         box-sizing: content-box;
         background-size: 1.5em !important;
-        padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
-        width: 80%; // not 100% on purpose
-
+        padding: 0 3em;
+        width: 100;
+        
         color: inherit;
         font-size: 1.5em;
         line-height: 2em;
         text-align: left;
 
         &.homeLink {
-          background: url(/theme/images/home_32.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/home_32.png) 0.75em center no-repeat;
         }
 
         &.findLink {
-          background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat;
         }
 
         &.collectionsLink {
-          background: url(/theme/images/collections.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/collections.png) 0.75em center no-repeat;
         }
 
         &.favoritesLink {
-          background: url(/theme/images/favorite_book.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/favorite_book.png) 0.75em center no-repeat;
         }
 
         &.writeLink {
-          background: url(/theme/images/write_book.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/write_book.png) 0.75em center no-repeat;
         }
 
         &.loginLink {
-          background: url(/theme/images/user.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/user.png) 0.75em center no-repeat;
         }
 
         &.helpLink {
-          background: url(/theme/images/info.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/info.png) 0.75em center no-repeat;
         }
 
         &.yourBooksLink {
-          background: url(/theme/images/my_book.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/my_book.png) 0.75em center no-repeat;
         }
 
         &.blogLink {
-          background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat;
         }
 
         &.photoCreditsLink {
-          background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
+          background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat;
         }
 
       } // end a
@@ -529,7 +656,34 @@
     color: black;
 }
 
-// used in .write-page for picture preview
+.edit-page {
+    width: 48em !important;
+    height: 36em !important;
+
+    .thr-pic {
+        display: inline !important;
+    }
+
+    textarea {
+        width: (48em - 12em) / $captionFontSize * 1em;
+        height: 5em / $captionFontSize * 1em;
+        margin: auto;
+        resize: none;
+
+        &.text-too-long {
+            background: yellow;
+        }
+    }
+      
+    .deleteIcon {
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: 0.5em;
+        left: 0.5em;
+    }
+}
+    
 .galleryPreviewDialog {
     width: 20em !important;
     height: 20em !important;
@@ -549,14 +703,17 @@
         img {
             margin-top: 2em;
         }
+          
         &.p {
             left: 0;
         }
+          
         &.n {
             right: 0;
         }
+          
         &:hover {
             opacity: 0.5;
         }
-    }
-}
+    } // end a
+} // end .galleryPreviewDialog

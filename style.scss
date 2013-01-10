@@ -53,8 +53,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     overflow: auto;
     width: 48em;
     // This next line causes shift right on iPad. Why do we need it?
-    padding: 1%;
-    padding-top: 0.5%;
+    padding: 0.5em;
+    padding-top: 0.25em;
 
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
@@ -106,14 +106,14 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     font-size: 1.8em;
     font-weight: normal;
     padding-left: 0.25em;
-    a {
-      color: $carolinaBlue;
-    }
   }
 
   h2 {
     font-size: 1.6em;
     border-bottom: 2px solid $carolinaBlue;
+    a {
+      color: $carolinaBlue;
+    }
   }
 
   p {
@@ -207,7 +207,56 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
    }
 }
 
-.entry { margin-left: 1em;}
+.login-page {
+  p > a {
+    display: inline-block;
+    width: 9em;
+  }
+}
+
+// these pages use .thr-book-list; make sure there is no horizontal padding
+.favorites-page, .find-page {
+  .content-wrap {
+    padding-left: 0;
+    padding-right: 0;
+    & > p {
+      margin: 1em;
+      color: $carolinaBlue;
+      font-size: 1.1em;
+    }
+  }
+  
+  .navigationMenu {
+     width: 95%; // no padding on .find-page; make the width a little smaller
+  }
+  
+  .description {
+      display: none;
+  }
+  
+   // styles for "More Books" and "Previous Books" buttons
+  .findPageNavButton {
+     -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+     box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+
+     -webkit-border-radius: 0.5em;
+     -moz-border-radius: 0.5em;
+     border-radius: 0.5em;
+     border: 0.1em solid #DCDCDC;
+
+     font-family: 1.1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+     text-align: center;
+     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+     text-decoration: none;
+     
+     cursor: pointer;
+     padding: 0.25em 0.5em;
+     width: 8em;
+   }
+}
+
+//.entry { margin-left: 1em;} why do we need this?
 .entry a { text-decoration: none;}
 .entry a:hover { text-decoration: underline;}
 
@@ -355,6 +404,7 @@ h2 {
         margin: auto;
         margin-top: 0.5em;
     }
+    
     .thr-credit {
         font-size: 0.5em;
         color: #DDD;
@@ -363,6 +413,7 @@ h2 {
           opacity: 1;
         }
     }
+    
     .thr-caption {
         font-size: $captionFontSize;
         line-height: 1.2em;
@@ -371,6 +422,7 @@ h2 {
         overflow: hidden;
         margin: 0 auto;
     }
+    
     .thr-choices {
         //width: 12em;
         width: 18em; // make the list a bit bigger so that the text fits in nicely
@@ -391,6 +443,26 @@ h2 {
             text-decoration: none;
             font-weight: normal;
             color: inherit;
+        }
+    }
+}
+
+.reading-controls {
+    label {
+        display: block;
+        margin-top: 1em;
+        padding-bottom: 0.25em;
+    }
+    select {
+        width: 10em;;
+        display: block;
+    }
+    input {
+        margin-top: 1em;
+        display: block;
+        width: 10em;
+        &[type=submit] {
+          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
         }
     }
 }
@@ -423,26 +495,6 @@ h2 {
     display: none;
 }
 
-.reading-controls {
-    label {
-        display: block;
-        margin-top: 1em;
-        padding-bottom: 0.25em;
-    }
-    select {
-        width: 10em;;
-        display: block;
-    }
-    input {
-        margin-top: 1em;
-        display: block;
-        width: 10em;
-        &[type=submit] {
-          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
-        }
-    }
-}
-
 .next-posts {}
 .prev-posts {}
 
@@ -472,13 +524,7 @@ h2 {
 
 }
 
-
-/* Media queries!
--------------------------------------------------------------------------------*/
-
 /* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
-
-/* include my automatically generated media queries */
 
 .searchForm label, .sidebar label {
     position:absolute;
@@ -541,6 +587,7 @@ img.favoriteYes, img.favoriteNo {
   left: 0;
 }
 
+@import "mediaqueries";
 .chooseFavorites li.favoriteYes img.favoriteYes {
   display: block !important;
 }
@@ -550,8 +597,7 @@ img.favoriteYes, img.favoriteNo {
 }
 
 @import "css/fileuploader";
-@import "css/allmediaqueries";
-@import "css/findbooks";
 @import "css/writebooks";
 @import "css/yourbooks";
 @import "css/collections";
+@import "css/allmediaqueries";
