@@ -12,7 +12,7 @@
   }
 }
 
-// Small width; let the threshold width be 624px for .content-wrap width change
+// Small width; let the threshold width be 624px for content-wrap width change
 @media only screen and (max-width: 624px) {
   
   body {
@@ -21,7 +21,7 @@
     }
   }
   
-  // *** Begin code for .server-page ***
+  // ***Begin code for .server-page***
   .server-page {
     .homeLinkList li {
       width: 100%;
@@ -35,17 +35,20 @@
 
     .languageForm {
       .languages {
+        display: block;
         font-size: 1.5em;
+        line-height: 1.5em;
         width: 90%;
       }
 
       .goButton {
         background-size: 1.5em;
+        display: block;
         margin: 0.5em 1em;
         width: 90%;
       }
     }
-  } // *** End code for .server-page
+  } // ***End code for .server-page***
   
    // header adjustments for the heart and gear
   .header {
@@ -64,6 +67,10 @@
       top: 0;
       right: 4.5em;
     }
+  }
+  
+  .thr-book-list li {
+    width: 10.8em; // adjust the width of the list items slightly, since there will only be 3 now
   }
 
 } // end media queries for max-width: 624px
@@ -135,7 +142,7 @@
         }
       }
     }
-  } // *** End code for .write-page ****
+  } // ***End code for .write-page****
   
   .your-books-page {
     .mapButton {
@@ -147,10 +154,9 @@
       height: 2em;
     }
   }
-  
 } // end max-width: 481px
 
-// define mixin for the alternative navigation/menu layout used for handheld devices
+// mixin for phones
 @mixin phoneDisplay {
    .header {
      h1 {
@@ -164,7 +170,8 @@
      font-size: 1.25em;
      padding: 0.5em 1em;
    }
-
+   
+   // make the language selection select easier to press 
    .languageForm {
      .languages {
        height: 2em;
@@ -178,7 +185,7 @@
      height: 1.75em;
      line-height: 1.5em;
    }
-
+    
    .navigation a {
      font-size: 1.25em !important;
      padding: 0.5em 1em !important;
@@ -187,60 +194,6 @@
    label {
      font-size: 1.1em;
    }
-
-    // *** Begin code for .your-books-page***
-  .your-books-page {
-    .decoratedList {
-      li {
-        font-size: 1.25em;
-        height: 2em;
-        line-height: 2em;
-      }
-    }
-
-    .mapButton {
-      margin: 0.5em 0;
-      width: 100%;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-  } // *** End code for .your-books-page***
-
-   .write-page .image-search input[type='submit'] {
-      margin-left: 0;
-   }
-   
-  // header adjustments for the heart and gear
-  .header {
-    margin-top: 0.25em;
-
-    .thr-well-icon {
-      top: 0.25em;
-    }
-
-    .thr-settings-icon {
-      top: 0;
-      right: 0.5em;
-    }
-
-    .thr-favorites-icon {
-      top: 0;
-      right: 4.5em;
-    }
-  }
-  
-  .thr-book-list li {
-    width: 10.8em; // adjust the width of the list items since there will only be 3 now
-  }
-}
-
-
-@media only screen and(max-width: 960px) {
-  .content-wrap {
-    width: 36em;
-  }
 }
 
 /* iPod all */
@@ -269,16 +222,17 @@
             line-height: 2.5em;
             width: 80% !important;
         }
-
     }
     // bump up the font size on the writing page to make it easier to hit buttons
     .writing-controls {
         font-size: 1.5em;
     }
+    
     .gallery {
       width: 100%;
       margin: 0;
     }
+    
     @include phoneDisplay;
 }
 
