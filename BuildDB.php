@@ -29,9 +29,6 @@ function BSBuild($create, $count, $start, $limit) {
               reviewed char(1) NOT NULL,
               audience char(1) NOT NULL,
               type char(1) NOT NULL,
-              rating_count int NOT NULL,
-              rating_value float NOT NULL,
-              read_count int NOT NULL,
               PRIMARY KEY  (ID),
               FULLTEXT KEY content (content),
               FULLTEXT KEY categories (categories),
@@ -84,17 +81,6 @@ SELECT p.*
       if ($book['status'] == 'draft') {
         continue;
       }
-      // extract and clear some fields we don't need in the json
-      $rating_count = $book['rating_count'];
-      unset($book['rating_count']);
-      $rating_value = $book['rating_value'];
-      unset($book['rating_value']);
-      if (array_key_exists('read_count', $book)) {
-        $read_count = $book['read_count'];
-      } else {
-        $read_count = 0;
-      }
-      unset($book['read_count']);
 
       $json = json_encode($book);
       $content = array();
@@ -120,9 +106,6 @@ SELECT p.*
       $row['reviewed'] = $book['reviewed'] ? 'R' : 'N';
       $row['audience'] = $book['audience'];
       $row['language'] = $book['language'];
-      $row['rating_count'] = $rating_count;
-      $row['rating_value'] = $rating_value;
-      $row['read_count'] = $read_count;
       $row['type'] = $book['type'];
       //print_r($row);
       $rows_affected = $wpdb->insert($table_name, $row);

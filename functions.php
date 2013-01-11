@@ -25,13 +25,16 @@ $SynthLanguages = array();
 $lang = $Templates['languages'];
 foreach($lang as $row) {
     $LangNameToLangCode[$row['tag']] = $row['value'];
-    if ($row['value']) {
+    if ($row['speech']) {
         $SynthLanguages[] = $row['value'];
     }
 }
+BuG('synthLanguages ' . implode(', ', $SynthLanguages));
 function has_speech($lang) {
     global $SynthLanguages;
-    return in_array($lang, $SynthLanguages);
+    $r = in_array($lang, $SynthLanguages);
+    BuG('has speech returns ' . $r);
+    return $r;
 }
 
 $CategoryAbbrv = array('Alphabet' => 'Alph',
@@ -228,27 +231,11 @@ function ParseBookPost($post) {
 
     $id = $post->ID;
 
+    $content = $post->post_content;
     $row = $wpdb->get_row("SELECT * from $search_table WHERE ID = $id");
     if ($row) {
         BuG('from search table');
         $res = json_decode($row->json, true);
-        $res['read_count'] = $row->read_count;
-        $res['rating_count'] = $row->rating_count;
-        $res['rating_value'] = $row->rating_value;
-        $res['modified'] = $post->post_modified;
-        $res['created'] = $post->post_date;
-        $res['slug'] = $post->post_name;
-        $res['link'] = preg_replace('/http:\/\/[a-zA-Z0-9.]+/', '', get_permalink($id));
-        $res['ID'] = $id;
-        $res['status'] = $post->post_status;
-        return $res;
-    }
-    $content = $post->post_content;
-    //BuG("content='$content'");
-    if (false && preg_match('/^{.*}$/', $post->post_content)) {
-        //BuG('json');
-        // new format is json in the post body
-        $res = json_decode($post->post_content, true);
 
     } else {
         //BuG('old format');
@@ -275,6 +262,12 @@ function ParseBookPost($post) {
         }
         $author_id = $post->post_author;
         $author = trim(get_post_meta($id, 'author_pseudonym', true));
+        if (!$author) {
+            $authordata = get_userdata($author_id);
+            $author = $authordata->display_name;
+        }
+        $author = preg_replace('/^[bB][yY]:?\s*/', '', $author);
+
         $tags = array();
         $language = '??';
         foreach(wp_get_post_tags($id) as $tag) {
@@ -323,13 +316,6 @@ function ParseBookPost($post) {
 
     $res['status'] = $post->post_status;
 
-    //TODO: strip by: off the front of these
-    if (!$res['author']) {
-        $authordata = get_userdata($author_id);
-        $res['author'] = $authordata->display_name;
-    }
-    $res['author'] = preg_replace('/^[bB][yY]:?\s*/', '', $res['author']);
-
     $rating_count = get_post_meta($id, 'book_rating_count', true);
     if(!$rating_count) {
         $rating_count = 0;
@@ -358,11 +344,10 @@ function ParseBookPost($post) {
 
 function SaveBookPost($id, $book) {
     // TODO: validate this stuff
-    BuG('SBP ' . print_r($book, 1));
+    //BuG('SBP ' . print_r($book, 1));
     $content = json_encode($book);
-    BuG('je ' . $content);
+    //BuG('je ' . $content);
     $args = array('post_title' => $book['title'],
-                  'post_content' => $content,
                   'post_status' => $book['status'],
                   'post_category' => array(3));
     if($id) {
@@ -376,6 +361,7 @@ function SaveBookPost($id, $book) {
         return false;
     }
 
+    updateIndex($book);
     update_post_meta($id, 'book_rating_count', $content['rating_count']);
     update_post_meta($id, 'book_rating_value', $content['rating_value']);
 
@@ -383,11 +369,10 @@ function SaveBookPost($id, $book) {
     $post = get_post($id);
     $book = ParseBookPost($post);
     if ($book['status'] == 'publish') {
-        updateIndex($book);
 
         // update speech
         if (has_speech($book['language'])) {
-            //BuG('create speech');
+            BuG('create speech');
             // make sure we have the folder
             $folder = $id . '';
             $pfolder = substr($folder, -2);
@@ -445,6 +430,7 @@ function updateIndex($book) {
     $row['audience'] = $book['audience'];
     $row['language'] = $book['language'];
     $row['type'] = $book['type'];
+    $row['json'] = json_encode($book);
     //print_r($row);
     $id = $book['ID'];
     // delete it first
