@@ -292,7 +292,7 @@ li {
 }
 
 h1, h2 {
-  margin: 0.25em;
+  margin: 0.25em 0;
 }
 
 h2 {
@@ -321,7 +321,7 @@ h2 {
 }
 
 .thr-next-link, .thr-back-link {
-    @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 6em);
+    @include decoratedButton(1px, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 6em);
 
     position: absolute; // fixed works fine but isn't supported before ios5?
     bottom: 0.5em;
@@ -396,13 +396,11 @@ h2 {
     .navigationMenu {
       margin: 4em auto;
       width: 80%;
-      a {
-        width: 80%;
-      }
     }
 
     .thr-question {
-        margin: 1em auto;
+        margin: 0.5em auto;
+        margin-top: 2em;
     }
 
     .thr-pic-box {
@@ -433,8 +431,7 @@ h2 {
     .thr-choices {
         //width: 12em;
         width: 18em; // make the list a bit bigger so that the text fits in nicely
-        margin: auto;
-        margin-top: .5em;
+        margin: 0.5em auto 1em;
         font-size: 2em;
         text-align: left;
 

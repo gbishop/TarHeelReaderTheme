@@ -6,7 +6,7 @@
 @import "mediaqueries";
 
 // the minimum the font size can be is 10px
-@media only screen and (max-width: 524px) {
+@media only screen and (max-width: 528px) {
   body {
     font-size: 10px;
   }
@@ -14,7 +14,6 @@
 
 // Small width; let the threshold width be 624px for content-wrap width change
 @media only screen and (max-width: 624px) {
-  
   body {
     .content-wrap {
       width: 36em; // step down from 48em to 36 em
@@ -32,20 +31,22 @@
         display: inline-block;
       }
     }
-
+    
     .languageForm {
       .languages {
         display: block;
         font-size: 1.5em;
-        line-height: 1.5em;
-        width: 90%;
+        line-height: 2em;
+        width: 100%;
+        margin: 0;
       }
 
       .goButton {
         background-size: 1.5em;
         display: block;
-        margin: 0.5em 1em;
-        width: 90%;
+        margin: 0.5em auto;
+        width: 100%;
+        height: 2.5em;
       }
     }
   } // ***End code for .server-page***
@@ -53,27 +54,26 @@
    // header adjustments for the heart and gear
   .header {
     margin-top: 0.25em;
-
     .thr-well-icon {
       top: 0.25em;
     }
 
     .thr-settings-icon {
-      top: 0;
-      right: 0.5em;
+      top: 0.5em;
+      right: 1em;
     }
 
     .thr-favorites-icon {
-      top: 0;
+      top: 0.5em;
       right: 4.5em;
     }
   }
   
   .thr-book-list li {
-    width: 10.8em; // adjust the width of the list items slightly, since there will only be 3 now
+    width: 10.85em; // adjust the width of the list items slightly, since there will only be 3 now
   }
 
-} // end media queries for max-width: 624px
+} // end media query for max-width: 624px
 
 // Even smaller width threshold specification that suit some pages better
 @media only screen and (max-width: 481px) {
@@ -82,26 +82,32 @@
     .image-search {
       overflow: auto;
       input {
-        display: inline-block;
+        display: block;
+        padding: 0;
         margin: 0.25em auto;
         width: 100% !important;
-        vertical-align: middle;
         font-size: 1.2em;
-        line-height: 2em;
+        line-height: 1em;
         height: 2em;
         
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+        
+        &[type='search'] {
+          text-indent: 0.5em;
+        }
       }
     } // end image-search
     
     .aWrap > a, div.step4 button {
       display: inline-block;
+      padding: 0;
       margin: 0.25em 0;
       width: 100%;
       font-size: 1.2em;
-      line-height: 1.2em;
+      line-height: 1em;
+      height: 2em;
     }
     
     .steps {
@@ -132,13 +138,12 @@
           -moz-box-sizing: border-box;
           box-sizing: border-box;
           width: 0;
-          padding: 0.3em;
           margin: 0;
           
           width: 90% !important;
           height: 2em;
-          line-height: 1.2em;
           font-size: 1.2em;
+          line-height: 1em;
         }
       }
     }
@@ -146,12 +151,38 @@
   
   .your-books-page {
     .mapButton {
-      padding: 0.25em 0;
+      display: block;
+      padding: 0;
       margin: 0.5em 0;
       width: 100%;
       font-size: 1.2em;
-      line-height: 2em;
-      height: 2em;
+      line-height: 2.5em;
+      height: 2.5em;
+    }
+    
+    .controlList {
+      input, select, button {
+        height: 2.5em !important;
+        font-size: 1.2em;
+        line-height: 1em;
+        padding: 0;
+        margin: 0.25em 0;
+      }
+    }
+  }
+  
+  .collections-page {
+    .collectionsSearchForm input {
+       display: block;
+       font-size: 1.2em;
+       width: 100%;
+       margin: 0.4em 0;
+       &[type='search'] {
+         padding: 0;
+         height: 2.5em;
+         line-height: 2em;
+         text-indent: 0.5em;
+       }
     }
   }
 } // end max-width: 481px
@@ -166,35 +197,145 @@
    }
 
    // make the buttons easier to press
-   .thr-gray-button, .thr-blue-button {
-     font-size: 1.25em;
-     padding: 0.5em 1em;
+   .thr-gray-button, .thr-blue-button, .navigation a, .findPageNavButton {
+     font-size: 1.25em !important;
+     line-height: 1.5em;
    }
+   
+   .controlList {
+      input, select, button {
+        height: 2.5em !important;
+        font-size: 1.2em;
+        line-height: 1em;
+        padding: 0;
+        margin: 0.25em 0;
+      }
+    }
+   
+    // bump up the font size on the writing page to make it easier to hit buttons
+    .writing-controls {
+      font-size: 1.5em;
+    }
+    
+    .gallery {
+      width: 100%;
+      margin: 0;
+    }
    
    // make the language selection select easier to press 
    .languageForm {
-     .languages {
-       height: 2em;
+     .goButton {
+       font-size: 1.3em;
        line-height: 1.5em;
      }
    }
-
-   // input text areas need to be bigger (easier to press on)
-   input[type='text'], input[type='search'], input[type='password'], select {
-     font-size: 1.1em;
-     height: 1.75em;
-     line-height: 1.5em;
-   }
-    
-   .navigation a {
-     font-size: 1.25em !important;
-     padding: 0.5em 1em !important;
+  
+   .searchForm {
+      input, select {
+       font-size: 1.4em !important;
+     }
+            
+     input[type='search'] {
+       padding: 0 !important;
+       line-height: 1em;
+     }
    }
 
    label {
      font-size: 1.1em;
    }
-}
+   
+   .login-page input {
+      &[type='submit'] {
+        height: 2.5em;
+      }
+    }
+    
+   // input text areas need to be bigger (easier to press on)
+   input[type='text'], input[type='password'], input[type='search'], select {
+     font-size: 1.4em !important;
+     line-height: 1.2em;
+   }
+   
+   // *** Begin code for .write-page ***
+  .write-page {
+    .image-search {
+      overflow: auto;
+      input {
+        display: block;
+        padding: 0;
+        margin: 0.25em auto;
+        width: 100% !important;
+        font-size: 1.2em;
+        line-height: 1em;
+        height: 2em;
+        
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        
+        &[type='search'] {
+          text-indent: 0.5em;
+        }
+      }
+    } // end image-search
+    
+    .qq-upload-button {
+      display: block;
+      width: 10em;
+      text-align: center;
+      font-size: 1.3em;
+    }
+    
+    .aWrap > a, div.step4 button {
+      display: inline-block;
+      padding: 0;
+      margin: 0.25em 0;
+      width: 100%;
+      font-size: 1.2em;
+      line-height: 1em;
+      height: 2em;
+    }
+    
+    .steps {
+      h2 {
+        font-size: 1.3em;
+        padding-right: 2.5em; // acount for the question mark picture and word-wrap accordingly
+        word-wrap: break-word;
+      }
+
+      label {
+        display: block;
+        width: 100%;
+        margin: 0.5em 0;
+
+       span {
+         display: inline-block;
+         -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+         box-sizing: border-box;
+         font-size: 1.2em;
+         width: 100%;
+         padding: 0.1em;
+        }
+
+        input, select, button{
+          display: block;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          width: 0;
+          margin: 0;
+          
+          width: 90% !important;
+          height: 2em;
+          font-size: 1.2em;
+          line-height: 1em;
+        }
+      }
+    }
+  } // ***End code for .write-page****
+} // ***end phoneDisplay***
 
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -202,15 +343,16 @@
         // hide the search form until the search button is pressed
         .searchForm {
             input, select {
+                display: block;
                 width: 100%;
+                margin: 0;
                 margin-top: 0.25em;
                 height: 3em !important;
                 vertical-align: middle;
-                font-size: 1.2em;
-
-                &[type='submit'] {
-                  margin-left: 0.25em;
-                }
+            }
+            
+            input[type='search'] {
+              line-height: 2.5em;
             }
             display: none;
         }
@@ -223,15 +365,14 @@
             width: 80% !important;
         }
     }
-    // bump up the font size on the writing page to make it easier to hit buttons
-    .writing-controls {
-        font-size: 1.5em;
-    }
     
-    .gallery {
-      width: 100%;
-      margin: 0;
-    }
+   // input text areas need to be bigger (easier to press on)
+   input[type='text'], input[type='password'], input[type='search'], select {
+     display: block;
+     font-size: 1.1em;
+     height: 1.75em;
+     line-height: 1.5em;
+   }
     
     @include phoneDisplay;
 }
@@ -253,6 +394,7 @@ and (max-width: 480px) {
         width: 15em;
         height: 15em;
     }
+    
 }
 
 /* iPod portrait */
@@ -266,7 +408,6 @@ and (min-width: 320px) {
     }
     .content-wrap {
         width: 36em;
-        margin-bottom: 1em;
     }
 }
 
@@ -276,25 +417,27 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation: portrait) {
     body {
-        font-size: 16px;
+        font-size: 15px;
     }
     .thr-pic-box {
         width: 48em;
         height: 48em;
     }
+    @include phoneDisplay;
 }
 
 /* iPad landscape */
 @media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
-and (min-height: 650px) // prevent ie9 from hitting this one
+//and (min-height: 650px) // prevent ie9 from hitting this one; *with this line in here, these styles do not target iPad landscape*
 and (orientation: landscape) {
     body {
-        font-size: 16px;
+        font-size: 15px;
     }
     .thr-pic-box {
         width: 33em;
         height: 33em;
     }
+    @include phoneDisplay;
 }
