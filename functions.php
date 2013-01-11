@@ -1,6 +1,7 @@
 <?php
 
 $collections_table = $wpdb->prefix . 'book_collections';
+$search_table = $wpdb->prefix . 'book_search';
 
 require('state.php'); // manage shared state in a cookie so both client and host have access
 require_once "Mustache.php";
@@ -132,7 +133,7 @@ function thr_footer($sidebar, $full) {
 }
 
 function convert_image_url($url) {
-    $root = '/var/www/TarHeelReader';
+    $root = ABSPATH;
 
     if(preg_match('/^\\/cache\\/images.*$|^\\/uploads.*$/', $url)) {
         $nurl = $url;
@@ -162,7 +163,7 @@ function convert_image_url($url) {
     } elseif(preg_match('/http:.*\\/wp-content(\\/uploads\\/.*)(_[ts])?\\.jpg/', $url, $m)) {
         $nurl = $m[1] . $m[2] . '.jpg';
         $nurl = str_replace(' ', '_', $nurl);
-        $path = $root . '/wp-content' . $nurl;
+        $path = $root . $nurl;
         //$nurl = preg_replace('/ /', '%20', $nurl);
     }
     return array($nurl, $path);
@@ -172,9 +173,9 @@ function make_page($text, $url) {
     //BuG("make_page($text, $url)");
     list($nurl, $path) = convert_image_url($url);
     if (!file_exists($path)) {
-        //BuG("path=$path url=$url");
+        BuG("not found path=$path url=$url");
         if (!copy($url, $path)) {
-            BuG('Copy failed');
+            BuG('Copy failed $url $path');
             return false;
         }
     }
@@ -223,12 +224,28 @@ function striptrim_deep($value)
 
 function ParseBookPost($post) {
     global $LangNameToLangCode, $SynthLanguages, $CategoryAbbrv;
+    global $wpdb, $search_table;
 
     $id = $post->ID;
 
+    $row = $wpdb->get_row("SELECT * from $search_table WHERE ID = $id");
+    if ($row) {
+        BuG('from search table');
+        $res = json_decode($row->json, true);
+        $res['read_count'] = $row->read_count;
+        $res['rating_count'] = $row->rating_count;
+        $res['rating_value'] = $row->rating_value;
+        $res['modified'] = $post->post_modified;
+        $res['created'] = $post->post_date;
+        $res['slug'] = $post->post_name;
+        $res['link'] = preg_replace('/http:\/\/[a-zA-Z0-9.]+/', '', get_permalink($id));
+        $res['ID'] = $id;
+        $res['status'] = $post->post_status;
+        return $res;
+    }
     $content = $post->post_content;
     //BuG("content='$content'");
-    if (preg_match('/^{.*}$/', $post->post_content)) {
+    if (false && preg_match('/^{.*}$/', $post->post_content)) {
         //BuG('json');
         // new format is json in the post body
         $res = json_decode($post->post_content, true);
@@ -246,6 +263,15 @@ function ParseBookPost($post) {
         $pages[] = make_page($title, $image_urls[0]);
         for($i = 1; $i < count($image_urls); $i++) {
             $pages[] = make_page($captions[$i-1], $image_urls[$i]);
+        }
+        foreach($pages as $page) {
+            if ($page === false) {
+                // something went wrong with the images in this book
+                BuG('bad book ' . $id);
+                wp_update_post(array('ID'=>$id, 'post_status'=>'draft'));
+                $post->post_status = 'draft';
+                break;
+            }
         }
         $author_id = $post->post_author;
         $author = trim(get_post_meta($id, 'author_pseudonym', true));
@@ -324,14 +350,17 @@ function ParseBookPost($post) {
     $res['modified'] = $post->post_modified;
     $res['created'] = $post->post_date;
     $res['slug'] = $post->post_name;
-    $res['link'] = preg_replace('/http:\/\/[a-z0-9.]+/', '', get_permalink($id));
+    $res['link'] = preg_replace('/http:\/\/[a-zA-Z0-9.]+/', '', get_permalink($id));
     $res['ID'] = $id;
 
     return $res;
 }
 
 function SaveBookPost($id, $book) {
+    // TODO: validate this stuff
+    BuG('SBP ' . print_r($book, 1));
     $content = json_encode($book);
+    BuG('je ' . $content);
     $args = array('post_title' => $book['title'],
                   'post_content' => $content,
                   'post_status' => $book['status'],
@@ -353,41 +382,43 @@ function SaveBookPost($id, $book) {
     //$book['ID'] = $postid;
     $post = get_post($id);
     $book = ParseBookPost($post);
-    updateIndex($book);
+    if ($book['status'] == 'publish') {
+        updateIndex($book);
 
-    // update speech
-    if (has_speech($book['language'])) {
-        //BuG('create speech');
-        // make sure we have the folder
-        $folder = $id . '';
-        $pfolder = substr($folder, -2);
-        $path = ABSPATH . 'cache/speech/' . $pfolder;
-        //BuG("path=$path");
-        if (!is_dir($path)) {
-            mkdir($path);
-        }
-        $path .= '/' . $folder;
-        //BuG("path=$path");
-        if (!is_dir($path)) {
-            mkdir($path);
-        }
-        $lang = $book['language'];
-        $data = array('language'=>$lang);
-        foreach(array('child', 'female', 'male') as $voice) {
-            $data['voice'] = $voice;
-            foreach($book['pages'] as $i => $page) {
-                $data['text'] = $page['text'];
-                // ask the speech server to generate a mp3
-                $params = array('http' => array('method' => 'POST', 'content' => http_build_query($data)));
-                $ctx = stream_context_create($params);
-                $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
-                // save it
-                $fname = $path . '/' . $lang . '-' . substr($voice, 0, 1) . '-' . ($i+1) . '.mp3';
-                file_put_contents($fname, $mp3);
+        // update speech
+        if (has_speech($book['language'])) {
+            //BuG('create speech');
+            // make sure we have the folder
+            $folder = $id . '';
+            $pfolder = substr($folder, -2);
+            $path = ABSPATH . 'cache/speech/' . $pfolder;
+            //BuG("path=$path");
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+            $path .= '/' . $folder;
+            //BuG("path=$path");
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+            $lang = $book['language'];
+            $data = array('language'=>$lang);
+            foreach(array('child', 'female', 'male') as $voice) {
+                $data['voice'] = $voice;
+                foreach($book['pages'] as $i => $page) {
+                    // TODO: prep this text as I did in the cache setup code
+                    $data['text'] = $page['text'];
+                    // ask the speech server to generate a mp3
+                    $params = array('http' => array('method' => 'POST', 'content' => http_build_query($data)));
+                    $ctx = stream_context_create($params);
+                    $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
+                    // save it
+                    $fname = $path . '/' . $lang . '-' . substr($voice, 0, 1) . '-' . ($i+1) . '.mp3';
+                    file_put_contents($fname, $mp3);
+                }
             }
         }
     }
-
     return $book;
 }
 
@@ -415,12 +446,13 @@ function updateIndex($book) {
     $row['language'] = $book['language'];
     $row['type'] = $book['type'];
     //print_r($row);
+    $id = $book['ID'];
+    // delete it first
+    $wpdb->query("DELETE FROM $table_name WHERE ID = $id");
+    // then insert
     $rows_affected = $wpdb->insert($table_name, $row);
     if ($rows_affected == 0) {
-      $result = $wpdb->update($table_name, $row, array('ID'=>$book['ID']));
-      if ($result === false) {
         BuG('update failed');
-      }
     }
 }
 
@@ -592,6 +624,7 @@ function removeHeadLinks() {
 
 }
 add_action('init', 'removeHeadLinks');
+add_filter( 'show_admin_bar', '__return_false' ); // disable the wordpress bar
 
 function fixupLogInOut($link) {
     return str_replace('<a ', '<a class="no-ajaxy" ', $link);

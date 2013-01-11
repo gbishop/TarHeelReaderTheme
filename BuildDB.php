@@ -1,7 +1,7 @@
 <?php
 /* Build the BookSearch DB */
 
-require_once('/var/www/TarHeelReader/wp-load.php');
+require_once('../../../wp-load.php');
 
 ini_set('memory_limit','512M');
 
@@ -21,17 +21,21 @@ function BSBuild($create, $count, $start, $limit) {
     $r = $wpdb->query($sql);
     echo 'result = ' . $r . "\n";
     $sql = "CREATE TABLE {$table_name} (
-              ID int unsigned NOT NULL,
+              ID bigint NOT NULL,
               content text NOT NULL,
-              categories text,
+              json text NOT NULL,
+              categories text NOT NULL,
               language char(3) NOT NULL,
               reviewed char(1) NOT NULL,
               audience char(1) NOT NULL,
               type char(1) NOT NULL,
+              rating_count int NOT NULL,
+              rating_value float NOT NULL,
+              read_count int NOT NULL,
               PRIMARY KEY  (ID),
               FULLTEXT KEY content (content),
               FULLTEXT KEY categories (categories),
-              INDEX(language)
+              INDEX (language)
              ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
     echo "$sql\n";
     $r = $wpdb->query($sql);
@@ -43,7 +47,6 @@ function BSBuild($create, $count, $start, $limit) {
       echo "limiting\n";
       break;
     }
-    echo "$start\n";
 /*
     $posts = $wpdb->get_results("
 SELECT p.*
@@ -59,6 +62,8 @@ SELECT p.*
       break;
     }
 */
+    $t0 = microtime(1);
+
     $query = new WP_Query(array(
         'cat'=>3,
         'post_type' => 'post',
@@ -75,6 +80,23 @@ SELECT p.*
     while($query->have_posts()) {
       $query->the_post();
       $book = ParseBookPost($post);
+
+      if ($book['status'] == 'draft') {
+        continue;
+      }
+      // extract and clear some fields we don't need in the json
+      $rating_count = $book['rating_count'];
+      unset($book['rating_count']);
+      $rating_value = $book['rating_value'];
+      unset($book['rating_value']);
+      if (array_key_exists('read_count', $book)) {
+        $read_count = $book['read_count'];
+      } else {
+        $read_count = 0;
+      }
+      unset($book['read_count']);
+
+      $json = json_encode($book);
       $content = array();
       foreach($book['pages'] as $page) {
         $content[] = html_entity_decode($page['text']);
@@ -93,10 +115,14 @@ SELECT p.*
       $row = array( );
       $row['ID'] = $post->ID;
       $row['content'] = $content;
+      $row['json'] = $json;
       $row['categories'] = $categories;
       $row['reviewed'] = $book['reviewed'] ? 'R' : 'N';
       $row['audience'] = $book['audience'];
       $row['language'] = $book['language'];
+      $row['rating_count'] = $rating_count;
+      $row['rating_value'] = $rating_value;
+      $row['read_count'] = $read_count;
       $row['type'] = $book['type'];
       //print_r($row);
       $rows_affected = $wpdb->insert($table_name, $row);
@@ -104,6 +130,8 @@ SELECT p.*
         print_r($row);
       }
     }
+    $tper = (microtime(1) - $t0) / $count;
+    echo "$start $tper\n";
     $start = $start + 1;
   }
 }
