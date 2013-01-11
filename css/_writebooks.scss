@@ -1,0 +1,140 @@
+/*
+ * Styles for the "Write a Book" page
+ */
+.write-page {  
+    .content-wrap {
+        width: auto;
+        overflow: hidden;
+        margin: 0.5em 1em;
+    }
+
+    .writing-controls {
+        display: none;
+        margin: .5em 0;
+    }
+
+    noscript {
+        color: red;
+        font-weight: bold;
+        font-size: 2em;
+    }
+
+    .aWrap {
+      input[type='search'] {
+        width: 16em;
+      }
+    }
+
+    .steps {
+        padding: 0.5em;
+        background-color: #EEE;
+        position: relative;
+        max-width: 100%;
+        overflow: auto;
+        span {
+          margin-right: .25em;
+        }
+
+        .categorizeButton {
+          width: auto;
+          margin-left: 0.25em;
+        }
+    }
+
+    .image-search {
+      margin-top: 0.5em;
+    }
+
+    .gallery {
+        margin: 1em auto;
+        width: 90%;
+        //height: 6em;
+    }
+
+    h2, h3 {
+        @include linearGradient(top, bottom, #FEFEFE, #F8F8F8);
+        position: relative;
+        font-size: 1em;
+        padding: 0.3em;
+        padding-left: 0.5em;
+        margin: 0 0 0.25em 0;
+
+        -webkit-border-radius: 1em;
+        -moz-border-radius: 1em;
+        border-radius: 1em;
+        color: #333;
+    }
+
+    .write-pages {
+        font-size: 3px;
+        width: 100%;
+        margin: 1em auto;
+        overflow: auto;
+    }
+
+    .thr-book-page {
+        margin: 0.5em;
+        width: 48em;
+        height: 36em;
+        background-color: white;
+        float: left;
+        border: 1px solid black;
+    }
+
+    .thr-pic {
+        display: inline;
+    }
+
+    .settings {
+        margin-top: 1em;
+        clear: both;
+    }
+
+    .categories {
+        line-height: 2em !important;
+    }
+    
+    .categories label {
+        white-space: nowrap;
+        width: 12em;
+        float: left;
+        margin-left: 2em;
+    }
+    
+    label {
+        white-space: nowrap;
+        line-height: 2.5em;
+        margin: 0 0.5em;
+    }
+    
+    .categories input {
+        vertical-align: baseline;
+    }
+
+    .step3a {
+        display: none;
+    }
+    
+    button {
+        font-size: 1em;
+    }
+    
+    // help icon
+    .help {
+      width: 2em;
+      height: 2em;
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+    }
+
+    div.publishErrors {
+        p {
+            font-weight: bold;
+            margin-left: 1em;
+        }
+        .peMessage {
+            margin-left: 0;
+        }
+    }
+} // end .write-page

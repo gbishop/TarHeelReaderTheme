@@ -16,8 +16,8 @@
 	<h2 class="comments"><?php comments_number('No Responses', 'One Response', '% Responses' );?></h2>
 
 	<div class="navigation">
-		<div class="next-posts"><?php previous_comments_link() ?></div>
-		<div class="prev-posts"><?php next_comments_link() ?></div>
+		<div class="prev-posts"><?php previous_comments_link() ?></div>
+		<div class="next-posts"><?php next_comments_link() ?></div>
 	</div>
 
 	<ol class="commentlist">
@@ -25,8 +25,8 @@
 	</ol>
 
 	<div class="navigation">
-		<div class="next-posts"><?php previous_comments_link() ?></div>
-		<div class="prev-posts"><?php next_comments_link() ?></div>
+		<div class="prev-posts"><?php previous_comments_link() ?></div>
+		<div class="next-posts"><?php next_comments_link() ?></div>
 	</div>
 
  <?php else : // this is displayed if there are no comments so far ?>

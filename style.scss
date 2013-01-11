@@ -12,142 +12,9 @@ $pageLinkFontSize: 0.8em;
 $carolinaBlue: #56A0D3;
 
 @import "css/reset";
+@import "css/mixins";
+@import "css/classes";
 //@import url(http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700);
-
-/*
- * TODO: Replace all gradients with code using this mixin
- */
-@mixin linearGradient($gradientStart, $gradientEnd, $colorStart, $colorEnd) {
-    background: $colorStart; // If all else fails...
-    background: -webkit-gradient(linear, $gradientStart, $gradientEnd, from($colorStart), to($colorEnd)); /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Firefox */
-    background: -ms-linear-gradient($gradientStart, $colorStart, $colorEnd); /* IE 10+ */
-    background: -o-linear-gradient($gradientStart, $colorStart, $colorEnd); /* Opera */
-    background: linear-gradient($gradientStart, $colorStart, $colorEnd);
-}
-
-@mixin thrBackground($gradientStart, $gradientEnd) { // special gradient that is used often
-    @include linearGradient($gradientStart, $gradientEnd, $carolinaBlue, #286DA3);
-}
-
-@mixin decoratedButton($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $gradientStartColor, $gradientEndColor,  $fontSize,
-                       $yPadding, $xPadding, $textColor, $transitionBackgroundColor, $transitionColor, $transitionDuration, $width) {
-
-    background-color: $gradientEndColor;
-    background-image: -webkit-linear-gradient(top, $gradientStartColor, $gradientEndColor);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $gradientStartColor), color-stop(100%, $gradientEndColor));
-    background-image: -moz-linear-gradient(top, $gradientStartColor, $gradientEndColor);
-    background-image: -o-linear-gradient(top, $gradientStartColor, $gradientEndColor);
-    background-image: -ms-linear-gradient(top, $gradientStartColor, $gradientEndColor);
-    background-image: linear-gradient(top, $gradientStartColor, $gradientEndColor);
-
-    border: $borderWidth solid $borderColor;
-    cursor: pointer;
-
-    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
-
-    -webkit-border-radius: $borderRadius;
-    -moz-border-radius: $borderRadius;
-    border-radius: $borderRadius;
-
-    color: $textColor;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-    font-size: $fontSize;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-
-    padding: $yPadding $xPadding;
-
-    width: $width;
-    text-decoration: none;
-
-    -webkit-transition: all $transitionDuration ease-in;
-    -moz-transition: all $transitionDuration ease-in;
-    transition: all $transitionDuration ease-in;
-
-    &:hover {
-      background: $transitionBackgroundColor;
-      color: $transitionColor;
-    }
-}
-
-@mixin decoratedInput($borderWidth, $borderColor, $borderRadius, $boxShadowBlur, $fontSize, $yPadding, $xPadding,
-                       $textColor, $transitionBorderColor, $transitionBoxShadowColor, $transitionBoxShadowBlur, $transitionDuration, $height, $width) {
-    border: $borderWidth solid $borderColor;
-    -webkit-border-radius: $borderRadius;
-    -moz-border-radius: $borderRadius;
-    border-radius: $borderRadius;
-
-    -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
-
-    color: $textColor;
-    font-size: $fontSize;
-
-    padding: $yPadding $xPadding;
-
-    -webkit-transition: all $transitionDuration ease-in;
-    -moz-transition: all $transitionDuration ease-in;
-    transition: all $transitionDuration ease-in;
-
-    height: $height;
-    width: $width;
-
-    &:focus {
-      -webkit-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
-      -moz-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
-      box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
-
-      border: $borderWidth solid $transitionBorderColor;
-    }
-}
-
-// used for the navigation and settings menus
-@mixin decoratedMenu {
-    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
-    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
-    box-shadow: 0.1em 0.1em 0.1em rgba(170, 170, 170, 0.5);
-
-    -webkit-border-radius: 0.4em;
-    -moz-border-radius: 0.4em;
-    border-radius: 0.4em;
-    border: 1px solid #EFEFEF;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    height: auto;
-
-    li {
-      border-bottom: 1px solid #DFDFDF;
-      color: #DFDFDF;
-      cursor: pointer;
-      margin: 0;
-
-      &:last-child {
-        border-bottom: 0;
-      }
-
-      &:focus, &:hover, &.selectedLink {
-        background: #FFF !important;
-        color: $carolinaBlue;
-      }
-
-      a, span {
-        display: inline-block;
-        font-size: 1.3em;
-        text-align: left;
-        text-decoration: none;
-        
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        width: 100%;
-      } // end a
-    } // end li
-}
 
 /* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
 body {
@@ -186,8 +53,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     overflow: auto;
     width: 48em;
     // This next line causes shift right on iPad. Why do we need it?
-    padding: 1%;
-    padding-top: 0.5%;
+    padding: 0.5em;
+    padding-top: 0.25em;
 
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
@@ -196,8 +63,79 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
     -moz-box-shadow: 0 0 0.2em $carolinaBlue;
     box-shadow: 0 0 0.2em $carolinaBlue;
+    
+    .post {
+      max-width: 100%;
+      padding: 0.5em 1em;
+    }
+    
+     /* This is not the navigation menu that is used for navigation around the site.
+        This is for "next", "previous" links for navigation around posts/collections
+     */
+    .navigation {
+      margin-top: 1em;
+      width: 100%;
+      a {
+        @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
+      }
 
-    .homeLinkList {
+      .next-posts, .next {
+        float: right;
+      }
+
+      .prev-posts, .back {
+        float: left;
+      }
+    }
+}
+
+.page-wrap {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.active-page {
+    display: block;
+}
+
+// The following styles apply to the Home, Books You Wrote, Collections, Login, Announcements, FAQ, and Photo Credits pages
+.server-page, .your-books-page, .collections-page, .login-page {
+  h1, h2 {
+    color: #676767;
+    font-size: 1.8em;
+    font-weight: normal;
+    padding-left: 0.25em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    border-bottom: 2px solid $carolinaBlue;
+    a {
+      color: $carolinaBlue;
+    }
+  }
+
+  p {
+    text-align: left;
+    margin: 1em 0.5em;
+
+    &.message {
+      color: $carolinaBlue;
+      font-size: 1.25em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+// Applies to Home, Help, Announcements, and Photo Credits
+.server-page {
+  // styles for the links that appear on the front page
+  .homeLinkList {
       text-align: center;
       overflow: auto;
 
@@ -215,92 +153,13 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       }
     }
 
-    .tinyicon {
+  .tinyicon {
       max-width: 1em;
       max-height: 1em;
-    }
-
-}
-
-.page-wrap {
-    display: none;
-    margin: 0;
-    padding: 0;
-}
-
-.find-page {
-    .content-wrap { // remove horizontal padding from the find page for centering
-      padding-left: 0;
-      padding-right: 0;
-    }
-    
-    .description {
-      display: none;
-    }
-    
-    .navigationMenu {
-      width: 95%; // no padding on .find-page, so make the width a little smaller
-    }
-}
-
-.active-page {
-    display: block;
-}
-
-// The following styles apply to the Home, Books You Wrote, Collections, Login, Announcements, FAQ, and Photo Credits pages
-.server-page, .your-books-page, .collections-page, .login-page {
-  h1, h2 {
-    border-bottom: 2px solid $carolinaBlue;
-    color: #676767;
-    font-size: 1.8em;
-    font-weight: normal;
-    padding-left: 0.25em;
-    a {
-      color: $carolinaBlue;
-    }
-  }
-
-  h2 {
-    font-size: 1.6em;
-  }
-
-  p {
-    text-align: left;
-    margin: 1em 0.5em;
-
-    &.message {
-      color: $carolinaBlue;
-      font-size: 1.25em;
-      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  /*     This is not the navigation menu that is used for navigation around the site.
-         This is for "next", "previous" links for navigation around posts/collections
-   */
-  .navigation {
-    margin-top: 1em;
-    width: 100%;
-    a {
-      @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
-    }
-
-    .next-posts, .next {
-      float: right;
-    }
-
-    .prev-posts, .back {
-      float: left;
-    }
-
-  }
-
+   }
+  
   .languages {
-    border: .1em solid #777;
+    border: 1px solid #777;
     margin-left: 1em;
     padding-top: 0.025em; // helps center text just a bit; might be unnecessary. Line-height doesn't seem to work
 
@@ -328,7 +187,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     &:hover{
       background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
     }
-
   }
 
   .photoCreditsBox {
@@ -349,128 +207,63 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
    }
 }
 
-.header {
-    position: relative; // for positioning our navigation menu
-    width: 100%;
+.login-page {
+  p > a {
+    display: inline-block;
+    width: 9em;
+  }
+}
 
-    height: 4em;
-    text-align: center;
-    display: block;
-
-    min-height: 32px;
-
-    h1 {
-        border: 0;
-        font-size: 2em;
-        padding-top: 0.25em;
-        margin-top: 0.1em;
-
-        height: 1.7em;
-        min-height: 57%;
-
-        a {
-            text-decoration: none;
-            color: #555;
-            font-family: 'Terminal Dosis', sans-serif;
-            text-shadow: 0 1px 0 rgba(170, 170, 170, 0.25);
-            font-weight: 200;
-            padding: 0;
-        }
+// these pages use .thr-book-list; make sure there is no horizontal padding
+.favorites-page, .find-page {
+  .content-wrap {
+    padding-left: 0;
+    padding-right: 0;
+    & > p {
+      margin: 1em;
+      color: $carolinaBlue;
+      font-size: 1.1em;
     }
+  }
+  
+  .navigationMenu {
+     width: 95%; // no padding on .find-page; make the width a little smaller
+  }
+  
+  .description {
+      display: none;
+  }
+  
+   // styles for "More Books" and "Previous Books" buttons
+  .findPageNavButton {
+     -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+     box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
 
-    .description {
-        font-size: 0.9em;
-    }
-    
+     -webkit-border-radius: 0.5em;
+     -moz-border-radius: 0.5em;
+     border-radius: 0.5em;
+     border: 0.1em solid #DCDCDC;
+
+     font-family: 1.1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+     text-align: center;
+     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+     text-decoration: none;
+     
+     cursor: pointer;
+     padding: 0.25em 0.5em;
+     width: 8em;
+   }
 }
 
-.thr-well-icon {
-    position: absolute;
-    top: .5em;
-    left: 2em;
-
-    width: 2.5em;
-    min-width: 24px;
-    height: 2.5em;
-    min-height: 24px;
-
-    img {
-        width: 2.5em;
-        min-width: 24px;
-        height: 2.5em;
-        min-height: 24px;
-        opacity: 0.6;
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    z-index: 99;
+.favorites-page {
+  // don't display the 'Press to Search' button on phones for the favorites page
+  .searchShowButton {
+    display: none !important;
+  }
 }
 
-.thr-settings-icon {
-    display: none;
-    position: absolute;
-    top: 0.65em;
-    right: 2em;
-    z-index: 999;
-
-    width: 2.5em;
-    min-width: 24px;
-    height: 2.5em;
-    min-height: 24px;
-
-    img {
-        width: 2.5em;
-        min-width: 24px;
-        height: 2.5em;
-        min-height: 24px;
-        opacity: 0.6;
-        &:hover {
-           opacity: 1;
-        }
-    }
-
-}
-
-.thr-favorites-icon {
-    display: none;
-    position: absolute;
-    top: 0.65em;
-    right: 5em;
-    z-index: 999;
-
-    width: 2.5em;
-    min-width: 24px;
-    height: 2.5em;
-    min-height: 24px;
-
-    opacity: 0.6;
-    &:hover {
-       opacity: 1;
-    }
-}
-
-.footer, .footer a {
-    width: 100%;
-    text-align: center;
-    font-size: 0.7em;
-    color: #888;
-}
-
-.thr-colors:not(.findPageNavButton) a {
-    color: inherit;
-    &:hover {
-      color: inherit;
-    }
-}
-
-.post {
-    max-width: 100%;
-    padding: 0.5em 1em;
-}
-
-.entry { margin-left: 1em;}
+//.entry { margin-left: 1em;} why do we need this?
 .entry a { text-decoration: none;}
 .entry a:hover { text-decoration: underline;}
 
@@ -498,570 +291,12 @@ li {
     margin-bottom: 0.5em;
 }
 
-h1, h2{
-  margin: 0.25em;
+h1, h2 {
+  margin: 0.25em 0;
 }
 
 h2 {
     font-size: 1.3em;
-}
-
-.decoratedList {
-    margin-bottom: 1em;
-    border: 1px solid #AAA !important;
-    -webkit-border-radius: 0.3em;
-    -moz-border-radius: 0.3em;
-    border-radius: 0.3em;
-
-    -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
-    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
-
-    li {
-      list-style: none;
-      margin: 0;
-      border-bottom: 1px solid #555;
-      overflow: auto;
-
-      a {
-        font-weight: bold;
-        padding: 0.5em;
-        padding-right: 1.5em;
-        display: block;
-        width: 100%;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-      }
-
-      &:last-child {
-        border: 0;
-      }
-    }
-
- }
-
-.navigationMenu {
-    @include thrBackground(top, bottom);
-    @include decoratedMenu;
-
-    margin: 0.5em auto;
-    margin-bottom: 0;
-    max-width: 48em;
-    width: 100%;
-    overflow: auto;
-
-    li {
-      height: 3em;
-      overflow: hidden;
-
-      &.divider {
-        border-bottom: 1px solid #DFDFDF;
-        a {
-          background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
-        }
-      }
-
-      a {
-        display: block;
-        -webkit-box-sizing: content-box;
-        -moz-box-sizing: content-box;
-        box-sizing: content-box;
-        background-size: 1.5em !important;
-        padding: 0 9%; // leave 2% off on purpose (100 - 2*9 = 98) for the arrow
-        width: 80%; // not 100% on purpose
-
-        color: inherit;
-        font-size: 1.5em;
-        line-height: 2em;
-        text-align: left;
-
-        &.homeLink {
-          background: url(/theme/images/home_32.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.findLink {
-          background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.collectionsLink {
-          background: url(/theme/images/collections.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.favoritesLink {
-          background: url(/theme/images/favorite_book.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.writeLink {
-          background: url(/theme/images/write_book.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.loginLink {
-          background: url(/theme/images/user.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.helpLink {
-          background: url(/theme/images/info.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.yourBooksLink {
-          background: url(/theme/images/my_book.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.blogLink {
-          background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-        &.photoCreditsLink {
-          background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat,
-                      url(/theme/images/disclosure_icon.png) right center no-repeat;
-        }
-
-      } // end a
-    } // end li
-
-}
-
-.mainSettings {
-    @include thrBackground(left, right);
-    @include decoratedMenu;
-
-    display: none;
-    position: absolute;
-    top: 3em;
-    right: 4em;
-
-    padding: 0;
-    margin: 0;
-    width: 12em;
-    z-index: 100;
-
-    -webkit-border-radius: 0.25em 0.4em 0.4em 0.25em;
-    -moz-border-radius: 0.25em 0.4em 0.4em 0.25em;
-    border-radius: 0.25em 0.4em 0.4em 0.25em;
-
-    li {
-      position: relative; // in order to show submenus
-      margin: 0;
-      padding: 0;
-      height: auto;
-      width: auto;
-
-      span {
-        background-size: 1.5em !important;
-        color: inherit;
-        font-size: 1.3em;
-        padding: 1em 0 1em 3.5em;
-
-        &.speech {
-          background: url(/theme/images/sound.png) 1em center no-repeat;
-        }
-
-        &.colors {
-          background: url(/theme/images/colors.png) 1em center no-repeat;
-        }
-
-        &.download {
-          background: url(/theme/images/download.png) 1em center no-repeat;
-        }
-
-        &.default {
-          background: url(/theme/images/default_settings.png) 1em center no-repeat;
-        }
-      } // end span
-
-      .submenu {
-        @include thrBackground(right, left);
-        background-clip: padding-box;
-        -webkit-background-clip: padding-box;
-        -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
-        -moz-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
-        box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
-
-        position: absolute;
-        display: none;
-        top: -1px;
-        right: 12.05em;
-        z-index: 999;
-        list-style: none;
-
-        width: 12em;
-        padding: 0;
-        margin: 0;
-
-        -webkit-border-radius: 0.5em 0 0 0.5em;
-        -moz-border-radius: 0.5em 0 0 0.5em;
-        border-radius: 0.5em 0 0 0.5em;
-        border: 1px solid #EFEFEF;
-        border-right: 0;
-
-        li {
-          height: auto;
-          width: auto;
-
-          a, span {
-            font-size: 1em;
-            padding: 1em;
-            font-size: 1.1em;
-            text-align: center;
-            &.checked {
-              background: url(/theme/images/check_mark.png) right center no-repeat;
-            }
-          }
-
-          .innerSubmenu {
-            @include thrBackground(left, right);
-            background-clip: padding-box;
-            -webkit-background-clip: padding-box;
-            display: none;
-            position: absolute;
-            right: 12em;
-            width: 10em;
-            top: -2em;
-
-            -webkit-border-radius: 0.5em 0 0 0.5em;
-            -moz-border-radius: 0.5em 0 0 0.5em;
-            border-radius: 0.5em 0 0 0.5em;
-            border: 1px solid #EFEFEF;
-            z-index: 999;
-
-            span {
-              text-align: left;
-              padding-left: 3.25em;
-              padding-right: 0.5em;
-
-              &.checked {
-                background: url(/theme/images/check_mark.png) right center no-repeat;
-              }
-            }
-          } // end .innerSubmenu
-        } // end li
-
-        // Begin color icons for text color
-        .textColors .innerSubmenu span {
-            &.black {
-              background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_black.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.blue {
-              background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_blue.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.cyan {
-              background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_cyan.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.green {
-              background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_green.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.magenta {
-              background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_magenta.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.red {
-              background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_red.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.white {
-              background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_white.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.yellow {
-              background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/text_yellow.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-          } // End color icons for text color
-
-          // Begin color icons for page color
-          .pageColors .innerSubmenu span {
-            &.black {
-              background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_black.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.blue {
-              background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_blue.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.cyan {
-              background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_cyan.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.green {
-              background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_green.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.magenta {
-              background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_magenta.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.red {
-              background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_red.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.white {
-              background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_white.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-
-            &.yellow {
-              background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat;
-              &.checked {
-                background: url(/theme/images/Settings_colors/page_yellow.png) 0.5em center no-repeat,
-                            url(/theme/images/check_mark.png) right center no-repeat;
-               }
-            }
-          } // end color icons for page color
-
-      } // end submenu
-    } // end li
-}
-
-.searchForm {
-    text-align: center;
-    width: 100%;
-    margin: 0.5em auto 0.25em;
-
-    select {
-        border: 0.1em solid #DDD;
-        -webkit-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-        box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.4);
-
-        padding: 0;
-        margin: 0.15em 0.25em;
-        line-height: 2em;
-        width: 9em;
-
-        color: #333;
-        font-size: 1.1em;
-
-        &[name='audience'] {
-          width: 14em;
-        }
-    }
-
-    input {
-        &[type='search'] {
-          @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1.1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
-        }
-
-        &[type='submit'] {
-          margin: 0.25em 0.75em;
-          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
-        }
-    }
-
-}
-
-// Mixin arguments for decorated gray/blue buttons and input
-.thr-gray-button {
-  @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 8em);
-}
-
-.thr-blue-button {
-  @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 7em);
-}
-
-.thr-input {
-  @include decoratedInput(0.1em, #B2B2B2, 0.5em, 0.1em, 1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
-}
-
-/*
- *  Import the decoratedButton mixin for this button with a few changes
- *
- */
-.searchShowButton {
-    display: none; // displayed by media query if js is on and screen is small
-    height: 2em;
-    min-height: 32px;
-    font-size: 1.5em;
-    border: solid black 1px;
-    text-decoration: none;
-    vertical-align: middle;
-    -webkit-appearance: push-button;
-    -webkit-border-radius: 2em;
-    -moz-border-radius: 2em;
-    border-radius: 2em;
-    //font-size: 1.5em;
-    text-align: center;
-    color: black;
-}
-
-.thr-book-list {
-    display: block;
-    text-align: center;
-    margin-left: 1em;
-    overflow: auto;
-
-    li {
-        width: 11em;
-        height: 11em;
-        border: 1px solid black;
-        margin: 0.2em;
-        float: left;
-        text-align: center;
-        position: relative;
-        line-height: 1em;
-        overflow: hidden;
-        //background:white;
-        -webkit-border-radius: 0.25em;
-        -moz-border-radius: 0.25em;
-        border-radius: 0.25em;
-
-        -webkit-box-shadow: 0.1em 0.1em 0.1em #aaa;
-        -moz-box-shadow: 0.1em 0.1em 0.1em #aaa;
-        box-shadow: 0.1em 0.1em 0.1em #aaa;
-
-    }
-
-    li.selected {
-        border-color: red !important;
-    }
-
-    h2 {
-        height: 2.2em;
-        font-size: 1em;
-        line-height: 1.1em;
-        overflow: hidden;
-        margin: 0.2em 0 0 0;
-    }
-
-    .thr-author {
-        font-size: 0.8em;
-        overflow: hidden;
-        height: 1.3em;
-        margin: 0;
-    }
-
-    a:not(.findPageNavButton), a:not(.findPageNavButton):hover {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .thr-pages {
-        position: absolute;
-        bottom: 0.25em;
-        right: 0.625em;
-        font-size: 0.7em;
-    }
-
-    .thr-thumb-box {
-        width: 6.25em;
-        height: 6.25em;
-        margin: 0 auto;
-    }
-
-    .thr-stars {
-        width: 3em;
-        height: 1em;
-    }
-
-    .thr-reviewed {
-        width: 1em;
-        height: 1em;
-        position: absolute;
-        left: 0.5em;
-        bottom: 0.5em;
-    }
-
-    .thr-caution {
-        width: 1em;
-        height: 1em;
-        position: absolute;
-        left: 0.5em;
-        bottom: 1.7em;
-    }
-}
-
-.findPageNavButton {
-    border: 0.1em solid #DCDCDC;
-    cursor: pointer;
-
-    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
-
-    -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    border-radius: 0.5em;
-
-    font-family: 1.1em "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-
-    padding: 0.25em 0.5em;
-
-    width: 8em;
-    text-decoration: none;
 }
 
 .thr-find-next {
@@ -1086,8 +321,7 @@ h2 {
 }
 
 .thr-next-link, .thr-back-link {
-
-    @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 6em);
+    @include decoratedButton(1px, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 6em);
 
     position: absolute; // fixed works fine but isn't supported before ios5?
     bottom: 0.5em;
@@ -1102,6 +336,7 @@ h2 {
         display: block;
     }
 }
+
 .thr-page-number {
     position: absolute;
     top: 1em;
@@ -1161,13 +396,11 @@ h2 {
     .navigationMenu {
       margin: 4em auto;
       width: 80%;
-      a {
-        width: 80%;
-      }
     }
 
     .thr-question {
-        margin: 1em auto;
+        margin: 0.5em auto;
+        margin-top: 2em;
     }
 
     .thr-pic-box {
@@ -1176,6 +409,7 @@ h2 {
         margin: auto;
         margin-top: 0.5em;
     }
+    
     .thr-credit {
         font-size: 0.5em;
         color: #DDD;
@@ -1184,6 +418,7 @@ h2 {
           opacity: 1;
         }
     }
+    
     .thr-caption {
         font-size: $captionFontSize;
         line-height: 1.2em;
@@ -1192,11 +427,11 @@ h2 {
         overflow: hidden;
         margin: 0 auto;
     }
+    
     .thr-choices {
         //width: 12em;
         width: 18em; // make the list a bit bigger so that the text fits in nicely
-        margin: auto;
-        margin-top: .5em;
+        margin: 0.5em auto 1em;
         font-size: 2em;
         text-align: left;
 
@@ -1213,19 +448,26 @@ h2 {
             font-weight: normal;
             color: inherit;
         }
+    }
+}
 
-        /*li:hover, li.selected {
-            background-color: #FEFEF;
-            background-image: -ms-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: -moz-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: -o-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FAFAFA), color-stop(100%, #FAFAFA));
-            background-image: -webkit-linear-gradient(top, #FFF, #FAFAFA);
-            background-image: linear-gradient(top, #FFF, #FAFAFA);
-
-            color: $carolinaBlue;
-        }*/
-
+.reading-controls {
+    label {
+        display: block;
+        margin-top: 1em;
+        padding-bottom: 0.25em;
+    }
+    select {
+        width: 10em;;
+        display: block;
+    }
+    input {
+        margin-top: 1em;
+        display: block;
+        width: 10em;
+        &[type=submit] {
+          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
+        }
     }
 }
 
@@ -1257,197 +499,14 @@ h2 {
     display: none;
 }
 
-.reading-controls {
-    label {
-        display: block;
-        margin-top: 1em;
-        padding-bottom: 0.25em;
-    }
-    select {
-        width: 10em;;
-        display: block;
-    }
-    input {
-        margin-top: 1em;
-        display: block;
-        width: 10em;
-        &[type=submit] {
-          @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
-        }
-    }
-}
-
-.your-books-page {
-  h2 {
-    padding-top: 0.2em; // just for border alignment with the help icons
-  }
-
-  p {
-    margin-left: 1em;
-  }
-
-  .mapButton {
-    display: block;
-    margin: 0.5em;
-    width: 20em;
-  }
-}
-
 .next-posts {}
 .prev-posts {}
-
-.write-page {
-    .content-wrap {
-        width: auto;
-        overflow: hidden;
-        margin: 0.5em 1em;
-    }
-
-    .writing-controls {
-        display: none;
-        margin: .5em 0;
-    }
-
-    noscript {
-        color: red;
-        font-weight: bold;
-        font-size: 2em;
-    }
-
-    .aWrap {
-      input[type='search'] {
-        width: 8em;
-        &:focus {
-          width: 16em;
-        }
-      }
-    }
-
-    .steps {
-        padding: 0.5em;
-        background-color: #EEE;
-        position: relative;
-        max-width: 100%;
-        overflow: auto;
-        span {
-          margin-right: .25em;
-        }
-
-        .categorizeButton {
-          width: auto;
-          margin-left: 0.25em;
-        }
-    }
-
-    .image-search {
-      margin-top: 0.5em;
-    }
-
-    .gallery {
-        margin: 1em auto;
-        width: 90%;
-        //height: 6em;
-    }
-
-    h2, h3 {
-        position: relative;
-        font-size: 1em;
-        padding: 0.3em;
-        padding-left: 0.5em;
-        margin: 0 0 0.25em 0;
-        background-color: #FEFEFE;
-        background-image: -webkit-gradient(linear, left top, #FEFEFE 30%, #F8F8F8);
-        background-image: -webkit-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
-        background-image: -moz-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
-        background-image: -ms-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
-        background-image: -o-linear-gradient(left top, #FEFEFE 30%, #F8F8F8);
-        background-image: linear-gradient(left, #FEFEFE 30%, #F8F8F8);
-
-        -webkit-border-radius: 1em;
-        -moz-border-radius: 1em;
-        border-radius: 1em;
-        color: #333;
-    }
-
-    h3 {
-        background-color: #F8F8F8;
-    }
-
-    .write-pages {
-        font-size: 3px;
-        width: 100%;
-        margin: 1em auto;
-        overflow: auto;
-    }
-
-    .thr-book-page {
-        margin: 0.5em;
-        width: 48em;
-        height: 36em;
-        background-color: white;
-        float: left;
-        border: 1px solid black;
-    }
-
-    .thr-pic {
-        display: inline;
-    }
-
-    .settings {
-        margin-top: 1em;
-        clear: both;
-    }
-
-    .categories {
-        line-height: 2em !important;
-    }
-    .categories label {
-        white-space: nowrap;
-        width: 12em;
-        float: left;
-        margin-left: 2em;
-    }
-    label {
-        white-space: nowrap;
-        line-height: 2.5em;
-        margin: 0 0.5em;
-    }
-    .categories input {
-        vertical-align: baseline;
-    }
-
-    .step3a {
-        display: none;
-    }
-    button {
-        font-size: 1em;
-    }
-
-    div.publishErrors {
-        p {
-            font-weight: bold;
-            margin-left: 1em;
-        }
-        .peMessage {
-            margin-left: 0;
-        }
-    }
-
-}
 
 .help {
     width: 2em;
     height: 2em;
     float: right;
     cursor: pointer;
-}
-
-.write-page .help {
-  width: 2em;
-  height: 2em;
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
 }
 
 .help-text {
@@ -1463,420 +522,13 @@ h2 {
     display: block;
 }
 
-.edit-page {
-    //font-size: 50%;
-    width: 48em !important;
-    height: 36em !important;
-
-    .thr-pic {
-        display: inline;
-    }
-
-    textarea {
-        width: (48em - 12em) / $captionFontSize * 1em;
-        height: 5em / $captionFontSize * 1em;
-        margin: auto;
-        resize: none;
-
-        &.text-too-long {
-            background: yellow;
-        }
-        //border: 1px solid black;
-    }
-
-    .deleteIcon {
-        width: 2em;
-        height: 2em;
-        position: absolute;
-        top: 0.5em;
-        left: 0.5em;
-    }
-}
-
-.galleryPreviewDialog {
-    width: 20em !important;
-    height: 20em !important;
-
-    img {
-        margin: auto;
-        display: block;
-    }
-
-    a {
-        height: 100%;
-        opacity: 0;
-        width: 45%;
-        position: absolute;
-        top: 0;
-
-        img {
-            margin-top: 2em;
-        }
-        &.p {
-            left: 0;
-        }
-        &.n {
-            right: 0;
-        }
-        &:hover {
-            opacity: 0.5;
-        }
-    }
-}
 /* Print styles!
 -------------------------------------------------------------------------------*/
 @media print {
 
-
-
 }
-
-
-/* Media queries!
--------------------------------------------------------------------------------*/
 
 /* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
-
-/* include my automatically generated media queries */
-
-@import "css/mediaqueries";
-
-/*
- * Small width
- */
-@media only screen and (max-width: 624px) {
-
-  // *** Begin code for .server-page ***
-  .server-page {
-    .homeLinkList li {
-      width: 100%;
-      display: block;
-      margin: 1.5em auto;
-      font-size: 1.3em;
-    }
-
-    .languageForm {
-      .languages {
-        font-size: 1.5em;
-        width: 90%;
-      }
-
-      .goButton {
-        background-size: 1.5em;
-        margin: 0.5em 1em;
-        width: 90%;
-      }
-    }
-  } // *** End code for .server-page
-
-
-  // *** Begin code for .write-page ***
-  .write-page {
-
-    .image-search {
-      overflow: auto;
-      input {
-        width: 10em;
-        margin: 0.25em auto;
-        width: 95% !important;
-        vertical-align: middle;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-
-        &[type='submit'] {
-          margin-left: 0.25em;
-        }
-      }
-
-    } // end image-search
-
-    .aWrap {
-      .button {
-        margin: 0 2%;
-
-        &:first-child {
-          width: 35%;
-        }
-
-        &:last-child {
-          width: 55%;
-        }
-      }
-    }
-
-     div.step4 {
-      button {
-        margin: 0 2%;
-        width: 45%;
-      }
-    }
-
-    .steps {
-
-      h2 {
-        padding-right: 2.5em; // acount for the question mark picture and word-wrap accordingly
-        word-wrap: break-word;
-      }
-
-      label {
-        display: block;
-        width: 100%;
-        margin: 0.5em 0;
-
-       span {
-         width: 30%;
-         display: inline-block;
-        }
-
-        input, select, button {
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-        }
-        input {
-          width: 65% !important;
-        }
-        select, button {
-          width: 68% !important; // selects and buttons take up a little less space for some reason
-        }
-
-      }
-
-    }
-  } // *** End code for .write-page ****
-
-} // end media queries for max-width: 624px
-
-// define mixin for the alternative navigation/menu layout used for handheld devices
-@mixin phoneDisplay {
-
-   .header {
-     h1 {
-       margin-top: 0.5em;
-       font-size: 2em !important;
-     }
-   }
-
-   // make the buttons easier to press
-   .thr-gray-button, .thr-blue-button {
-     font-size: 1.25em;
-     padding: 0.5em 1em;
-   }
-
-   .languageForm {
-     .languages {
-       height: 2em;
-       line-height: 1.5em;
-     }
-   }
-
-   // input text areas need to be bigger (easier to press on)
-   input[type='text'], input[type='search'], input[type='password'], select {
-     font-size: 1.1em;
-     height: 1.75em;
-     line-height: 1.5em;
-   }
-
-   .navigation a {
-     font-size: 1.25em !important;
-     padding: 0.5em 1em !important;
-   }
-
-   label {
-     font-size: 1.1em;
-   }
-
-    // *** Begin code for .your-books-page***
-  .your-books-page {
-    .decoratedList {
-      li {
-        font-size: 1.25em;
-        height: 2em;
-        line-height: 2em;
-      }
-
-    }
-
-    .mapButton {
-      margin: 0.5em 0;
-      width: 100%;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-  } // *** End code for .your-books-page***
-
-   // *** Begin .write-page code ***
-   .write-page {
-     .image-search {
-       input {
-         &[type='submit'] {
-           margin-left: 0em;
-         }
-       }
-     }
-   } // *** End .write-page code ***
-}
-
-
-@media only screen and(max-width: 948px) {
-  .content-wrap {
-    width: 90%;
-  }
-}
-/*
- * max-width: 637px
- */
-@media only screen and(max-width: 637px) {
-
-  // header adjustments for the heart and gear
-  .header {
-    margin-top: 0.25em;
-
-    h1 {
-      font-size: 1.25em;
-      margin-top: 0.75em;
-    }
-
-    .thr-well-icon {
-      top: 0.25em;
-    }
-
-    .thr-settings-icon {
-      top: 0;
-      right: 0.5em;
-    }
-
-    .thr-favorites-icon {
-      top: 0;
-      right: 4.5em;
-    }
-
-  }
-
-  .thr-book-list { // want to display 3 books per row
-    margin-left: 2.083333%; // 1/48
-    li {
-      width: 31.79549%; // remaining percentage/3 = width (also accounts for border)
-      margin: 0.4167%; // 0.2/48 = 0.004167...
-    }
-  }
-
-  .navigationMenu {
-    a {
-      padding: 0 19% !important;
-      width: 60% !important;
-    }
-  }
-}
-
-/* iPod all */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-
-    .js {
-        // hide the search form until the search button is pressed
-        .searchForm {
-            input, select {
-                width: 100%;
-                margin-top: 0.25em;
-                height: 3em !important;
-                vertical-align: middle;
-                font-size: 1.2em;
-
-                &[type='submit'] {
-                  margin-left: 0.25em;
-                }
-            }
-            display: none;
-        }
-
-        .searchShowButton {
-            display: block;
-            margin: 0.5em auto;
-            font-size: 1.5em;
-            line-height: 2.5em;
-            width: 80% !important;
-        }
-
-    }
-    // bump up the font size on the writing page to make it easier to hit buttons
-    .writing-controls {
-        font-size: 1.5em;
-    }
-    .gallery {
-      width: 100%;
-      margin: 0;
-    }
-    @include phoneDisplay;
-}
-
-/* iPod landscape */
-
-@media only screen
-and (min-device-width: 320px)
-and (max-device-width: 480px)
-and (min-width: 321px)
-and (max-width: 480px) {
-    body {
-        font-size: 8px;
-    }
-    .content-wrap {
-      width: 48em;
-      margin-bottom: 1em;
-    }
-    .thr-pic-box {
-        width: 15em;
-        height: 15em;
-    }
-}
-
-/* iPod portrait */
-@media only screen
-and (min-device-width: 320px)
-and (max-device-width: 480px)
-and (max-width: 320px)
-and (min-width: 320px) {
-    body {
-        font-size: 8.33px;
-    }
-    .content-wrap {
-        width: 34em;
-        margin-bottom: 1em;
-    }
-}
-
-/* iPad portrait */
-
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation: portrait) {
-    body {
-        font-size: 16px;
-    }
-    .thr-pic-box {
-        width: 48em;
-        height: 48em;
-    }
-}
-
-/* iPad landscape */
-
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (min-height: 650px) // prevent ie9 from hitting this one
-and (orientation: landscape) {
-    body {
-        font-size: 16px;
-    }
-    .thr-pic-box {
-        width: 33em;
-        height: 33em;
-    }
-}
 
 .searchForm label, .sidebar label {
     position:absolute;
@@ -1899,25 +551,17 @@ and (orientation: landscape) {
     display: none;
     position: absolute;
     width: 50%;
-    //height: 100%;
-    //top: 0;
     left: 25%;
     z-index: 10000;
-
 }
 
 .busyMessage {
     font-size: 1.5em;
-    //position: absolute;
-    //width: 50%;
     margin: auto;
     padding: 1em;
     background: #FFF;
     border: 2px solid red;
-    //top: 25%;
-    //left: 25%;
     text-align: center;
-
     div {
         display: none;
     }
@@ -1947,6 +591,7 @@ img.favoriteYes, img.favoriteNo {
   left: 0;
 }
 
+@import "mediaqueries";
 .chooseFavorites li.favoriteYes img.favoriteYes {
   display: block !important;
 }
@@ -1956,5 +601,7 @@ img.favoriteYes, img.favoriteNo {
 }
 
 @import "css/fileuploader";
+@import "css/writebooks";
 @import "css/yourbooks";
 @import "css/collections";
+@import "css/allmediaqueries";
