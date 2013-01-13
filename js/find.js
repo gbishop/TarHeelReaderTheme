@@ -109,7 +109,8 @@ define([ "route",
         } else {
             var id = toSelect.attr('data-id');
             var lang = toSelect.attr('lang');
-            speech.play(id, lang, voice, 1);
+            var bust = toSelect.attr('data-bust');
+            speech.play(id, lang, voice, 1, bust);
         }
         // make sure it is visible
         toSelect.scrollIntoView({

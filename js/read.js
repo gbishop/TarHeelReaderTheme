@@ -77,7 +77,7 @@ define(["route",
                 }
                 templates.setImageSizes(view.image);
                 newContent = templates.render('bookPage', view);
-                speech.play(book.ID, book.language, state.get('voice'), pageNumber);
+                speech.play(book.ID, book.language, state.get('voice'), pageNumber, book.bust);
             } else {
                 view.nextPage = pageNumber+1;
                 view.link = book.link;

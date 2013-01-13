@@ -14,7 +14,8 @@
                     $id = $book['ID'];
                     $folder = substr($id, -2) . '/' . $id;
                     $language = $book['language'];
-                    $mp3 = "/cache/speech/$folder/$language-$v-$page.mp3";
+                    $bust = $book['bust'];
+                    $mp3 = "/cache/speech/$folder/$language-$v-$page.mp3?bust=$bust";
                     echo "<!-- $mp3 -->";
                 }
             }

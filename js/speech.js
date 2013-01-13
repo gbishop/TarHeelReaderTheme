@@ -48,7 +48,7 @@ define(["templates" ], function(templates) {
         }
     });
 
-    function play(id, lang, voice, page) {
+    function play(id, lang, voice, page, bust) {
         voice = voice[0]; // assure we're only using the 1st letter
         console.log('play', id, lang, voice, page);
         if (!audio || voice === 's' || !hasSpeech[lang]) {
@@ -61,6 +61,9 @@ define(["templates" ], function(templates) {
         } else {
             id = id + '';
             mp3 += id.substr(id.length-2) + '/' + id + '/' + lang + '-' + voice + '-' + page + '.mp3';
+        }
+        if (bust) {
+            mp3 += '?bust=' + bust;
         }
 
         if (audio === 'flash') {

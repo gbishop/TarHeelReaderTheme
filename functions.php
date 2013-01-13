@@ -337,6 +337,7 @@ function ParseBookPost($post) {
     $res['slug'] = $post->post_name;
     $res['link'] = preg_replace('/http:\/\/[a-zA-Z0-9.]+/', '', get_permalink($id));
     $res['ID'] = $id;
+    $res['bust'] = mysql2date('ydmHis', $post->post_modified, false);  // cache bust for speech
 
     return $res;
 }
@@ -490,6 +491,7 @@ function posts_to_find_results($posts, $nrows, $count) {
         $po['preview']['text'] = $po['title'];
         $po['pages'] = count($book['pages']);
         $po['language'] = $book['language'];
+        $po['bust'] = $book['bust'];
         $books[] = $po;
     }
 
