@@ -117,11 +117,19 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         header("HTTP/1.0 400 Save Post Failed");
         die();
     }
+    $id = $book['ID'];
 
     $output = json_encode($book);
     header('Content-Type: application/json');
-    header('Content-Size: ' . strlen($output));
+    header('Content-Size: ' . mb_strlen($output));
     echo $output;
+    if ($book['status'] == 'publish') {
+        updateSpeech($book, 1, 2);  // generate audio for first two pages
+        // then asynchronously generate speech for other pages
+        $cmd = "/usr/bin/php " . ABSPATH . "theme/updateSpeech.php $id 3 > /tmp/updateSpeech.out &";
+        //BuG("exec $cmd");
+        exec($cmd);
+    }
     die();
 }
 ?>

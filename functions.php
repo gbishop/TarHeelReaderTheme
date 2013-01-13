@@ -29,11 +29,11 @@ foreach($lang as $row) {
         $SynthLanguages[] = $row['value'];
     }
 }
-BuG('synthLanguages ' . implode(', ', $SynthLanguages));
+//BuG('synthLanguages ' . implode(', ', $SynthLanguages));
 function has_speech($lang) {
     global $SynthLanguages;
     $r = in_array($lang, $SynthLanguages);
-    BuG('has speech returns ' . $r);
+    //BuG('has speech returns ' . $r);
     return $r;
 }
 
@@ -173,12 +173,11 @@ function convert_image_url($url) {
 }
 
 function make_page($text, $url) {
-    //BuG("make_page($text, $url)");
     list($nurl, $path) = convert_image_url($url);
     if (!file_exists($path)) {
         BuG("not found path=$path url=$url");
         if (!copy($url, $path)) {
-            BuG('Copy failed $url $path');
+            BuG("Copy failed $url $path");
             return false;
         }
     }
@@ -234,7 +233,7 @@ function ParseBookPost($post) {
     $content = $post->post_content;
     $row = $wpdb->get_row("SELECT * from $search_table WHERE ID = $id");
     if ($row) {
-        BuG('from search table');
+        //BuG('from search table');
         $res = json_decode($row->json, true);
 
     } else {
@@ -360,6 +359,7 @@ function SaveBookPost($id, $book) {
         BuG('SaveBookPost failed');
         return false;
     }
+    $book['ID'] = $id;
 
     updateIndex($book);
     update_post_meta($id, 'book_rating_count', $content['rating_count']);
@@ -368,43 +368,49 @@ function SaveBookPost($id, $book) {
     //$book['ID'] = $postid;
     $post = get_post($id);
     $book = ParseBookPost($post);
-    if ($book['status'] == 'publish') {
 
+    return $book;
+}
+
+function updateSpeech($book, $startPage=0, $endPage=0) {
+    if (!$startPage) $startPage = 1;
+    if (!$endPage) $endPage = count($book['pages']);
+    //BuG("updateSpeech $startPage $endPage");
+
+    if ($book['status'] == 'publish') {
+        $id = $book['ID'];
         // update speech
         if (has_speech($book['language'])) {
-            BuG('create speech');
             // make sure we have the folder
             $folder = $id . '';
             $pfolder = substr($folder, -2);
             $path = ABSPATH . 'cache/speech/' . $pfolder;
-            //BuG("path=$path");
             if (!is_dir($path)) {
                 mkdir($path);
             }
             $path .= '/' . $folder;
-            //BuG("path=$path");
             if (!is_dir($path)) {
                 mkdir($path);
             }
             $lang = $book['language'];
             $data = array('language'=>$lang);
-            foreach(array('child', 'female', 'male') as $voice) {
-                $data['voice'] = $voice;
-                foreach($book['pages'] as $i => $page) {
-                    // TODO: prep this text as I did in the cache setup code
-                    $data['text'] = $page['text'];
+            for($i == $startPage; $i <= $endPage; $i++) {
+                $page = $book['pages'][$i-1];
+                $data['text'] = substr($page['text'], 0, 160);  // limit the length that we synth
+                foreach(array('child', 'female', 'male') as $voice) {
+                    //BuG("$voice $i");
+                    $data['voice'] = $voice;
                     // ask the speech server to generate a mp3
                     $params = array('http' => array('method' => 'POST', 'content' => http_build_query($data)));
                     $ctx = stream_context_create($params);
                     $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
                     // save it
-                    $fname = $path . '/' . $lang . '-' . substr($voice, 0, 1) . '-' . ($i+1) . '.mp3';
+                    $fname = "$path/$lang-" . substr($voice, 0, 1) . "-$i.mp3";
                     file_put_contents($fname, $mp3);
                 }
             }
         }
     }
-    return $book;
 }
 
 function updateIndex($book) {
