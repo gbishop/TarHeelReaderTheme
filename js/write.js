@@ -13,6 +13,7 @@ define(['route',
         var $editDialog = null; // holds the page editor dialog which we'll create only once
         var editIndex = 0; // index of the current page in the editor
         var $galleryDialog = null; // holds the gallery preview dialog
+        var galleryIndex = 0; // holds the index into the gallery preview
         var isModified = false; // true when the book has been edited
         var editId = null; // set to the id of the book we are editing
 
@@ -147,19 +148,19 @@ define(['route',
         }
 
         function showGalleryPreview(startIndex) {
-            var index = startIndex;
+            galleryIndex = startIndex;
 
             function showPreviewImage() { // display the currently selected image in the preview dialog
                 // get all the images
                 var $imgs = $('.gallery img');
-                // restrict the index to the range
-                if (index >= $imgs.length) {
-                    index = 0;
-                } else if (index < 0) {
-                    index = $imgs.length - 1;
+                // restrict the galleryIndex to the range
+                if (galleryIndex >= $imgs.length) {
+                    galleryIndex = 0;
+                } else if (galleryIndex < 0) {
+                    galleryIndex = $imgs.length - 1;
                 }
                 // get the current image
-                var $img = $($imgs.get(index));
+                var $img = $($imgs.get(galleryIndex));
                 // extract image parameters
                 var url = $img.attr('src'),
                     width = $img.attr('data-width'),
@@ -196,7 +197,7 @@ define(['route',
                     buttons: [
                         {
                             text: $('.wlPrevious').html(),
-                            click: function() { index -= 1; showPreviewImage(); }
+                            click: function() { galleryIndex -= 1; showPreviewImage(); }
                         },
                         {
                             text: $('.wlAddToBook').html(),
@@ -236,7 +237,7 @@ define(['route',
                         },
                         {
                             text: $('.wlNext').html(), // pulling the labels from the page
-                            click: function() { index += 1; showPreviewImage(); }
+                            click: function() { galleryIndex += 1; showPreviewImage(); }
                         }
                     ]
                 });
