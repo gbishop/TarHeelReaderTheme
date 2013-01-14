@@ -15,7 +15,6 @@ parser.add_argument('--lang')
 parser.add_argument('--extract')
 parser.add_argument('templates', nargs='+')
 parser.add_argument('--output')
-parser.add_argument('--speech')
 args = parser.parse_args()
 
 t = gettext.translation('thr', 'locale', [args.lang], fallback=True)
@@ -43,7 +42,13 @@ for fname in args.templates:
             else:
                 r = t.gettext(s[0])
             if m.group(2):
-                speech_strings[m.group(2)[1:]] = r
+                phrase = m.group(2)[1:]
+                for voice in ['c', 'f', 'm']:
+                    name = phrase + '-' + voice
+                    speech_strings[name] = {
+                        'text': r,
+                        'url': '/theme/speech/%s-%s-%s.mp3' % (args.lang, phrase, voice)
+                    }
             return r
 
         text = re.sub(r'_\(([^\)]+)\)(:[0-9a-z]+)?', translate, text)
@@ -60,11 +65,10 @@ for fname in args.templates:
             sys.exit(1)
     templates[key] = value
 
-if args.speech:
-    file(args.speech, 'w').write(json.dumps(speech_strings, sort_keys=True))
+templates['siteSpeech'] = speech_strings
 
 if args.output:
-    file(args.output, 'w').write(json.dumps(templates, sort_keys=True))
+    file(args.output, 'w').write(json.dumps(templates, sort_keys=True, indent=2))
 
 poHeader = r'''
 msgid ""

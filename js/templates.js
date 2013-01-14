@@ -1,6 +1,6 @@
 define([ "state",
          "requirejs.mustache",
-         "json!../Templates.json"
+         "json!../Templates.en.json"
          ],
         function(state, mustache, Templates) {
             var localeTemplates = {};

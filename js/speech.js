@@ -15,7 +15,7 @@ define(["templates" ], function(templates) {
         console.log('initialize audio');
         if (typeof(Audio) !== 'undefined') {
             console.log('have Audio function');
-            audio = new Audio(SpeechBase + 'site/en-c-whatnow.mp3');
+            audio = new Audio('/theme/speech/en-whatnow-c.mp3');
 
            if (audio && audio.canPlayType &&
                 ("no" != audio.canPlayType("audio/mpeg")) &&
@@ -48,22 +48,24 @@ define(["templates" ], function(templates) {
         }
     });
 
-    function play(id, lang, voice, page, bust) {
+    function play(id, voice, page, bust) {
         voice = voice[0]; // assure we're only using the 1st letter
-        console.log('play', id, lang, voice, page);
-        if (!audio || voice === 's' || !hasSpeech[lang]) {
+        console.log('play', id, voice, page);
+        if (!audio || voice === 's') {
             return;
         }
 
         var mp3 = SpeechBase;
         if (id == 'site') {
-            mp3 += 'site/' + lang + '-' + voice + '-' + page + '.mp3';
+            var siteSpeech = templates.get('siteSpeech');
+            key = page + '-' + voice;
+            mp3 = siteSpeech[key].url;
         } else {
             id = id + '';
-            mp3 += id.substr(id.length-2) + '/' + id + '/' + lang + '-' + voice + '-' + page + '.mp3';
-        }
-        if (bust) {
-            mp3 += '?bust=' + bust;
+            mp3 += id.substr(id.length-2) + '/' + id + '/' + page + '-' + voice + '.mp3';
+            if (bust) {
+                mp3 += '?bust=' + bust;
+            }
         }
 
         if (audio === 'flash') {

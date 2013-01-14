@@ -1,8 +1,8 @@
-all: gb
+all: build copygba
 
 build:
 	python MakeMediaQueries.py > css/_mediaqueries.scss
-	python BuildTemplate.py --lang=en --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python BuildTemplate.py --lang=en --output=Templates.en.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python BuildTemplate.py --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	sass --style=compact style.scss style.css
 
@@ -12,6 +12,10 @@ translate:
 copygb:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
 	launch.py http://gbserver3.cs.unc.edu/
+
+copygba:
+	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3
+	launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
 	rsync -az --delete . gbserver3:/var/www/TarHeelReader/wp-content/themes/thr3
@@ -37,3 +41,11 @@ gbopt: optimized
 production:
 	make optimized STATICHOST=http://tarheelreader3s.cs.unc.edu
 	cd ../Theme-build; make copyproduction
+
+siteSpeech: build
+	python tools/makeSiteSpeech.py Templates.*.json
+	# if the speech file is too short, the flash player loops, need a better fix than this
+	lame --quiet --preset phon+ speech/en-1star-c.mp3 speech/foo.mp3
+	mv speech/foo.mp3 speech/en-1star-c.mp3
+	lame --quiet --preset phon+ speech/en-1star-f.mp3 speech/foo.mp3
+	mv speech/foo.mp3 speech/en-1star-f.mp3

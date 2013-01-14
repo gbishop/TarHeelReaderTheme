@@ -10,7 +10,7 @@ if ($locale != 'en') {
     $content = file_get_contents("Templates.$locale.json", FILE_USE_INCLUDE_PATH);
 }
 if ($locale == 'en' || !$content) {
-    $content = file_get_contents("Templates.json", FILE_USE_INCLUDE_PATH);
+    $content = file_get_contents("Templates.en.json", FILE_USE_INCLUDE_PATH);
 }
 $Templates = json_decode($content, true);
 $mustache = new Mustache();

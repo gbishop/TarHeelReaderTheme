@@ -13,9 +13,8 @@
                     $v = $voice[0];
                     $id = $book['ID'];
                     $folder = substr($id, -2) . '/' . $id;
-                    $language = $book['language'];
                     $bust = $book['bust'];
-                    $mp3 = "/cache/speech/$folder/$language-$v-$page.mp3?bust=$bust";
+                    $mp3 = "/cache/speech/$folder/$page-$v.mp3?bust=$bust";
                     echo "<!-- $mp3 -->";
                 }
             }

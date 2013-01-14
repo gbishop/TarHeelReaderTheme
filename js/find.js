@@ -105,12 +105,11 @@ define([ "route",
         // speak the title
         var voice = state.get('voice');
         if (toSelect.attr('data-speech')) {
-            speech.play('site', state.get('locale'), voice, toSelect.attr('data-speech'));
+            speech.play('site', voice, toSelect.attr('data-speech'));
         } else {
             var id = toSelect.attr('data-id');
-            var lang = toSelect.attr('lang');
             var bust = toSelect.attr('data-bust');
-            speech.play(id, lang, voice, 1, bust);
+            speech.play(id, voice, 1, bust);
         }
         // make sure it is visible
         toSelect.scrollIntoView({
