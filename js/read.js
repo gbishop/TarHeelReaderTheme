@@ -94,9 +94,15 @@ define(["route",
             }
             var $oldPage = page.getInactive('thr-book-page');
             // add classes to specific pages for styling purposes
-            pageNumber === 1 ? $oldPage.addClass('thr-colors front-page') : pageNumber <= N ?
-                               $oldPage.addClass('thr-colors').removeClass('front-page choice-page') : $oldPage.addClass("choice-page");
-            $oldPage.removeClass('favoriteYes favoriteNo').addClass(state.isFavorite(book.ID) ? 'favoriteYes' : 'favoriteNo');
+            if (pageNumber === 1) {
+                $oldPage.addClass('thr-colors front-page').removeClass('choice-page');
+            } else if (pageNumber <= N) {
+                $oldPage.addClass('thr-colors').removeClass('front-page choice-page');
+            } else {
+                $oldPage.addClass('thr-colors choice-page').removeClass('front-page');
+            }
+            $oldPage.removeClass('favoriteYes favoriteNo')
+                .addClass(state.isFavorite(book.ID) ? 'favoriteYes' : 'favoriteNo');
             $oldPage.empty()
                 .append(templates.render('heading', view)) // need to pass in view for book ID
                 .append('<div class="content-wrap">' + newContent + '</div>');
