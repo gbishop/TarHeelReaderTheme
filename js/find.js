@@ -65,7 +65,7 @@ define([ "route",
                     .append('<div class="content-wrap">' +
                             templates.render('find', view) +
                             '</div>');
-                $def.resolve($newPage, {title: 'Find - Tar Heel Reader', colors: true});
+                $def.resolve($newPage, {title: 'Tar Heel Reader | Find', colors: true});
             }
         });
         return $def;

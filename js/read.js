@@ -101,7 +101,8 @@ define(["route",
                 .append(templates.render('heading', view)) // need to pass in view for book ID
                 .append('<div class="content-wrap">' + newContent + '</div>');
 
-            $def.resolve($oldPage, {title: book.title, colors: true});
+            $def.resolve($oldPage, {title: 'Tar Heel Reader | ' + book.title,
+                colors: true});
         });
         return $def;
     }
