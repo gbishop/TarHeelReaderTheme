@@ -1,7 +1,7 @@
 <?php
 /* Build the Collections DB */
 
-require_once('/var/www/TarHeelReader/wp-load.php');
+require_once('../../../wp-load.php');
 
 function BCBuild($create) {
   global $wpdb;
