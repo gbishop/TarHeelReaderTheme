@@ -30,10 +30,11 @@ cenk: build
 optimized:
 	rm -rf ../Theme-build/*
 	cd js; node ../../r.js -o app.build.js
-	cd ../Theme-build; make versioned
+	cd ../Theme-build; make build
+	make versioned
 
-versioned: build
-	python EditFileVersions.py --staticHost=$(STATICHOST) *.php js/main.js style.css Templates*.json
+versioned:
+	cd ../Theme-build; python EditFileVersions.py --staticHost=$(STATICHOST) *.php js/main.js style.css Templates*.json
 
 gbopt: optimized
 	cd ../Theme-build; make copygb
