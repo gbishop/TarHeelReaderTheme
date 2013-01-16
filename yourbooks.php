@@ -161,7 +161,6 @@ if($userid != 0) {
     $view['count'] = count(splitFavorites(THR('favorites')));
 
     $rows = $wpdb->get_results("SELECT ID, title, description, slug, owner, booklist FROM $collections_table WHERE owner = $userid");
-    BuG("rows = " . print_r($rows, 1));
 
     $mycols = array();
     foreach ($rows as $row) {
