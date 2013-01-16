@@ -38,13 +38,6 @@ define([ "route",
             $def = $.Deferred();
         // record the state so we can come back here
         state.set('findAnotherLink', find_url());
-        // see if we can find one already rendered
-        var $newPage = $('.find-page[data-key="' + url + '"]');
-        if ($newPage.length == 1) {
-            console.log('reusing page');
-            $def.resolve($newPage, {title: 'Find - Tar Heel Reader', colors: true});
-            return $def;
-        }
         view.searchForm = templates.searchForm(); // sets the selects based on the state
 
         // fetch the json for the current set of books
