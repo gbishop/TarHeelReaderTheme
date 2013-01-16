@@ -94,7 +94,7 @@ function CreateEPubFromBook($book) {
 function CreatePPTXFromBook($book) {
     /** Include path **/
     set_include_path(get_include_path() . PATH_SEPARATOR . ABSPATH .
-        'theme/Classes/');
+        'theme/PowerPoint/');
 
     /** PHPPowerPoint */
     include 'PHPPowerPoint.php';
