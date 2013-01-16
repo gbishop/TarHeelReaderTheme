@@ -63,12 +63,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
     -moz-box-shadow: 0 0 0.2em $carolinaBlue;
     box-shadow: 0 0 0.2em $carolinaBlue;
-    
+
     .post {
       max-width: 100%;
       padding: 0.5em 1em;
     }
-    
+
      /* This is not the navigation menu that is used for navigation around the site.
         This is for "next", "previous" links for navigation around posts/collections
      */
@@ -157,7 +157,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       max-width: 1em;
       max-height: 1em;
    }
-  
+
   .languages {
     border: 1px solid #777;
     margin-left: 1em;
@@ -194,7 +194,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     height: 5em;
     display: inline-block;
   }
-  
+
   .downloadLinks {
       h2 {
         margin: 0.5em;
@@ -225,15 +225,15 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       font-size: 1.1em;
     }
   }
-  
+
   .navigationMenu {
      width: 95%; // no padding on .find-page; make the width a little smaller
   }
-  
+
   .description {
       display: none;
   }
-  
+
    // styles for "More Books" and "Previous Books" buttons
   .findPageNavButton {
      -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
@@ -249,7 +249,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
      text-align: center;
      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
      text-decoration: none;
-     
+
      cursor: pointer;
      padding: 0.25em 0.5em;
      width: 8em;
@@ -302,7 +302,7 @@ h2 {
 .thr-find-next {
     float: right;
     margin: 1em 1.2em 0 0;
-   
+
 }
 
 .thr-find-back {
@@ -409,7 +409,7 @@ h2 {
         margin: auto;
         margin-top: 0.5em;
     }
-    
+
     .thr-credit {
         font-size: 0.5em;
         color: #DDD;
@@ -418,7 +418,7 @@ h2 {
           opacity: 1;
         }
     }
-    
+
     .thr-caption {
         font-size: $captionFontSize;
         line-height: 1.2em;
@@ -427,7 +427,7 @@ h2 {
         overflow: hidden;
         margin: 0 auto;
     }
-    
+
     .thr-choices {
         //width: 12em;
         width: 18em; // make the list a bit bigger so that the text fits in nicely
@@ -591,7 +591,7 @@ img.favoriteYes, img.favoriteNo {
   left: 0;
 }
 
-@import "mediaqueries";
+@import "css/mediaqueries";
 .chooseFavorites li.favoriteYes img.favoriteYes {
   display: block !important;
 }
