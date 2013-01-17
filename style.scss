@@ -89,6 +89,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     }
 }
 
+.tiny .content-wrap {
+  width: 36em;
+}
+
 .page-wrap {
     display: none;
     margin: 0;
@@ -522,12 +526,6 @@ h2 {
     display: block;
 }
 
-/* Print styles!
--------------------------------------------------------------------------------*/
-@media print {
-
-}
-
 /* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
 
 .searchForm label, .sidebar label {
@@ -591,7 +589,6 @@ img.favoriteYes, img.favoriteNo {
   left: 0;
 }
 
-@import "css/mediaqueries";
 .chooseFavorites li.favoriteYes img.favoriteYes {
   display: block !important;
 }
@@ -604,4 +601,4 @@ img.favoriteYes, img.favoriteNo {
 @import "css/writebooks";
 @import "css/yourbooks";
 @import "css/collections";
-@import "css/allmediaqueries";
+//@import "css/allmediaqueries";

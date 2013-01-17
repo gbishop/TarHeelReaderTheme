@@ -114,6 +114,12 @@ define(["route",
     }
 
     function scalePicture ($page) {
+        if (!$page) {
+            $page = $('.active-page.thr-book-page');
+            if ($page.length === 0) {
+                return;
+            }
+        }
         var $box = $page.find('.thr-pic-box');
         if ($box.length === 0) return;
 
@@ -291,5 +297,7 @@ define(["route",
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
     route.add('init', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, configureBook);
 
-    return {};
+    return {
+        scalePicture: scalePicture
+    };
 });
