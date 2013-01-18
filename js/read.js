@@ -130,7 +130,7 @@ define(["route",
             b = $box.width(),
             bt = $box.offset().top,
             available,
-            $caption = $page.find('.thr-caption'),
+            $caption = $page.find('.thr-caption-box'),
             ct, ch, gap, $credit;
 
         if ($caption.length === 1) {
