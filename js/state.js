@@ -21,6 +21,9 @@ define([ "route", "json!../state.json", "jquery.cookie", "json2" ], function(rou
         var cookie = $.cookie('thr');
         var cookieValue = $.parseJSON(cookie);
         state = cookieValue || $.extend({}, defaultState);
+        if (state.search) {
+            state.search = state.search.replace('+', ' ');
+        }
 
         // update from the query string
 
