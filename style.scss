@@ -24,6 +24,10 @@ body {
     height: 100%;
 }
 
+.js body {
+  visibility: hidden;
+}
+
 html {
     width: 100%;
     height: 100%;
@@ -52,7 +56,9 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     margin: 0 auto 1em;
     overflow: auto;
     width: 48em;
-    // This next line causes shift right on iPad. Why do we need it?
+    // The padding gets added to the width. So if the width is exactly 48em the content wrap
+    // will spill off the screen. We've either got to eliminate it or include it in the
+    // calculation of font size.
     padding: 0.5em;
     padding-top: 0.25em;
 
@@ -145,7 +151,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
       li {
         margin: 1.5em 0;
-        width: 50%;
+        width: 40%;
         float: left;
         .homeLink {
            @include decoratedButton(0.1em, #61A0B3, 0.5em, 0.25em, $carolinaBlue, #286DA3, 1.25em, 1em, 2em, #DDD, #81BEF0, #FFF, 0.5s, 10em);
@@ -343,8 +349,8 @@ h2 {
 
 .thr-page-number {
     position: absolute;
-    top: 1em;
-    right: 1em;
+    top: 3em;
+    right: 0.5em;
     font-size: 1em;
 }
 

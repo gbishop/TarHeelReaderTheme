@@ -1,35 +1,38 @@
-require([ "route",
-          "state",
-          "controller",
-          "find",
-          "read",
-          "write",
-          "busy",
-          "navigation",
-          "help",
-          "yourbooks"
-          ],
+require([
+        "route",
+        "state",
+        "controller",
+        "find",
+        "read",
+        "write",
+        "busy",
+        "navigation",
+        "help",
+        "yourbooks"
+    ],
     function(route, state, controller, find, read) {
         $(function() {
 
             // Resize Hack
-            $(window).on('resize', function() {
+            $(window).on('resize orientationchange', function() {
                 // the goal here is to avoid many calls during a resize
                 if (this.resizeTO) {
                     clearTimeout(this.resizeTO);
                 }
                 this.resizeTO = setTimeout(function() {
                     $(this).trigger('resizeEnd');
-                }, 100);
+                }, 20);
             });
             function resize(e) {
-                console.log('resize', e);
                 var $window = $(window),
+                    dpr = window.devicePixelRatio || 1,
                     ww = $window.width(),
                     wh = $window.height(),
-                    breakpoint = 640,
+                    breakpoint = 640 / dpr,
                     cw = ww <= breakpoint ? 36 : 48,  // breakpoint
-                    fs = Math.min(ww/cw, wh/36);
+                    fs = Math.min(ww/(cw+2), wh/36);
+                console.log('resize ww=' + ww + ' wh=' + wh + ' fs=' + fs);
+                console.log('inner ' + window.innerWidth);
                 $('body').css('fontSize', fs + 'px')
                     .toggleClass('tiny', ww <= breakpoint);
                 // I bet the following could be done with css
@@ -37,6 +40,7 @@ require([ "route",
             }
             $(window).on('resizeEnd', resize);
             resize();
+            $('body').css('visibility', 'visible');
             // End Resize Hack
 
 
