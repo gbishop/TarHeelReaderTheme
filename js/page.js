@@ -5,7 +5,7 @@ define(["state"], function(state) {
     // find or create an inactive page of the indicated type
     function getInactive(type) {
         var selector = 'body > .' + type + ':not(.active-page):first',
-            $page = $(selector);
+            $page = $(selector).removeClass().addClass(type).addClass('page-wrap');
         if ($page.length === 0) {
             // not found create it and add it to the body
             $page = $('<div class="' + type + ' page-wrap"></div>').appendTo('body');
