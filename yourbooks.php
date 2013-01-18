@@ -5,8 +5,6 @@ Template Name: YourBooks
 ?>
 <?php
 
-thr_header('your-books-page');
-
 function returnJson($result) {
     if (!is_array($result)) {
         $result = array('result' => $result);
@@ -175,8 +173,8 @@ if($userid != 0) {
 }
 
 ?>
-<!-- yourbooks.php -->
 <?php
+thr_header('your-books-page');
 echo template_render('yourbooks', $view);
 thr_footer(false, false);
 ?>
