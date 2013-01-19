@@ -20,8 +20,13 @@
     }
 
     .aWrap {
+      overflow: auto;
+      height: auto;
       input[type='search'] {
         width: 16em;
+      }
+      select, input, button, label {
+        display: inline-block;
       }
     }
 

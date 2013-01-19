@@ -11,7 +11,7 @@ define(["route",
     var book = null; // current book
 
     $("body").on("PageRendered", function() {
-        page.setHoverColors($(this));
+       // page.setHoverColors($(this));
     }); // end PageVisible
 
     function fetchBook(slug) {
