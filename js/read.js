@@ -124,11 +124,11 @@ define(["route",
             b = $box.width(),
             bt = $box.offset().top,
             available,
-            $caption = $page.find('.thr-caption'),
+            $caption = $page.find('.thr-caption-box'),
             ct, ch, gap, $credit;
 
         if ($caption.length === 1) {
-            ct = $caption.length > 0 ? $caption.offset().top : 0;
+            ct = $caption.offset().top;
             ch = $caption.height();
             gap = ct - bt - b;
             available = Math.min(ww, wh - bt - ch - gap);
@@ -142,6 +142,25 @@ define(["route",
             height: available + 'px'
         });
     }
+
+    // only resize when we're done instead of every 20ms
+    $(window).on('resize', function() {
+        if (this.resizeTO) {
+            clearTimeout(this.resizeTO);
+        }
+        this.resizeTO = setTimeout(function() {
+            $(this).trigger('resizeEnd');
+        }, 50);
+    });
+
+    // resize book pictures when the window changes size
+    $(window).on('resizeEnd', function(e) {
+        var $page = $('.active-page.thr-book-page');
+        if ($page.length === 1) {
+            console.log('book resize');
+            scalePicture($page);
+        }
+    });
 
     function chooseOrPreviousPage() {
         if ($('.active-page .thr-choices').length > 0) {
