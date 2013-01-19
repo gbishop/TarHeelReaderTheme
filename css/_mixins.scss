@@ -18,7 +18,7 @@
     @include linearGradient(top, bottom, $gradientStartColor, $gradientEndColor);
     border: $borderWidth solid $borderColor;
     cursor: pointer;
-    display: inline-block;
+    display: inline-block; // need to declare inline-block in order to set width and padding properly
 
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
@@ -55,6 +55,7 @@
     -webkit-border-radius: $borderRadius;
     -moz-border-radius: $borderRadius;
     border-radius: $borderRadius;
+    display: inline-block;
 
     -webkit-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 $boxShadowBlur rgba(0, 0, 0, 0.2);
@@ -64,13 +65,12 @@
     font-size: $fontSize;
 
     padding: $yPadding $xPadding;
+    height: $height;
+    width: $width;
 
     -webkit-transition: all $transitionDuration ease-in;
     -moz-transition: all $transitionDuration ease-in;
     transition: all $transitionDuration ease-in;
-
-    height: $height;
-    width: $width;
 
     &:focus {
       -webkit-box-shadow: 0 0 $transitionBoxShadowBlur $transitionBoxShadowColor;
@@ -161,4 +161,69 @@
         border: 0;
       }
     } // end li
+}
+
+@mixin largerControls {
+    // make the buttons easier to press
+   .thr-gray-button, .thr-blue-button, .navigation a, .findPageNavButton {
+     font-size: 1.3em !important;
+     line-height: 1.5em;
+   }
+   
+   .controlList {
+      input, select, button {
+        height: 2.5em !important;
+        font-size: 1.2em;
+        line-height: 1em;
+        padding: 0;
+        margin: 0.25em 0;
+      }
+    }
+   
+    // bump up the font size on the writing page to make it easier to hit buttons
+    .writing-controls {
+      font-size: 1.5em;
+    }
+    
+    .gallery {
+      width: 100%;
+    }
+   
+   // make the language selection select easier to press 
+   .languageForm {
+     .goButton {
+       font-size: 1.3em;
+       line-height: 1.5em;
+     }
+   }
+  
+   .searchForm {
+      input, select {
+       font-size: 1.4em !important;
+     }
+            
+     input[type='search'] {
+       padding: 0 !important;
+       line-height: 1em;
+       text-indent: 0.5em;
+     }
+   }
+
+   label {
+     font-size: 1.1em;
+   }
+   
+   .login-page input {
+      &[type='submit'] {
+        height: 2.5em;
+      }
+   }
+    
+   // input text areas need to be bigger (easier to press on)
+   input[type='text'], input[type='password'], input[type='search'], select {
+     display: inline-block;
+     font-size: 1.4em !important;
+     line-height: 1.5em;
+     height: 1.75em;
+   }
 }
