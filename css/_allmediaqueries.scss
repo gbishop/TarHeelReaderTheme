@@ -12,7 +12,7 @@
 }
 
 // the minimum the font size can be is 8.5px (give .content-wrap some breathing room);
-@media only screen and(max-width: 324px) {
+@media only screen and (max-width: 324px) {
   body {
     font-size: 8.5px;
   }
@@ -25,11 +25,11 @@
       width: 36em; // step down from 48em to 36em
     }
   }
-  
+
   // header adjustments for the heart and gear
   .header {
     margin-top: 0.25em;
-    
+
     h1 {
        margin-top: 0.5em;
        font-size: 2em !important;
@@ -48,11 +48,11 @@
       right: 4.5em;
     }
   } // ***End .header***
-  
+
   .thr-book-list li {
      width: 10.85em; // adjust the width of the list items slightly, since there will only be 3 now
-  } 
-  
+  }
+
   // ***Begin code for .server-page***
   .server-page {
     // make the quick links on the front page align on top of each other
@@ -65,13 +65,13 @@
         display: inline-block;
       }
     }
-    
+
     .languageForm {
       .languages, .goButton {
         display: block;
         width: 100%;
       }
-      
+
       .languages {
         font-size: 1.5em;
         line-height: 2em;
@@ -85,7 +85,7 @@
       }
     }
   } // ***End code for .server-page***
- 
+
  // ***Begin code for .find-page***
  .find-page {
    .searchForm {
@@ -101,7 +101,7 @@
           line-height: 2.5em;
         }
      }
-     
+
      select {
        display: inline-block;
        font-size: 1.2em;
@@ -109,13 +109,13 @@
        width: auto;
      }
    }
-   
+
    .findPageNavButton {
       height: 2em;
       line-height: 2em;
    }
  } // **End code for .find-page***
- 
+
   // js enabled; hide searchForm and show button to show searchForm
   .js {
      .searchShowButton {
@@ -130,7 +130,7 @@
          display: none;
      }
   }
-  
+
  // ***Begin code for .write-page***
   .write-page {
     .image-search {
@@ -143,24 +143,24 @@
         font-size: 1.2em;
         line-height: 1em;
         height: 2em;
-        
+
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        
+
         &[type='search'] {
           text-indent: 0.5em;
         }
       }
     } // end image-search
-    
+
     .qq-upload-button {
       display: block;
       width: 10em;
       text-align: center;
       font-size: 1.3em;
     }
-    
+
     .aWrap > a, div.step4 button {
       display: inline-block;
       padding: 0;
@@ -170,7 +170,7 @@
       line-height: 1em;
       height: 2em;
     }
-    
+
     .steps {
       h2 {
         font-size: 1.3em;
@@ -200,13 +200,13 @@
           box-sizing: border-box;
           width: 0;
           margin: 0;
-          
+
           width: 90% !important;
           height: 2em;
           font-size: 1.2em;
           line-height: 1em;
         }
-        
+
         select {
           padding-top: 0.25em;
         }
@@ -225,7 +225,7 @@
       line-height: 2.5em;
       height: 2.5em;
     }
-    
+
     .controlList {
       input, select, button {
         height: 2.5em !important;
@@ -236,7 +236,7 @@
       }
     }
   } // ***End .your-books-page***
-  
+
   // ***Begin .collections-page***
   .collections-page {
     .collectionsSearchForm input {
@@ -250,18 +250,13 @@
          line-height: 2em;
          text-indent: 0.5em;
        }
-       
+
        &[type='submit'] {
          height: 2em;
        }
     }
   } // ***End .collections-page***
-  
-  @include largerControls;
-  
-} // end media query for max-width: 624px
 
-/* iPod all */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    
-}
+  @include largerControls;
+
+} // end media query for max-width: 624px

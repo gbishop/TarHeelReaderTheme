@@ -60,7 +60,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     -moz-border-radius: 1em;
     border-radius: 1em;
     border: 1px solid $carolinaBlue;
-  
+
     -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
     -moz-box-shadow: 0 0 0.2em $carolinaBlue;
     box-shadow: 0 0 0.2em $carolinaBlue;
@@ -340,7 +340,7 @@ h2 {
 
 .thr-page-number {
     position: absolute;
-    top: 1em;
+    top: 3em;
     right: 1em;
     font-size: 1em;
 }
@@ -426,14 +426,18 @@ h2 {
         }
     }
 
+    .thr-caption-box {
+        width: 36em;
+        height: 6em;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
     .thr-caption {
         font-size: $captionFontSize;
         line-height: 1.2em;
-        width: (48em - 2 * 6 * $pageLinkFontSize) / $captionFontSize * 1em + 0.2em;
-        height: 6em / $captionFontSize * 1em + 0.2em;
-        overflow: hidden;
-        margin: 0 auto;
         word-break: break-word; // wrap text if needed
+        margin: 0;
     }
 
     .thr-choices {
@@ -605,7 +609,6 @@ img.favoriteYes, img.favoriteNo {
   left: 0;
 }
 
-@import "css/mediaqueries";
 .chooseFavorites li.favoriteYes img.favoriteYes {
   display: block !important;
 }
