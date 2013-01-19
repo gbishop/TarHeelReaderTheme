@@ -40,6 +40,9 @@
 			$pc = THR('pageColor');
 			$tc = THR('textColor');
 			echo ".thr-colors { color: #$tc; background: #$pc; border-color: #$tc; }";
+			echo ".thr-back-link:hover, .thr-next-link:hover, .findPageNavButton:hover,"
+				 .".decoratedList > li:hover {color: #$pc; background: #$tc;}";
+			
 		?></style>
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
 	<!-- For console bug in IE-->
