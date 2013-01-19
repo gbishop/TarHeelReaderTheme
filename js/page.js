@@ -32,7 +32,6 @@ define(["state"], function(state) {
                     borderColor: '#' + state.get('textColor')
                 });
                 setHoverColors($page);  // set the hover colors as well
-                console.log('Hover colors are set');
             }
             $('.active-page').removeClass('active-page');
             $page.css('display', 'none').addClass('active-page').fadeIn(0);
@@ -66,8 +65,10 @@ define(["state"], function(state) {
                    .find("a")
                    .css({color: textColor });
         }); // end hover
-
-        $(document).keypress(function(e) {
+        
+        // the color changes should take effect when selecting via key controls too
+        $(document).on("keypress keyup", function(e) {
+            console.log("in keypress");
             $page.find(".thr-colors > li.selected")
                  .css({background: textColor, color: pageColor })
                  .find("a")
