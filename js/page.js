@@ -31,7 +31,7 @@ define(["state"], function(state) {
                     backgroundColor: '#' + state.get('pageColor'),
                     borderColor: '#' + state.get('textColor')
                 });
-                setHoverColors($page);  // set the hover colors as well
+                //setHoverColors($page);  // set the hover colors as well
             }
             $('.active-page').removeClass('active-page');
             $page.css('display', 'none').addClass('active-page').fadeIn(0);
@@ -50,7 +50,9 @@ define(["state"], function(state) {
         return $def;
     }
 
-    // set text and background color of a jQuery element
+   /*
+    * 
+    * // set text and background color of a jQuery element
     function setHoverColors($page) {
         var pageColor = "#" + state.get('pageColor'),
             textColor = "#" + state.get('textColor');
@@ -79,11 +81,10 @@ define(["state"], function(state) {
                  .find("a")
                  .css({color: textColor });
         }); // end keypress
-    }
+    }*/
 
     return {
         getInactive: getInactive,
-        transitionTo: transitionTo,
-        setHoverColors: setHoverColors // needed by read.js in case the user refreshes the page while reading a book
+        transitionTo: transitionTo
     };
 });
