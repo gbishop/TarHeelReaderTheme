@@ -59,7 +59,8 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
-
+    border: 1px solid $carolinaBlue;
+  
     -webkit-box-shadow: 0 0 0.2em $carolinaBlue;
     -moz-box-shadow: 0 0 0.2em $carolinaBlue;
     box-shadow: 0 0 0.2em $carolinaBlue;
@@ -357,6 +358,7 @@ h2 {
         overflow: hidden;
         padding: 0;
         margin: 0;
+        border: none;
 
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
@@ -384,7 +386,12 @@ h2 {
     h1 {
         font-size: 2em;
         height: 2.5em;
-        overflow: hidden;
+        width: 24em;
+        max-width: 100%;
+        margin: 2em auto;
+        margin-bottom: 1.5em;
+        overflow: none;
+        word-break: break-word;
     }
 
     .decoratedList { // changing background color of list items in choices looks ugly with large border-radius
@@ -426,10 +433,10 @@ h2 {
         height: 6em / $captionFontSize * 1em + 0.2em;
         overflow: hidden;
         margin: 0 auto;
+        word-break: break-word; // wrap text if needed
     }
 
     .thr-choices {
-        //width: 12em;
         width: 18em; // make the list a bit bigger so that the text fits in nicely
         margin: 0.5em auto 1em;
         font-size: 2em;
@@ -480,19 +487,22 @@ h2 {
 
 .js .find-page .thr-favorites-icon, .js .favorites-page .thr-favorites-icon {
   display: block;
-  background-image: url('/theme/images/FavoriteYesIcon.png');
-  background-size: contain;
+  /*background-image: url('/theme/images/FavoriteYesIcon.png');
+  background-size: contain;*/
 }
 
 .front-page.favoriteYes .thr-favorites-icon {
   display: block;
-  background-image: url('/theme/images/FavoriteYesIcon.png');
-  background-size: contain;
+  /*background-image: url('/theme/images/FavoriteYesIcon.png');
+  background-size: contain;*/
+  opacity: 1;
 }
+
 .front-page.favoriteNo .thr-favorites-icon {
   display: block;
-  background-image: url('/theme/images/FavoriteNoIcon.png');
-  background-size: contain;
+  /*background-image: url('/theme/images/FavoriteNoIcon.png');
+  background-size: contain;*/
+  opacity: 0.5; // ***TODO: Change from just opacity to actual background***
 }
 
 .js .thr-pic {  // hide the picture initially when javascript is enabled so we can size it without a jump
