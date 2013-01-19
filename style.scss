@@ -487,22 +487,26 @@ h2 {
 
 .js .find-page .thr-favorites-icon, .js .favorites-page .thr-favorites-icon {
   display: block;
-  /*background-image: url('/theme/images/FavoriteYesIcon.png');
-  background-size: contain;*/
+  background-image: url('/theme/images/FavoriteYesIcon.png');
+  background-size: contain;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale'); 
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale')";
 }
 
 .front-page.favoriteYes .thr-favorites-icon {
   display: block;
-  /*background-image: url('/theme/images/FavoriteYesIcon.png');
-  background-size: contain;*/
-  opacity: 1;
+  background-image: url('/theme/images/FavoriteYesIcon.png');
+  background-size: contain;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale'); 
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale')";
 }
 
 .front-page.favoriteNo .thr-favorites-icon {
   display: block;
-  /*background-image: url('/theme/images/FavoriteNoIcon.png');
-  background-size: contain;*/
-  opacity: 0.5; // ***TODO: Change from just opacity to actual background***
+  background-image: url('/theme/images/FavoriteNoIcon.png');
+  background-size: contain;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteNoIcon.png',sizingMethod='scale'); 
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteNoIcon.png',sizingMethod='scale')";
 }
 
 .js .thr-pic {  // hide the picture initially when javascript is enabled so we can size it without a jump

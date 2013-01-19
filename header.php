@@ -7,6 +7,13 @@
 <!--[if gt IE 9]><!--><html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 
+<!-- Small hack for favorites-icon in IE8 and below -->
+<!--[if lte IE 8]>
+<style>
+	.js .find-page .thr-favorites-icon, .js .favorites-page .thr-favorites-icon, .front-page.favoriteYes .thr-favorites-icon, .front-page.favoriteNo .thr-favorites-icon { background: none !important; }
+</style>
+<![endif]-->
+
 <head>
 
 	<meta charset="<?php bloginfo('charset'); ?>">
@@ -39,9 +46,9 @@
 	<style type="text/css"><?php
 			$pc = THR('pageColor');
 			$tc = THR('textColor');
-			echo ".thr-colors { color: #$tc; background: #$pc; border-color: #$tc; }";
+			echo ".thr-colors { color: #$tc; background: #$pc; border-color: #$tc; }\n";
 			echo ".thr-back-link:hover, .thr-next-link:hover, .findPageNavButton:hover,"
-				 .".decoratedList > li:hover {color: #$pc; background: #$tc;}";
+				 .".decoratedList > li:hover, .thr-colors > li.selected {color: #$pc !important; background: #$tc !important;}";
 			
 		?></style>
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
