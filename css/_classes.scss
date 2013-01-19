@@ -34,11 +34,10 @@
     }
 }
 
-.thr-well-icon {
+.thr-well-icon, .thr-settings-icon, .thr-favorites-icon {
     position: absolute;
-    top: 0.5em;
-    left: 2em;
-    z-index: 99;
+    top: 0.65em;
+    z-index: 999;
 
     width: 2.5em;
     min-width: 24px;
@@ -57,46 +56,19 @@
     }
 }
 
+.thr-well-icon {
+    left: 2em;
+}
+
 .thr-settings-icon {
     display: none;
-    position: absolute;
-    top: 0.65em;
     right: 2em;
-    z-index: 999;
-
-    width: 2.5em;
-    min-width: 24px;
-    height: 2.5em;
-    min-height: 24px;
-
-    img {
-        width: 2.5em;
-        min-width: 24px;
-        height: 2.5em;
-        min-height: 24px;
-        opacity: 0.6;
-        &:hover {
-           opacity: 1;
-        }
-    }
 }
 
 .thr-favorites-icon {
     display: none;
-    position: absolute;
-    top: 0.65em;
     right: 5em;
-    z-index: 999;
-
-    width: 2.5em;
-    min-width: 24px;
-    height: 2.5em;
-    min-height: 24px;
-
-    opacity: 0.6;
-    &:hover {
-       opacity: 1;
-    }
+    // height/width specification for browsers that don't support CSS3
 }
 
 .footer, .footer a {
