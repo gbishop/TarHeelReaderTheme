@@ -114,7 +114,22 @@
       height: 2em;
       line-height: 2em;
    }
- }
+ } // **End code for .find-page***
+ 
+  // js enabled; hide searchForm and show button to show searchForm
+  .js {
+     .searchShowButton {
+       @include decoratedButton(0.1em, #DCDCDC, 0.5em, 0, #EDEDED, #DFDFDF, 1.5em, 0.25em, 0.5em, #585858, #EFEFEF, $carolinaBlue, 0, 80%);
+        display: block;
+        margin: 0.5em auto;
+        cursor: pointer;
+        line-height: 2em;
+        height: 2em;
+     }
+     .searchForm {
+         display: none;
+     }
+  }
   
  // ***Begin code for .write-page***
   .write-page {
@@ -249,16 +264,4 @@
 /* iPod all */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     
-    /*
-     * Should we keep this part?
-     */
-    /*.js {
-        .searchShowButton {
-            display: block;
-            margin: 0.5em auto;
-            font-size: 1.5em;
-            line-height: 2.5em;
-            width: 80% !important;
-        }
-    }*/
 }
