@@ -241,7 +241,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
               textColor: currentSettings.textColor
           };
           // IE8 doesn't like the fact we directly change the contents within the style tag; add new style tag
-          $('.styleColors').replaceWith('<style class="styleColors" type="text/css">' + templates.render('styleColor', view) + '</style>');
+          $('.styleColors').replaceWith(templates.render('styleColor', view));
       }
       
       // function for navigation via key bindings
