@@ -125,7 +125,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
             $(this).find(".innerSubmenu").show();
             e.stopPropagation(); // so that the menu does not close (see above handler)
         });
-        
+
         // slide up when a download type is clicked
         $body.on("click", ".active-page .downloadOptions a ", function() {
             $(".active-page .mainSettings:visible").slideUp();
@@ -154,7 +154,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
             }
         });
-        
+
         // touchstart for touch-screen display
         $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
           var $menu = $(".active-page .mainSettings");
@@ -173,7 +173,9 @@ require(["state", "controller", "templates"], function(state, controller, templa
           var parentClass = $element.parent().attr("class").toLowerCase()
                                              .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
               value,
-              option = "";
+              prevValue,
+              option = "",
+              currentSettings = getCurrentSettings();
 
           if(parentClass === "speechoptions") { // which option are we dealing with?
               value = getOptionValue("speech", text);
@@ -189,8 +191,12 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
-
+          prevValue = state.get(option);
           state.set(option, value);
+          // need to modify the URL here if we are on the favorites page
+         if(window.location.search.indexOf("favorites") !== -1) { // we are on the favorites page
+              window.location.href = window.location.href.replace(option + "=" + prevValue, option + "=" + value);
+          }
           controller.stateChange(); // update the page
           updateCheckedOptions(); // update the check marks next to the currently selected options
       }
@@ -221,20 +227,23 @@ require(["state", "controller", "templates"], function(state, controller, templa
       }
 
       function updateCheckedOptions() {
+          var currentSettings = getCurrentSettings(),
+              view;
+              
           $(".checked").removeClass("checked");
-          var currentSettings = getCurrentSettings();
-
           // update the currently set options with a check mark next to them
           $(".speechOptions ." + currentSettings.speech).addClass("checked");
           $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
           $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
-          $('.thr-colors').css({ // update .thr-colors
-                 color: '#' + currentSettings.textColor,
-                 backgroundColor: '#' + currentSettings.pageColor,
-                 borderColor: '#' + currentSettings.textColor
-         });
+          // update the color stylesheet in the head
+          view = {
+              pageColor: currentSettings.pageColor,
+              textColor: currentSettings.textColor
+          };
+          // IE8 doesn't like the fact we directly change the contents within the style tag; add new style tag
+          $('.styleColors').replaceWith(templates.render('styleColor', view));
       }
-
+      
       // function for navigation via key bindings
       function initNavKeybindings() {
          var navState = {

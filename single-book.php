@@ -23,7 +23,7 @@
             $addClass = '';
             if ($pageNumber == 1) {
                 $addClass = ' front-page';
-            } elseif ($pageNumber > $N) {
+            } elseif ($pageNumber > $Npages) {
                 $addClass = ' choice-page';
             }
             if (preg_match('/(^|,)' . $id . '(,|$)/', THR('favorites'))) {
