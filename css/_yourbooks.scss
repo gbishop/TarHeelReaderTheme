@@ -68,7 +68,8 @@
                 
                 button, input[type='submit'] {
                   // mixin for better looking buttons (see style.scss)
-                  @include decoratedButton(1px, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 100%);
+                  @include decoratedButton(1px, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.25em, 0.25em, 1em, #EEE, #81BEF0, #FFF, 0, 100%);
+                  margin-bottom: 0.2em;
                 }
                 
                 p {
