@@ -51,7 +51,7 @@
         min-height: 24px;
         opacity: 0.6;
         &:hover {
-            opacity: 1;
+            opacity: 1.0;
         }
     }
 }
@@ -68,7 +68,10 @@
 .thr-favorites-icon {
     display: none;
     right: 5em;
-    // height/width specification for browsers that don't support CSS3
+    opacity: 0.6;
+    &:hover {
+      opacity: 1.0;
+    }
 }
 
 .footer, .footer a {
