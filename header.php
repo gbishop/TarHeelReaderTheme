@@ -43,7 +43,7 @@
 
 	<!-- CSS: screen, mobile & print are all in the same file -->
 	<link rel="stylesheet" href="/theme/style.css">
-	<style type="text/css"><?php
+	<style class="thr-colors-styles" type="text/css"><?php
 			$pc = THR('pageColor');
 			$tc = THR('textColor');
 			echo ".thr-colors { color: #$tc; background: #$pc; border-color: #$tc; }\n";

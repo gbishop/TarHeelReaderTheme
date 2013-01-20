@@ -173,7 +173,8 @@ require(["state", "controller", "templates"], function(state, controller, templa
           var parentClass = $element.parent().attr("class").toLowerCase()
                                              .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
               value,
-              option = "";
+              option = "",
+              currentSettings = getCurrentSettings();
 
           if(parentClass === "speechoptions") { // which option are we dealing with?
               value = getOptionValue("speech", text);
@@ -193,6 +194,14 @@ require(["state", "controller", "templates"], function(state, controller, templa
           state.set(option, value);
           controller.stateChange(); // update the page
           updateCheckedOptions(); // update the check marks next to the currently selected options
+          
+         // update the style tag implemented by the server
+         styles = ".thr-colors { color: #" + currentSettings.textColor + "; background: #" + currentSettings.pageColor +
+                  "; border-color: #" + currentSettings.textColor + "; }\n";
+         styles += ".thr-back-link:hover, .thr-next-link:hover, .findPageNavButton:hover, .decoratedList > li:hover, .thr-colors > li.selected { color: #" + 
+                  currentSettings.pageColor + " !important; background: #" + currentSettings.textColor + " !important;}";
+                  
+         $(".thr-colors-styles").html(styles);
       }
 
       function getCurrentSettings() {
@@ -222,19 +231,20 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
       function updateCheckedOptions() {
           $(".checked").removeClass("checked");
-          var currentSettings = getCurrentSettings();
+          var currentSettings = getCurrentSettings(),
+              styles = "";
 
           // update the currently set options with a check mark next to them
           $(".speechOptions ." + currentSettings.speech).addClass("checked");
           $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
           $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
-          $('.thr-colors').css({ // update .thr-colors
+          /*$('.thr-colors').css({ // update .thr-colors
                  color: '#' + currentSettings.textColor,
                  backgroundColor: '#' + currentSettings.pageColor,
                  borderColor: '#' + currentSettings.textColor
-         });
+         });*/
       }
-
+      
       // function for navigation via key bindings
       function initNavKeybindings() {
          var navState = {
