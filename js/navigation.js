@@ -173,6 +173,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
           var parentClass = $element.parent().attr("class").toLowerCase()
                                              .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
               value,
+              prevValue,
               option = "",
               currentSettings = getCurrentSettings();
 
@@ -190,18 +191,14 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
-
+          prevValue = state.get(option);
           state.set(option, value);
+          // need to modify the URL here if we are on the favorites page
+         if(window.location.search.indexOf("favorites") !== -1) { // we are on the favorites page
+              window.location.href = window.location.href.replace(option + "=" + prevValue, option + "=" + value);
+          }
           controller.stateChange(); // update the page
           updateCheckedOptions(); // update the check marks next to the currently selected options
-          
-         // update the style tag implemented by the server
-         styles = ".thr-colors { color: #" + currentSettings.textColor + "; background: #" + currentSettings.pageColor +
-                  "; border-color: #" + currentSettings.textColor + "; }\n";
-         styles += ".thr-back-link:hover, .thr-next-link:hover, .findPageNavButton:hover, .decoratedList > li:hover, .thr-colors > li.selected { color: #" + 
-                  currentSettings.pageColor + " !important; background: #" + currentSettings.textColor + " !important;}";
-                  
-         $(".thr-colors-styles").html(styles);
       }
 
       function getCurrentSettings() {
