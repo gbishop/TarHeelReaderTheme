@@ -221,26 +221,22 @@ require(["state", "controller", "templates"], function(state, controller, templa
       }
 
       function updateCheckedOptions() {
+          var currentSettings = getCurrentSettings(),
+              view;
+              
           $(".checked").removeClass("checked");
-          var currentSettings = getCurrentSettings();
 
           // update the currently set options with a check mark next to them
           $(".speechOptions ." + currentSettings.speech).addClass("checked");
           $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
           $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
-          /*
-          $('.thr-colors').css({ // update .thr-colors
-                 color: '#' + currentSettings.textColor,
-                 backgroundColor: '#' + currentSettings.pageColor,
-                 borderColor: '#' + currentSettings.textColor
-         });
-          */
           // update the color stylesheet in the head
-          var view = {
+          view = {
               pageColor: currentSettings.pageColor,
               textColor: currentSettings.textColor
           };
-          $('#styleColors').empty().append(templates.render('styleColor', view));
+          // IE8 doesn't like the fact we directly change the contents within the style tag; add new style tag
+          $('.styleColors').replaceWith('<style class="styleColors" type="text/css">' + templates.render('styleColor', view) + '</style>');
       }
 
       // function for navigation via key bindings

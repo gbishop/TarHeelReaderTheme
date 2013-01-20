@@ -43,7 +43,7 @@
 
 	<!-- CSS: screen, mobile & print are all in the same file -->
 	<link rel="stylesheet" href="/theme/style.css">
-	<style id="styleColors" type="text/css"><?php
+	<style class="styleColors" type="text/css"><?php
 			$view = array(
 				'pageColor'=>THR('pageColor'),
 				'textColor'=>THR('textColor')
