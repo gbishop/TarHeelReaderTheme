@@ -43,13 +43,12 @@
 
 	<!-- CSS: screen, mobile & print are all in the same file -->
 	<link rel="stylesheet" href="/theme/style.css">
-	<style type="text/css"><?php
-			$pc = THR('pageColor');
-			$tc = THR('textColor');
-			echo ".thr-colors { color: #$tc; background: #$pc; border-color: #$tc; }\n";
-			echo ".thr-back-link:hover, .thr-next-link:hover, .findPageNavButton:hover,"
-				 .".decoratedList > li:hover, .thr-colors > li.selected {color: #$pc !important; background: #$tc !important;}";
-			
+	<style id="styleColors" type="text/css"><?php
+			$view = array(
+				'pageColor'=>THR('pageColor'),
+				'textColor'=>THR('textColor')
+			);
+			echo template_render('styleColor', $view);
 		?></style>
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
 	<!-- For console bug in IE-->
