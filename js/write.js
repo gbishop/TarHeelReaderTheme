@@ -387,7 +387,7 @@ define(['route',
             }).then(function(nBook) {
                 console.log('post returns', nBook);
                 clearModified();
-                controller.gotoUrl(nBook.link, nBook.title);
+                controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
                 editId = nBook.ID;
                 $('.publish').removeAttr('disabled'); // renable button
             });
