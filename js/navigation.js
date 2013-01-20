@@ -125,7 +125,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
             $(this).find(".innerSubmenu").show();
             e.stopPropagation(); // so that the menu does not close (see above handler)
         });
-        
+
         // slide up when a download type is clicked
         $body.on("click", ".active-page .downloadOptions a ", function() {
             $(".active-page .mainSettings:visible").slideUp();
@@ -154,7 +154,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
             }
         });
-        
+
         // touchstart for touch-screen display
         $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
           var $menu = $(".active-page .mainSettings");
@@ -230,19 +230,21 @@ require(["state", "controller", "templates"], function(state, controller, templa
       }
 
       function updateCheckedOptions() {
-          $(".checked").removeClass("checked");
           var currentSettings = getCurrentSettings(),
-              styles = "";
-
+              view;
+              
+          $(".checked").removeClass("checked");
           // update the currently set options with a check mark next to them
           $(".speechOptions ." + currentSettings.speech).addClass("checked");
           $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
           $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
-          /*$('.thr-colors').css({ // update .thr-colors
-                 color: '#' + currentSettings.textColor,
-                 backgroundColor: '#' + currentSettings.pageColor,
-                 borderColor: '#' + currentSettings.textColor
-         });*/
+          // update the color stylesheet in the head
+          view = {
+              pageColor: currentSettings.pageColor,
+              textColor: currentSettings.textColor
+          };
+          // IE8 doesn't like the fact we directly change the contents within the style tag; add new style tag
+          $('.styleColors').replaceWith('<style class="styleColors" type="text/css">' + templates.render('styleColor', view) + '</style>');
       }
       
       // function for navigation via key bindings
