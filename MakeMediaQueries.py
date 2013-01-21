@@ -27,13 +27,13 @@ mqP = '''@media only screen and (max-aspect-ratio: 4/3) and (min-width: %dpx) an
 sizes = [320, 360, 400, 420, 440, 460, 480, 512, 540, 600, 624, 640, 720, 768, 800, 960, 1024, 1080, 1280, 1600, 1920]
 
 for i in range(0, len(sizes) - 1):
-    f = sizes[i]
-    t = sizes[i + 1]
-    print mqL % (f, t - 1, float(f) / 36)
+    f = float(sizes[i])
+    t = float(sizes[i + 1])
+    print mqL % (f, t - 1, f / 36)
     if t <= 624:
-        print mqP % (f, t - 1, float(f) / 38)
+        print mqP % (f, t - 1, f / 38)
     else:
-        print mqP % (f, t - 1, float(f) / 50)
+        print mqP % (f, t - 1, f / 50)
 
 # write a final pair for huge displays
 print '@media only screen and (min-aspect-ratio: 4/3) and (min-height: %dpx) { body { font-size: %.2fpx; } }' % (sizes[-1], sizes[-1] / 36)
