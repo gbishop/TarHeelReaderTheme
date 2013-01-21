@@ -1,0 +1,13 @@
+<h1>_(Where are the readers?)</h1>
+<p>_(Some of you may have wondered where in the world our books are read. The map and tables below depict the estimated locations of the computers that have read books on the site.)</p>
+{{#user}}
+    {{^mine}}
+    <a class="thr-blue-button" href="/where-are-the-readers/?mine=1">_(Map your books)</a>
+    {{/mine}}
+    {{#mine}}
+    <a class="thr-blue-button" href="/where-are-the-readers/">_(Map all books)</a>
+    {{/mine}}
+{{/user}}
+{{^map}}
+<p>_(We do not yet have any of your books on the map.)</p>
+{{/map}}

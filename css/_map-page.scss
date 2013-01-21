@@ -1,0 +1,15 @@
+.map-page {
+    table, td, th {
+        border: 1px solid black;
+    }
+    td {
+        padding: 0.1em 0.5em;
+    }
+    td:first-child {
+        text-align: right;
+    }
+    .content-wrap img {
+        width: 36em !important;
+        height: 27em !important;
+    }
+}
