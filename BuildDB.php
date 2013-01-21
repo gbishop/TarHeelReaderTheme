@@ -93,16 +93,11 @@ SELECT p.*
       $content[] = $book['author'];
       $content = implode(' ', $content);
 
-      $categories = array();
-      foreach($book['categories'] as $cat) {
-        $categories[] = $CategoryAbbrv[$cat];
-      }
-      $categories = implode(' ', $categories);
       $row = array( );
       $row['ID'] = $post->ID;
       $row['content'] = $content;
       $row['json'] = $json;
-      $row['categories'] = $categories;
+      $row['categories'] = implode(' ', $book['categories']);
       $row['reviewed'] = $book['reviewed'] ? 'R' : 'N';
       $row['audience'] = $book['audience'];
       $row['language'] = $book['language'];
@@ -126,7 +121,7 @@ if (count($argv) > 1) {
   $start = 1;
   $limit = -1;
 }
-BSBuild($start == 1, 100, $start, $limit);
+BSBuild(false && $start == 1, 100, $start, $limit);
 
 /*
 $r = $wpdb->get_results("SELECT * FROM wpreader_book_search");
