@@ -131,7 +131,7 @@ define(["route",
             ct = $caption.offset().top;
             ch = $caption.height();
             gap = ct - bt - b;
-            available = Math.min(ww, wh - bt - ch - gap);
+            available = Math.min(ww, wh - bt - ch - gap - 8);
         } else {
             $credit = $page.find('.thr-credit');
             gap = $credit.offset().top - bt - b + $credit.outerHeight() + 4;
