@@ -61,20 +61,22 @@
         <p class="help-text" title="_(Your Collections)">_(Your collections are listed below.)</p>
         <h2 class="collectionsHeader">_(Your Collections)</h2>
         <ul class="controlList collectionsList">
-            {{#count}}
             <li data-id="new" class="favoritesCollection">
                 <span>Favorites</span>
                 <div>
                     <p>Favorites (_({{count}}) books)</p>
-                    <!--<p>_({{count}} books)</p>-->
+                    {{#count}}
                     <input title="_(title)" type="text" name="title" value="" placeholder="Enter title"/>
                     <textarea title="_(description)" name="description" placeholder="Enter description"></textarea>
                     <button data-action="save" disabled class="validateTitle">_(Save as a new Collection)</button>
+                    {{/count}}
+                    {{^count}}
+                    <p>_(Add books to your Favorites and come back here to save as a Collection)</p>
+                    {{/count}}
                     <button data-action="clear">_(Clear Favorites list)</button>
                     <button data-action="cancel">_(Cancel)</button>
                 </div>
             </li>
-            {{/count}}
             {{#collections}}
             <li data-id="{{ID}}">
                 <span>{{title}}</span>
