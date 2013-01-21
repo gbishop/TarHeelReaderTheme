@@ -123,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $userid != 0) {
     }
 }
 
+thr_header('your-books-page');
 $view = Array();
 if($userid != 0) {
     $view['user'] = $userid;
@@ -172,9 +173,6 @@ if($userid != 0) {
     $view['collections'] = $mycols;
 }
 
-?>
-<?php
-thr_header('your-books-page');
 echo template_render('yourbooks', $view);
 thr_footer(false, false);
 ?>
