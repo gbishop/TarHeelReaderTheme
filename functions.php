@@ -406,7 +406,7 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
                     $ctx = stream_context_create($params);
                     $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
                     // save it
-                    $fname = "$path/$lang-" . substr($voice, 0, 1) . "-$i.mp3";
+                    $fname = "$path/$i-" . substr($voice, 0, 1) . ".mp3";
                     file_put_contents($fname, $mp3);
                 }
             }
