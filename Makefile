@@ -1,9 +1,16 @@
 all: build copygba
 
-build:
-	python MakeMediaQueries.py > css/_mediaqueries.scss
-	python BuildTemplate.py --lang=en --output=Templates.en.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+locale/de/LC_MESSAGES/thr.mo: languages/de.po
+	msgfmt languages/de.po --output-file locale/de/LC_MESSAGES/thr.mo
+
+Templates.de.json: languages/de.po locale/de/LC_MESSAGES/thr.mo Templates.en.json
 	python BuildTemplate.py --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+
+Templates.en.json: templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python BuildTemplate.py --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+
+build: Templates.en.json Templates.de.json
+	python MakeMediaQueries.py > css/_mediaqueries.scss
 	sass --style=compact style.scss style.css
 
 translate:

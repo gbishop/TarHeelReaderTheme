@@ -621,6 +621,14 @@ msgstr ""
 msgid "No matching email address found."
 msgstr ""
 
+# templates/write.html:22
+msgid "Go back"
+msgstr ""
+
+# templates/write.html:22
+msgid "More like these"
+msgstr ""
+
 # templates/write.html:26
 msgid "Or upload your own pictures"
 msgstr ""
@@ -757,6 +765,14 @@ msgstr ""
 
 # templates/write.html:112
 msgid "To continue working on your book later, or to remove it from public view, click Save as draft. You will be able to return it from the Your Books page. To publish your completed book, click Publish."
+msgstr ""
+
+# templates/write.html:114
+msgid "Save as draft"
+msgstr ""
+
+# templates/write.html:115
+msgid "Publish"
 msgstr ""
 
 # templates/write.html:117

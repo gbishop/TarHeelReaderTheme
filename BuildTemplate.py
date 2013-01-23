@@ -17,7 +17,7 @@ parser.add_argument('templates', nargs='+')
 parser.add_argument('--output')
 args = parser.parse_args()
 
-t = gettext.translation('thr', 'locale', [args.lang], fallback=True)
+t = gettext.translation('thr', 'locale', [args.lang], fallback=args.lang=='en')
 
 templates = {}
 strings = {}
