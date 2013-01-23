@@ -392,6 +392,14 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
             $path .= '/' . $folder;
             if (!is_dir($path)) {
                 mkdir($path);
+            } elseif ($startPage === 1) {
+                // cleanup the old files before generating new ones
+                $files = glob($path . "/*");
+                foreach($files as $file) {
+                    if (is_file($file)) {
+                        unlink($file);
+                    }
+                }
             }
             $lang = $book['language'];
             $data = array('language'=>$lang);
