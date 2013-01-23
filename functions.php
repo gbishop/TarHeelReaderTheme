@@ -395,11 +395,12 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
             }
             $lang = $book['language'];
             $data = array('language'=>$lang);
-            for($i == $startPage; $i <= $endPage; $i++) {
+            for($i = $startPage; $i <= $endPage; $i++) {
                 $page = $book['pages'][$i-1];
                 $data['text'] = substr($page['text'], 0, 160);  // limit the length that we synth
+                //BuG($data['text']);
                 foreach(array('child', 'female', 'male') as $voice) {
-                    //BuG("$voice $i");
+                    //BuG("voice=$voice i='$i'");
                     $data['voice'] = $voice;
                     // ask the speech server to generate a mp3
                     $params = array('http' => array('method' => 'POST', 'content' => http_build_query($data)));
@@ -407,6 +408,7 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
                     $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
                     // save it
                     $fname = "$path/$i-" . substr($voice, 0, 1) . ".mp3";
+                    //BuG("fname=$fname");
                     file_put_contents($fname, $mp3);
                 }
             }
