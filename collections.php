@@ -40,7 +40,7 @@ if (count($where) > 0) {
     $where = '';
 }
 
-$count = 3; // set small to force paging, should be much larger
+$count = 24; // set small to force paging, should be much larger
 $cp1 = $count + 1; // ask for one more to determine if there are more
 $offset = ($page - 1) * $count;
 
