@@ -1,16 +1,16 @@
 {   "method": "get",
     "controls": [
-        {   "label": "_(Voice|pulldown label)",
+        {   "label": "_(Speech)",
             "name": "voice",
             "select": true,
             "options": [
-                { "label": "_(Silent|no speech at all)", "value": "silent" },
+                { "label": "_(Silent)", "value": "silent" },
                 { "label": "_(Child)", "value": "child" },
                 { "label": "_(Woman)", "value": "female" },
                 { "label": "_(Man)", "value": "male" }
             ]
         },
-        {   "label": "_(Page Color|pulldown label for selecting the background color)",
+        {   "label": "_(Page Color)",
             "name": "pageColor",
             "select": true,
             "options": [
@@ -24,7 +24,7 @@
                 { "label": "_(Yellow)", "value": "ff0"}
             ]
         },
-        {   "label": "_(Text Color|pulldown label for selecting the text color)",
+        {   "label": "_(Text Color)",
             "name": "textColor",
             "select": true,
             "options": [

@@ -20,9 +20,9 @@
                 <span>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</span>
                 <div>
                     <p>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</p>
-                    <button data-action="edit">_(Edit)</button>
-                    <button data-action="delete">_(Delete)</button>
-                    <button data-action="cancel">_(Cancel)</button>
+                    <button data-action="edit">_(Edit|Button label)</button>
+                    <button data-action="delete">_(Delete|Button label)</button>
+                    <button data-action="cancel">_(Cancel|Button label)</button>
                 </div>
         	</li>
      	   {{/drafts}}
@@ -44,8 +44,8 @@
                 <span>{{title}}</span>
                 <div>
                     <p>{{title}}</p>
-                    <button data-action="edit">_(Edit)</button>
-                    <button data-action="cancel">_(Cancel)</button>
+                    <button data-action="edit">_(Edit|Button label)</button>
+                    <button data-action="cancel">_(Cancel|Button label)</button>
                 </div>
         	</li>
         	{{/published}}
@@ -64,32 +64,32 @@
             <li data-id="new" class="favoritesCollection">
                 <span>Favorites</span>
                 <div>
-                    <p>Favorites (_({{count}}) books)</p>
+                    <p>_(Favorites: {{count}} books)</p>
                     {{#count}}
-                    <input title="_(title)" type="text" name="title" value="" placeholder="Enter title"/>
-                    <textarea title="_(description)" name="description" placeholder="Enter description"></textarea>
-                    <button data-action="save" disabled class="validateTitle">_(Save as a new Collection)</button>
+                    <input title="_(Title)" type="text" name="title" value="" placeholder="Enter title"/>
+                    <textarea title="_(Description)" name="description" placeholder="Enter description"></textarea>
+                    <button data-action="save" disabled class="validateTitle">_(Save as a new Collection|Button label)</button>
                     {{/count}}
                     {{^count}}
                     <p>_(Add books to your Favorites and come back here to save as a Collection)</p>
                     {{/count}}
-                    <button data-action="clear">_(Clear Favorites list)</button>
-                    <button data-action="cancel">_(Cancel)</button>
+                    <button data-action="clear">_(Clear Favorites list|Button label)</button>
+                    <button data-action="cancel">_(Cancel|Button label)</button>
                 </div>
             </li>
             {{#collections}}
             <li data-id="{{ID}}">
                 <span>{{title}}</span>
                 <div>
-                    <input title="_(title)" type="text" name="title" value="{{title}}" />
-                    <textarea title="_(description)" name="description">{{description}}</textarea>
+                    <input title="_(Title)" type="text" name="title" value="{{title}}" />
+                    <textarea title="_(Description)" name="description">{{description}}</textarea>
                     <p>_({{count}} books)</p>
-                    <button data-action="save" class="validateTitle">_(Update title and description)</button>
-                    <button data-action="add">_(Add to Favorites)</button>
+                    <button data-action="save" class="validateTitle">_(Update title and description|Button label)</button>
+                    <button data-action="add">_(Add to Favorites|Button label)</button>
                     <button data-action="merge" class="requireFavs">_(Merge Favorites into here)</button>
                     <button data-action="set" class="requireFavs">_(Replace with Favorites)</button>
-                    <button data-action="delete">_(Delete)</button>
-                    <button data-action="cancel">_(Cancel)</button>
+                    <button data-action="delete">_(Delete|Button label)</button>
+                    <button data-action="cancel">_(Cancel|Button label)</button>
                 </div>
             </li>
             {{/collections}}

@@ -8,11 +8,11 @@
     <div class="steps step1">
         <h2>_(Step 1: Find pictures)</h2>
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Step 1 Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
+        <p class="help-text" title="_(Step 1: Search Help)">_(Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview.)</p>
         <div class="aWrap">
             <form class="image-search" method="get" class="no-ajaxy">
                 <input class="thr-input" type="search" name="query" class="write-image-search" />
-                <input class="thr-blue-button" type="submit" value="_(Search)" />
+                <input class="thr-blue-button" type="submit" value="_(Search|button label)" />
             </form>
             <div class="gallery"></div>
             <div class="error-messages">
@@ -25,14 +25,14 @@
     <div class="steps step1a">
         <h3>_(Or upload your own pictures)</h2>
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Step 1 Upload Help)">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
+        <p class="help-text" title="_(Step 1: Upload Help)">_(Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels.)</p>
         <div class="file-uploader">
         </div>
     </div>
     <div class="steps step2">
         <h2>_(Step 2: Enter a short sentence for each page)</h2>
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Step 2 Help)">_(Click on a page to edit it. You may reorder the pages with drag and drop.)</p>
+        <p class="help-text" title="_(Step 2: Edit help)">_(Click on a page to edit it. You may reorder the pages with drag and drop.)</p>
         <div class="aWrap">
             <ul class="write-pages">
             </ul>
@@ -42,7 +42,7 @@
     <div class="steps step3">
         <h2>_(Step 3: Fill in the details)</h2>
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Step 3 Help)">_(Fill in the title for your book and select its language from the list. You may use a psuedonym if you wish by changing the author field.)</p>
+        <p class="help-text" title="_(Step 3: Details help)">_(Fill in the title for your book and select its language from the list. You may use a psuedonym if you wish by changing the author field.)</p>
         <div class="aWrap">
             <label><span>_(Title):</span>
                 <input class="thr-input" type="text" name="title" title="_(Enter a title for your book)" maxlength="50" />
@@ -64,7 +64,7 @@
     <div class="steps step3a">
         <h3>_(Categorize your book)</h3>
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Step 3a Help)">_(You may select up to three library categories, an audience rating and BLF type if you wish.)</p>
+        <p class="help-text" title="_(Step 3: Categorize help)">_(You may select up to three library categories, an audience rating and BLF type if you wish.)</p>
 
         <div class="aWrap">
             <div class="settings categories"><b>_(Library Classification):</b><br />
@@ -109,31 +109,30 @@
         <h2>_(Step 4: Publish)</h2>
         <div>
             <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-            <p class="help-text" title="_(Step 4 Help)">_(Some helpful message.)</p>
+            <p class="help-text" title="_(Step 4: Save help)">_(To continue working on your book later, or to remove it from public view, click Save as draft. You will be able to return it from the Your Books page. To publish your completed book, click Publish.)</p>
             <div class="aWrap">
-                <p>Buttons to publish, along with any things that need to be fixed before it will be enabled.</p>
-            </div>
-            <button class="thr-gray-button save">Save as draft</button>
-            <button class="thr-gray-button publish">Publish</button>
-            <div class="publishErrors error-messages">
-                <p class="peMessage">_(Your book will not be published until you fix these issues.)</p>
-                <p class="peTitle">_(It must have a title.)</p>
-                <p class="peAuthor">_(It must have an author.)</p>
-                <p class="peCaption">_(Each page must have some text.)</p>
-                <p class="peCaptionLength">_(The text on each page must be less than 130 characters in length.)</p>
-                <p class="peLength">_(It must have at least 3 pages.)</p>
-                <p class="peLanguage">_(It must specify the language.)</p>
-                <p class="peCategories">_(It must be in no more than 4 categories.)</p>
-                <p class="peSaved">_(Your book has been saved as a draft.)</p>
+                <button class="thr-gray-button save">Save as draft</button>
+                <button class="thr-gray-button publish">Publish</button>
+                <div class="publishErrors error-messages">
+                    <p class="peMessage">_(Your book will not be published until you fix these issues.)</p>
+                    <p class="peTitle">_(It must have a title.)</p>
+                    <p class="peAuthor">_(It must have an author.)</p>
+                    <p class="peCaption">_(Each page must have some text.)</p>
+                    <p class="peCaptionLength">_(The text on each page must be less than 130 characters in length.)</p>
+                    <p class="peLength">_(It must have at least 3 pages.)</p>
+                    <p class="peLanguage">_(It must specify the language.)</p>
+                    <p class="peCategories">_(It must be in no more than 4 categories.)</p>
+                    <p class="peSaved">_(Your book has been saved as a draft.)</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div style="display:none" class="writeLabels">
-    <span class="wlAddToBook">_(Add to Book|Button label to add picture to book)</span>
-    <span class="wlClose">_(Close|Button label to close preview)</span>
-    <span class="wlPrevious">_(Previous|Button label to preview previous picture)</span>
-    <span class="wlNext">_(Next|Button label to preview next picture)</span>
+    <span class="wlAddToBook">_(Add to Book|button label)</span>
+    <span class="wlClose">_(Close|button label)</span>
+    <span class="wlPrevious">_(Previous|button label)</span>
+    <span class="wlNext">_(Next|button label)</span>
     <span class="wlPageAdded">_(Page added to your book)</span>
     <div class="wEditHelp">
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
@@ -154,7 +153,7 @@
             ><span class="qq-upload-file"></span
             ><span class="qq-upload-spinner"></span
             ><span class="qq-upload-size"></span
-            ><a class="qq-upload-cancel" href="#">_(Cancel)</a
+            ><a class="qq-upload-cancel" href="#">_(Cancel|Button label)</a
             ><span class="qq-upload-failed-text">_(Failed)</span
         ></li
     ></div>

@@ -31,7 +31,7 @@
                 { "label": "_(Any rating|selection to ignore the audience rating)", "value": "" }
             ]
         },
-        {   "label": "_(Language|pulldown label for selecting the language of the book)",
+        {   "label": "_(Language)",
             "name": "language",
             "select": true,
             "options": [

@@ -1,7 +1,7 @@
 <h2>_(Collections)</h2>
 <form class="collectionsSearchForm" action="/collections/" method="get">
-    <input class="thr-input" name="q" type="search" placeholder="_(Enter text to search)" />
-    <input class="thr-blue-button" type="submit" value="_(Search)" />
+    <input class="thr-input" name="q" type="search" placeholder="_(Enter text to search|placeholder text for search box)" />
+    <input class="thr-blue-button" type="submit" value="_(Search|button label)" />
 </form>
 {{^has_collections}}
 <p>_(No collections matching that query. Try again.)</p>
@@ -21,10 +21,10 @@
 <p><a href="/your-books/">_(Create your own collection)</a></p>
 <div class="navigation">
 	{{#nextLink}}
-	<a class="next" href="{{nextLink}}">_(Next)</a>
+	<a class="next" href="{{nextLink}}">_(Next|button label)</a>
 	{{/nextLink}}
 	{{#prevLink}}
-	<a class="back" href="{{prevLink}}">_(Back)</a>
+	<a class="back" href="{{prevLink}}">_(Back|button label)</a>
 	{{/prevLink}}
 </div>
 
