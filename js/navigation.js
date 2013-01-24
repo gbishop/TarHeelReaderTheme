@@ -28,7 +28,21 @@ require(["state", "controller", "templates"], function(state, controller, templa
                              }
                         }
                     }
-                  };
+          },
+          defaultOptions = {
+              voice: {
+                  prevValue: state.get("voice"),
+                  newValue: options.speech.silent
+              },
+              pageColor: {
+                  prevValue: state.get("pageColor"),
+                  newValue: options.colors.white
+              },
+              textColor: {
+                  prevValue: state.get("textColor"),
+                  newValue: options.colors.black
+              }
+          };
 
     $(function() {
         var $body = $("body"),
@@ -173,7 +187,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
           var parentClass = $element.parent().attr("class").toLowerCase()
                                              .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
               value,
-              prevValue,
+              optionObj = {},
               option = "",
               currentSettings = getCurrentSettings();
 
@@ -191,12 +205,9 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
-          prevValue = state.get(option);
+          optionObj[option] = {prevValue: state.get(option), newValue: value};
           state.set(option, value);
-          // need to modify the URL here if we are on the favorites page
-         if(window.location.search.indexOf("favorites") !== -1) { // we are on the favorites page
-              window.location.href = window.location.href.replace(option + "=" + prevValue, option + "=" + value);
-          }
+          updateFavoritesPageUrl(optionObj);
           controller.stateChange(); // update the page
           updateCheckedOptions(); // update the check marks next to the currently selected options
       }
@@ -219,9 +230,13 @@ require(["state", "controller", "templates"], function(state, controller, templa
       }
 
       function resetSettings() {
-          state.set("voice", options.speech.silent);
-          state.set("pageColor", options.colors.white);
-          state.set("textColor", options.colors.black);
+          var currentSettings = getCurrentSettings();
+          // set default options
+          for(var option in defaultOptions) {
+              defaultOptions[option].prevValue = currentSettings[option]; // update previous value
+              state.set(option, defaultOptions[option].newValue);
+          }
+          updateFavoritesPageUrl(defaultOptions); // update the url if we are on the favorites page
           controller.stateChange();
           updateCheckedOptions();
       }
@@ -240,8 +255,20 @@ require(["state", "controller", "templates"], function(state, controller, templa
               pageColor: currentSettings.pageColor,
               textColor: currentSettings.textColor
           };
-          // IE8 doesn't like the fact we directly change the contents within the style tag; add new style tag
           $('.styleColors').replaceWith(templates.render('styleColor', view));
+      }
+      
+      function updateFavoritesPageUrl(optionsObject) {
+          var url = window.location.href,
+              innerObj;
+          // need to modify the URL here if we are on the favorites page
+          if(window.location.search.indexOf("favorites") !== -1) {
+              for(var option in optionsObject) {
+                  innerObj = optionsObject[option];
+                  url = url.replace(option + "=" + innerObj.prevValue, option + "=" + innerObj.newValue);
+              }
+              window.location.href = url; // update the URl
+          }
       }
       
       // function for navigation via key bindings
@@ -435,7 +462,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
                     }
 
                  } else if(keyCode === 13 || keyCode === 40) { // Enter or Down Arrow: Chooser
-
                     $("." + selectedClassName).removeClass(selectedClassName);
 
                     if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
@@ -479,7 +505,5 @@ require(["state", "controller", "templates"], function(state, controller, templa
                  } // end Enter or Down Arrow key events
               } // end isNavMenu open or isSettingsMenu open if
           }); // end on keydown
-
       } // end initNavKeyBinds
-
 }); // end require
