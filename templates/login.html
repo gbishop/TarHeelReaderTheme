@@ -1,7 +1,7 @@
 {{^logged_in}}
     <h2>_(Log in to Tar Heel Reader)</h2>
     {{#failed}}<p class="message">_(Login Failed)</p>{{/failed}}
-    <form class="loginForm" action="/login/" method="post">
+    <form class="loginForm" action="/wp-login.php" method="post">
         <p>
             <label>_(Username)<br />
                 <input class="thr-input" type="text" name="log" class="input" value="" size="20" tabindex="10" />
@@ -19,7 +19,7 @@
         </p>
         <p class="submit">
             <input class="thr-blue-button"type="submit" name="wp-submit" class="button-primary" value="_(Log In|link label)" tabindex="100" />
-            <input type="hidden" name="redirect_to" value="/" />
+            <input type="hidden" name="redirect_to" value="{{redirect}}" />
             <input type="hidden" name="testcookie" value="1" />
         </p>
     </form>

@@ -636,11 +636,6 @@ function fixupLogInOut($link) {
 add_filter('loginout', 'fixupLogInOut');
 add_filter('register', 'fixupLogInOut');
 
-function my_login_redirect() {
-  return get_bloginfo('url');
-}
-add_filter('login_redirect', 'my_login_redirect');
-
 // I suddenly started getting redirect loops when accessing / this seems to fix it.
 remove_filter('template_redirect', 'redirect_canonical');
 

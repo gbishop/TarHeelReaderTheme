@@ -18,6 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $view['logged_in'] = is_user_logged_in();
 $view['admin'] = is_admin();
 $view['logoutURL'] = wp_logout_url("/");
+$goto = getParam('goto', '/', '/^[-a-z]+$/');
+if ($goto != '/') {
+    $goto = '/' . $goto . '/';
+}
+$view['redirect'] = $goto;
 
 thr_header('login-page'); ?>
 <!-- login.php -->
