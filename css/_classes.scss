@@ -37,7 +37,7 @@
 .thr-well-icon, .thr-settings-icon, .thr-favorites-icon {
     position: absolute;
     top: 0.65em;
-    z-index: 999;
+    z-index: 2;
 
     width: 2.5em;
     min-width: 24px;
@@ -116,7 +116,7 @@
         }
     }
 } // ***end .searchForm***
-    
+
 // ***begin .thr-book-list***
 .thr-book-list {
     display: block;
@@ -130,11 +130,11 @@
       width: 11em;
       height: 11em;
       overflow: hidden;
-        
+
       margin: 0.2em;
       text-align: center;
       line-height: 1em;
-        
+
       -webkit-border-radius: 0.25em;
       -moz-border-radius: 0.25em;
       border-radius: 0.25em;
@@ -156,7 +156,7 @@
       overflow: hidden;
       margin: 0.2em 0 0 0;
     }
-    
+
     .thr-author {
       font-size: 0.8em;
       overflow: hidden;
@@ -275,7 +275,7 @@
           background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
         }
       }
-      
+
       // position disclosure icon to the right
       img.disclosure-icon {
         position: absolute;
@@ -284,7 +284,7 @@
         max-width: 2em;
         max-height: 2em;
       }
-      
+
       a {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -292,7 +292,7 @@
         background-size: 1.5em !important;
         padding: 0 3em;
         width: 100;
-        
+
         color: inherit;
         font-size: 1.5em;
         line-height: 2em;
@@ -395,7 +395,7 @@
         @include thrBackground(right, left);
         -webkit-background-clip: padding-box;
         background-clip: padding-box;
-        
+
         -webkit-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
         -moz-box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
         box-shadow: 0.1em 0.1em 0.1em rgba(86, 160, 211, 0.25);
@@ -649,7 +649,7 @@
             background: yellow;
         }
     }
-      
+
     .deleteIcon {
         width: 2em;
         height: 2em;
@@ -658,7 +658,7 @@
         left: 0.5em;
     }
 }
-    
+
 .galleryPreviewDialog {
     width: 20em !important;
     height: 20em !important;
@@ -678,15 +678,15 @@
         img {
             margin-top: 2em;
         }
-          
+
         &.p {
             left: 0;
         }
-          
+
         &.n {
             right: 0;
         }
-          
+
         &:hover {
             opacity: 0.5;
         }
