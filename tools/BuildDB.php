@@ -1,7 +1,7 @@
 <?php
 /* Build the BookSearch DB */
 
-require_once('../../../wp-load.php');
+require_once('../../../../wp-load.php');
 
 ini_set('memory_limit','512M');
 

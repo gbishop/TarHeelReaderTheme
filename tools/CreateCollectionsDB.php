@@ -1,7 +1,7 @@
 <?php
 /* Build the Collections DB */
 
-require_once('../../../wp-load.php');
+require_once('../../../../wp-load.php');
 
 function BCBuild($create) {
   global $wpdb;
@@ -33,6 +33,6 @@ function BCBuild($create) {
   }
 }
 
-BCBuild(1);
+BCBuild(0);
 ?>
 

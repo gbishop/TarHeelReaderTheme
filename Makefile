@@ -4,17 +4,17 @@ locale/de/LC_MESSAGES/thr.mo: languages/de.po
 	msgfmt languages/de.po --output-file locale/de/LC_MESSAGES/thr.mo
 
 Templates.de.json: languages/de.po locale/de/LC_MESSAGES/thr.mo Templates.en.json
-	python BuildTemplate.py --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 Templates.en.json: templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
-	python BuildTemplate.py --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 build: Templates.en.json Templates.de.json
-	python MakeMediaQueries.py > css/_mediaqueries.scss
+	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
 	sass --style=compact style.scss style.css
 
 translate:
-	python BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 copygb:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
@@ -41,7 +41,7 @@ optimized:
 	make versioned
 
 versioned:
-	cd ../Theme-build; python EditFileVersions.py --staticHost=$(STATICHOST) *.php js/main.js style.css Templates*.json
+	cd ../Theme-build; python tools/EditFileVersions.py --staticHost=$(STATICHOST) *.php js/main.js style.css Templates*.json
 
 gbopt: optimized
 	cd ../Theme-build; make copygb
