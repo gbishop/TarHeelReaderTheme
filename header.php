@@ -18,7 +18,7 @@
 
 	<meta charset="<?php bloginfo('charset'); ?>">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4">
 
 	<?php if (is_search()) { ?>
 	<meta name="robots" content="noindex, nofollow" />
