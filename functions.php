@@ -647,6 +647,23 @@ function thr_modify_query( $query ) {
     }
 }
 
+// disable wordpress search
+function disable_search($query, $error = true) {
+    if (is_search()) {
+        $query->is_search = false;
+        $query->query_vars[s] = false;
+        $query->query[s] = false;
+
+        if ($error == true) {
+            $query->is_404 = true;
+        }
+    }
+}
+if (!is_admin()) {
+    add_action('parse_query', 'disable_search');
+}
+
+
 // hack error logging
 function BuG($msg) {
     $msg = date('m/d H:i:s') . ' ' . $msg;
