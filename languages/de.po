@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2013-01-23 15:52+0000\n"
+"PO-Revision-Date: 2013-01-25 19:10+0000\n"
 "Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -236,7 +236,7 @@ msgid "Back"
 msgstr "Zurück"
 
 # templates/bookPage.html:21, templates/collections.html:24,
-# templates/write.html:135
+# templates/write.html:136
 msgctxt "button label"
 msgid "Next"
 msgstr "Nächste"
@@ -245,7 +245,7 @@ msgstr "Nächste"
 msgid "Loading. Please wait."
 msgstr "Laden. Bitte warten."
 
-# templates/busy.html:6, templates/busy.html:11, templates/write.html:156,
+# templates/busy.html:6, templates/busy.html:11, templates/write.html:157,
 # templates/yourbooks.html:25, templates/yourbooks.html:48,
 # templates/yourbooks.html:77, templates/yourbooks.html:92
 msgctxt "Button label"
@@ -310,7 +310,7 @@ msgctxt "placeholder text for search box"
 msgid "Enter text to search"
 msgstr "Geben Sie Text suchen"
 
-# templates/collections.html:4, templates/write.html:15, searchForm.json:47
+# templates/collections.html:4, templates/write.html:16, searchForm.json:47
 msgctxt "button label"
 msgid "Search"
 msgstr "Suche"
@@ -351,10 +351,17 @@ msgid ""
 msgstr "Diese Website wird wesentlich besser arbeiten, wenn Sie Javascript aktivieren. Sie bekommen Schalter Zugänglichkeit, Bilder, die Größe automatisch zu Ihrem Fenster, und die Fähigkeit, Bücher Ihrer eigenen zu schreiben. Bitte aktivieren Sie Javascript für die beste Tar Heel Reader Erfahrung."
 
 # templates/frontPage.html:5
+msgid ""
+"Your browser is unsupported. The site may work for finding and reading books"
+" but you will not have switch access or the ability to write books. We "
+"recommend that you upgrade to a modern browser or install Chrome Frame."
+msgstr "Ihr Browser wird nicht unterstützt. Funktionieren der Website für das Auffinden und Lesen von Büchern, aber Sie haben keinen Zugriff oder die Möglichkeit, Bücher zu schreiben. Es wird empfohlen, dass Sie ein auf einen modernen Browser Upgrade oder installieren Chrome Frame."
+
+# templates/frontPage.html:7
 msgid "Click here to learn more about alternative access methods."
 msgstr "Klicken Sie hier, um mehr zu erfahren über alternative Zugriffsmethoden."
 
-# templates/frontPage.html:5
+# templates/frontPage.html:7
 msgid ""
 "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and "
 "accessible books on a wide range of topics. Each book can be speech enabled "
@@ -362,7 +369,7 @@ msgid ""
 "IntelliKeys with custom overlays, and 1 to 3 switches."
 msgstr "Willkommen auf der Tar Heel Reader, eine Sammlung von kostenlosen, einfach zu lesen und zugängliche Bücher auf einer breiten Palette von Themen. Jedes Buch kann Rede aktiviert und der Zugriff über mehrere Schnittstellen, einschließlich Touch-Screens, die IntelliKeys mit benutzerdefinierten Overlays, und 1 bis 3 Switches."
 
-# templates/frontPage.html:7
+# templates/frontPage.html:9
 msgid ""
 "You may write your own books using pictures from the huge collection at "
 "{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
@@ -370,36 +377,36 @@ msgid ""
 "While you are working on them, please save them as drafts."
 msgstr "Sie können schreiben Sie Ihre eigenen Bücher mit Bildern aus der riesigen Sammlung {{{Flickr}}} oder Bilder hochzuladen. Alle Bücher abgeschlossen sein sollte, bearbeitet und überarbeitet, um das Beste aus Ihrer Fähigkeit vor der Veröffentlichung auf der Website. Während Sie daran arbeiten, bitte speichern Sie sie als Entwürfe."
 
-# templates/frontPage.html:9
+# templates/frontPage.html:11
 msgid ""
 "Note the little well icon {{{wellicon}}} in the upper left corner of the "
 "page; clicking it will allow you to access the main menu. You can also click"
 " the settings icon {{{gearicon}}} to change settings on some pages."
 msgstr "Beachten Sie das kleine gut Symbol in der oberen linken Ecke der Seite {{{wellicon}}}; Sie darauf klicken, können Sie das Hauptmenü zu gelangen. Sie können auch das Symbol Einstellungen {{{gearicon}}}, um Einstellungen auf einigen Seiten ändern klicken."
 
-# templates/frontPage.html:11
+# templates/frontPage.html:13
 msgid "Ready to get started?"
 msgstr "Bereit, um loszulegen?"
 
-# templates/frontPage.html:13, templates/navigation.html:8
+# templates/frontPage.html:15, templates/navigation.html:8
 msgid "Find a book"
 msgstr "Finden Sie ein Buch"
 
-# templates/frontPage.html:14, templates/navigation.html:20
+# templates/frontPage.html:16, templates/navigation.html:20
 msgid "Write a book"
 msgstr "Ein Buch schreiben"
 
-# templates/frontPage.html:17
+# templates/frontPage.html:19
 msgid ""
 "This site is also available in other languages. To help with translation, "
 "contact us."
 msgstr "Diese Seite gibt es auch in anderen Sprachen verfügbar. Um mit der Übersetzung helfen, kontaktieren Sie uns."
 
-# templates/frontPage.html:25
+# templates/frontPage.html:27
 msgid "change language"
 msgstr "Sprache ändern"
 
-# templates/frontPage.html:32
+# templates/frontPage.html:34
 msgid "Latest Announcements"
 msgstr "Letzte Meldungen"
 
@@ -537,7 +544,7 @@ msgctxt "login checkbox label"
 msgid "Remember Me"
 msgstr "An mich erinnern"
 
-# templates/login.html:21, templates/write.html:5,
+# templates/login.html:21, templates/write.html:6,
 # templates/yourbooks.html:101
 msgctxt "link label"
 msgid "Log In"
@@ -626,19 +633,23 @@ msgstr "Wir verfügen noch nicht über Ihren Büchern auf der Karte."
 msgid "You must have Javascript enabled in order to write a book."
 msgstr "Sie müssen Javascript aktivieren, um ein Buch zu schreiben."
 
-# templates/write.html:5
+# templates/write.html:4
+msgid "Your web browser does not support writing books."
+msgstr "Ihr Webbrowser unterstützt keine Bücherschreiben."
+
+# templates/write.html:6
 msgid "You must be logged in to write a book. Please log in below."
 msgstr "Sie müssen angemeldet sein, um ein Buch zu schreiben. Bitte unten einloggen."
 
-# templates/write.html:9
+# templates/write.html:10
 msgid "Step 1: Find pictures"
 msgstr "Schritt 1: Suchen Bilder"
 
-# templates/write.html:10, templates/write.html:10, templates/write.html:27,
-# templates/write.html:27, templates/write.html:34, templates/write.html:34,
-# templates/write.html:44, templates/write.html:44, templates/write.html:66,
-# templates/write.html:66, templates/write.html:111, templates/write.html:111,
-# templates/write.html:138, templates/write.html:138,
+# templates/write.html:11, templates/write.html:11, templates/write.html:28,
+# templates/write.html:28, templates/write.html:35, templates/write.html:35,
+# templates/write.html:45, templates/write.html:45, templates/write.html:67,
+# templates/write.html:67, templates/write.html:112, templates/write.html:112,
+# templates/write.html:139, templates/write.html:139,
 # templates/yourbooks.html:3, templates/yourbooks.html:3,
 # templates/yourbooks.html:13, templates/yourbooks.html:13,
 # templates/yourbooks.html:37, templates/yourbooks.html:37,
@@ -646,278 +657,278 @@ msgstr "Schritt 1: Suchen Bilder"
 msgid "Click for help"
 msgstr "Klicken Sie hier für Hilfe"
 
-# templates/write.html:11
+# templates/write.html:12
 msgid ""
 "Enter words to search Flickr or enter the email address you use at Flickr to"
 " see your personal photos. A set of pictures from Flickr will appear; click "
 "on one to preview."
 msgstr "Geben Sie Wörter um Flickr suchen oder geben die e-Mail-Adresse Sie verwenden, um zu sehen, Ihre persönlichen Fotos bei Flickr. Eine Reihe von Bildern von Flickr erscheint; Klicken Sie auf Vorschau."
 
-# templates/write.html:11
+# templates/write.html:12
 msgid "Step 1: Search Help"
 msgstr "Schritt 1: Suche Hilfe"
 
-# templates/write.html:19
+# templates/write.html:20
 msgid "No matching images found."
 msgstr "Keine passenden Bilder gefunden."
 
-# templates/write.html:20
+# templates/write.html:21
 msgid "No matching email address found."
 msgstr "Keine passenden e-Mail-Adresse gefunden."
 
-# templates/write.html:22
+# templates/write.html:23
 msgid "Go back"
 msgstr "Zurück"
 
-# templates/write.html:22
+# templates/write.html:23
 msgid "More like these"
 msgstr "Mehr wie diese"
 
-# templates/write.html:26
+# templates/write.html:27
 msgid "Or upload your own pictures"
 msgstr "Oder Ihre eigenen Bilder hochladen"
 
-# templates/write.html:28
+# templates/write.html:29
 msgid ""
 "Click browse to find an image on your computer, then click upload to add it "
 "to your book. Pictures must be less than 2 megabytes in size to properly "
 "upload. They will be resized to 500x500 pixels."
 msgstr "Klicken Sie auf Durchsuchen, um ein Bild auf Ihrem Computer suchen und dann auf Hochladen, um es zu Ihrem Adressbuch hinzufügen. Bilder müssen Größe richtig Hochladen von weniger als 2 MB sein. Sie werden 500 x 500 Pixel verkleinert werden."
 
-# templates/write.html:28
+# templates/write.html:29
 msgid "Step 1: Upload Help"
 msgstr "Schritt 1: Upload Hilfe"
 
-# templates/write.html:33
+# templates/write.html:34
 msgid "Step 2: Enter a short sentence for each page"
 msgstr "Schritt 2: Geben Sie einen kurzen Satz für jede Seite"
 
-# templates/write.html:35
+# templates/write.html:36
 msgid ""
 "Click on a page to edit it. You may reorder the pages with drag and drop."
 msgstr "Klicken Sie auf eine Seite zu bearbeiten. Sie können die Seiten per Drag &amp; Drop neu anordnen."
 
-# templates/write.html:35
+# templates/write.html:36
 msgid "Step 2: Edit help"
 msgstr "Schritt 2: Bearbeiten-Hilfe"
 
-# templates/write.html:39
+# templates/write.html:40
 msgid "After you select or upload pictures your pages will appear here."
 msgstr "Hier werden nach dem auswählen oder Bilder hochladen Ihrer Seiten angezeigt."
 
-# templates/write.html:43
+# templates/write.html:44
 msgid "Step 3: Fill in the details"
 msgstr "Schritt 3: Füllen Sie die details"
 
-# templates/write.html:45
+# templates/write.html:46
 msgid ""
 "Fill in the title for your book and select its language from the list. You "
 "may use a psuedonym if you wish by changing the author field."
 msgstr "Füllen Sie den Titel für Ihr Buch und wählen Sie ihre Sprache aus der Liste aus. Wenn Sie, indem Sie das Autorenfeld ändern möchten, können Sie eine Psuedonym."
 
-# templates/write.html:45
+# templates/write.html:46
 msgid "Step 3: Details help"
 msgstr "Schritt 3: Informationen-Hilfe"
 
-# templates/write.html:47, templates/yourbooks.html:69,
+# templates/write.html:48, templates/yourbooks.html:69,
 # templates/yourbooks.html:84
 msgid "Title"
 msgstr "Titel"
 
-# templates/write.html:48
+# templates/write.html:49
 msgid "Enter a title for your book"
 msgstr "Geben Sie einen Titel für Ihr Buch"
 
-# templates/write.html:50
+# templates/write.html:51
 msgid "Author"
 msgstr "Autor"
 
-# templates/write.html:51
+# templates/write.html:52
 msgid "Enter a pseudonym"
 msgstr "Geben Sie ein pseudonym"
 
-# templates/write.html:53, searchForm.json:34
+# templates/write.html:54, searchForm.json:34
 msgid "Language"
 msgstr "Sprache"
 
-# templates/write.html:55
+# templates/write.html:56
 msgid "Choose a language"
 msgstr "Wählen Sie eine Sprache"
 
-# templates/write.html:61
+# templates/write.html:62
 msgid "Optionally"
 msgstr "Optional"
 
-# templates/write.html:61, templates/write.html:65
+# templates/write.html:62, templates/write.html:66
 msgid "Categorize your book"
 msgstr "Kategorisieren Sie Ihr Buch"
 
-# templates/write.html:67
+# templates/write.html:68
 msgid "Step 3: Categorize help"
 msgstr "Schritt 3: Kategorisieren Sie Hilfe"
 
-# templates/write.html:67
+# templates/write.html:68
 msgid ""
 "You may select up to three library categories, an audience rating and BLF "
 "type if you wish."
 msgstr "Sie können bis zu drei Kategorien der Bibliothek auswählen, eine Einschaltquote und BLF geben, wenn Sie es wünschen."
 
-# templates/write.html:70
+# templates/write.html:71
 msgid "Library Classification"
 msgstr "Bibliothek-Klassifizierung"
 
-# templates/write.html:76
+# templates/write.html:77
 msgid "Audience Rating"
 msgstr "Einschaltquote"
 
-# templates/write.html:78, templates/write.html:87
+# templates/write.html:79, templates/write.html:88
 msgid "None"
 msgstr "Keine"
 
-# templates/write.html:79, searchForm.json:29
+# templates/write.html:80, searchForm.json:29
 msgctxt "books appropriate for everyone"
 msgid "Rated E/Everybody"
 msgstr "Bewertet E / alle"
 
-# templates/write.html:80, searchForm.json:30
+# templates/write.html:81, searchForm.json:30
 msgctxt "books that may not be appropriate for all readers"
 msgid "Rated C/Caution"
 msgstr "Bewertet C/Vorsicht"
 
-# templates/write.html:88
+# templates/write.html:89
 msgid "Transitional"
 msgstr "Übergangsbestimmungen"
 
-# templates/write.html:89
+# templates/write.html:90
 msgid "Conventional"
 msgstr "Konventionelle"
 
-# templates/write.html:90
+# templates/write.html:91
 msgid "Other"
 msgstr "Andere"
 
-# templates/write.html:95
+# templates/write.html:96
 msgid "Tags"
 msgstr "Markierungen"
 
-# templates/write.html:97
+# templates/write.html:98
 msgid "Enter a few descriptive words to make your book easier to find"
 msgstr "Geben Sie ein paar beschreibende Worte um Ihr Buch zu erleichtern, finden"
 
-# templates/write.html:102
+# templates/write.html:103
 msgid "Reviewed"
 msgstr "Überprüft"
 
-# templates/write.html:109
+# templates/write.html:110
 msgid "Step 4: Publish"
 msgstr "Schritt 4: veröffentlichen"
 
-# templates/write.html:112
+# templates/write.html:113
 msgid "Step 4: Save help"
 msgstr "Schritt 4: Speichern Sie-Hilfe"
 
-# templates/write.html:112
+# templates/write.html:113
 msgid ""
 "To continue working on your book later, or to remove it from public view, "
 "click Save as draft. You will be able to return it from the Your Books page."
 " To publish your completed book, click Publish."
 msgstr "Um Ihr Buch später fortsetzen oder aus der öffentlichen Ansicht entfernen möchten, klicken Sie als Entwurf speichern. Sie werden es auf der Seite Ihrer Bücher zurückgeben können. Klicken Sie auf veröffentlichen, um Ihre fertige Buch zu veröffentlichen."
 
-# templates/write.html:114
+# templates/write.html:115
 msgid "Save as draft"
 msgstr "Als Entwurf speichern"
 
-# templates/write.html:115
+# templates/write.html:116
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-# templates/write.html:117
+# templates/write.html:118
 msgid "Your book will not be published until you fix these issues."
 msgstr "Ihr Buch wird nicht veröffentlicht werden, bis diese Probleme zu beheben."
 
-# templates/write.html:118
+# templates/write.html:119
 msgid "It must have a title."
 msgstr "Es muss einen Titel haben."
 
-# templates/write.html:119
+# templates/write.html:120
 msgid "It must have an author."
 msgstr "Es muss einen Autor haben."
 
-# templates/write.html:120
+# templates/write.html:121
 msgid "Each page must have some text."
 msgstr "Jede Seite muss etwas Text haben."
 
-# templates/write.html:121
+# templates/write.html:122
 msgid "The text on each page must be less than 130 characters in length."
 msgstr "Der Text auf jeder Seite muss weniger als 130 Zeichen lang sein."
 
-# templates/write.html:122
+# templates/write.html:123
 msgid "It must have at least 3 pages."
 msgstr "Es müssen mindestens 3 Seiten."
 
-# templates/write.html:123
+# templates/write.html:124
 msgid "It must specify the language."
 msgstr "Sie müssen die Sprache angeben."
 
-# templates/write.html:124
+# templates/write.html:125
 msgid "It must be in no more than 4 categories."
 msgstr "Es muss nicht mehr als 4 Kategorien."
 
-# templates/write.html:125
+# templates/write.html:126
 msgid "Your book has been saved as a draft."
 msgstr "Ihr Buch wurde als Entwurf gespeichert."
 
-# templates/write.html:132
+# templates/write.html:133
 msgctxt "button label"
 msgid "Add to Book"
 msgstr "Zum Adressbuch hinzufügen"
 
-# templates/write.html:133
+# templates/write.html:134
 msgctxt "button label"
 msgid "Close"
 msgstr "Schließen"
 
-# templates/write.html:134
+# templates/write.html:135
 msgctxt "button label"
 msgid "Previous"
 msgstr "Vorherige"
 
-# templates/write.html:136
+# templates/write.html:137
 msgid "Page added to your book"
 msgstr "Seite in Ihr Buch aufgenommen"
 
-# templates/write.html:139
+# templates/write.html:140
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
 msgstr "Klicken Sie auf den Text zu ändern. Die Schaltflächen Weiter und zurück können Sie zwischen den Seiten wechseln. Wenn Sie fertig sind, schließen Sie den Editor, indem Sie auf das x oben rechts."
 
-# templates/write.html:139
+# templates/write.html:140
 msgid "Page Editor Help"
 msgstr "Page Editor-Hilfe"
 
-# templates/write.html:141
+# templates/write.html:142
 msgid "Click to edit"
 msgstr "Durch Klicken bearbeiten"
 
-# templates/write.html:142
+# templates/write.html:143
 msgid "Delete this page"
 msgstr "Diese Seite löschen"
 
-# templates/write.html:143
+# templates/write.html:144
 msgid "If you leave you will lose your work on this book."
 msgstr "Wenn Sie lassen, verlieren Sie Ihre Arbeit an diesem Buch."
 
-# templates/write.html:146
+# templates/write.html:147
 msgid "Drop files here to upload"
 msgstr "Drop Dateien hier hochladen"
 
-# templates/write.html:147
+# templates/write.html:148
 msgid "Upload"
 msgstr "Upload"
 
-# templates/write.html:157
+# templates/write.html:158
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
