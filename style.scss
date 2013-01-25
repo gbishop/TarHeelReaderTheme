@@ -617,9 +617,18 @@ img.favoriteYes, img.favoriteNo {
   display: block !important;
 }
 
+p.unsupported {
+  display: none;
+}
+
+.unsupported p.unsupported {
+  display: block;
+}
+
 @import "css/fileuploader";
 @import "css/writebooks";
 @import "css/yourbooks";
 @import "css/collections";
 @import "css/allmediaqueries";
 @import "css/map-page";
+@import "css/ie";
