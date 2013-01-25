@@ -25,7 +25,7 @@ copygba:
 	launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
-	rsync -az --delete . gbserver3:/var/www/TarHeelReader/wp-content/themes/thr3
+	rsync -az --delete . gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
 	launch.py http://tarheelreader3.cs.unc.edu/
 
 gb: build copygb
