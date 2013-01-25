@@ -109,9 +109,7 @@ define([ "route",
             duration: 100,
             complete: function () {
                 // when the scrolling is complete, compute the parameters of the preview
-                var $window = $(window),
-                    regexResult = /(findPageNavButton)/.exec(toSelect.attr('class')),
-                    buttonClass = regexResult ? ' ' + regexResult[1] : '';
+                var $window = $(window);
                 var ww = $window.width();
                 var wh = $window.height();
                 var wt = $window.scrollTop();
@@ -123,7 +121,7 @@ define([ "route",
                 var left = (ww - b) / 2;
                 var top = wt + (wh - b) / 2;
                 toSelect.clone() // make a copy of the selected book
-                    .attr('class', 'preview thr-colors' + buttonClass) // display the preview with the correct colors
+                    .addClass('preview')
                     .appendTo($page.find('.thr-book-list')) // add it to the end of the list
                     .css({
                         position: 'absolute',
