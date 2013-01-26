@@ -1,7 +1,7 @@
 {{^logged_in}}
     <h2>_(Log in to Tar Heel Reader)</h2>
     {{#failed}}<p class="message">_(Login Failed)</p>{{/failed}}
-    <form class="loginForm" action="/wp-login.php" method="post">
+    <form class="loginForm" action="/login/" method="post">
         <p>
             <label>_(Username)<br />
                 <input class="thr-input" type="text" name="log" class="input" value="" size="20" tabindex="10" />
@@ -28,5 +28,5 @@
 {{/logged_in}}
 {{#logged_in}}
     <h2>_(Log out of Tar Heel Reader)</h2>
-    <p><a href="{{{logoutURL}}}" class="thr-blue-button">_(Log out)</a></p>
+    <p><a href="{{{logoutURL}}}" class="thr-blue-button no-ajaxy">_(Log out)</a></p>
 {{/logged_in}}

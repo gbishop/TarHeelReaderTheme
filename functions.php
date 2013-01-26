@@ -72,7 +72,7 @@ function thr_title() {
 
 function is_ajax() {
     return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-        || (isset($_GET['ajax']) && $_GET['ajax']);
+        || (isset($_GET['ajax']) && $_GET['ajax']) || (isset($_POST['ajax']) && $_POST['ajax']);
 }
 
 // output the header with some tweaks
