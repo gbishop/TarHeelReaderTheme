@@ -363,8 +363,6 @@ function SaveBookPost($id, $book) {
     $book['ID'] = $id;
 
     updateIndex($book);
-    update_post_meta($id, 'book_rating_count', $content['rating_count']);
-    update_post_meta($id, 'book_rating_value', $content['rating_value']);
 
     //$book['ID'] = $postid;
     $post = get_post($id);
