@@ -533,10 +533,6 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
-# templates/login.html:32
-msgid "Site Admin"
-msgstr ""
-
 # templates/navigation.html:4
 msgid "Home"
 msgstr ""

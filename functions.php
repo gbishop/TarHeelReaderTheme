@@ -661,6 +661,21 @@ if (!is_admin()) {
     add_action('parse_query', 'disable_search');
 }
 
+function thr_login_redirect($redirect_to, $request, $user) {
+    if (strpos($redirect_to, 'wp-admin') !== false) {
+        $redirect_to = '/';
+    }
+    return $redirect_to;
+}
+add_filter('login_redirect', 'thr_login_redirect', 10, 3);
+
+add_action('admin_init', 'no_mo_dashboard');
+function no_mo_dashboard() {
+    if (!current_user_can('manage_options') && $_SERVER['DOING_AJAX'] != '/wp-admin/admin-ajax.php') {
+        wp_redirect('/');
+        exit;
+    }
+}
 
 // hack error logging
 function BuG($msg) {
