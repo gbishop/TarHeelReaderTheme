@@ -208,15 +208,8 @@
     }
 } // ***end .thr-book-list***
 
-/*
- * TODO: Don't use CSS3's not selector
- */
-//.thr-colors:not(.findPageNavButton) a {
-.thr-colors {
+.thr-colors, .thr-colors-invert {
     color: inherit;
-    &:hover {
-      //color: inherit;
-    }
 }
 
 .decoratedList {
