@@ -285,20 +285,21 @@ define(['route',
         function extractBookState() {
             console.log('start extract');
 
-            var book = {};
-            book.title = $.trim($('input[name=title]').val());
-            book.author = $.trim($('input[name=author]').val());
-            book.categories = $('.categories input[type=checkbox]:checked').map(function(i, v) {
+            var book = {},
+                $write = $('.active-page.write-page');
+            book.title = $.trim($write.find('input[name=title]').val());
+            book.author = $.trim($write.find('input[name=author]').val());
+            book.categories = $write.find('.categories input[type=checkbox]:checked').map(function(i, v) {
                 return $(v).prop('value'); }).get();
-            book.type = $('select[name=type]').val();
-            book.audience = $('select[name=audience]').val();
-            book.language = $('select[name=language]').val();
+            book.type = $write.find('select[name=type]').val();
+            book.audience = $write.find('select[name=audience]').val();
+            book.language = $write.find('select[name=language]').val();
             var tags = $.trim($('input[name=tags]').val());
             tags = tags.replace(/[-.,\/#!@#$%\^&*()_=+\[\]{};:'"<>?\\|`~]/g, " ");
             tags = tags.replace(/\s{2,}/g, " ");
             book.tags = tags.split(' ');
-            book.reviewed = $('input[name=reviewed]:checked').length > 0;
-            book.pages = $('.write-pages li').map(function(i, p) {
+            book.reviewed = $write.find('input[name=reviewed]:checked').length > 0;
+            book.pages = $write.find('.write-pages li').map(function(i, p) {
                 var $p = $(p),
                     caption = $.trim($p.find('.thr-caption').html()),
                     img = $p.find('img.thr-pic'),
