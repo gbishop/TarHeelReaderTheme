@@ -359,7 +359,7 @@ define(['route',
             clearErrors();
             validate(book.title.length > 0, 'peTitle');
             validate(book.author.length > 0, 'peAuthor');
-            validate(book.pages.length >= 3, 'peLength');
+            validate(book.pages.length > 3, 'peLength');
             var cap = true, len = true;
             for(var i=1; i < book.pages.length; i++) {
                 cap = cap && book.pages[i].text.length > 0;
@@ -388,9 +388,14 @@ define(['route',
             }).then(function(nBook) {
                 console.log('post returns', nBook);
                 clearModified();
-                controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
-                editId = nBook.ID;
-                $('.publish').removeAttr('disabled'); // renable button
+                if (nBook.status == 'publish') {
+                    controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
+                    editId = nBook.ID;
+                    $('.publish').removeAttr('disabled'); // renable button
+                } else { // publish failed for some reason
+                    showError('peSaved');
+                    console.log('expected publish failed');
+                }
             });
         }
         // create the page editor dialog
