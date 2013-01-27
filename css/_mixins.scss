@@ -104,7 +104,7 @@
         border-bottom: 0;
       }
 
-      &:focus, &:hover, &.selectedLink {
+      & > a:focus, &:hover, &.selectedLink {
         background: #FFF !important;
         color: $carolinaBlue;
       }
@@ -114,7 +114,7 @@
         font-size: 1.3em;
         text-align: left;
         text-decoration: none;
-        
+
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
@@ -135,24 +135,24 @@
     -moz-box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
     box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4);
 
-    li { 
+    li {
       border-bottom: 1px solid #888;
       margin: 0;
       color: #555;
       cursor: pointer;
-      
+
       span {
         color: inherit;
         font-size: 1.25em;
         padding: 0.75em;
         text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
       }
-      
+
       &:hover , &.active{
         @include linearGradient(top, bottom, #FFF, #EEE);
         color: $carolinaBlue;
       }
-      
+
       &.active {
         color: #777;
       }
@@ -169,7 +169,7 @@
      font-size: 1.3em !important;
      line-height: 1.5em;
    }
-   
+
    .controlList {
       input, select, button {
         height: 2.5em !important;
@@ -179,29 +179,29 @@
         margin: 0.25em 0;
       }
     }
-   
+
     // bump up the font size on the writing page to make it easier to hit buttons
     .writing-controls {
       font-size: 1.5em;
     }
-    
+
     .gallery {
       width: 100%;
     }
-   
-   // make the language selection select easier to press 
+
+   // make the language selection select easier to press
    .languageForm {
      .goButton {
        font-size: 1.3em;
        line-height: 1.5em;
      }
    }
-  
+
    .searchForm {
       input, select {
        font-size: 1.4em !important;
      }
-            
+
      input[type='search'] {
        padding: 0 !important;
        line-height: 1em;
@@ -212,13 +212,13 @@
    label {
      font-size: 1.1em;
    }
-   
+
    .login-page input {
       &[type='submit'] {
         height: 2.5em;
       }
    }
-    
+
    // input text areas need to be bigger (easier to press on)
    input[type='text'], input[type='password'], input[type='search'], select {
      display: inline-block;
