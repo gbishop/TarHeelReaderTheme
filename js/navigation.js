@@ -42,24 +42,31 @@ require(["state", "controller", "templates"], function(state, controller, templa
           };
 
     $(function() {
-        var $body = $("body"),
+        var $body = $('body'),
             currentSettings = getCurrentSettings(),
             pathname;
 
         initKeyControls(); // initialize the keybindings for the menu/settings
+        
+        // Take favorites-icon out of the tab order in .find-page and .favorites-page for now
+        $body.on('PageRendered', '.find-page, .favorites-page', function() {
+            $(this).find('.thr-favorites-icon')
+                   .attr('tabindex', -1);
+        }); // end PageRendered
 
         /*
          * Begin Navigation Code
          */
-        $body.on("click", ".thr-well-icon img", function(e, data) {
+        // not(.navigation) because toggling navigation on the navigation page doesn't make sense
+        $body.on("click", "div:not(.navigation) > header .thr-well-icon img", function(e, data) {
             e.preventDefault();
             var $contentWrap = $(".active-page .content-wrap"),
                 $navigation = $contentWrap.find(".navigationMenu"),
                 $hiddenContent = $contentWrap.find(".hiddenContent");
 
             if($navigation.length === 0) { // nav doesn't exist, load it
-                $contentWrap.wrapInner("<div class='hiddenContent' />").
-                             prepend(templates.render('navigation', null));
+                $contentWrap.wrapInner("<div class='hiddenContent' />")
+                            .prepend(templates.render('navigation', null));
 
                 $(".active-page").find(".navigationMenu")
                                  .hide()
