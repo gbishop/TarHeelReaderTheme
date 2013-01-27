@@ -262,13 +262,6 @@
       overflow: hidden;
       position: relative; // for positioning the disclosure icon
 
-      &.divider {
-        border-bottom: 1px solid #DFDFDF;
-        a {
-          background: url(/theme/images/up_menu_icon.png) right center no-repeat !important;
-        }
-      }
-
       // position disclosure icon to the right
       img.disclosure-icon {
         position: absolute;
@@ -290,50 +283,83 @@
         font-size: 1.5em;
         line-height: 2em;
         text-align: left;
+        
+        &:focus {
+          color: $carolinaBlue;
+        }
 
         &.homeLink {
           background: url(/theme/images/home_32.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/home_32.png) 0.75em center no-repeat, #FFF;
+          }
         }
 
         &.findLink {
           background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat, #FFF;
+          }
         }
 
         &.collectionsLink {
           background: url(/theme/images/collections.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/collections.png) 0.75em center no-repeat, #FFF;
+          }
         }
 
         &.favoritesLink {
           background: url(/theme/images/favorite_book.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/favorite_book.png) 0.75em center no-repeat, #FFF;
+          }
         }
 
         &.writeLink {
           background: url(/theme/images/write_book.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/write_book.png) 0.75em center no-repeat, #FFF;
+          }
         }
 
         &.loginLink {
           background: url(/theme/images/user.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/user.png) 0.75em center no-repeat, #FFF;
+          }
         }
 
         &.helpLink {
           background: url(/theme/images/info.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/info.png) 0.75em center no-repeat, #FFF;
+          }
         }
 
         &.yourBooksLink {
           background: url(/theme/images/my_book.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/my_book.png) 0.75em center no-repeat, #FFF;
+          }          
         }
 
         &.blogLink {
           background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat, #FFF;
+          }  
         }
 
         &.photoCreditsLink {
           background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat;
+          &:focus {
+            background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat, #FFF;
+          }  
         }
 
       } // end a
     } // end li
-
 }
 
 .mainSettings {
@@ -603,10 +629,6 @@
   @include decoratedInput(1px, #B2B2B2, 0.5em, 0.1em, 1em, 0.15em, 0.3em, #333, $carolinaBlue, rgba(135, 206, 250, 0.4), 0.5em, 0.25s, 1.5em, 16em);
 }
 
-/*
- *  TODO: Import the decoratedButton mixin for this button with a few changes
- *
- */
 .searchShowButton {
     display: none; // displayed by media query if js is on and screen is small
     height: 2em;

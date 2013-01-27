@@ -261,60 +261,13 @@ require(["state", "controller", "templates"], function(state, controller, templa
       }
       
       function initKeyControls() {
-          var menuState = {
-                index: -1,
-                numLinks: -1,
-                incrementIndex: function() {
-                    this.index = (this.index >= this.numLinks - 1) ? 0 : this.index + 1;
-                },
-                decrementIndex: function() {
-                    this.index = (this.index <= 0) ? this.numLinks - 1 : this.index - 1;
-                },
-                initState: function(numLinks) {
-                    this.numLinks = numLinks;
-                    this.index = -1;
-                }
-            },
-            $navMenuLinks,
-            $body = $('body'),
-            menuVisible = false,
-            keyCode,
-            selectedClassName = 'selectedLink';
-            
-            // if ENTER is pressed on the well or gear icon, go to that page
-            $body.on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
-                keyCode = e.keyCode || e.which;
-                if(keyCode === 13) {
-                   window.location.href = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
-                }
-            }); // end keydown on icons
-            
-            // initialize the menu state if we are on the navigation page
-            $body.on('PageVisible', function() {
-                $navMenuLinks = $('.navigationMenu').children('li');
-                menuState.initState($navMenuLinks.length);
-            });
-            
-            $body.on('keydown', function(e) {
-                menuVisible = $(this).find('.navigationMenu').is(':visible');
-                keyCode = e.keyCode || e.which;
-                if(keyCode === 13 || keyCode === 32 || (keyCode >= 37 && keyCode <= 40) && menuVisible) { // Up Arrow: Previous Choice
-                    $('.' + selectedClassName).removeClass(selectedClassName);
-                    if(keyCode === 32 || keyCode === 39) { // Next Choice
-                        menuState.incrementIndex();
-                    } else if(keyCode === 38) { // Previous Choice
-                        menuState.decrementIndex();
-                    } else if(keyCode === 13 || keyCode === 40) { // Select Choice
-                        $navMenuLinks.eq(menuState.index)
-                                     .find('a')
-                                     .trigger('click');
-                    }
-                    $navMenuLinks.eq(menuState.index)
-                                 .addClass(selectedClassName);
-                    return false;
-                }
-            }); // end keydown on .navigationMenu
-          
+          var keyCode;
+          // if ENTER is pressed on the well or gear icon, go to that page
+          $('body').on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
+            keyCode = e.keyCode || e.which;
+            if(keyCode === 13) {
+                window.location.href = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
+            }
+          }); // end keydown on icons
       } // end initKeyControls
-      
 }); // end require
