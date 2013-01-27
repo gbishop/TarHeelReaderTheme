@@ -193,7 +193,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
-          
+
           optionObj[option] = {prevValue: state.get(option), newValue: value};
           state.set(option, value);
           updateFavoritesPageUrl(optionObj);
@@ -233,7 +233,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
       function updateCheckedOptions() {
           var currentSettings = getCurrentSettings(),
               view;
-              
+
           $(".checked").removeClass("checked");
           // update the currently set options with a check mark next to them
           $(".speechOptions ." + currentSettings.speech).addClass("checked");
@@ -246,7 +246,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
           };
           $('.styleColors').replaceWith(templates.render('styleColor', view));
       }
-      
+
       function updateFavoritesPageUrl(optionsObject) {
           var url = window.location.href,
               innerObj;
@@ -259,7 +259,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
               window.location.href = url; // update the URl
           }
       }
-      
+
       function initKeyControls() {
           var menuState = {
                 index: -1,
@@ -280,21 +280,21 @@ require(["state", "controller", "templates"], function(state, controller, templa
             menuVisible = false,
             keyCode,
             selectedClassName = 'selectedLink';
-            
+
             // if ENTER is pressed on the well or gear icon, go to that page
             $body.on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
                 keyCode = e.keyCode || e.which;
                 if(keyCode === 13) {
-                   window.location.href = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
+                   window.location.href = $(this).is('.thr-well-icon') ? '/navigation/' : '/reading-controls/';
                 }
             }); // end keydown on icons
-            
+
             // initialize the menu state if we are on the navigation page
             $body.on('PageVisible', function() {
                 $navMenuLinks = $('.navigationMenu').children('li');
                 menuState.initState($navMenuLinks.length);
             });
-            
+
             $body.on('keydown', function(e) {
                 menuVisible = $(this).find('.navigationMenu').is(':visible');
                 keyCode = e.keyCode || e.which;
@@ -314,7 +314,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
                     return false;
                 }
             }); // end keydown on .navigationMenu
-          
+
       } // end initKeyControls
-      
+
 }); // end require
