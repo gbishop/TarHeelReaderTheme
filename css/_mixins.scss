@@ -104,7 +104,7 @@
         border-bottom: 0;
       }
 
-      & > a:focus, &:hover, &.selectedLink {
+      &:focus, &:hover, &.selectedLink {
         background: #FFF !important;
         color: $carolinaBlue;
       }
