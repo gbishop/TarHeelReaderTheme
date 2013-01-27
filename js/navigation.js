@@ -19,7 +19,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
                         white: 'fff',
                         yellow: 'ff0'
                     },
-                    getKeyByValue: function(category, value) { // function to color option by value
+                    getKeyByValue: function(category, value) { // function to retrieve option by value
                         var object = this[category];
                         for(var option in object) {
                            if(object.hasOwnProperty(option) ) {
@@ -31,15 +31,12 @@ require(["state", "controller", "templates"], function(state, controller, templa
           },
           defaultOptions = {
               voice: {
-                  prevValue: state.get("voice"),
                   newValue: options.speech.silent
               },
               pageColor: {
-                  prevValue: state.get("pageColor"),
                   newValue: options.colors.white
               },
               textColor: {
-                  prevValue: state.get("textColor"),
                   newValue: options.colors.black
               }
           };
@@ -49,7 +46,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
             currentSettings = getCurrentSettings(),
             pathname;
 
-        initNavKeybindings(); // initialize the keybindings for the menu
+        initKeyControls(); // initialize the keybindings for the menu/settings
 
         /*
          * Begin Navigation Code
@@ -83,12 +80,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
             $navigation.find(".secondaryNav").hide();
 
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
-        });
-
-        // hack for .find-page since we reuse this page
-        $body.on("PageRendered", ".find-page", function() {
-            $(this).find(".navigationMenu").show().end()
-                   .find(".mainSettings").hide();
         });
 
         $body.on("PageVisible", function() {
@@ -154,8 +145,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
         $body.on("click", ".speechOptions li > span, .pageColorsOptions li > span, .textColorsOptions li > span", function() {
             var $parent = $(this).parent(); // deal with the anchor's parent <li>
             changeSetting($parent, $parent.text().toLowerCase());
-            $(".find-page:visible").find(".navigationMenu").hide() // hack for find.page
-                                   .end().find(".hiddenContent").show();
             return false;
         });
 
@@ -171,12 +160,11 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
         // touchstart for touch-screen display
         $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
-          var $menu = $(".active-page .mainSettings");
-          if ($menu.is(":visible")) {
-            $menu.slideUp();
-            e.stopPropagation();
-            e.preventDefault();
-          }
+            var $menu = $(".active-page .mainSettings");
+            if ($menu.is(":visible")) {
+                $menu.slideUp();
+                return false;
+            }
         });
         /*
          * End Settings Code
@@ -205,6 +193,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
+          
           optionObj[option] = {prevValue: state.get(option), newValue: value};
           state.set(option, value);
           updateFavoritesPageUrl(optionObj);
@@ -271,239 +260,61 @@ require(["state", "controller", "templates"], function(state, controller, templa
           }
       }
       
-      // function for navigation via key bindings
-      function initNavKeybindings() {
-         var navState = {
-                  mainMenu: {
-                      index: 0,
-                      bounds: 0
-                  },
-                  subMenu: {
-                      index: 0,
-                      bounds: 0
-                  },
-                  innerSubMenu: {
-                      index: 0,
-                      bounds: 0
-                  },
-                  resetIndices: function() {
-                      for(var key in this) {
-                         if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
-                             this[key].index = this[key] === this.mainMenu ? -1 : 0;
-                         }
-                      }
-                  }, // end function
-                  decrementIndex: function(key) {
-                      if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
-                          this[key].index = (this[key].index == 0) ? this[key].bounds - 1 : this[key].index - 1;
-                      }
-                  }, // end function
-                  incrementIndex: function(key) {
-                      if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
-                          this[key].index = (this[key].index == this[key].bounds - 1) ? 0 : this[key].index + 1;
-                      }
-                  }, // end function
-                  getIndex: function(key) {
-                      if(this.hasOwnProperty(key) && typeof this[key] !== "function") {
-                          return this[key].index;
-                      }
-                  }, // end function
-                  setIndex: function(num, key) {
-                      if(!isNaN(num) && this.hasOwnProperty(key) && typeof this[key] !== "function") {
-                         this[key].index = num;
-                         return this; // to allow for cascading
-                     }
-                  }, // end function
-                  setBounds: function(num, key) {
-                     if(!isNaN(num) && this.hasOwnProperty(key) && typeof this[key] !== "function") {
-                         this[key].bounds = num;
-                         return this; // to allow for cascading
-                     }
-                  }
-              },
-              settingsState = {},
-              isNavMenuOpen,
-              isSubMenuOpen,
-              isInnerSubMenuOpen,
-              $openMenu,
-              openMenuState,
-              keyCode,
-              menuString,
-              selectorString,
-              selectedClassName = "selectedLink",
-              $mainMenuLink,
-              $submenuLink,
-              $innerSubmenuLink,
-              $submenu,
-              $innerSubmenu;
-
-          navState.resetIndices();
-          $.extend(true, settingsState, navState); // create the new object with deep copy
-
-          // open up navigation or settings menu on enter
-          $("body").on("keydown", ".thr-well-icon, .thr-settings-icon", function(e) {
-
-              keyCode = e.keyCode || e.which;
-              if(keyCode === 13) { // if enter is pressed on an icon, show menu
-                  var $this = $(this),
-                      $activePage = $(".active-page");
-
-                  if($this.is(":focus") && !($activePage.find(".navigationMenu").is(":visible")) &&
-                                            !($activePage.find(".mainSettings").is(":visible"))) {
-                      $this.find("img").trigger('click', 'keybind');
-                      if($this.is($(".thr-well-icon"))) {
-                         navState.resetIndices();
-                      } else if($this.is($(".thr-settings-icon"))){
-                         settingsState.resetIndices();
-                      }
-                      return false;
-                  }
-              }
-
-          }); // end on
-
-          $("body").on("keydown", function(e) {
-             keyCode = e.keyCode || e.which;
-             isNavMenuOpen = $(".active-page .navigationMenu").is(":visible");
-
-              // are any of the menus open?
-             if(isNavMenuOpen || $(".active-page .mainSettings").is(":visible")) {
-                if(isNavMenuOpen) { // decide which menu is open
-                    openMenuState = navState;
-                    $openMenu = $('.active-page .navigationMenu:visible');
-                    navState.setBounds($openMenu.children('li').length, 'mainMenu');
-
-                } else {
-                    openMenuState = settingsState;
-                    $openMenu = $('.active-page .mainSettings:visible');
-                    settingsState.setBounds($openMenu.children('li').length, 'mainMenu');
+      function initKeyControls() {
+          var menuState = {
+                index: -1,
+                numLinks: -1,
+                incrementIndex: function() {
+                    this.index = (this.index >= this.numLinks - 1) ? 0 : this.index + 1;
+                },
+                decrementIndex: function() {
+                    this.index = (this.index <= 0) ? this.numLinks - 1 : this.index - 1;
+                },
+                initState: function(numLinks) {
+                    this.numLinks = numLinks;
+                    this.index = -1;
                 }
-
-                isSubMenuOpen = $openMenu.find(".submenu").is(":visible");
-                if(isSubMenuOpen) {
-                    openMenuState.setBounds($(".submenu:visible > li").length, 'subMenu'); // set bounds
+            },
+            $navMenuLinks,
+            $body = $('body'),
+            menuVisible = false,
+            keyCode,
+            selectedClassName = 'selectedLink';
+            
+            // if ENTER is pressed on the well or gear icon, go to that page
+            $body.on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
+                keyCode = e.keyCode || e.which;
+                if(keyCode === 13) {
+                   window.location.href = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
                 }
-
-                isInnerSubMenuOpen = isSubMenuOpen && $openMenu.find(".submenu:visible .innerSubmenu").is(":visible");
-                if(isInnerSubMenuOpen) {
-                    openMenuState.setBounds($(".submenu:visible .innerSubmenu:visible > li").length, 'innerSubMenu');
+            }); // end keydown on icons
+            
+            // initialize the menu state if we are on the navigation page
+            $body.on('PageVisible', function() {
+                $navMenuLinks = $('.navigationMenu').children('li');
+                menuState.initState($navMenuLinks.length);
+            });
+            
+            $body.on('keydown', function(e) {
+                menuVisible = $(this).find('.navigationMenu').is(':visible');
+                keyCode = e.keyCode || e.which;
+                if(keyCode === 13 || keyCode === 32 || (keyCode >= 37 && keyCode <= 40) && menuVisible) { // Up Arrow: Previous Choice
+                    $('.' + selectedClassName).removeClass(selectedClassName);
+                    if(keyCode === 32 || keyCode === 39) { // Next Choice
+                        menuState.incrementIndex();
+                    } else if(keyCode === 38) { // Previous Choice
+                        menuState.decrementIndex();
+                    } else if(keyCode === 13 || keyCode === 40) { // Select Choice
+                        $navMenuLinks.eq(menuState.index)
+                                     .find('a')
+                                     .trigger('click');
+                    }
+                    $navMenuLinks.eq(menuState.index)
+                                 .addClass(selectedClassName);
+                    return false;
                 }
-
-                // handle the key events
-                if(keyCode === 38) { // Up Arrow: Previous Choice
-                    $("." + selectedClassName).removeClass(selectedClassName);
-
-                    if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
-                        menuString = "subMenu";
-                        selectorString = ".submenu:visible > li";
-                    } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .submenu and .innerSubmenu open
-                        menuString = "innerSubMenu";
-                        selectorString = "submenu:visible .innerSubmenu:visible > li";
-
-                    } else {
-                        openMenuState.decrementIndex('mainMenu');
-                        $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
-                                                .addClass("selectedLink");
-                        return false;
-                    }
-
-                    openMenuState.decrementIndex(menuString);
-                    $openMenu.children("li").find(selectorString)
-                                            .eq(openMenuState.getIndex(menuString))
-                                            .addClass(selectedClassName);
-
-                    return false;
-
-                 } else if(keyCode === 32 || keyCode === 39) { // Space/Right Arrow: Next Choice
-                    $("." + selectedClassName).removeClass(selectedClassName);
-
-                    if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
-                        menuString = "subMenu";
-                        selectorString = ".submenu:visible > li";
-                    } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .submenu and .innerSubmenu open
-                        menuString = "innerSubMenu";
-                        selectorString = ".submenu:visible .innerSubmenu:visible > li";
-
-                    } else {
-                        openMenuState.incrementIndex('mainMenu');
-                        $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
-                                                .addClass("selectedLink");
-                        return false;
-                    }
-
-                    openMenuState.incrementIndex(menuString);
-                    $openMenu.children("li").find(selectorString)
-                                            .eq(openMenuState.getIndex(menuString))
-                                            .addClass(selectedClassName);
-                    return false;
-
-                  } else if(keyCode === 37) { // Left Arrow: Back one level/Close menu
-
-                    $("." + selectedClassName).removeClass(selectedClassName);
-
-                    if(isSubMenuOpen && !isInnerSubMenuOpen) {
-                        $(".submenu").hide();
-                        openMenuState.setIndex(0, 'subMenu');
-                        $openMenu.children("li").eq(openMenuState.getIndex('mainMenu'))
-                                                .addClass(selectedClassName);
-
-                    } else if(isSubMenuOpen && isInnerSubMenuOpen) {
-                        $(".innerSubmenu").hide();
-                        openMenuState.setIndex(0, 'innerSubMenu');
-                        $openMenu.find(".submenu:visible > li").eq(openMenuState.getIndex('subMenu'))
-                                                                .addClass(selectedClassName);
-                    } else { // only mainMenu is open, hide it
-                       var $activePage = $(".active-page");
-                       if($openMenu.is($activePage.find(".mainNav")) || $openMenu.is($activePage.find(".secondaryNav"))) {
-                           $activePage.find(".thr-well-icon img").trigger("click");
-                       } else {
-                           $activePage.find(".thr-settings-icon img").trigger("click");
-                       }
-                    }
-
-                 } else if(keyCode === 13 || keyCode === 40) { // Enter or Down Arrow: Chooser
-                    $("." + selectedClassName).removeClass(selectedClassName);
-
-                    if(isSubMenuOpen && !isInnerSubMenuOpen) { // only .submenu open
-                        $submenuLink = $openMenu.children("li").find(".submenu:visible > li")
-                                                               .eq(openMenuState.getIndex('subMenu'));
-                        $innerSubmenu = $submenuLink.find(".innerSubmenu");
-
-                        if($innerSubmenu.length > 0) { // is there an innerSubmenu?
-                            $submenuLink.trigger('click'); // then click the link
-                            $innerSubmenu.children("li").first()
-                                                        .addClass(selectedClassName);
-                        } else {
-                            // if no .innerSubmenu exists, execute the action
-                            var $anchor = $submenuLink.find("a"),
-                                $element =  $anchor ? $anchor : $submenuLink.find("span");
-
-
-                            $element.trigger("click").parent().addClass(selectedClassName)
-
-                        }
-
-                    } else if(isSubMenuOpen && isInnerSubMenuOpen) { // both .innerSubmenu and .submenu are open, click it
-                        $(".innerSubmenu:visible > li").eq(openMenuState.getIndex("innerSubMenu"))
-                                                       .find("span").trigger("click")
-                                                       .parent().addClass(selectedClassName);
-
-                    } else { // only mainMenu is open
-                       var $mainMenuLink = $openMenu.children("li").eq(openMenuState.getIndex("mainMenu")),
-                           $submenu = $mainMenuLink.find(".submenu");
-
-
-                       if($submenu.length > 0) { // does the link have a submenu?
-                           $mainMenuLink.trigger("click");
-                           $submenu.find("li:first-child").addClass(selectedClassName);
-                       } else {
-                           $mainMenuLink.find("a").trigger("click")
-                                        .end().addClass(selectedClassName);
-                       }
-                    }
-                    return false;
-                 } // end Enter or Down Arrow key events
-              } // end isNavMenu open or isSettingsMenu open if
-          }); // end on keydown
-      } // end initNavKeyBinds
+            }); // end keydown on .navigationMenu
+          
+      } // end initKeyControls
+      
 }); // end require
