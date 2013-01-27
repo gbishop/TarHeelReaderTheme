@@ -25,9 +25,6 @@ define(["pubsub"], function() {
     };
 
     function onKeyDown(e) {
-        // so as to not interfere with navigation keybindings... a better solution? integrate nav key events with keyboard.js?
-        if($(".active-page .navigationMenu").is(":visible") || $(".active-page .mainSettings").is(":visible")) { return true; }
-
         var selector = e.data,
             selected = $(selector);
         if (!selector || selected.length === 0) return true;
