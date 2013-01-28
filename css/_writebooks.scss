@@ -27,6 +27,9 @@
       }
       select, input, button, label {
         display: inline-block;
+        &[name='audience'] {
+          width: auto;
+        }
       }
     }
 
@@ -100,10 +103,11 @@
     }
     
     .categories label {
-        white-space: nowrap;
-        width: 12em;
+        //white-space: nowrap;
+        width: 17em;
         float: left;
         margin-left: 2em;
+        word-wrap: break-word;
     }
     
     label {
