@@ -170,7 +170,7 @@ qq.getByClass = function(element, className){
     }
 
     var result = [];
-    console.log('element', element);
+    //console.log('element', element);
     var candidates = element.getElementsByTagName("*");
     var len = candidates.length;
 

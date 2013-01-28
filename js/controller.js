@@ -24,7 +24,7 @@ define([  "route",
         if ($this.is('a')) {
             // click on a link
             if ($this.attr('data-role') === 'back') {
-                console.log('going back');
+                //console.log('going back');
                 History.back();
                 event.preventDefault();
                 return false;
@@ -50,7 +50,7 @@ define([  "route",
                 url = action + '?' + $this.serialize();
 
             } else {
-                console.log('not hijaxing post');
+                //console.log('not hijaxing post');
                 return true;
             }
         }
@@ -59,7 +59,7 @@ define([  "route",
         if (event.which === 2 || event.metaKey || event.ctrlKey ||
             ( url.substring(0,rootUrl.length) !== rootUrl && url.indexOf(':') !== -1 ) ||
             url.indexOf('#') !== -1 ) {
-            console.log('not hijaxing', url);
+            //console.log('not hijaxing', url);
             return true;
         }
 
@@ -84,14 +84,14 @@ define([  "route",
         var hist = History.getState(),
             url = hist.url,
             context = hist.data;
-        console.log("State changed...", url, context);
+        //console.log("State changed...", url, context);
         renderUrl(url, context).then(function(title) {
             document.title = title;
         });
     }
 
     function renderUrl(url, context) {
-        console.log('renderUrl', url);
+        //console.log('renderUrl', url);
         var $pageReady = $.Deferred();
 
         // update my app internal state from the cookie and any query parameters
@@ -111,7 +111,7 @@ define([  "route",
                     url: url,
                     data: { ajax: 1 }, // signal this is a ajax request right in the URL
                     success: function(data, textStatus, jqXHR) {
-                        console.log('controller ajax gets data');
+                        //console.log('controller ajax gets data');
                         var $newPage = $(data),
                             cls = $newPage.attr('class'),
                             type = (cls && cls.match(/[-a-z]+-page/)[0]) || 'server-page',
@@ -130,7 +130,7 @@ define([  "route",
             }
             // now the deferred with be resolved when the page has been rendered either locally or from the server
             $render.then(function($newPage, options) {
-                console.log('newPage', $newPage);
+                //console.log('newPage', $newPage);
                 // transition to the new page
                 $newPage.trigger('PageRendered');
                 page.transitionTo($newPage, options).then(function($newPage, title) {
@@ -151,7 +151,7 @@ define([  "route",
         rootUrl = History.getRootUrl();
 
         $body.on('click', 'button.urlRetry', function(e) {
-            console.log('retry after error');
+            //console.log('retry after error');
             e.preventDefault();
             stateChange();
             return false;

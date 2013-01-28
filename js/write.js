@@ -28,7 +28,7 @@ define(['route',
             var $form = $page.find('.image-search');
             $form.submit(function(e) {
                 e.preventDefault();
-                console.log('submit');
+                //console.log('submit');
                 clearErrors();
                 $('.gallery-back,.gallery-more').button('disable');
                 $('.gallery').empty();
@@ -68,7 +68,7 @@ define(['route',
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
                 success: function (result) {
-                    console.log('success!', result);
+                    //console.log('success!', result);
                     var p = result.photos,
                         g = $('.gallery'),
                         gwidth = g.width(),
@@ -130,7 +130,7 @@ define(['route',
         }
 
         function fetchGallery(options) {
-            console.log('fetchGallery', options);
+            //console.log('fetchGallery', options);
             // TODO: set loading here
             galleryData = {
                 page: 1,
@@ -166,7 +166,7 @@ define(['route',
                     width = $img.attr('data-width'),
                     height = $img.attr('data-height'),
                     prop = width > height ? 'width' : 'height';
-                console.log('url is', url);
+                //console.log('url is', url);
                 // create the preview image with the same
                 var $dimg = $('<img />')
                     .attr('src', url.replace('_s', ''))
@@ -203,14 +203,14 @@ define(['route',
                             text: $('.wlAddToBook').html(),
                             click: function() {
                                 var $img = $(this).find('>img');
-                                console.log('img', $img);
+                                //console.log('img', $img);
                                 var page = {
                                     url: $img.attr('src').replace('_s', ''),
                                     width: $img.attr('data-width'),
                                     height: $img.attr('data-height'),
                                     text: ''
                                 };
-                                console.log('page', page);
+                                //console.log('page', page);
                                 addPage(page);
                                 // confirm the page creation in the dialog title
                                 $(this).dialog('option', 'title', $('.wlPageAdded').html());
@@ -266,7 +266,7 @@ define(['route',
         }
         // initialize book pages from an existing book
         function initializeBookState(book) {
-            console.log('initBook', book);
+            //console.log('initBook', book);
             $('input[name=title]').val(book.title);
             $('input[name=author]').val(book.author);
             $('select[name=language]').val(book.language);
@@ -284,7 +284,7 @@ define(['route',
         }
         // extract the books state from the controls
         function extractBookState() {
-            console.log('start extract');
+            //console.log('start extract');
 
             var book = {},
                 $write = $('.active-page.write-page');
@@ -329,7 +329,7 @@ define(['route',
             clearErrors();
             $('.save').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
-            console.log('book is', book);
+            //console.log('book is', book);
             $.ajax({
                 url: '/book-as-json/',
                 type: 'post',
@@ -340,7 +340,7 @@ define(['route',
                 },
                 dataType: 'json'
             }).then(function(nBook) {
-                console.log('post returns', nBook);
+                //console.log('post returns', nBook);
                 editId = nBook.ID;
                 $('.save').removeAttr('disabled'); // renable button
                 clearModified();
@@ -376,7 +376,7 @@ define(['route',
                 $('.publish').removeAttr('disabled');
                 return;
             }
-            console.log('publish', book);
+            //console.log('publish', book);
             $.ajax({
                 url: '/book-as-json/',
                 type: 'post',
@@ -387,7 +387,7 @@ define(['route',
                 },
                 dataType: 'json'
             }).then(function(nBook) {
-                console.log('post returns', nBook);
+                //console.log('post returns', nBook);
                 clearModified();
                 if (nBook.status == 'publish') {
                     controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
@@ -420,13 +420,13 @@ define(['route',
             });
             $editDialog.on('click', 'a.thr-back-link', function() {
                 editIndex -= 1;
-                console.log('prev', editIndex);
+                //console.log('prev', editIndex);
                 setupEditContent();
                 return false;
             });
             $editDialog.on('click', 'a.thr-next-link', function() {
                 editIndex += 1;
-                console.log('next', editIndex);
+                //console.log('next', editIndex);
                 setupEditContent();
                 return false;
             });
@@ -479,7 +479,7 @@ define(['route',
             var $wp = $('.write-pages li'); // the list of book pages
             var $page = $($wp.get(editIndex)); // the current page
             var $caption = $page.find('p.thr-caption');
-            console.log('saving', data.value, 'was', $caption.html());
+            //console.log('saving', data.value, 'was', $caption.html());
             $caption.html(data.value); // update the caption
             setModified();
         }
@@ -531,7 +531,7 @@ define(['route',
 
         // set the indicator that the book has been modified
         function setModified() {
-            console.log('setModified', isModified);
+            //console.log('setModified', isModified);
             if (!isModified) {
                 isModified = true;
                 $(window).on('beforeunload', warnModified);
@@ -612,7 +612,7 @@ define(['route',
                     allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
                     sizeLimit: 2 * 1024 * 1024,
                     onComplete: function(id, fileName, response) {
-                        console.log('upload complete', id, fileName, response);
+                        //console.log('upload complete', id, fileName, response);
                         if (response.success) {
                             var page = {
                                 url: response.url.replace(/.*\/uploads/, '/uploads'),

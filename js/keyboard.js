@@ -91,7 +91,7 @@ define(["pubsub"], function() {
     }
 
     function setKeyMap(selector, map) {
-        console.log('setKeyMap', selector, map);
+        //console.log('setKeyMap', selector, map);
         keyMap = {};
         for (var key in map) {
             var keys = key.split(' ');

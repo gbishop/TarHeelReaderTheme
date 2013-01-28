@@ -42,10 +42,10 @@ define(["route",
     }
 
     function renderBook(url, slug, pageNumber) {
-        console.log('renderBook', url, slug, pageNumber, this);
+        //console.log('renderBook', url, slug, pageNumber, this);
         // only render a book locally when the link has data-type=book
         if (!this || !this.data_type || this.data_type != 'book') {
-            console.log('renderBook rejects based on type');
+            //console.log('renderBook rejects based on type');
             return false; // it will get rendered by the host
         }
         var $def = $.Deferred();
@@ -157,7 +157,7 @@ define(["route",
     $(window).on('resizeEnd', function(e) {
         var $page = $('.active-page.thr-book-page');
         if ($page.length === 1) {
-            console.log('book resize');
+            //console.log('book resize');
             scalePicture($page);
         }
     });
@@ -236,7 +236,7 @@ define(["route",
     }
 
     function swipe(e, dx, dy) {
-        console.log('do swipe');
+        //console.log('do swipe');
         if (dx < 0) {
             nextPage();
         } else {
@@ -294,7 +294,7 @@ define(["route",
     });
 
     function configureBook(url, slug, pageNumber) {
-        console.log('configureBook', url, slug, pageNumber);
+        //console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         if (!$page.is('.thr-book-page')) {
             console.log('not book page, no configure');
