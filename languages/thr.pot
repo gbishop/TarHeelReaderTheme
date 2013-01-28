@@ -735,6 +735,10 @@ msgctxt "books that may not be appropriate for all readers"
 msgid "Rated C/Caution"
 msgstr ""
 
+# templates/write.html:86
+msgid "Beginning Literacy Framework Type"
+msgstr ""
+
 # templates/write.html:89
 msgid "Transitional"
 msgstr ""
