@@ -77,14 +77,13 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 templates.setLocale().then(function() {
                     $contentWrap.wrapInner("<div class='hiddenContent' />")
                                 .prepend(templates.render('navigation', null));
+                    $(".active-page").find(".navigationMenu")
+                                     .hide()
+                                     .slideDown()
+                                     .end()
+                                     .find(".hiddenContent")
+                                     .fadeOut(200);
                 }); // end then()
-
-                $(".active-page").find(".navigationMenu")
-                                 .hide()
-                                 .slideDown()
-                                 .end()
-                                 .find(".hiddenContent")
-                                 .fadeOut(200);
 
             } else if(!$navigation.is(":visible")) {
                 $hiddenContent.fadeOut(function() {

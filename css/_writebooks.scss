@@ -46,6 +46,7 @@
         .categorizeButton {
           width: auto;
           margin-left: 0.25em;
+          margin-top: 0.25em;
         }
     }
 
@@ -103,16 +104,15 @@
     }
     
     .categories label {
-        //white-space: nowrap;
-        width: 17em;
+        width: 12em;
         float: left;
-        margin-left: 2em;
+        margin-bottom: 1em;
+        height: 2em;
         word-wrap: break-word;
     }
     
     label {
-        white-space: nowrap;
-        line-height: 2.5em;
+        line-height: 1.2em;
         margin: 0 0.5em;
     }
     
