@@ -27,7 +27,15 @@ require(["state", "controller", "templates"], function(state, controller, templa
                                     return option;
                              }
                         }
-                    }
+                    },
+                    getOptionByValue: function(category, selectedOption) {
+                        for(option in this[category]) {
+                            if(option === selectedOption) {
+                                return this[category][option];
+                            }
+                        }
+                        return null;  
+                    }           
           },
           defaultOptions = {
               voice: {
@@ -62,11 +70,14 @@ require(["state", "controller", "templates"], function(state, controller, templa
             e.preventDefault();
             var $contentWrap = $(".active-page .content-wrap"),
                 $navigation = $contentWrap.find(".navigationMenu"),
-                $hiddenContent = $contentWrap.find(".hiddenContent");
+                $hiddenContent = $contentWrap.find(".hiddenContent"),
+                templateName = 'navigation';
 
             if($navigation.length === 0) { // nav doesn't exist, load it
-                $contentWrap.wrapInner("<div class='hiddenContent' />")
-                            .prepend(templates.render('navigation', null));
+                templates.setLocale().then(function() {
+                    $contentWrap.wrapInner("<div class='hiddenContent' />")
+                                .prepend(templates.render('navigation', null));
+                }); // end then()
 
                 $(".active-page").find(".navigationMenu")
                                  .hide()
@@ -150,8 +161,8 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
         // the user is changing a setting, adjust settings and update accordingly
         $body.on("click", ".speechOptions li > span, .pageColorsOptions li > span, .textColorsOptions li > span", function() {
-            var $parent = $(this).parent(); // deal with the anchor's parent <li>
-            changeSetting($parent, $parent.text().toLowerCase());
+            var $this = $(this);
+            changeSetting($this.parent(), $this.attr('class').toLowerCase().replace('.', ''));
             return false;
         });
 
@@ -187,15 +198,15 @@ require(["state", "controller", "templates"], function(state, controller, templa
               currentSettings = getCurrentSettings();
 
           if(parentClass === "speechoptions") { // which option are we dealing with?
-              value = getOptionValue("speech", text);
+              value = options.getOptionByValue("speech", text);
               option = "voice";
 
           } else if(parentClass === "pagecolorsoptions") {
-              value = getOptionValue("colors", text);
+              value = options.getOptionByValue("colors", text);
               option = "pageColor";
 
           } else if(parentClass === "textcolorsoptions") {
-              value = getOptionValue("colors", text);
+              value = options.getOptionByValue("colors", text);
               option = "textColor";
           } else { // not a valid option, return
               return;
@@ -216,15 +227,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
          }
       }
 
-      function getOptionValue(category, selectedOption) {
-          for(option in options[category]) {
-              if(option === selectedOption) {
-                  return options[category][option];
-              }
-          }
-          return null;
-      }
-
       function resetSettings() {
           var currentSettings = getCurrentSettings();
           // set default options
@@ -243,7 +245,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
           $(".checked").removeClass("checked");
           // update the currently set options with a check mark next to them
-          $(".speechOptions ." + currentSettings.speech).addClass("checked");
+          $(".speechOptions ." + options.getKeyByValue("speech", currentSettings.speech)).addClass("checked");
           $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
           $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
           // update the color stylesheet in the head
