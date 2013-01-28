@@ -37,7 +37,7 @@
 .thr-well-icon, .thr-settings-icon, .thr-favorites-icon {
     position: absolute;
     top: 0.65em;
-    z-index: 2;
+    z-index: 10;
 
     width: 2.5em;
     min-width: 24px;
@@ -374,7 +374,7 @@
     padding: 0;
     margin: 0;
     width: 12em;
-    z-index: 100;
+    z-index: 10;
 
     -webkit-border-radius: 0.25em 0.4em 0.4em 0.25em;
     -moz-border-radius: 0.25em 0.4em 0.4em 0.25em;
@@ -423,7 +423,7 @@
         display: none;
         top: -1px;
         right: 12.05em;
-        z-index: 999;
+        z-index: 10;
         list-style: none;
 
         width: 12em;
@@ -464,7 +464,7 @@
             -moz-border-radius: 0.5em 0 0 0.5em;
             border-radius: 0.5em 0 0 0.5em;
             border: 1px solid #EFEFEF;
-            z-index: 999;
+            z-index: 10;
 
             span {
               text-align: left;
