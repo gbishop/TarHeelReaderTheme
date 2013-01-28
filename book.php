@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $publish = getParam('publish', 'false', '/false|true/', 'post');
     $content = json_decode(getParam('book', '', null, 'post'), true);
     // validate user
-    if (!is_user_logged_in() || !current_user_can('publish_posts') || ($id && !current_user_can('edit_posts', $id))) {
+    if (!is_user_logged_in() || !current_user_can('publish_posts') || ($id && !current_user_can('edit_post', $id))) {
         header("HTTP/1.0 401 Not Authorized");
         die();
     }
