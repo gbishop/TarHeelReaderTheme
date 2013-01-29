@@ -1,9 +1,4 @@
 .ie6-7 {
     .decoratedList li { overflow: hidden; }
     .thr-colors a { text-decoration: none; }
-    .front-page.favoriteYes .thr-favorites-icon, .front-page.favoriteNo .thr-favorites-icon { background: none !important; }
-}
-
-.ie8 {
-    .js .find-page .thr-favorites-icon, .js .favorites-page .thr-favorites-icon, .front-page.favoriteYes .thr-favorites-icon, .front-page.favoriteNo .thr-favorites-icon { background: none !important; }
 }
