@@ -13,7 +13,7 @@
 /*global jQuery, window, document, setTimeout, clearTimeout */
 
 define([], function () {
-    'use strict';
+    //'use strict';
 
     // The Image Gallery plugin makes use of jQuery's delegate method to attach
     // a click event handler for all child elements matching a selector,

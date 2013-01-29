@@ -7,7 +7,7 @@
 
 // Closure
 define(['history', 'history.html4'], function(){
-	"use strict";
+	//"use strict";
 
 	// Localise Globals
 	var
