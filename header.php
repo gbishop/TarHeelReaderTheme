@@ -5,14 +5,6 @@
 <!--[if IE 8 ]>    <html class="ie ie8 no-js" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie ie9 no-js" <?php language_attributes(); ?>> <![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
-<!-- the "no-js" class is for Modernizr. -->
-
-<!-- Small hack for favorites-icon in IE8 and below -->
-<!--[if lte IE 8]>
-<style>
-	.js .find-page .thr-favorites-icon, .js .favorites-page .thr-favorites-icon, .front-page.favoriteYes .thr-favorites-icon, .front-page.favoriteNo .thr-favorites-icon { background: none !important; }
-</style>
-<![endif]-->
 
 <head>
 
