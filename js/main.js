@@ -9,13 +9,19 @@ require([ "route",
           "help",
           "yourbooks"
           ],
-    function(route, state) {
+    function(route, state, controller) {
         $(function() {
             var url = window.location.href,
                 $page = $('.active-page');
-            // run any configure hooks
-            $page.trigger('PageRendered');
-            route.go('init', url, $page);
-            $page.trigger('PageVisible');
+            if (url != window.History.getRootUrl) {
+                // ie refresh hack
+                url = url.replace('#', '');
+                controller.stateChange();
+            } else {
+                // run any configure hooks
+                $page.trigger('PageRendered');
+                route.go('init', url, $page);
+                $page.trigger('PageVisible');
+            }
         });
     });
