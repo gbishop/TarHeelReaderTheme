@@ -7,12 +7,7 @@
         {{^ID}}
         <a href="/reading-controls/" class="thr-settings-icon" title="_(Settings|icon explanatory text)"><img src="/theme/images/settings.png" alt="settings"/></a>
         {{/ID}}
-        {{#setFavorite}}
-        <a href="{{{setFavorite}}}" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"></a>
-        {{/setFavorite}}
-        {{^setFavorite}}
-        <a href="" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"></a>
-        {{/setFavorite}}
+        <a href="{{{setFavorite}}}" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"><img class="favoriteNoIcon" src="/theme/images/FavoriteNoIcon.png" /><img class="favoriteYesIcon" src="/theme/images/FavoriteYesIcon.png" /></a>
         <h1><a href="/" tabindex="-1" title="_(Books for beginning readers of all ages|site sub-heading)">_(Tar Heel Reader|site name)</a></h1>
 		<!-- Begin mainSettings Panel -->
 		<ul class="mainSettings">

@@ -491,28 +491,16 @@ h2 {
   }
 }
 
-.js .find-page .thr-favorites-icon, .js .favorites-page .thr-favorites-icon {
+.js .find-page .favoriteYesIcon, .js .favorites-page .favoriteYesIcon {
   display: block;
-  background-image: url('/theme/images/FavoriteYesIcon.png');
-  background-size: contain;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale')";
 }
 
-.front-page.favoriteYes .thr-favorites-icon {
+.front-page.favoriteYes .favoriteYesIcon {
   display: block;
-  background-image: url('/theme/images/FavoriteYesIcon.png');
-  background-size: contain;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteYesIcon.png',sizingMethod='scale')";
 }
 
-.front-page.favoriteNo .thr-favorites-icon {
+.front-page.favoriteNo .favoriteNoIcon {
   display: block;
-  background-image: url('/theme/images/FavoriteNoIcon.png');
-  background-size: contain;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteNoIcon.png',sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/theme/images/FavoriteNoIcon.png',sizingMethod='scale')";
 }
 
 .js .thr-pic {  // hide the picture initially when javascript is enabled so we can size it without a jump
