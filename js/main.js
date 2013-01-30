@@ -1,21 +1,20 @@
-require([ "route",
-          "state",
-          "controller",
-          "find",
-          "read",
-          "write",
-          "busy",
-          "navigation",
-          "help",
-          "yourbooks"
-          ],
+require([
+    "route",
+    "state",
+    "controller",
+    "find",
+    "read",
+    "write",
+    "busy",
+    "navigation",
+    "help",
+    "yourbooks"],
     function(route, state, controller) {
         $(function() {
             var url = window.location.href,
                 $page = $('.active-page');
-            if (url != window.History.getRootUrl) {
+            if (url.indexOf('#') > -1) {
                 // ie refresh hack
-                url = url.replace('#', '');
                 controller.stateChange();
             } else {
                 // run any configure hooks
