@@ -83,8 +83,22 @@ define([  "route",
         // handle changes in the URL
         var hist = History.getState(),
             url = hist.url,
+            bar = window.location.href,
             context = hist.data;
         //console.log("State changed...", url, context);
+        if (url != bar && bar.indexOf('#') > -1) {
+            //console.log('bar = ', bar);
+            // I think we only get here in IE8
+            // hack for hash mode urls
+            var root = History.getRootUrl(),
+                hashIndex = bar.indexOf('#');
+            if (root != bar.slice(0, hashIndex)) {
+                // try to fix the url
+                url = root + bar.slice(hashIndex);
+                //console.log('new url =', url);
+                window.location.href = url;
+            }
+        }
         renderUrl(url, context).then(function(title) {
             document.title = title;
         });
