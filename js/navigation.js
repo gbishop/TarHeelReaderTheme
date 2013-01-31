@@ -54,7 +54,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
             currentSettings = getCurrentSettings(),
             pathname;
 
-        initKeyControls(); // initialize the keybindings for the menu/settings
+        initKeyControls(); // initialize the key bindings for the menu/settings
         
         // Take favorites-icon out of the tab order in .find-page and .favorites-page for now
         $body.on('PageRendered', '.find-page, .favorites-page', function() {
@@ -70,13 +70,13 @@ require(["state", "controller", "templates"], function(state, controller, templa
             e.preventDefault();
             var $contentWrap = $(".active-page .content-wrap"),
                 $navigation = $contentWrap.find(".navigationMenu"),
-                $hiddenContent = $contentWrap.find(".hiddenContent"),
-                templateName = 'navigation';
-
+                $hiddenContent = $contentWrap.find(".hiddenContent");
+                
             if($navigation.length === 0) { // nav doesn't exist, load it
                 templates.setLocale().then(function() {
                     $contentWrap.wrapInner("<div class='hiddenContent' />")
                                 .prepend(templates.render('navigation', null));
+                                
                     $(".active-page").find(".navigationMenu")
                                      .hide()
                                      .slideDown()
@@ -84,7 +84,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
                                      .find(".hiddenContent")
                                      .fadeOut(200);
                 }); // end then()
-
             } else if(!$navigation.is(":visible")) {
                 $hiddenContent.fadeOut(function() {
                     $navigation.slideDown();
