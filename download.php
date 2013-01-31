@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $type = getParam('type', '', '/pptx|epub/');
     $book = ParseBookPost($post);
 
-    BuG("type=$type");
+    //BuG("type=$type");
     if ($type == 'pptx') {
         CreatePPTXFromBook($book);
     } elseif ($type == 'epub') {

@@ -7,7 +7,7 @@
  */
 
 (function(window,undefined){
-	"use strict";
+	//"use strict";
 
 	// ========================================================================
 	// Initialise

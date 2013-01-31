@@ -16,7 +16,7 @@ define(['jquery.ui.touch-punch'], function() {
                     position: [offset.left - tw - 20, offset.top],
                     width: tw
                 });
-                console.log('help', $tip);
+                //console.log('help', $tip);
         });
     });
     return {};

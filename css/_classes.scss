@@ -66,7 +66,9 @@
 }
 
 .thr-favorites-icon {
-    display: none;
+    img.favoriteYesIcon, img.favoriteNoIcon {
+      display: none;
+    }
     right: 5em;
     opacity: 0.6;
     &:hover {
@@ -283,7 +285,7 @@
         font-size: 1.5em;
         line-height: 2em;
         text-align: left;
-        
+
         &:focus {
           color: $carolinaBlue;
         }
@@ -341,21 +343,21 @@
           background: url(/theme/images/my_book.png) 0.75em center no-repeat;
           &:focus {
             background: url(/theme/images/my_book.png) 0.75em center no-repeat, #FFF;
-          }          
+          }
         }
 
         &.blogLink {
           background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat;
           &:focus {
             background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat, #FFF;
-          }  
+          }
         }
 
         &.photoCreditsLink {
           background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat;
           &:focus {
             background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat, #FFF;
-          }  
+          }
         }
 
       } // end a

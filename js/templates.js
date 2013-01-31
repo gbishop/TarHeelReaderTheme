@@ -24,6 +24,8 @@ define([ "state",
             function completeSearchForm() {
                 // flesh out the searchForm data with categories and language
                 var searchD = getTemplate('searchForm');
+                // only do this work once
+                if ('completed' in searchD) return;
                 for (var j=0; j<searchD.controls.length; j++) {
                     var control = searchD.controls[j];
                     if (control.name == 'category') {
@@ -32,6 +34,7 @@ define([ "state",
                         control.options = getTemplate('languages');
                     }
                 }
+                searchD.completed = true;
             }
             function searchForm() {
                 var searchD = getTemplate('searchForm');

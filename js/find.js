@@ -33,7 +33,7 @@ define([ "route",
 
     // handle find locally
     function findRender(url, query) {
-        console.log('findRender', url);
+        //console.log('findRender', url);
         var view = {},
             $def = $.Deferred();
         // record the state so we can come back here
@@ -163,7 +163,7 @@ define([ "route",
                 link = selected;
             else
                 link = selected.find('a');
-            console.log('clicking', link);
+            //console.log('clicking', link);
             link.click();
         }
     });
@@ -184,10 +184,10 @@ define([ "route",
         // setup the show search button for small screens
         var $page = $(this);
         var $form = $page.find('.searchForm');
-        console.log('findConfigure', $page);
+        //console.log('findConfigure', $page);
         $form.submit(function(){ $('input:focus').blur(); });
         $page.find('a.searchShowButton').click(function(e){
-            console.log('click');
+            //console.log('click');
             e.preventDefault();
             //$form.slideDown('fast');
             $form.show();
@@ -211,7 +211,7 @@ define([ "route",
         return {title: 'Find - Tar Heel Reader', colors: true};
     }
     $(document).on('click', '.chooseFavorites img.favoriteNo, .chooseFavorites img.favoriteYes', function(ev) {
-        console.log('favorite click', ev);
+        //console.log('favorite click', ev);
         var $li = $(ev.target).parent('li'),
             id = $li.attr('data-id');
         if ($li.hasClass('favoriteNo')) {
@@ -223,7 +223,7 @@ define([ "route",
         }
     });
     $(document).on('click', '.find-page .thr-favorites-icon, .favorites-page .thr-favorites-icon', function(ev) {
-        console.log('click favorites icon');
+        //console.log('click favorites icon');
         $('.active-page').toggleClass('chooseFavorites');
         ev.preventDefault();
     });

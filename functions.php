@@ -229,6 +229,7 @@ function ParseBookPost($post) {
     global $wpdb, $search_table;
 
     $id = $post->ID;
+    $author_id = $post->post_author;
 
     $content = $post->post_content;
     $row = $wpdb->get_row("SELECT * from $search_table WHERE ID = $id");
@@ -259,7 +260,6 @@ function ParseBookPost($post) {
                 break;
             }
         }
-        $author_id = $post->post_author;
         $author = trim(get_post_meta($id, 'author_pseudonym', true));
         if (!$author) {
             $authordata = get_userdata($author_id);
@@ -303,7 +303,6 @@ function ParseBookPost($post) {
         }
         $res = array('title'=>$title,
                      'author'=>$author,
-                     'author_id'=>$author_id,
                      'type'=>$type,
                      'audience'=>$audience,
                      'reviewed'=>$reviewed,
@@ -313,6 +312,7 @@ function ParseBookPost($post) {
                      'pages'=>$pages);
     }
 
+    $res['author_id'] = $author_id;
     $res['status'] = $post->post_status;
 
     $rating_count = get_post_meta($id, 'book_rating_count', true);

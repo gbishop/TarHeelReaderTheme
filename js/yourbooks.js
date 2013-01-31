@@ -52,7 +52,7 @@ define([
 
     // enable save and update buttons after text changes and is legal
     function initYourBooks(url, query) {
-        console.log('initYourBooks');
+        //console.log('initYourBooks');
         $('.active-page .collectionsList input').on('keyup', function(event) {
             var $this = $(this),
                 $div = $this.parent('div'),
