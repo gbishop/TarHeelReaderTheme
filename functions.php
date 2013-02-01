@@ -628,6 +628,13 @@ function removeHeadLinks() {
 add_action('init', 'removeHeadLinks');
 add_filter( 'show_admin_bar', '__return_false' ); // disable the wordpress bar
 
+// remove pingback header
+function remove_x_pingback($headers) {
+    unset($headers['X-Pingback']);
+    return $headers;
+}
+add_filter('wp_headers', 'remove_x_pingback');
+
 function fixupLogInOut($link) {
     return str_replace('<a ', '<a class="no-ajaxy" ', $link);
 }
