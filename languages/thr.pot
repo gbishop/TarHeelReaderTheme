@@ -214,14 +214,22 @@ msgstr ""
 msgid "No books found. Try another search."
 msgstr ""
 
-# templates/bookList.html:22
+# templates/bookList.html:22, templates/bookList.html:22
 msgctxt "icon explanatory text"
 msgid "Reviewed for educational quality."
 msgstr ""
 
-# templates/bookList.html:26
+# templates/bookList.html:26, templates/bookList.html:26
 msgctxt "icon explanatory text"
 msgid "May not be appropriate for all readers."
+msgstr ""
+
+# templates/bookList.html:35
+msgid "In favorites"
+msgstr ""
+
+# templates/bookList.html:36, templates/heading.html:10
+msgid "Not in favorites"
 msgstr ""
 
 # templates/bookPage.html:14
@@ -386,12 +394,12 @@ msgstr ""
 msgid "Latest Announcements"
 msgstr ""
 
-# templates/heading.html:3
+# templates/heading.html:3, templates/heading.html:3
 msgctxt "icon explanatory text"
 msgid "Open Menu"
 msgstr ""
 
-# templates/heading.html:5, templates/heading.html:8
+# templates/heading.html:5, templates/heading.html:5, templates/heading.html:8, templates/heading.html:8
 msgctxt "icon explanatory text"
 msgid "Settings"
 msgstr ""
@@ -399,6 +407,10 @@ msgstr ""
 # templates/heading.html:10
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
+msgstr ""
+
+# templates/heading.html:10, templates/navigation.html:20
+msgid "Favorites"
 msgstr ""
 
 # templates/heading.html:11
@@ -543,10 +555,6 @@ msgstr ""
 
 # templates/navigation.html:8
 msgid "Home"
-msgstr ""
-
-# templates/navigation.html:20
-msgid "Favorites"
 msgstr ""
 
 # templates/navigation.html:28
