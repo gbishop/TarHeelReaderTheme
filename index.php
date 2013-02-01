@@ -27,10 +27,8 @@
 		<div class="next-posts"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
 	</div>
 
-	<?php else : ?>
-
-		<h2>Not Found</h2>
-
-	<?php endif; ?>
+	<?php else :
+		echo template_render('navigation', array('notfound'=>true));
+	endif; ?>
 
 <?php thr_footer(true, true); ?>
