@@ -98,6 +98,7 @@ define([  "route",
                 window.location.href = url;
             }
         }
+        _gaq.push(['_trackPageview', url.replace(rootUrl, '/')]);
         renderUrl(url, context).then(function(title) {
             document.title = title;
         });
