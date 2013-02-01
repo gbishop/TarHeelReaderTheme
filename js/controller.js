@@ -90,15 +90,15 @@ define([  "route",
             //console.log('bar = ', bar);
             // I think we only get here in IE8
             // hack for hash mode urls
-            var root = History.getRootUrl(),
-                hashIndex = bar.indexOf('#');
-            if (root != bar.slice(0, hashIndex)) {
+            var hashIndex = bar.indexOf('#');
+            if (rootUrl != bar.slice(0, hashIndex)) {
                 // try to fix the url
-                url = root + bar.slice(hashIndex);
+                url = rootUrl + bar.slice(hashIndex);
                 //console.log('new url =', url);
                 window.location.href = url;
             }
         }
+        _gaq.push(['_trackPageview', url.replace(rootUrl, '/')]);
         renderUrl(url, context).then(function(title) {
             document.title = title;
         });
