@@ -297,7 +297,7 @@ msgstr ""
 msgid "Average Rating"
 msgstr ""
 
-# templates/collections.html:1, templates/navigation.html:12
+# templates/collections.html:1, templates/navigation.html:16
 msgid "Collections"
 msgstr ""
 
@@ -366,11 +366,11 @@ msgstr ""
 msgid "Ready to get started?"
 msgstr ""
 
-# templates/frontPage.html:15, templates/navigation.html:8
+# templates/frontPage.html:15, templates/navigation.html:12
 msgid "Find a book"
 msgstr ""
 
-# templates/frontPage.html:16, templates/navigation.html:20
+# templates/frontPage.html:16, templates/navigation.html:24
 msgid "Write a book"
 msgstr ""
 
@@ -533,31 +533,39 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
+# templates/navigation.html:3
+msgid "Error 404: Page Not Found"
+msgstr ""
+
 # templates/navigation.html:4
+msgid "We could not find the page you requested. Perhaps the links below will help you find the page you wanted."
+msgstr ""
+
+# templates/navigation.html:8
 msgid "Home"
 msgstr ""
 
-# templates/navigation.html:16
+# templates/navigation.html:20
 msgid "Favorites"
 msgstr ""
 
-# templates/navigation.html:24
+# templates/navigation.html:28
 msgid "Log in"
 msgstr ""
 
-# templates/navigation.html:28
+# templates/navigation.html:32
 msgid "Help"
 msgstr ""
 
-# templates/navigation.html:32
+# templates/navigation.html:36
 msgid "Your books"
 msgstr ""
 
-# templates/navigation.html:36
+# templates/navigation.html:40
 msgid "Announcements"
 msgstr ""
 
-# templates/navigation.html:40
+# templates/navigation.html:44
 msgid "Photo credits"
 msgstr ""
 
