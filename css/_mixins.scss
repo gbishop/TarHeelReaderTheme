@@ -43,7 +43,7 @@
     -moz-transition: all $transitionDuration ease-in;
     transition: all $transitionDuration ease-in;
 
-    &:hover {
+    .no-touch &:hover {
       background: $transitionBackgroundColor;
       color: $transitionColor;
     }
