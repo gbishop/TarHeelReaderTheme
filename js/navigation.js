@@ -54,7 +54,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
             currentSettings = getCurrentSettings(),
             pathname;
 
-        initKeyControls(); // initialize the keybindings for the menu/settings
+        initKeyControls(); // initialize the key bindings for the menu/settings
         
         // Take favorites-icon out of the tab order in .find-page and .favorites-page for now
         $body.on('PageRendered', '.find-page, .favorites-page', function() {
@@ -65,18 +65,20 @@ require(["state", "controller", "templates"], function(state, controller, templa
         /*
          * Begin Navigation Code
          */
-        // not(.navigation) because toggling navigation on the navigation page doesn't make sense
-        $body.on("click", "div:not(.navigation) > header .thr-well-icon img", function(e, data) {
-            e.preventDefault();
+         $body.on("click", ".thr-well-icon img", function(e, data) {
+            // toggling navigation on the navigation page doesn't make sense (IE8 fix: IE8 doesn't like :not selector)
+            var $navPage = $("body > div.navigation");
+            if($navPage.length !== 0 && $navPage.hasClass("active-page")) { return false; } 
+            
             var $contentWrap = $(".active-page .content-wrap"),
                 $navigation = $contentWrap.find(".navigationMenu"),
-                $hiddenContent = $contentWrap.find(".hiddenContent"),
-                templateName = 'navigation';
+                $hiddenContent = $contentWrap.find(".hiddenContent");
 
             if($navigation.length === 0) { // nav doesn't exist, load it
                 templates.setLocale().then(function() {
                     $contentWrap.wrapInner("<div class='hiddenContent' />")
                                 .prepend(templates.render('navigation', null));
+                                
                     $(".active-page").find(".navigationMenu")
                                      .hide()
                                      .slideDown()
@@ -84,7 +86,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
                                      .find(".hiddenContent")
                                      .fadeOut(200);
                 }); // end then()
-
             } else if(!$navigation.is(":visible")) {
                 $hiddenContent.fadeOut(function() {
                     $navigation.slideDown();
@@ -210,7 +211,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
-
           optionObj[option] = {prevValue: state.get(option), newValue: value};
           state.set(option, value);
           updateFavoritesPageUrl(optionObj);
@@ -257,24 +257,26 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
       function updateFavoritesPageUrl(optionsObject) {
           var url = window.location.href,
-              innerObj;
+              innerObj,
+              $favPage = $(".favorites-page");
           // need to modify the URL here if we are on the favorites page
-          if(window.location.search.indexOf("favorites") !== -1) {
+          if($favPage.length !== 0 && $favPage.hasClass("active-page")) {
               for(var option in optionsObject) {
                   innerObj = optionsObject[option];
                   url = url.replace(option + "=" + innerObj.prevValue, option + "=" + innerObj.newValue);
               }
-              window.location.href = url; // update the URl
+              window.location.href = url;
           }
       }
 
       function initKeyControls() {
-          var keyCode;
+          var keyCode,
+              url;
           // if ENTER is pressed on the well or gear icon, go to that page
           $('body').on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
             keyCode = e.keyCode || e.which;
             if(keyCode === 13) {
-                window.location.href = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
+                window.location.url = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
             }
           }); // end keydown on icons
       } // end initKeyControls
