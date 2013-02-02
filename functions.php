@@ -641,6 +641,16 @@ function fixupLogInOut($link) {
 add_filter('loginout', 'fixupLogInOut');
 add_filter('register', 'fixupLogInOut');
 
+// fix the email return address
+function thr_mail_from($addr) {
+    return "tarheelreader@cs.unc.edu";
+}
+function thr_mail_from_name($name) {
+    return "Tar Heel Reader";
+}
+add_filter('wp_mail_from', 'thr_mail_from');
+add_filter('wp_mail_from_name', 'thr_mail_from_name');
+
 // I suddenly started getting redirect loops when accessing / this seems to fix it.
 remove_filter('template_redirect', 'redirect_canonical');
 
