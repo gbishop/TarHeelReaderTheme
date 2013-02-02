@@ -38,15 +38,9 @@ require(["state", "controller", "templates"], function(state, controller, templa
                     }           
           },
           defaultOptions = {
-              voice: {
-                  newValue: options.speech.silent
-              },
-              pageColor: {
-                  newValue: options.colors.white
-              },
-              textColor: {
-                  newValue: options.colors.black
-              }
+              voice: options.speech.silent,
+              pageColor: options.colors.white,
+              textColor: options.colors.black
           };
 
     $(function() {
@@ -193,7 +187,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
           var parentClass = $element.parent().attr("class").toLowerCase()
                                              .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
               value,
-              optionObj = {},
               option = "",
               currentSettings = getCurrentSettings();
 
@@ -211,10 +204,8 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
-          optionObj[option] = {prevValue: state.get(option), newValue: value};
           state.set(option, value);
-          updateFavoritesPageUrl(optionObj);
-          controller.stateChange(); // update the page
+          updateFavoritesPageUrl();
           updateCheckedOptions(); // update the check marks next to the currently selected options
       }
 
@@ -230,11 +221,9 @@ require(["state", "controller", "templates"], function(state, controller, templa
           var currentSettings = getCurrentSettings();
           // set default options
           for(var option in defaultOptions) {
-              defaultOptions[option].prevValue = currentSettings[option]; // update previous value
-              state.set(option, defaultOptions[option].newValue);
+              state.set(option, defaultOptions[option]);
           }
-          updateFavoritesPageUrl(defaultOptions); // update the url if we are on the favorites page
-          controller.stateChange();
+          updateFavoritesPageUrl(); // update the url if we are on the favorites page
           updateCheckedOptions();
       }
 
@@ -255,17 +244,14 @@ require(["state", "controller", "templates"], function(state, controller, templa
           $('.styleColors').replaceWith(templates.render('styleColor', view));
       }
 
-      function updateFavoritesPageUrl(optionsObject) {
-          var url = window.location.href,
-              innerObj,
-              $favPage = $(".favorites-page");
+      function updateFavoritesPageUrl() {
+          var $favPage = $(".favorites-page");
+              
           // need to modify the URL here if we are on the favorites page
           if($favPage.length !== 0 && $favPage.hasClass("active-page")) {
-              for(var option in optionsObject) {
-                  innerObj = optionsObject[option];
-                  url = url.replace(option + "=" + innerObj.prevValue, option + "=" + innerObj.newValue);
-              }
-              window.location.href = url;
+              window.location.href = '/favorites/';
+          } else {
+              controller.stateChange();
           }
       }
 
