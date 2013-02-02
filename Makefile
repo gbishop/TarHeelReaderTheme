@@ -16,9 +16,9 @@ build: Templates.en.json Templates.de.json
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-copygb:
+copyameem:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
-	launch.py http://gbserver3.cs.unc.edu/
+	#launch.py http://gbserver3.cs.unc.edu/
 
 copygba:
 	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3
