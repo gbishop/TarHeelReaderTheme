@@ -394,12 +394,12 @@ msgstr ""
 msgid "Latest Announcements"
 msgstr ""
 
-# templates/heading.html:3, templates/heading.html:3
+# templates/heading.html:3
 msgctxt "icon explanatory text"
 msgid "Open Menu"
 msgstr ""
 
-# templates/heading.html:5, templates/heading.html:5, templates/heading.html:8, templates/heading.html:8
+# templates/heading.html:5, templates/heading.html:8
 msgctxt "icon explanatory text"
 msgid "Settings"
 msgstr ""
