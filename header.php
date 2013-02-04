@@ -29,6 +29,7 @@
 	</script>
 	<![if gt IE 7]>
 	<script src="/theme/js/modernizr.custom.js"></script>
+	<script src="/theme/js/analytics.js"></script>
 	<![endif]>
 	<!-- <script src="https://getfirebug.com/firebug-lite.js#startOpened"></script> -->
 	<!-- <script src="http:/152.2.129.225:8080/target/target-script-min.js"></script> -->
