@@ -22,4 +22,4 @@ $view['user'] = $current_user->display_name;
 
 echo template_render('write', $view);
 ?>
-<?php thr_footer(false, true); ?>
+<?php thr_footer(); ?>

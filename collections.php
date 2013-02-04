@@ -92,6 +92,6 @@ if ($more) {
 thr_header('collections-page');
 
 echo template_render('collections', $view);
-thr_footer(false, false);
+thr_footer();
 
 ?>

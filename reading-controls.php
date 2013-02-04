@@ -20,4 +20,4 @@ $view['ID'] = $ID;
 $view['backto'] = $backto;
 echo template_render('readingControls', $view);
 ?>
-<?php thr_footer(false, true); ?>
+<?php thr_footer(); ?>

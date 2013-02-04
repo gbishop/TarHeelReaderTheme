@@ -6,7 +6,7 @@ Display the navigation
 
 thr_header('navigation');
 echo template_render('navigation');
-thr_footer(false, true);
+thr_footer();
 ?>
 
 

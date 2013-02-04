@@ -27,5 +27,5 @@ echo template_render('whereAreReaders', $view);
 if ($exists) {
     include $mapname;
 }
-thr_footer(false, false);
+thr_footer();
 ?>

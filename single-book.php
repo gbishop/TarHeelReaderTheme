@@ -76,4 +76,4 @@
                 echo template_render('choicePage', $view);
             }
     endwhile; endif;
-thr_footer(false, false); ?>
+thr_footer(); ?>

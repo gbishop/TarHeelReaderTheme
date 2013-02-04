@@ -122,20 +122,11 @@ function thr_header($pageType, $view=array()) {
     echo "<div class=\"content-wrap\">\n";
 }
 
-function thr_footer($sidebar, $full) {
+function thr_footer() {
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header
-        if ($sidebar) {
-            //get_sidebar();
-        }
         echo "</div></div>\n";
     } else {
-        if ($sidebar) {
-            //get_sidebar();
-        }
-        if ($full) {
-            include('footing.php');
-        }
         echo "</div>\n";
         get_footer();
     }

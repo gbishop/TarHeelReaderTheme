@@ -45,4 +45,4 @@ thr_header('login-page'); ?>
 
 echo template_render('login', $view);
 
-thr_footer(true, true); ?>
+thr_footer(); ?>
