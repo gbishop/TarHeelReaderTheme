@@ -80,7 +80,7 @@ define(["route",
                 speech.play(book.ID, state.get('voice'), pageNumber, book.bust);
             } else {
                 if (pageNumber === N+1) {
-                    logEvent('book', 'read', book.slug);
+                    logEvent('read', book.slug, book.ID);
                 }
                 view.nextPage = pageNumber+1;
                 view.link = book.link;

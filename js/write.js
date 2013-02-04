@@ -341,7 +341,7 @@ define(['route',
                 dataType: 'json'
             }).then(function(nBook) {
                 //console.log('post returns', nBook);
-                logEvent('book', 'save', nBook.ID);
+                logEvent('write', 'draft', nBook.ID);
                 editId = nBook.ID;
                 $('.save').removeAttr('disabled'); // renable button
                 clearModified();
@@ -375,7 +375,13 @@ define(['route',
             if ($('.peMessage').hasClass('show-error')) {
                 $('.publishErrors').get(0).scrollIntoView(false);
                 $('.publish').removeAttr('disabled');
-                logEvent('book', 'publish', 'validate');
+                var errors = [];
+                $('.publishErrors').find('.show-error').each(function() {
+                    var cls = $(this).attr('class');
+                    var msg = /pe\w+/.exec(cls)[0];
+                    errors.push(msg);
+                });
+                logEvent('write', 'validate', errors.join());
                 return;
             }
             //console.log('publish', book);
@@ -395,10 +401,10 @@ define(['route',
                     controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
                     editId = nBook.ID;
                     $('.publish').removeAttr('disabled'); // renable button
-                    logEvent('book', 'publish', nBook.slug);
+                    logEvent('write', 'publish', nBook.slug);
                 } else { // publish failed for some reason
                     showError('peSaved');
-                    logEvent('book', 'publish', '-failed');
+                    logEvent('write', 'publish-failed');
                 }
             });
         }

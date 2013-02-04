@@ -21,12 +21,12 @@ window.onerror = function(message, url, line) {
     }
     return true;
 };
-function logEvent(kind, msg, arg) {
-    console.log(kind, msg, arg);
+function logEvent(category, label, arg) {
+    console.log(category, label, arg);
     _gaq.push([
         "_trackEvent",
-        kind,
-        msg,
+        category,
+        label,
         arg,
         0, true
     ]);
