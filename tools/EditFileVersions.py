@@ -38,7 +38,10 @@ def insertVersion(m):
             version += 1
             db[fullname] = (version, newhash)
 
-    name = ('%s/themeV%d/' % (staticHost, version)) + name
+    if name.endswith('.json'):
+        name = ('/themeV%d/' % version) + name
+    else:
+        name = ('%s/themeV%d/' % (staticHost, version)) + name
     return name
 
 for fname in args.files:
