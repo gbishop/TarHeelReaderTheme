@@ -13,11 +13,12 @@ import sys
 parser = argparse.ArgumentParser(description="Process templates to produce locale specific json files.")
 parser.add_argument('--lang')
 parser.add_argument('--extract')
+parser.add_argument('-compact', action='store_true')
 parser.add_argument('templates', nargs='+')
 parser.add_argument('--output')
 args = parser.parse_args()
 
-t = gettext.translation('thr', 'locale', [args.lang], fallback=args.lang=='en')
+t = gettext.translation('thr', 'locale', [args.lang], fallback=args.lang == 'en')
 
 templates = {}
 strings = {}
@@ -68,7 +69,10 @@ for fname in args.templates:
 templates['siteSpeech'] = speech_strings
 
 if args.output:
-    file(args.output, 'w').write(json.dumps(templates, sort_keys=True, indent=2))
+    if args.compact:
+        file(args.output, 'w').write(json.dumps(templates, sort_keys=True, separators=(',', ':')))
+    else:
+        file(args.output, 'w').write(json.dumps(templates, sort_keys=True, indent=2))
 
 poHeader = r'''
 msgid ""

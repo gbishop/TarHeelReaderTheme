@@ -33,5 +33,5 @@ else:
 
 	<?php endwhile; endif; ?>
 
-<?php thr_footer(true, true); ?>
+<?php thr_footer(); ?>
 <?php endif; ?>

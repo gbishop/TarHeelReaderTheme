@@ -29,13 +29,13 @@ require(["state", "controller", "templates"], function(state, controller, templa
                         }
                     },
                     getOptionByValue: function(category, selectedOption) {
-                        for(option in this[category]) {
+                        for(var option in this[category]) {
                             if(option === selectedOption) {
                                 return this[category][option];
                             }
                         }
-                        return null;  
-                    }           
+                        return null;
+                    }
           },
           defaultOptions = {
               voice: options.speech.silent,
@@ -49,7 +49,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
             pathname;
 
         initKeyControls(); // initialize the key bindings for the menu/settings
-        
+
         // Take favorites-icon out of the tab order in .find-page and .favorites-page for now
         $body.on('PageRendered', '.find-page, .favorites-page', function() {
             $(this).find('.thr-favorites-icon')
@@ -62,8 +62,10 @@ require(["state", "controller", "templates"], function(state, controller, templa
          $body.on("click", ".thr-well-icon img", function(e, data) {
             // toggling navigation on the navigation page doesn't make sense (IE8 fix: IE8 doesn't like :not selector)
             var $navPage = $("body > div.navigation");
-            if($navPage.length !== 0 && $navPage.hasClass("active-page")) { return false; } 
-            
+            if($navPage.length !== 0 && $navPage.hasClass("active-page")) {
+                return false;
+            }
+
             var $contentWrap = $(".active-page .content-wrap"),
                 $navigation = $contentWrap.find(".navigationMenu"),
                 $hiddenContent = $contentWrap.find(".hiddenContent");
@@ -72,7 +74,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 templates.setLocale().then(function() {
                     $contentWrap.wrapInner("<div class='hiddenContent' />")
                                 .prepend(templates.render('navigation', null));
-                                
+
                     $(".active-page").find(".navigationMenu")
                                      .hide()
                                      .slideDown()
@@ -115,7 +117,11 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 newPage = false;
             }
             // if it's a new page, then just slide the navigation up; else, slide up navigation and show .hiddenContent
-            newPage ? $(".active-page .navigationMenu").slideUp(150) : $(".active-page .thr-well-icon img").trigger("click", href);
+            if (newPage) {
+                $(".active-page .navigationMenu").slideUp(150);
+            } else {
+                $(".active-page .thr-well-icon img").trigger("click", href);
+            }
         });
         /*
          * End Navigation Code
@@ -128,7 +134,11 @@ require(["state", "controller", "templates"], function(state, controller, templa
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             $(".active-page .submenu, .active-page .innerSubmenu").hide();
 
-            data === 'keybind' ? $(".active-page .mainSettings").slideDown() : $(".active-page .mainSettings").slideToggle();
+            if (data === 'keybind') {
+                $(".active-page .mainSettings").slideDown();
+            } else {
+                $(".active-page .mainSettings").slideToggle();
+            }
             return false; // for those who have JavaScript enabled, don't allow the click to go to the settings page
         });
 
@@ -146,6 +156,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
         // slide up when a download type is clicked
         $body.on("click", ".active-page .downloadOptions a ", function() {
             $(".active-page .mainSettings:visible").slideUp();
+            logEvent('book', 'download', $(this).attr('data-log'));
         });
 
         // if the click was made inside one of the menus, don't close the menu
@@ -204,6 +215,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
+          logEvent('setting', option, value);
           state.set(option, value);
           updateFavoritesPageUrl();
           updateCheckedOptions(); // update the check marks next to the currently selected options
@@ -214,7 +226,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
              speech: state.get(settings[0]),
              pageColor: state.get(settings[1]),
              textColor: state.get(settings[2])
-         }
+         };
       }
 
       function resetSettings() {
@@ -246,7 +258,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
       function updateFavoritesPageUrl() {
           var $favPage = $(".favorites-page");
-              
+
           // need to modify the URL here if we are on the favorites page
           if($favPage.length !== 0 && $favPage.hasClass("active-page")) {
               window.location.href = '/favorites/';

@@ -47,4 +47,4 @@ if ($ID) {
     </article>
 <?php
     endwhile; endif; ?>
-<?php thr_footer(false, true); ?>
+<?php thr_footer(); ?>

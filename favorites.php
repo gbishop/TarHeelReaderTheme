@@ -132,5 +132,5 @@ if ($result['more']) {
 }
 echo template_render('find', $view);
 
-thr_footer(false, false);
+thr_footer();
 ?>

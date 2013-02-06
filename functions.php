@@ -4,7 +4,12 @@ $collections_table = $wpdb->prefix . 'book_collections';
 $search_table = $wpdb->prefix . 'book_search';
 
 require('state.php'); // manage shared state in a cookie so both client and host have access
-require_once "Mustache.php";
+
+// setup logging
+date_default_timezone_set('EST');
+require('KLogger.php');
+$log = new KLogger('/var/tmp/tarheelreader', KLogger::WARN);
+
 $locale = THR('locale');
 if ($locale != 'en') {
     $content = file_get_contents("Templates.$locale.json", FILE_USE_INCLUDE_PATH);
@@ -13,6 +18,7 @@ if ($locale == 'en' || !$content) {
     $content = file_get_contents("Templates.en.json", FILE_USE_INCLUDE_PATH);
 }
 $Templates = json_decode($content, true);
+require_once "Mustache.php";
 $mustache = new Mustache();
 
 function template_render($name, $data=array()) {
@@ -116,26 +122,18 @@ function thr_header($pageType, $view=array()) {
     echo "<div class=\"content-wrap\">\n";
 }
 
-function thr_footer($sidebar, $full) {
+function thr_footer() {
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header
-        if ($sidebar) {
-            //get_sidebar();
-        }
         echo "</div></div>\n";
     } else {
-        if ($sidebar) {
-            //get_sidebar();
-        }
-        if ($full) {
-            include('footing.php');
-        }
         echo "</div>\n";
         get_footer();
     }
 }
 
 function convert_image_url($url) {
+    global $log;
     $root = ABSPATH;
 
     if(preg_match('/^\\/cache\\/images.*$|^\\/uploads.*$/', $url)) {
@@ -152,7 +150,7 @@ function convert_image_url($url) {
             $furl = preg_replace('/\\/photo([0-9])/', 'http://farm$1.static.flickr.com', $url);
             $r = copy($furl, $path);
             if (!$r) {
-                BuG('copy failed');
+                $log->logError('copy failed', $furl . ' -> ' . $path);
             }
         }
 
@@ -173,11 +171,12 @@ function convert_image_url($url) {
 }
 
 function make_page($text, $url) {
+    global $log;
     list($nurl, $path) = convert_image_url($url);
     if (!file_exists($path)) {
-        BuG("not found path=$path url=$url");
+        $log->logInfo("not found path='$path' url='$url'");
         if (!copy($url, $path)) {
-            BuG("Copy failed $url $path");
+            $log->logError("Copy failed '$url' -> '$path'");
             return false;
         }
     }
@@ -227,6 +226,7 @@ function striptrim_deep($value)
 function ParseBookPost($post) {
     global $LangNameToLangCode, $SynthLanguages, $CategoryAbbrv;
     global $wpdb, $search_table;
+    global $log;
 
     $id = $post->ID;
     $author_id = $post->post_author;
@@ -254,7 +254,7 @@ function ParseBookPost($post) {
         foreach($pages as $page) {
             if ($page === false) {
                 // something went wrong with the images in this book
-                BuG('bad book ' . $id);
+                $log->logError("bad book $id");
                 wp_update_post(array('ID'=>$id, 'post_status'=>'draft'));
                 $post->post_status = 'draft';
                 break;
@@ -343,6 +343,7 @@ function ParseBookPost($post) {
 }
 
 function SaveBookPost($id, $book) {
+    global $log;
     // TODO: validate this stuff
     //BuG('SBP ' . print_r($book, 1));
     $content = json_encode($book);
@@ -357,7 +358,7 @@ function SaveBookPost($id, $book) {
         $id = wp_insert_post($args);
     }
     if ($id == 0) {
-        BuG('SaveBookPost failed');
+        $log->logError('SaveBookPost failed');
         return false;
     }
     $book['ID'] = $id;
@@ -453,7 +454,7 @@ function updateIndex($book) {
     // then insert
     $rows_affected = $wpdb->insert($table_name, $row);
     if ($rows_affected == 0) {
-        BuG('update failed');
+        $log->logError("update failed $id");
     }
 }
 
@@ -628,11 +629,28 @@ function removeHeadLinks() {
 add_action('init', 'removeHeadLinks');
 add_filter( 'show_admin_bar', '__return_false' ); // disable the wordpress bar
 
+// remove pingback header
+function remove_x_pingback($headers) {
+    unset($headers['X-Pingback']);
+    return $headers;
+}
+add_filter('wp_headers', 'remove_x_pingback');
+
 function fixupLogInOut($link) {
     return str_replace('<a ', '<a class="no-ajaxy" ', $link);
 }
 add_filter('loginout', 'fixupLogInOut');
 add_filter('register', 'fixupLogInOut');
+
+// fix the email return address
+function thr_mail_from($addr) {
+    return "tarheelreader@cs.unc.edu";
+}
+function thr_mail_from_name($name) {
+    return "Tar Heel Reader";
+}
+add_filter('wp_mail_from', 'thr_mail_from');
+add_filter('wp_mail_from_name', 'thr_mail_from_name');
 
 // I suddenly started getting redirect loops when accessing / this seems to fix it.
 remove_filter('template_redirect', 'redirect_canonical');
@@ -679,7 +697,7 @@ function no_mo_dashboard() {
 
 // hack error logging
 function BuG($msg) {
-    $msg = date('m/d H:i:s') . ' ' . $msg;
-    error_log($msg . "\n", 3, '/var/tmp/BuG.txt');
+    global $log;
+    $log->logDebug($msg);
 }
 ?>

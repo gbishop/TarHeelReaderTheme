@@ -14,9 +14,10 @@ define(['templates'], function(templates) {
     }
 
     function wait(jqXHR, settings) {
-        //console.log('ajax start');
-        if (currentXHR) {
+        //console.log('ajax start', jqXHR);
+        if (currentXHR && currentXHR.state() === 'pending') {
             console.log('busy: unexpected overlapping request, canceling');
+            logEvent('error', 'ajax error', 'overlapped request canceled');
             cancel();
         }
         currentXHR = jqXHR;
@@ -40,6 +41,7 @@ define(['templates'], function(templates) {
 
     function error(jqXHR, textStatus, errorThrown) {
         //console.log('ajax error');
+        logEvent('error', 'ajax error', textStatus + ': ' + errorThrown);
         if (currentXHR !== jqXHR) {
             console.log('busy: not expecting error on this XHR, ignoring');
         } else {

@@ -31,4 +31,4 @@
 		echo template_render('navigation', array('notfound'=>true));
 	endif; ?>
 
-<?php thr_footer(true, true); ?>
+<?php thr_footer(); ?>

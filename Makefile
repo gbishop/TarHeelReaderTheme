@@ -4,10 +4,10 @@ locale/de/LC_MESSAGES/thr.mo: languages/de.po
 	msgfmt languages/de.po --output-file locale/de/LC_MESSAGES/thr.mo
 
 Templates.de.json: languages/de.po locale/de/LC_MESSAGES/thr.mo Templates.en.json
-	python tools/BuildTemplate.py --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py -compact --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-Templates.en.json: templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
-	python tools/BuildTemplate.py --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+Templates.en.json: tools/BuildTemplate.py templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py -compact --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 build: Templates.en.json Templates.de.json
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
@@ -16,9 +16,9 @@ build: Templates.en.json Templates.de.json
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-copygb:
+copyameem:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
-	launch.py http://gbserver3.cs.unc.edu/
+	#launch.py http://gbserver3.cs.unc.edu/
 
 copygba:
 	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3

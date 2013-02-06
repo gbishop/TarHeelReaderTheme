@@ -21,9 +21,11 @@ $terms = array();
 $query = stripslashes(THR('search'));
 if ($query) {
 	$words = array();
-	$i = preg_match_all('/[\w\'*]+/', $query, $words);
+	$i = preg_match_all('/[\w0-9\'*]+/', $query, $words);
 	foreach($words[0] as $word) {
-		if (strpos($word, "'") !== false) {
+        if (strlen($word) < 3) {
+            $where[] = "s.content LIKE '%$word%'";
+        } elseif (strpos($word, "'") !== false) {
   			$terms[] = '+"' . $word . '"';
 		} else {
 			$terms[] = '+' . $word;
@@ -59,9 +61,8 @@ SELECT p.*
   $where
   ORDER BY p.post_date DESC
   LIMIT $offset,$cp1";
-
 $posts = $wpdb->get_results($sql);
-$nrows = $wpdb->num_rows;
+$nrows = min($wpdb->num_rows, count($posts));  // why do I need this?
 
 $result = posts_to_find_results($posts, $nrows, $count);
 
@@ -112,5 +113,5 @@ if ($result['more']) {
 }
 echo template_render('find', $view);
 
-thr_footer(false, false);
+thr_footer();
 ?>

@@ -47,4 +47,4 @@ thr_header(''); ?> <!-- front-page.php -->
 
 	</article>
 
-<?php thr_footer(true, true); ?>
+<?php thr_footer(); ?>

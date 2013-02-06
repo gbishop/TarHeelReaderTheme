@@ -174,5 +174,5 @@ if($userid != 0) {
 }
 
 echo template_render('yourbooks', $view);
-thr_footer(false, false);
+thr_footer();
 ?>
