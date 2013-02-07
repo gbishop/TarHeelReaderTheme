@@ -404,7 +404,7 @@ define(['route',
                     logEvent('write', 'publish', nBook.slug);
                 } else { // publish failed for some reason
                     showError('peSaved');
-                    logEvent('write', 'publish-failed');
+                    logEvent('write', 'publish-failed', 'why?');
                 }
             });
         }

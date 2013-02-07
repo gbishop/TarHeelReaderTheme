@@ -156,7 +156,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
         // slide up when a download type is clicked
         $body.on("click", ".active-page .downloadOptions a ", function() {
             $(".active-page .mainSettings:visible").slideUp();
-            logEvent('book', 'download', $(this).attr('data-log'));
+            logEvent('read', 'download', $(this).attr('data-log'));
         });
 
         // if the click was made inside one of the menus, don't close the menu
@@ -215,7 +215,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
           } else { // not a valid option, return
               return;
           }
-          logEvent('setting', option, value);
+          logEvent('read', 'setting', option + '=' + value);
           state.set(option, value);
           updateFavoritesPageUrl();
           updateCheckedOptions(); // update the check marks next to the currently selected options
