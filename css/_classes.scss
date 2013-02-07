@@ -76,6 +76,15 @@
     }
 }
 
+.thr-navigation-text {
+  color: $carolinaBlue;
+  display: none; // hide in all pages except the home page
+  position: absolute;
+  top: 3.25em;
+  left: 2em;
+  text-shadow: 0 0 rgba(0, 0, 0, 0.4);
+}
+
 .footer, .footer a {
     width: 100%;
     text-align: center;
