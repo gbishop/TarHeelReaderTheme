@@ -26,8 +26,6 @@ if ($query) {
         if (strlen($word) < 3) {
             $esc = mysql_real_escape_string($word);
             $where[] = "s.content REGEXP '[[:<:]]" . $esc . "[[:>:]]'";
-        } elseif (strpos($word, "'") !== false) {
-  			$terms[] = '+"' . $word . '"';
 		} else {
 			$terms[] = '+' . $word;
 		}
@@ -62,6 +60,7 @@ SELECT p.*
     $where
     ORDER BY p.post_date DESC
     LIMIT $offset,$cp1";
+//BuG("sql=$sql");
 $posts = $wpdb->get_results($sql);
 $nrows = min($wpdb->num_rows, count($posts));  // why do I need this?
 
