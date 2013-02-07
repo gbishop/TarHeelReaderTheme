@@ -101,7 +101,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 }
 
 // The following styles apply to the Home, Books You Wrote, Collections, Login, Announcements, FAQ, and Photo Credits pages
-.server-page, .your-books-page, .collections-page, .login-page {
+.home-page, .server-page, .your-books-page, .collections-page, .login-page {
   h1, h2 {
     color: #676767;
     font-size: 1.8em;
@@ -133,8 +133,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   }
 }
 
-// Applies to Home, Help, Announcements, and Photo Credits
-.server-page {
+.home-page {
   // styles for the links that appear on the front page
   .homeLinkList {
       text-align: center;
@@ -189,7 +188,10 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       background: url(/theme/images/globe.png) no-repeat center center, $carolinaBlue;
     }
   }
+}
 
+// Applies to Home, Help, Announcements, and Photo Credits
+.server-page {
   .photoCreditsBox {
     width: 5em;
     height: 5em;
@@ -484,6 +486,11 @@ h2 {
     }
 }
 
+.home-page {
+  .thr-navigation-text {
+    display: block;
+  }
+}
 // show the settings icon in the front-page and the choice-page (at the end of the book)
 .front-page, .choice-page, .favorites-page, .find-page {
   .thr-settings-icon {

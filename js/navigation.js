@@ -274,7 +274,8 @@ require(["state", "controller", "templates"], function(state, controller, templa
           $('body').on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
             keyCode = e.keyCode || e.which;
             if(keyCode === 13) {
-                window.location.url = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
+                console.log("clicked enter");
+                window.location.href = $(this).is('.thr-well-icon') ? '/navigation/' : '/reading-controls/';
             }
           }); // end keydown on icons
       } // end initKeyControls
