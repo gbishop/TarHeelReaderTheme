@@ -24,7 +24,8 @@ if ($query) {
 	$i = preg_match_all('/[\w0-9\'*]+/', $query, $words);
 	foreach($words[0] as $word) {
         if (strlen($word) < 3) {
-            $where[] = "s.content LIKE '%$word%'";
+            $esc = mysql_real_escape_string($word);
+            $where[] = "s.content REGEXP '[[:<:]]" . $esc . "[[:>:]]'";
         } elseif (strpos($word, "'") !== false) {
   			$terms[] = '+"' . $word . '"';
 		} else {
@@ -56,11 +57,11 @@ $offset = ($page - 1) * $count;
 
 $sql = "
 SELECT p.*
-  FROM wpreader_posts p
-  JOIN wpreader_book_search s ON p.ID = s.ID
-  $where
-  ORDER BY p.post_date DESC
-  LIMIT $offset,$cp1";
+    FROM wpreader_posts p
+    JOIN wpreader_book_search s ON p.ID = s.ID
+    $where
+    ORDER BY p.post_date DESC
+    LIMIT $offset,$cp1";
 $posts = $wpdb->get_results($sql);
 $nrows = min($wpdb->num_rows, count($posts));  // why do I need this?
 
