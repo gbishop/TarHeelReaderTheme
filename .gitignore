@@ -4,5 +4,4 @@ style.css
 Templates.json
 Templates.*.json
 theme.sublime-workspace
-*.mo
 speech/*.mp3
