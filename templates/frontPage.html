@@ -19,12 +19,12 @@
 <p>_(This site is also available in other languages. To help with translation, contact us.)</p>
 
 <form class="languageForm" action="" method="get">
-	<select name="locale" class="languages">
+    <select name="locale" class="languages">
         {{#locales}}
         <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>{{label}}</option>
         {{/locales}}
-	</select>
-	<input title="_(change language)" class="goButton thr-gray-button" name="go" type="submit" value=" ">
+    </select>
+    <input title="_(change language)" class="goButton thr-gray-button" name="go" type="submit" value=" ">
 </form>
 
 <!-- content -->

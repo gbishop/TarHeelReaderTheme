@@ -1,22 +1,22 @@
 {{#user}}
    <div class="quickNavigation">
-   		<img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
+        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Quick Navigation)">_(Links to the main sections of this page are listed below. You may choose to use these links to help you get to the different sections of this page.)</p>
-   		<h2>_(Quick Navigation)</h2>
-   		<ul>
-   			<li class="draftBooksHeaderLink">_(Your Draft Books)</li>
-   			<li class="publishedBooksHeaderLink">_(Your Published Books)</li>
-   			<li class="collectionsHeaderLink">_(Your Collections)</li>
-   		</ul>
+        <h2>_(Quick Navigation)</h2>
+        <ul>
+            <li class="draftBooksHeaderLink">_(Your Draft Books)</li>
+            <li class="publishedBooksHeaderLink">_(Your Published Books)</li>
+            <li class="collectionsHeaderLink">_(Your Collections)</li>
+        </ul>
    </div>
    <div class="container">
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Your Draft Books)">_(Your draft books are listed below. Click on a title to expose a menu that will allow you to edit or delete it.)</p>
-    	<h2 class="draftBooksHeader">_(Your Draft Books)</h2>
-    	{{#has_drafts}}
-    	<ul class="controlList booksList draftBooks">
-        	{{#drafts}}
-        	<li data-id="{{ID}}">
+        <h2 class="draftBooksHeader">_(Your Draft Books)</h2>
+        {{#has_drafts}}
+        <ul class="controlList booksList draftBooks">
+            {{#drafts}}
+            <li data-id="{{ID}}">
                 <span>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</span>
                 <div>
                     <p>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</p>
@@ -24,35 +24,35 @@
                     <button data-action="delete">_(Delete|Button label)</button>
                     <button data-action="cancel">_(Cancel|Button label)</button>
                 </div>
-        	</li>
-     	   {{/drafts}}
-    	</ul>
-    	{{/has_drafts}}
-    	{{^has_drafts}}
-    	<p>_(If you had any books saved as drafts they would appear here.)</p>
-    	{{/has_drafts}}
+            </li>
+           {{/drafts}}
+        </ul>
+        {{/has_drafts}}
+        {{^has_drafts}}
+        <p>_(If you had any books saved as drafts they would appear here.)</p>
+        {{/has_drafts}}
    </div>
 
-	<div id="container">
+    <div id="container">
         <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
         <p class="help-text" title="_(Your Published Books)">_(Your published books are listed below. Click on a title to expose a menu that will allow you to edit it. From the editor you may return a book draft status by clicking Save as Draft.)</p>
-    	<h2 class="publishedBooksHeader">_(Your Published Books)</h2>
-    	{{#has_published}}
-    	<ul class="controlList booksList publishedBooks">
-        	{{#published}}
-        	<li data-id="{{ID}}">
+        <h2 class="publishedBooksHeader">_(Your Published Books)</h2>
+        {{#has_published}}
+        <ul class="controlList booksList publishedBooks">
+            {{#published}}
+            <li data-id="{{ID}}">
                 <span>{{title}}</span>
                 <div>
                     <p>{{title}}</p>
                     <button data-action="edit">_(Edit|Button label)</button>
                     <button data-action="cancel">_(Cancel|Button label)</button>
                 </div>
-        	</li>
-        	{{/published}}
-    	</ul>
-    	{{/has_published}}
-    	{{^has_published}}
-    	<p>_(If you had any published books they would be listed here.)</p>
+            </li>
+            {{/published}}
+        </ul>
+        {{/has_published}}
+        {{^has_published}}
+        <p>_(If you had any published books they would be listed here.)</p>
         {{/has_published}}
     </div>
 

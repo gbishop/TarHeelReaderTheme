@@ -8,23 +8,23 @@
 {{/has_collections}}
 {{#has_collections}}
 <ul class="collections">
-	{{#collections}}
-	<li>
-		<a href="/favorites/?collection={{slug}}">
-			<p class="title">{{title}}</p>
-			<p class="description">{{description}}</p>
-		</a>
-	</li>
-	{{/collections}}
+    {{#collections}}
+    <li>
+        <a href="/favorites/?collection={{slug}}">
+            <p class="title">{{title}}</p>
+            <p class="description">{{description}}</p>
+        </a>
+    </li>
+    {{/collections}}
 </ul>
 {{/has_collections}}
 <p><a href="/your-books/">_(Create your own collection)</a></p>
 <div class="navigation">
-	{{#nextLink}}
-	<a class="next" href="{{nextLink}}">_(Next|button label)</a>
-	{{/nextLink}}
-	{{#prevLink}}
-	<a class="back" href="{{prevLink}}">_(Back|button label)</a>
-	{{/prevLink}}
+    {{#nextLink}}
+    <a class="next" href="{{nextLink}}">_(Next|button label)</a>
+    {{/nextLink}}
+    {{#prevLink}}
+    <a class="back" href="{{prevLink}}">_(Back|button label)</a>
+    {{/prevLink}}
 </div>
 

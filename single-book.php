@@ -33,7 +33,7 @@
                 $addClass .= ' favoriteNo';
                 $view = array('setFavorite'=>'?favorites=A' . $id);
             }
-			$view['ID'] = $book['ID']; // book ID for download/settings links in the menu
+            $view['ID'] = $book['ID']; // book ID for download/settings links in the menu
             thr_header('thr-book-page thr-colors' . $addClass, $view);
 
             $view = array();
