@@ -228,7 +228,7 @@ msgstr ""
 msgid "In favorites"
 msgstr ""
 
-# templates/bookList.html:36, templates/heading.html:10
+# templates/bookList.html:36, templates/heading.html:11
 msgid "Not in favorites"
 msgstr ""
 
@@ -399,107 +399,111 @@ msgctxt "icon explanatory text"
 msgid "Open Menu"
 msgstr ""
 
-# templates/heading.html:5, templates/heading.html:8
+# templates/heading.html:4
+msgid "Menu"
+msgstr ""
+
+# templates/heading.html:6, templates/heading.html:9
 msgctxt "icon explanatory text"
 msgid "Settings"
 msgstr ""
 
-# templates/heading.html:10
+# templates/heading.html:11
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
 msgstr ""
 
-# templates/heading.html:10, templates/navigation.html:20
+# templates/heading.html:11, templates/navigation.html:20
 msgid "Favorites"
 msgstr ""
 
-# templates/heading.html:11
+# templates/heading.html:12
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
 msgstr ""
 
-# templates/heading.html:11
+# templates/heading.html:12
 msgctxt "site name"
 msgid "Tar Heel Reader"
 msgstr ""
 
-# templates/heading.html:15, readingForm.json:3
+# templates/heading.html:16, readingForm.json:3
 msgid "Speech"
 msgstr ""
 
-# templates/heading.html:18, readingForm.json:7
+# templates/heading.html:19, readingForm.json:7
 msgid "Silent"
 msgstr ""
 
-# templates/heading.html:19, readingForm.json:8
+# templates/heading.html:20, readingForm.json:8
 msgid "Child"
 msgstr ""
 
-# templates/heading.html:20, readingForm.json:9
+# templates/heading.html:21, readingForm.json:9
 msgid "Woman"
 msgstr ""
 
-# templates/heading.html:21, readingForm.json:10
+# templates/heading.html:22, readingForm.json:10
 msgid "Man"
 msgstr ""
 
-# templates/heading.html:27
+# templates/heading.html:28
 msgid "Colors"
 msgstr ""
 
-# templates/heading.html:30, readingForm.json:13
+# templates/heading.html:31, readingForm.json:13
 msgid "Page Color"
 msgstr ""
 
-# templates/heading.html:33, templates/heading.html:47, readingForm.json:17, readingForm.json:31
+# templates/heading.html:34, templates/heading.html:48, readingForm.json:17, readingForm.json:31
 msgid "Black"
 msgstr ""
 
-# templates/heading.html:34, templates/heading.html:48, readingForm.json:18, readingForm.json:32
+# templates/heading.html:35, templates/heading.html:49, readingForm.json:18, readingForm.json:32
 msgid "Blue"
 msgstr ""
 
-# templates/heading.html:35, templates/heading.html:49, readingForm.json:19, readingForm.json:33
+# templates/heading.html:36, templates/heading.html:50, readingForm.json:19, readingForm.json:33
 msgid "Cyan"
 msgstr ""
 
-# templates/heading.html:36, templates/heading.html:50, readingForm.json:20, readingForm.json:34
+# templates/heading.html:37, templates/heading.html:51, readingForm.json:20, readingForm.json:34
 msgid "Green"
 msgstr ""
 
-# templates/heading.html:37, templates/heading.html:51, readingForm.json:21, readingForm.json:35
+# templates/heading.html:38, templates/heading.html:52, readingForm.json:21, readingForm.json:35
 msgid "Magenta"
 msgstr ""
 
-# templates/heading.html:38, templates/heading.html:52, readingForm.json:22, readingForm.json:36
+# templates/heading.html:39, templates/heading.html:53, readingForm.json:22, readingForm.json:36
 msgid "Red"
 msgstr ""
 
-# templates/heading.html:39, templates/heading.html:53, readingForm.json:23, readingForm.json:37
+# templates/heading.html:40, templates/heading.html:54, readingForm.json:23, readingForm.json:37
 msgid "White"
 msgstr ""
 
-# templates/heading.html:40, templates/heading.html:54, readingForm.json:24, readingForm.json:38
+# templates/heading.html:41, templates/heading.html:55, readingForm.json:24, readingForm.json:38
 msgid "Yellow"
 msgstr ""
 
-# templates/heading.html:44, readingForm.json:27
+# templates/heading.html:45, readingForm.json:27
 msgid "Text Color"
 msgstr ""
 
-# templates/heading.html:64
+# templates/heading.html:65
 msgid "Download"
 msgstr ""
 
-# templates/heading.html:67, templates/readingControls.html:8
+# templates/heading.html:68, templates/readingControls.html:8
 msgid "PowerPoint"
 msgstr ""
 
-# templates/heading.html:68, templates/readingControls.html:9
+# templates/heading.html:69, templates/readingControls.html:9
 msgid "EPUB"
 msgstr ""
 
-# templates/heading.html:74
+# templates/heading.html:75
 msgid "Default"
 msgstr ""
 
