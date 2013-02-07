@@ -152,6 +152,10 @@ msgstr ""
 msgid "Swedish"
 msgstr ""
 
+# languages.json:21
+msgid "Turkish"
+msgstr ""
+
 # ratings.json:2
 msgid "Not yet rated"
 msgstr ""

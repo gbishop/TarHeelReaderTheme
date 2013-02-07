@@ -17,5 +17,6 @@
         { "label": "_(Polish)",     "tag": "Polish",     "value": "pl",  "speech": false },
         { "label": "_(Portuguese)", "tag": "Portuguese", "value": "pt",  "speech": true },
         { "label": "_(Spanish)",    "tag": "Spanish",    "value": "es",  "speech": true },
-        { "label": "_(Swedish)",    "tag": "Swedish",    "value": "sv",  "speech": true }
+        { "label": "_(Swedish)",    "tag": "Swedish",    "value": "sv",  "speech": true },
+        { "label": "_(Turkish)",    "tag": "Turkish",    "value": "tr",  "speech": false}
 ]
