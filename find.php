@@ -10,26 +10,26 @@ GET: Return a list of books that match the query
 $where = array();
 $where[] = "p.post_status = 'publish'";
 foreach(array('language', 'reviewed', 'type', 'audience') as $field) {
-	$value = THR($field);
-	if ($value) {
-		$where[] = "s.$field = '$value'";
-	}
+    $value = THR($field);
+    if ($value) {
+        $where[] = "s.$field = '$value'";
+    }
 }
 
 $terms = array();
 
 $query = stripslashes(THR('search'));
 if ($query) {
-	$words = array();
-	$i = preg_match_all('/[\w0-9\'*]+/', $query, $words);
-	foreach($words[0] as $word) {
+    $words = array();
+    $i = preg_match_all('/[\w0-9\'*]+/', $query, $words);
+    foreach($words[0] as $word) {
         if (strlen($word) < 3) {
             $esc = mysql_real_escape_string($word);
             $where[] = "s.content REGEXP '[[:<:]]" . $esc . "[[:>:]]'";
-		} else {
-			$terms[] = '+' . $word;
-		}
-	}
+        } else {
+            $terms[] = '+' . $word;
+        }
+    }
 }
 
 if (count($terms) > 0) {
@@ -42,9 +42,9 @@ if (THR('category')) {
 }
 
 if (count($where) > 0) {
-	$where = 'WHERE ' . implode(' AND ', $where);
+    $where = 'WHERE ' . implode(' AND ', $where);
 } else {
-	$where = '';
+    $where = '';
 }
 
 $json = array_key_exists('json', $_GET) && $_GET['json'] == 1;
@@ -74,12 +74,11 @@ if (0) { // delay for testing
     sleep(3);
 }
 if ($json) {
-	$output = json_encode($result);
-    header('Cache-Control: max-age=600');
-	header('Content-Type: application/json');
-	header('Content-Size: ' . strlen($output));
-	echo $output;
-	die();
+    $output = json_encode($result);
+    header('Content-Type: application/json');
+    header('Content-Size: ' . strlen($output));
+    echo $output;
+    die();
 }
 // construct the searchForm view object
 $searchFormData = $Templates['searchForm'];
@@ -106,10 +105,10 @@ foreach( $result['books'] as &$book ) {
 $view['bookList'] = template_render('bookList', $result);
 
 if ($page > 1) {
-	$view['backLink'] = find_url($page-1);
+    $view['backLink'] = find_url($page-1);
 }
 if ($result['more']) {
-	$view['nextLink'] = find_url($page+1);
+    $view['nextLink'] = find_url($page+1);
 }
 echo template_render('find', $view);
 
