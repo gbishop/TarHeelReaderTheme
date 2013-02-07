@@ -6,10 +6,17 @@ locale/de/LC_MESSAGES/thr.mo: languages/de.po
 Templates.de.json: languages/de.po locale/de/LC_MESSAGES/thr.mo Templates.en.json
 	python tools/BuildTemplate.py -compact --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
+locale/tr/LC_MESSAGES/thr.mo: languages/tr.po
+	mkdir -p locale/tr/LC_MESSAGES
+	msgfmt languages/tr.po --output-file locale/tr/LC_MESSAGES/thr.mo
+
+Templates.tr.json: languages/tr.po locale/tr/LC_MESSAGES/thr.mo Templates.en.json
+	python tools/BuildTemplate.py -compact --lang=tr --output=Templates.tr.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+
 Templates.en.json: tools/BuildTemplate.py templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python tools/BuildTemplate.py -compact --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-build: Templates.en.json Templates.de.json
+build: Templates.en.json Templates.de.json Templates.tr.json
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
 	sass --style=compact style.scss style.css
 

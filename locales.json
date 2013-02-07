@@ -1,4 +1,5 @@
 [
     { "label": "Deutsch", "value":"de", "templates":"/theme/Templates.de.json" },
-    { "label": "English", "value":"en", "selected":true }
+    { "label": "English", "value":"en", "selected":true },
+    { "label": "Türkçe", "value":"tr", "templates":"/theme/Templates.tr.json"}
 ]
