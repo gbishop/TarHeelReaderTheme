@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2013-02-07 12:15+0000\n"
+"PO-Revision-Date: 2013-02-07 15:41+0000\n"
 "Last-Translator: logomoni1 <Monika.Waigand@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/tar-heel-reader/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -155,6 +155,10 @@ msgstr "Spanisch"
 msgid "Swedish"
 msgstr "Schwedisch"
 
+# languages.json:21
+msgid "Turkish"
+msgstr "Türkisch"
+
 # ratings.json:2
 msgid "Not yet rated"
 msgstr "noch nicht bewertet"
@@ -193,11 +197,11 @@ msgstr "Überprüfungsstatus"
 
 # searchForm.json:21
 msgid "Reviewed only"
-msgstr "Nur überprüft"
+msgstr "nur überprüfte Bücher anzeigen"
 
 # searchForm.json:22
 msgid "Include unreviewed"
-msgstr "Beeinhaltet nicht überprüfte Einträge"
+msgstr "noch nicht überprüfte Bücher"
 
 # searchForm.json:25
 msgctxt "pulldown label for audience ratings"
