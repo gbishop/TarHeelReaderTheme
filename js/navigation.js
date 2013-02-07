@@ -275,7 +275,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
             keyCode = e.keyCode || e.which;
             if(keyCode === 13) {
                 console.log("clicked enter");
-                window.location.href = $(this).is('.thr-well-icon') ? '/navigation' : '/reading-controls/';
+                window.location.href = $(this).is('.thr-well-icon') ? '/navigation/' : '/reading-controls/';
             }
           }); // end keydown on icons
       } // end initKeyControls
