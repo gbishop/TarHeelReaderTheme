@@ -1,5 +1,5 @@
 <?php
-thr_header(''); ?> <!-- front-page.php -->
+thr_header('home-page'); ?> <!-- front-page.php -->
 
 <?php
 	$content = '';
