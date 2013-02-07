@@ -1,6 +1,7 @@
 <?php
     $s = getParam('s', '');
     if ($s) {
+        $s = urlencode($s);
         header("Location: /find/?search=$s");
         die();
     }
