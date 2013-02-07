@@ -8,7 +8,6 @@ import os.path as osp
 import json
 import argparse
 import gettext
-import sys
 
 parser = argparse.ArgumentParser(description="Process templates to produce locale specific json files.")
 parser.add_argument('--lang')
@@ -50,7 +49,7 @@ for fname in args.templates:
                         'text': r,
                         'url': '/theme/speech/%s-%s-%s.mp3' % (args.lang, phrase, voice)
                     }
-            return r
+            return r.replace('"', r'\"')
 
         text = re.sub(r'_\(([^\)]+)\)(:[0-9a-z]+)?', translate, text)
         text = re.sub(r' +', ' ', text)
@@ -60,10 +59,10 @@ for fname in args.templates:
     if ext == '.json':
         try:
             value = json.loads(value)
-        except:
+        except Exception as e:
             print 'error', fname
             print value
-            sys.exit(1)
+            raise e
     templates[key] = value
 
 templates['siteSpeech'] = speech_strings
