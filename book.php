@@ -30,6 +30,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
     $book = ParseBookPost($post);
+    if (!$book) {
+        header("HTTP/1.0 404 Not Found");
+        die();
+    }
+
     $output = json_encode($book);
     header('Content-Type: application/json');
     header('Content-Size: ' . strlen($output));
@@ -49,6 +54,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($id) {
         $post = get_post($id);
         $book = ParseBookPost($post);
+        if (!$book) {
+            header("HTTP/1.0 404 Not Found");
+            die();
+        }
     } else {
         $book = array();
     }

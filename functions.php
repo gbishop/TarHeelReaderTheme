@@ -228,6 +228,10 @@ function ParseBookPost($post) {
     global $wpdb, $search_table;
     global $log;
 
+    if (!$post || !$post->ID || !in_category('books', $post)) {
+        return false;
+    }
+
     $id = $post->ID;
     $author_id = $post->post_author;
 
@@ -472,6 +476,7 @@ function rating_info($rating_value) {
 
 // factored out of find, favorites, and collections
 function posts_to_find_results($posts, $nrows, $count) {
+    global $log;
     if ($nrows > $count) {
         $more = 1;
         $nrows = $count;
@@ -483,6 +488,11 @@ function posts_to_find_results($posts, $nrows, $count) {
     for($i=0; $i<$nrows; $i++) {
         $post = $posts[$i];
         $book = ParseBookPost($post);
+        if (!$book) {
+            $log->logError("bad book in posts_to_find_results " . $post->ID);
+            continue;
+        }
+
         $po = array();
         $po['title'] = $book['title'];
         $po['ID'] = $post->ID;

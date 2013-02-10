@@ -38,6 +38,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     $type = getParam('type', '', '/pptx|epub/');
     $book = ParseBookPost($post);
+    if (!$book) {
+        header("HTTP/1.0 404 Not Found");
+        die();
+    }
 
     //BuG("type=$type");
     if ($type == 'pptx') {
