@@ -7,995 +7,995 @@ msgstr ""
 "Language-Team: English\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 
-# categories.json:2
-msgid "Alphabet"
-msgstr ""
-
-# categories.json:3
-msgid "Animals and Nature"
-msgstr ""
-
-# categories.json:4
-msgid "Art and Music"
-msgstr ""
-
-# categories.json:5
-msgid "Biographies"
-msgstr ""
-
-# categories.json:6
-msgid "Fairy and Folk Tales"
-msgstr ""
-
-# categories.json:7
-msgid "Fiction"
-msgstr ""
-
-# categories.json:8
-msgid "Foods"
-msgstr ""
-
-# categories.json:9
-msgid "Health"
-msgstr ""
-
-# categories.json:10
-msgid "History"
-msgstr ""
-
-# categories.json:11
-msgid "Holidays"
-msgstr ""
-
-# categories.json:12
-msgid "Math and Science"
-msgstr ""
-
-# categories.json:13
-msgid "Nursery Rhymes"
-msgstr ""
-
-# categories.json:14
-msgid "People and Places"
-msgstr ""
-
-# categories.json:15
-msgid "Poetry"
-msgstr ""
-
-# categories.json:16
-msgid "Recreation and Leisure"
-msgstr ""
-
-# categories.json:17
-msgid "Sports"
-msgstr ""
-
-# languages.json:2
-msgid "Arabic"
-msgstr ""
-
-# languages.json:3
-msgid "Basque"
-msgstr ""
-
-# languages.json:4
-msgid "Catalan"
-msgstr ""
-
-# languages.json:5
-msgid "Danish"
-msgstr ""
-
-# languages.json:6
-msgid "English"
-msgstr ""
-
-# languages.json:7
-msgid "Filipino"
-msgstr ""
-
-# languages.json:8
-msgid "Finnish"
-msgstr ""
-
-# languages.json:9
-msgid "French"
-msgstr ""
-
-# languages.json:10
-msgid "Galician"
-msgstr ""
-
-# languages.json:11
-msgid "German"
-msgstr ""
-
-# languages.json:12
-msgid "Greek"
-msgstr ""
-
-# languages.json:13
-msgid "Hebrew"
-msgstr ""
-
-# languages.json:14
-msgid "Italian"
-msgstr ""
-
-# languages.json:15
-msgid "Japanese"
-msgstr ""
-
-# languages.json:16
-msgid "Latin"
-msgstr ""
-
-# languages.json:17
-msgid "Polish"
-msgstr ""
-
-# languages.json:18
-msgid "Portuguese"
-msgstr ""
-
-# languages.json:19
-msgid "Spanish"
-msgstr ""
-
-# languages.json:20
-msgid "Swedish"
-msgstr ""
-
-# languages.json:21
-msgid "Turkish"
-msgstr ""
-
-# ratings.json:2
-msgid "Not yet rated"
-msgstr ""
-
-# ratings.json:10
+# locales.json:1
 msgid "1.5 stars"
 msgstr ""
 
-# ratings.json:18
+# locales.json:1
 msgid "2.5 stars"
 msgstr ""
 
-# readingForm.json:43
-msgctxt "button label"
-msgid "Done"
-msgstr ""
-
-# searchForm.json:4
-msgctxt "label for search box"
-msgid "Search for"
-msgstr ""
-
-# searchForm.json:10
-msgctxt "pulldown label"
-msgid "Topics"
-msgstr ""
-
-# searchForm.json:14
+# locales.json:1
 msgid "All Topics"
 msgstr ""
 
-# searchForm.json:17
-msgctxt "pulldown label"
-msgid "Review status"
+# locales.json:1
+msgid "Alphabet"
 msgstr ""
 
-# searchForm.json:21
-msgid "Reviewed only"
+# locales.json:1
+msgid "Animals and Nature"
 msgstr ""
 
-# searchForm.json:22
-msgid "Include unreviewed"
-msgstr ""
-
-# searchForm.json:25
-msgctxt "pulldown label for audience ratings"
-msgid "Audience"
-msgstr ""
-
-# searchForm.json:31
+# locales.json:1
 msgctxt "selection to ignore the audience rating"
 msgid "Any rating"
 msgstr ""
 
-# templates/bookList.html:3
-msgid "Your favorites page is empty."
+# locales.json:1
+msgid "Arabic"
 msgstr ""
 
-# templates/bookList.html:8
-msgid "No books found. Try another search."
+# locales.json:1
+msgid "Art and Music"
 msgstr ""
 
-# templates/bookList.html:22, templates/bookList.html:22
-msgctxt "icon explanatory text"
-msgid "Reviewed for educational quality."
+# locales.json:1
+msgctxt "pulldown label for audience ratings"
+msgid "Audience"
 msgstr ""
 
-# templates/bookList.html:26, templates/bookList.html:26
-msgctxt "icon explanatory text"
-msgid "May not be appropriate for all readers."
+# locales.json:1
+msgid "Basque"
 msgstr ""
 
-# templates/bookList.html:35
-msgid "In favorites"
+# locales.json:1
+msgid "Biographies"
 msgstr ""
 
-# templates/bookList.html:36, templates/heading.html:10
-msgid "Not in favorites"
+# locales.json:1
+msgid "Catalan"
 msgstr ""
 
-# templates/bookPage.html:14
-msgctxt "link text below images"
-msgid "Photo credits"
+# locales.json:1
+msgid "Danish"
 msgstr ""
 
-# templates/bookPage.html:19, templates/collections.html:27
+# locales.json:1
 msgctxt "button label"
-msgid "Back"
+msgid "Done"
 msgstr ""
 
-# templates/bookPage.html:21, templates/collections.html:24, templates/write.html:136
-msgctxt "button label"
-msgid "Next"
+# locales.json:1
+msgid "English"
 msgstr ""
 
-# templates/busy.html:5
-msgid "Loading. Please wait."
+# locales.json:1
+msgid "Fairy and Folk Tales"
 msgstr ""
 
-# templates/busy.html:6, templates/busy.html:11, templates/write.html:157, templates/yourbooks.html:25, templates/yourbooks.html:48, templates/yourbooks.html:77, templates/yourbooks.html:92
-msgctxt "Button label"
-msgid "Cancel"
+# locales.json:1
+msgid "Fiction"
 msgstr ""
 
-# templates/busy.html:9
-msgid "Something went wrong. The message was:"
+# locales.json:1
+msgid "Filipino"
 msgstr ""
 
-# templates/busy.html:10
-msgctxt "Button label"
-msgid "Try again"
+# locales.json:1
+msgid "Finnish"
 msgstr ""
 
-# templates/choicePage.html:2, templates/choicePage.html:26
-msgid "What would you like to do now?"
+# locales.json:1
+msgid "Foods"
 msgstr ""
 
-# templates/choicePage.html:4, templates/choicePage.html:28
-msgid "Read this book again."
+# locales.json:1
+msgid "French"
 msgstr ""
 
-# templates/choicePage.html:5
-msgid "Rate this book."
+# locales.json:1
+msgid "Galician"
 msgstr ""
 
-# templates/choicePage.html:6, templates/choicePage.html:29
-msgid "Read another book."
+# locales.json:1
+msgid "German"
 msgstr ""
 
-# templates/choicePage.html:10
-msgid "How do you rate this book?"
+# locales.json:1
+msgid "Greek"
 msgstr ""
 
-# templates/choicePage.html:13, ratings.json:6
-msgid "1 star"
+# locales.json:1
+msgid "Health"
 msgstr ""
 
-# templates/choicePage.html:15, ratings.json:14
-msgid "2 stars"
+# locales.json:1
+msgid "Hebrew"
 msgstr ""
 
-# templates/choicePage.html:17, ratings.json:22
-msgid "3 stars"
+# locales.json:1
+msgid "History"
 msgstr ""
 
-# templates/choicePage.html:21
-msgid "Thank you for your opinion."
+# locales.json:1
+msgid "Holidays"
 msgstr ""
 
-# templates/choicePage.html:24
-msgid "Average Rating"
+# locales.json:1
+msgid "Include unreviewed"
 msgstr ""
 
-# templates/collections.html:1, templates/navigation.html:16
-msgid "Collections"
+# locales.json:1
+msgid "Italian"
 msgstr ""
 
-# templates/collections.html:3, searchForm.json:8
-msgctxt "placeholder text for search box"
-msgid "Enter text to search"
+# locales.json:1
+msgid "Japanese"
 msgstr ""
 
-# templates/collections.html:4, templates/write.html:16, searchForm.json:47
-msgctxt "button label"
-msgid "Search"
+# locales.json:1
+msgid "Latin"
 msgstr ""
 
-# templates/collections.html:7
-msgid "No collections matching that query. Try again."
+# locales.json:1
+msgid "Math and Science"
 msgstr ""
 
-# templates/collections.html:21
-msgid "Create your own collection"
+# locales.json:1
+msgid "Not yet rated"
 msgstr ""
 
-# templates/find.html:4
-msgctxt "label for button to expose search fields on small devices"
-msgid "Press to search"
+# locales.json:1
+msgid "Nursery Rhymes"
 msgstr ""
 
-# templates/find.html:8
-msgctxt "button label"
-msgid "Previous Books"
+# locales.json:1
+msgid "People and Places"
 msgstr ""
 
-# templates/find.html:11
-msgctxt "button label"
-msgid "More Books"
+# locales.json:1
+msgid "Poetry"
 msgstr ""
 
-# templates/frontPage.html:1
+# locales.json:1
+msgid "Polish"
+msgstr ""
+
+# locales.json:1
+msgid "Portuguese"
+msgstr ""
+
+# locales.json:1
+msgid "Reading Preferences"
+msgstr ""
+
+# locales.json:1
+msgid "Recreation and Leisure"
+msgstr ""
+
+# locales.json:1
+msgctxt "pulldown label"
+msgid "Review status"
+msgstr ""
+
+# locales.json:1
+msgid "Reviewed only"
+msgstr ""
+
+# locales.json:1
+msgctxt "label for search box"
+msgid "Search for"
+msgstr ""
+
+# locales.json:1
+msgid "Spanish"
+msgstr ""
+
+# locales.json:1
+msgid "Sports"
+msgstr ""
+
+# locales.json:1
+msgid "Swedish"
+msgstr ""
+
+# locales.json:1
+msgctxt "pulldown label"
+msgid "Topics"
+msgstr ""
+
+# locales.json:1
+msgid "Turkish"
+msgstr ""
+
+# locales.json:1
 msgid "Welcome"
 msgstr ""
 
-# templates/frontPage.html:3
-msgid "This site will work much better if you enable Javascript. You'll get switch accessibility, pictures that automatically size to your window, and the ability to write books of your own. Please enable Javascript for the best Tar Heel Reader experience."
+# locales.json:1
+msgid "Where are the readers?"
 msgstr ""
 
-# templates/frontPage.html:5
-msgid "Your browser is unsupported. The site may work for finding and reading books but you will not have switch access or the ability to write books. We recommend that you upgrade to a modern browser or install Chrome Frame."
+# locales.json:1, locales.json:1, locales.json:33, locales.json:47
+msgid "Black"
 msgstr ""
 
-# templates/frontPage.html:7
-msgid "Click here to learn more about alternative access methods."
+# locales.json:1, locales.json:1, locales.json:34, locales.json:48
+msgid "Blue"
 msgstr ""
 
-# templates/frontPage.html:7
-msgid "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and accessible books on a wide range of topics. Each book can be speech enabled and accessed using multiple interfaces, including touch screens, the IntelliKeys with custom overlays, and 1 to 3 switches."
+# locales.json:1, locales.json:1, locales.json:35, locales.json:49
+msgid "Cyan"
 msgstr ""
 
-# templates/frontPage.html:9
-msgid "You may write your own books using pictures from the huge collection at {{{Flickr}}} or pictures you upload. All books should be complete, edited, and revised to the best of your ability before publishing them to the site. While you are working on them, please save them as drafts."
+# locales.json:1, locales.json:1, locales.json:36, locales.json:50
+msgid "Green"
 msgstr ""
 
-# templates/frontPage.html:11
-msgid "Note the little well icon {{{wellicon}}} in the upper left corner of the page; clicking it will allow you to access the main menu. You can also click the settings icon {{{gearicon}}} to change settings on some pages."
+# locales.json:1, locales.json:1, locales.json:37, locales.json:51
+msgid "Magenta"
 msgstr ""
 
-# templates/frontPage.html:13
-msgid "Ready to get started?"
+# locales.json:1, locales.json:1, locales.json:38, locales.json:52
+msgid "Red"
 msgstr ""
 
-# templates/frontPage.html:15, templates/navigation.html:12
-msgid "Find a book"
+# locales.json:1, locales.json:1, locales.json:39, locales.json:53
+msgid "White"
 msgstr ""
 
-# templates/frontPage.html:16, templates/navigation.html:24
-msgid "Write a book"
+# locales.json:1, locales.json:1, locales.json:40, locales.json:54
+msgid "Yellow"
 msgstr ""
 
-# templates/frontPage.html:19
-msgid "This site is also available in other languages. To help with translation, contact us."
+# locales.json:1, locales.json:13
+msgid "1 star"
 msgstr ""
 
-# templates/frontPage.html:27
-msgid "change language"
+# locales.json:1, locales.json:15
+msgid "2 stars"
 msgstr ""
 
-# templates/frontPage.html:34
-msgid "Latest Announcements"
+# locales.json:1, locales.json:15
+msgid "Speech"
 msgstr ""
 
-# templates/heading.html:3
+# locales.json:1, locales.json:16
+msgid "Collections"
+msgstr ""
+
+# locales.json:1, locales.json:17
+msgid "3 stars"
+msgstr ""
+
+# locales.json:1, locales.json:18
+msgid "Silent"
+msgstr ""
+
+# locales.json:1, locales.json:19
+msgid "Child"
+msgstr ""
+
+# locales.json:1, locales.json:20
+msgid "Woman"
+msgstr ""
+
+# locales.json:1, locales.json:21
+msgid "Man"
+msgstr ""
+
+# locales.json:1, locales.json:30
+msgid "Page Color"
+msgstr ""
+
+# locales.json:1, locales.json:44
+msgid "Text Color"
+msgstr ""
+
+# locales.json:2
+msgid "Log in to Tar Heel Reader"
+msgstr ""
+
+# locales.json:2
+msgid "Some of you may have wondered where in the world our books are read. The map and tables below depict the estimated locations of the computers that have read books on the site."
+msgstr ""
+
+# locales.json:2
+msgid "You must have Javascript enabled in order to write a book."
+msgstr ""
+
+# locales.json:2, locales.json:26
+msgid "What would you like to do now?"
+msgstr ""
+
+# locales.json:3
+msgid "Error 404: Page Not Found"
+msgstr ""
+
+# locales.json:3
+msgid "Login Failed"
+msgstr ""
+
+# locales.json:3
 msgctxt "icon explanatory text"
 msgid "Open Menu"
 msgstr ""
 
-# templates/heading.html:5, templates/heading.html:8
+# locales.json:3
+msgid "This site will work much better if you enable Javascript. You'll get switch accessibility, pictures that automatically size to your window, and the ability to write books of your own. Please enable Javascript for the best Tar Heel Reader experience."
+msgstr ""
+
+# locales.json:3
+msgid "Your favorites page is empty."
+msgstr ""
+
+# locales.json:3, locales.json:1
+msgctxt "placeholder text for search box"
+msgid "Enter text to search"
+msgstr ""
+
+# locales.json:3, locales.json:3, locales.json:13, locales.json:13, locales.json:37, locales.json:37, locales.json:60, locales.json:60, locales.json:11, locales.json:11, locales.json:28, locales.json:28, locales.json:35, locales.json:35, locales.json:45, locales.json:45, locales.json:67, locales.json:67, locales.json:112, locales.json:112, locales.json:139, locales.json:139
+msgid "Click for help"
+msgstr ""
+
+# locales.json:4
+msgid "Links to the main sections of this page are listed below. You may choose to use these links to help you get to the different sections of this page."
+msgstr ""
+
+# locales.json:4
+msgctxt "label for button to expose search fields on small devices"
+msgid "Press to search"
+msgstr ""
+
+# locales.json:4
+msgid "We could not find the page you requested. Perhaps the links below will help you find the page you wanted."
+msgstr ""
+
+# locales.json:4
+msgid "Your web browser does not support writing books."
+msgstr ""
+
+# locales.json:4, locales.json:5
+msgid "Quick Navigation"
+msgstr ""
+
+# locales.json:4, locales.json:28
+msgid "Read this book again."
+msgstr ""
+
+# locales.json:5
+msgid "Loading. Please wait."
+msgstr ""
+
+# locales.json:5
+msgid "Map your books"
+msgstr ""
+
+# locales.json:5
+msgid "Rate this book."
+msgstr ""
+
+# locales.json:5
+msgid "Your browser is unsupported. The site may work for finding and reading books but you will not have switch access or the ability to write books. We recommend that you upgrade to a modern browser or install Chrome Frame."
+msgstr ""
+
+# locales.json:5, locales.json:8
 msgctxt "icon explanatory text"
 msgid "Settings"
 msgstr ""
 
-# templates/heading.html:10
+# locales.json:6
+msgid "Username"
+msgstr ""
+
+# locales.json:6
+msgid "You must be logged in to write a book. Please log in below."
+msgstr ""
+
+# locales.json:6, locales.json:29
+msgid "Read another book."
+msgstr ""
+
+# locales.json:7
+msgid "Click here to learn more about alternative access methods."
+msgstr ""
+
+# locales.json:7
+msgid "Download this book"
+msgstr ""
+
+# locales.json:7
+msgid "No collections matching that query. Try again."
+msgstr ""
+
+# locales.json:7
+msgid "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and accessible books on a wide range of topics. Each book can be speech enabled and accessed using multiple interfaces, including touch screens, the IntelliKeys with custom overlays, and 1 to 3 switches."
+msgstr ""
+
+# locales.json:7, locales.json:14, locales.json:15
+msgid "Your Draft Books"
+msgstr ""
+
+# locales.json:8
+msgid "Home"
+msgstr ""
+
+# locales.json:8
+msgid "Map all books"
+msgstr ""
+
+# locales.json:8
+msgid "No books found. Try another search."
+msgstr ""
+
+# locales.json:8
+msgctxt "button label"
+msgid "Previous Books"
+msgstr ""
+
+# locales.json:8, locales.json:38, locales.json:39
+msgid "Your Published Books"
+msgstr ""
+
+# locales.json:8, locales.json:67
+msgid "PowerPoint"
+msgstr ""
+
+# locales.json:9
+msgid "Something went wrong. The message was:"
+msgstr ""
+
+# locales.json:9
+msgid "You may write your own books using pictures from the huge collection at {{{Flickr}}} or pictures you upload. All books should be complete, edited, and revised to the best of your ability before publishing them to the site. While you are working on them, please save them as drafts."
+msgstr ""
+
+# locales.json:9, locales.json:61, locales.json:62
+msgid "Your Collections"
+msgstr ""
+
+# locales.json:9, locales.json:68
+msgid "EPUB"
+msgstr ""
+
+# locales.json:10
+msgid "How do you rate this book?"
+msgstr ""
+
+# locales.json:10
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
 msgstr ""
 
-# templates/heading.html:10, templates/navigation.html:20
-msgid "Favorites"
+# locales.json:10
+msgid "Step 1: Find pictures"
 msgstr ""
 
-# templates/heading.html:11
+# locales.json:10
+msgctxt "Button label"
+msgid "Try again"
+msgstr ""
+
+# locales.json:11
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
 msgstr ""
 
-# templates/heading.html:11
+# locales.json:11
+msgctxt "button label"
+msgid "More Books"
+msgstr ""
+
+# locales.json:11
+msgid "Note the little well icon {{{wellicon}}} in the upper left corner of the page; clicking it will allow you to access the main menu. You can also click the settings icon {{{gearicon}}} to change settings on some pages."
+msgstr ""
+
+# locales.json:11
+msgid "Password"
+msgstr ""
+
+# locales.json:11
 msgctxt "site name"
 msgid "Tar Heel Reader"
 msgstr ""
 
-# templates/heading.html:15, readingForm.json:3
-msgid "Speech"
+# locales.json:12
+msgid "Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview."
 msgstr ""
 
-# templates/heading.html:18, readingForm.json:7
-msgid "Silent"
+# locales.json:12
+msgid "Step 1: Search Help"
 msgstr ""
 
-# templates/heading.html:19, readingForm.json:8
-msgid "Child"
+# locales.json:12
+msgid "We do not yet have any of your books on the map."
 msgstr ""
 
-# templates/heading.html:20, readingForm.json:9
-msgid "Woman"
+# locales.json:13
+msgid "Ready to get started?"
 msgstr ""
 
-# templates/heading.html:21, readingForm.json:10
-msgid "Man"
+# locales.json:14
+msgctxt "link text below images"
+msgid "Photo credits"
 msgstr ""
 
-# templates/heading.html:27
-msgid "Colors"
+# locales.json:14
+msgid "Your draft books are listed below. Click on a title to expose a menu that will allow you to edit or delete it."
 msgstr ""
 
-# templates/heading.html:30, readingForm.json:13
-msgid "Page Color"
+# locales.json:15, locales.json:12
+msgid "Find a book"
 msgstr ""
 
-# templates/heading.html:33, templates/heading.html:47, readingForm.json:17, readingForm.json:31
-msgid "Black"
+# locales.json:16, locales.json:4, locales.json:1
+msgctxt "button label"
+msgid "Search"
 msgstr ""
 
-# templates/heading.html:34, templates/heading.html:48, readingForm.json:18, readingForm.json:32
-msgid "Blue"
+# locales.json:16, locales.json:24
+msgid "Write a book"
 msgstr ""
 
-# templates/heading.html:35, templates/heading.html:49, readingForm.json:19, readingForm.json:33
-msgid "Cyan"
-msgstr ""
-
-# templates/heading.html:36, templates/heading.html:50, readingForm.json:20, readingForm.json:34
-msgid "Green"
-msgstr ""
-
-# templates/heading.html:37, templates/heading.html:51, readingForm.json:21, readingForm.json:35
-msgid "Magenta"
-msgstr ""
-
-# templates/heading.html:38, templates/heading.html:52, readingForm.json:22, readingForm.json:36
-msgid "Red"
-msgstr ""
-
-# templates/heading.html:39, templates/heading.html:53, readingForm.json:23, readingForm.json:37
-msgid "White"
-msgstr ""
-
-# templates/heading.html:40, templates/heading.html:54, readingForm.json:24, readingForm.json:38
-msgid "Yellow"
-msgstr ""
-
-# templates/heading.html:44, readingForm.json:27
-msgid "Text Color"
-msgstr ""
-
-# templates/heading.html:64
-msgid "Download"
-msgstr ""
-
-# templates/heading.html:67, templates/readingControls.html:8
-msgid "PowerPoint"
-msgstr ""
-
-# templates/heading.html:68, templates/readingControls.html:9
-msgid "EPUB"
-msgstr ""
-
-# templates/heading.html:74
-msgid "Default"
-msgstr ""
-
-# templates/login.html:2
-msgid "Log in to Tar Heel Reader"
-msgstr ""
-
-# templates/login.html:3
-msgid "Login Failed"
-msgstr ""
-
-# templates/login.html:6
-msgid "Username"
-msgstr ""
-
-# templates/login.html:11
-msgid "Password"
-msgstr ""
-
-# templates/login.html:17
+# locales.json:17
 msgctxt "login checkbox label"
 msgid "Remember Me"
 msgstr ""
 
-# templates/login.html:21, templates/write.html:6, templates/yourbooks.html:101
-msgctxt "link label"
-msgid "Log In"
+# locales.json:19
+msgid "This site is also available in other languages. To help with translation, contact us."
 msgstr ""
 
-# templates/login.html:26
-msgid "Lost Password"
-msgstr ""
-
-# templates/login.html:27
-msgid "Register"
-msgstr ""
-
-# templates/login.html:30
-msgid "Log out of Tar Heel Reader"
-msgstr ""
-
-# templates/login.html:31
-msgid "Log out"
-msgstr ""
-
-# templates/navigation.html:3
-msgid "Error 404: Page Not Found"
-msgstr ""
-
-# templates/navigation.html:4
-msgid "We could not find the page you requested. Perhaps the links below will help you find the page you wanted."
-msgstr ""
-
-# templates/navigation.html:8
-msgid "Home"
-msgstr ""
-
-# templates/navigation.html:28
-msgid "Log in"
-msgstr ""
-
-# templates/navigation.html:32
-msgid "Help"
-msgstr ""
-
-# templates/navigation.html:36
-msgid "Your books"
-msgstr ""
-
-# templates/navigation.html:40
-msgid "Announcements"
-msgstr ""
-
-# templates/navigation.html:44
-msgid "Photo credits"
-msgstr ""
-
-# templates/readingControls.html:1
-msgid "Reading Preferences"
-msgstr ""
-
-# templates/readingControls.html:7
-msgid "Download this book"
-msgstr ""
-
-# templates/whereAreReaders.html:1
-msgid "Where are the readers?"
-msgstr ""
-
-# templates/whereAreReaders.html:2
-msgid "Some of you may have wondered where in the world our books are read. The map and tables below depict the estimated locations of the computers that have read books on the site."
-msgstr ""
-
-# templates/whereAreReaders.html:5
-msgid "Map your books"
-msgstr ""
-
-# templates/whereAreReaders.html:8
-msgid "Map all books"
-msgstr ""
-
-# templates/whereAreReaders.html:12
-msgid "We do not yet have any of your books on the map."
-msgstr ""
-
-# templates/write.html:2
-msgid "You must have Javascript enabled in order to write a book."
-msgstr ""
-
-# templates/write.html:4
-msgid "Your web browser does not support writing books."
-msgstr ""
-
-# templates/write.html:6
-msgid "You must be logged in to write a book. Please log in below."
-msgstr ""
-
-# templates/write.html:10
-msgid "Step 1: Find pictures"
-msgstr ""
-
-# templates/write.html:11, templates/write.html:11, templates/write.html:28, templates/write.html:28, templates/write.html:35, templates/write.html:35, templates/write.html:45, templates/write.html:45, templates/write.html:67, templates/write.html:67, templates/write.html:112, templates/write.html:112, templates/write.html:139, templates/write.html:139, templates/yourbooks.html:3, templates/yourbooks.html:3, templates/yourbooks.html:13, templates/yourbooks.html:13, templates/yourbooks.html:37, templates/yourbooks.html:37, templates/yourbooks.html:60, templates/yourbooks.html:60
-msgid "Click for help"
-msgstr ""
-
-# templates/write.html:12
-msgid "Enter words to search Flickr or enter the email address you use at Flickr to see your personal photos. A set of pictures from Flickr will appear; click on one to preview."
-msgstr ""
-
-# templates/write.html:12
-msgid "Step 1: Search Help"
-msgstr ""
-
-# templates/write.html:20
+# locales.json:20
 msgid "No matching images found."
 msgstr ""
 
-# templates/write.html:21
-msgid "No matching email address found."
+# locales.json:20, locales.json:10
+msgid "Favorites"
 msgstr ""
 
-# templates/write.html:23
-msgid "Go back"
-msgstr ""
-
-# templates/write.html:23
-msgid "More like these"
-msgstr ""
-
-# templates/write.html:27
-msgid "Or upload your own pictures"
-msgstr ""
-
-# templates/write.html:29
-msgid "Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels."
-msgstr ""
-
-# templates/write.html:29
-msgid "Step 1: Upload Help"
-msgstr ""
-
-# templates/write.html:34
-msgid "Step 2: Enter a short sentence for each page"
-msgstr ""
-
-# templates/write.html:36
-msgid "Click on a page to edit it. You may reorder the pages with drag and drop."
-msgstr ""
-
-# templates/write.html:36
-msgid "Step 2: Edit help"
-msgstr ""
-
-# templates/write.html:40
-msgid "After you select or upload pictures your pages will appear here."
-msgstr ""
-
-# templates/write.html:44
-msgid "Step 3: Fill in the details"
-msgstr ""
-
-# templates/write.html:46
-msgid "Fill in the title for your book and select its language from the list. You may use a psuedonym if you wish by changing the author field."
-msgstr ""
-
-# templates/write.html:46
-msgid "Step 3: Details help"
-msgstr ""
-
-# templates/write.html:48, templates/yourbooks.html:69, templates/yourbooks.html:84
-msgid "Title"
-msgstr ""
-
-# templates/write.html:49
-msgid "Enter a title for your book"
-msgstr ""
-
-# templates/write.html:51
-msgid "Author"
-msgstr ""
-
-# templates/write.html:52
-msgid "Enter a pseudonym"
-msgstr ""
-
-# templates/write.html:54, searchForm.json:34
-msgid "Language"
-msgstr ""
-
-# templates/write.html:56
-msgid "Choose a language"
-msgstr ""
-
-# templates/write.html:62
-msgid "Optionally"
-msgstr ""
-
-# templates/write.html:62, templates/write.html:66
-msgid "Categorize your book"
-msgstr ""
-
-# templates/write.html:68
-msgid "Step 3: Categorize help"
-msgstr ""
-
-# templates/write.html:68
-msgid "You may select up to three library categories, an audience rating and BLF type if you wish."
-msgstr ""
-
-# templates/write.html:71
-msgid "Library Classification"
-msgstr ""
-
-# templates/write.html:77
-msgid "Audience Rating"
-msgstr ""
-
-# templates/write.html:79, templates/write.html:88
-msgid "None"
-msgstr ""
-
-# templates/write.html:80, searchForm.json:29
-msgctxt "books appropriate for everyone"
-msgid "Rated E/Everybody"
-msgstr ""
-
-# templates/write.html:81, searchForm.json:30
-msgctxt "books that may not be appropriate for all readers"
-msgid "Rated C/Caution"
-msgstr ""
-
-# templates/write.html:86
-msgid "Beginning Literacy Framework Type"
-msgstr ""
-
-# templates/write.html:89
-msgid "Transitional"
-msgstr ""
-
-# templates/write.html:90
-msgid "Conventional"
-msgstr ""
-
-# templates/write.html:91
-msgid "Other"
-msgstr ""
-
-# templates/write.html:96
-msgid "Tags"
-msgstr ""
-
-# templates/write.html:98
-msgid "Enter a few descriptive words to make your book easier to find"
-msgstr ""
-
-# templates/write.html:103
-msgid "Reviewed"
-msgstr ""
-
-# templates/write.html:110
-msgid "Step 4: Publish"
-msgstr ""
-
-# templates/write.html:113
-msgid "Step 4: Save help"
-msgstr ""
-
-# templates/write.html:113
-msgid "To continue working on your book later, or to remove it from public view, click Save as draft. You will be able to return it from the Your Books page. To publish your completed book, click Publish."
-msgstr ""
-
-# templates/write.html:115
-msgid "Save as draft"
-msgstr ""
-
-# templates/write.html:116
-msgid "Publish"
-msgstr ""
-
-# templates/write.html:118
-msgid "Your book will not be published until you fix these issues."
-msgstr ""
-
-# templates/write.html:119
-msgid "It must have a title."
-msgstr ""
-
-# templates/write.html:120
-msgid "It must have an author."
-msgstr ""
-
-# templates/write.html:121
-msgid "Each page must have some text."
-msgstr ""
-
-# templates/write.html:122
-msgid "The text on each page must be less than 130 characters in length."
-msgstr ""
-
-# templates/write.html:123
-msgid "It must have at least 3 pages."
-msgstr ""
-
-# templates/write.html:124
-msgid "It must specify the language."
-msgstr ""
-
-# templates/write.html:125
-msgid "It must be in no more than 4 categories."
-msgstr ""
-
-# templates/write.html:126
-msgid "Your book has been saved as a draft."
-msgstr ""
-
-# templates/write.html:133
-msgctxt "button label"
-msgid "Add to Book"
-msgstr ""
-
-# templates/write.html:134
-msgctxt "button label"
-msgid "Close"
-msgstr ""
-
-# templates/write.html:135
-msgctxt "button label"
-msgid "Previous"
-msgstr ""
-
-# templates/write.html:137
-msgid "Page added to your book"
-msgstr ""
-
-# templates/write.html:140
-msgid "Click on the text to change it. You may use the next and previous buttons to move between pages. When you're finished, close the editor by clicking on the x in the upper right."
-msgstr ""
-
-# templates/write.html:140
-msgid "Page Editor Help"
-msgstr ""
-
-# templates/write.html:142
-msgid "Click to edit"
-msgstr ""
-
-# templates/write.html:143
-msgid "Delete this page"
-msgstr ""
-
-# templates/write.html:144
-msgid "If you leave you will lose your work on this book."
-msgstr ""
-
-# templates/write.html:147
-msgid "Drop files here to upload"
-msgstr ""
-
-# templates/write.html:148
-msgid "Upload"
-msgstr ""
-
-# templates/write.html:158
-msgid "Failed"
-msgstr ""
-
-# templates/yourbooks.html:4
-msgid "Links to the main sections of this page are listed below. You may choose to use these links to help you get to the different sections of this page."
-msgstr ""
-
-# templates/yourbooks.html:4, templates/yourbooks.html:5
-msgid "Quick Navigation"
-msgstr ""
-
-# templates/yourbooks.html:7, templates/yourbooks.html:14, templates/yourbooks.html:15
-msgid "Your Draft Books"
-msgstr ""
-
-# templates/yourbooks.html:8, templates/yourbooks.html:38, templates/yourbooks.html:39
-msgid "Your Published Books"
-msgstr ""
-
-# templates/yourbooks.html:9, templates/yourbooks.html:61, templates/yourbooks.html:62
-msgid "Your Collections"
-msgstr ""
-
-# templates/yourbooks.html:14
-msgid "Your draft books are listed below. Click on a title to expose a menu that will allow you to edit or delete it."
-msgstr ""
-
-# templates/yourbooks.html:20, templates/yourbooks.html:22
+# locales.json:20, locales.json:22
 msgid "untitled"
 msgstr ""
 
-# templates/yourbooks.html:23, templates/yourbooks.html:47
+# locales.json:21
+msgid "Create your own collection"
+msgstr ""
+
+# locales.json:21
+msgid "No matching email address found."
+msgstr ""
+
+# locales.json:21
+msgid "Thank you for your opinion."
+msgstr ""
+
+# locales.json:22, locales.json:22
+msgctxt "icon explanatory text"
+msgid "Reviewed for educational quality."
+msgstr ""
+
+# locales.json:23
+msgid "Go back"
+msgstr ""
+
+# locales.json:23
+msgid "More like these"
+msgstr ""
+
+# locales.json:23, locales.json:47
 msgctxt "Button label"
 msgid "Edit"
 msgstr ""
 
-# templates/yourbooks.html:24, templates/yourbooks.html:91
+# locales.json:24
+msgid "Average Rating"
+msgstr ""
+
+# locales.json:24, locales.json:91
 msgctxt "Button label"
 msgid "Delete"
 msgstr ""
 
-# templates/yourbooks.html:32
+# locales.json:25, locales.json:48, locales.json:77, locales.json:92, locales.json:157, locales.json:6, locales.json:11
+msgctxt "Button label"
+msgid "Cancel"
+msgstr ""
+
+# locales.json:26
+msgid "Lost Password"
+msgstr ""
+
+# locales.json:26, locales.json:26
+msgctxt "icon explanatory text"
+msgid "May not be appropriate for all readers."
+msgstr ""
+
+# locales.json:27
+msgid "Colors"
+msgstr ""
+
+# locales.json:27
+msgid "Or upload your own pictures"
+msgstr ""
+
+# locales.json:27
+msgid "Register"
+msgstr ""
+
+# locales.json:27
+msgid "change language"
+msgstr ""
+
+# locales.json:27, locales.json:19
+msgctxt "button label"
+msgid "Back"
+msgstr ""
+
+# locales.json:28
+msgid "Log in"
+msgstr ""
+
+# locales.json:29
+msgid "Click browse to find an image on your computer, then click upload to add it to your book. Pictures must be less than 2 megabytes in size to properly upload. They will be resized to 500x500 pixels."
+msgstr ""
+
+# locales.json:29
+msgid "Step 1: Upload Help"
+msgstr ""
+
+# locales.json:30
+msgid "Log out of Tar Heel Reader"
+msgstr ""
+
+# locales.json:31
+msgid "Log out"
+msgstr ""
+
+# locales.json:32
+msgid "Help"
+msgstr ""
+
+# locales.json:32
 msgid "If you had any books saved as drafts they would appear here."
 msgstr ""
 
-# templates/yourbooks.html:38
+# locales.json:34
+msgid "Latest Announcements"
+msgstr ""
+
+# locales.json:34
+msgid "Step 2: Enter a short sentence for each page"
+msgstr ""
+
+# locales.json:35
+msgid "In favorites"
+msgstr ""
+
+# locales.json:36
+msgid "Click on a page to edit it. You may reorder the pages with drag and drop."
+msgstr ""
+
+# locales.json:36
+msgid "Step 2: Edit help"
+msgstr ""
+
+# locales.json:36
+msgid "Your books"
+msgstr ""
+
+# locales.json:36, locales.json:10
+msgid "Not in favorites"
+msgstr ""
+
+# locales.json:38
 msgid "Your published books are listed below. Click on a title to expose a menu that will allow you to edit it. From the editor you may return a book draft status by clicking Save as Draft."
 msgstr ""
 
-# templates/yourbooks.html:55
+# locales.json:40
+msgid "After you select or upload pictures your pages will appear here."
+msgstr ""
+
+# locales.json:40
+msgid "Announcements"
+msgstr ""
+
+# locales.json:44
+msgid "Photo credits"
+msgstr ""
+
+# locales.json:44
+msgid "Step 3: Fill in the details"
+msgstr ""
+
+# locales.json:46
+msgid "Fill in the title for your book and select its language from the list. You may use a psuedonym if you wish by changing the author field."
+msgstr ""
+
+# locales.json:46
+msgid "Step 3: Details help"
+msgstr ""
+
+# locales.json:49
+msgid "Enter a title for your book"
+msgstr ""
+
+# locales.json:51
+msgid "Author"
+msgstr ""
+
+# locales.json:52
+msgid "Enter a pseudonym"
+msgstr ""
+
+# locales.json:54, locales.json:1
+msgid "Language"
+msgstr ""
+
+# locales.json:55
 msgid "If you had any published books they would be listed here."
 msgstr ""
 
-# templates/yourbooks.html:61
+# locales.json:56
+msgid "Choose a language"
+msgstr ""
+
+# locales.json:61
 msgid "Your collections are listed below. Click on the Favorites button to create a new collection. Click on a collection to expose a menu that will allow you to modify it."
 msgstr ""
 
-# templates/yourbooks.html:67
+# locales.json:62
+msgid "Optionally"
+msgstr ""
+
+# locales.json:62, locales.json:66
+msgid "Categorize your book"
+msgstr ""
+
+# locales.json:64
+msgid "Download"
+msgstr ""
+
+# locales.json:67
 msgid "Favorites: {{count}} books"
 msgstr ""
 
-# templates/yourbooks.html:70, templates/yourbooks.html:85
+# locales.json:68
+msgid "Step 3: Categorize help"
+msgstr ""
+
+# locales.json:68
+msgid "You may select up to three library categories, an audience rating and BLF type if you wish."
+msgstr ""
+
+# locales.json:69, locales.json:84, locales.json:48
+msgid "Title"
+msgstr ""
+
+# locales.json:70, locales.json:85
 msgid "Description"
 msgstr ""
 
-# templates/yourbooks.html:71
+# locales.json:71
+msgid "Library Classification"
+msgstr ""
+
+# locales.json:71
 msgctxt "Button label"
 msgid "Save as a new Collection"
 msgstr ""
 
-# templates/yourbooks.html:74
+# locales.json:74
 msgid "Add books to your Favorites and come back here to save as a Collection"
 msgstr ""
 
-# templates/yourbooks.html:76
+# locales.json:74
+msgid "Default"
+msgstr ""
+
+# locales.json:76
 msgctxt "Button label"
 msgid "Clear Favorites list"
 msgstr ""
 
-# templates/yourbooks.html:86
+# locales.json:77
+msgid "Audience Rating"
+msgstr ""
+
+# locales.json:79, locales.json:88
+msgid "None"
+msgstr ""
+
+# locales.json:80, locales.json:1
+msgctxt "books appropriate for everyone"
+msgid "Rated E/Everybody"
+msgstr ""
+
+# locales.json:81, locales.json:1
+msgctxt "books that may not be appropriate for all readers"
+msgid "Rated C/Caution"
+msgstr ""
+
+# locales.json:86
+msgid "Beginning Literacy Framework Type"
+msgstr ""
+
+# locales.json:86
 msgid "{{count}} books"
 msgstr ""
 
-# templates/yourbooks.html:87
+# locales.json:87
 msgctxt "Button label"
 msgid "Update title and description"
 msgstr ""
 
-# templates/yourbooks.html:88
+# locales.json:88
 msgctxt "Button label"
 msgid "Add to Favorites"
 msgstr ""
 
-# templates/yourbooks.html:89
+# locales.json:89
 msgid "Merge Favorites into here"
 msgstr ""
 
-# templates/yourbooks.html:90
+# locales.json:89
+msgid "Transitional"
+msgstr ""
+
+# locales.json:90
+msgid "Conventional"
+msgstr ""
+
+# locales.json:90
 msgid "Replace with Favorites"
 msgstr ""
 
-# templates/yourbooks.html:101
+# locales.json:91
+msgid "Other"
+msgstr ""
+
+# locales.json:96
+msgid "Tags"
+msgstr ""
+
+# locales.json:98
+msgid "Enter a few descriptive words to make your book easier to find"
+msgstr ""
+
+# locales.json:101
 msgid "You must be logged in to see your draft and published books."
 msgstr ""
 
-# templates/yourbooks.html:104
+# locales.json:101, locales.json:6, locales.json:21
+msgctxt "link label"
+msgid "Log In"
+msgstr ""
+
+# locales.json:103
+msgid "Reviewed"
+msgstr ""
+
+# locales.json:104
 msgid "Where in the world are these books read?"
 msgstr ""
 
-# templates/yourbooks.html:105
+# locales.json:105
 msgid "Check out our map of readers!"
+msgstr ""
+
+# locales.json:110
+msgid "Step 4: Publish"
+msgstr ""
+
+# locales.json:113
+msgid "Step 4: Save help"
+msgstr ""
+
+# locales.json:113
+msgid "To continue working on your book later, or to remove it from public view, click Save as draft. You will be able to return it from the Your Books page. To publish your completed book, click Publish."
+msgstr ""
+
+# locales.json:115
+msgid "Save as draft"
+msgstr ""
+
+# locales.json:116
+msgid "Publish"
+msgstr ""
+
+# locales.json:118
+msgid "Your book will not be published until you fix these issues."
+msgstr ""
+
+# locales.json:119
+msgid "It must have a title."
+msgstr ""
+
+# locales.json:120
+msgid "It must have an author."
+msgstr ""
+
+# locales.json:121
+msgid "Each page must have some text."
+msgstr ""
+
+# locales.json:122
+msgid "The text on each page must be less than 130 characters in length."
+msgstr ""
+
+# locales.json:123
+msgid "It must have at least 3 pages."
+msgstr ""
+
+# locales.json:124
+msgid "It must specify the language."
+msgstr ""
+
+# locales.json:125
+msgid "It must be in no more than 4 categories."
+msgstr ""
+
+# locales.json:126
+msgid "Your book has been saved as a draft."
+msgstr ""
+
+# locales.json:133
+msgctxt "button label"
+msgid "Add to Book"
+msgstr ""
+
+# locales.json:134
+msgctxt "button label"
+msgid "Close"
+msgstr ""
+
+# locales.json:135
+msgctxt "button label"
+msgid "Previous"
+msgstr ""
+
+# locales.json:136, locales.json:24, locales.json:21
+msgctxt "button label"
+msgid "Next"
+msgstr ""
+
+# locales.json:137
+msgid "Page added to your book"
+msgstr ""
+
+# locales.json:140
+msgid "Click on the text to change it. You may use the next and previous buttons to move between pages. When you're finished, close the editor by clicking on the x in the upper right."
+msgstr ""
+
+# locales.json:140
+msgid "Page Editor Help"
+msgstr ""
+
+# locales.json:142
+msgid "Click to edit"
+msgstr ""
+
+# locales.json:143
+msgid "Delete this page"
+msgstr ""
+
+# locales.json:144
+msgid "If you leave you will lose your work on this book."
+msgstr ""
+
+# locales.json:147
+msgid "Drop files here to upload"
+msgstr ""
+
+# locales.json:148
+msgid "Upload"
+msgstr ""
+
+# locales.json:158
+msgid "Failed"
 msgstr ""
