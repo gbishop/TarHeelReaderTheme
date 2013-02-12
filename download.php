@@ -123,7 +123,6 @@ function CreatePPTXFromBook($book) {
     $page = $book['pages'][1];
     $shape = $currentSlide->createDrawingShape();
     $shape->setName('title picture');
-    $shape->setDescription('picture credit?');
     $shape->setPath(imgPath($page['url']));
     $shape->setHeight($page['height']);
     $shape->setOffsetX((960 - $page['width']) / 2);
@@ -156,7 +155,6 @@ function CreatePPTXFromBook($book) {
 
         $shape = $currentSlide->createDrawingShape();
         $shape->setName('Picture');
-        $shape->setDescription('page picture');
         $shape->setPath(imgPath($page['url']));
         $shape->setHeight($page['height']);
         $shape->setOffsetX((960 - $page['width']) / 2);  // (960 - width) / 2
@@ -174,6 +172,7 @@ function CreatePPTXFromBook($book) {
         $textRun->getFont()->setBold(true);
         $textRun->getFont()->setSize(30);
 
+/*
         // Create a shape (text)
         $shape = $currentSlide->createRichTextShape();
         $shape->setHeight(40);
@@ -185,6 +184,7 @@ function CreatePPTXFromBook($book) {
         $textRun = $shape->createTextRun($i+1);
         $textRun->getFont()->setBold(true);
         $textRun->getFont()->setSize(15);
+*/
 
     }
     // Save PowerPoint 2007 file
