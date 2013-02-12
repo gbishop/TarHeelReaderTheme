@@ -350,6 +350,8 @@ function SaveBookPost($id, $book) {
     global $log;
     $args = array('post_title' => $book['title'],
                   'post_status' => $book['status'],
+                  'post_exerpt' => 'A new book at Tar Heel Reader',
+                  'post_content' => 'The content is json',
                   'post_category' => array(3));
     if($id) {
         $args['ID'] = $id;  // force update instead of insert
