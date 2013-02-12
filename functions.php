@@ -348,28 +348,24 @@ function ParseBookPost($post) {
 
 function SaveBookPost($id, $book) {
     global $log;
-    // TODO: validate this stuff
-    //BuG('SBP ' . print_r($book, 1));
-    $content = json_encode($book);
-    //BuG('je ' . $content);
     $args = array('post_title' => $book['title'],
                   'post_status' => $book['status'],
                   'post_category' => array(3));
     if($id) {
-        $args['ID'] = $id;
-        $id = wp_update_post($args);
-    } else {
-        $id = wp_insert_post($args);
+        $args['ID'] = $id;  // force update instead of insert
     }
-    if ($id == 0) {
+    $id = wp_insert_post($args, true);
+
+    if (is_wp_error($id)) {
         $log->logError('SaveBookPost failed');
+        $log->logError(print_r($book, true));
+        $log->logError(print_r($id, true));
         return false;
     }
     $book['ID'] = $id;
 
     updateIndex($book);
 
-    //$book['ID'] = $postid;
     $post = get_post($id);
     $book = ParseBookPost($post);
 
