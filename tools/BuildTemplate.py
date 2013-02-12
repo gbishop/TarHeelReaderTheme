@@ -23,47 +23,68 @@ templates = {}
 strings = {}
 speech_strings = {}
 
+# first build the json blob
 for fname in args.templates:
     base = osp.basename(fname)
     key, ext = osp.splitext(base)
-
-    lines = []
-    for lineNumber, text in enumerate(file(fname, 'r')):
-        def translate(m):
-            s = tuple(m.group(1).split('|'))
-            locs = strings.get(s, [])
-            locs.append((fname, lineNumber + 1))
-            strings[s] = locs
-            if len(s) == 2:
-                r = t.gettext(s[1] + "\x04" + s[0])
-                rr = r.split("\x04")
-                if len(rr) == 2:
-                    r = rr[1]
-            else:
-                r = t.gettext(s[0])
-            if m.group(2):
-                phrase = m.group(2)[1:]
-                for voice in ['c', 'f', 'm']:
-                    name = phrase + '-' + voice
-                    speech_strings[name] = {
-                        'text': r,
-                        'url': '/theme/speech/%s-%s-%s.mp3' % (args.lang, phrase, voice)
-                    }
-            return r.replace('"', r'\"')
-
-        text = re.sub(r'_\(([^\)]+)\)(:[0-9a-z]+)?', translate, text)
-        text = re.sub(r' +', ' ', text)
-        lines.append(text)
-    value = ''.join(lines)
-
     if ext == '.json':
         try:
-            value = json.loads(value)
+            value = json.load(file(fname, 'r'))
         except Exception as e:
             print 'error', fname
-            print value
             raise e
+
+    else:
+        value = file(fname, 'r').read().decode('utf-8')
+
     templates[key] = value
+
+
+def translateObj(obj):
+    if type(obj) in [unicode, str]:
+        lines = []
+        for lineNumber, text in enumerate(obj.splitlines()):
+            def translate(m):
+                s = tuple(m.group(1).split('|'))
+                locs = strings.get(s, [])
+                locs.append((fname, lineNumber + 1))
+                strings[s] = locs
+                if len(s) == 2:
+                    r = t.gettext(s[1] + "\x04" + s[0])
+                    rr = r.split("\x04")
+                    if len(rr) == 2:
+                        r = rr[1]
+                else:
+                    r = t.gettext(s[0])
+                r = r.decode('utf-8')
+                if m.group(2):
+                    phrase = m.group(2)[1:]
+                    for voice in ['c', 'f', 'm']:
+                        name = phrase + '-' + voice
+                        speech_strings[name] = {
+                            'text': r,
+                            'url': '/theme/speech/%s-%s-%s.mp3' % (args.lang, phrase, voice)
+                        }
+                return r
+            text = re.sub(r'_\(([^\)]+)\)(:[0-9a-z]+)?', translate, text)
+            text = re.sub(r' +', ' ', text)
+            lines.append(text)
+        result = ''.join(lines)
+        return result
+    elif type(obj) == dict:
+        nobj = {}
+        for key in obj.keys():
+            nobj[key] = translateObj(obj[key])
+        return nobj
+
+    elif type(obj) == list:
+        return [translateObj(elem) for elem in obj]
+
+    else:
+        return obj
+
+# now translate the templates blob
+templates = translateObj(templates)
 
 templates['siteSpeech'] = speech_strings
 
@@ -82,7 +103,7 @@ msgstr ""
 "Language-Team: English\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 '''
@@ -95,6 +116,6 @@ if args.extract:
     for locs, string in toSort:
         print >>fp, '\n#', ', '.join(['%s:%d' % (fname, lineNumber) for fname, lineNumber in locs])
         if len(string) == 2:
-            print >>fp, 'msgctxt "%s"' % string[1]
-        print >>fp, 'msgid "%s"' % string[0]
+            print >>fp, 'msgctxt "%s"' % string[1].encode('utf-8')
+        print >>fp, 'msgid "%s"' % string[0].encode('utf-8')
         print >>fp, 'msgstr ""'
