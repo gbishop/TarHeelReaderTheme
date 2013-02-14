@@ -40,14 +40,14 @@ for fname in args.templates:
     templates[key] = value
 
 
-def translateObj(obj):
+def translateObj(obj, keyname):
     if type(obj) in [unicode, str]:
         lines = []
         for lineNumber, text in enumerate(obj.splitlines()):
             def translate(m):
                 s = tuple(m.group(1).split('|'))
                 locs = strings.get(s, [])
-                locs.append((fname, lineNumber + 1))
+                locs.append((keyname, lineNumber + 1))
                 strings[s] = locs
                 if len(s) == 2:
                     r = t.gettext(s[1] + "\x04" + s[0])
@@ -74,17 +74,18 @@ def translateObj(obj):
     elif type(obj) == dict:
         nobj = {}
         for key in obj.keys():
-            nobj[key] = translateObj(obj[key])
+            nobj[key] = translateObj(obj[key], key)
         return nobj
 
     elif type(obj) == list:
-        return [translateObj(elem) for elem in obj]
+        return [translateObj(elem, keyname + '[%d]' % i)
+                for i, elem in enumerate(obj)]
 
     else:
         return obj
 
 # now translate the templates blob
-templates = translateObj(templates)
+templates = translateObj(templates, 'topLevel')
 
 templates['siteSpeech'] = speech_strings
 
