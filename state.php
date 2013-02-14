@@ -20,7 +20,8 @@ $THRDefault = array(
     'favorites' => '',    // list of favorite ids
     'fpage' => 1,         // current favorites page
     'collection' => '',   // collection slug
-    'findAnotherLink' => '/find/' // URL to return to book search
+    'findAnotherLink' => '/find/', // URL to return to book search
+    'classic' => 0        // turn off js for old browsers having problems
 );
 
 $THRState = $THRDefault;
@@ -42,7 +43,8 @@ $THRPatterns = array(
     'favorites' => '/(^[AR]?\d+(,+\d+)*$)|(^$)/',   // comma separated integers or empty
     'fpage' => '/^\d+$/',        // current favorites page starting from 1
     'collection' => '/^[-\w\d]*$/',  // letters, numbers, and dash
-    'findAnotherLink' => '/^.*$/'
+    'findAnotherLink' => '/^.*$/',
+    'classic' => '/[01]/'
 );
 
 function splitFavorites($str) {

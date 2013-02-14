@@ -11,5 +11,6 @@
     "voice": "silent",
     "locale": "en",
     "favorites": "",
-    "findAnotherLink": "/find/"
+    "findAnotherLink": "/find/",
+    "classic": 0
 }

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-
+<?php
+    $classic = "";
+    if (THR('classic')) {
+        $classic = " classic";
+    }
+?>
 <!--[if lt IE 7 ]> <html class="ie ie6 ie6-7 no-js unsupported" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ie7 ie6-7 no-js unsupported" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8 no-js" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ie9 no-js" <?php language_attributes(); ?>> <![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js<?php echo $classic;?>" <?php language_attributes(); ?>> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js<?php echo $classic;?>" <?php language_attributes(); ?>> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js<?php echo $classic;?>" <?php language_attributes(); ?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 
 <head>
@@ -27,9 +32,11 @@
         if (!window.console) window.console = {};
         if (!window.console.log) window.console.log = function () { };
     </script>
-    <![if gt IE 7]>
-    <script src="/theme/js/modernizr.custom.js"></script>
-    <![endif]>
+    <?php if (!THR('classic')) : ?>
+        <![if gt IE 7]>
+        <script src="/theme/js/modernizr.custom.js"></script>
+        <![endif]>
+    <?php endif ?>
     <!-- <script src="https://getfirebug.com/firebug-lite.js#startOpened"></script> -->
     <!-- <script src="http:/152.2.129.225:8080/target/target-script-min.js"></script> -->
     <?php wp_head(); ?>
