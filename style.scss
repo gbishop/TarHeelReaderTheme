@@ -609,11 +609,11 @@ img.favoriteYes, img.favoriteNo {
   display: block !important;
 }
 
-p.unsupported {
+p.unsupported, p.classic {
   display: none;
 }
 
-.unsupported p.unsupported {
+.unsupported p.unsupported, .classic p.classic {
   display: block;
   background-color: #FCC;
 }
