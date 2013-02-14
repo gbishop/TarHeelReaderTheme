@@ -9,7 +9,7 @@ thr_header('home-page'); ?> <!-- front-page.php -->
 			$content .= get_the_content();
 		}
 	}
-	query_posts("cat=9&posts_per_page=2");
+	query_posts("cat=9&posts_per_page=4");
 	$announcements = array();
 	if (have_posts()) {
 		while (have_posts()) {
@@ -40,9 +40,6 @@ thr_header('home-page'); ?> <!-- front-page.php -->
 				echo template_render('frontPage', $view);
 				?>
 			</div>
-
-			<?php edit_post_link('Edit this entry.', '<p>', '</p>'); ?>
-
 		</div>
 
 	</article>
