@@ -599,6 +599,7 @@ define(['route',
 
         // initialize the writing page.
         function writeInit(url, id, copyId) {
+            console.log('write', id, copyId);
             var $page = this;
 
             var bookContent = {};
@@ -662,6 +663,6 @@ define(['route',
             });
         }
 
-        route.add('init', /^\/write\/(?:\?id=(\d+))?$/, writeInit);
+        route.add('init', /^\/write\/(?:\?id=(\d+)|\?copy=(\d+))?$/, writeInit);
     }
 );

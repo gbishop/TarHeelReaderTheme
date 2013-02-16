@@ -17,6 +17,8 @@ $settingsFormData['action'] = parse_url($backto, PHP_URL_PATH);
 $view = array();
 $view['settingsForm'] = template_render('form', $settingsFormData);
 $view['ID'] = $ID;
+$view['loggedIn'] = is_user_logged_in();
+$view['canEdit'] = current_user_can('edit_post', $ID);
 $view['backto'] = $backto;
 echo template_render('readingControls', $view);
 ?>

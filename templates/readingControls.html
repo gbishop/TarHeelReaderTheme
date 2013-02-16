@@ -8,4 +8,13 @@
         <a class="powerpoint no-ajaxy" href="/download-book/?type=pptx&id={{ID}}">_(PowerPoint)</a>
         <a class="epub no-ajaxy" href="/download-book/?type=epub&id={{ID}}">_(EPUB)</a>
     </div>
+    {{#loggedIn}}
+    <div class="downloadLinks">
+        <h2>_(Change this book)</h2>
+        {{#canEdit}}
+        <a href="/write/?id={{ID}}">_(Edit it.)</a>
+        {{/canEdit}}
+        <a href="/write/?copy={{ID}}">_(Create a new one like it.)</a>
+    </div>
+    {{/loggedIn}}
 {{/ID}}

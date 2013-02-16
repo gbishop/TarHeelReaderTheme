@@ -181,6 +181,11 @@ require(["state", "controller", "templates"], function(state, controller, templa
             }
         });
 
+        $body.on("click", ".active-page .mainSettings:visible .more", function() {
+            var id = $(this).attr('data-id');
+            controller.gotoUrl('/reading-controls/?id=' + id);
+        });
+
         // touchstart for touch-screen display
         $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
             var $menu = $(".active-page .mainSettings");
