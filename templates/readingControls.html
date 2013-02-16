@@ -11,10 +11,10 @@
     {{#loggedIn}}
     <div class="downloadLinks">
         <h2>_(Change this book)</h2>
+        <a href="/write/?copy={{ID}}">_(Create a new one like it.)</a>
         {{#canEdit}}
         <a href="/write/?id={{ID}}">_(Edit it.)</a>
         {{/canEdit}}
-        <a href="/write/?copy={{ID}}">_(Create a new one like it.)</a>
     </div>
     {{/loggedIn}}
 {{/ID}}
