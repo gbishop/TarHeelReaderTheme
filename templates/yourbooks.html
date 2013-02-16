@@ -44,10 +44,11 @@
         {{#has_published}}
         <ul class="controlList booksList publishedBooks">
             {{#published}}
-            <li data-id="{{ID}}">
+            <li data-id="{{ID}}" data-link="{{{link}}}">
                 <span>{{title}}</span>
                 <div>
                     <p>{{title}}</p>
+                    <button data-action="read">_(Read|Button label)</button>
                     <button data-action="edit">_(Edit|Button label)</button>
                     <button data-action="cancel">_(Cancel|Button label)</button>
                 </div>

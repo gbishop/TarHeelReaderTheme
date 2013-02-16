@@ -102,15 +102,18 @@ define([
         var $this = $(this),
             $li = $(this).parents('li'),
             bookID = $this.parents('li').attr('data-id'),
+            link = $this.parents('li').attr('data-link'),
             action = $this.attr('data-action');
 
         if(action === 'edit') {
-           controller.gotoUrl("/write/?id=" + bookID); // simply change URL, this is all we need to do, right?
+            controller.gotoUrl("/write/?id=" + bookID); // simply change URL, this is all we need to do, right?
         } else if(action === 'delete') {
-           $.post('/your-books/', {action: action + '-draft', id: bookID }, function(data, status) {
+            $.post('/your-books/', {action: action + '-draft', id: bookID }, function(data, status) {
                // removeFromList(data, status, $li, $li.find('div')); // we can use this for deletion without reload
                window.location.reload(false);  // keep the deletion behavior consistent: refresh page
-           }, 'json');
+            }, 'json');
+        } else if(action === 'read') {
+            controller.gotoUrl(link);
         }
     }); // end click
 
