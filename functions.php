@@ -8,7 +8,7 @@ require('state.php'); // manage shared state in a cookie so both client and host
 // setup logging
 date_default_timezone_set('EST');
 require('KLogger.php');
-$log = new KLogger('/var/tmp/tarheelreader', KLogger::WARN);
+$log = new KLogger('/var/tmp/tarheelreader', KLogger::DEBUG);
 
 $locale = THR('locale');
 if ($locale != 'en') {
