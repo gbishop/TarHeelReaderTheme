@@ -17,7 +17,11 @@ msgid "Your favorites page is empty."
 msgstr ""
 
 # bookList:8
-msgid "No books found. Try another search."
+msgid "Click here to try your search without restrictions."
+msgstr ""
+
+# bookList:8
+msgid "No books found."
 msgstr ""
 
 # bookList:22, bookList:22
@@ -130,46 +134,50 @@ msgid "This site will work much better if you enable Javascript. You'll get swit
 msgstr ""
 
 # frontPage:5
-msgid "Your browser is unsupported. The site may work for finding and reading books but you will not have switch access or the ability to write books. We recommend that you upgrade to a modern browser or install Chrome Frame."
+msgid "Your browser is unsupported. The site should work for finding and reading books but you will not have switch access or the ability to write books. We recommend that you upgrade to a modern browser or install Chrome Frame."
 msgstr ""
 
 # frontPage:7
-msgid "Click here to learn more about alternative access methods."
-msgstr ""
-
-# frontPage:7
-msgid "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and accessible books on a wide range of topics. Each book can be speech enabled and accessed using multiple interfaces, including touch screens, the IntelliKeys with custom overlays, and 1 to 3 switches."
+msgid "You are in Classic mode. You will not have access to all of the features of the site but it may work better on older computers and web browsers. Click this text to leave Classic mode."
 msgstr ""
 
 # frontPage:9
-msgid "You may write your own books using pictures from the huge collection at {{{Flickr}}} or pictures you upload. All books should be complete, edited, and revised to the best of your ability before publishing them to the site. While you are working on them, please save them as drafts."
+msgid "Click here to learn more about alternative access methods."
+msgstr ""
+
+# frontPage:9
+msgid "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and accessible books on a wide range of topics. Each book can be speech enabled and accessed using multiple interfaces, including touch screens, the IntelliKeys with custom overlays, and 1 to 3 switches."
 msgstr ""
 
 # frontPage:11
-msgid "Note the little well icon {{{wellicon}}} in the upper left corner of the page; clicking it will allow you to access the main menu. You can also click the settings icon {{{gearicon}}} to change settings on some pages."
+msgid "You may write your own books using pictures from the huge collection at {{{Flickr}}} or pictures you upload. All books should be complete, edited, and revised to the best of your ability before publishing them to the site. While you are working on them, please save them as drafts."
 msgstr ""
 
 # frontPage:13
+msgid "Note the little well icon {{{wellicon}}} in the upper left corner of the page; clicking it will allow you to access the main menu. You can also click the settings icon {{{gearicon}}} to change settings on some pages."
+msgstr ""
+
+# frontPage:15
 msgid "Ready to get started?"
 msgstr ""
 
-# frontPage:15, navigation:12
+# frontPage:17, navigation:12
 msgid "Find a book"
 msgstr ""
 
-# frontPage:16, navigation:24
+# frontPage:18, navigation:24
 msgid "Write a book"
 msgstr ""
 
-# frontPage:19
+# frontPage:21
 msgid "This site is also available in other languages. To help with translation, contact us."
 msgstr ""
 
-# frontPage:27
+# frontPage:29
 msgid "change language"
 msgstr ""
 
-# frontPage:34
+# frontPage:36
 msgid "Latest Announcements"
 msgstr ""
 
@@ -208,6 +216,10 @@ msgstr ""
 
 # heading:74
 msgid "Default"
+msgstr ""
+
+# heading:76
+msgid "More..."
 msgstr ""
 
 # label:1
@@ -540,6 +552,18 @@ msgstr ""
 msgid "EPUB"
 msgstr ""
 
+# readingControls:13
+msgid "Change this book"
+msgstr ""
+
+# readingControls:14
+msgid "Create a new one like it."
+msgstr ""
+
+# readingControls:16
+msgid "Edit it."
+msgstr ""
+
 # text:1
 msgid "1.5 stars"
 msgstr ""
@@ -587,14 +611,6 @@ msgstr ""
 
 # whereAreReaders:12
 msgid "We do not yet have any of your books on the map."
-msgstr ""
-
-# write:2
-msgid "You must have Javascript enabled in order to write a book."
-msgstr ""
-
-# write:4
-msgid "Your web browser does not support writing books."
 msgstr ""
 
 # write:6
@@ -872,130 +888,143 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-# yourbooks:3, yourbooks:3, yourbooks:13, yourbooks:13, yourbooks:37, yourbooks:37, yourbooks:60, yourbooks:60, write:11, write:11, write:28, write:28, write:35, write:35, write:45, write:45, write:67, write:67, write:112, write:112, write:139, write:139
+# yourbooks:2, write:2
+msgid "You must have Javascript enabled in order to write a book."
+msgstr ""
+
+# yourbooks:4, write:4
+msgid "Your web browser does not support writing books."
+msgstr ""
+
+# yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:41, yourbooks:41, yourbooks:65, yourbooks:65, write:11, write:11, write:28, write:28, write:35, write:35, write:45, write:45, write:67, write:67, write:112, write:112, write:139, write:139
 msgid "Click for help"
 msgstr ""
 
-# yourbooks:4
+# yourbooks:8
 msgid "Links to the main sections of this page are listed below. You may choose to use these links to help you get to the different sections of this page."
 msgstr ""
 
-# yourbooks:4, yourbooks:5
+# yourbooks:8, yourbooks:9
 msgid "Quick Navigation"
 msgstr ""
 
-# yourbooks:7, yourbooks:14, yourbooks:15
+# yourbooks:11, yourbooks:18, yourbooks:19
 msgid "Your Draft Books"
 msgstr ""
 
-# yourbooks:8, yourbooks:38, yourbooks:39
+# yourbooks:12, yourbooks:42, yourbooks:43
 msgid "Your Published Books"
 msgstr ""
 
-# yourbooks:9, yourbooks:61, yourbooks:62
+# yourbooks:13, yourbooks:66, yourbooks:67
 msgid "Your Collections"
 msgstr ""
 
-# yourbooks:14
+# yourbooks:18
 msgid "Your draft books are listed below. Click on a title to expose a menu that will allow you to edit or delete it."
 msgstr ""
 
-# yourbooks:20, yourbooks:22
+# yourbooks:24, yourbooks:26
 msgid "untitled"
 msgstr ""
 
-# yourbooks:23, yourbooks:47
+# yourbooks:27, yourbooks:52
 msgctxt "Button label"
 msgid "Edit"
 msgstr ""
 
-# yourbooks:24, yourbooks:91
+# yourbooks:28, yourbooks:96
 msgctxt "Button label"
 msgid "Delete"
 msgstr ""
 
-# yourbooks:25, yourbooks:48, yourbooks:77, yourbooks:92, write:157, busy:6, busy:11
+# yourbooks:29, yourbooks:53, yourbooks:82, yourbooks:97, write:157, busy:6, busy:11
 msgctxt "Button label"
 msgid "Cancel"
 msgstr ""
 
-# yourbooks:32
+# yourbooks:36
 msgid "If you had any books saved as drafts they would appear here."
 msgstr ""
 
-# yourbooks:38
+# yourbooks:42
 msgid "Your published books are listed below. Click on a title to expose a menu that will allow you to edit it. From the editor you may return a book draft status by clicking Save as Draft."
 msgstr ""
 
-# yourbooks:55
+# yourbooks:51
+msgctxt "Button label"
+msgid "Read"
+msgstr ""
+
+# yourbooks:60
 msgid "If you had any published books they would be listed here."
 msgstr ""
 
-# yourbooks:61
+# yourbooks:66
 msgid "Your collections are listed below. Click on the Favorites button to create a new collection. Click on a collection to expose a menu that will allow you to modify it."
 msgstr ""
 
-# yourbooks:67
+# yourbooks:72
 msgid "Favorites: {{count}} books"
 msgstr ""
 
-# yourbooks:69, yourbooks:84, write:48
+# yourbooks:74, yourbooks:89, write:48
 msgid "Title"
 msgstr ""
 
-# yourbooks:70, yourbooks:85
+# yourbooks:75, yourbooks:90
 msgid "Description"
-msgstr ""
-
-# yourbooks:71
-msgctxt "Button label"
-msgid "Save as a new Collection"
-msgstr ""
-
-# yourbooks:74
-msgid "Add books to your Favorites and come back here to save as a Collection"
 msgstr ""
 
 # yourbooks:76
 msgctxt "Button label"
+msgid "Save as a new Collection"
+msgstr ""
+
+# yourbooks:79
+msgid "Add books to your Favorites and come back here to save as a Collection"
+msgstr ""
+
+# yourbooks:81
+msgctxt "Button label"
 msgid "Clear Favorites list"
 msgstr ""
 
-# yourbooks:86
+# yourbooks:91
 msgid "{{count}} books"
 msgstr ""
 
-# yourbooks:87
+# yourbooks:92
 msgctxt "Button label"
 msgid "Update title and description"
 msgstr ""
 
-# yourbooks:88
+# yourbooks:93
 msgctxt "Button label"
 msgid "Add to Favorites"
 msgstr ""
 
-# yourbooks:89
+# yourbooks:94
 msgid "Merge Favorites into here"
 msgstr ""
 
-# yourbooks:90
+# yourbooks:95
 msgid "Replace with Favorites"
 msgstr ""
 
-# yourbooks:101
+# yourbooks:106
 msgid "You must be logged in to see your draft and published books."
 msgstr ""
 
-# yourbooks:101, write:6, login:21
+# yourbooks:106, write:6, login:21
 msgctxt "link label"
 msgid "Log In"
 msgstr ""
 
-# yourbooks:104
+# yourbooks:109
 msgid "Where in the world are these books read?"
 msgstr ""
 
-# yourbooks:105
+# yourbooks:110
 msgid "Check out our map of readers!"
 msgstr ""
