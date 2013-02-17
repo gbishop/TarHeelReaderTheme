@@ -100,7 +100,7 @@ function CreateEPubFromBook($book, $voice) {
             BuG("vpath=$vpath");
             $data = file_get_contents($vpath);
             $bname = basename($vpath);
-            $audio = "/speech/$bname";
+            $audio = "speech/$bname";
             Bug("audio=$audio");
             $epub->addFile($audio, $bname, $data, 'audio/mpeg');
             $view['audio'] = $audio;
