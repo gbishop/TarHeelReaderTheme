@@ -206,22 +206,6 @@ msgctxt "site name"
 msgid "Tar Heel Reader"
 msgstr ""
 
-# heading:27
-msgid "Colors"
-msgstr ""
-
-# heading:64
-msgid "Download"
-msgstr ""
-
-# heading:74
-msgid "Default"
-msgstr ""
-
-# heading:76
-msgid "More..."
-msgstr ""
-
 # label:1
 msgid "All Topics"
 msgstr ""
@@ -403,66 +387,6 @@ msgstr ""
 msgid "Turkish"
 msgstr ""
 
-# label:1, heading:15
-msgid "Speech"
-msgstr ""
-
-# label:1, heading:18
-msgid "Silent"
-msgstr ""
-
-# label:1, heading:19
-msgid "Child"
-msgstr ""
-
-# label:1, heading:20
-msgid "Woman"
-msgstr ""
-
-# label:1, heading:21
-msgid "Man"
-msgstr ""
-
-# label:1, heading:30
-msgid "Page Color"
-msgstr ""
-
-# label:1, heading:44
-msgid "Text Color"
-msgstr ""
-
-# label:1, label:1, heading:33, heading:47
-msgid "Black"
-msgstr ""
-
-# label:1, label:1, heading:34, heading:48
-msgid "Blue"
-msgstr ""
-
-# label:1, label:1, heading:35, heading:49
-msgid "Cyan"
-msgstr ""
-
-# label:1, label:1, heading:36, heading:50
-msgid "Green"
-msgstr ""
-
-# label:1, label:1, heading:37, heading:51
-msgid "Magenta"
-msgstr ""
-
-# label:1, label:1, heading:38, heading:52
-msgid "Red"
-msgstr ""
-
-# label:1, label:1, heading:39, heading:53
-msgid "White"
-msgstr ""
-
-# label:1, label:1, heading:40, heading:54
-msgid "Yellow"
-msgstr ""
-
 # login:2
 msgid "Log in to Tar Heel Reader"
 msgstr ""
@@ -544,11 +468,11 @@ msgstr ""
 msgid "Download this book"
 msgstr ""
 
-# readingControls:8, heading:67
+# readingControls:8, settings:56
 msgid "PowerPoint"
 msgstr ""
 
-# readingControls:9, heading:68
+# readingControls:9, settings:57
 msgid "EPUB"
 msgstr ""
 
@@ -562,6 +486,82 @@ msgstr ""
 
 # readingControls:16
 msgid "Edit it."
+msgstr ""
+
+# settings:4, label:1
+msgid "Speech"
+msgstr ""
+
+# settings:7, label:1
+msgid "Silent"
+msgstr ""
+
+# settings:8, label:1
+msgid "Child"
+msgstr ""
+
+# settings:9, label:1
+msgid "Woman"
+msgstr ""
+
+# settings:10, label:1
+msgid "Man"
+msgstr ""
+
+# settings:16
+msgid "Colors"
+msgstr ""
+
+# settings:19, label:1
+msgid "Page Color"
+msgstr ""
+
+# settings:22, settings:36, label:1, label:1
+msgid "Black"
+msgstr ""
+
+# settings:23, settings:37, label:1, label:1
+msgid "Blue"
+msgstr ""
+
+# settings:24, settings:38, label:1, label:1
+msgid "Cyan"
+msgstr ""
+
+# settings:25, settings:39, label:1, label:1
+msgid "Green"
+msgstr ""
+
+# settings:26, settings:40, label:1, label:1
+msgid "Magenta"
+msgstr ""
+
+# settings:27, settings:41, label:1, label:1
+msgid "Red"
+msgstr ""
+
+# settings:28, settings:42, label:1, label:1
+msgid "White"
+msgstr ""
+
+# settings:29, settings:43, label:1, label:1
+msgid "Yellow"
+msgstr ""
+
+# settings:33, label:1
+msgid "Text Color"
+msgstr ""
+
+# settings:53
+msgid "Download"
+msgstr ""
+
+# settings:63
+msgid "Default"
+msgstr ""
+
+# settings:65
+msgid "More..."
 msgstr ""
 
 # text:1
@@ -938,7 +938,7 @@ msgctxt "Button label"
 msgid "Delete"
 msgstr ""
 
-# yourbooks:29, yourbooks:53, yourbooks:82, yourbooks:97, write:157, busy:6, busy:11
+# yourbooks:29, yourbooks:53, yourbooks:82, yourbooks:97, busy:6, busy:11, write:157
 msgctxt "Button label"
 msgid "Cancel"
 msgstr ""
