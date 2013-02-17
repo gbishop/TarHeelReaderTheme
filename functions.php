@@ -350,12 +350,13 @@ function SaveBookPost($id, $book) {
     global $log;
     $args = array('post_title' => $book['title'],
                   'post_status' => $book['status'],
-                  'post_exerpt' => 'A new book at Tar Heel Reader',
+                  'post_excerpt' => 'A new book at Tar Heel Reader',
                   'post_category' => array(3));
     if($id) {
         $args['ID'] = $id;  // force update instead of insert
         $id = wp_update_post($args, true);
     } else {
+        $args['post_content'] = 'Content is json';
         $id = wp_insert_post($args, true);
     }
 
