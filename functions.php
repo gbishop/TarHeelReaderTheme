@@ -351,12 +351,13 @@ function SaveBookPost($id, $book) {
     $args = array('post_title' => $book['title'],
                   'post_status' => $book['status'],
                   'post_exerpt' => 'A new book at Tar Heel Reader',
-                  'post_content' => 'The content is json',
                   'post_category' => array(3));
     if($id) {
         $args['ID'] = $id;  // force update instead of insert
+        $id = wp_update_post($args, true);
+    } else {
+        $id = wp_insert_post($args, true);
     }
-    $id = wp_insert_post($args, true);
 
     if (is_wp_error($id)) {
         $log->logError('SaveBookPost failed');
