@@ -19,5 +19,8 @@
         <p><img src={{url}} /></p>
         <p>{{text}}</p>
         {{/titlepage}}
+        {{#audio}}
+        <audio src="{{audio}}" controls="controls">Your reader does not support audio.</audio>
+        {{/audio}}
     </body>
 </html>

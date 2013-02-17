@@ -37,6 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
     $type = getParam('type', '', '/pptx|epub/');
+    $voice = getParam('voice', 'silent', '/child|female|male/');
     $book = ParseBookPost($post);
     if (!$book) {
         header("HTTP/1.0 404 Not Found");
@@ -47,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($type == 'pptx') {
         CreatePPTXFromBook($book);
     } elseif ($type == 'epub') {
-        CreateEPubFromBook($book);
+        CreateEPubFromBook($book, $voice);
     }
     exit;
 }
@@ -57,7 +58,7 @@ function imgPath($url) {
     return $result;
 }
 
-function CreateEPubFromBook($book) {
+function CreateEPubFromBook($book, $voice) {
     global $mustache;
 
     set_include_path(get_include_path() . PATH_SEPARATOR . ABSPATH .
@@ -74,6 +75,13 @@ function CreateEPubFromBook($book) {
     $epub->setRights("Copyright Tar Heel Reader. May be freely used for education. May not be sold.");
     $epub->setSourceURL($book['link']);
 
+    $vbase = '';
+    if ($voice != 'silent') {
+        $ID = $book['ID'];
+        $vbase = "/var/www/production/cache/speech/" . substr($ID, -2) . "/$ID/";
+        BuG("vbase=$vbase");
+    }
+
     $pages = $book['pages'];
     $epub->setCoverImage($pages[1]['url']);
 
@@ -87,6 +95,16 @@ function CreateEPubFromBook($book) {
         $view['url'] = $url;
         $view['text'] = $page['text'];
         $view['titlepage'] = $i == 0;
+        if ($vbase) {
+            $vpath = $vbase . ($i+1) . "-" . substr($voice, 0, 1) . '.mp3';
+            BuG("vpath=$vpath");
+            $data = file_get_contents($vpath);
+            $bname = basename($vpath);
+            $audio = "speech/$bname";
+            Bug("audio=$audio");
+            $epub->addFile($audio, $bname, $data, 'audio/mpeg');
+            $view['audio'] = $audio;
+        }
         $content = $mustache->render($template, $view);
         $epub->addChapter('page' . $i, 'page' . $i . '.html', $content,
             false, EPub::EXTERNAL_REF_ADD, ABSPATH);
