@@ -76,10 +76,9 @@ function CreateEPubFromBook($book, $voice) {
     $epub->setSourceURL($book['link']);
 
     $vbase = '';
-    if ($voice != 'silent') {
+    if ($voice != 'silent' && has_speech($book['language'])) {
         $ID = $book['ID'];
         $vbase = "/var/www/production/cache/speech/" . substr($ID, -2) . "/$ID/";
-        BuG("vbase=$vbase");
     }
 
     $pages = $book['pages'];
@@ -97,11 +96,9 @@ function CreateEPubFromBook($book, $voice) {
         $view['titlepage'] = $i == 0;
         if ($vbase) {
             $vpath = $vbase . ($i+1) . "-" . substr($voice, 0, 1) . '.mp3';
-            BuG("vpath=$vpath");
             $data = file_get_contents($vpath);
             $bname = basename($vpath);
             $audio = "speech/$bname";
-            Bug("audio=$audio");
             $epub->addFile($audio, $bname, $data, 'audio/mpeg');
             $view['audio'] = $audio;
         }
