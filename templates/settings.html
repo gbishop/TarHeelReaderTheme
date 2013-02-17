@@ -1,0 +1,68 @@
+        <!-- Begin mainSettings Panel -->
+        <ul class="mainSettings">
+            <!-- Begin Speech -->
+            <li><span class="speech">_(Speech)</span>
+                <!-- Begin submenu -->
+                <ul class="submenu speechOptions">
+                    <li><span class="silent">_(Silent)</span></li>
+                    <li><span class="child">_(Child)</span></li>
+                    <li><span class="woman">_(Woman)</span></li>
+                    <li><span class="man">_(Man)</span></li>
+                </ul>
+                <!-- End submenu -->
+            </li>
+            <!-- End Speech -->
+            <!-- Begin Colors -->
+            <li><span class="colors">_(Colors)</span>
+                <!-- Begin first submenu -->
+                <ul class="submenu">
+                    <li class="pageColors"><span>_(Page Color)</span>
+                        <!-- Begin inner submenu -->
+                        <ul class="innerSubmenu pageColorsOptions">
+                            <li><span class="black">_(Black)</span></li>
+                            <li><span class="blue">_(Blue)</span></li>
+                            <li><span class="cyan">_(Cyan)</span></li>
+                            <li><span class="green">_(Green)</span></li>
+                            <li><span class="magenta">_(Magenta)</span></li>
+                            <li><span class="red">_(Red)</span></li>
+                            <li><span class="white">_(White)</span></li>
+                            <li><span class="yellow">_(Yellow)</span></li>
+                        </ul>
+                        <!-- End inner submenu -->
+                    </li>
+                    <li class="textColors"><span>_(Text Color)</span>
+                        <!-- Begin inner submenu -->
+                        <ul class="innerSubmenu textColorsOptions">
+                            <li><span class="black">_(Black)</span></li>
+                            <li><span class="blue">_(Blue)</span></li>
+                            <li><span class="cyan">_(Cyan)</span></li>
+                            <li><span class="green">_(Green)</span></li>
+                            <li><span class="magenta">_(Magenta)</span></li>
+                            <li><span class="red">_(Red)</span></li>
+                            <li><span class="white">_(White)</span></li>
+                            <li><span class="yellow">_(Yellow)</span></li>
+                        </ul>
+                        <!-- End inner submenu -->
+                    </li>
+                </ul>
+                <!-- End first submenu -->
+            </li>
+            <!-- End Colors -->
+            <!-- Begin Download (only show if we have book ID)-->
+            {{#ID}}
+            <li><span class="download">_(Download)</span>
+                <!-- Begin submenu -->
+                <ul class="submenu downloadOptions">
+                    <li><a class="powerpoint no-ajaxy" href="/download-book/?type=pptx&id={{ID}}" data-log="{{ID}}-pptx">_(PowerPoint)</a></li>
+                    <li><a class="epub no-ajaxy" href="/download-book/?type=epub&id={{ID}}&voice={{voice}}" data-log="{{ID}}-epub">_(EPUB)</a></li>
+                </ul>
+                <!-- End submenu -->
+            </li>
+            {{/ID}}
+            <!-- End Download -->
+            <li><span class="default">_(Default)</span></li>
+            {{#ID}}
+            <li><span class="more" data-id="{{ID}}">_(More...)</span></li>
+            {{/ID}}
+        </ul>
+    <!-- End Settings Panel -->

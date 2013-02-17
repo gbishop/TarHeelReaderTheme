@@ -3,45 +3,45 @@ require(["state", "controller", "templates"], function(state, controller, templa
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
         options = { // list of available options
-                   speech: {
-                        silent: 'silent',
-                        child: 'child',
-                        woman: 'female',
-                        man: 'male'
-                    },
-                    colors: {
-                        black: '000',
-                        blue: '00f',
-                        cyan: '0ff',
-                        green: '0f0',
-                        magenta: 'f0f',
-                        red: 'f00',
-                        white: 'fff',
-                        yellow: 'ff0'
-                    },
-                    getKeyByValue: function(category, value) { // function to retrieve option by value
-                        var object = this[category];
-                        for(var option in object) {
-                           if(object.hasOwnProperty(option) ) {
-                               if(object[option] === value)
-                                    return option;
-                             }
-                        }
-                    },
-                    getOptionByValue: function(category, selectedOption) {
-                        for(var option in this[category]) {
-                            if(option === selectedOption) {
-                                return this[category][option];
-                            }
-                        }
-                        return null;
+            speech: {
+                silent: 'silent',
+                child: 'child',
+                woman: 'female',
+                man: 'male'
+            },
+            colors: {
+                black: '000',
+                blue: '00f',
+                cyan: '0ff',
+                green: '0f0',
+                magenta: 'f0f',
+                red: 'f00',
+                white: 'fff',
+                yellow: 'ff0'
+            },
+            getKeyByValue: function(category, value) { // function to retrieve option by value
+                var object = this[category];
+                for(var option in object) {
+                   if(object.hasOwnProperty(option) ) {
+                       if(object[option] === value)
+                            return option;
+                     }
+                }
+            },
+            getOptionByValue: function(category, selectedOption) {
+                for(var option in this[category]) {
+                    if(option === selectedOption) {
+                        return this[category][option];
                     }
-          },
-          defaultOptions = {
-              voice: options.speech.silent,
-              pageColor: options.colors.white,
-              textColor: options.colors.black
-          };
+                }
+                return null;
+            }
+        },
+        defaultOptions = {
+            voice: options.speech.silent,
+            pageColor: options.colors.white,
+            textColor: options.colors.black
+        };
 
     $(function() {
         var $body = $('body'),
@@ -197,91 +197,96 @@ require(["state", "controller", "templates"], function(state, controller, templa
         /*
          * End Settings Code
          */
-      }); // end ready
+    }); // end ready
 
-      function changeSetting($element, text) {
-          var parentClass = $element.parent().attr("class").toLowerCase()
-                                             .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
-              value,
-              option = "",
-              currentSettings = getCurrentSettings();
+    function changeSetting($element, text) {
+        var parentClass = $element.parent().attr("class").toLowerCase()
+                            .replace(/inner|submenu|\s+/g, ""), // remove "submenu" and "innerSubmenu"
+            value,
+            option = "",
+            currentSettings = getCurrentSettings();
 
-          if(parentClass === "speechoptions") { // which option are we dealing with?
-              value = options.getOptionByValue("speech", text);
-              option = "voice";
+        if(parentClass === "speechoptions") { // which option are we dealing with?
+            value = options.getOptionByValue("speech", text);
+            option = "voice";
 
-          } else if(parentClass === "pagecolorsoptions") {
-              value = options.getOptionByValue("colors", text);
-              option = "pageColor";
+        } else if(parentClass === "pagecolorsoptions") {
+            value = options.getOptionByValue("colors", text);
+            option = "pageColor";
 
-          } else if(parentClass === "textcolorsoptions") {
-              value = options.getOptionByValue("colors", text);
-              option = "textColor";
-          } else { // not a valid option, return
-              return;
-          }
-          logEvent('read', 'setting', option + '=' + value);
-          state.set(option, value);
-          updateFavoritesPageUrl();
-          updateCheckedOptions(); // update the check marks next to the currently selected options
-      }
+        } else if(parentClass === "textcolorsoptions") {
+            value = options.getOptionByValue("colors", text);
+            option = "textColor";
+        } else { // not a valid option, return
+            return;
+        }
+        logEvent('read', 'setting', option + '=' + value);
+        state.set(option, value);
+        updateFavoritesPageUrl();
+        updateCheckedOptions(); // update the check marks next to the currently selected options
+    }
 
-      function getCurrentSettings() {
-         return {
-             speech: state.get(settings[0]),
-             pageColor: state.get(settings[1]),
-             textColor: state.get(settings[2])
-         };
-      }
+    function getCurrentSettings() {
+        return {
+            speech: state.get(settings[0]),
+            pageColor: state.get(settings[1]),
+            textColor: state.get(settings[2])
+        };
+    }
 
-      function resetSettings() {
-          var currentSettings = getCurrentSettings();
-          // set default options
-          for(var option in defaultOptions) {
-              state.set(option, defaultOptions[option]);
-          }
-          updateFavoritesPageUrl(); // update the url if we are on the favorites page
-          updateCheckedOptions();
-      }
+    function resetSettings() {
+        var currentSettings = getCurrentSettings();
+        // set default options
+        for(var option in defaultOptions) {
+            state.set(option, defaultOptions[option]);
+        }
+        updateFavoritesPageUrl(); // update the url if we are on the favorites page
+        updateCheckedOptions();
+    }
 
-      function updateCheckedOptions() {
-          var currentSettings = getCurrentSettings(),
-              view;
+    function updateCheckedOptions() {
+        var currentSettings = getCurrentSettings(),
+            view,
+            needsMenu = $('.active-page div.header:not(:has(.mainSettings))');
+        // create settings menu if it doesn't already exist
+        if (needsMenu.length !== 0) {
+            var id = needsMenu.attr('data-id'),
+                voice = currentSettings.speech;
+            needsMenu.append(templates.render('settings', {ID: id, voice: voice}));
+        }
+        $(".checked").removeClass("checked");
+        // update the currently set options with a check mark next to them
+        $(".speechOptions ." + options.getKeyByValue("speech", currentSettings.speech)).addClass("checked");
+        $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
+        $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
+        // update the color stylesheet in the head
+        view = {
+            pageColor: currentSettings.pageColor,
+            textColor: currentSettings.textColor
+        };
+        $('.styleColors').replaceWith(templates.render('styleColor', view));
+    }
 
-          $(".checked").removeClass("checked");
-          // update the currently set options with a check mark next to them
-          $(".speechOptions ." + options.getKeyByValue("speech", currentSettings.speech)).addClass("checked");
-          $(".pageColorsOptions ." + options.getKeyByValue("colors", currentSettings.pageColor)).addClass("checked");
-          $(".textColorsOptions ." + options.getKeyByValue("colors", currentSettings.textColor)).addClass("checked");
-          // update the color stylesheet in the head
-          view = {
-              pageColor: currentSettings.pageColor,
-              textColor: currentSettings.textColor
-          };
-          $('.styleColors').replaceWith(templates.render('styleColor', view));
-      }
+    function updateFavoritesPageUrl() {
+        var $favPage = $(".favorites-page");
+         // need to modify the URL here if we are on the favorites page
+        if($favPage.length !== 0 && $favPage.hasClass("active-page")) {
+            window.location.href = '/favorites/';
+        } else {
+            controller.stateChange();
+        }
+    }
 
-      function updateFavoritesPageUrl() {
-          var $favPage = $(".favorites-page");
-
-          // need to modify the URL here if we are on the favorites page
-          if($favPage.length !== 0 && $favPage.hasClass("active-page")) {
-              window.location.href = '/favorites/';
-          } else {
-              controller.stateChange();
-          }
-      }
-
-      function initKeyControls() {
-          var keyCode,
-              url;
-          // if ENTER is pressed on the well or gear icon, go to that page
-          $('body').on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
+    function initKeyControls() {
+        var keyCode,
+            url;
+        // if ENTER is pressed on the well or gear icon, go to that page
+        $('body').on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
             keyCode = e.keyCode || e.which;
             if(keyCode === 13) {
                 console.log("clicked enter");
                 window.location.href = $(this).is('.thr-well-icon') ? '/navigation/' : '/reading-controls/';
             }
-          }); // end keydown on icons
-      } // end initKeyControls
+        }); // end keydown on icons
+    } // end initKeyControls
 }); // end require
