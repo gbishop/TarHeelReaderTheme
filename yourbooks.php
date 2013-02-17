@@ -129,9 +129,8 @@ if($userid != 0) {
     $view['user'] = $userid;
 
     // list drafts
-    $my_drafts = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts
-                                     WHERE post_status = 'draft' AND
-                                           post_author = $userid");
+    $BookCat = get_cat_id('Books');
+    $my_drafts = query_posts("cat=$BookCat&author=$userid&orderby=title&posts_per_page=-1&post_status=draft");
     $drafts_list = Array();
     foreach ($my_drafts as $post) {
         $drafts[] = Array(
@@ -143,7 +142,6 @@ if($userid != 0) {
     $view['has_drafts'] = count($drafts) > 0;
 
     // list published
-    $BookCat = get_cat_id('Books');
     $my_published = query_posts("cat=$BookCat&author=$userid&orderby=title&posts_per_page=-1");
     $published = Array();
     foreach ($my_published as $post) {
