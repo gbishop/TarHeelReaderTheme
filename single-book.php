@@ -26,20 +26,14 @@
             } elseif ($pageNumber > $Npages) {
                 $addClass = ' choice-page';
             }
-            if (preg_match('/(^|,)' . $id . '(,|$)/', THR('favorites'))) {
-                $addClass .= ' favoriteYes';
-                $view = array('setFavorite'=>'?favorites=R' . $id);
-            } else {
-                $addClass .= ' favoriteNo';
-                $view = array('setFavorite'=>'?favorites=A' . $id);
-            }
-            $view['ID'] = $book['ID']; // book ID for download/settings links in the menu
-            $view['noTitle'] = true;
+            $hview = array();
+            $hview['noTitle'] = true;
             if ($pageNumber == 1) {
-                $view['settings'] = true;
-                $view['favorites'] = true;
+                $hview['isFavorite'] = preg_match('/(^|,)' . $id . '(,|$)/', THR('favorites'));
+                $hview['ID'] = $book['ID']; // book ID for download/settings links in the menu
+                $hview['settings'] = true;
             }
-            thr_header('thr-book-page thr-colors' . $addClass, $view);
+            thr_header('thr-book-page thr-colors' . $addClass, $hview);
 
             $view = array();
             $view['frontPage'] = $pageNumber == 1;

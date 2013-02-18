@@ -50,12 +50,6 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
         initKeyControls(); // initialize the key bindings for the menu/settings
 
-        // Take favorites-icon out of the tab order in .find-page and .favorites-page for now
-        $body.on('PageRendered', '.find-page, .favorites-page', function() {
-            $(this).find('.thr-favorites-icon')
-                   .attr('tabindex', -1);
-        }); // end PageRendered
-
         /*
          * Begin Navigation Code
          */

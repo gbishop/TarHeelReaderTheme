@@ -61,7 +61,8 @@ define([ "route",
                 }
                 var $newPage = page.getInactive('find-page');
                 $newPage.empty()
-                    .append(templates.render('heading', {settings:true, favorites:true}))
+                    .append(templates.render('heading',
+                        {settings:true, chooseFavorites:true}))
                     .append('<div class="content-wrap">' +
                             templates.render('find', view) +
                             '</div>');
@@ -222,7 +223,9 @@ define([ "route",
             state.removeFavorite(id);
         }
     });
-    $(document).on('click', '.find-page .thr-favorites-icon, .favorites-page .thr-favorites-icon', function(ev) {
+    $(document).on('click',
+        '.find-page .thr-favorites-icon, .favorites-page .thr-favorites-icon',
+        function(ev) {
         //console.log('click favorites icon');
         $('.active-page').toggleClass('chooseFavorites');
         ev.preventDefault();

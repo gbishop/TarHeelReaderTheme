@@ -59,19 +59,11 @@
 }
 
 .thr-settings-icon {
-    display: none;
     right: 2em;
 }
 
 .thr-favorites-icon {
-    img.favoriteYesIcon, img.favoriteNoIcon {
-      display: none;
-    }
     right: 5em;
-    opacity: 0.6;
-    &:hover {
-      opacity: 1.0;
-    }
 }
 
 .footer, .footer a {

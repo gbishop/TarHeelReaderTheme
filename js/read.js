@@ -104,20 +104,25 @@ define(["route",
             } else {
                 $oldPage.addClass('thr-colors choice-page').removeClass('front-page');
             }
-            $oldPage.removeClass('favoriteYes favoriteNo')
-                .addClass(state.isFavorite(book.ID) ? 'favoriteYes' : 'favoriteNo');
             $oldPage.empty()
-                .append(templates.render('heading', {
-                    ID: book.ID,
-                    settings: pageNumber === 1,
-                    favorites: pageNumber === 1,
-                    noTitle: true }))
+                .append(bookHeading(pageNumber, book.ID))
                 .append('<div class="content-wrap">' + newContent + '</div>');
 
             $def.resolve($oldPage, {title: 'Tar Heel Reader | ' + book.title,
                 colors: true});
         });
         return $def;
+    }
+
+    function bookHeading(pageNumber, ID) {
+        var view = { noTitle: true };
+        if (pageNumber === 1) {
+            view.ID = ID;
+            view.settings = true;
+            view.isFavorite = state.isFavorite(ID);
+        }
+        console.log('heading', view);
+        return templates.render('heading', view);
     }
 
     function scalePicture ($page) {
@@ -291,13 +296,12 @@ define(["route",
         ev.preventDefault();
         var $page = $('.front-page.active-page'),
             id = $page.find('.content-wrap h1').attr('data-id');
-        if ($page.hasClass('favoriteYes')) {
-            $page.removeClass('favoriteYes').addClass('favoriteNo');
+        if (state.isFavorite(id)) {
             state.removeFavorite(id);
         } else {
-            $page.removeClass('favoriteNo').addClass('favoriteYes');
             state.addFavorite(id);
         }
+        $page.find('header').replaceWith(bookHeading(1, id));
     });
 
     function configureBook(url, slug, pageNumber) {

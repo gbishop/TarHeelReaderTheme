@@ -486,18 +486,11 @@ h2 {
     }
 }
 
-// show the settings icon in the front-page and the choice-page (at the end of the book)
-.front-page, .choice-page, .favorites-page, .find-page {
-  .thr-settings-icon {
-    display: block !important;
-  }
-}
-
 .js .find-page .favoriteYesIcon, .js .favorites-page .favoriteYesIcon {
   display: block;
 }
 
-.no-js .find-page .thr-favorites-icon {
+.no-js .find-page .thr-favorites-icon, .no-js .favorites-page .thr-favorites-icon {
   display: none;
 }
 

@@ -1,5 +1,5 @@
 <header>
-    <div class="header" data-id="{{ID}}">
+    <div class="header"{{#ID}} data-id="{{ID}}"{{/ID}}>
         <a href="/navigation/" class="thr-well-icon" title="_(Open Menu|icon explanatory text)"><img src="/theme/images/well.png" alt="_(Open Menu|icon explanatory text)"/></a>
         {{#settings}}
             {{#ID}}
@@ -9,9 +9,17 @@
             <a href="/reading-controls/" class="thr-settings-icon" title="_(Settings|icon explanatory text)"><img src="/theme/images/settings.png" alt="_(Settings|icon explanatory text)"/></a>
             {{/ID}}
         {{/settings}}
-        {{#favorites}}
-        <a href="{{{setFavorite}}}" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"><img class="favoriteNoIcon" src="/theme/images/FavoriteNoIcon.png" alt=" "/><img class="favoriteYesIcon" src="/theme/images/FavoriteYesIcon.png" alt=" "/></a>
-        {{/favorites}}
+        {{#chooseFavorites}}
+        <a href="" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)" tabindex=-1><img class="favoriteYesIcon" src="/theme/images/FavoriteYesIcon.png" alt="_(Select Favorites|icon explanatory text)"/></a>
+        {{/chooseFavorites}}
+        {{#ID}}
+            {{#isFavorite}}
+            <a href="?favorites=R{{ID}}" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"><img class="favoriteYesIcon" src="/theme/images/FavoriteYesIcon.png" alt="_(Remove from Favorites)"/></a>
+            {{/isFavorite}}
+            {{^isFavorite}}
+            <a href="?favorites=A{{ID}}" class="thr-favorites-icon no-ajaxy" title="_(Select Favorites|icon explanatory text)"><img class="favoriteNoIcon" src="/theme/images/FavoriteNoIcon.png" alt="_(Add to Favorites)"/></a>
+            {{/isFavorite}}
+        {{/ID}}
         {{^noTitle}}
         <h1 title="_(Books for beginning readers of all ages|site sub-heading)">_(Tar Heel Reader|site name)</h1>
         {{/noTitle}}
