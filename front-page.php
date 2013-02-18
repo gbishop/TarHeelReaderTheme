@@ -30,8 +30,8 @@ thr_header('home-page'); ?> <!-- front-page.php -->
 				<?php
 				// construct the view for the template
 				$view = array(
-					'wellicon' => '<img src="/theme/images/well.png" class="tinyicon" title="old well icon" />',
-					'gearicon' => '<img src="/theme/images/settings.png" class="tinyicon" title="gear icon" />',
+					'wellicon' => '<img src="/theme/images/well.png" class="tinyicon" title="old well icon" alt=" "/>',
+					'gearicon' => '<img src="/theme/images/settings.png" class="tinyicon" title="gear icon" alt=" "/>',
 					'Flickr' => '<a href="http://flickr.com">Flickr</a>',
 					'locales' => $Templates['locales'],
 					'content' => $content,
