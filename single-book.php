@@ -34,6 +34,7 @@
                 $view = array('setFavorite'=>'?favorites=A' . $id);
             }
             $view['ID'] = $book['ID']; // book ID for download/settings links in the menu
+            $view['noTitle'] = true;
             if ($pageNumber == 1) {
                 $view['settings'] = true;
                 $view['favorites'] = true;
