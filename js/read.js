@@ -121,7 +121,6 @@ define(["route",
             view.settings = true;
             view.isFavorite = state.isFavorite(ID);
         }
-        console.log('heading', view);
         return templates.render('heading', view);
     }
 
