@@ -137,17 +137,15 @@ define(["route",
             bt = $box.offset().top,
             available,
             $caption = $page.find('.thr-caption-box'),
-            ct, ch, gap, $credit;
+            ct, ch, gap;
 
         if ($caption.length === 1) {
             ct = $caption.offset().top;
             ch = $caption.height();
             gap = ct - bt - b;
-            available = Math.min(ww, wh - bt - ch - gap - 8);
+            available = Math.min(ww, wh - bt - ch - 8);
         } else {
-            $credit = $page.find('.thr-credit');
-            gap = $credit.offset().top - bt - b + $credit.outerHeight() + 4;
-            available = Math.min(ww, wh - bt - gap);
+            available = Math.min(ww, wh - bt - 8);
         }
         $box.css({
             width: available + 'px',

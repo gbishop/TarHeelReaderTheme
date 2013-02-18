@@ -11,7 +11,7 @@ Allow users to configure reading
 
 // get the id if any
 $ID = getParam('id', '', '/^\d+$/');
-$backto = getParam('backto', '/find/');
+$backto = $ID ? get_permalink($ID) : '/find/';
 $settingsFormData = setFormFromState($Templates['readingForm']);
 $settingsFormData['action'] = parse_url($backto, PHP_URL_PATH);
 $view = array();

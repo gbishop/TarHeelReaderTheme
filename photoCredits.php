@@ -33,14 +33,16 @@ if ($ID) {
         foreach ($photos as &$photo) {
             if (strpos($photo['url'], '/uploads/') === false) {
                 $parts = explode('/', $photo['url']);
-                $id = explode('_', $parts[count($parts)-1]);
-                $id = $id[0];
-                $photo['infolink'] = "http://flickr.com/photo.gne?id=$id";
+                $photoID = explode('_', $parts[count($parts)-1]);
+                $photoID = $photoID[0];
+                $photo['infolink'] = "http://flickr.com/photo.gne?id=$photoID";
             }
             setImageSizes($photo);
         }
         $view['photos'] = $photos;
         echo template_render('photoCredits', $view);
+        $backto = get_permalink($ID);
+        echo "<a href=\"$backto\">Back to your book</a>";
     }
 }
 ?>

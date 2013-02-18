@@ -476,7 +476,7 @@ define(['route',
             };
             templates.setImageSizes(view.image); // size the image
             var $content = $(templates.render('bookPage', view)); // render like any book page
-            $content.filter('a.thr-credit,a.thr-home-icon,a.thr-settings-icon').hide(); // remove some unneeded links
+            $content.filter('a.thr-home-icon,a.thr-settings-icon').hide(); // remove some unneeded links
             $editDialog.empty().append($('.wEditHelp').html()).append($content); // update dialog body
             var $deleteIcon = $('<img class="deleteIcon" src="/theme/images/delete.png" />');
             $deleteIcon.attr('title', $('.DeleteThisPage').html());
