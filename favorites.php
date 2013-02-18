@@ -111,7 +111,7 @@ if ($json) {
 }
 setTHR('findAnotherLink', favorites_url());
 ?>
-<?php thr_header('favorites-page'); ?>
+<?php thr_header('favorites-page', array('settings'=>true, 'favorites'=>true)); ?>
 <!-- favorites.php -->
 <?php
 $view = array();

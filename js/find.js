@@ -61,7 +61,7 @@ define([ "route",
                 }
                 var $newPage = page.getInactive('find-page');
                 $newPage.empty()
-                    .append(templates.render('heading'))
+                    .append(templates.render('heading', {settings:true, favorites:true}))
                     .append('<div class="content-wrap">' +
                             templates.render('find', view) +
                             '</div>');

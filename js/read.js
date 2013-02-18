@@ -107,7 +107,7 @@ define(["route",
             $oldPage.removeClass('favoriteYes favoriteNo')
                 .addClass(state.isFavorite(book.ID) ? 'favoriteYes' : 'favoriteNo');
             $oldPage.empty()
-                .append(templates.render('heading', {ID: book.ID, voice: state.get('voice')} )) // need to pass in view for book ID
+                .append(templates.render('heading', {ID: book.ID, settings: pageNumber === 1, favorites: pageNumber === 1} ))
                 .append('<div class="content-wrap">' + newContent + '</div>');
 
             $def.resolve($oldPage, {title: 'Tar Heel Reader | ' + book.title,

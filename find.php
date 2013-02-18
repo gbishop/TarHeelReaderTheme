@@ -92,7 +92,7 @@ foreach( $searchFormData['controls'] as &$control) {
 $searchFormData = setFormFromState($searchFormData);
 setTHR('findAnotherLink', find_url()); // set the return to link to come back to this state
 ?>
-<?php thr_header('find-page'); ?>
+<?php thr_header('find-page', array('settings'=>true, 'favorites'=>true)); ?>
 <!-- find.php -->
 <?php
 $view = array();
