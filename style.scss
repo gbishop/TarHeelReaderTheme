@@ -133,6 +133,12 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
   }
 }
 
+.tinyicon {
+    width: 1em;
+    height: 1em;
+ }
+
+
 .home-page {
   // styles for the links that appear on the front page
   .homeLinkList {
@@ -152,11 +158,6 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
         clear: both;
       }
     }
-
-  .tinyicon {
-      width: 1em;
-      height: 1em;
-   }
 
   .languages {
     border: 1px solid #777;
