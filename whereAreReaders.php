@@ -14,7 +14,7 @@ if ($userID && $mine) {
 } else {
     $mapname = "$base/Maps/Readers-all.html";
 }
-$exists = true; // file_exists($mapname);
+$exists = file_exists($mapname);
 thr_header('map-page');
 $view = array(
   'user' => $userID,
