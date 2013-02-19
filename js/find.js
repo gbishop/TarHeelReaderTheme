@@ -237,7 +237,7 @@ define([ "route",
         ev.preventDefault();
         var $li = $(this).parent('li'),
             id = $li.attr('data-id');
-        window.open('/write/?id=' + id);
+        window.location.href = '/write/?id=' + id;
         return false;
     });
 
