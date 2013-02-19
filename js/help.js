@@ -13,7 +13,7 @@ define(['jquery.ui.touch-punch'], function() {
                 ww = $(window).width(),
                 tw = Math.max(200, ww/3),
                 $tip = $this.next('.help-text').clone().dialog({
-                    position: [offset.left - tw - 20, offset.top],
+                    position: [offset.left - tw - 20, offset.top - $(window).scrollTop()],
                     width: tw
                 });
                 //console.log('help', $tip);
