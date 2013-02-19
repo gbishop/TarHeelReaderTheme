@@ -65,6 +65,7 @@ $posts = $wpdb->get_results($sql);
 $nrows = min($wpdb->num_rows, count($posts));  // why do I need this?
 
 $result = posts_to_find_results($posts, $nrows, $count);
+$result['reviewer'] = current_user_can('edit_others_posts');
 
 if (0) { // force an error for testing
     header("HTTP/1.0 500 Internal Error");

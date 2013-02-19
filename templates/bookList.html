@@ -8,7 +8,7 @@
         <p>_(No books found.) <a href="/find/?category=&reviewed=&audience=&page=1">_(Click here to try your search without restrictions.)</a></p>
         {{/books}}
     {{/favorites}}
-    <ul class="thr-book-list">
+    <ul class="thr-book-list{{#reviewer}} reviewer{{/reviewer}}">
         {{#books}}
         <li class="selectable thr-colors" data-preview="{{preview.url}}" data-id="{{ID}}" lang="{{language}}" data-bust="{{bust}}">
             <a href="{{link}}" data-type="book">

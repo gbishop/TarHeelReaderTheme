@@ -233,6 +233,13 @@ define([ "route",
     $(document).on('click', '.favorites-page.chooseFavorites .thr-favorites-icon', function(ev) {
         window.location.href = '/favorites/'; // force a refresh after changing favorites on favorites page
     });
+    $(document).on('click', '.reviewer a', function(ev) {
+        ev.preventDefault();
+        var $li = $(this).parent('li'),
+            id = $li.attr('data-id');
+        window.open('/write/?id=' + id);
+        return false;
+    });
 
     route.add('render', /^\/find\/(\?.*)?$/, findRender);
     route.add('init', /^\/find\/(\?.*)?$/, findConfigure);
