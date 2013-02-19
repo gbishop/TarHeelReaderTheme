@@ -80,7 +80,8 @@ define(["templates" ], function(templates) {
     }
 
     return {
-        play: play
+        play: play,
+        hasSpeech: hasSpeech
     };
 
 });

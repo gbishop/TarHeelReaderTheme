@@ -77,7 +77,9 @@ define(["route",
                 }
                 templates.setImageSizes(view.image);
                 newContent = templates.render('bookPage', view);
-                speech.play(book.ID, state.get('voice'), pageNumber, book.bust);
+                if (speech.hasSpeech[book.language]) {
+                    speech.play(book.ID, state.get('voice'), pageNumber, book.bust);
+                }
             } else {
                 if (pageNumber === N+1) {
                     logEvent('read', 'complete', book.slug + ':' + book.ID);
@@ -231,7 +233,9 @@ define(["route",
             $choice.addClass('selected');
             var toSay = $choice.attr('data-speech');
             if (toSay) {
-                speech.play('site', state.get('voice'), toSay);
+                if (speech.hasSpeech[state.get('locale')]) {
+                    speech.play('site', state.get('voice'), toSay);
+                }
             }
         } else {
             console.log('no choices');

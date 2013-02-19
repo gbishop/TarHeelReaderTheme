@@ -99,11 +99,16 @@ define([ "route",
         // speak the title
         var voice = state.get('voice');
         if (toSelect.attr('data-speech')) {
-            speech.play('site', voice, toSelect.attr('data-speech'));
+            if (speech.hasSpeech[state.get('locale')]) {
+                speech.play('site', voice, toSelect.attr('data-speech'));
+            }
         } else {
-            var id = toSelect.attr('data-id');
-            var bust = toSelect.attr('data-bust');
-            speech.play(id, voice, 1, bust);
+            var id = toSelect.attr('data-id'),
+                lang = toSelect.attr('lang'),
+                bust = toSelect.attr('data-bust');
+            if (speech.hasSpeech[lang]) {
+                speech.play(id, voice, 1, bust);
+            }
         }
         // make sure it is visible
         toSelect.scrollIntoView({
