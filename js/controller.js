@@ -55,6 +55,11 @@ define([  "route",
             }
         }
 
+        // Disable shift click so I can use it for editing.
+        if (event.shiftKey && $this.parents('ul').hasClass('reviewer')) {
+            event.preventDefault();
+            return true;
+        }
        // Continue as normal for ctrl clicks or external links
         if (event.which === 2 || event.metaKey || event.ctrlKey ||
             ( url.substring(0,rootUrl.length) !== rootUrl && url.indexOf(':') !== -1 ) ||

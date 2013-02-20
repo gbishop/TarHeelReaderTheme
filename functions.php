@@ -240,6 +240,8 @@ function ParseBookPost($post) {
     if ($row) {
         //BuG('from search table');
         $res = json_decode($row->json, true);
+        $res['reviewed'] = $row->reviewed == 'R';
+        $res['language'] = $row->language;
 
     } else {
         //BuG('old format');
@@ -519,6 +521,7 @@ function posts_to_find_results($posts, $nrows, $count) {
     $result['queries2'] = get_num_queries();
     $result['time'] = timer_stop(0);
     $result['more'] = $more;
+    $result['reviewer'] = current_user_can('edit_others_posts');
     return $result;
 }
 

@@ -238,9 +238,10 @@ define([ "route",
     $(document).on('click', '.favorites-page.chooseFavorites .thr-favorites-icon', function(ev) {
         window.location.href = '/favorites/'; // force a refresh after changing favorites on favorites page
     });
-    $(document).on('click', '.reviewer a', function(ev) {
+    $(document).on('click', '.reviewer li', function(ev) {
+        if (!ev.shiftKey) return true;
         ev.preventDefault();
-        var $li = $(this).parent('li'),
+        var $li = $(this),
             id = $li.attr('data-id');
         window.location.href = '/write/?id=' + id;
         return false;
