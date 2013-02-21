@@ -10,7 +10,17 @@
         <script data-main="/theme/js/main" src="/theme/js/require.js"></script>
         <![endif]>
     <?php else : ?>
-        <script>logEvent('classicmode', 'on', 'now');</script>
+        <script>
+            logEvent('classicmode', 'on', 'now');
+        </script>
     <?php endif ?>
+    <script type="text/javascript">
+        console.log('here');
+        function logMessage(msg) {
+            console.log('logging', msg);
+            $.post('/log-message/', { message: msg });
+        }
+        logMessage('start logging');
+    </script>
 </body>
 </html>
