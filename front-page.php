@@ -1,4 +1,14 @@
 <?php
+// check for a restart from an iOS device
+if (!is_ajax() && array_key_exists('thr', $_COOKIE)) {
+    $json = $_COOKIE['thr'];
+    $json = stripslashes($json); // magic quotes?
+    $value = json_decode($json, true);
+    if (array_key_exists('lastURL', $value)) {
+    	header('Location: ' . $value['lastURL']);
+    	die();
+    }
+}
 thr_header('home-page'); ?> <!-- front-page.php -->
 
 <?php

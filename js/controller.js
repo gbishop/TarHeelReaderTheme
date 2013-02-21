@@ -90,6 +90,9 @@ define([  "route",
             url = hist.url,
             bar = window.location.href,
             context = hist.data;
+        if (window.navigator.standalone) {
+            state.set('lastURL', url);
+        }
         //console.log("State changed...", url, context);
         if (url != bar && bar.indexOf('#') > -1) {
             //console.log('bar = ', bar);

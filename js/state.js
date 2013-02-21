@@ -40,15 +40,23 @@ define([ "route", "json!../state.json", "jquery.cookie", "json2" ], function(rou
         }
         state['page'] = parseInt(state['page'], 10); // page is an int
         // update the cookie
-        $.cookie('thr', JSON.stringify(state), {path: '/'});
+        setCookie();
     }
 
     function set(key, value) {
         var old = state[key];
         if (old !== value) {
             state[key] = value;
-            $.cookie('thr', JSON.stringify(state), {path: '/'});
+            setCookie();
         }
+    }
+
+    function setCookie() {
+        var args = {path: '/'};
+        if (state.lastURL) {
+            args.expires = 1;
+        }
+        $.cookie('thr', JSON.stringify(state), args);
     }
 
     function dump(msg) {
