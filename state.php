@@ -119,11 +119,11 @@ if (!in_array(THR('language'), array('en', 'la')) && $THRState['reviewed'] == 'R
     $THRState['reviewed'] = '';
 }
 
-function thr_setcookie() {
+function thr_setcookie($force=0) {
     global $setCookie, $THRState;
 
     // if we updated the state, the set the cookie
-    if ($setCookie > 0) {
+    if ($force || $setCookie > 0) {
         setcookie('thr', json_encode($THRState), 0, '/');
     }
 }

@@ -15,12 +15,12 @@
         </script>
     <?php endif ?>
     <script type="text/javascript">
-        console.log('here');
+        //console.log('here');
         function logMessage(msg) {
             console.log('logging', msg);
             $.post('/log-message/', { message: msg });
         }
-        logMessage('start logging');
+        //logMessage('start logging');
     </script>
 </body>
 </html>
