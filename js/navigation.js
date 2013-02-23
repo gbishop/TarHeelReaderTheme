@@ -53,7 +53,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
         /*
          * Begin Navigation Code
          */
-         $body.on("click", ".thr-well-icon img", function(e, data) {
+         $body.on("click", ".thr-well-icon", function(e, data) {
             // toggling navigation on the navigation page doesn't make sense (IE8 fix: IE8 doesn't like :not selector)
             var $navPage = $("body > div.navigation");
             if($navPage.length !== 0 && $navPage.hasClass("active-page")) {
@@ -65,6 +65,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 $hiddenContent = $contentWrap.find(".hiddenContent");
 
             if($navigation.length === 0) { // nav doesn't exist, load it
+                logMessage('create nav');
                 templates.setLocale().then(function() {
                     $contentWrap.wrapInner("<div class='hiddenContent' />")
                                 .prepend(templates.render('navigation', null));
@@ -77,10 +78,12 @@ require(["state", "controller", "templates"], function(state, controller, templa
                                      .fadeOut(200);
                 }); // end then()
             } else if(!$navigation.is(":visible")) {
+                logMessage('show nav');
                 $hiddenContent.fadeOut(function() {
                     $navigation.slideDown();
                 }); // end fadeOut
             } else {
+                logMessage('hide nav');
                 $navigation.fadeOut(50, function() {
                     $hiddenContent.fadeIn();
                 }); // end slideUp
@@ -124,7 +127,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
         /*
          * Begin Settings Code
          */
-        $body.on("click", ".thr-settings-icon img", function(e, data) {
+        $body.on("click", ".thr-settings-icon", function(e, data) {
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             $(".active-page .submenu, .active-page .innerSubmenu").hide();
 

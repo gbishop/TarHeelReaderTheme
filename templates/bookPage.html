@@ -1,21 +1,27 @@
     {{#frontPage}}
-    <h1 class="title" data-id="{{ID}}">{{title}}</h1>
+    <h1 class="title VOSay" data-id="{{ID}}" tabindex="-1">{{title}}</h1>
     <p class="thr-author">{{author}}</p>
     {{/frontPage}}
     {{^frontPage}}
-    <p class="thr-page-number">{{pageNumber}}</p>
+    <p class="thr-page-number VOHide">{{pageNumber}}</p>
     {{/frontPage}}
     <div class="thr-pic-box">
         {{#image}}
-        <img src="{{url}}" class="thr-pic" style="width:{{pw}}%; height:{{ph}}%; padding-top: {{pm}}%"
-             data-width="{{width}}" data-height="{{height}}" alt=" " />
+        <img src="{{url}}" class="thr-pic"
+             style="width:{{pw}}%; height:{{ph}}%; padding-top: {{pm}}%"
+             data-width="{{width}}" data-height="{{height}}" alt=" "
+             role="presentation"/>
         {{/image}}
     </div>
     {{^frontPage}}
-    <div class="thr-caption-box"><p class="thr-caption">{{caption}}</p></div>
+    <div class="thr-caption-box">
+        <p class="thr-caption VOSay" tabindex="-1">{{caption}}</p>
+    </div>
     {{/frontPage}}
-    <a class="thr-back-link thr-colors-invert key-p" href="{{backLink}}" data-type="book">
-        <img src="/theme/images/BackArrow.png" alt=" "/>_(Back|button label)</a>
-    <a class="thr-next-link thr-colors-invert key-n" href="{{nextLink}}" data-type="book">
-        <img src="/theme/images/NextArrow.png" alt=" "/>_(Next|button label)</a>
+    <a class="thr-back-link thr-colors-invert key-p VOHide" href="{{backLink}}"
+        data-type="book">
+        <img src="/theme/images/BackArrow.png" alt=" " role="presentation"/>_(Back|button label)</a>
+    <a class="thr-next-link thr-colors-invert key-n VOHide" href="{{nextLink}}"
+        data-type="book">
+        <img src="/theme/images/NextArrow.png" alt=" " role="presentation"/>_(Next|button label)</a>
     {{{audio}}}

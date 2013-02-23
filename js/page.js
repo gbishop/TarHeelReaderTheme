@@ -23,10 +23,14 @@ define(["state"], function(state) {
             colors: false
         };
         var $def = $.Deferred();
-            options = $.extend({title:null, effect:'fade'}, options);
-        $('.active-page').fadeOut(0, function() {
-            $('.active-page').removeClass('active-page');
-            $page.css('display', 'none').addClass('active-page').fadeIn(0);
+            options = $.extend({title:null, effect:'fade'}, options),
+            $oldpage = $('.active-page');
+        $oldpage.fadeOut(0, function() {
+            $oldpage.attr('aria-hidden', 'true');
+            $oldpage.removeClass('active-page');
+            $page.addClass('active-page').css('display', 'block');
+            $page.attr('aria-hidden', 'false');
+            $page.find('.thr-well-icon').focus();
             var title = options.title || $page.attr('data-title');
             $def.resolve($page, title);
         });
