@@ -11,8 +11,15 @@ parser = argparse.ArgumentParser(description="Process Templates*.json to produce
 parser.add_argument('templates', nargs='+')
 args = parser.parse_args()
 
+languages = json.load(file('languages.json'))
+has_speech = {}
+for lang in languages:
+    has_speech[lang['value']] = lang['speech']
+
 for template in args.templates:
     lang = osp.basename(template).split('.')[1]
+    if not has_speech[lang]:
+        continue
     T = json.load(file(template))
     siteSpeech = T['siteSpeech']
     for key, info in siteSpeech.items():
