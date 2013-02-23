@@ -16,9 +16,11 @@
     <?php endif ?>
     <script type="text/javascript">
         console.log('here');
+        var logStart = +new Date();
         function logMessage(msg) {
-            console.log('logging', msg);
-            $.post('/log-message/', { message: msg });
+            var dt = (new Date() - logStart) + ' ';
+            console.log(msg);
+            $.ajax('/log-message/', { type: 'post', data: {message: dt + msg}, global: false, async: false });
         }
         logMessage('start logging');
     </script>
