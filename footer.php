@@ -22,7 +22,7 @@
             console.log(msg);
             $.ajax('/log-message/', { type: 'post', data: {message: dt + msg}, global: false, async: false });
         }
-        logMessage('start logging');
+        //logMessage('start logging');
     </script>
 </body>
 </html>
