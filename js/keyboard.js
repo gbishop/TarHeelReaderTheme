@@ -63,12 +63,21 @@ define(["pubsub"], function() {
     var touchStart = null;
 
     function onTouchStart(e) {
-        var selector = e.data;
-        if (!selector || $(selector).length === 0) return true;
+        var selector = e.data,
+            returnVar = true;
+        if (!selector || $(selector).length === 0) return returnVar;
 
         $('body').css('overflow', 'hidden');
-        var touch = e.originalEvent.changedTouches[0];
+        var touch = e.originalEvent.changedTouches[0],
+            tagName = touch.target.tagName.toLowerCase(),
+            className = touch.target.className;
+        //  console.log(/thr-(settings|favorites|well)/i.test(className));
         touchStart = { t: e.timeStamp, x: touch.clientX, y: touch.clientY };
+        if(tagName !== "a") {
+            // any other img (i.e. settings-icon or well-icon should return true; if it is a thr pic, return false)
+            returnVar = tagName === "img" && className !== "thr-pic" ? true : false;
+        }
+        return returnVar;
     }
 
     function onTouchEnd(e) {
@@ -84,7 +93,8 @@ define(["pubsub"], function() {
             dt = e.timeStamp - touchStart.t,
             dx = touch.clientX - touchStart.x,
             dy = Math.abs(touch.clientY - touchStart.y);
-        if (dt < 1500 && (dx > 100 || dx < -100) && dy < 30) {
+                
+        if (dt < 2000 && (dx > 50 || dx < -50) && dy < 50) {
             $.publish(keyMap['swipe'], [dx, dy]);
         }
         touchStart = null;
