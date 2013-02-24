@@ -46,7 +46,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
     $(function() {
         var $body = $('body'),
             currentSettings = getCurrentSettings(),
-            pathname;
+            pathname = "/";
 
         initKeyControls(); // initialize the key bindings for the menu/settings
 
