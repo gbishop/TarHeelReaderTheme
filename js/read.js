@@ -5,14 +5,12 @@ define(["route",
         "templates",
         "keyboard",
         "state",
-        "speech"
-        ], function(route, page, templates, keys, state, speech) {
+        "speech",
+        "ios"
+        ], function(route, page, templates, keys, state, speech, ios) {
 
-    var book = null; // current book
-
-    $("body").on("PageRendered", function() {
-       // page.setHoverColors($(this));
-    }); // end PageVisible
+    var book = null, // current book
+        picBoxSize = {}; // sizing the pic box same as last time
 
     function fetchBook(slug) {
         var $def = $.Deferred();
@@ -110,6 +108,9 @@ define(["route",
                 .append(bookHeading(pageNumber, book.ID))
                 .append('<div class="content-wrap">' + newContent + '</div>');
 
+            // size the pic box like last time, its probably the same
+            $oldPage.find('.thr-pic-box').css(picBoxSize);
+
             $def.resolve($oldPage, {title: 'Tar Heel Reader | ' + book.title,
                 colors: true});
         });
@@ -148,10 +149,11 @@ define(["route",
         } else {
             available = Math.min(ww, wh - bt - 8);
         }
-        $box.css({
+        picBoxSize = {
             width: available + 'px',
             height: available + 'px'
-        });
+        };
+        $box.css(picBoxSize);
     }
 
     // only resize when we're done instead of every 20ms
@@ -305,11 +307,6 @@ define(["route",
         $page.find('header').replaceWith(bookHeading(1, id));
     });
 
-    $(document).on('focus', '.VOSay', function() {
-        logMessage('onfocus');
-        $('.active-page .VOHide').attr('aria-hidden', 'false');
-    });
-
     function configureBook(url, slug, pageNumber) {
         //console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
@@ -322,17 +319,8 @@ define(["route",
         if (toSay) {
             speech.play('site', state.get('voice'), toSay);
         }
-        //$page.find('.thr-well-icon').focus();
-        $page.find('.VOHide').attr('aria-hidden', 'true');
-        //$page.css('display', 'none').addClass('active-page').fadeIn(0);
-        //setTimeout(function() { $page.find('.VOHide').attr('aria-hidden', 'false');}, 1500);
-        //$page.find('.VOSay').one('focus', function() { $page.find('.VOHide').attr('aria-hidden', 'false');});
 
-        setTimeout(function(){
-            logMessage('timer');
-            $('.active-page .VOSay').focus();
-        }, 2000);
-
+        ios.focusVoiceOverOnText($page);
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);

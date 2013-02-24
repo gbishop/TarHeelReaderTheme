@@ -1,5 +1,5 @@
 // Code for navigation and settings menus
-require(["state", "controller", "templates"], function(state, controller, templates) {
+require(["state", "controller", "templates", "ios"], function(state, controller, templates, ios) {
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
         options = { // list of available options
@@ -43,6 +43,19 @@ require(["state", "controller", "templates"], function(state, controller, templa
             textColor: options.colors.black
         };
 
+    function showNav() {
+        $('.active-page .hiddenContent').fadeOut(function() {
+            $('.active-page .navigationMenu').slideDown().attr('aria-hidden', 'false');
+        }).attr('aria-hidden', 'true'); // end fadeOut
+    }
+
+    function hideNav() {
+        $('.active-page .navigationMenu').fadeOut(50, function() {
+            $('.active-page .hiddenContent').fadeIn().attr('aria-hidden', 'false');
+        }).attr('aria-hidden', 'true'); // end slideUp
+    }
+
+
     $(function() {
         var $body = $('body'),
             currentSettings = getCurrentSettings(),
@@ -53,7 +66,8 @@ require(["state", "controller", "templates"], function(state, controller, templa
         /*
          * Begin Navigation Code
          */
-         $body.on("click", ".thr-well-icon", function(e, data) {
+
+         $body.on("click", "a.thr-well-icon", function(ev, data) {
             // toggling navigation on the navigation page doesn't make sense (IE8 fix: IE8 doesn't like :not selector)
             var $navPage = $("body > div.navigation");
             if($navPage.length !== 0 && $navPage.hasClass("active-page")) {
@@ -64,46 +78,33 @@ require(["state", "controller", "templates"], function(state, controller, templa
                 $navigation = $contentWrap.find(".navigationMenu"),
                 $hiddenContent = $contentWrap.find(".hiddenContent");
 
+            if (ios.cancelNav(ev)) {
+                return;
+            }
+
             if($navigation.length === 0) { // nav doesn't exist, load it
-                logMessage('create nav');
                 templates.setLocale().then(function() {
                     $contentWrap.wrapInner("<div class='hiddenContent' />")
                                 .prepend(templates.render('navigation', null));
 
-                    $(".active-page").find(".navigationMenu")
-                                     .hide()
-                                     .slideDown()
-                                     .end()
-                                     .find(".hiddenContent")
-                                     .fadeOut(200);
+                    $(".active-page").find(".navigationMenu").hide();
+                    showNav();
                 }); // end then()
             } else if(!$navigation.is(":visible")) {
-                logMessage('show nav');
-                $hiddenContent.fadeOut(function() {
-                    $navigation.slideDown();
-                }); // end fadeOut
+                showNav();
             } else {
-                logMessage('hide nav');
-                $navigation.fadeOut(50, function() {
-                    $hiddenContent.fadeIn();
-                }); // end slideUp
+                hideNav();
             }
-            $navigation.find(".secondaryNav").hide();
-
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
         });
+
 
         $body.on("PageVisible", function() {
             pathname = $(location).attr("pathname"); // update current URL
             $(".thr-well-icon, .thr-settings-icon").attr("href", ""); // fix iPad "/navigation" blinking bug
-            if($(".content-wrap").length === 1) { return; } // initial entrance to website, avoid "double slidedown" bug
-
-            $(".active-page").find(".content-wrap")
-                             .hide()
-                             .slideDown(600, "swing");
         });
 
-       $body.on("click", ".active-page .navigationMenu a, a.homeLink", function() {
+        $body.on("click", ".active-page .navigationMenu a, a.homeLink", function() {
             var href = $(this).attr("href"),
                 newPage = true;
 
@@ -113,12 +114,8 @@ require(["state", "controller", "templates"], function(state, controller, templa
             } else if(pathname.indexOf(href) > -1) {
                 newPage = false;
             }
-            // if it's a new page, then just slide the navigation up; else, slide up navigation and show .hiddenContent
-            if (newPage) {
-                $(".active-page .navigationMenu").slideUp(150);
-            } else {
-                $(".active-page .thr-well-icon img").trigger("click", href);
-            }
+
+            hideNav();
         });
         /*
          * End Navigation Code
@@ -127,7 +124,11 @@ require(["state", "controller", "templates"], function(state, controller, templa
         /*
          * Begin Settings Code
          */
-        $body.on("click", ".thr-settings-icon", function(e, data) {
+        $body.on("click", ".thr-settings-icon", function(ev, data) {
+            if (ios.cancelNav(ev)) {
+                return;
+            }
+
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
             $(".active-page .submenu, .active-page .innerSubmenu").hide();
 
@@ -157,7 +158,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
         });
 
         // if the click was made inside one of the menus, don't close the menu
-        $body.on("click touchstart", ".active-page .mainSettings:visible", function(e) {
+        $body.on("click", ".active-page .mainSettings:visible", function(e) {
             e.stopPropagation();
         });
 
@@ -174,7 +175,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
 
             // hack for find-page
             if($(".find-page").is(":visible") && $(".find-page").find(".navigationMenu").length !== 0) {
-                $(".active-page .thr-well-icon img").click(); // this makes sure navigation is closed upon display
+                $(".active-page .thr-well-icon").click(); // this makes sure navigation is closed upon display
             }
         });
 
@@ -184,7 +185,7 @@ require(["state", "controller", "templates"], function(state, controller, templa
         });
 
         // touchstart for touch-screen display
-        $(document).on("click touchstart", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
+        $(document).on("click", "html, body", function(e) { // if the user clicks anywhere other than one of the menus, hide the menus
             var $menu = $(".active-page .mainSettings");
             if ($menu.is(":visible")) {
                 $menu.slideUp();

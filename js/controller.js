@@ -3,8 +3,9 @@ define([  "route",
           "page",
           "state",
           "templates",
+          "ios",
           "history.adapter.jquery"
-         ], function(route, page, state, templates) {
+         ], function(route, page, state, templates, ios) {
 
     var History = window.History,
         document = window.document,
@@ -90,9 +91,9 @@ define([  "route",
             url = hist.url,
             bar = window.location.href,
             context = hist.data;
-        if ('standalone' in window.navigator && window.navigator.standalone) {
-            state.set('lastURL', url);
-        }
+
+        ios.setLastUrl(url);
+
         //console.log("State changed...", url, context);
         if (url != bar && bar.indexOf('#') > -1) {
             //console.log('bar = ', bar);

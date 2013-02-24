@@ -1,6 +1,6 @@
 /* page.js manage multiple pages in the DOM */
 
-define(["state"], function(state) {
+define(["state", "ios"], function(state, ios) {
 
     // find or create an inactive page of the indicated type
     function getInactive(type) {
@@ -25,15 +25,15 @@ define(["state"], function(state) {
         var $def = $.Deferred();
             options = $.extend({title:null, effect:'fade'}, options),
             $oldpage = $('.active-page');
-        $oldpage.fadeOut(0, function() {
-            $oldpage.attr('aria-hidden', 'true');
-            $oldpage.removeClass('active-page');
-            $page.addClass('active-page').css('display', 'block');
-            $page.attr('aria-hidden', 'false');
-            $page.find('.thr-well-icon').focus();
-            var title = options.title || $page.attr('data-title');
-            $def.resolve($page, title);
-        });
+
+        $oldpage.css('display', 'none');
+        $oldpage.attr('aria-hidden', 'true');
+        $oldpage.removeClass('active-page');
+        $page.css('display', 'block').addClass('active-page');
+        $page.attr('aria-hidden', 'false');
+        ios.focusMenu($page);
+        var title = options.title || $page.attr('data-title');
+        $def.resolve($page, title);
         return $def;
     }
 

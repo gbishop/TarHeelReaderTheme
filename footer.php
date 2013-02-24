@@ -20,9 +20,10 @@
         function logMessage(msg) {
             var dt = (new Date() - logStart) + ' ';
             console.log(msg);
-            $.ajax('/log-message/', { type: 'post', data: {message: dt + msg}, global: false, async: false });
+            //$('.active-page .message').append(dt + msg + '<br/>');
+            //$.ajax('/log-message/', { type: 'post', data: {message: dt + msg}, global: false, async: false });
         }
-        //logMessage('start logging');
+        logMessage('start logging');
     </script>
 </body>
 </html>
