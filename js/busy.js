@@ -2,52 +2,51 @@ define(['templates'], function(templates) {
 
     var $blocker = null;
 
-    var currentXHR = null;
+    var busyXHR = [];
 
     function cancel() {
-        if (currentXHR) {
-            currentXHR.abort();
-            currentXHR = null;
+        logEvent('ajax error', 'cancel', busyXHR.length + ' ');
+        for(var i=0; i<busyXHR.length; i++) {
+            busyXHR[i].abort();
         }
+        busyXHR = [];
         $blocker.stop(true);
         $blocker.hide();
     }
 
     function wait(jqXHR, settings) {
         //console.log('ajax start', jqXHR);
-        if (currentXHR && currentXHR.state() === 'pending') {
-            console.log('busy: unexpected overlapping request, canceling');
-            logEvent('ajax error', 'wait', 'overlapped request canceled');
-            cancel();
-        }
-        currentXHR = jqXHR;
-        //$blocker.height($(document).height()).addClass('isBusy').removeClass('isError');
-        //$('.busyMessage')
+        busyXHR.push(jqXHR);
         $blocker.addClass('isBusy').removeClass('isError')
             .css('top', $(window).scrollTop() + $(window).height() / 3 + 'px');
         $blocker.delay(500).fadeIn(1000);
     }
 
+    function removeBusy(jqXHR) {
+        for (var i=0; i<busyXHR.length; i++) {
+            if (jqXHR === busyXHR[i]) {
+                //console.log('delete busy', i);
+                busyXHR.splice(i, 1);
+                break;
+            }
+        }
+    }
+
     function done(jqXHR, textStatus) {
         //console.log('ajax complete', textStatus);
-        if (currentXHR !== jqXHR) {
-            console.log('busy: not expecting this XHR to complete, ignoring');
-        } else if (textStatus == 'success') {
+        removeBusy(jqXHR);
+        if (textStatus == 'success' && busyXHR.length === 0) {
             $blocker.stop(true);
             $blocker.hide();
-            currentXHR = null;
         }
     }
 
     function error(jqXHR, textStatus, errorThrown) {
         //console.log('ajax error');
         logEvent('ajax error', textStatus, errorThrown);
-        if (currentXHR !== jqXHR) {
-            console.log('busy: not expecting error on this XHR, ignoring');
-        } else {
-            $('.errorMessage span').html(textStatus + ': ' + errorThrown);
-            $blocker.removeClass('isBusy').addClass('isError');
-        }
+        removeBusy(jqXHR);
+        $('.errorMessage span').html(textStatus + ': ' + errorThrown);
+        $blocker.removeClass('isBusy').addClass('isError');
     }
 
     $.ajaxSetup({
