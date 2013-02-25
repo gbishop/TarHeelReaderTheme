@@ -18,9 +18,16 @@
         console.log('here');
         var logStart = +new Date();
         function logMessage(msg) {
+            return;
             var dt = (new Date() - logStart) + ' ';
             console.log(msg);
-            //$('.active-page .message').append(dt + msg + '<br/>');
+            var $msg = $('.message');
+            if ($msg.length === 0) {
+                $('body').append('<div class="message"></div>');
+                $msg = $('.message');
+                $msg.css({position:'absolute', top:'4em', left:0, width:'200px', height:'200px',zIndex: 1000, background: 'white'});
+            }
+            $msg.append(dt + msg + '<br/>');
             //$.ajax('/log-message/', { type: 'post', data: {message: dt + msg}, global: false, async: false });
         }
         logMessage('start logging');

@@ -44,12 +44,14 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
         };
 
     function showNav() {
+        logMessage('showNav');
         $('.active-page .hiddenContent').fadeOut(function() {
             $('.active-page .navigationMenu').slideDown().attr('aria-hidden', 'false');
         }).attr('aria-hidden', 'true'); // end fadeOut
     }
 
     function hideNav() {
+        logMessage('hideNav');
         $('.active-page .navigationMenu').fadeOut(50, function() {
             $('.active-page .hiddenContent').fadeIn().attr('aria-hidden', 'false');
         }).attr('aria-hidden', 'true'); // end slideUp
@@ -69,8 +71,11 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
 
          $body.on("click", "a.thr-well-icon", function(ev, data) {
             // toggling navigation on the navigation page doesn't make sense (IE8 fix: IE8 doesn't like :not selector)
+            //console.log('menu click');
+            logMessage('well click ' + ev.target.nodeName);
             var $navPage = $("body > div.navigation");
             if($navPage.length !== 0 && $navPage.hasClass("active-page")) {
+                //console.log('bail here');
                 return false;
             }
 
@@ -79,22 +84,28 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
                 $hiddenContent = $contentWrap.find(".hiddenContent");
 
             if (ios.cancelNav(ev)) {
-                return;
+                logMessage('ios cancel nav');
+                return false;
             }
-
+            //console.log(1);
             if($navigation.length === 0) { // nav doesn't exist, load it
                 templates.setLocale().then(function() {
+                    //console.log('create nav');
                     $contentWrap.wrapInner("<div class='hiddenContent' />")
                                 .prepend(templates.render('navigation', null));
 
                     $(".active-page").find(".navigationMenu").hide();
                     showNav();
                 }); // end then()
+                //console.log(2);
             } else if(!$navigation.is(":visible")) {
+                //console.log(3);
                 showNav();
             } else {
+                //console.log(4);
                 hideNav();
             }
+            logMessage('return false');
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
         });
 
@@ -125,8 +136,10 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
          * Begin Settings Code
          */
         $body.on("click", ".thr-settings-icon", function(ev, data) {
+            logMessage('gear click ' + ev.target.nodeName);
             if (ios.cancelNav(ev)) {
-                return;
+                logMessage('cancel gear');
+                return false;
             }
 
             updateCheckedOptions(); // update currently selected setting options marked with a check accordingly
@@ -282,7 +295,7 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
         $('body').on('keydown', '.thr-well-icon, .thr-settings-icon', function(e) {
             keyCode = e.keyCode || e.which;
             if(keyCode === 13) {
-                console.log("clicked enter");
+                //console.log("clicked enter");
                 window.location.href = $(this).is('.thr-well-icon') ? '/navigation/' : '/reading-controls/';
             }
         }); // end keydown on icons
