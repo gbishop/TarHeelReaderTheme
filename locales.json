@@ -1,5 +1,7 @@
 [
-    { "label": "Deutsch", "value":"de", "templates":"/theme/Templates.de.json" },
-    { "label": "English", "value":"en", "selected":true },
-    { "label": "Türkçe", "value":"tr", "templates":"/theme/Templates.tr.json"}
+    { "label": "Deutsch",  "value":"de", "templates":"/theme/Templates.de.json" },
+    { "label": "English",  "value":"en", "selected":true },
+    { "label": "Türkçe",   "value":"tr", "templates":"/theme/Templates.tr.json"},
+    { "label": "Español",  "value":"es", "templates":"/theme/Templates.es.json"},
+    { "label": "Italiano", "value":"it", "templates":"/theme/Templates.it.json"}
 ]

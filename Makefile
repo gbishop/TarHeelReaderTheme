@@ -1,10 +1,25 @@
 all: build copygba
 
 locale/de/LC_MESSAGES/thr.mo: languages/de.po
+	mkdir -p locale/de/LC_MESSAGES
 	msgfmt languages/de.po --output-file locale/de/LC_MESSAGES/thr.mo
 
 Templates.de.json: languages/de.po locale/de/LC_MESSAGES/thr.mo Templates.en.json
 	python tools/BuildTemplate.py -compact --lang=de --output=Templates.de.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+
+locale/es/LC_MESSAGES/thr.mo: languages/es.po
+	mkdir -p locale/es/LC_MESSAGES
+	msgfmt languages/es.po --output-file locale/es/LC_MESSAGES/thr.mo
+
+Templates.es.json: languages/es.po locale/es/LC_MESSAGES/thr.mo Templates.en.json
+	python tools/BuildTemplate.py -compact --lang=es --output=Templates.es.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+
+locale/it/LC_MESSAGES/thr.mo: languages/it.po
+	mkdir -p locale/it/LC_MESSAGES
+	msgfmt languages/it.po --output-file locale/it/LC_MESSAGES/thr.mo
+
+Templates.it.json: languages/it.po locale/it/LC_MESSAGES/thr.mo Templates.en.json
+	python tools/BuildTemplate.py -compact --lang=it --output=Templates.it.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 locale/tr/LC_MESSAGES/thr.mo: languages/tr.po
 	mkdir -p locale/tr/LC_MESSAGES
@@ -16,7 +31,7 @@ Templates.tr.json: languages/tr.po locale/tr/LC_MESSAGES/thr.mo Templates.en.jso
 Templates.en.json: tools/BuildTemplate.py templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python tools/BuildTemplate.py -compact --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-build: Templates.en.json Templates.de.json Templates.tr.json
+build: Templates.en.json Templates.de.json Templates.tr.json Templates.es.json Templates.it.json
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
 	sass --style=compact style.scss style.css
 
