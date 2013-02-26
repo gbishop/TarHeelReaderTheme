@@ -44,14 +44,12 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
         };
 
     function showNav() {
-        logMessage('showNav');
         $('.active-page .hiddenContent').fadeOut(function() {
             $('.active-page .navigationMenu').slideDown().attr('aria-hidden', 'false');
         }).attr('aria-hidden', 'true'); // end fadeOut
     }
 
     function hideNav() {
-        logMessage('hideNav');
         $('.active-page .navigationMenu').fadeOut(50, function() {
             $('.active-page .hiddenContent').fadeIn().attr('aria-hidden', 'false');
         }).attr('aria-hidden', 'true'); // end slideUp
@@ -72,7 +70,6 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
          $body.on("click", "a.thr-well-icon", function(ev, data) {
             // toggling navigation on the navigation page doesn't make sense (IE8 fix: IE8 doesn't like :not selector)
             //console.log('menu click');
-            logMessage('well click ' + ev.target.nodeName);
             var $navPage = $("body > div.navigation");
             if($navPage.length !== 0 && $navPage.hasClass("active-page")) {
                 //console.log('bail here');
@@ -84,7 +81,6 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
                 $hiddenContent = $contentWrap.find(".hiddenContent");
 
             if (ios.cancelNav(ev)) {
-                logMessage('ios cancel nav');
                 return false;
             }
             //console.log(1);
@@ -105,7 +101,6 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
                 //console.log(4);
                 hideNav();
             }
-            logMessage('return false');
             return false; // for those who have JavaScript enabled, don't allow the click to go to the navigation page
         });
 
@@ -136,9 +131,7 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
          * Begin Settings Code
          */
         $body.on("click", ".thr-settings-icon", function(ev, data) {
-            logMessage('gear click ' + ev.target.nodeName);
             if (ios.cancelNav(ev)) {
-                logMessage('cancel gear');
                 return false;
             }
 

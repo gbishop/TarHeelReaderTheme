@@ -22,7 +22,6 @@ define(["state"], function(state) {
             $page.find('.VOHide').attr('aria-hidden', 'true');
 
             setTimeout(function(){
-                logMessage('timer');
                 $('.active-page .VOSay:not(:focus)').focus();
             }, 500);
         };

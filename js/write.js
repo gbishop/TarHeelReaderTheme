@@ -599,7 +599,7 @@ define(['route',
 
         // initialize the writing page.
         function writeInit(url, id, copyId) {
-            console.log('write', id, copyId);
+            //console.log('write', id, copyId);
             var $page = this;
 
             var bookContent = {};
