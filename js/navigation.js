@@ -59,7 +59,7 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
     $(function() {
         var $body = $('body'),
             currentSettings = getCurrentSettings(),
-            pathname;
+            pathname = "/";
 
         initKeyControls(); // initialize the key bindings for the menu/settings
 
