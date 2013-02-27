@@ -9,20 +9,18 @@ define(["templates" ], function(templates) {
     function initialize () {
         if (audio) return;
 
-        // use html5 audio if it is available and if it supports mp3. I'd rather use ogg but I need mp3 for
-        // flash fallback anyway
-        // to make it work on the iPad I apparently have to load a legal mp3. Use this one for now.
-        //console.log('initialize audio');
+        // use html5 audio if it is available and if it supports mp3.
+        // I'd rather use ogg but I need mp3 for flash fallback anyway.
+        // To make it work on the iOS I apparently have to load a legal mp3.
+        // Use this one for now.
         if (typeof(Audio) !== 'undefined') {
-            //console.log('have Audio function');
-            audio = new Audio('/theme/speech/en-whatnow-c.mp3');
+            audio = new Audio('/theme/speech/probe.mp3');
 
            if (audio && audio.canPlayType &&
                 ("no" != audio.canPlayType("audio/mpeg")) &&
                 ("" !== audio.canPlayType("audio/mpeg"))) {
-                //console.log('passed audio test');
                 $('.flashplayer').remove();
-                // we appear to have html5 audio so call load which is required on the iPod.
+                // we appear to have html5 audio so call load
                 audio.load();
                 // now this node is blessed so we can play sound whenever we want.
 
@@ -38,14 +36,10 @@ define(["templates" ], function(templates) {
     }
 
     $(function() {
-        if (navigator.userAgent.match(/iPad/i) !== null || navigator.platform.match(/iPhone|iPod/) !== null) {
-            // wait for a user interaction to initialize audio because Apple knows best
-            $(document.body).one('mousedown', function(e) {
-                initialize();
-            });
-        } else { // for anyone else I should be able to simply initialize
+        // wait for a user interaction to initialize audio because Apple knows best
+        $(document.body).one('mousedown keydown touchstart', function(e) {
             initialize();
-        }
+        });
     });
 
     function play(id, voice, page, bust) {
