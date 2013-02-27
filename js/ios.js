@@ -1,10 +1,12 @@
 /* ios.js hacks to support ios devices, especially voiceover */
 
 define(["state"], function(state) {
-    // detect standalone mode. Should I be checking agent too?
-    var standalone = 'standalone' in window.navigator && window.navigator.standalone;
+    // detect iOS to implement hacks
+    // mobile safari is the ie6 of our day
+    var iOS = navigator && navigator.userAgent &&
+              navigator.userAgent.toLowerCase().match(/iphone|ipod|ipad/);
 
-    var nop = function(){}; // doing nothing is the default unless we detect we are standalone on ios
+    var nop = function(){}; // doing nothing is the default unless we detect we are iOS
 
     var res = {
         setLastUrl: nop,
@@ -13,7 +15,7 @@ define(["state"], function(state) {
         cancelNav: nop
     };
 
-    if (standalone) {
+    if (iOS) {
         res.setLastUrl = function(url) {
             state.set('lastURL', url);
         };
