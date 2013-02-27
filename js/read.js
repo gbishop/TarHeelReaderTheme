@@ -296,6 +296,10 @@ define(["route",
 
     // handle toggling favorites
     $(document).on('click', '.front-page .thr-favorites-icon', function(ev) {
+        if (ios.cancelNav(ev)) {
+            // prevent ios double click bug
+            return false;
+        }
         ev.preventDefault();
         var $page = $('.front-page.active-page'),
             id = $page.find('.content-wrap h1').attr('data-id');

@@ -8,8 +8,9 @@ define([ "route",
          "keyboard",
          "speech",
          "page",
+         "ios",
          "jquery.scrollIntoView"
-        ], function(route, templates, state, keys, speech, page) {
+        ], function(route, templates, state, keys, speech, page, ios) {
 
     // return the url that will restore the find page state
     function find_url(page) {
@@ -231,9 +232,13 @@ define([ "route",
     $(document).on('click',
         '.find-page .thr-favorites-icon, .favorites-page .thr-favorites-icon',
         function(ev) {
-        //console.log('click favorites icon');
-        $('.active-page').toggleClass('chooseFavorites');
-        ev.preventDefault();
+            //console.log('click favorites icon');
+            if (ios.cancelNav(ev)) {
+                // avoid ios double click bug
+                return false;
+            }
+            $('.active-page').toggleClass('chooseFavorites');
+            ev.preventDefault();
     });
     $(document).on('click', '.favorites-page.chooseFavorites .thr-favorites-icon', function(ev) {
         window.location.href = '/favorites/'; // force a refresh after changing favorites on favorites page

@@ -20,8 +20,10 @@ define(["state"], function(state) {
             state.set('lastURL', url);
         };
 
+        var cleanupHiddenLinks = false;
         res.focusVoiceOverOnText = function($page) {
             $page.find('.VOHide').attr('aria-hidden', 'true');
+            cleanupHiddenLinks = true;
 
             setTimeout(function(){
                 $('.active-page .VOSay:not(:focus)').focus();
@@ -30,7 +32,10 @@ define(["state"], function(state) {
 
         // cleanup any links we hid above
         $(document).on('focus', '.thr-book-page.active-page .VOSay', function() {
-            $('.active-page .VOHide').attr('aria-hidden', 'false');
+            if (cleanupHiddenLinks) {
+                $('.active-page .VOHide').attr('aria-hidden', 'false');
+                cleanupHiddenLinks = false;
+            }
         });
 
         res.focusMenu = function($page) {
