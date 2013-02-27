@@ -102,6 +102,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
 
 // The following styles apply to the Home, Books You Wrote, Collections, Login, Announcements, FAQ, and Photo Credits pages
 .home-page, .server-page, .your-books-page, .collections-page, .login-page {
+/*
   h1, h2 {
     color: #676767;
     font-size: 1.8em;
@@ -116,6 +117,7 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
       color: $carolinaBlue;
     }
   }
+*/
 
   p {
     text-align: left;
@@ -376,10 +378,6 @@ h2 {
       height: 0;
       min-height: 0;
       border-top: 0;
-
-      h1 {
-          display: none;
-      }
 
       .thr-well-icon { // make the home icon less opaque
         opacity: 0.6;
