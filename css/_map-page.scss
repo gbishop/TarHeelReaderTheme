@@ -2,14 +2,21 @@
     table, td, th {
         border: 1px solid black;
     }
-    td {
-        padding: 0.1em 0.5em;
+    table {
+        min-width: 19em;
+        margin: 1em auto;
+    }
+    td, th {
+        padding: 0.25em 0.5em;
     }
     td:first-child {
         text-align: right;
     }
+    th {
+        text-align: left;
+    }
     .content-wrap img {
-        width: 36em !important;
-        height: 27em !important;
+        width: 48em !important;
+        height: 31.25em !important;
     }
 }

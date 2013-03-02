@@ -8,6 +8,25 @@
     <a class="thr-blue-button" href="/where-are-the-readers/">_(Map all books)</a>
     {{/mine}}
 {{/user}}
-{{^map}}
+{{#exists}}
+<p>_(As of {{date}} our books have been read {{total}} times in {{country_count}} countries and {{state_count}} US states and possessions.)</p>
+<img class="map" src="{{image}}" width="768" height="550" />
+
+<table border='1' class='readers'>
+    <caption>_(Readers by Country)</caption>
+    <tr><th>_(Books Read)</th><th>_(Name)</th></tr>
+    {{#countries}}
+    <tr><td>{{count}}</td><td>{{name}}</td></tr>
+    {{/countries}}
+</table>
+<table border='1' class='readers'>
+    <caption>_(Readers by US States and Possessions)</caption>
+    <tr><th>_(Books Read)</th><th>_(Name)</th></tr>
+    {{#states}}
+    <tr><td>{{count}}</td><td>{{name}}</td></tr>
+    {{/states}}
+</table>
+{{/exists}}
+{{^exists}}
 <p>_(We do not yet have any of your books on the map.)</p>
-{{/map}}
+{{/exists}}
