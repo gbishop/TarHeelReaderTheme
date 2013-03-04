@@ -106,7 +106,7 @@ if ($exists) {
     $view['state_count'] = count($states);
     $view['total'] = number_format($map['total']);
     $view['date'] = $map['date'];
-    $image = $map['image'];
+    $image = $map['image'] . '?bust=' . $map['total'];
     if (strpos($image, '/var/tmp') === 0) {
         $image = substr($image, 8);
     }
