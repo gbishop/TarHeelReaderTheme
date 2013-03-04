@@ -177,7 +177,7 @@ function favorites_url($page = null) {
         $parms[] = 'favorites';
     }
     foreach($parms as $parm) {
-        $v = urlencode($THRState[$parm]);
+        $v = $THRState[$parm];
         $p[] = "$parm=$v";
     }
     if ($page === null) {
