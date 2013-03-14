@@ -13,6 +13,7 @@ define([  "route",
 
     if (!History.enabled) {
         console.log('History not enabled');
+        state.set('classic', '1');  // switch them to classic mode so they have some hope of working
         return false;
     }
 
