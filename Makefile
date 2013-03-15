@@ -68,6 +68,12 @@ versioned:
 gbopt: optimized
 	cd ../Theme-build; make copygb
 
+testprod:
+	rm -rf ../Theme-build/*
+	cd js; node ../../r.js -o app.build.js
+	cd ../Theme-build; make build
+	cd ../Theme-build; make copygba
+
 production:
 	make optimized STATICHOST=http://tarheelreader3s.cs.unc.edu
 	cd ../Theme-build; make copyproduction
