@@ -44,7 +44,7 @@ copyameem:
 
 copygba:
 	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3
-	launch.py http://gbserver3a.cs.unc.edu/
+	#launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
