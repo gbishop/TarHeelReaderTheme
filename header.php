@@ -35,6 +35,7 @@
     <?php if (!THR('classic')) : ?>
         <![if gt IE 7]>
         <script src="/theme/js/modernizr.custom.js"></script>
+        <script src="/theme/js/json2.min.js"></script>
         <![endif]>
     <?php endif ?>
     <!-- <script src="https://getfirebug.com/firebug-lite.js#startOpened"></script> -->
