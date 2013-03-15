@@ -38,8 +38,6 @@
         <script src="/theme/js/json2.min.js"></script>
         <![endif]>
     <?php endif ?>
-    <!-- <script src="https://getfirebug.com/firebug-lite.js#startOpened"></script> -->
-    <!-- <script src="http:/152.2.129.225:8080/target/target-script-min.js"></script> -->
     <?php wp_head(); ?>
 
     <script>
