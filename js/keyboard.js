@@ -66,9 +66,17 @@ define(["pubsub"], function() {
         var selector = e.data;
         if (!selector || $(selector).length === 0) return true;
 
-        $('body').css('overflow', 'hidden');
         var touch = e.originalEvent.changedTouches[0];
         touchStart = { t: e.timeStamp, x: touch.clientX, y: touch.clientY };
+    }
+
+    function onTouchMove(e) {
+        if (!touchStart) return;
+
+        var selector = e.data;
+        if (!selector || $(selector).length === 0) return true;
+
+        e.preventDefault();
     }
 
     function onTouchEnd(e) {
@@ -77,14 +85,12 @@ define(["pubsub"], function() {
         var selector = e.data;
         if (!selector || $(selector).length === 0) return true;
 
-        $('body').css('overflow', '');
-
         var keyMap = keyMaps[selector];
         var touch = e.originalEvent.changedTouches[0],
             dt = e.timeStamp - touchStart.t,
             dx = touch.clientX - touchStart.x,
-            dy = Math.abs(touch.clientY - touchStart.y);
-        if (dt < 1500 && (dx > 100 || dx < -100) && dy < 30) {
+            dy = touch.clientY - touchStart.y;
+        if (dt < 2000 && Math.abs(dx) > 50 && Math.abs(dy) < Math.abs(dx)) {
             $.publish(keyMap['swipe'], [dx, dy]);
         }
         touchStart = null;
@@ -104,6 +110,7 @@ define(["pubsub"], function() {
         if ('swipe' in keyMap && 'ontouchend' in document) {
             $(document).on('touchstart', null, selector, onTouchStart);
             $(document).on('touchend', null, selector, onTouchEnd);
+            $(document).on('touchmove', null, selector, onTouchMove);
         }
     }
 
