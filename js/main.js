@@ -1,7 +1,3 @@
-require.config({
-    waitSeconds: 200
-});
-
 require([
     "route",
     "state",
