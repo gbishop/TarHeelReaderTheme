@@ -21,7 +21,7 @@ $terms = array();
 $query = stripslashes(THR('search'));
 if ($query) {
     $words = array();
-    $i = preg_match_all('/[\w0-9\'*]+/', $query, $words);
+    $i = preg_match_all('/[\w0-9\'*]+|"[\w0-9\'* ]+"/', $query, $words);
     foreach($words[0] as $word) {
         if (strlen($word) < 3) {
             $esc = mysql_real_escape_string($word);
