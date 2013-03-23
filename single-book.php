@@ -5,7 +5,14 @@
             $book = ParseBookPost($post);
             $pages = $book['pages'];
             $Npages = count($pages);
-            $link = get_permalink();
+            $link = $book['link'];
+            $preview = substr($link, 0, 4) == '/?p=';
+
+            if ($preview) {
+                $findLink = '/your-books/';
+            } else {
+                $findLink = THR('findAnotherLink');
+            }
             $mp3 = null;
             if (has_speech($book['language'])) {
                 $voice = THR('voice');
@@ -45,23 +52,23 @@
             if ($pageNumber <= $N) {
                 $view['author'] = $book['author'];
                 $view['pageNumber'] = $pageNumber;
-                $view['backto'] = urlencode($book['link']);
+                $view['backto'] = urlencode($link);
                 $view['image'] = $book['pages'][max(1, $pageNumber-1)];
                 $view['caption'] = $view['image']['text'];
                 if ($pageNumber == 1) {
-                    $view['backLink'] = THR('findAnotherLink');
-                    $view['nextLink'] = pageLink($book['link'], 2);
+                    $view['backLink'] = $findLink;
+                    $view['nextLink'] = pageLink($link, 2);
                 } else {
-                    $view['backLink'] = pageLink($book['link'], $pageNumber-1);
-                    $view['nextLink'] = pageLink($book['link'], $pageNumber+1);
+                    $view['backLink'] = pageLink($link, $pageNumber-1);
+                    $view['nextLink'] = pageLink($link, $pageNumber+1);
                 }
                 setImageSizes($view['image']);
                 if ($mp3) $view['audio'] = audio($mp3);
                 echo template_render('bookPage', $view);
             } else {
-                $view['nextPage'] = $pageNumber+1;
-                $view['link'] = $book['link'];
-                $view['findLink'] = THR('findAnotherLink');
+                $view['nextLink'] = pageLink($link, $pageNumber+1);
+                $view['link'] = $link;
+                $view['findLink'] = $findLink;
                 $view['what'] = $pageNumber == $N+1;
                 $view['rate'] = $pageNumber == $N+2;
                 $view['thanks'] = $pageNumber >= $N+3;

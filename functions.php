@@ -654,6 +654,9 @@ function setImageSizes(&$c) {
 
 function pageLink($link, $page) {
     if ($page == 1) return $link;
+    if (substr($link, 0, 4) == '/?p=') {
+        return $link . "&page=$page";
+    }
     return $link . $page . '/';
 }
         // Translations can be filed in the /languages/ directory

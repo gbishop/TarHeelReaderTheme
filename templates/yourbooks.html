@@ -20,10 +20,11 @@
         {{#has_drafts}}
         <ul class="controlList booksList draftBooks">
             {{#drafts}}
-            <li data-id="{{ID}}">
+            <li data-id="{{ID}}" data-link="{{{link}}}">
                 <span>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</span>
                 <div>
                     <p>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</p>
+                    <button data-action="read">_(Read|Button label)</button>
                     <button data-action="edit">_(Edit|Button label)</button>
                     <button data-action="delete">_(Delete|Button label)</button>
                     <button data-action="cancel">_(Cancel|Button label)</button>

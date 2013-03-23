@@ -329,6 +329,7 @@ define(["route",
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
     route.add('init', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, configureBook);
+    route.add('init', /^\/(?:\?p=.*)?$/, configureBook);
 
     return {};
 });

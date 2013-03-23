@@ -135,7 +135,8 @@ if($userid != 0) {
     foreach ($my_drafts as $post) {
         $drafts[] = Array(
             'title' => $post->post_title,
-            'ID' => $post->ID
+            'ID' => $post->ID,
+            'link' => get_permalink($post->ID)
         );
     }
     $view['drafts'] = $drafts;
