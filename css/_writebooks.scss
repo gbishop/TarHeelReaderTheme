@@ -1,7 +1,7 @@
 /*
  * Styles for the "Write a Book" page
  */
-.write-page {  
+.write-page {
     .content-wrap {
         width: auto;
         overflow: hidden;
@@ -102,7 +102,7 @@
     .categories {
         line-height: 2em !important;
     }
-    
+
     .categories label {
         width: 12em;
         float: left;
@@ -110,12 +110,12 @@
         height: 2em;
         word-wrap: break-word;
     }
-    
+
     label {
         line-height: 1.2em;
         margin: 0 0.5em;
     }
-    
+
     .categories input {
         vertical-align: baseline;
     }
@@ -123,11 +123,11 @@
     .step3a {
         display: none;
     }
-    
+
     button {
         font-size: 1em;
     }
-    
+
     // help icon
     .help {
       width: 2em;
@@ -147,3 +147,72 @@
         }
     }
 } // end .write-page
+
+.edit-page {
+    width: 48em !important;
+    height: 36em !important;
+
+    .thr-pic {
+        display: inline !important;
+    }
+
+    textarea {
+        width: (48em - 12em) / $captionFontSize * 1em;
+        height: 5em / $captionFontSize * 1em;
+        margin: auto;
+        resize: none;
+
+        &.text-too-long {
+            background: yellow;
+        }
+    }
+
+    .deleteIcon {
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: 0.5em;
+        left: 0.5em;
+    }
+    .copyIcon {
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: 0.5em;
+        left: 2.5em;
+    }
+}
+
+.galleryPreviewDialog {
+    width: 20em !important;
+    height: 20em !important;
+
+    img {
+        margin: auto;
+        display: block;
+    }
+
+    a {
+        height: 100%;
+        opacity: 0;
+        width: 45%;
+        position: absolute;
+        top: 0;
+
+        img {
+            margin-top: 2em;
+        }
+
+        &.p {
+            left: 0;
+        }
+
+        &.n {
+            right: 0;
+        }
+
+        &:hover {
+            opacity: 0.5;
+        }
+    } // end a
+} // end .galleryPreviewDialog

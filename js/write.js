@@ -75,9 +75,9 @@ define(['route',
                         //iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
                         // if gwidth > 720, then allow 9 pictures per row, if not allow for 6 per row. Divide by base font-size for ems
                         picsPerRow = gwidth > 720 ? 9: 6,
-                        marginRight = gwidth > 720 ? .2 : .1,
+                        marginRight = gwidth > 720 ? 0.2: 0.1,
                         borderWidth = 1,
-                        baseFont = parseInt($("body").css("font-size")),
+                        baseFont = parseFloat($("body").css("font-size"), 10),
                         iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
 
                     g.empty();
@@ -116,9 +116,9 @@ define(['route',
                 return;
             } else {
                 picsPerRow = gwidth > 720 ? 9 : 6;
-                marginRight = gwidth > 720 ? .2 : .1;
+                marginRight = gwidth > 720 ? 0.2 : 0.1;
                 borderWidth = 1;
-                baseFont = parseInt($("body").css("font-size"));
+                baseFont = parseFloat($("body").css("font-size"));
                 iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
 
                 $images.css({
@@ -440,6 +440,7 @@ define(['route',
                 return false;
             });
             $editDialog.on('click', 'img.deleteIcon', deletePage);
+            $editDialog.on('click', 'img.copyIcon', copyPage);
             // limit max caption length
             $editDialog.on('keyup input paste', 'textarea', function(){
                 var warnLength = maxCaptionLength - 10,
@@ -479,8 +480,12 @@ define(['route',
             $content.filter('a.thr-home-icon,a.thr-settings-icon').hide(); // remove some unneeded links
             $editDialog.empty().append($('.wEditHelp').html()).append($content); // update dialog body
             var $deleteIcon = $('<img class="deleteIcon" src="/theme/images/delete.png" />');
-            $deleteIcon.attr('title', $('.DeleteThisPage').html());
+            $deleteIcon.attr('title', $('.wDeleteThisPage').html());
             $editDialog.append($deleteIcon);
+            var $copyIcon = $('<img class="copyIcon" src="/theme/images/copy.png" />');
+            $copyIcon.attr('title', $('.wCopyThisPage').html());
+            $editDialog.append($copyIcon);
+
         }
 
         // save the edited caption
@@ -499,6 +504,15 @@ define(['route',
             var $page = $($wp.get(editIndex)); // the current page
             $page.remove(); // remove it
             setupEditContent();
+            setModified();
+        }
+
+        // copy a book page
+        function copyPage() {
+            var $wp = $('.write-pages li'); // the list of book pages
+            var $page = $($wp.get(editIndex)); // the current page
+            var $copy = $page.clone();
+            $page.after($copy);
             setModified();
         }
 
@@ -620,7 +634,7 @@ define(['route',
                     element: $('.file-uploader').get(0),
                     action: '/upload-image/',
                     allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
-                    sizeLimit: 2 * 1024 * 1024,
+                    sizeLimit: 10 * 1024 * 1024,
                     onComplete: function(id, fileName, response) {
                         //console.log('upload complete', id, fileName, response);
                         if (response.success) {

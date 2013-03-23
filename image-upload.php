@@ -216,7 +216,7 @@ if (!current_user_can('edit_posts')) {
 // list of valid extensions, ex. array("jpeg", "xml", "bmp")
 $allowedExtensions = array("jpg", "jpeg", "png", "gif");
 // max file size in bytes
-$sizeLimit = 2 * 1024 * 1024;
+$sizeLimit = 10 * 1024 * 1024;
 
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload('/var/tmp/');
