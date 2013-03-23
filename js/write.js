@@ -485,7 +485,7 @@ define(['route',
             var $copyIcon = $('<img class="copyIcon" src="/theme/images/copy.png" />');
             $copyIcon.attr('title', $('.wCopyThisPage').html());
             $editDialog.append($copyIcon);
-
+            $editDialog.dialog('option', 'title', '');  // clear the title
         }
 
         // save the edited caption
@@ -514,6 +514,7 @@ define(['route',
             var $copy = $page.clone();
             $page.after($copy);
             setModified();
+            $editDialog.dialog('option', 'title', $('.wlPageCopied').html());
         }
 
         // edit a book page
