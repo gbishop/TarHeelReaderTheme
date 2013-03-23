@@ -139,6 +139,7 @@ function convert_image_url($url) {
     if(preg_match('/^\\/cache\\/images.*$|^\\/uploads.*$/', $url)) {
         $nurl = $url;
         $path = $root . $nurl;
+
     } elseif(preg_match('/\\/photo([0-9])\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
         $size = $m[5];
         if (!$size) {
@@ -150,7 +151,7 @@ function convert_image_url($url) {
             $furl = preg_replace('/\\/photo([0-9])/', 'http://farm$1.static.flickr.com', $url);
             $r = copy($furl, $path);
             if (!$r) {
-                $log->logError('copy failed', $furl . ' -> ' . $path);
+                $log->logError('copy from Flickr failed', $furl . ' -> ' . $path);
             }
         }
 
@@ -161,6 +162,7 @@ function convert_image_url($url) {
         }
         $nurl = '/cache/images/' . substr($m[3], -2) . '/' . $m[3] . '_' . $m[4] . $size . '.jpg';
         $path = $root . $nurl;
+
     } elseif(preg_match('/http:.*\\/wp-content(\\/uploads\\/.*)(_[ts])?\\.jpg/', $url, $m)) {
         $nurl = $m[1] . $m[2] . '.jpg';
         $nurl = str_replace(' ', '_', $nurl);
@@ -170,12 +172,52 @@ function convert_image_url($url) {
     return array($nurl, $path);
 }
 
+function resizeImage($im, $maxSide, $scaleUp) {
+    $w = imagesx($im);
+    $h = imagesy($im);
+    $xo = $yo = 0;
+    if (!$scaleUp && $w < $maxSide && $h < $maxSide) {
+        $nim = $im;
+        $nw = $w;
+        $nh = $h;
+    } else {
+        $r = $w/$h;
+        if($r < 1) {
+            $nh = $maxSide;
+            $nw = $maxSide * $r;
+        } else {
+            $nw = $maxSide;
+            $nh = $maxSide / $r;
+        }
+        $nim = imagecreatetruecolor($nw, $nh);
+        imagecopyresampled($nim, $im, 0, 0, $xo, $yo, $nw, $nh, $w, $h);
+    }
+    return array($nim, $nw, $nh);
+}
+
+function create_thumbnail($turl, $tpath) {
+    $path = str_replace('_t.jpg', '.jpg', $tpath);
+    if (file_exists($path)) {
+        $im = imagecreatefromjpeg($path);
+        list($nim, $nw, $nh) = resizeImage($im, 100, true);
+        imagejpeg($nim, $tpath);
+        return true;
+    }
+    return false;
+}
+
 function make_page($text, $url) {
     global $log;
     list($nurl, $path) = convert_image_url($url);
     if (!file_exists($path)) {
+        // special case the thumbnail
         $log->logInfo("not found path='$path' url='$url'");
-        if (!copy($url, $path)) {
+        if (substr($path, -6) == '_t.jpg') {
+            if (!create_thumbnail($url, $path)) {
+                $log->logError('thumbnail create failed');
+                return false;
+            }
+        } elseif (!copy($url, $path)) {
             $log->logError("Copy failed '$url' -> '$path'");
             return false;
         }

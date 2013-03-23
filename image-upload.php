@@ -152,29 +152,6 @@ class qqFileUploader {
     }
 }
 
-function resizeImage($im, $maxSide, $scaleUp) {
-    $w = imagesx($im);
-    $h = imagesy($im);
-    $xo = $yo = 0;
-    if (!$scaleUp && $w < $maxSide && $h < $maxSide) {
-        $nim = $im;
-        $nw = $w;
-        $nh = $h;
-    } else {
-        $r = $w/$h;
-        if($r < 1) {
-            $nh = $maxSide;
-            $nw = $maxSide * $r;
-        } else {
-            $nw = $maxSide;
-            $nh = $maxSide / $r;
-        }
-        $nim = imagecreatetruecolor($nw, $nh);
-        imagecopyresampled($nim, $im, 0, 0, $xo, $yo, $nw, $nh, $w, $h);
-    }
-    return array($nim, $nw, $nh);
-}
-
 function processUploadedImage($path, $type) {
     if ($type == 'gif') {
         $im = imagecreatefromgif($path);
@@ -196,9 +173,7 @@ function processUploadedImage($path, $type) {
 
     $basename = '/' . $userid . '-' . uniqid();
 
-    // save the thumbnail
-    list($nim, $nw, $nh) = resizeImage($im, 100, true);
-    imagejpeg($nim, $upl['path'] . $basename . '_t.jpg');
+    // let the book POST code handle saving the thumbnail.
     // save the medium size
     list($nim, $nw, $nh) = resizeImage($im, 500, false);
     $mname = $basename . '.jpg';
