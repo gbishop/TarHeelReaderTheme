@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2013-02-23 11:53+0000\n"
+"PO-Revision-Date: 2013-03-23 15:40+0000\n"
 "Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/projects/p/tar-heel-reader/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -36,19 +36,6 @@ msgstr "Revisado para tener calidad educativa."
 msgctxt "icon explanatory text"
 msgid "May not be appropriate for all readers."
 msgstr "Puede ser inapropiado para algunos lectores."
-
-# bookList:35
-msgid "In favorites"
-msgstr "En favoritos"
-
-# bookList:36, heading:10
-msgid "Not in favorites"
-msgstr "No esta en favoritos"
-
-# bookPage:14
-msgctxt "link text below images"
-msgid "Photo credits"
-msgstr "Créditos de foto"
 
 # busy:5
 msgid "Loading. Please wait."
@@ -108,22 +95,22 @@ msgstr "Ninguna colección ha sido encontrada que coincida con su búsqueda. Int
 msgid "Create your own collection"
 msgstr "Crear su propia colección"
 
-# collections:27, bookPage:19
+# collections:27, bookPage:23
 msgctxt "button label"
 msgid "Back"
 msgstr "Atrás "
 
-# find:4
+# find:5
 msgctxt "label for button to expose search fields on small devices"
 msgid "Press to search"
 msgstr "Presione para buscar"
 
-# find:8
+# find:10
 msgctxt "button label"
 msgid "Previous Books"
 msgstr "Libros anteriores"
 
-# find:11
+# find:13
 msgctxt "button label"
 msgid "More Books"
 msgstr "Más libros"
@@ -133,32 +120,10 @@ msgid "Welcome"
 msgstr "Bienvenido!"
 
 # frontPage:3
-msgid ""
-"This site will work much better if you enable Javascript. You'll get switch "
-"accessibility, pictures that automatically size to your window, and the "
-"ability to write books of your own. Please enable Javascript for the best "
-"Tar Heel Reader experience."
-msgstr "Este sitio trabajará mucho mejor si usted permite Javascript. Tendra la accesibilidad de conmutación, fotos que automáticamente cambian al tamaño de su ventana, y la habilidad para escribir sus propios libros. Por favor, permita Javascript para la mejor experiencia de Tar Heel Reader. "
-
-# frontPage:5
-msgid ""
-"Your browser is unsupported. The site should work for finding and reading "
-"books but you will not have switch access or the ability to write books. We "
-"recommend that you upgrade to a modern browser or install Chrome Frame."
-msgstr "Su navegador no es compatible con nuestro sitio. Este sitio debería de funcionar para encontrar y leer libros pero no va a tener acceso de conmutación o la habilidad de escribir libro. Le recomendamos que actualize su navegador o instale Chrome Frame.  "
-
-# frontPage:7
-msgid ""
-"You are in Classic mode. You will not have access to all of the features of "
-"the site but it may work better on older computers and web browsers. Click "
-"this text to leave Classic mode."
-msgstr "Usted está en la version Clásica. Usted no tendra aceso a todas las opciones de este sitio pero puede ser mejor para computadoras y navegadores de web que son mas antiguos. "
-
-# frontPage:9
 msgid "Click here to learn more about alternative access methods."
 msgstr "Haga clic aqui para aprender más sobre los métodos alternativos de acceso."
 
-# frontPage:9
+# frontPage:3
 msgid ""
 "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and "
 "accessible books on a wide range of topics. Each book can be speech enabled "
@@ -166,7 +131,7 @@ msgid ""
 "IntelliKeys with custom overlays, and 1 to 3 switches."
 msgstr "Bienvenidos a Tar Heel Reader. Tar Heel Reader es una colección de libros faciles, gratis, y accesibles. Hay libros de muchos temas. Cada libro puede ser leído en voz alta y ser accedido con muchas interfaces que incluyen las pantallas táctiles, los \"IntelliKeys\" con superpuestas personalizadas, y 1 a 3 conmutaciones."
 
-# frontPage:11
+# frontPage:5
 msgid ""
 "You may write your own books using pictures from the huge collection at "
 "{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
@@ -174,36 +139,50 @@ msgid ""
 "While you are working on them, please save them as drafts."
 msgstr "Usted podrá escribir sus propios libros usando las fotografias de la gran colección en {{{Flickr}}} o las fotografias que usted suba. Todos los libros deberían de estar completos, editados, y revisados de la mejor manera posible antes de que los publique a este sitio. Por favor guarde sus libros como borradores cuando este trabajando en ellos."
 
-# frontPage:13
+# frontPage:7
 msgid ""
 "Note the little well icon {{{wellicon}}} in the upper left corner of the "
 "page; clicking it will allow you to access the main menu. You can also click"
 " the settings icon {{{gearicon}}} to change settings on some pages."
 msgstr "Por favor note que el icono del pozo {{{wellicon}}} que esta en la esquina superior a la izquierda; si hace clic ahi, podrá tener acceso al menu principal. Tambien puede hacer clic en el  icono de configuración {{{gearicon}}} para cambiar las configuraciones de algunas paginas. "
 
-# frontPage:15
+# frontPage:9
+msgid ""
+"Your browser is unsupported. The site should work for finding and reading "
+"books but you will not have switch access or the ability to write books. We "
+"recommend that you upgrade to a modern browser or install Chrome Frame."
+msgstr "Su navegador no es compatible con nuestro sitio. Este sitio debería de funcionar para encontrar y leer libros pero no va a tener acceso de conmutación o la habilidad de escribir libro. Le recomendamos que actualize su navegador o instale Chrome Frame.  "
+
+# frontPage:11
+msgid ""
+"You are in Classic mode. You will not have access to all of the features of "
+"the site but it may work better on older computers and web browsers. Click "
+"this text to leave Classic mode."
+msgstr "Usted está en la version Clásica. Usted no tendra aceso a todas las opciones de este sitio pero puede ser mejor para computadoras y navegadores de web que son mas antiguos. "
+
+# frontPage:13
 msgid "Ready to get started?"
 msgstr "¿Estás listo para empezar?"
 
-# frontPage:17, navigation:12
+# frontPage:15, navigation:12
 msgid "Find a book"
 msgstr "Buscar un libro"
 
-# frontPage:18, navigation:24
+# frontPage:16, navigation:24
 msgid "Write a book"
 msgstr "Escribir un libro"
 
-# frontPage:21
+# frontPage:19
 msgid ""
 "This site is also available in other languages. To help with translation, "
 "contact us."
 msgstr "Este sitio está disponible en otros idiomas. Para ayudar con la traducción, por favor contáctenos. "
 
-# frontPage:29
+# frontPage:27
 msgid "change language"
 msgstr "Cambia el idoma"
 
-# frontPage:36
+# frontPage:34
 msgid "Latest Announcements"
 msgstr "Los Anuncios Mas Recientes"
 
@@ -212,22 +191,30 @@ msgctxt "icon explanatory text"
 msgid "Open Menu"
 msgstr "Abrir el menú"
 
-# heading:5, heading:8
-msgctxt "icon explanatory text"
-msgid "Settings"
-msgstr "Configuración"
-
-# heading:10
+# heading:7, heading:7, heading:11, heading:14
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
 msgstr "Seleccionar Favoritos"
 
 # heading:11
+msgid "Remove from Favorites"
+msgstr "Quitar de favoritos"
+
+# heading:14
+msgid "Add to Favorites"
+msgstr "Añadir a favoritos"
+
+# heading:19, heading:19, heading:22, heading:22
+msgctxt "icon explanatory text"
+msgid "Settings"
+msgstr "Configuración"
+
+# heading:26
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
 msgstr "Libros para lectores de todas las edades"
 
-# heading:11
+# heading:26
 msgctxt "site name"
 msgid "Tar Heel Reader"
 msgstr "Tar Heel Reader"
@@ -464,7 +451,7 @@ msgstr "No hemos podido encontrar la pagina que usted ha solicitado. Quizá los 
 msgid "Home"
 msgstr "Inicio"
 
-# navigation:20, heading:10
+# navigation:20
 msgid "Favorites"
 msgstr "Favoritos"
 
@@ -504,15 +491,23 @@ msgstr "PowerPoint"
 msgid "EPUB"
 msgstr "EPUB"
 
+# readingControls:12
+msgid "Photo Credits"
+msgstr "Fotos de la portada"
+
 # readingControls:13
+msgid "Photo credits for this book"
+msgstr "Fotos de la portada de este libro"
+
+# readingControls:17
 msgid "Change this book"
 msgstr "Cambiar esta libro"
 
-# readingControls:14
+# readingControls:18
 msgid "Create a new one like it."
 msgstr "Crea uno nuevo como que el otro."
 
-# readingControls:16
+# readingControls:20
 msgid "Edit it."
 msgstr "Editalo. "
 
@@ -641,6 +636,28 @@ msgid "Map all books"
 msgstr "Asigne todos sus libros"
 
 # whereAreReaders:12
+msgid ""
+"As of {{date}} our books have been read {{total}} times in {{country_count}}"
+" countries and {{state_count}} US states and possessions."
+msgstr "A {{date}} nuestros libros han sido tiempos de lectura {{total}} en países de {{country_count}} y {{state_count}} U.S. Estados y posesiones."
+
+# whereAreReaders:16
+msgid "Readers by Country"
+msgstr "Lectores por país"
+
+# whereAreReaders:17, whereAreReaders:24
+msgid "Books Read"
+msgstr "Lectura de libros"
+
+# whereAreReaders:17, whereAreReaders:24
+msgid "Name"
+msgstr "Nombre"
+
+# whereAreReaders:23
+msgid "Readers by US States and Possessions"
+msgstr "Lectores por Estados Unidos y posesiones"
+
+# whereAreReaders:31
 msgid "We do not yet have any of your books on the map."
 msgstr "Todavia no tenemos ninguno de sus libros en las categorias."
 
@@ -892,7 +909,7 @@ msgctxt "button label"
 msgid "Previous"
 msgstr "Anterior"
 
-# write:136, collections:24, bookPage:21
+# write:136, collections:24, bookPage:26
 msgctxt "button label"
 msgid "Next"
 msgstr "Próximo"
@@ -901,38 +918,46 @@ msgstr "Próximo"
 msgid "Page added to your book"
 msgstr "Una pagina ha sido añadida a su libro."
 
-# write:140
+# write:138
+msgid "Page duplicated"
+msgstr "Página duplicada"
+
+# write:141
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
 msgstr "Haga clic sobre el texto para hacer un cambio. Usted podrá usar el \"próximo\" y el \"anterior\" boton para cambiar de pagina. Cuando haya terminado, cierre el editor haciendo clic en la equis de la esquina superior a la derecha. "
 
-# write:140
+# write:141
 msgid "Page Editor Help"
 msgstr "Ayuda para la Pagina de Editar  "
 
-# write:142
+# write:143
 msgid "Click to edit"
 msgstr "Haga click para editar"
 
-# write:143
+# write:144
 msgid "Delete this page"
 msgstr "Eliminar esta pagina"
 
-# write:144
+# write:145
+msgid "Duplicate this page"
+msgstr "Duplicar esta página"
+
+# write:146
 msgid "If you leave you will lose your work on this book."
 msgstr "Si usted abandona esta pagina, usted va a perder todo su trabajo en este libro."
 
-# write:147
+# write:149
 msgid "Drop files here to upload"
 msgstr "Coloque archivos aqui para subirlos."
 
-# write:148
+# write:150
 msgid "Upload"
 msgstr "Subir "
 
-# write:158
+# write:160
 msgid "Failed"
 msgstr "Lo que intento ha fallado"
 
@@ -947,7 +972,7 @@ msgstr "Su navegador de web no es compatible para escribir libros."
 # yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:41,
 # yourbooks:41, yourbooks:65, yourbooks:65, write:11, write:11, write:28,
 # write:28, write:35, write:35, write:45, write:45, write:67, write:67,
-# write:112, write:112, write:139, write:139
+# write:112, write:112, write:140, write:140
 msgid "Click for help"
 msgstr "Haga click para ayuda"
 
@@ -994,7 +1019,7 @@ msgid "Delete"
 msgstr "Eliminar"
 
 # yourbooks:29, yourbooks:53, yourbooks:82, yourbooks:97, busy:6, busy:11,
-# write:157
+# write:159
 msgctxt "Button label"
 msgid "Cancel"
 msgstr "Cancelar"
