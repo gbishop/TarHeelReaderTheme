@@ -16,6 +16,7 @@ define(['route',
         var galleryIndex = 0; // holds the index into the gallery preview
         var isModified = false; // true when the book has been edited
         var editId = null; // set to the id of the book we are editing
+        var notAgain = false; // true after publish to prevent multiple hits
 
         function setupGallery() {
             var $page = $('.write-page.active-page');
@@ -384,6 +385,11 @@ define(['route',
                 logEvent('write', 'validate', errors.join());
                 return;
             }
+            if (notAgain) {
+                logEvent('write', 'notAgain', 'override');
+                return;
+            }
+            notAgain = true;
             //console.log('publish', book);
             $.ajax({
                 url: '/book-as-json/',
@@ -399,12 +405,12 @@ define(['route',
                 clearModified();
                 if (nBook.status == 'publish') {
                     controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
-                    editId = nBook.ID;
-                    $('.publish').removeAttr('disabled'); // renable button
                     logEvent('write', 'publish', nBook.slug);
                 } else { // publish failed for some reason
                     showError('peSaved');
                     logEvent('write', 'publish-failed', 'why?');
+                    notAgain = false;
+                    $('.publish').removeAttr('disabled'); // renable button
                 }
             });
         }
