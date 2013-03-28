@@ -82,7 +82,7 @@ define(["route",
                 if (pageNumber === N+1) {
                     logEvent('read', 'complete', book.slug + ':' + book.ID);
                 }
-                view.nextPage = pageNumber+1;
+                view.nextLink = pageLink(book.link, pageNumber+1);
                 view.link = book.link;
                 view.findLink = state.get('findAnotherLink');
                 view.what = pageNumber === N+1;
