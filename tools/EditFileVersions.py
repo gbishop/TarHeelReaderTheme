@@ -22,8 +22,12 @@ db = shelve.open(args.db)
 def insertVersion(m):
     name = m.group(2)
     fullname = name
+    useStaticHost = True
     if fullname == 'js/main':
         fullname = fullname + '.js'
+        useStaticHost = False
+    elif fullname.endswith('.json'):
+        useStaticHost = False
     if not osp.exists(fullname):
         print 'missing', fname, name
         return m.group(0)
@@ -38,10 +42,10 @@ def insertVersion(m):
             version += 1
             db[fullname] = (version, newhash)
 
-    if name.endswith('.json'):
-        name = ('/themeV%d/' % version) + name
-    else:
+    if useStaticHost:
         name = ('%s/themeV%d/' % (staticHost, version)) + name
+    else:
+        name = ('/themeV%d/' % version) + name
     return name
 
 for fname in args.files:
