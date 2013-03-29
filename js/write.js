@@ -455,9 +455,6 @@ define(['route',
                     length = text.length;
 
                 $this.toggleClass('text-too-long', length >= warnLength);
-                if(length > maxCaptionLength) {
-                    $(this).val(text.substr(0, maxCaptionLength));
-                }
             });
         }
 
