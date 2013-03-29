@@ -625,6 +625,7 @@ define(['route',
 
             var bookContent = {};
             var src = id || copyId;
+            notAgain = false;  // clear the publish inhibitor
             editId = id;
             if (src) { // if an id was provided, fetch that book for editing
                 bookContent = $.ajax({
