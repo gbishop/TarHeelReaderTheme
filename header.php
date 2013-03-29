@@ -54,7 +54,7 @@
 
         // create GA event onerror
         window.onerror = function(message, url, line) {
-            if (typeof(_gaq) === "object" && url.indexOf('cs.unc.edu') != -1) {
+            if (typeof(_gaq) === "object") {
                 _gaq.push(["_trackEvent","onerror",message,(url+" ("+line+")"),0,true]);
             }
             return true;
