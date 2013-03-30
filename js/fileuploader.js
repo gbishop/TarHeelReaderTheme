@@ -90,6 +90,8 @@ qq.remove = function(element){
 };
 
 qq.contains = function(parent, descendant){
+    if (!parent || !descendant) return false;
+
     // compareposition returns false in this case
     if (parent == descendant) return true;
 
@@ -749,7 +751,7 @@ qq.UploadDropZone.prototype = {
         // dt.effectAllowed is none in Safari 5
         // dt.types.contains check is for firefox
         return dt && dt.effectAllowed != 'none' &&
-            (dt.files || (!isWebkit && dt.types.contains && dt.types.contains('Files')));
+            (dt.files || (!isWebkit && dt.types && dt.types.contains && dt.types.contains('Files')));
 
     }
 };
