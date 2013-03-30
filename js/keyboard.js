@@ -30,7 +30,7 @@ define(["pubsub"], function() {
         if (!selector || selected.length === 0) {
             return true;
         }
-        if (e.target.nodeName == 'INPUT' && $.contains(selected.get(0), e.target)) {
+        if (e.target && e.target.nodeName == 'INPUT' && $.contains(selected.get(0), e.target)) {
             // don't handle events from input fields on the current page
             return true;
         }
