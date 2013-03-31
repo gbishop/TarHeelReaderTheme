@@ -148,6 +148,13 @@
     }
 } // end .write-page
 
+.text-too-long-warn {
+    background: yellow;
+}
+.text-too-long {
+    background: red;
+}
+
 .edit-page {
     width: 48em !important;
     height: 36em !important;
@@ -161,10 +168,6 @@
         height: 5em / $captionFontSize * 1em;
         margin: auto;
         resize: none;
-
-        &.text-too-long {
-            background: yellow;
-        }
     }
 
     .deleteIcon {

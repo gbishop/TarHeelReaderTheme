@@ -259,6 +259,7 @@ define(['route',
             $p.find('a').remove();
             $p.find('.thr-colors').removeClass('thr-colors');
             $p.find('.thr-colors-invert').removeClass('thr-colors-invert');
+            $p.find('.thr-caption').toggleClass('text-too-long', page.text.length >= maxCaptionLength);
             $('.write-pages').append($p);
             $('.noPicturesMessage').hide();
             if (!isInit) {
@@ -454,7 +455,9 @@ define(['route',
                     text = $this.val(),
                     length = text.length;
 
-                $this.toggleClass('text-too-long', length >= warnLength);
+                $this.toggleClass('text-too-long-warn', length >= warnLength);
+                $this.toggleClass('text-too-long', length >= maxCaptionLength);
+
             });
         }
 
@@ -489,6 +492,7 @@ define(['route',
             $copyIcon.attr('title', $('.wCopyThisPage').html());
             $editDialog.append($copyIcon);
             $editDialog.dialog('option', 'title', '');  // clear the title
+            $editDialog.find('p.thr-caption').toggleClass('text-too-long', caption.length >= maxCaptionLength);
         }
 
         // save the edited caption
@@ -497,8 +501,9 @@ define(['route',
             var $page = $($wp.get(editIndex)); // the current page
             var $caption = $page.find('p.thr-caption');
             //console.log('saving', data.value, 'was', $caption.html());
-            $caption.html(data.value); // update the caption
+            $caption.html(data.value).toggleClass('text-too-long', data.value.length > maxCaptionLength);
             setModified();
+            $editDialog.find('p.thr-caption').toggleClass('text-too-long', caption.length >= maxCaptionLength);
         }
 
         // delete a book page
