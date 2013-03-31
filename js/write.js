@@ -503,7 +503,7 @@ define(['route',
             //console.log('saving', data.value, 'was', $caption.html());
             $caption.html(data.value).toggleClass('text-too-long', data.value.length > maxCaptionLength);
             setModified();
-            $editDialog.find('p.thr-caption').toggleClass('text-too-long', caption.length >= maxCaptionLength);
+            $editDialog.find('p.thr-caption').toggleClass('text-too-long', data.value.length >= maxCaptionLength);
         }
 
         // delete a book page
