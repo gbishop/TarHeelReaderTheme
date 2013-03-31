@@ -164,9 +164,11 @@
     }
 
     textarea {
-        width: (48em - 12em) / $captionFontSize * 1em;
-        height: 5em / $captionFontSize * 1em;
+        width: 36.5em / $captionFontSize * 1em;
+        height: 6.5em / $captionFontSize * 1em;
         margin: auto;
+        padding: 0;
+        line-height: 1.2em;
         resize: none;
     }
 
