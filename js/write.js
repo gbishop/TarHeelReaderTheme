@@ -178,7 +178,7 @@ define(['route',
                 $galleryDialog.find('>img').replaceWith($dimg);
                 // display the image clipped title on the preview dialog
                 var title = $img.attr('title');
-                if (title.length > 32) {
+                if (title && title.length > 32) {
                     title = title.substr(0,30) + '...';
                 }
                 $galleryDialog.dialog('option', 'title', title);
@@ -652,7 +652,7 @@ define(['route',
                                 url: response.url.replace(/.*\/uploads/, '/uploads'),
                                 width: response.width,
                                 height: response.height,
-                                text: null
+                                text: ''
                             };
                             addPage(page, false);
                         }
