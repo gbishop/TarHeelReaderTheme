@@ -3,8 +3,7 @@ define(['route',
         'controller',
         'fileuploader',
         'jquery.ui.touch-punch',
-        'jquery.inlineedit',
-        'json2'
+        'jquery.inlineedit'
         ],
     function(route, templates, controller, fileuploader) {
         var maxCaptionLength = 130;  // no page text may be longer than this
