@@ -53,22 +53,21 @@
         })();
 
         function logMessage(msg) {
-        <?php if (THR('debug')): ?>
+        <?php if (THR('debug') == 1): ?>
             $.post('/log-message/', {message: msg});
         <?php endif; ?>
         }
 
         // create GA event onerror
         window.onerror = function(message, url, line) {
-            if (typeof(_gaq) === "object" && (url.indexOf('tarheelreader') != -1 || THR('debug'))) {
+            if (typeof(_gaq) === "object" && (url.indexOf('tarheelreader') != -1 || THR('debug') == 1)) {
                 logEvent('onerror', message, url+" ("+line+")");
             }
             return true;
         };
         function logEvent(category, label, arg) {
             logMessage(category + '|' + label + '|' + arg);
-            console.log(category, label, arg);
-            _gaq.push(["_trackEvent",category,label,arg,0,true]);
+            _gaq.push(["_trackEvent", category, label, arg, 0, true]);
         }
     </script>
 </head>
