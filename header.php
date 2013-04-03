@@ -52,14 +52,21 @@
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
+        function logMessage(msg) {
+        <?php if (THR('debug')): ?>
+            $.post('/log-message/', {message: msg});
+        <?php endif; ?>
+        }
+
         // create GA event onerror
         window.onerror = function(message, url, line) {
-            if (typeof(_gaq) === "object" && url.indexOf('tarheelreader') != -1) {
-                _gaq.push(["_trackEvent","onerror",message,(url+" ("+line+")"),0,true]);
+            if (typeof(_gaq) === "object" && (url.indexOf('tarheelreader') != -1 || THR('debug'))) {
+                logEvent('onerror', message, url+" ("+line+")");
             }
             return true;
         };
         function logEvent(category, label, arg) {
+            logMessage(category + '|' + label + '|' + arg);
             console.log(category, label, arg);
             _gaq.push(["_trackEvent",category,label,arg,0,true]);
         }

@@ -12,5 +12,6 @@
     "locale": "en",
     "favorites": "",
     "findAnotherLink": "/find/",
-    "classic": 0
+    "classic": 0,
+    "debug": 0
 }

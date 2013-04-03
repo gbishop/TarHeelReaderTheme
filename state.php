@@ -21,7 +21,8 @@ $THRDefault = array(
     'fpage' => 1,         // current favorites page
     'collection' => '',   // collection slug
     'findAnotherLink' => '/find/', // URL to return to book search
-    'classic' => 0        // turn off js for old browsers having problems
+    'classic' => 0,       // turn off js for old browsers having problems
+    'debug' => 0          // true to enable debugging hooks
 );
 
 $THRState = $THRDefault;
@@ -44,7 +45,8 @@ $THRPatterns = array(
     'fpage' => '/^\d+$/',        // current favorites page starting from 1
     'collection' => '/^[-\w\d]*$/',  // letters, numbers, and dash
     'findAnotherLink' => '/^.*$/',
-    'classic' => '/[01]/'
+    'classic' => '/[01]/',
+    'debug' => '/[01]/'
 );
 
 function splitFavorites($str) {
