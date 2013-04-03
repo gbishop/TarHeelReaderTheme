@@ -221,11 +221,12 @@ require(["state", "controller", "templates", "ios"], function(state, controller,
         } else if(parentClass === "textcolorsoptions") {
             value = options.getOptionByValue("colors", text);
             option = "textColor";
-        } else { // not a valid option, return
-            return;
         }
-        logEvent('read', 'setting', option + '=' + value);
-        state.set(option, value);
+
+        if (option && value) {
+            logEvent('read', 'setting', option + '=' + value);
+            state.set(option, value);
+        }
         updateFavoritesPageUrl();
         updateCheckedOptions(); // update the check marks next to the currently selected options
     }
