@@ -81,7 +81,7 @@ define(['route',
                         iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
 
                     g.empty();
-                    if (p.photo.length === 0) {
+                    if (!p || !p.photo || p.photo.length === 0) {
                         showError('em-g-not-found');
                     }
                     $.each(p.photo, function (index, photo) {
@@ -496,13 +496,14 @@ define(['route',
 
         // save the edited caption
         function saveEditCaption(e, data) {
-            var $wp = $('.write-pages li'); // the list of book pages
-            var $page = $($wp.get(editIndex)); // the current page
-            var $caption = $page.find('p.thr-caption');
+            var $wp = $('.write-pages li'), // the list of book pages
+                $page = $($wp.get(editIndex)), // the current page
+                $caption = $page.find('p.thr-caption'),
+                tooLong = data.value && data.value.length > maxCaptionLength;
             //console.log('saving', data.value, 'was', $caption.html());
-            $caption.html(data.value).toggleClass('text-too-long', data.value.length > maxCaptionLength);
+            $caption.html(data.value).toggleClass('text-too-long', tooLong);
             setModified();
-            $editDialog.find('p.thr-caption').toggleClass('text-too-long', data.value.length >= maxCaptionLength);
+            $editDialog.find('p.thr-caption').toggleClass('text-too-long', tooLong);
         }
 
         // delete a book page
