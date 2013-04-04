@@ -52,22 +52,30 @@
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
-        function logMessage(msg) {
         <?php if (THR('debug') == 1): ?>
-            $.post('/log-message/', {message: msg});
-        <?php endif; ?>
-        }
-
-        // create GA event onerror
-        window.onerror = function(message, url, line) {
-            if (typeof(_gaq) === "object" && url.indexOf('tarheelreader') != -1) {
-                logEvent('onerror', message, url+" ("+line+")");
+            function logMessage(msg) {
+                $.post('/log-message/', {message: msg});
             }
-            return true;
-        };
-        function logEvent(category, label, arg) {
-            logMessage(category + '|' + label + '|' + arg);
-            _gaq.push(["_trackEvent", category, label, arg, 0, true]);
-        }
+            window.onerror = function(message, url, line) {
+                logEvent('onerror', message, url+" ("+line+")");
+                return true;
+            };
+            function logEvent(category, label, arg) {
+                logMessage(category + '|' + label + '|' + arg);
+            }
+        <?php else: ?>
+            function logMessage(msg) {
+            }
+            window.onerror = function(message, url, line) {
+                if (typeof(_gaq) === "object" && url.indexOf('tarheelreader') != -1) {
+                    logEvent('onerror', message, url+" ("+line+")");
+                }
+                return true;
+            };
+            function logEvent(category, label, arg) {
+                _gaq.push(["_trackEvent", category, label, arg, 0, true]);
+            }
+        <?php endif; ?>
+
     </script>
 </head>
