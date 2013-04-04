@@ -44,11 +44,11 @@ copyameem:
 
 copygba:
 	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3
-	#launch.py http://gbserver3a.cs.unc.edu/
+	launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
-	launch.py http://tarheelreader3.cs.unc.edu/
+	launch.py http://tarheelreader.org/
 
 gb: build copygb
 
@@ -60,13 +60,15 @@ optimized:
 	rm -rf ../Theme-build/*
 	cd js; node ../../r.js -o app.build.js
 	cd ../Theme-build; make build
+	cd ../Theme-build; python tools/AddNewlines.py js/main.js
 	make versioned
 
 versioned:
 	cd ../Theme-build; python tools/EditFileVersions.py --staticHost=$(STATICHOST) *.php js/main.js style.css Templates*.json
 
-gbopt: optimized
-	cd ../Theme-build; make copygb
+gbopt:
+	make optimized STATICHOST=http://tarheelreader3s.cs.unc.edu
+	cd ../Theme-build; make copygba
 
 testprod:
 	rm -rf ../Theme-build/*
