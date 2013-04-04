@@ -60,7 +60,7 @@
 
         // create GA event onerror
         window.onerror = function(message, url, line) {
-            if (typeof(_gaq) === "object" && (url.indexOf('tarheelreader') != -1 || THR('debug') == 1)) {
+            if (typeof(_gaq) === "object" && url.indexOf('tarheelreader') != -1) {
                 logEvent('onerror', message, url+" ("+line+")");
             }
             return true;
