@@ -1,4 +1,4 @@
-require([
+define([
     "route",
     "state",
     "controller",

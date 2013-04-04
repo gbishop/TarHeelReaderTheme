@@ -1,5 +1,5 @@
 // Code for navigation and settings menus
-require(["state", "controller", "templates", "ios"], function(state, controller, templates, ios) {
+define(["state", "controller", "templates", "ios"], function(state, controller, templates, ios) {
     // list of settings
     var settings = ["voice", "pageColor", "textColor"], // the settings that we are concerned with (voice = speech)
         options = { // list of available options
