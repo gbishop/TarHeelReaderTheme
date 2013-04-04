@@ -54,6 +54,7 @@
 
         <?php if (THR('debug') == 1): ?>
             function logMessage(msg) {
+                console.log(msg);
                 $.post('/log-message/', {message: msg});
             }
             window.onerror = function(message, url, line) {
@@ -67,7 +68,7 @@
             function logMessage(msg) {
             }
             window.onerror = function(message, url, line) {
-                if (typeof(_gaq) === "object" && url.indexOf('tarheelreader') != -1) {
+                if (typeof(_gaq) === "object" && url.match(/theme|jquery/)) {
                     logEvent('onerror', message, url+" ("+line+")");
                 }
                 return true;
