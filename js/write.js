@@ -258,7 +258,8 @@ define(['route',
             $p.find('a').remove();
             $p.find('.thr-colors').removeClass('thr-colors');
             $p.find('.thr-colors-invert').removeClass('thr-colors-invert');
-            $p.find('.thr-caption').toggleClass('text-too-long', page.text.length >= maxCaptionLength);
+            $p.find('.thr-caption').toggleClass('text-too-long',
+                typeof(page.text) == 'string' && page.text.length >= maxCaptionLength);
             $('.write-pages').append($p);
             $('.noPicturesMessage').hide();
             if (!isInit) {
@@ -499,7 +500,8 @@ define(['route',
             var $wp = $('.write-pages li'), // the list of book pages
                 $page = $($wp.get(editIndex)), // the current page
                 $caption = $page.find('p.thr-caption'),
-                tooLong = data.value && data.value.length > maxCaptionLength;
+                tooLong = typeof(data.value) == 'string' &&
+                          data.value.length > maxCaptionLength;
             //console.log('saving', data.value, 'was', $caption.html());
             $caption.html(data.value).toggleClass('text-too-long', tooLong);
             setModified();
