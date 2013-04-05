@@ -109,10 +109,6 @@ if (array_key_exists('thr', $_COOKIE)) {
 // apply any incoming parameters to the state
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && !array_key_exists('p', $_GET)) {
     $setCookie = thrUpdateState($THRState, $_GET, $THRPatterns);
-    if ($setCookie === false) {
-        header("HTTP/1.0 400 Invalid Parameter");
-        die();
-    }
 }
 
 // we don't yet support reviewing for languages other than English and Latin
