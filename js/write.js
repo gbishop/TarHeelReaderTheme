@@ -138,7 +138,10 @@ define(['route',
                 extras: 'url_m' // ask for the medium url so I can get the size
             };
             if ('query' in options) {
-                galleryData.tags = options.query.replace(/[ ,"']+/g, ',').replace(/^,+/,'').replace(/,+$/,'').replace(/,+/,',');
+                if (options.query.match(/^:/)) {
+                    galleryData.license = '4';
+                }
+                galleryData.tags = options.query.replace(/[ ,"':]+/g, ',').replace(/^,+/,'').replace(/,+$/,'').replace(/,+/,',');
             }
             if ('user_id' in options) {
                 galleryData.user_id = options.user_id;
