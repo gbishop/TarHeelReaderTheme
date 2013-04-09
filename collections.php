@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $qstring = mysql_real_escape_string(implode(' ', $terms));
         $where[] = "MATCH(title,description) AGAINST('$qstring' IN BOOLEAN MODE)";
     }
-    $page = getParam('page', '1', '/\d+/');
+    $page = getParam('cpage', '1', '/\d+/');
     $page = intval($page);
 }
 
@@ -80,11 +80,11 @@ if ($query) {
     $params['search'] = $query;
 }
 if ($page > 1) {
-    $params['page'] = $page - 1;
+    $params['cpage'] = $page - 1;
     $view['prevLink'] = '/collections/?' . http_build_query($params);
 }
 if ($more) {
-    $params['page'] = $page + 1;
+    $params['cpage'] = $page + 1;
     $view['nextLink'] = '/collections/?' . http_build_query($params);
 }
 
