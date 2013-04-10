@@ -14,7 +14,7 @@ define(["route",
 
     function fetchBook(slug) {
         var $def = $.Deferred();
-        if (book && book.slug === slug) {
+        if (book && book.slug == encodeURI(slug).toLowerCase()) {
             $def.resolve(book);
         } else {
             $.ajax({
