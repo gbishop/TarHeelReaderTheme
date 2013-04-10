@@ -1,5 +1,5 @@
-define([ "route", "json!../state.json", "jquery.cookie" ], function(route, defaultState) {
-    var state;
+define([ "route", "json!../state.json", "jquery.cookie" ], function(route, rules) {
+    var state = {};
 
     function parseQuery(qstring) {
         var result = {},
@@ -16,38 +16,41 @@ define([ "route", "json!../state.json", "jquery.cookie" ], function(route, defau
     }
 
     function stateUpdate(url) {
+        // console.log('url', url);
 
         // get the old value
-        var cookie = $.cookie('thr');
-        var cookieValue = $.parseJSON(cookie);
-        state = cookieValue || $.extend({}, defaultState);
-        if (state.search) {
-            state.search = state.search.replace('+', ' ');
+        var cookieJson = $.cookie('thr');
+        var cookie = $.parseJSON(cookieJson);
+        // validate the incoming state from the cookie
+        for(var param in cookie) {
+            set(param, cookie[param]);
         }
 
         // update from the query string
-
-        // TODO: special handling for favorites?
-
         var i = url.indexOf('?');
         if (i > 0) {
             qvals = parseQuery(url.substring(i));
-            for(var k in state) {
-                if (k in qvals) {
-                    state[k] = qvals[k];
+            if (! ('p' in qvals)) {
+                for(var k in qvals) {
+                    set(k, qvals[k]);
                 }
             }
         }
-        state['page'] = parseInt(state['page'], 10); // page is an int
-        // update the cookie
-        setCookie();
     }
 
     function set(key, value) {
-        var old = state[key];
-        if (old !== value) {
-            state[key] = value;
-            setCookie();
+        if (key in rules) {
+            var rule = rules[key],
+                pattern = rule.pattern ? new RegExp(rule.pattern) : null,
+                old = state[key];
+            if (old !== value) {
+                if (!pattern || pattern.test(value)) {
+                    state[key] = value;
+                    setCookie();
+                } else {
+                    logEvent('set error', key, value);
+                }
+            }
         }
     }
 
@@ -103,7 +106,7 @@ define([ "route", "json!../state.json", "jquery.cookie" ], function(route, defau
             voice: state.voice,
             pageColor: state.pageColor,
             textColor: state.textColor,
-            fpage: 1
+            fpage: state.fpage
         };
         if (state.collection) {
             p.collection = state.collection;

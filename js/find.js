@@ -21,7 +21,7 @@ define([ "route",
             q[p] = state.get(p);
         }
         if (!page) {
-            page = state.get('page');
+            page = +state.get('page');
         }
         q['page'] = page;
         var qs = $.param(q);
@@ -53,7 +53,7 @@ define([ "route",
                     templates.setImageSizes(data.books[i].cover);
                 }
                 view.bookList = templates.render('bookList', data);
-                var pageNumber = state.get('page');
+                var pageNumber = +state.get('page');
                 if (data.more) {
                     view.nextLink = find_url(pageNumber + 1);
                 }

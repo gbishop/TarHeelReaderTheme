@@ -2,52 +2,14 @@
 
 /* manage the state that is shared between the javascript and php versions of the code */
 
-/* state array with default values */
-$THRDefault = array(
-    // the current query parameters
-    'reviewed' => 'R',    // R for yes, empty for no
-    'language' => 'en',   // 2 or 3 letter language code
-    'count' => 23,        // number of books per page
-    'page' => 1,          // current page starting from 1
-    'category' => '',     // 2-letter category codes, limit to this category if not empty
-    'type' => '',         // T=Transitional C=Conventional O=Other, empty is any
-    'audience' => 'E',    // C=caution E=Everybody, empty is any
-    'search' => '',       // search words
-    'pageColor' => 'fff', // color of the background
-    'textColor' => '000', // color of text
-    'voice' => 'silent',  // voice to use silent, male, female, child
-    'locale' => 'en',     // users language for supporting translations of the site
-    'favorites' => '',    // list of favorite ids
-    'fpage' => 1,         // current favorites page
-    'collection' => '',   // collection slug
-    'findAnotherLink' => '/find/', // URL to return to book search
-    'classic' => 0,       // turn off js for old browsers having problems
-    'debug' => 0          // true to enable debugging hooks
-);
+$contents = file_get_contents("state.json", FILE_USE_INCLUDE_PATH);
+$THRStateRules = json_decode($contents, true);
 
-$THRState = $THRDefault;
-
-/* regular expressions for legal parameter values */
-$THRPatterns = array(
-    'reviewed' => '/^R?$/',    // R for yes, empty for no
-    'language' => '/^([a-z]{2,3})?$/', // 2 or 3 letter language code or empty for don't care
-    'count' => '/^\d+$/',      // number of books per page
-    'page' => '/^\d+$/',        // current page starting from 1
-    'category' => '/^([A-Za-z]{4})?$/',   // 4-letter category codes, limit to this category if not empty
-    'type' => '/^[TCO]?$/',       // T=Transitional C=Conventional O=Other, empty is any
-    'audience' => '/^[CE]?$/',   // C=caution E=Everybody, empty is any
-    'search' => '/^.*$/',      // search words
-    'pageColor' => '/^[f0]{3}$/',  // color of the background
-    'textColor' => '/^[f0]{3}$/',  // color of text
-    'voice' => '/^silent|male|female|child$/',    // voice to use silent, male, female, child
-    'locale' => '/^[a-z]{2,3}$/',  // users language for supporting translations of the site
-    'favorites' => '/(^[AR]?\d+(,+\d+)*$)|(^$)/',   // comma separated integers or empty
-    'fpage' => '/^\d+$/',        // current favorites page starting from 1
-    'collection' => '/^[-\w\d]*$/',  // letters, numbers, and dash
-    'findAnotherLink' => '/^.*$/',
-    'classic' => '/[01]/',
-    'debug' => '/[01]/'
-);
+$THRState = array();
+// setup state default
+foreach($THRStateRules as $param => $rule) {
+    $THRState[$param] = $rule['default'];
+}
 
 function splitFavorites($str) {
     if ($str) {
@@ -59,47 +21,18 @@ function splitFavorites($str) {
     return $favs;
 }
 
-function thrUpdateState(&$current, $update, $patterns) {
-    global $THRDefault, $wpdb, $collections_table;
-    $changed = 0; // track number of changes
-    foreach($update as $param => $value) {
-        if (array_key_exists($param, $patterns)) {
-            if (preg_match($patterns[$param], $value)) {
-                $changed += 1;
-                if ($param == 'favorites') {
-                    $current['collection'] = ''; // clear the collection anytime favorites are directly set
-                    $favs = splitFavorites($current['favorites']);
-                    $ids = splitFavorites($value);
-                    if (strpos($value, 'A') === 0) { // add the book
-                        $favs = array_unique(array_merge($favs, $ids));
-                    } elseif (strpos($value, 'R') === 0) { // remove the book
-                        $favs = array_diff($favs, $ids);
-                    } else { // replace all favorites
-                        $favs = $ids;
-                    }
-                    $current['favorites'] = implode(',', $favs);
-
-                } else {
-                    $current[$param] = stripslashes(urldecode($value));
-                }
-            } else {
-                $current[$param] = $THRDefault[$param];
-            }
-        }
-    }
-    return $changed;
-}
-
 $setCookie = 0; // non-zero if we need to set the cookie
 
 // retrieve the past state from the cookie
 if (array_key_exists('thr', $_COOKIE)) {
     $json = $_COOKIE['thr'];
     $json = stripslashes($json); // magic quotes?
-    $value = json_decode($json, true);
-    if ($value === NULL) {
-        $setCookie = 1;
-    } elseif (thrUpdateState($THRState, $value, $THRPatterns) === false) {
+    $cookie = json_decode($json, true);
+    if ($cookie !== NULL) {
+        foreach($cookie as $param => $value) {
+            setTHR($param, $value);
+        }
+    } else {
         $setCookie = 1;
     }
 } else {
@@ -108,13 +41,28 @@ if (array_key_exists('thr', $_COOKIE)) {
 
 // apply any incoming parameters to the state
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && !array_key_exists('p', $_GET)) {
-    $setCookie = thrUpdateState($THRState, $_GET, $THRPatterns);
+    foreach($_GET as $param => $value) {
+        if ($param == 'favorites') {
+            $THRState['collection'] = ''; // clear the collection anytime favorites are directly set
+            $favs = splitFavorites($THRState['favorites']);
+            $ids = splitFavorites($value);
+            if (strpos($value, 'A') === 0) { // add the book
+                $favs = array_unique(array_merge($favs, $ids));
+            } elseif (strpos($value, 'R') === 0) { // remove the book
+                $favs = array_diff($favs, $ids);
+            } else { // replace all favorites
+                $favs = $ids;
+            }
+            $value = implode(',', $favs);
+        }
+        setTHR($param, $value);
+    }
 }
 
 // we don't yet support reviewing for languages other than English and Latin
 if (!in_array(THR('language'), array('en', 'la')) && $THRState['reviewed'] == 'R') {
     $setCookie = 1;
-    $THRState['reviewed'] = '';
+    setTHR('reviewed', '');
 }
 
 function thr_setcookie($force=0) {
@@ -123,6 +71,7 @@ function thr_setcookie($force=0) {
     // if we updated the state, the set the cookie
     if ($force || $setCookie > 0) {
         setcookie('thr', json_encode($THRState), 0, '/');
+        $setCookie = 0;
     }
 }
 
@@ -135,26 +84,36 @@ function THR($p = null) {
 
 // global function for setting state values
 function setTHR($p, $v) {
-    global $THRState, $setCookie;
+    global $THRState, $setCookie, $THRStateRules, $log;
+    if (!array_key_exists($p, $THRStateRules)) {
+        return false;
+    }
+
     $old = $THRState[$p];
+    $pattern = $THRStateRules[$p]['pattern'];
+    $pattern = $pattern ? '/' . $pattern . '/' : NULL;
 
     if ($old != $v) {
-        $setCookie = 1;
-        $THRState[$p] = $v;
+        if(!$pattern || preg_match($pattern, $v)) {
+            $setCookie = 1;
+            $THRState[$p] = $v;
+        } else {
+            $log->error('set error p=$p v=$v', $THRState);
+        }
     }
-    return $old;
+    return true;
 }
 
 // global function for constructing a URL to restore the query parts of the state.
 function find_url($page = null) {
-    global $THRState, $THRDefault;
+    global $THRState;
     $p = array();
     foreach(array('search', 'category', 'reviewed', 'audience', 'language') as $parm) {
         $v = urlencode($THRState[$parm]);
         $p[] = "$parm=$v";
     }
     if ($page === null) {
-        $page = 1; // $THRState['page'];
+        $page = THR('page');
     }
     $p[] = "page=$page";
 
@@ -165,8 +124,8 @@ function find_url($page = null) {
     }
 }
 
-function favorites_url($page = null) {
-    global $THRState, $THRDefault;
+function favorites_url($fpage = null) {
+    global $THRState;
     $p = array();
     $parms = array('pageColor', 'textColor', 'voice');
     if ($THRState['collection']) {
@@ -178,10 +137,10 @@ function favorites_url($page = null) {
         $v = $THRState[$parm];
         $p[] = "$parm=$v";
     }
-    if ($page === null) {
-        $page = 1; // $THRState['fpage'];
+    if ($fpage === null) {
+        $fpage = THR('fpage');
     }
-    $p[] = "fpage=$page";
+    $p[] = "fpage=$fpage";
 
     if (count($p) > 0) {
         return '/favorites/?' . implode('&', $p);
