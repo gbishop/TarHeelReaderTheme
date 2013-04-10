@@ -98,7 +98,7 @@ function setTHR($p, $v) {
             $setCookie = 1;
             $THRState[$p] = $v;
         } else {
-            $log->error('set error p=$p v=$v', $THRState);
+            $log->logError("set error p=$p v=$v", $THRState);
         }
     }
     return true;
