@@ -109,7 +109,7 @@ if ($json) {
     echo $output;
     die();
 }
-setTHR('findAnotherLink', favorites_url());
+setTHR('findAnotherLink', '/favorites/');
 ?>
 <?php
     thr_header('favorites-page', array('settings'=>true, 'chooseFavorites'=>true));
