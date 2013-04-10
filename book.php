@@ -135,7 +135,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         updateSpeech($book, 1, 2);  // generate audio for first two pages
         // then asynchronously generate speech for other pages
         $cmd = "/usr/bin/php " . ABSPATH . "theme/updateSpeech.php $id 3 > /tmp/updateSpeech.out &";
-        //BuG("exec $cmd");
         exec($cmd);
     }
     die();

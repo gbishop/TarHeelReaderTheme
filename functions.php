@@ -3,12 +3,16 @@
 $collections_table = $wpdb->prefix . 'book_collections';
 $search_table = $wpdb->prefix . 'book_search';
 
-require('state.php'); // manage shared state in a cookie so both client and host have access
-
 // setup logging
 date_default_timezone_set('EST');
 require('KLogger.php');
-$log = new KLogger('/var/tmp/tarheelreader', THR('debug') ? KLogger::DEBUG : KLogger::WARN);
+$log = new KLogger('/var/tmp/tarheelreader', KLogger::WARN);
+
+require('state.php'); // manage shared state in a cookie so both client and host have access
+
+if (THR('debug') == 1) {
+    $log = new KLogger('/var/tmp/tarheelreader', KLogger::DEBUG);
+}
 
 $locale = THR('locale');
 if ($locale != 'en') {
@@ -35,11 +39,9 @@ foreach($lang as $row) {
         $SynthLanguages[] = $row['value'];
     }
 }
-//BuG('synthLanguages ' . implode(', ', $SynthLanguages));
 function has_speech($lang) {
     global $SynthLanguages;
     $r = in_array($lang, $SynthLanguages);
-    //BuG('has speech returns ' . $r);
     return $r;
 }
 
@@ -280,13 +282,11 @@ function ParseBookPost($post) {
     $content = $post->post_content;
     $row = $wpdb->get_row("SELECT * from $search_table WHERE ID = $id");
     if ($row) {
-        //BuG('from search table');
         $res = json_decode($row->json, true);
         $res['reviewed'] = $row->reviewed == 'R';
         $res['language'] = $row->language;
 
     } else {
-        //BuG('old format');
         // parse the old format
         $nimages = preg_match_all('/(?:width="(\d+)" height="(\d+)" )?src="([^"]+)"\\/?>([^<]*)/', $post->post_content, $matches);
         $image_urls = $matches[3];
@@ -423,7 +423,6 @@ function SaveBookPost($id, $book) {
 function updateSpeech($book, $startPage=0, $endPage=0) {
     if (!$startPage) $startPage = 1;
     if (!$endPage) $endPage = count($book['pages']);
-    //BuG("updateSpeech $startPage $endPage");
 
     if ($book['status'] == 'publish') {
         $id = $book['ID'];
@@ -453,9 +452,7 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
             for($i = $startPage; $i <= $endPage; $i++) {
                 $page = $book['pages'][$i-1];
                 $data['text'] = substr($page['text'], 0, 160);  // limit the length that we synth
-                //BuG($data['text']);
                 foreach(array('child', 'female', 'male') as $voice) {
-                    //BuG("voice=$voice i='$i'");
                     $data['voice'] = $voice;
                     // ask the speech server to generate a mp3
                     $params = array('http' => array('method' => 'POST', 'content' => http_build_query($data)));
@@ -463,7 +460,6 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
                     $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
                     // save it
                     $fname = "$path/$i-" . substr($voice, 0, 1) . ".mp3";
-                    //BuG("fname=$fname");
                     file_put_contents($fname, $mp3);
                 }
             }
@@ -751,11 +747,5 @@ function no_mo_dashboard() {
         wp_redirect('/');
         exit;
     }
-}
-
-// hack error logging
-function BuG($msg) {
-    global $log;
-    $log->logDebug($msg);
 }
 ?>

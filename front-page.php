@@ -1,5 +1,7 @@
 <?php
 // check for a restart from an iOS device
+global $log;
+
 if (!is_ajax() && array_key_exists('thr', $_COOKIE)) {
     $json = $_COOKIE['thr'];
     $json = stripslashes($json); // magic quotes?
@@ -8,12 +10,13 @@ if (!is_ajax() && array_key_exists('thr', $_COOKIE)) {
     	thr_setcookie(1);
         $home = home_url();
         $url = $value['lastURL'];
-        BuG("home=$home");
-        BuG("url=$url");
+        $log->info("home=$home");
+        $log->info("url=$url");
         if (strpos($url, $home) === 0) {
             $url = substr($url, strlen($home));
-            BuG("relative=$url");
+            $log->info("relative=$url");
             if ($url != '/') {
+                $log->info('ios restart redirect');
                 header('Location: ' . $url);
                 die();
             }

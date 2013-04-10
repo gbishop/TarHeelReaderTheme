@@ -44,7 +44,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         die();
     }
 
-    //BuG("type=$type");
     if ($type == 'pptx') {
         CreatePPTXFromBook($book);
     } elseif ($type == 'epub') {

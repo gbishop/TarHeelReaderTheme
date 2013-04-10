@@ -60,7 +60,6 @@ SELECT p.*
     $where
     ORDER BY p.post_date DESC
     LIMIT $offset,$cp1";
-//BuG("sql=$sql");
 $posts = $wpdb->get_results($sql);
 $nrows = min($wpdb->num_rows, count($posts));  // why do I need this?
 
