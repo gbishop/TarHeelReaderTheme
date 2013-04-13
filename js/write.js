@@ -70,15 +70,7 @@ define(['route',
                 success: function (result) {
                     //console.log('success!', result);
                     var p = result.photos,
-                        g = $('.gallery'),
-                        gwidth = g.width(),
-                        //iwidth = Math.min(80, Math.round(gwidth * (gwidth > 480 ? 0.12 : 0.24) - 8));
-                        // if gwidth > 720, then allow 9 pictures per row, if not allow for 6 per row. Divide by base font-size for ems
-                        picsPerRow = gwidth > 720 ? 9: 6,
-                        marginRight = gwidth > 720 ? 0.2: 0.1,
-                        borderWidth = 1,
-                        baseFont = parseFloat($("body").css("font-size"), 10),
-                        iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
+                        g = $('.gallery');
 
                     g.empty();
                     if (!p || !p.photo || p.photo.length === 0) {
@@ -92,39 +84,37 @@ define(['route',
                             .prop('title', photo.title)
                             .attr('data-width', w)
                             .attr('data-height', h)
-                            .css({width: iwidth + 'em', height: iwidth + 'em', border: borderWidth + 'px solid black', marginRight: marginRight + "em"})
                             .appendTo(g);
                     });
+                    updateThumbnailSize();
                     $('.gallery-back').button(p.page > 1 ? 'enable' : 'disable');
                     $('.gallery-more').button(p.page < p.pages ? 'enable' : 'disable');
                 }
             });
         }
 
-        // Not sure whether this would be a useful feature: update thumbnails' size on window resize
         function updateThumbnailSize() {
-
             var $g = $(".gallery"),
                 $images = $g.find("img"),
                 gwidth = $g.width(),
                 picsPerRow,
-                baseFont,
                 marginRight,
-                iWidth; // also its height
+                size; // width and height
 
             if(!$images.length) { // no images to adjust, return
                 return;
             } else {
                 picsPerRow = gwidth > 720 ? 9 : 6;
-                marginRight = gwidth > 720 ? 0.2 : 0.1;
+                marginRight = gwidth > 720 ? 4 : 2;
                 borderWidth = 1;
-                baseFont = parseFloat($("body").css("font-size"));
-                iwidth = Math.floor((gwidth - (marginRight*baseFont + borderWidth*2)*picsPerRow)/picsPerRow)/baseFont;
+                size = Math.floor((gwidth - (marginRight + borderWidth*2) * picsPerRow) /
+                    picsPerRow);
 
                 $images.css({
-                    width: iwidth + 'em',
-                    height: iwidth + 'em',
-                    marginRight: marginRight + 'em'
+                    width: size + 'px',
+                    height: size + 'px',
+                    marginRight: marginRight + 'px',
+                    border: borderWidth + 'px solid black'
                 });
             }
         }
@@ -254,7 +244,7 @@ define(['route',
         function addPage(page, isInit) {
             var view = {
                 image: page,
-                caption: page.text
+                caption: page.text || ''
             };
             templates.setImageSizes(view.image);
             var $p = $('<li class="thr-book-page">' + templates.render('bookPage', view) + '</li>');
@@ -262,7 +252,7 @@ define(['route',
             $p.find('.thr-colors').removeClass('thr-colors');
             $p.find('.thr-colors-invert').removeClass('thr-colors-invert');
             $p.find('.thr-caption').toggleClass('text-too-long',
-                typeof(page.text) == 'string' && page.text.length >= maxCaptionLength);
+                view.caption.length >= maxCaptionLength);
             $('.write-pages').append($p);
             $('.noPicturesMessage').hide();
             if (!isInit) {
@@ -307,7 +297,7 @@ define(['route',
             book.reviewed = $write.find('input[name=reviewed]:checked').length > 0;
             book.pages = $write.find('.write-pages li').map(function(i, p) {
                 var $p = $(p),
-                    caption = $.trim($p.find('.thr-caption').html()),
+                    caption = $.trim($p.find('.thr-caption').html()) || '',
                     img = $p.find('img.thr-pic'),
                     width = parseInt(img.attr('data-width'), 10),
                     height = parseInt(img.attr('data-height'), 10);
@@ -364,8 +354,8 @@ define(['route',
             var book = extractBookState();
             // validate the book locally
             clearErrors();
-            validate(book.title.length > 0, 'peTitle');
-            validate(book.author.length > 0, 'peAuthor');
+            validate(book.title && book.title.length > 0, 'peTitle');
+            validate(book.author && book.author.length > 0, 'peAuthor');
             validate(book.pages.length > 3, 'peLength');
             var cap = true, len = true;
             for(var i=1; i < book.pages.length; i++) {
@@ -375,7 +365,7 @@ define(['route',
             validate(cap, 'peCaption');
             validate(len, 'peCaptionLength');
             validate(book.language != ' ', 'peLanguage');
-            validate(book.categories.length <= 4, 'peCategories');
+            validate(book.categories && book.categories.length <= 4, 'peCategories');
 
             if ($('.peMessage').hasClass('show-error')) {
                 $('.publishErrors').get(0).scrollIntoView(false);
@@ -455,7 +445,7 @@ define(['route',
             $editDialog.on('keyup input paste', 'textarea', function(){
                 var warnLength = maxCaptionLength - 10,
                     $this = $(this),
-                    text = $this.val(),
+                    text = $this.val() || '',
                     length = text.length;
 
                 $this.toggleClass('text-too-long-warn', length >= warnLength);
@@ -475,7 +465,7 @@ define(['route',
             }
             var $page = $($wp.get(editIndex)); // the current page
             var $img = $page.find('img');
-            var caption = $page.find('p.thr-caption').html();
+            var caption = $page.find('p.thr-caption').html() || '';
             var view = {
                 image: {
                     url: $img.attr('src'),
@@ -495,7 +485,8 @@ define(['route',
             $copyIcon.attr('title', $('.wCopyThisPage').html());
             $editDialog.append($copyIcon);
             $editDialog.dialog('option', 'title', '');  // clear the title
-            $editDialog.find('p.thr-caption').toggleClass('text-too-long', caption.length >= maxCaptionLength);
+            $editDialog.find('p.thr-caption').toggleClass('text-too-long',
+                caption.length >= maxCaptionLength);
         }
 
         // save the edited caption
