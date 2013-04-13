@@ -1,10 +1,15 @@
 define([ "route", "json!../state.json", "jquery.cookie" ], function(route, rules) {
     var state = {};
 
+    // set up the defaults
+    for(var param in rules) {
+        state[param] = rules[param]['default'];
+    }
+
     function parseQuery(qstring) {
         var result = {},
             e,
-            r = /([^&=]+)=?([^&]*)/g,
+            r = /([^&=]+)=?([^&#]*)/g,
             d = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); },
             q = qstring.substring(1);
         e = r.exec(q);
