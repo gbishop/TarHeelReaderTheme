@@ -11,7 +11,7 @@
         { "label": "_(German)",     "tag": "German",     "value": "de",  "speech": true },
         { "label": "_(Greek)",      "tag": "Greek",      "value": "el",  "speech": false },
         { "label": "_(Hebrew)",     "tag": "Hebrew",     "value": "he",  "speech": false },
-        { "label": "_(Indonesian)", "tag": "Indonesian", "value": "id",  "speech": false },
+        { "label": "_(Indonesian)", "tag": "Indonesian", "value": "id",  "speech": true, "synth": "de" },
         { "label": "_(Italian)",    "tag": "Italian",    "value": "it",  "speech": true },
         { "label": "_(Japanese)",   "tag": "Japanese",   "value": "ja",  "speech": false },
         { "label": "_(Latin)",      "tag": "Latin",      "value": "la",  "speech": false },

@@ -36,12 +36,17 @@ $lang = $Templates['languages'];
 foreach($lang as $row) {
     $LangNameToLangCode[$row['tag']] = $row['value'];
     if ($row['speech']) {
-        $SynthLanguages[] = $row['value'];
+        if (array_key_exists('synth', $row)) {
+            $SynthLanguages[$row['value']] = $row['synth'];
+        } else {
+            $SynthLanguages[$row['value']] = $row['value'];
+        }
     }
 }
 function has_speech($lang) {
     global $SynthLanguages;
-    $r = in_array($lang, $SynthLanguages);
+    $r = array_key_exists($lang, $SynthLanguages);
+    if ($r) return $SynthLanguages[$lang];
     return $r;
 }
 
@@ -268,7 +273,7 @@ function striptrim_deep($value)
 }
 
 function ParseBookPost($post) {
-    global $LangNameToLangCode, $SynthLanguages, $CategoryAbbrv;
+    global $LangNameToLangCode, $CategoryAbbrv;
     global $wpdb, $search_table;
     global $log;
 
@@ -427,7 +432,8 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
     if ($book['status'] == 'publish') {
         $id = $book['ID'];
         // update speech
-        if (has_speech($book['language'])) {
+        $synthLang = has_speech($book['language']);
+        if ($synthLang) {
             // make sure we have the folder
             $folder = $id . '';
             $pfolder = substr($folder, -2);
@@ -447,7 +453,7 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
                     }
                 }
             }
-            $lang = $book['language'];
+            $lang = $synthLang;
             $data = array('language'=>$lang);
             for($i = $startPage; $i <= $endPage; $i++) {
                 $page = $book['pages'][$i-1];
