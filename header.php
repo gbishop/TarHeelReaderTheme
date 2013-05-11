@@ -44,7 +44,10 @@
         // Google Analytics
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-6128682-1']);
+
+        <?php if ($_SERVER['HTTP_X_PURPOSE'] != 'preview' && $_SERVER['HTTP_X_MOZ'] != 'prefetch') : ?>
         _gaq.push(['_trackPageview']);
+        <?php endif; ?>
 
         (function() {
           var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
