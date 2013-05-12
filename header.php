@@ -43,17 +43,17 @@
     <script>
         // Google Analytics
         var _gaq = _gaq || [];
-        <?php if ($_SERVER['HTTP_X_PURPOSE'] != 'preview') : /* don't count Safari preview visits */ ?>
+        _gaq.push(['_setAccount', 'UA-6128682-1']);
 
-            _gaq.push(['_setAccount', 'UA-6128682-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
+        <?php if ($_SERVER['HTTP_X_PURPOSE'] != 'preview' && $_SERVER['HTTP_X_MOZ'] != 'prefetch') : ?>
+        _gaq.push(['_trackPageview']);
         <?php endif; ?>
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
 
         <?php if (THR('debug') == 1): ?>
             function logMessage(msg) {
