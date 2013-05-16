@@ -8,7 +8,6 @@ GET: Return a list of books that match the query
 <?php
 // handle converting old format favorites URL's to new format
 function new_favorites_url($q) {
-    global $THRPatterns;
     $p = array();
     if (array_key_exists('books', $q)) {
         $v = $q['books'];
