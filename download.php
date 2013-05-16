@@ -106,7 +106,7 @@ function CreateEPubFromBook($book, $voice) {
             false, EPub::EXTERNAL_REF_ADD, ABSPATH);
     }
     $epub->finalize();
-    $zipData = $epub->sendBook($book['slug']);
+    $zipData = $epub->sendBook($book['slug'] ?: $book['ID']);
 }
 
 function CreatePPTXFromBook($book) {
@@ -207,7 +207,8 @@ function CreatePPTXFromBook($book) {
 
     $fp = fopen($path, 'rb');
     header('Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation');
-    header('Content-Disposition: attachment; filename="' . $book['slug'] . '.pptx"');
+    $name = $book['slug'] ?: $book['ID'];
+    header('Content-Disposition: attachment; filename="' . $name . '.pptx"');
     header('Content-Size: ' . filesize($path));
     fpassthru($fp);
     fclose($fp);
