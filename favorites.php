@@ -11,12 +11,8 @@ function new_favorites_url($q) {
     global $THRPatterns;
     $p = array();
     if (array_key_exists('books', $q)) {
-        if (preg_match($THRPatterns['favorites'], $q['books'])) {
-            $v = $q['books'];
-            $p[] = "favorites=$v";
-        } else {
-            return favorites_url();
-        }
+        $v = $q['books'];
+        $p[] = "favorites=$v";
     } else {
         return favorites_url();
     }
