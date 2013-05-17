@@ -45,7 +45,9 @@
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-6128682-1']);
 
-        <?php if ($_SERVER['HTTP_X_PURPOSE'] != 'preview' && $_SERVER['HTTP_X_MOZ'] != 'prefetch') : ?>
+        <?php if ($_SERVER['HTTP_X_PURPOSE'] != 'preview' &&
+                  $_SERVER['HTTP_X_MOZ'] != 'prefetch' &&
+                  $_SERVER['HTTP_X_PURPOSE'] != 'instant') : ?>
         _gaq.push(['_trackPageview']);
         <?php endif; ?>
 
