@@ -146,6 +146,15 @@
             margin-left: 0;
         }
     }
+
+    label.uploadPermission {
+        display: none;
+    }
+
+    label.uploadPermission.needPermission {
+        display: block;
+        margin: 1em 0;
+    }
 } // end .write-page
 
 .text-too-long-warn {

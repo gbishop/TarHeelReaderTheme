@@ -258,6 +258,10 @@ define(['route',
             if (!isInit) {
                 setModified();
             }
+            // require permission to upload images
+            if (page.url.substring(0, 8) == '/uploads') {
+                $('label.uploadPermission').addClass('needPermission');
+            }
         }
         // initialize book pages from an existing book
         function initializeBookState(book) {
@@ -366,6 +370,10 @@ define(['route',
             validate(len, 'peCaptionLength');
             validate(book.language != ' ', 'peLanguage');
             validate(book.categories && book.categories.length <= 4, 'peCategories');
+            // check for image upload permission if needed
+            var needPermission = $('label.uploadPermission').hasClass('needPermission');
+            var hasPermission = $('input[name="permission"]').prop('checked');
+            validate(hasPermission || !needPermission, 'pePermission');
 
             if ($('.peMessage').hasClass('show-error')) {
                 $('.publishErrors').get(0).scrollIntoView(false);
