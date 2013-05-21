@@ -57,6 +57,10 @@
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
+        var __E__ = [];
+        function _E_(n) {
+            __E__.push(n);
+        }
         <?php if (THR('debug') == 1): ?>
             function logMessage(msg) {
                 console.log(msg);
@@ -74,7 +78,8 @@
             }
             window.onerror = function(message, url, line) {
                 if (typeof(_gaq) === "object" && url.match(/theme|jquery/)) {
-                    logEvent('onerror', message, url+" ("+line+")");
+                    logEvent('onerror', message,
+                        url+" ("+line+':'+__E__.slice(-10).join()+")");
                 }
                 return true;
             };
