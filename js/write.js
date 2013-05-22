@@ -5,7 +5,7 @@ define(['route',
         'jquery.ui.touch-punch',
         'jquery.inlineedit'
         ],
-    function(route, templates, controller, fileuploader) {
+    function(route, templates, controller, fileuploader) {_E_(1);
         var maxCaptionLength = 130;  // no page text may be longer than this
 
         var galleryData = {}; // parameters for the photo search
@@ -17,16 +17,16 @@ define(['route',
         var editId = null; // set to the id of the book we are editing
         var notAgain = false; // true after publish to prevent multiple hits
 
-        function setupGallery() {
+        function setupGallery() {_E_(2);
             var $page = $('.write-page.active-page');
 
-            $('.gallery').on('click', 'img', function(e) {
+            $('.gallery').on('click', 'img', function(e) {_E_(3);
                 var $imgs = $('.gallery img'),
                     index = $imgs.index(this);
                 showGalleryPreview(index);
             });
             var $form = $page.find('.image-search');
-            $form.submit(function(e) {
+            $form.submit(function(e) {_E_(4);
                 e.preventDefault();
                 //console.log('submit');
                 clearErrors();
@@ -37,7 +37,7 @@ define(['route',
                 var match = query.match(emailRe);
                 if (match) { // email query
                     query = query.replace(emailRe, '');
-                    $.when(getNsidFromEmail(match[0])).then(function(nsid) {
+                    $.when(getNsidFromEmail(match[0])).then(function(nsid) {_E_(5);
                         fetchGallery({ user_id: nsid, query: query });
                     });
                 } else {
@@ -47,11 +47,11 @@ define(['route',
             });
 
             $('.button', '.writing-controls').button().button('disable');
-            $('.gallery-back').click(function() {
+            $('.gallery-back').click(function() {_E_(6);
                 fetchAnotherGallery(-1);
                 return false;
             });
-            $('.gallery-more').click(function() {
+            $('.gallery-more').click(function() {_E_(7);
                 fetchAnotherGallery(+1);
                 return false;
             });
@@ -59,7 +59,7 @@ define(['route',
             $(window).resize(updateThumbnailSize); // update the thumbnails' size on window resize
         }
 
-        function fetchAnotherGallery(step) {
+        function fetchAnotherGallery(step) {_E_(8);
             clearErrors();
             galleryData.page += step;
             $.ajax({
@@ -67,7 +67,7 @@ define(['route',
                 data: galleryData,
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
-                success: function (result) {
+                success: function (result) {_E_(9);
                     //console.log('success!', result);
                     var p = result.photos,
                         g = $('.gallery');
@@ -76,7 +76,7 @@ define(['route',
                     if (!p || !p.photo || p.photo.length === 0) {
                         showError('em-g-not-found');
                     }
-                    $.each(p.photo, function (index, photo) {
+                    $.each(p.photo, function (index, photo) {_E_(10);
                         var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret,
                             w = parseInt(photo.width_m, 10),
                             h = parseInt(photo.height_m, 10);
@@ -93,7 +93,7 @@ define(['route',
             });
         }
 
-        function updateThumbnailSize() {
+        function updateThumbnailSize() {_E_(11);
             var $g = $(".gallery"),
                 $images = $g.find("img"),
                 gwidth = $g.width(),
@@ -119,7 +119,7 @@ define(['route',
             }
         }
 
-        function fetchGallery(options) {
+        function fetchGallery(options) {_E_(12);
             //console.log('fetchGallery', options);
             // TODO: set loading here
             galleryData = {
@@ -140,10 +140,10 @@ define(['route',
             fetchAnotherGallery(0);
         }
 
-        function showGalleryPreview(startIndex) {
+        function showGalleryPreview(startIndex) {_E_(13);
             galleryIndex = startIndex;
 
-            function showPreviewImage() { // display the currently selected image in the preview dialog
+            function showPreviewImage() {_E_(14); // display the currently selected image in the preview dialog
                 // get all the images
                 var $imgs = $('.gallery img');
                 // restrict the galleryIndex to the range
@@ -184,17 +184,17 @@ define(['route',
                     modal: true,
                     draggable: false,
                     autoOpen: false,
-                    open: function() {
+                    open: function() {_E_(15);
                         $(this).parents('.ui-dialog-buttonpane button:eq(2)').focus();
                     },
                     buttons: [
                         {
                             text: $('.wlPrevious').html(),
-                            click: function() { galleryIndex -= 1; showPreviewImage(); }
+                            click: function() {_E_(16); galleryIndex -= 1; showPreviewImage(); }
                         },
                         {
                             text: $('.wlAddToBook').html(),
-                            click: function() {
+                            click: function() {_E_(17);
                                 var $img = $(this).find('>img');
                                 //console.log('img', $img);
                                 var page = {
@@ -222,7 +222,7 @@ define(['route',
                                         width: '40px',
                                         height: '40px',
                                         opacity: 0
-                                    },1000, function() {
+                                    },1000, function() {_E_(18);
                                         $(this).remove();
                                         $('.step2 h3').effect('highlight', {}, 1000);
                                     });
@@ -230,7 +230,7 @@ define(['route',
                         },
                         {
                             text: $('.wlNext').html(), // pulling the labels from the page
-                            click: function() { galleryIndex += 1; showPreviewImage(); }
+                            click: function() {_E_(19); galleryIndex += 1; showPreviewImage(); }
                         }
                     ]
                 });
@@ -241,7 +241,7 @@ define(['route',
         }
 
         // add a page to the book
-        function addPage(page, isInit) {
+        function addPage(page, isInit) {_E_(20);
             var view = {
                 image: page,
                 caption: page.text || ''
@@ -258,34 +258,38 @@ define(['route',
             if (!isInit) {
                 setModified();
             }
+            // require permission to upload images
+            if (page.url.substring(0, 8) == '/uploads') {
+                $('label.uploadPermission').addClass('needPermission');
+            }
         }
         // initialize book pages from an existing book
-        function initializeBookState(book) {
+        function initializeBookState(book) {_E_(21);
             //console.log('initBook', book);
             $('input[name=title]').val(book.title);
             $('input[name=author]').val(book.author);
             $('select[name=language]').val(book.language);
             $('input[name=category]').prop('checked', false);
-            $.each(book.categories, function (index, category) {
+            $.each(book.categories, function (index, category) {_E_(22);
                 $('input[value=' + category + ']').prop('checked', true);
             });
             $('select[name=audience]').val(book.audience);
             $('select[name=type]').val(book.type);
             $('input[name=tags]').val(book.tags.join(' '));
             $('input[name=reviewed]').prop('checked', book.reviewed);
-            $.each(book.pages.slice(1), function (index, page) {
+            $.each(book.pages.slice(1), function (index, page) {_E_(23);
                 addPage(page, true);
             });
         }
         // extract the books state from the controls
-        function extractBookState() {
+        function extractBookState() {_E_(24);
             //console.log('start extract');
 
             var book = {},
                 $write = $('.active-page.write-page');
             book.title = $.trim($write.find('input[name=title]').val());
             book.author = $.trim($write.find('input[name=author]').val());
-            book.categories = $write.find('.categories input[type=checkbox]:checked').map(function(i, v) {
+            book.categories = $write.find('.categories input[type=checkbox]:checked').map(function(i, v) {_E_(25);
                 return $(v).prop('value'); }).get();
             book.type = $write.find('select[name=type]').val();
             book.audience = $write.find('select[name=audience]').val();
@@ -295,7 +299,7 @@ define(['route',
             tags = tags.replace(/\s{2,}/g, " ");
             book.tags = tags.split(' ');
             book.reviewed = $write.find('input[name=reviewed]:checked').length > 0;
-            book.pages = $write.find('.write-pages li').map(function(i, p) {
+            book.pages = $write.find('.write-pages li').map(function(i, p) {_E_(26);
                 var $p = $(p),
                     caption = $.trim($p.find('.thr-caption').html()) || '',
                     img = $p.find('img.thr-pic'),
@@ -320,7 +324,7 @@ define(['route',
             }
             return book;
         }
-        function saveAsDraft() {
+        function saveAsDraft() {_E_(27);
             clearErrors();
             $('.save').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
@@ -334,7 +338,7 @@ define(['route',
                     id: editId
                 },
                 dataType: 'json'
-            }).then(function(nBook) {
+            }).then(function(nBook) {_E_(28);
                 //console.log('post returns', nBook);
                 logEvent('write', 'draft', nBook.ID);
                 editId = nBook.ID;
@@ -343,13 +347,13 @@ define(['route',
                 showError('peSaved');
             });
         }
-        function validate(condition, id) {
+        function validate(condition, id) {_E_(29);
             if (!condition) {
                 showError('peMessage');
                 showError(id);
             }
         }
-        function publish() {
+        function publish() {_E_(30);
             $('.publish').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
             // validate the book locally
@@ -366,12 +370,16 @@ define(['route',
             validate(len, 'peCaptionLength');
             validate(book.language != ' ', 'peLanguage');
             validate(book.categories && book.categories.length <= 4, 'peCategories');
+            // check for image upload permission if needed
+            var needPermission = $('label.uploadPermission').hasClass('needPermission');
+            var hasPermission = $('input[name="permission"]').prop('checked');
+            validate(hasPermission || !needPermission, 'pePermission');
 
             if ($('.peMessage').hasClass('show-error')) {
                 $('.publishErrors').get(0).scrollIntoView(false);
                 $('.publish').removeAttr('disabled');
                 var errors = [];
-                $('.publishErrors').find('.show-error').each(function() {
+                $('.publishErrors').find('.show-error').each(function() {_E_(31);
                     var cls = $(this).attr('class');
                     var msg = /pe\w+/.exec(cls)[0];
                     errors.push(msg);
@@ -394,7 +402,7 @@ define(['route',
                     id: editId
                 },
                 dataType: 'json'
-            }).then(function(nBook) {
+            }).then(function(nBook) {_E_(32);
                 //console.log('post returns', nBook);
                 clearModified();
                 if (nBook.status == 'publish') {
@@ -409,14 +417,14 @@ define(['route',
             });
         }
         // create the page editor dialog
-        function createPageEditDialog() {
+        function createPageEditDialog() {_E_(33);
             $editDialog = $('<div class="thr-book-page edit-page"></div>').dialog({
                 width: 'auto',
                 resizable: false,
                 modal: true,
                 draggable: false,
                 autoOpen: false,
-                open: function(event, ui) {
+                open: function(event, ui) {_E_(34);
                     $(this).find('.thr-caption').inlineEdit({
                         buttons: '',
                         saveOnBlur: true,
@@ -427,13 +435,13 @@ define(['route',
 
                 }
             });
-            $editDialog.on('click', 'a.thr-back-link', function() {
+            $editDialog.on('click', 'a.thr-back-link', function() {_E_(35);
                 editIndex -= 1;
                 //console.log('prev', editIndex);
                 setupEditContent();
                 return false;
             });
-            $editDialog.on('click', 'a.thr-next-link', function() {
+            $editDialog.on('click', 'a.thr-next-link', function() {_E_(36);
                 editIndex += 1;
                 //console.log('next', editIndex);
                 setupEditContent();
@@ -442,7 +450,7 @@ define(['route',
             $editDialog.on('click', 'img.deleteIcon', deletePage);
             $editDialog.on('click', 'img.copyIcon', copyPage);
             // limit max caption length
-            $editDialog.on('keyup input paste', 'textarea', function(){
+            $editDialog.on('keyup input paste', 'textarea', function(){_E_(37);
                 var warnLength = maxCaptionLength - 10,
                     $this = $(this),
                     text = $this.val() || '',
@@ -455,7 +463,7 @@ define(['route',
         }
 
         // initialize the page editor with its content
-        function setupEditContent() {
+        function setupEditContent() {_E_(38);
             var $wp = $('.write-pages li'); // the list of book pages
             // make sure the index is in bound wrapping at the ends
             if (editIndex < 0) {
@@ -490,7 +498,7 @@ define(['route',
         }
 
         // save the edited caption
-        function saveEditCaption(e, data) {
+        function saveEditCaption(e, data) {_E_(39);
             var $wp = $('.write-pages li'), // the list of book pages
                 $page = $($wp.get(editIndex)), // the current page
                 $caption = $page.find('p.thr-caption'),
@@ -503,7 +511,7 @@ define(['route',
         }
 
         // delete a book page
-        function deletePage() {
+        function deletePage() {_E_(40);
             var $wp = $('.write-pages li'); // the list of book pages
             var $page = $($wp.get(editIndex)); // the current page
             $page.remove(); // remove it
@@ -512,7 +520,7 @@ define(['route',
         }
 
         // copy a book page
-        function copyPage() {
+        function copyPage() {_E_(41);
             var $wp = $('.write-pages li'); // the list of book pages
             var $page = $($wp.get(editIndex)); // the current page
             var $copy = $page.clone();
@@ -522,7 +530,7 @@ define(['route',
         }
 
         // edit a book page
-        function editPage(e) {
+        function editPage(e) {_E_(42);
             if (!$editDialog) {
                 createPageEditDialog();
             }
@@ -540,7 +548,7 @@ define(['route',
         }
 
         // warn the user if they are leaving the page without saving
-        function confirmLeaving(e) {
+        function confirmLeaving(e) {_E_(43);
             if (isModified) {
                 if (!confirm(warnModified())) {
                     e.preventDefault();
@@ -553,12 +561,12 @@ define(['route',
         }
 
         // warning message for beforeunload
-        function warnModified() {
+        function warnModified() {_E_(44);
             return $('.wLoseWork').html();
         }
 
         // set the indicator that the book has been modified
-        function setModified() {
+        function setModified() {_E_(45);
             //console.log('setModified', isModified);
             if (!isModified) {
                 isModified = true;
@@ -568,7 +576,7 @@ define(['route',
         }
 
         // clear the modified indication
-        function clearModified() {
+        function clearModified() {_E_(46);
             if (isModified) {
                 isModified = false;
                 $(window).off('beforeunload');
@@ -577,18 +585,18 @@ define(['route',
         }
 
         // show an error message
-        function showError(className) {
+        function showError(className) {_E_(47);
             $('.' + className).addClass('show-error');
         }
 
         // hide error messages
-        function clearErrors() {
+        function clearErrors() {_E_(48);
             $('.error-messages p').removeClass('show-error');
         }
 
         // translate email address into flickr nsid
         var nsidCache = {}; // store translations to avoid multiple lookups
-        function getNsidFromEmail(email) {
+        function getNsidFromEmail(email) {_E_(49);
             if (email in nsidCache) {
                 return nsidCache[email]; // return from the cache
             } else {
@@ -598,7 +606,7 @@ define(['route',
                     data: { find_email: email },
                     dataType: 'jsonp',
                     jsonp: 'jsoncallback',
-                    success: function(data) {
+                    success: function(data) {_E_(50);
                         if (data.stat === 'ok') {
                             nsidCache[email] = data.user.nsid;
                             def.resolve(data.user.nsid);
@@ -607,7 +615,7 @@ define(['route',
                             def.reject();
                         }
                     },
-                    error: function() {
+                    error: function() {_E_(51);
                         showError('em-g-network-error');
                         def.reject();
                     }
@@ -617,7 +625,7 @@ define(['route',
         }
 
         // initialize the writing page.
-        function writeInit(url, id, copyId) {
+        function writeInit(url, id, copyId) {_E_(52);
             //console.log('write', id, copyId);
             var $page = this;
 
@@ -635,13 +643,13 @@ define(['route',
                 });
             }
 
-            $(function() {
+            $(function() {_E_(53);
                 var uploader = new fileuploader.FileUploader({
                     element: $('.file-uploader').get(0),
                     action: '/upload-image/',
                     allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
                     sizeLimit: 10 * 1024 * 1024,
-                    onComplete: function(id, fileName, response) {
+                    onComplete: function(id, fileName, response) {_E_(54);
                         //console.log('upload complete', id, fileName, response);
                         if (response.success) {
                             var page = {
@@ -666,14 +674,14 @@ define(['route',
             $('.active-page .thr-well-icon img').on('click', confirmLeaving);
             $('.save').on('click', saveAsDraft);
             $('.publish').on('click', publish);
-            $('.categorizeButton').on('click', function() {
+            $('.categorizeButton').on('click', function() {_E_(55);
                 $('.step3a').toggle();
             });
             if ($('input[name=imagefile]').attr('disabled')) {
                 $('.step1a').hide();
             }
 
-            $.when(bookContent).then(function(book) {
+            $.when(bookContent).then(function(book) {_E_(56);
                 if (book.ID) { // editing an existing book
                     initializeBookState(book);
                 }
