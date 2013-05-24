@@ -75,6 +75,7 @@ define(['route',
                     g.empty();
                     if (!p || !p.photo || p.photo.length === 0) {
                         showError('em-g-not-found');
+                        return;
                     }
                     $.each(p.photo, function (index, photo) {_E_(10);
                         var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret,
