@@ -58,7 +58,7 @@ cenk: build
 
 optimized:
 	rm -rf ../Theme-build/*
-	cd js; node ../../r.js -o app.build.js
+	cd js; nodejs ../../r.js -o app.build.js
 	cd ../Theme-build; make build
 	cd ../Theme-build; python tools/AddNewlines.py js/main.js
 	make versioned
@@ -72,7 +72,7 @@ gbopt:
 
 testprod:
 	rm -rf ../Theme-build/*
-	cd js; node ../../r.js -o app.build.js
+	cd js; nodejs ../../r.js -o app.build.js
 	cd ../Theme-build; make build
 	cd ../Theme-build; make copygba
 
