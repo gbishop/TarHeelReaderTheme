@@ -79,7 +79,7 @@
             window.onerror = function(message, url, line) {
                 if (typeof(_gaq) === "object" && url.match(/theme|jquery/)) {
                     logEvent('onerror', message,
-                        url+" ("+line+':'+__E__.slice(-10).join()+")");
+                        url+" ("+line+':'+__E__.slice(-20).join()+")");
                 }
                 return true;
             };

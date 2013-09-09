@@ -433,6 +433,7 @@ define(['route',
                         placeholder: $('.wlClickToEdit').html(),
                         save: saveEditCaption
                     });
+                    _E_(34.9);
 
                 }
             });
@@ -496,6 +497,7 @@ define(['route',
             $editDialog.dialog('option', 'title', '');  // clear the title
             $editDialog.find('p.thr-caption').toggleClass('text-too-long',
                 caption.length >= maxCaptionLength);
+            _E_(38.9);
         }
 
         // save the edited caption
@@ -546,6 +548,7 @@ define(['route',
             setupEditContent();
             $editDialog.css('font-size', p + 'px');
             $editDialog.dialog('open');
+            _E_(42.9);
         }
 
         // warn the user if they are leaving the page without saving
@@ -574,6 +577,7 @@ define(['route',
                 $(window).on('beforeunload', warnModified);
                 $('.save').removeAttr('disabled');
             }
+            _E_(45.9);
         }
 
         // clear the modified indication

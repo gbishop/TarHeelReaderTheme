@@ -16,10 +16,24 @@ define(["templates" ], function(templates) {
         if (typeof(Audio) !== 'undefined') {
             audio = new Audio('/theme/speech/probe.mp3');
 
-           if (audio && audio.canPlayType &&
+            if (audio && audio.canPlayType &&
                 ("no" != audio.canPlayType("audio/mpeg")) &&
                 ("" !== audio.canPlayType("audio/mpeg"))) {
                 $('.flashplayer').remove();
+                //console.log('seem to have audio mp3');
+                // register an error handler for firefox 23 which says it can play my mp3 and then fails
+                var $audio = $(audio);
+                $audio.one('error', function(e) {
+                    //console.log('error callback');
+                    if (e.target.error.code == e.target.error.MEDIA_ERR_DECODE ||
+                        e.target.error.code == e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED) {
+                        audio = 'flash';
+                    }
+                });
+                $audio.one('canplay', function(e) {
+                    //console.log('canplay callback');
+                    $audio.off('error');
+                });
                 // we appear to have html5 audio so call load
                 audio.load();
                 // now this node is blessed so we can play sound whenever we want.
@@ -44,7 +58,7 @@ define(["templates" ], function(templates) {
 
     function play(id, voice, page, bust) {
         voice = voice[0]; // assure we're only using the 1st letter
-        //console.log('play', id, voice, page);
+        //console.log('play', id, voice, page, audio);
         if (!audio || voice === 's') {
             return;
         }
