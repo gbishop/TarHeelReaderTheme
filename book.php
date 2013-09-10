@@ -81,6 +81,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     // validate reviewed
     $book['reviewed'] = current_user_can('edit_others_posts') && $content['reviewed'];
 
+    if ($book['reviewed']) {
+        $book['reviewed_by'] = $current_user;
+    }
+    echo "{$book['reviewed_by']}";
+
     // validate language
     if (!in_array($content['language'], $LangNameToLangCode) && $content['language'] != ' ') {
         header("HTTP/1.0 400 Bad Language");
