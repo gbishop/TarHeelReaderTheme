@@ -31,7 +31,9 @@ Templates.tr.json: languages/tr.po locale/tr/LC_MESSAGES/thr.mo Templates.en.jso
 Templates.en.json: tools/BuildTemplate.py templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python tools/BuildTemplate.py -compact --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-build: Templates.en.json Templates.de.json Templates.tr.json Templates.es.json Templates.it.json
+build: Templates.en.json Templates.de.json Templates.tr.json Templates.es.json Templates.it.json style.css
+
+style.css: tools/MakeMediaQueries.py style.scss
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
 	sass --style=compact style.scss style.css
 
@@ -44,7 +46,7 @@ copyameem:
 
 copygba:
 	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3
-	launch.py http://gbserver3a.cs.unc.edu/
+	#launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
