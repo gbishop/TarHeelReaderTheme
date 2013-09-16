@@ -101,7 +101,7 @@ foreach( $result['books'] as &$book ) {
     $c = &$book['cover'];
     setImageSizes($c);
 }
-$view['bookList'] = template_render('bookList', $result);
+$view['ebookList'] = template_render('ebookList', $result);
 
 if ($page > 1) {
     $view['backLink'] = find_url($page-1);

@@ -278,6 +278,8 @@ define(['route',
             $('select[name=type]').val(book.type);
             $('input[name=tags]').val(book.tags.join(' '));
             $('input[name=reviewed]').prop('checked', book.reviewed);
+            $('#reviewed_by').text(book.reviewed_by);
+            console.log(book.reviewed_by);
             $.each(book.pages.slice(1), function (index, page) {_E_(23);
                 addPage(page, true);
             });
@@ -300,6 +302,7 @@ define(['route',
             tags = tags.replace(/\s{2,}/g, " ");
             book.tags = tags.split(' ');
             book.reviewed = $write.find('input[name=reviewed]:checked').length > 0;
+            book.reviewed_by = $write.find('input[name=reviewed_by]').val();
             book.pages = $write.find('.write-pages li').map(function(i, p) {_E_(26);
                 var $p = $(p),
                     caption = $.trim($p.find('.thr-caption').html()) || '',
