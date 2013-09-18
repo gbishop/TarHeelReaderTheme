@@ -278,8 +278,11 @@ define(['route',
             $('select[name=type]').val(book.type);
             $('input[name=tags]').val(book.tags.join(' '));
             $('input[name=reviewed]').prop('checked', book.reviewed);
-            $('#reviewed_by').text(book.reviewed_by);
-            console.log(book.reviewed_by);
+            
+            if (typeof book.reviewed_by != undefined) {
+                $('#reviewed_by').text("Reviewed by: " + book.reviewed_by);
+            }
+            console.log(typeof book.reviewed_by != undefined);
             $.each(book.pages.slice(1), function (index, page) {_E_(23);
                 addPage(page, true);
             });
