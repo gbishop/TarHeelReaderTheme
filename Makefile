@@ -1,4 +1,4 @@
-all: build copygba
+all: build copyeli
 
 locale/de/LC_MESSAGES/thr.mo: languages/de.po
 	mkdir -p locale/de/LC_MESSAGES
@@ -33,20 +33,20 @@ Templates.en.json: tools/BuildTemplate.py templates/*.html searchForm.json readi
 
 build: Templates.en.json Templates.de.json Templates.tr.json Templates.es.json Templates.it.json style.css
 
-style.css: tools/MakeMediaQueries.py style.scss
+style.css: 
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
 	sass --style=compact style.scss style.css
 
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot --output=Templates.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-copyameem:
-	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
+copyeli:
+	rsync -az --delete . gbserver3.cs.unc.edu:/var/www/tarheelreader/wp-content/themes/thr3
 	#launch.py http://gbserver3.cs.unc.edu/
 
 copygba:
 	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3
-	#launch.py http://gbserver3a.cs.unc.edu/
+	launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
@@ -60,7 +60,7 @@ cenk: build
 
 optimized:
 	rm -rf ../Theme-build/*
-	cd js; nodejs ../../r.js -o app.build.js
+	cd js; node ../../r.js -o app.build.js
 	cd ../Theme-build; make build
 	cd ../Theme-build; python tools/AddNewlines.py js/main.js
 	make versioned
@@ -74,7 +74,7 @@ gbopt:
 
 testprod:
 	rm -rf ../Theme-build/*
-	cd js; nodejs ../../r.js -o app.build.js
+	cd js; node ../../r.js -o app.build.js
 	cd ../Theme-build; make build
 	cd ../Theme-build; make copygba
 
