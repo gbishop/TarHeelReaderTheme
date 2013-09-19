@@ -102,8 +102,7 @@
                 <label>
                     <input name="reviewed" type="checkbox" /> <b>_(Reviewed)</b>
                 </label>
-                    <input name="reviewed_by" type="hidden" value="{{user}}"/>
-                    <b><p id="reviewed_by"></p>></b>
+                    <p id="reviewed_by_p" style="display:none;">_(last_reviewed_by)<span id="last_reviewed_by"></span>
                 {{/canReview}}
             </div>
         </div>

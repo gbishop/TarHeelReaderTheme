@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $book['reviewed'] = current_user_can('edit_others_posts') && $content['reviewed'];
 
     if ($book['reviewed']) {
-        $book['reviewed_by'] = $content['reviewed_by'];
+        $book['last_reviewed_by'] = $current_user->display_name;
     }
 
     // validate language
