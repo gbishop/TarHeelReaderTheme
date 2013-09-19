@@ -306,7 +306,6 @@ define(['route',
             tags = tags.replace(/\s{2,}/g, " ");
             book.tags = tags.split(' ');
             book.reviewed = $write.find('input[name=reviewed]:checked').length > 0;
-            book.reviewed_by = $write.find('input[name=reviewed_by]').val();
             book.pages = $write.find('.write-pages li').map(function(i, p) {_E_(26);
                 var $p = $(p),
                     caption = $.trim($p.find('.thr-caption').html()) || '',
