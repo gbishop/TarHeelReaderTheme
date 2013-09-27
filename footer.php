@@ -13,7 +13,7 @@
         <script type="text/javascript">
             var nsf = document.createElement('iframe');
             nsf.setAttribute('id', 'nsf');
-            nsf.setAttribute('style', 'visibility:hidden');
+            nsf.setAttribute('style', 'display:none');
             document.body.appendChild(nsf);
             nsf.setAttribute('src', 'http://net-score.org/feather?devKey=NS-112343921464559043468-13');
         </script>
