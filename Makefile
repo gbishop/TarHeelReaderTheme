@@ -33,7 +33,7 @@ Templates.en.json: tools/BuildTemplate.py templates/*.html searchForm.json readi
 
 build: Templates.en.json Templates.de.json Templates.tr.json Templates.es.json Templates.it.json style.css
 
-style.css: tools/MakeMediaQueries.py style.scss
+style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
 	sass --style=compact style.scss style.css
 
