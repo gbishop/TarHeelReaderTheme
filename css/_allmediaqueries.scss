@@ -260,3 +260,12 @@
   @include largerControls;
 
 } // end media query for max-width: 624px
+
+/* Attempt to work around iOS7 full screen bug
+https://github.com/gbishop/TarHeelReaderTheme/issues/247
+I'm trying to catch only the iPad in landscape mode. I can't use orientation:landscape in
+the query because then in portrait mode when the keyboard appears it picks up the rule.
+*/
+@media only screen and (device-width: 768px) and (device-height: 1024px) and (min-aspect-ratio: 4/3) {
+    body { font-size: 20px; }
+}
