@@ -78,8 +78,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         die();
     }
     $book['audience'] = $content['audience'];
-    // validate reviewed
+    //validate reviewed
     $book['reviewed'] = current_user_can('edit_others_posts') && $content['reviewed'];
+
+    if ($book['reviewed']) {
+        $book['last_reviewed_by'] = $current_user->display_name;
+    }
 
     // validate language
     if (!in_array($content['language'], $LangNameToLangCode) && $content['language'] != ' ') {
