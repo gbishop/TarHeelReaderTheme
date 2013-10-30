@@ -26,7 +26,7 @@ def insertVersion(m):
     if fullname == 'js/main':
         fullname = fullname + '.js'
         useStaticHost = False
-    elif fullname.endswith('.json'):
+    elif fullname.endswith('.json') or fullname.endswith('.swf'):
         useStaticHost = False
     if not osp.exists(fullname):
         print 'missing', fname, name
