@@ -66,7 +66,7 @@ optimized:
 	make versioned
 
 versioned:
-	cd ../Theme-build; python tools/EditFileVersions.py --staticHost=$(STATICHOST) *.php js/main.js style.css Templates*.json
+	cd ../Theme-build; python tools/EditFileVersions.py *.php js/main.js style.css Templates*.json
 
 gbopt:
 	make optimized STATICHOST=http://tarheelreader3s.cs.unc.edu
