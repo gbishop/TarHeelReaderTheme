@@ -34,15 +34,16 @@ define(['route',
                 $('.gallery').empty();
                 var query = $page.find('input[name=query]').val();
                 var emailRe = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})\b/i;
-                var match = query.match(emailRe);
-                if (match) { // email query
-                    query = query.replace(emailRe, '');
-                    $.when(getNsidFromEmail(match[0])).then(function(nsid) {_E_(5);
+		var useridRe = /\b(by:[-a-zA-Z0-9_.]+)\b/i;
+                var match = query.match(emailRe) || query.match(useridRe);
+                if (match) { // email or username query
+                    query = query.replace(match[0], '');
+                    $.when(getNsidFromEmailOrUserid(match[0])).then(function(nsid) {_E_(5);
                         fetchGallery({ user_id: nsid, query: query });
                     });
                 } else {
-                    fetchGallery({ query: query });
-                }
+		    fetchGallery({ query: query });
+		}
                 return false;
             });
 
@@ -135,7 +136,11 @@ define(['route',
                     q = q.slice(1);
                 }
                 galleryData.text = q;
-                galleryData.sort = 'relevance';
+		if (q) {
+                    galleryData.sort = 'relevance';
+		} else {
+                    galleryData.sort = 'interestingness-desc';
+		}
             }
             if ('user_id' in options) {
                 galleryData.user_id = options.user_id;
@@ -604,14 +609,17 @@ define(['route',
 
         // translate email address into flickr nsid
         var nsidCache = {}; // store translations to avoid multiple lookups
-        function getNsidFromEmail(email) {_E_(49);
+        function getNsidFromEmailOrUserid(email) {_E_(49);
             if (email in nsidCache) {
                 return nsidCache[email]; // return from the cache
             } else {
-                var def = $.Deferred();
+                var def = $.Deferred(),
+		    by = /^by:/.test(email),
+		    url = by ? '/photoSearchUsername/' : '/photoSearchEmail/',
+		    data = by ? { username: email.slice(3) } : { find_email: email };
                 $.ajax({ // ask flickr
-                    url: '/photoSearchEmail/',
-                    data: { find_email: email },
+                    url: url,
+                    data: data,
                     dataType: 'jsonp',
                     jsonp: 'jsoncallback',
                     success: function(data) {_E_(50);

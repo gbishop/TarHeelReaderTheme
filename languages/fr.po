@@ -1,0 +1,1116 @@
+# 
+# Translators:
+# Feudartifix <feudartifix@gmail.com>, 2014
+# iguillot <iguillot@wanadoo.fr>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Tar Heel Reader\n"
+"PO-Revision-Date: 2014-05-20 13:12+0000\n"
+"Last-Translator: iguillot <iguillot@wanadoo.fr>\n"
+"Language-Team: French (France) (http://www.transifex.com/projects/p/tar-heel-reader/language/fr_FR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+# bookList:3
+msgid "Your favorites page is empty."
+msgstr "Votre page de favoris est vide."
+
+# bookList:8
+msgid "Click here to try your search without restrictions."
+msgstr "Cliquer ici pour essayer votre recherche sans limitations."
+
+# bookList:8
+msgid "No books found."
+msgstr "Pas de livre trouvé."
+
+# bookList:22, bookList:22
+msgctxt "icon explanatory text"
+msgid "Reviewed for educational quality."
+msgstr "Éducatif"
+
+# bookList:26, bookList:26
+msgctxt "icon explanatory text"
+msgid "May not be appropriate for all readers."
+msgstr "Peut ne pas être adapté pour/à tous les lecteurs."
+
+# busy:5
+msgid "Loading. Please wait."
+msgstr "Chargement. Veuillez patienter."
+
+# busy:9
+msgid "Something went wrong. The message was:"
+msgstr "Il y a eu une erreur. Le message était:"
+
+# busy:10
+msgctxt "Button label"
+msgid "Try again"
+msgstr "Réessayer"
+
+# choicePage:2, choicePage:26
+msgid "What would you like to do now?"
+msgstr "Que voulez-vous faire maintenant?"
+
+# choicePage:4, choicePage:28
+msgid "Read this book again."
+msgstr "Relire ce livre"
+
+# choicePage:5
+msgid "Rate this book."
+msgstr "Donner une note à ce livre"
+
+# choicePage:6, choicePage:29
+msgid "Read another book."
+msgstr "Lire un autre livre"
+
+# choicePage:10
+msgid "How do you rate this book?"
+msgstr "Comment notez-vous ce livre?"
+
+# choicePage:21
+msgid "Thank you for your opinion."
+msgstr "Merci de votre avis."
+
+# choicePage:24
+msgid "Average Rating"
+msgstr "Note moyenne"
+
+# collections:1, navigation:16
+msgid "Collections"
+msgstr "Collections"
+
+# collections:3, description:1
+msgctxt "placeholder text for search box"
+msgid "Enter text to search"
+msgstr "Rechercher"
+
+# collections:7
+msgid "No collections matching that query. Try again."
+msgstr "Pas de collection correspondante. Faites un autre essai."
+
+# collections:21
+msgid "Create your own collection"
+msgstr "Créez votre collection"
+
+# collections:27, bookPage:23
+msgctxt "button label"
+msgid "Back"
+msgstr "Retour"
+
+# find:5
+msgctxt "label for button to expose search fields on small devices"
+msgid "Press to search"
+msgstr "Cliquez pour rechercher"
+
+# find:10
+msgctxt "button label"
+msgid "Previous Books"
+msgstr "Livres précédents"
+
+# find:13
+msgctxt "button label"
+msgid "More Books"
+msgstr "Plus de livres"
+
+# frontPage:1
+msgid "Welcome"
+msgstr "Bienvenue"
+
+# frontPage:3
+msgid "Click here to learn more about alternative access methods."
+msgstr "Cliquez ici pour en savoir plus sur les atres moyens d'accès."
+
+# frontPage:3
+msgid ""
+"Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and "
+"accessible books on a wide range of topics. Each book can be speech enabled "
+"and accessed using multiple interfaces, including touch screens, the "
+"IntelliKeys with custom overlays, and 1 to 3 switches."
+msgstr "Bien venue à Tar Heel Reader, une collection de livres gratuits, faciles à lire, et ACCESSIBLES,  avec un grand choix de sujets. Chaque livre peut être lu vocalement, et accessible par différents moyen d'accès tels que : écrans tactiles, Intellikeys avec des claviers personalisés, et de 1 à 3 contacteurs."
+
+# frontPage:5
+msgid ""
+"You may write your own books using pictures from the huge collection at "
+"{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
+"and revised to the best of your ability before publishing them to the site. "
+"While you are working on them, please save them as drafts."
+msgstr "Vous pouvez écrire vos propres livres, en utilisant des photos de la vaste collection {{{Flickr}}} ou des des photos que vous téléchargez. Tous les livres doivent être completés, modifiés/corrigés et relus au mieux avant d'étre publié sur le site. Pendant que vous travaillez dessus, enregistrez-les comme brouillons."
+
+# frontPage:7
+msgid ""
+"Note the little well icon {{{wellicon}}} in the upper left corner of the "
+"page; clicking it will allow you to access the main menu. You can also click"
+" the settings icon {{{gearicon}}} to change settings on some pages."
+msgstr "Quand cette icône {{{wellicon}}} apparaît dans le coin supérieur gauche, vous pouvez cliquer dessus pour avoir accès au menu principal. Vous pouvez aussi cliquer sur l'icône des réglages  {{{gearicon}}} pour changer les réglages sur certaines pages."
+
+# frontPage:9
+msgid ""
+"Your browser is unsupported. The site should work for finding and reading "
+"books but you will not have switch access or the ability to write books. We "
+"recommend that you upgrade to a modern browser or install Chrome Frame."
+msgstr "Votre navigateur n'est pas compatible. Le site fonctionnera pour trouver et lire des livres mais vous n'aurez pas d'accès par contacteurs, ni la possibilité d'écrire des livres. Nous vous conseillons de mettre à jour votre navigateur ou d'installer Chrome."
+
+# frontPage:11
+msgid ""
+"You are in Classic mode. You will not have access to all of the features of "
+"the site but it may work better on older computers and web browsers. Click "
+"this text to leave Classic mode."
+msgstr "Vous êtes en mode Classic. Vous n'aurez pas accès à toutes les fonctionsd de ce site mais it may work better sur des ordinateurs et navigateurs plus anciens. Cliquer sur ce texte pour quitter le mode Classic."
+
+# frontPage:13
+msgid "Ready to get started?"
+msgstr "Prêt à commencer?"
+
+# frontPage:15, navigation:12
+msgid "Find a book"
+msgstr "Trouver un livre"
+
+# frontPage:16, navigation:24
+msgid "Write a book"
+msgstr "Écrire un livre"
+
+# frontPage:19
+msgid ""
+"This site is also available in other languages. To help with translation, "
+"contact us."
+msgstr "Ce site est disponible dans d'autres langues. Pour aider à la traduction, contactez-nous."
+
+# frontPage:27
+msgid "change language"
+msgstr "changer de langue"
+
+# frontPage:34
+msgid "Latest Announcements"
+msgstr "Dernières annonces"
+
+# heading:3
+msgctxt "icon explanatory text"
+msgid "Open Menu"
+msgstr "Ouvrir le menu/Menu"
+
+# heading:7, heading:7, heading:11, heading:14
+msgctxt "icon explanatory text"
+msgid "Select Favorites"
+msgstr "Choisir "
+
+# heading:11
+msgid "Remove from Favorites"
+msgstr "Retirer des Favoris"
+
+# heading:14
+msgid "Add to Favorites"
+msgstr "Ajouter aux Favoris"
+
+# heading:19, heading:19, heading:22, heading:22
+msgctxt "icon explanatory text"
+msgid "Settings"
+msgstr "Options"
+
+# heading:26
+msgctxt "site sub-heading"
+msgid "Books for beginning readers of all ages"
+msgstr "Livres pour lecteurs débutants de tous âges"
+
+# heading:26
+msgctxt "site name"
+msgid "Tar Heel Reader"
+msgstr "Tar Heel Reader"
+
+# label:1
+msgid "All Topics"
+msgstr "Tous les sujets"
+
+# label:1
+msgid "Alphabet"
+msgstr "Alphabet"
+
+# label:1
+msgid "Animals and Nature"
+msgstr "Nature et animaux"
+
+# label:1
+msgctxt "selection to ignore the audience rating"
+msgid "Any rating"
+msgstr "Aucune note"
+
+# label:1
+msgid "Arabic"
+msgstr "Arabe"
+
+# label:1
+msgid "Art and Music"
+msgstr "Art et musique"
+
+# label:1
+msgctxt "pulldown label for audience ratings"
+msgid "Audience"
+msgstr "Audience, Nombre de lecteurs"
+
+# label:1
+msgid "Basque"
+msgstr "Basque"
+
+# label:1
+msgid "Biographies"
+msgstr "Biographies"
+
+# label:1
+msgid "Catalan"
+msgstr "Catalan"
+
+# label:1
+msgid "Danish"
+msgstr "Danois"
+
+# label:1
+msgid "English"
+msgstr "Anglais"
+
+# label:1
+msgid "Fairy and Folk Tales"
+msgstr "Légendes et Contes de fées"
+
+# label:1
+msgid "Fiction"
+msgstr "Fiction"
+
+# label:1
+msgid "Filipino"
+msgstr "Philipin"
+
+# label:1
+msgid "Finnish"
+msgstr "Finlandais"
+
+# label:1
+msgid "Foods"
+msgstr "Alimentation"
+
+# label:1
+msgid "French"
+msgstr "Français"
+
+# label:1
+msgid "Galician"
+msgstr "Galicien"
+
+# label:1
+msgid "German"
+msgstr "Allemand"
+
+# label:1
+msgid "Greek"
+msgstr "Grec"
+
+# label:1
+msgid "Health"
+msgstr "Santé"
+
+# label:1
+msgid "Hebrew"
+msgstr "Hébreu"
+
+# label:1
+msgid "History"
+msgstr "Histoire"
+
+# label:1
+msgid "Holidays"
+msgstr "Vacances"
+
+# label:1
+msgid "Include unreviewed"
+msgstr "Inclure les non revus"
+
+# label:1
+msgid "Italian"
+msgstr "Italien"
+
+# label:1
+msgid "Japanese"
+msgstr "Japonais"
+
+# label:1
+msgid "Latin"
+msgstr "Latin"
+
+# label:1
+msgid "Math and Science"
+msgstr "Sciences et Mathématiques"
+
+# label:1
+msgid "Nursery Rhymes"
+msgstr "Comptines"
+
+# label:1
+msgid "People and Places"
+msgstr "Lieux et Habitants"
+
+# label:1
+msgid "Poetry"
+msgstr "Poésie"
+
+# label:1
+msgid "Polish"
+msgstr "Polonais"
+
+# label:1
+msgid "Portuguese"
+msgstr "Portugais"
+
+# label:1
+msgid "Recreation and Leisure"
+msgstr "Loisirs et Détente"
+
+# label:1
+msgctxt "pulldown label"
+msgid "Review status"
+msgstr "Revoir le statut"
+
+# label:1
+msgid "Reviewed only"
+msgstr "Revus seulement"
+
+# label:1
+msgctxt "label for search box"
+msgid "Search for"
+msgstr "Rechercher"
+
+# label:1
+msgid "Spanish"
+msgstr "Espagnol"
+
+# label:1
+msgid "Sports"
+msgstr "Sports"
+
+# label:1
+msgid "Swedish"
+msgstr "Suédois"
+
+# label:1
+msgctxt "pulldown label"
+msgid "Topics"
+msgstr "Sujets"
+
+# label:1
+msgid "Turkish"
+msgstr "Turc"
+
+# login:2
+msgid "Log in to Tar Heel Reader"
+msgstr "Connexion à Tar Heel Reader"
+
+# login:3
+msgid "Login Failed"
+msgstr "La connexion a échoué"
+
+# login:6
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+# login:11
+msgid "Password"
+msgstr "Mot de passe"
+
+# login:17
+msgctxt "login checkbox label"
+msgid "Remember Me"
+msgstr "Se souvenir de moi"
+
+# login:26
+msgid "Lost Password"
+msgstr "Mot de passe oublié"
+
+# login:27
+msgid "Register"
+msgstr "S'inscrire"
+
+# login:30
+msgid "Log out of Tar Heel Reader"
+msgstr "Déconnexion de Tar Heel Reader"
+
+# login:31
+msgid "Log out"
+msgstr "Déconnexion"
+
+# navigation:3
+msgid "Error 404: Page Not Found"
+msgstr "Erreur 404: Page non trouvée"
+
+# navigation:4
+msgid ""
+"We could not find the page you requested. Perhaps the links below will help "
+"you find the page you wanted."
+msgstr "Page non trouvée. Peut-être que ce lien vous aidera à trouver la page que vous cherchez."
+
+# navigation:8
+msgid "Home"
+msgstr "Accueil"
+
+# navigation:20
+msgid "Favorites"
+msgstr "Favoris"
+
+# navigation:28
+msgid "Log in"
+msgstr "Connexion"
+
+# navigation:32
+msgid "Help"
+msgstr "Aide"
+
+# navigation:36
+msgid "Your books"
+msgstr "Vos livres"
+
+# navigation:40
+msgid "Announcements"
+msgstr "Annonces"
+
+# navigation:44
+msgid "Photo credits"
+msgstr "Crédits photos"
+
+# readingControls:1
+msgid "Reading Preferences"
+msgstr "Préférences de lecture"
+
+# readingControls:7
+msgid "Download this book"
+msgstr "Télécharger ce livre"
+
+# readingControls:8, settings:56
+msgid "PowerPoint"
+msgstr "Diaporama"
+
+# readingControls:9, settings:57
+msgid "EPUB"
+msgstr "format EPUB"
+
+# readingControls:12
+msgid "Photo Credits"
+msgstr "Crédits photo"
+
+# readingControls:13
+msgid "Photo credits for this book"
+msgstr "Crédits photo pour ce livre"
+
+# readingControls:17
+msgid "Change this book"
+msgstr "Changer ce livre"
+
+# readingControls:18
+msgid "Create a new one like it."
+msgstr "Créer un nouveau livre pareil/identique/similaire"
+
+# readingControls:20
+msgid "Edit it."
+msgstr "Modifier."
+
+# settings:4, label:1
+msgid "Speech"
+msgstr "Parole"
+
+# settings:7, label:1
+msgid "Silent"
+msgstr "Silencieux"
+
+# settings:8, label:1
+msgid "Child"
+msgstr "Enfant"
+
+# settings:9, label:1
+msgid "Woman"
+msgstr "Femme"
+
+# settings:10, label:1
+msgid "Man"
+msgstr "Homme"
+
+# settings:16
+msgid "Colors"
+msgstr "Couleurs"
+
+# settings:19, label:1
+msgid "Page Color"
+msgstr "Couleur de la page"
+
+# settings:22, settings:36, label:1, label:1
+msgid "Black"
+msgstr "Noir"
+
+# settings:23, settings:37, label:1, label:1
+msgid "Blue"
+msgstr "Bleu clair"
+
+# settings:24, settings:38, label:1, label:1
+msgid "Cyan"
+msgstr "Bleu foncé"
+
+# settings:25, settings:39, label:1, label:1
+msgid "Green"
+msgstr "Vert"
+
+# settings:26, settings:40, label:1, label:1
+msgid "Magenta"
+msgstr "Rose"
+
+# settings:27, settings:41, label:1, label:1
+msgid "Red"
+msgstr "Rouge"
+
+# settings:28, settings:42, label:1, label:1
+msgid "White"
+msgstr "Blanc"
+
+# settings:29, settings:43, label:1, label:1
+msgid "Yellow"
+msgstr "Jaune"
+
+# settings:33, label:1
+msgid "Text Color"
+msgstr "Couleur du texte"
+
+# settings:53
+msgid "Download"
+msgstr "Télécharger"
+
+# settings:63
+msgid "Default"
+msgstr "Par défaut"
+
+# settings:65
+msgid "More..."
+msgstr "Plus..."
+
+# text:1
+msgid "1.5 stars"
+msgstr "1,5 étoiles"
+
+# text:1
+msgid "2.5 stars"
+msgstr "2,5 étoiles"
+
+# text:1
+msgid "Not yet rated"
+msgstr "Pas encore noté"
+
+# text:1, choicePage:13
+msgid "1 star"
+msgstr "1 étoile"
+
+# text:1, choicePage:15
+msgid "2 stars"
+msgstr "2 étoiles"
+
+# text:1, choicePage:17
+msgid "3 stars"
+msgstr "3 étoiles"
+
+# value:1
+msgctxt "button label"
+msgid "Done"
+msgstr "Fait"
+
+# whereAreReaders:1
+msgid "Where are the readers?"
+msgstr "Où sont les lecteurs?"
+
+# whereAreReaders:2
+msgid ""
+"Some of you may have wondered where in the world our books are read. The map"
+" and tables below depict the estimated locations of the computers that have "
+"read books on the site."
+msgstr "Certains d'entre vous se demandent où les livres sont lus dans le monde. La carte et les tableaux donnent la localisation des ordinateurs qui ont lu des livres sur le site."
+
+# whereAreReaders:5
+msgid "Map your books"
+msgstr "Carte de vos livres"
+
+# whereAreReaders:8
+msgid "Map all books"
+msgstr "Carte de tous les livres"
+
+# whereAreReaders:12
+msgid ""
+"As of {{date}} our books have been read {{total}} times in {{country_count}}"
+" countries and {{state_count}} US states and possessions."
+msgstr "À la date du {{date}} , nos livres ont été lus  {{total}} fois dans  {{country_count}} pays et {{state_count}} états des États-Unis."
+
+# whereAreReaders:16
+msgid "Readers by Country"
+msgstr "Lecteurs par pays"
+
+# whereAreReaders:17, whereAreReaders:24
+msgid "Books Read"
+msgstr "Livres lus"
+
+# whereAreReaders:17, whereAreReaders:24
+msgid "Name"
+msgstr "Nom"
+
+# whereAreReaders:23
+msgid "Readers by US States and Possessions"
+msgstr "Lecteurs par état des États-Unis"
+
+# whereAreReaders:31
+msgid "We do not yet have any of your books on the map."
+msgstr "Il n'y a aucun de vos livres sur la carte."
+
+# write:6
+msgid "You must be logged in to write a book. Please log in below."
+msgstr "Vous devez être connecté pour écrire un livre. Merci de vous connecter ci-dessous."
+
+# write:10
+msgid "Step 1: Find pictures"
+msgstr "Étape 1: trouver des images"
+
+# write:12
+msgid ""
+"Enter words to search Flickr or enter the email address you use at Flickr to"
+" see your personal photos. A set of pictures from Flickr will appear; click "
+"on one to preview."
+msgstr "Entre les mots pour chercher sur Flickr ou entrer votre adresse email utilisée sur Flickr pour voir vos photos personnelles. Un stock de photos de Flicker vont apparaître, cliquez sur une pour voir l'aperçu."
+
+# write:12
+msgid "Step 1: Search Help"
+msgstr "Étape 1 : Aide à la recherche"
+
+# write:16, collections:4, value:1
+msgctxt "button label"
+msgid "Search"
+msgstr "Rechercher"
+
+# write:20
+msgid "No matching images found."
+msgstr "Aucune image correspondante trouvée."
+
+# write:21
+msgid "No matching email address found."
+msgstr "Aucune adresse e-mail correspondante trouvée."
+
+# write:23
+msgid "Go back"
+msgstr "Retour"
+
+# write:23
+msgid "More like these"
+msgstr "Plus de ...."
+
+# write:27
+msgid "Or upload your own pictures"
+msgstr "Ou télécharger vos images personnelles"
+
+# write:29
+msgid ""
+"Click browse to find an image on your computer, then click upload to add it "
+"to your book. Pictures must be less than 2 megabytes in size to properly "
+"upload. They will be resized to 500x500 pixels."
+msgstr "Clique sur Parcourir pour trouver une image sur votre ordinateur, ensuite cliquer Télécharger pour l'ajouter à votre livre. Les images doivent avoir une taille inférieure à 2Mo pour être correctement téléchargées. Elles seront redimensionnées à 500x500 pixels."
+
+# write:29
+msgid "Step 1: Upload Help"
+msgstr "Étape 1 : Téléchargez l'Aide"
+
+# write:34
+msgid "Step 2: Enter a short sentence for each page"
+msgstr "Étape 2: Entrez un phrase courte pour chaque page"
+
+# write:36
+msgid ""
+"Click on a page to edit it. You may reorder the pages with drag and drop."
+msgstr "Cliquer sur une page pour la modifier. Vous pouvez réorganiser vos pages en les faisant glisser."
+
+# write:36
+msgid "Step 2: Edit help"
+msgstr "Étape 2 : Aide-Edit"
+
+# write:40
+msgid "After you select or upload pictures your pages will appear here."
+msgstr "Après le choix et le téléchargement des photos, vos pages aparaîtront ici."
+
+# write:44
+msgid "Step 3: Fill in the details"
+msgstr "Étape 3: Remplissez les détails"
+
+# write:46
+msgid ""
+"Fill in the title for your book and select its language from the list. You "
+"may use a psuedonym if you wish by changing the author field."
+msgstr "Écrire le titre de votre livre et sélectionner sa langue dans la liste. Vous pouvez utiliser un pseudonyme si vous le souhaitez, en modifiant le champ Auteur."
+
+# write:46
+msgid "Step 3: Details help"
+msgstr "Étape 3 : Aide détaillée"
+
+# write:49
+msgid "Enter a title for your book"
+msgstr "Entrer un titre pour votre livre"
+
+# write:51
+msgid "Author"
+msgstr "Auteur"
+
+# write:52
+msgid "Enter a pseudonym"
+msgstr "Entrez un pseudonyme"
+
+# write:54, label:1
+msgid "Language"
+msgstr "Langue"
+
+# write:56
+msgid "Choose a language"
+msgstr "Choisissez une langue"
+
+# write:62
+msgid "Optionally"
+msgstr "Facultatif"
+
+# write:62, write:66
+msgid "Categorize your book"
+msgstr "Choisissez une catégorie pour votre livre"
+
+# write:68
+msgid "Step 3: Categorize help"
+msgstr "Étape 3 : Catégorie d' Aide"
+
+# write:68
+msgid ""
+"You may select up to three library categories, an audience rating and BLF "
+"type if you wish."
+msgstr "Vous pouvez sélectionnez jusqu'à 3 catégories de bibliothèques, une moyenne de l'audience, et le format BLF si vous le souhaitez."
+
+# write:71
+msgid "Library Classification"
+msgstr "Classification de la bibliothèque"
+
+# write:77
+msgid "Audience Rating"
+msgstr "Moyenne de l'audience"
+
+# write:79, write:88
+msgid "None"
+msgstr "Aucun"
+
+# write:80, label:1
+msgctxt "books appropriate for everyone"
+msgid "Rated E/Everybody"
+msgstr "Pour tous"
+
+# write:81, label:1
+msgctxt "books that may not be appropriate for all readers"
+msgid "Rated C/Caution"
+msgstr "Attention"
+
+# write:86
+msgid "Beginning Literacy Framework Type"
+msgstr "Littératie.... BLF"
+
+# write:89
+msgid "Transitional"
+msgstr "Transitoire"
+
+# write:90
+msgid "Conventional"
+msgstr "Conventionnel"
+
+# write:91
+msgid "Other"
+msgstr "Autre"
+
+# write:96
+msgid "Tags"
+msgstr "Mots-clés"
+
+# write:98
+msgid "Enter a few descriptive words to make your book easier to find"
+msgstr "Entrez quelques mots-clés pour rendre votre livre plus facile à trouver"
+
+# write:103
+msgid "Reviewed"
+msgstr "Relus/Revus/Corrigés"
+
+# write:110
+msgid "Step 4: Publish"
+msgstr "Étape 4: Publiez"
+
+# write:113
+msgid "Step 4: Save help"
+msgstr "Étape 4 : Sauvegarde de l' Aide"
+
+# write:113
+msgid ""
+"To continue working on your book later, or to remove it from public view, "
+"click Save as draft. You will be able to return it from the Your Books page."
+" To publish your completed book, click Publish."
+msgstr "Pour continuer à travailler plus tard sur votre livre, ou pour le retirer "
+
+# write:115
+msgid "Save as draft"
+msgstr "Sauvegarder comme brouillon"
+
+# write:116
+msgid "Publish"
+msgstr "Publier"
+
+# write:118
+msgid "Your book will not be published until you fix these issues."
+msgstr "Votre livre ne sera pas publié tant que vous n'aurez pas réglé ces problèmes."
+
+# write:119
+msgid "It must have a title."
+msgstr "Il faut un titre."
+
+# write:120
+msgid "It must have an author."
+msgstr "Il faut un auteur."
+
+# write:121
+msgid "Each page must have some text."
+msgstr "Toutes les pages doivent avoir du texte."
+
+# write:122
+msgid "The text on each page must be less than 130 characters in length."
+msgstr "Le texte sur chaque page doit faire moins de 130 caractères."
+
+# write:123
+msgid "It must have at least 3 pages."
+msgstr "Il doit avoir au moins 3 pages."
+
+# write:124
+msgid "It must specify the language."
+msgstr "La langue doit être précisée."
+
+# write:125
+msgid "It must be in no more than 4 categories."
+msgstr "Il peut faire partie de 4 catégories maximum."
+
+# write:126
+msgid "Your book has been saved as a draft."
+msgstr "Votre livre a été enregistré comme brouillon."
+
+# write:133
+msgctxt "button label"
+msgid "Add to Book"
+msgstr "Ajouter au livre"
+
+# write:134
+msgctxt "button label"
+msgid "Close"
+msgstr "Fermer"
+
+# write:135
+msgctxt "button label"
+msgid "Previous"
+msgstr "Précédent"
+
+# write:136, collections:24, bookPage:26
+msgctxt "button label"
+msgid "Next"
+msgstr "Suivant"
+
+# write:137
+msgid "Page added to your book"
+msgstr "Page ajoutée à votre livre."
+
+# write:138
+msgid "Page duplicated"
+msgstr "Page dupliquée"
+
+# write:141
+msgid ""
+"Click on the text to change it. You may use the next and previous buttons to"
+" move between pages. When you're finished, close the editor by clicking on "
+"the x in the upper right."
+msgstr "Cliquez sur le texte pour le changer. Vous pouvez utiliser les boutons précédent et suivant pour vous déplacer entre les pages. Quand vous aurez fini, fermez l'éditeur en cliquant sur le x en haut à droite."
+
+# write:141
+msgid "Page Editor Help"
+msgstr "Aide pour l'éditeur de page"
+
+# write:143
+msgid "Click to edit"
+msgstr "Cliquez pour modifier"
+
+# write:144
+msgid "Delete this page"
+msgstr "Supprimer cette page"
+
+# write:145
+msgid "Duplicate this page"
+msgstr "Dupliquer cette page"
+
+# write:146
+msgid "If you leave you will lose your work on this book."
+msgstr "Si vous quittez, vous perdrez/allez perdre votre travail sur ce livre."
+
+# write:149
+msgid "Drop files here to upload"
+msgstr "Glissez des fichiers ici pour les télécharger"
+
+# write:150
+msgid "Upload"
+msgstr "Mettre en ligne/Télécharger"
+
+# write:160
+msgid "Failed"
+msgstr "Échec"
+
+# yourbooks:2, write:2
+msgid "You must have Javascript enabled in order to write a book."
+msgstr "Javascript doit être activé pour écrire un livre."
+
+# yourbooks:4, write:4
+msgid "Your web browser does not support writing books."
+msgstr "Votre navigateur ne vous permet pas d'écrire des livres."
+
+# yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:41,
+# yourbooks:41, yourbooks:65, yourbooks:65, write:11, write:11, write:28,
+# write:28, write:35, write:35, write:45, write:45, write:67, write:67,
+# write:112, write:112, write:140, write:140
+msgid "Click for help"
+msgstr "Cliquer pour avoir de l'aide"
+
+# yourbooks:8
+msgid ""
+"Links to the main sections of this page are listed below. You may choose to "
+"use these links to help you get to the different sections of this page."
+msgstr "Les liens pour les différentes sections de cette page sont énumérés ici. Vous pouvez utiliser ces liens pour vous aider à aller aux différentes sections de cette page."
+
+# yourbooks:8, yourbooks:9
+msgid "Quick Navigation"
+msgstr "Naviguation rapide"
+
+# yourbooks:11, yourbooks:18, yourbooks:19
+msgid "Your Draft Books"
+msgstr "Vos brouillons"
+
+# yourbooks:12, yourbooks:42, yourbooks:43
+msgid "Your Published Books"
+msgstr "Vos livres publiés"
+
+# yourbooks:13, yourbooks:66, yourbooks:67
+msgid "Your Collections"
+msgstr "Vos collections"
+
+# yourbooks:18
+msgid ""
+"Your draft books are listed below. Click on a title to expose a menu that "
+"will allow you to edit or delete it."
+msgstr "Vos brouillons sont énumérés ici. Cliquer sur un titre pour faire apparaître un menu qui vous permettra de le modifier ou de le supprimer."
+
+# yourbooks:24, yourbooks:26
+msgid "untitled"
+msgstr "sans titre"
+
+# yourbooks:27, yourbooks:52
+msgctxt "Button label"
+msgid "Edit"
+msgstr "Modifier"
+
+# yourbooks:28, yourbooks:96
+msgctxt "Button label"
+msgid "Delete"
+msgstr "Supprimer"
+
+# yourbooks:29, yourbooks:53, yourbooks:82, yourbooks:97, busy:6, busy:11,
+# write:159
+msgctxt "Button label"
+msgid "Cancel"
+msgstr "Annuler"
+
+# yourbooks:36
+msgid "If you had any books saved as drafts they would appear here."
+msgstr "Si vous avez des livres enregistrés comme brouillons, ils apparaîtront ici."
+
+# yourbooks:42
+msgid ""
+"Your published books are listed below. Click on a title to expose a menu "
+"that will allow you to edit it. From the editor you may return a book draft "
+"status by clicking Save as Draft."
+msgstr "Vois livres publiés sont énumérés ici. Cliquer sur un titre pour faire apparaître un menu qui vous permettra de le modifier. Depuis l'éditeur, vous pouvez retourner au statut de Brouillon, en cliquant Enregistrer comme Brouillon."
+
+# yourbooks:51
+msgctxt "Button label"
+msgid "Read"
+msgstr "Lire"
+
+# yourbooks:60
+msgid "If you had any published books they would be listed here."
+msgstr "Si vous avez des livres publiés, ils apparaîtront ici."
+
+# yourbooks:66
+msgid ""
+"Your collections are listed below. Click on the Favorites button to create a"
+" new collection. Click on a collection to expose a menu that will allow you "
+"to modify it."
+msgstr "Vos collection sont énumérées ici. Cliquer sur le bouton Favoris pour créer une  nouvelle Collection. Cliquer sur une Collection pour faire apparaître un menu qui vous permet de la modifier."
+
+# yourbooks:72
+msgid "Favorites: {{count}} books"
+msgstr "Favoris:  {{count}} livres"
+
+# yourbooks:74, yourbooks:89, write:48
+msgid "Title"
+msgstr "Titre"
+
+# yourbooks:75, yourbooks:90
+msgid "Description"
+msgstr "Description"
+
+# yourbooks:76
+msgctxt "Button label"
+msgid "Save as a new Collection"
+msgstr "Enregistrer comme une nouvelle Collection"
+
+# yourbooks:79
+msgid "Add books to your Favorites and come back here to save as a Collection"
+msgstr "Ajouter des livres à vos Favoris et retourner ici pour les enregistrer comme une Collection"
+
+# yourbooks:81
+msgctxt "Button label"
+msgid "Clear Favorites list"
+msgstr "Effacer la liste des Favoris"
+
+# yourbooks:91
+msgid "{{count}} books"
+msgstr "{{count}} livres"
+
+# yourbooks:92
+msgctxt "Button label"
+msgid "Update title and description"
+msgstr "Mettre à jour le titre et la description"
+
+# yourbooks:93
+msgctxt "Button label"
+msgid "Add to Favorites"
+msgstr "Ajouter aux favoris"
+
+# yourbooks:94
+msgid "Merge Favorites into here"
+msgstr "Regrouper les favoris ici"
+
+# yourbooks:95
+msgid "Replace with Favorites"
+msgstr "Remplacer/replacer les Favoris"
+
+# yourbooks:106
+msgid "You must be logged in to see your draft and published books."
+msgstr "Vous devez être connecté pour voir vos brouillons et livres publiés."
+
+# yourbooks:106, write:6, login:21
+msgctxt "link label"
+msgid "Log In"
+msgstr "Connexion"
+
+# yourbooks:109
+msgid "Where in the world are these books read?"
+msgstr "Où dans le monde ces livres sont lus?"
+
+# yourbooks:110
+msgid "Check out our map of readers!"
+msgstr "Voir la carte de tous les lecteurs!"

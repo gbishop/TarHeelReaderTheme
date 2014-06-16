@@ -722,6 +722,11 @@ function thr_modify_query( $query ) {
         $query->set('cat', '-3');
     }
 }
+// modify more posts links
+function thr_get_pagenum_link($link) {
+    return str_replace('?ajax=1', '', $link);
+}
+add_filter('get_pagenum_link', thr_get_pagenum_link);
 
 // disable wordpress search
 function disable_search($query, $error = true) {
