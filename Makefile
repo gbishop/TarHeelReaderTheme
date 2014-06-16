@@ -1,4 +1,4 @@
-all: build copygba
+all: build copygb
 
 locale/de/LC_MESSAGES/thr.mo: languages/de.po
 	mkdir -p locale/de/LC_MESSAGES
@@ -51,8 +51,8 @@ copyameem:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
 	#launch.py http://gbserver3.cs.unc.edu/
 
-copygba:
-	rsync -az --delete . gbserver3:/var/www/gbserver3a/wp-content/themes/thr3
+copygb:
+	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
 	#launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
