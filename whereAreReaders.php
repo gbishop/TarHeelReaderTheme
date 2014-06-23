@@ -137,6 +137,10 @@ if ($exists) {
                 $tr += $row->count;
             }
         }
+        function compare_lang($a, $b) {
+            return strnatcmp($a['language'], $b['language']);
+        }
+        usort($totals, 'compare_lang');
         $totals['Total'] = array('language'=>'Total', 'total'=>$tb, 'reviewed'=>$tr);
         $view['languages'] = array_values($totals);
     }
