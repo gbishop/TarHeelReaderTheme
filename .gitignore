@@ -6,3 +6,4 @@ Templates.*.json
 theme.sublime-workspace
 speech/*.mp3
 languages/thr.pot
+*.swp

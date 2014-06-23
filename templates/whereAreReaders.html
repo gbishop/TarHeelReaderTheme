@@ -12,6 +12,16 @@
 <p>_(As of {{date}} our books have been read {{total}} times in {{country_count}} countries and {{state_count}} US states and possessions.)</p>
 <img class="map" src="{{image}}" width="768" height="550" />
 
+<hr/>
+<table border='1' class='languages'>
+    <caption>_(Books by Language)</caption>
+    <tr><th>_(Language)</th><th>_(Books)</th><th>_(Reviewed)</th></tr>
+    {{#languages}}
+    <tr><td>{{language}}</td><td>{{total}}</td><td>{{reviewed}}</td></tr>
+    {{/languages}}
+</table>
+
+<hr/>
 <table border='1' class='readers'>
     <caption>_(Readers by Country)</caption>
     <tr><th>_(Books Read)</th><th>_(Name)</th></tr>
@@ -19,6 +29,7 @@
     <tr><td>{{count}}</td><td>{{name}}</td></tr>
     {{/countries}}
 </table>
+<hr/>
 <table border='1' class='readers'>
     <caption>_(Readers by US States and Possessions)</caption>
     <tr><th>_(Books Read)</th><th>_(Name)</th></tr>
