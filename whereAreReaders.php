@@ -111,6 +111,35 @@ if ($exists) {
         $image = substr($image, 8);
     }
     $view['image'] = $image;
+
+    if ($mine == 0) {
+        global $wpdb;
+        $sql = "
+            select s.language, s.reviewed, count(s.language) as count
+            from wpreader_posts p join wpreader_book_search s on p.ID = s.ID
+            where p.post_status = 'publish' group by s.language, s.reviewed;";
+        $rows = $wpdb->get_results($sql);
+        $langName = array();
+        foreach($Templates['languages'] as $lang)
+            $langName[$lang['value']] = $lang['label'];
+        $totals = array();
+        $tb = 0;
+        $tr = 0;
+        foreach($rows as $row) {
+            $l = $langName[$row->language];
+            if (!array_key_exists($l, $totals)) {
+                $totals[$l] = array('language'=>$l, 'total'=>0, 'reviewed'=>0);
+            }
+            $totals[$l]['total'] += $row->count;
+            $tb += $row->count;
+            if ($row->reviewed == 'R') {
+                $totals[$l]['reviewed'] += $row->count;
+                $tr += $row->count;
+            }
+        }
+        $totals['Total'] = array('language'=>'Total', 'total'=>$tb, 'reviewed'=>$tr);
+        $view['languages'] = array_values($totals);
+    }
 }
 thr_header('map-page');
 echo template_render('whereAreReaders', $view);

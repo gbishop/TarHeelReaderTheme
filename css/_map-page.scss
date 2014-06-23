@@ -6,10 +6,19 @@
         min-width: 19em;
         margin: 1em auto;
     }
+    caption {
+        font-weight: bold;
+    }
     td, th {
         padding: 0.25em 0.5em;
     }
-    td:first-child {
+    .languages td {
+        text-align: right;
+    }
+    .languages td:first-child {
+        text-align: left;
+    }
+    .readers td:first-child {
         text-align: right;
     }
     th {
