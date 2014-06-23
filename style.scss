@@ -223,6 +223,21 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
    }
 }
 
+@media print {
+    .photoCredits {
+        h3 {
+            page-break-before: always;
+        }
+        p {
+            display: none;
+        }
+    }
+    .content-wrap {
+        border: none;
+        box-shadow: none;
+    }
+}
+
 .login-page {
   p > a {
     display: inline-block;
