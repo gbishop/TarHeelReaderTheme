@@ -1,25 +1,23 @@
 <h3>{{title}}</h3>
 <p>Click on the links below to go to the Flickr page for each photograph.</p>
-<ol class="photoCredits">
+<table class="photoCredits">
 {{#photos}}
-    <li>
-        {{^infolink}}
-        <div class="photoCreditsBox">
-            <img src="{{url}}" style="width:{{pw}}%; height:{{ph}}%; padding-top: {{pm}}%"
-                 data-width="{{width}}" data-height="{{height}}" alt=" "/>
-        </div>
-        Uploaded
-        {{/infolink}}
-        {{#infolink}}
-        <a href="{{infolink}}">
+    <tr>
+        <td>
             <div class="photoCreditsBox">
                 <img src="{{url}}" style="width:{{pw}}%; height:{{ph}}%; padding-top: {{pm}}%"
                      data-width="{{width}}" data-height="{{height}}" alt=" "/>
             </div>
-            Flickr
-        </a>
-        {{/infolink}}
-        <p>{{text}}</p>
-    </li>
+        </td>
+        <td>
+            {{^infolink}}
+            Uploaded
+            {{/infolink}}
+            {{#infolink}}
+            <a href="{{infolink}}">Flickr</a>
+            {{/infolink}}
+        </td>
+        <td class="pcText">{{text}}</td>
+    </tr>
 {{/photos}}
 </ol>

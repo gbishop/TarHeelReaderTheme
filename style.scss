@@ -201,8 +201,14 @@ mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: b
     display: inline-block;
   }
 
-  .photoCredits p {
-      font-style: italic;
+  .photoCredits td.pcText {
+      word-wrap: break-word;
+      text-align: left;
+  }
+  .photoCredits td {
+      padding: 0.5em 1em;
+      text-align: center;
+      vertical-align: middle;
   }
 
   .downloadLinks {
