@@ -27,7 +27,7 @@
         );
         echo template_render('styleColor', $view);
     ?>
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
     <script>
         if (!window.console) window.console = {};
         if (!window.console.log) window.console.log = function () { };
