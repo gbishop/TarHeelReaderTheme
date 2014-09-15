@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $userid != 0) {
             returnJson(false);
         }
         $row = $wpdb->get_row("SELECT * from $collections_table WHERE ID = $id");
-        if (count($row) == 0 || !is_admin() && $row->owner != userid) {
+        if (count($row) == 0 || !is_admin() && $row->owner != $userid) {
             returnJson(false);
         }
         if ($action == 'merge-collection') {
