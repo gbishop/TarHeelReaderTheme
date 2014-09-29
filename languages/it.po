@@ -1,11 +1,11 @@
-#
+# 
 # Translators:
-# ALVARO MENENDEZ SOLER <menendezsoleralvaro@gmail.com>, 2013.
-# Gary Bishop <gb@cs.unc.edu>, 2012-2013.
+# ALVARO MENENDEZ SOLER <menendezsoleralvaro@gmail.com>, 2013
+# Gary Bishop <gb@cs.unc.edu>, 2012-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2013-03-23 15:34+0000\n"
+"PO-Revision-Date: 2014-09-29 18:02+0000\n"
 "Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/tar-heel-reader/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -261,6 +261,10 @@ msgid "Catalan"
 msgstr "Catalano"
 
 # label:1
+msgid "Chinese"
+msgstr "Cinese"
+
+# label:1
 msgid "Danish"
 msgstr "Danese"
 
@@ -321,8 +325,16 @@ msgid "Holidays"
 msgstr "Vacanza"
 
 # label:1
+msgid "Icelandic"
+msgstr "Islandese"
+
+# label:1
 msgid "Include unreviewed"
 msgstr "Includono non recensiti"
+
+# label:1
+msgid "Indonesian"
+msgstr "Indonesiano"
 
 # label:1
 msgid "Italian"
@@ -640,23 +652,31 @@ msgid ""
 " countries and {{state_count}} US states and possessions."
 msgstr "{{date}} nostri libri sono stati tempi di lettura {{total}} in paesi {{country_count}} e {{state_count}} U.S. Stati e possedimenti."
 
-# whereAreReaders:16
+# whereAreReaders:17
+msgid "Books by Language"
+msgstr "Libri di lingua"
+
+# whereAreReaders:18
+msgid "Books"
+msgstr "Libri"
+
+# whereAreReaders:26
 msgid "Readers by Country"
 msgstr "Lettori di paese"
 
-# whereAreReaders:17, whereAreReaders:24
+# whereAreReaders:27, whereAreReaders:35
 msgid "Books Read"
 msgstr "Lettura di libri"
 
-# whereAreReaders:17, whereAreReaders:24
+# whereAreReaders:27, whereAreReaders:35
 msgid "Name"
 msgstr "Nome"
 
-# whereAreReaders:23
+# whereAreReaders:34
 msgid "Readers by US States and Possessions"
 msgstr "Lettori degli Stati Uniti e possedimenti"
 
-# whereAreReaders:31
+# whereAreReaders:42
 msgid "We do not yet have any of your books on the map."
 msgstr "Noi non abbiamo ancora uno dei tuoi libri sulla mappa."
 
@@ -758,7 +778,7 @@ msgstr "Autore"
 msgid "Enter a pseudonym"
 msgstr "Inserisci  pseudonimo"
 
-# write:54, label:1
+# write:54, whereAreReaders:18, label:1
 msgid "Language"
 msgstr "Lingua"
 
@@ -830,7 +850,7 @@ msgstr "Tags"
 msgid "Enter a few descriptive words to make your book easier to find"
 msgstr "Inserisci alcune parole descrittive per rendere il libro più facile da trovare"
 
-# write:103
+# write:103, whereAreReaders:18
 msgid "Reviewed"
 msgstr "Recensito"
 
@@ -850,113 +870,122 @@ msgid ""
 msgstr "Per continuare a lavorare sul libro più tardi, o per rimuoverlo dalla vista pubblica, fare clic su Salva come bozza. Sarete in grado di tornare dalla tua pagina di libri. Per pubblicare il tuo libro, fare clic su pubblica."
 
 # write:115
+msgid ""
+"I have permission from any copyright holders to use the images I uploaded."
+msgstr "Ho il permesso da eventuali detentori del copyright di utilizzare le immagini che ho caricato."
+
+# write:118
 msgid "Save as draft"
 msgstr "Salva come bozza"
 
-# write:116
+# write:119
 msgid "Publish"
 msgstr "Pubblica"
 
-# write:118
+# write:121
 msgid "Your book will not be published until you fix these issues."
 msgstr "Il tuo libro non verrà pubblicato fino a quando non avrai risolto questi problemi."
 
-# write:119
+# write:122
 msgid "It must have a title."
 msgstr "Deve avere un titolo."
 
-# write:120
+# write:123
 msgid "It must have an author."
 msgstr "Deve avere un autore."
 
-# write:121
+# write:124
 msgid "Each page must have some text."
 msgstr "Ogni pagina deve avere un po 'di testo."
 
-# write:122
+# write:125
 msgid "The text on each page must be less than 130 characters in length."
 msgstr "Il testo su ogni pagina deve essere inferiore a 130 caratteri."
 
-# write:123
+# write:126
 msgid "It must have at least 3 pages."
 msgstr "Deve avere almeno 3 pagine."
 
-# write:124
+# write:127
 msgid "It must specify the language."
 msgstr "E 'necessario specificare la lingua."
 
-# write:125
+# write:128
 msgid "It must be in no more than 4 categories."
 msgstr "Deve essere in non più di 4 categorie."
 
-# write:126
+# write:129
+msgid "You must check that you have permission to use uploaded images."
+msgstr "Deve controllare di avere il permesso di utilizzare immagini caricate."
+
+# write:130
 msgid "Your book has been saved as a draft."
 msgstr "Il tuo libro è stato salvato come bozza."
 
-# write:133
+# write:137
 msgctxt "button label"
 msgid "Add to Book"
 msgstr "Aggiungi al libro"
 
-# write:134
+# write:138
 msgctxt "button label"
 msgid "Close"
 msgstr "Chiudere"
 
-# write:135
+# write:139
 msgctxt "button label"
 msgid "Previous"
 msgstr "Prima"
 
-# write:136, collections:24, bookPage:26
+# write:140, collections:24, bookPage:26
 msgctxt "button label"
 msgid "Next"
 msgstr "Prossimo"
 
-# write:137
+# write:141
 msgid "Page added to your book"
 msgstr "Pagina aggiunto al tuo libro"
 
-# write:138
+# write:142
 msgid "Page duplicated"
 msgstr "Pagina duplicata"
 
-# write:141
+# write:145
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
 msgstr "Fare clic sul testo per modificarlo. È possibile utilizzare i pulsanti avanti e indietro per spostarsi tra le pagine. Al termine, chiudere l'editor cliccando sulla x in alto a destra."
 
-# write:141
+# write:145
 msgid "Page Editor Help"
 msgstr "Editor page aiuto"
 
-# write:143
+# write:147
 msgid "Click to edit"
 msgstr "Fai clic per modificare"
 
-# write:144
+# write:148
 msgid "Delete this page"
 msgstr "Elimina questa pagina"
 
-# write:145
+# write:149
 msgid "Duplicate this page"
 msgstr "Duplicare questa pagina"
 
-# write:146
+# write:150
 msgid "If you leave you will lose your work on this book."
 msgstr "Se si lascia si perde il lavoro su questo libro."
 
-# write:149
+# write:153
 msgid "Drop files here to upload"
 msgstr "Rilasciare i file qui per caricare"
 
-# write:150
+# write:154
 msgid "Upload"
 msgstr "Caricare"
 
-# write:160
+# write:164
 msgid "Failed"
 msgstr "Mancato"
 
@@ -968,10 +997,10 @@ msgstr "È necessario che JavaScript sia abilitato per poter scrivere un libro."
 msgid "Your web browser does not support writing books."
 msgstr "Il tuo browser non supporta i libri di scrittura."
 
-# yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:41,
-# yourbooks:41, yourbooks:65, yourbooks:65, write:11, write:11, write:28,
+# yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:42,
+# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:28,
 # write:28, write:35, write:35, write:45, write:45, write:67, write:67,
-# write:112, write:112, write:140, write:140
+# write:112, write:112, write:144, write:144
 msgid "Click for help"
 msgstr "Clicca per ricevere aiuto"
 
@@ -989,11 +1018,11 @@ msgstr "Navigazione veloce"
 msgid "Your Draft Books"
 msgstr "Tuoi progetti di libri"
 
-# yourbooks:12, yourbooks:42, yourbooks:43
+# yourbooks:12, yourbooks:43, yourbooks:44
 msgid "Your Published Books"
 msgstr "I tuoi libri pubblicati"
 
-# yourbooks:13, yourbooks:66, yourbooks:67
+# yourbooks:13, yourbooks:67, yourbooks:68
 msgid "Your Collections"
 msgstr "Le tue collezione"
 
@@ -1009,108 +1038,108 @@ msgstr "senza titolo"
 
 # yourbooks:27, yourbooks:52
 msgctxt "Button label"
+msgid "Read"
+msgstr "Leggere"
+
+# yourbooks:28, yourbooks:53
+msgctxt "Button label"
 msgid "Edit"
 msgstr "Edita"
 
-# yourbooks:28, yourbooks:96
+# yourbooks:29, yourbooks:97
 msgctxt "Button label"
 msgid "Delete"
 msgstr "Cancellare"
 
-# yourbooks:29, yourbooks:53, yourbooks:82, yourbooks:97, busy:6, busy:11,
-# write:159
+# yourbooks:30, yourbooks:54, yourbooks:83, yourbooks:98, busy:6, busy:11,
+# write:163
 msgctxt "Button label"
 msgid "Cancel"
 msgstr "Cancellare."
 
-# yourbooks:36
+# yourbooks:37
 msgid "If you had any books saved as drafts they would appear here."
 msgstr "Se tu avessi tutti i libri salvati come bozze verrebbero visualizzati qui."
 
-# yourbooks:42
+# yourbooks:43
 msgid ""
 "Your published books are listed below. Click on a title to expose a menu "
 "that will allow you to edit it. From the editor you may return a book draft "
 "status by clicking Save as Draft."
 msgstr "I tuoi libri  pubblicati sono elencati di seguito. Clicca su un titolo per esporre un menu che permette di modificarlo. Dall'editor si può restituire lo stato bozza di libro facendo clic su salva come bozza."
 
-# yourbooks:51
-msgctxt "Button label"
-msgid "Read"
-msgstr "Leggere"
-
-# yourbooks:60
+# yourbooks:61
 msgid "If you had any published books they would be listed here."
 msgstr "Se tu avessi alcun libro pubblicato sarebbero elencati qui."
 
-# yourbooks:66
+# yourbooks:67
 msgid ""
 "Your collections are listed below. Click on the Favorites button to create a"
 " new collection. Click on a collection to expose a menu that will allow you "
 "to modify it."
 msgstr "Le collezioni sono elencati di seguito. Fare clic sul pulsante preferiti per creare una nuova collezione. Fare clic su una collezione per esporre un menu che permette di modificarlo."
 
-# yourbooks:72
+# yourbooks:73
 msgid "Favorites: {{count}} books"
 msgstr "Preferiti: {{count}} libri"
 
-# yourbooks:74, yourbooks:89, write:48
+# yourbooks:75, yourbooks:90, write:48
 msgid "Title"
 msgstr "Titolo"
 
-# yourbooks:75, yourbooks:90
+# yourbooks:76, yourbooks:91
 msgid "Description"
 msgstr "Descrizione"
 
-# yourbooks:76
+# yourbooks:77
 msgctxt "Button label"
 msgid "Save as a new Collection"
 msgstr "Salva come nuova collezione"
 
-# yourbooks:79
+# yourbooks:80
 msgid "Add books to your Favorites and come back here to save as a Collection"
 msgstr "Aggiungi libri  ai tuoi preferiti e tornare qui per salvare come una collezione"
 
-# yourbooks:81
+# yourbooks:82
 msgctxt "Button label"
 msgid "Clear Favorites list"
 msgstr "Eliminare elenco preferiti"
 
-# yourbooks:91
+# yourbooks:92
 msgid "{{count}} books"
 msgstr "{{count}} libri"
 
-# yourbooks:92
+# yourbooks:93
 msgctxt "Button label"
 msgid "Update title and description"
 msgstr "Aggiorna il titolo e la descrizione"
 
-# yourbooks:93
+# yourbooks:94
 msgctxt "Button label"
 msgid "Add to Favorites"
 msgstr "Aggiungi ai preferiti"
 
-# yourbooks:94
+# yourbooks:95
 msgid "Merge Favorites into here"
 msgstr "Unisci preferiti in questa sede"
 
-# yourbooks:95
+# yourbooks:96
 msgid "Replace with Favorites"
 msgstr "Sostituire con preferiti"
 
-# yourbooks:106
+# yourbooks:107
 msgid "You must be logged in to see your draft and published books."
 msgstr "Devi essere loggato per vedere il tuo progetto e libri pubblicati."
 
-# yourbooks:106, write:6, login:21
+# yourbooks:107, write:6, login:21
 msgctxt "link label"
 msgid "Log In"
 msgstr "Accedere"
 
-# yourbooks:109
+# yourbooks:110
 msgid "Where in the world are these books read?"
 msgstr "In quale parte del mondo vengono questi libri letti?"
 
-# yourbooks:110
+# yourbooks:111
 msgid "Check out our map of readers!"
 msgstr "Scopri la nostra mappa di lettori!"

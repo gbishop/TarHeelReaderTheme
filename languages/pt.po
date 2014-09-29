@@ -1,127 +1,125 @@
 # 
 # Translators:
-# Gary Bishop <gb@cs.unc.edu>, 2012-2014
-# Monika Waigand <Monika.Waigand@gmx.de>, 2013
-# mwillke <mwillke@uni-koeln.de>, 2013
+# Rui Fernandes <rui@cantic.org.pt>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2014-09-29 18:01+0000\n"
-"Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/tar-heel-reader/language/de/)\n"
+"PO-Revision-Date: 2014-09-29 18:10+0000\n"
+"Last-Translator: Rui Fernandes <rui@cantic.org.pt>\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/tar-heel-reader/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # bookList:3
 msgid "Your favorites page is empty."
-msgstr "keine Favoriten gespeichert "
+msgstr "A sua página de favoritos está vazia."
 
 # bookList:8
 msgid "Click here to try your search without restrictions."
-msgstr "Klicke hier um Deine Suche ohne Einschränkungen zu testen."
+msgstr "Clique aqui para pesquisar sem restrições."
 
 # bookList:8
 msgid "No books found."
-msgstr "Keine Bücher gefunden."
+msgstr "Não foram encontrados livros."
 
 # bookList:22, bookList:22
 msgctxt "icon explanatory text"
 msgid "Reviewed for educational quality."
-msgstr "Auf pädagogische Qualität überprüft."
+msgstr "Revisto a nível de qualidade educativa."
 
 # bookList:26, bookList:26
 msgctxt "icon explanatory text"
 msgid "May not be appropriate for all readers."
-msgstr "Möglicherweise nicht für alle Leser geeignet."
+msgstr "Pode não ser apropriado para todos os leitores."
 
 # busy:5
 msgid "Loading. Please wait."
-msgstr "Lädt. Bitte warten."
+msgstr "A carregar. Espere, por favor."
 
 # busy:9
 msgid "Something went wrong. The message was:"
-msgstr "Fehler. Die Nachricht war:"
+msgstr "Algo correu mal. A mensagem foi:"
 
 # busy:10
 msgctxt "Button label"
 msgid "Try again"
-msgstr "Versuchen Sie es noch einmal. "
+msgstr "Tente novamente."
 
 # choicePage:2, choicePage:26
 msgid "What would you like to do now?"
-msgstr "Was möchten Sie jetzt tun?"
+msgstr "O que quer fazer agora?"
 
 # choicePage:4, choicePage:28
 msgid "Read this book again."
-msgstr "das Buch noch einmal lesen"
+msgstr "Leia este livro novamente."
 
 # choicePage:5
 msgid "Rate this book."
-msgstr "das Buch bewerten"
+msgstr "Classifique este livro."
 
 # choicePage:6, choicePage:29
 msgid "Read another book."
-msgstr "ein anderes Buch lesen"
+msgstr "Leia outro livro."
 
 # choicePage:10
 msgid "How do you rate this book?"
-msgstr "Wie bewerten Sie dieses Buch?"
+msgstr "Como classifica este livro?"
 
 # choicePage:21
 msgid "Thank you for your opinion."
-msgstr "Vielen Dank für Ihre Meinung."
+msgstr "Obrigado pela sua opinião."
 
 # choicePage:24
 msgid "Average Rating"
-msgstr "Durchschnittliche Bewertung"
+msgstr "Classificação Média"
 
 # collections:1, navigation:16
 msgid "Collections"
-msgstr "Sammlungen"
+msgstr "Colecções"
 
 # collections:3, description:1
 msgctxt "placeholder text for search box"
 msgid "Enter text to search"
-msgstr "Suchbegriff eingeben"
+msgstr "Escreva o texto a pesquisar"
 
 # collections:7
 msgid "No collections matching that query. Try again."
-msgstr "Keine passenden Einträge gefunden. Versuchen Sie es noch einmal."
+msgstr "Não há colecções que correspondam à pesquisa. Tente novamente."
 
 # collections:21
 msgid "Create your own collection"
-msgstr "Erstellen Sie Ihre eigene Sammlung."
+msgstr "Crie a sua colecção"
 
 # collections:27, bookPage:23
 msgctxt "button label"
 msgid "Back"
-msgstr "zurück"
+msgstr "Voltar"
 
 # find:5
 msgctxt "label for button to expose search fields on small devices"
 msgid "Press to search"
-msgstr "suchen"
+msgstr "Pesquisar"
 
 # find:10
 msgctxt "button label"
 msgid "Previous Books"
-msgstr "vorherige Bücher"
+msgstr "Livros Anteriores"
 
 # find:13
 msgctxt "button label"
 msgid "More Books"
-msgstr "weitere Bücher"
+msgstr "Mais Livros"
 
 # frontPage:1
 msgid "Welcome"
-msgstr "Herzlich Willkommen"
+msgstr "Bem-vindo"
 
 # frontPage:3
 msgid "Click here to learn more about alternative access methods."
-msgstr "Klicken Sie hier, um mehr über alternative Zugriffsmöglichkeiten zu erfahren."
+msgstr "Clique aqui para saber mais sobre métodos de acesso alternativos."
 
 # frontPage:3
 msgid ""
@@ -129,7 +127,7 @@ msgid ""
 "accessible books on a wide range of topics. Each book can be speech enabled "
 "and accessed using multiple interfaces, including touch screens, the "
 "IntelliKeys with custom overlays, and 1 to 3 switches."
-msgstr "Willkommen beim Tar Heel Reader, einer Sammlung von kostenlosen, einfach zu lesenden Büchern aus einer großen Auswahl von Themen.   Jedes Buch kann vorgelesen werden. Auch mit alternativen Ansteuerungsmöglichkeiten kann auf die Bücher zugegriffen werden. Die Nutzung von Touchscreen, IntelliKeys oder 1 bis 3 Tastern ist möglich."
+msgstr "Bem-vindo ao Tar Heel Reader, uma colecção de livros gratuitos, acessíveis e de fácil leitura sobre uma grande variedade de temas. Pode ouvir todos os livros com voz de síntese e consultá-los usando múltiplas interfaces, incluindo ecrãs tácteis, teclado Intellikeys com grelhas personalizadas e 1 a 3 manípulos."
 
 # frontPage:5
 msgid ""
@@ -137,82 +135,82 @@ msgid ""
 "{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
 "and revised to the best of your ability before publishing them to the site. "
 "While you are working on them, please save them as drafts."
-msgstr "Um eigene Bücher zu schreiben, können Sie die große Bildersammlung  {{{Flickr}}} nutzen oder eigene Bilder hochladen. Bitte veröffentlichen Sie Bücher erst, wenn diese vollständig fertiggestellt sind. Bücher, an denen Sie noch arbeiten, können Sie unter \"Entwürfe\" speichern."
+msgstr "Pode escrever os seus livros usando imagens da enorme colecção do {{{Flickr}}} ou imagens que carregue. Todos os livros devem ser completados, editados e revistos o melhor possível antes de os publicar no site. Enquanto está a trabalhar neles, guarde-os como rascunhos."
 
 # frontPage:7
 msgid ""
 "Note the little well icon {{{wellicon}}} in the upper left corner of the "
 "page; clicking it will allow you to access the main menu. You can also click"
 " the settings icon {{{gearicon}}} to change settings on some pages."
-msgstr "Klicken Sie auf das kleine Brunnensymbol {{{wellicon}}} in der oberen linken Ecke der Seite, um ins Hauptmenü zu gelangen. Über das Symbol \"Einstellungen\" {{{gearicon}}} können Sie die Einstellungen einzelner Seiten ändern."
+msgstr "O pequeno ícone do poço {{{wellicon}}} no canto superior esquerdo permite aceder ao menu principal. Pode também clicar nos menu de opções {{{gearicon}}} para mudar as opções de algumas páginas."
 
 # frontPage:9
 msgid ""
 "Your browser is unsupported. The site should work for finding and reading "
 "books but you will not have switch access or the ability to write books. We "
 "recommend that you upgrade to a modern browser or install Chrome Frame."
-msgstr "Ihr Browser wird nicht unterstützt. Das Finden und Lesen von Büchern kann funktionieren. Alternative Ansteuerungsmöglichkeiten können nicht genutzt werden. Das Herunterladen oder Schreiben von Büchern ist nicht möglich. Aktualisieren Sie Ihren Browser oder installieren Sie Chrome Frame."
+msgstr "O seu navegador não é suportado. O site deve funcionar para pesquisa e leitura sde livros mas não deverá poder escrever livros ou ter acesso através de manípulos. Recomendamos que use um navegador actual ou instale o Chrome Frame."
 
 # frontPage:11
 msgid ""
 "You are in Classic mode. You will not have access to all of the features of "
 "the site but it may work better on older computers and web browsers. Click "
 "this text to leave Classic mode."
-msgstr "Sie sind im klassischen Modus. Sie haben keinen Zugriff auf alle Funktionen der Website, aber es kann besser auf älteren Computern und Web-Browsern funktionieren. Klicken Sie auf diesen Text um Classic-Modus zu verlassen."
+msgstr "Está em Modo Clássico. Não tem acesso a todas as opções do site mas pode funcionar melhor em computadores e navegadores antigos. Clique neste texto para sair de Modo Clássico."
 
 # frontPage:13
 msgid "Ready to get started?"
-msgstr "Los geht's!"
+msgstr "Pronto para começar?"
 
 # frontPage:15, navigation:12
 msgid "Find a book"
-msgstr "ein Buch suchen"
+msgstr "Procure um livro"
 
 # frontPage:16, navigation:24
 msgid "Write a book"
-msgstr "ein Buch schreiben"
+msgstr "Escreva um livro"
 
 # frontPage:19
 msgid ""
 "This site is also available in other languages. To help with translation, "
 "contact us."
-msgstr "Diese Seite gibt es auch in anderen Sprachen. Nehmen Sie Kontakt mit uns auf, wenn Sie uns bei der Übersetzung helfen möchten."
+msgstr "Este site está disponível noutras línguas. Para ajudar a traduzir, contacte-nos."
 
 # frontPage:27
 msgid "change language"
-msgstr "Sprache ändern"
+msgstr "mudar língua"
 
 # frontPage:34
 msgid "Latest Announcements"
-msgstr "Neueste Meldungen"
+msgstr "Últimas notícias"
 
 # heading:3
 msgctxt "icon explanatory text"
 msgid "Open Menu"
-msgstr "Menü öffnen"
+msgstr "Menu Abrir"
 
 # heading:7, heading:7, heading:11, heading:14
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
-msgstr "Wählen sie Ihre Lieblingsbücher."
+msgstr "Seleccione Favoritos."
 
 # heading:11
 msgid "Remove from Favorites"
-msgstr "Aus Favoriten entfernen."
+msgstr "Remova dos Favoritos."
 
 # heading:14
 msgid "Add to Favorites"
-msgstr "zu Favoriten hinzufügen"
+msgstr "Adicione aos Favoritos."
 
 # heading:19, heading:19, heading:22, heading:22
 msgctxt "icon explanatory text"
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Opções."
 
 # heading:26
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
-msgstr "Bücher für Leseanfänger aller Altersgruppen"
+msgstr "Livros para leitores emergentes de todas as idades."
 
 # heading:26
 msgctxt "site name"
@@ -221,279 +219,279 @@ msgstr "Tar Heel Reader"
 
 # label:1
 msgid "All Topics"
-msgstr "Alle Themen"
+msgstr "Todos os Temas"
 
 # label:1
 msgid "Alphabet"
-msgstr "Alphabet"
+msgstr "Alfabeto"
 
 # label:1
 msgid "Animals and Nature"
-msgstr "Tiere und Natur"
+msgstr "Animais e Natureza"
 
 # label:1
 msgctxt "selection to ignore the audience rating"
 msgid "Any rating"
-msgstr "alle Bewertungen"
+msgstr "Qualquer classificação"
 
 # label:1
 msgid "Arabic"
-msgstr "Arabisch"
+msgstr "Árabe"
 
 # label:1
 msgid "Art and Music"
-msgstr "Kunst und Musik"
+msgstr "Arte e Música"
 
 # label:1
 msgctxt "pulldown label for audience ratings"
 msgid "Audience"
-msgstr "Leser"
+msgstr "Público"
 
 # label:1
 msgid "Basque"
-msgstr "Baskisch"
+msgstr "Basco"
 
 # label:1
 msgid "Biographies"
-msgstr "Biografien"
+msgstr "Biografias"
 
 # label:1
 msgid "Catalan"
-msgstr "Katalanisch"
+msgstr "Catalão"
 
 # label:1
 msgid "Chinese"
-msgstr "Chinesisch"
+msgstr "Chinês"
 
 # label:1
 msgid "Danish"
-msgstr "Dänisch"
+msgstr "Holandês"
 
 # label:1
 msgid "English"
-msgstr "Englisch"
+msgstr "Inglês"
 
 # label:1
 msgid "Fairy and Folk Tales"
-msgstr "Märchen"
+msgstr "Fadas e Contos Tradicionais"
 
 # label:1
 msgid "Fiction"
-msgstr "Fiktion"
+msgstr "Ficção"
 
 # label:1
 msgid "Filipino"
-msgstr "Philippinisch"
+msgstr "Filipino"
 
 # label:1
 msgid "Finnish"
-msgstr "Finnisch"
+msgstr "Finlandês"
 
 # label:1
 msgid "Foods"
-msgstr "Lebensmittel"
+msgstr "Comidas"
 
 # label:1
 msgid "French"
-msgstr "Französisch"
+msgstr "Francês"
 
 # label:1
 msgid "Galician"
-msgstr "Galizisch"
+msgstr "Galego"
 
 # label:1
 msgid "German"
-msgstr "Deutsch"
+msgstr "Alemão"
 
 # label:1
 msgid "Greek"
-msgstr "Griechisch"
+msgstr "Grego"
 
 # label:1
 msgid "Health"
-msgstr "Gesundheit"
+msgstr "Saúde"
 
 # label:1
 msgid "Hebrew"
-msgstr "Hebräisch"
+msgstr "Hebraico"
 
 # label:1
 msgid "History"
-msgstr "Geschichte"
+msgstr "História"
 
 # label:1
 msgid "Holidays"
-msgstr "Urlaub"
+msgstr "Dias especiais"
 
 # label:1
 msgid "Icelandic"
-msgstr "Isländisch"
+msgstr "Islandês"
 
 # label:1
 msgid "Include unreviewed"
-msgstr "noch nicht überprüfte Bücher"
+msgstr "Incluir não revistos"
 
 # label:1
 msgid "Indonesian"
-msgstr "Indonesisch"
+msgstr "Indonésio"
 
 # label:1
 msgid "Italian"
-msgstr "Italienisch"
+msgstr "Italiano"
 
 # label:1
 msgid "Japanese"
-msgstr "Japanisch"
+msgstr "Japonês"
 
 # label:1
 msgid "Latin"
-msgstr "Latein"
+msgstr "Latim"
 
 # label:1
 msgid "Math and Science"
-msgstr "Mathematik und Naturwissenschaften"
+msgstr "Matemática e Ciências"
 
 # label:1
 msgid "Nursery Rhymes"
-msgstr "Kinderreime"
+msgstr "Cantilenas"
 
 # label:1
 msgid "People and Places"
-msgstr "Menschen und Orte"
+msgstr "Pessoas e Lugares"
 
 # label:1
 msgid "Poetry"
-msgstr "Dichtung"
+msgstr "Poesia"
 
 # label:1
 msgid "Polish"
-msgstr "Polnisch"
+msgstr "Polaco"
 
 # label:1
 msgid "Portuguese"
-msgstr "Portugiesisch"
+msgstr "Português"
 
 # label:1
 msgid "Recreation and Leisure"
-msgstr "Erholung und Freizeit"
+msgstr "Recreio e Lazer"
 
 # label:1
 msgctxt "pulldown label"
 msgid "Review status"
-msgstr "Überprüfungsstatus"
+msgstr "Estado de revisão"
 
 # label:1
 msgid "Reviewed only"
-msgstr "nur überprüfte Bücher anzeigen"
+msgstr "Só revisto"
 
 # label:1
 msgctxt "label for search box"
 msgid "Search for"
-msgstr "Suche nach"
+msgstr "Procurar por"
 
 # label:1
 msgid "Spanish"
-msgstr "Spanisch"
+msgstr "Espanho"
 
 # label:1
 msgid "Sports"
-msgstr "Sport"
+msgstr "Desporto"
 
 # label:1
 msgid "Swedish"
-msgstr "Schwedisch"
+msgstr "Sueco"
 
 # label:1
 msgctxt "pulldown label"
 msgid "Topics"
-msgstr "Themen"
+msgstr "Temas"
 
 # label:1
 msgid "Turkish"
-msgstr "Türkisch"
+msgstr "Turco"
 
 # login:2
 msgid "Log in to Tar Heel Reader"
-msgstr "Melden Sie sich beim Tar Heel Reader an."
+msgstr "Entrar no Tar Heel Reader"
 
 # login:3
 msgid "Login Failed"
-msgstr "Login fehlgeschlagen"
+msgstr "Erro no Acesso"
 
 # login:6
 msgid "Username"
-msgstr "Benutzername"
+msgstr "Nome de utilizador"
 
 # login:11
 msgid "Password"
-msgstr "Passwort"
+msgstr "Palavra-chave"
 
 # login:17
 msgctxt "login checkbox label"
 msgid "Remember Me"
-msgstr "Passwort merken"
+msgstr "Lembrar-me"
 
 # login:26
 msgid "Lost Password"
-msgstr "Passwort vergessen"
+msgstr "Perdi a palavra-chave"
 
 # login:27
 msgid "Register"
-msgstr "Registrieren"
+msgstr "Registar"
 
 # login:30
 msgid "Log out of Tar Heel Reader"
-msgstr "Melden Sie sich beim Tar Heel Reader ab."
+msgstr "Sair do Tar Heel Reader"
 
 # login:31
 msgid "Log out"
-msgstr "Log out"
+msgstr "Sair"
 
 # navigation:3
 msgid "Error 404: Page Not Found"
-msgstr "Fehler 404: Seite nicht gefunden"
+msgstr "Erro 404: Página Não Encontrada"
 
 # navigation:4
 msgid ""
 "We could not find the page you requested. Perhaps the links below will help "
 "you find the page you wanted."
-msgstr "Die gewünschte Seite wurde nicht gefunden. Möglicherweise helfen Ihnen die folgenden Links bei Ihrer Suche."
+msgstr "Não encontramos a página que pediu. Talvez os links abaixo o ajudem a encontrar a página que procura."
 
 # navigation:8
 msgid "Home"
-msgstr "Startseite"
+msgstr "Início"
 
 # navigation:20
 msgid "Favorites"
-msgstr "Favoriten"
+msgstr "Favoritos"
 
 # navigation:28
 msgid "Log in"
-msgstr "Log in"
+msgstr "Entrar"
 
 # navigation:32
 msgid "Help"
-msgstr "Hilfe"
+msgstr "Ajuda"
 
 # navigation:36
 msgid "Your books"
-msgstr "Ihre Bücher"
+msgstr "Meus Livros"
 
 # navigation:40
 msgid "Announcements"
-msgstr "Meldungen"
+msgstr "Notícias"
 
 # navigation:44
 msgid "Photo credits"
-msgstr "Bildnachweise"
+msgstr "Créditos das fotos"
 
 # readingControls:1
 msgid "Reading Preferences"
-msgstr "Lieblingsbücher"
+msgstr "Preferências de Leitura"
 
 # readingControls:7
 msgid "Download this book"
-msgstr "dieses Buch herunterladen"
+msgstr "Descarregue este livro"
 
 # readingControls:8, settings:56
 msgid "PowerPoint"
@@ -505,271 +503,271 @@ msgstr "EPUB"
 
 # readingControls:12
 msgid "Photo Credits"
-msgstr "Bildnachweis"
+msgstr "Créditos das fotos"
 
 # readingControls:13
 msgid "Photo credits for this book"
-msgstr "Fotonachweis für dieses Buch"
+msgstr "Créditos das fotos deste livro"
 
 # readingControls:17
 msgid "Change this book"
-msgstr "Ändern Sie dieses Buch"
+msgstr "Mudar livro"
 
 # readingControls:18
 msgid "Create a new one like it."
-msgstr "Erstellen Sie ein neues wie es."
+msgstr "Criar um livro como este"
 
 # readingControls:20
 msgid "Edit it."
-msgstr "Bearbeiten Sie es."
+msgstr "Editar"
 
 # settings:4, label:1
 msgid "Speech"
-msgstr "Sprache"
+msgstr "Voz"
 
 # settings:7, label:1
 msgid "Silent"
-msgstr "Ton aus"
+msgstr "Silencioso"
 
 # settings:8, label:1
 msgid "Child"
-msgstr "Kind"
+msgstr "Criança"
 
 # settings:9, label:1
 msgid "Woman"
-msgstr "Frau"
+msgstr "Mulher"
 
 # settings:10, label:1
 msgid "Man"
-msgstr "Mann"
+msgstr "Homem"
 
 # settings:16
 msgid "Colors"
-msgstr "Farben"
+msgstr "Cores"
 
 # settings:19, label:1
 msgid "Page Color"
-msgstr "Seitenfarbe"
+msgstr "Cor da Página"
 
 # settings:22, settings:36, label:1, label:1
 msgid "Black"
-msgstr "schwarz"
+msgstr "Preto"
 
 # settings:23, settings:37, label:1, label:1
 msgid "Blue"
-msgstr "blau"
+msgstr "Azul"
 
 # settings:24, settings:38, label:1, label:1
 msgid "Cyan"
-msgstr "cyan"
+msgstr "Ciano"
 
 # settings:25, settings:39, label:1, label:1
 msgid "Green"
-msgstr "grün"
+msgstr "Verde"
 
 # settings:26, settings:40, label:1, label:1
 msgid "Magenta"
-msgstr "magenta"
+msgstr "Magenta"
 
 # settings:27, settings:41, label:1, label:1
 msgid "Red"
-msgstr "rot"
+msgstr "Vermelho"
 
 # settings:28, settings:42, label:1, label:1
 msgid "White"
-msgstr "weiß"
+msgstr "Branco"
 
 # settings:29, settings:43, label:1, label:1
 msgid "Yellow"
-msgstr "gelb"
+msgstr "Amarelo"
 
 # settings:33, label:1
 msgid "Text Color"
-msgstr "Textfarbe"
+msgstr "Cor do Texto"
 
 # settings:53
 msgid "Download"
-msgstr "Download"
+msgstr "Descarregar"
 
 # settings:63
 msgid "Default"
-msgstr "Fehler"
+msgstr "Predefinição"
 
 # settings:65
 msgid "More..."
-msgstr "Mehr..."
+msgstr "Mais..."
 
 # text:1
 msgid "1.5 stars"
-msgstr "1,5 Sterne"
+msgstr "1,5 estrelas"
 
 # text:1
 msgid "2.5 stars"
-msgstr "2,5 Sterne"
+msgstr "2,5 estrelas"
 
 # text:1
 msgid "Not yet rated"
-msgstr "noch nicht bewertet"
+msgstr "Não classificado ainda"
 
 # text:1, choicePage:13
 msgid "1 star"
-msgstr "1 Stern"
+msgstr "1 estrela"
 
 # text:1, choicePage:15
 msgid "2 stars"
-msgstr "2 Sterne"
+msgstr "2 estrelas"
 
 # text:1, choicePage:17
 msgid "3 stars"
-msgstr "3 Sterne"
+msgstr "3 estrelas"
 
 # value:1
 msgctxt "button label"
 msgid "Done"
-msgstr "fertig"
+msgstr "Concluído"
 
 # whereAreReaders:1
 msgid "Where are the readers?"
-msgstr "Wo werden die Bücher gelesen?"
+msgstr "Onde estão os leitores?"
 
 # whereAreReaders:2
 msgid ""
 "Some of you may have wondered where in the world our books are read. The map"
 " and tables below depict the estimated locations of the computers that have "
 "read books on the site."
-msgstr "Möchten Sie wissen, wo auf der Welt Ihre Bücher des Tar heel Reader gelesen werden? Die Karte und die nachfolgenden Tabellen zeigen die ungefähren Standorte der Computer, von denen aus die Bücher gelesen wurden."
+msgstr "Algumas pessoas podem querer saber em que sítios do mundo é que lêem os seus livros. O mapa e tabelas abaixo mostram as localizações aproximadas dos computadores que têm livros lidos no site."
 
 # whereAreReaders:5
 msgid "Map your books"
-msgstr "meine Bücher auf der Karte anzeigen"
+msgstr "Mapeie os seus livros"
 
 # whereAreReaders:8
 msgid "Map all books"
-msgstr "alle Bücher auf der Karte anzeigen"
+msgstr "Mapeie todos os livros"
 
 # whereAreReaders:12
 msgid ""
 "As of {{date}} our books have been read {{total}} times in {{country_count}}"
 " countries and {{state_count}} US states and possessions."
-msgstr "{{date}} wurden unsere Bücher lesen {{total}} Mal in Ländern {{country_count}} und {{state_count}} U.S. Staaten und Besitzungen."
+msgstr "Em {{date}} os nossos livros foram lidos {{total}} vezes em {{country_count}} países e {{state_count}} estados dos EUA."
 
 # whereAreReaders:17
 msgid "Books by Language"
-msgstr "Bücher von Sprache"
+msgstr "Livros por Língua"
 
 # whereAreReaders:18
 msgid "Books"
-msgstr "Bücher"
+msgstr "Livros"
 
 # whereAreReaders:26
 msgid "Readers by Country"
-msgstr "Leser nach Land"
+msgstr "Leitores por País"
 
 # whereAreReaders:27, whereAreReaders:35
 msgid "Books Read"
-msgstr "Bücher lesen"
+msgstr "Livros Lidos"
 
 # whereAreReaders:27, whereAreReaders:35
 msgid "Name"
-msgstr "Name"
+msgstr "Nome"
 
 # whereAreReaders:34
 msgid "Readers by US States and Possessions"
-msgstr "Leser von US-Bundesstaaten und Besitzungen"
+msgstr "Livros por Estados e Possessões dos EUA"
 
 # whereAreReaders:42
 msgid "We do not yet have any of your books on the map."
-msgstr "Keines Ihrer Bücher wird bisher auf der Karte angezeigt. "
+msgstr "Ainda não temos nenhum dos seus livros no mapa."
 
 # write:6
 msgid "You must be logged in to write a book. Please log in below."
-msgstr "Sie müssen angemeldet sein, um ein Buch zu schreiben. Bitte wählen Sie \"log in\" unten auf der Seite. "
+msgstr "Tem que iniciar sessão para escrever um livro. Inicie sessão abaixo."
 
 # write:10
 msgid "Step 1: Find pictures"
-msgstr "Schritt 1: Bilder suchen"
+msgstr "Passo 1: Procure imagens"
 
 # write:12
 msgid ""
 "Enter words to search Flickr or enter the email address you use at Flickr to"
 " see your personal photos. A set of pictures from Flickr will appear; click "
 "on one to preview."
-msgstr "Geben Sie einen Suchbegriff ein, um Bilder von Flickr zu nutzen. Um eigene Fotos aufzurufen, loggen Sie sich mit der E-Mail-Adresse ein, mit der Sie bei Flickr registriert sind. Eine Auswahl von Bildern erscheint. Klicken Sie auf ein Bild, um die Vorschau zu sehen."
+msgstr "Digite o que quer pesquisar no Flickr ou escreva o email que usa no Flickr para ver as suas fotos. Surgirá um conjunto de imagens do Flickr; clique numa para visualizar."
 
 # write:12
 msgid "Step 1: Search Help"
-msgstr "Schritt 1: Hilfe beim Suchen"
+msgstr "Passo 1: Ajuda na Pesquisa"
 
 # write:16, collections:4, value:1
 msgctxt "button label"
 msgid "Search"
-msgstr "suchen"
+msgstr "Pesquisa"
 
 # write:20
 msgid "No matching images found."
-msgstr "Keine passenden Bilder gefunden."
+msgstr "Não foram encontradas imagens correspondentes"
 
 # write:21
 msgid "No matching email address found."
-msgstr "Keine passende E-Mail-Adresse gefunden."
+msgstr "Não foi encontrado um email correspondente"
 
 # write:23
 msgid "Go back"
-msgstr "Zurück"
+msgstr "Voltar"
 
 # write:23
 msgid "More like these"
-msgstr "ähnliche Bücher"
+msgstr "Mais como esta"
 
 # write:27
 msgid "Or upload your own pictures"
-msgstr "oder Iaden Sie Ihre eigenen Bilder hoch"
+msgstr "Ou carregue as suas imagens"
 
 # write:29
 msgid ""
 "Click browse to find an image on your computer, then click upload to add it "
 "to your book. Pictures must be less than 2 megabytes in size to properly "
 "upload. They will be resized to 500x500 pixels."
-msgstr "Klicken Sie auf \"Durchsuchen\", um ein Bild auf Ihrem Computer suchen und dann auf \"Hochladen\", um es zu Ihrem Buch hinzufügen. Bilder dürfen nicht größer als 2 MB sein. Sie werden auf 500 x 500 Pixel verkleinert."
+msgstr "Clique em Procurar para encontrar uma imagem no seu computador e depois clique em Carregar para adicioná-la ao seu livro. As imagens devem ter menos de 2 megabytes para carregarem correctamente. Serão redimensionadas para 500x500 pixéis."
 
 # write:29
 msgid "Step 1: Upload Help"
-msgstr "Schritt 2: Hilfe beim Hochladen"
+msgstr "Passo 1: Ajuda para Carregar"
 
 # write:34
 msgid "Step 2: Enter a short sentence for each page"
-msgstr "Schritt 2: Geben Sie einen kurzen Satz für jede Seite ein."
+msgstr "Passo 2: Escreva uma frase curta para cada página"
 
 # write:36
 msgid ""
 "Click on a page to edit it. You may reorder the pages with drag and drop."
-msgstr "Klicken Sie auf eine Seite um sie zu bearbeiten. Sie können die Seiten per drag&drop neu anordnen."
+msgstr "Clique numa página para editá-la. Pode arrastar e largar para reordenar as páginas."
 
 # write:36
 msgid "Step 2: Edit help"
-msgstr "Schritt 2: Hilfe beim Bearbeiten"
+msgstr "Passso 2: Ajuda para Editar"
 
 # write:40
 msgid "After you select or upload pictures your pages will appear here."
-msgstr "Nach dem Auswählen oder Hochladen von Bildern werden Ihre Seiten hier angezeigt."
+msgstr "Depois de seleccionar ou carregar imagens, as suas páginas aparecem aqui."
 
 # write:44
 msgid "Step 3: Fill in the details"
-msgstr "Schritt 3: Machen sie weitere Angaben. "
+msgstr "Passo 3: Introduza os detalhes"
 
 # write:46
 msgid ""
 "Fill in the title for your book and select its language from the list. You "
 "may use a psuedonym if you wish by changing the author field."
-msgstr "Geben Sie den Titel Ihres Buches ein und wählen Sie die Sprache. Sie können ein Pseudonym wählen, indem Sie das Feld \"Autor\" entsprechend ändern. "
+msgstr "Escreva o título para o seu livro e seleccione a língua na listagem. Pode usar um pseudónimo mudando o campo de autor."
 
 # write:46
 msgid "Step 3: Details help"
-msgstr "Schritt 3: Hilfe bei weiteren Angaben"
+msgstr "Passo 3: Ajuda para Detalhes"
 
 # write:49
 msgid "Enter a title for your book"
-msgstr "Geben Sie einen Titel für Ihr Buch ein."
+msgstr "Escreva título para o seu livro"
 
 # write:51
 msgid "Author"
@@ -777,370 +775,370 @@ msgstr "Autor"
 
 # write:52
 msgid "Enter a pseudonym"
-msgstr "Wählen Sie ein Pseudonym."
+msgstr "Introduza um pseudónimo"
 
 # write:54, whereAreReaders:18, label:1
 msgid "Language"
-msgstr "Sprache"
+msgstr "Língua"
 
 # write:56
 msgid "Choose a language"
-msgstr "Wählen Sie eine Sprache."
+msgstr "Escolha uma língua"
 
 # write:62
 msgid "Optionally"
-msgstr "optional"
+msgstr "Opcional"
 
 # write:62, write:66
 msgid "Categorize your book"
-msgstr "Ordnen Sie Ihr Buch einer Kategorie zu."
+msgstr "Classifique o seu livro"
 
 # write:68
 msgid "Step 3: Categorize help"
-msgstr "Schritt 3: Hilfe beim Kategorisieren"
+msgstr "Passo 3: Ajuda na classificação"
 
 # write:68
 msgid ""
 "You may select up to three library categories, an audience rating and BLF "
 "type if you wish."
-msgstr "Sie können Ihre Bücher bis zu drei unterschiedlichen Kategorien zuordnen. Außerdem können Sie festlegen für welchen Leserkreis sie geeignet sind und um welche Textart es sich handelt. "
+msgstr "Pode seleccionar até três categorias, um tipo de público e um tipo de MLE."
 
 # write:71
 msgid "Library Classification"
-msgstr "Textart"
+msgstr "Classificação de biblioteca"
 
 # write:77
 msgid "Audience Rating"
-msgstr "Leserkreis"
+msgstr "Tipo de público"
 
 # write:79, write:88
 msgid "None"
-msgstr "keine"
+msgstr "Nenhum"
 
 # write:80, label:1
 msgctxt "books appropriate for everyone"
 msgid "Rated E/Everybody"
-msgstr "mit \"A\" bewertet / Alle"
+msgstr "Classificado T/Todos"
 
 # write:81, label:1
 msgctxt "books that may not be appropriate for all readers"
 msgid "Rated C/Caution"
-msgstr "mit \"V\" bewertet / Vorsicht"
+msgstr "Classificado A/Atenção"
 
 # write:86
 msgid "Beginning Literacy Framework Type"
-msgstr "Buchtyp nach \"Beginning Literacy-Framework\""
+msgstr "Tipo de Modelo de Literacia Emergente"
 
 # write:89
 msgid "Transitional"
-msgstr "Transfertexte"
+msgstr "Transição"
 
 # write:90
 msgid "Conventional"
-msgstr "Konventionelle Texte"
+msgstr "Convencional"
 
 # write:91
 msgid "Other"
-msgstr "andere"
+msgstr "Outro"
 
 # write:96
 msgid "Tags"
-msgstr "Tags"
+msgstr "Etiquetas"
 
 # write:98
 msgid "Enter a few descriptive words to make your book easier to find"
-msgstr "Geben Sie Schlagworte ein, damit Ihr Buch besser gefunden werden kann."
+msgstr "Introduza algumas palavras que tornem o livro mais fácil de encontrar"
 
 # write:103, whereAreReaders:18
 msgid "Reviewed"
-msgstr "überprüft"
+msgstr "Revisto"
 
 # write:110
 msgid "Step 4: Publish"
-msgstr "Schritt 4: veröffentlichen"
+msgstr "Passo 4: Publi"
 
 # write:113
 msgid "Step 4: Save help"
-msgstr "Schritt 4: Hilfe beim Speichern"
+msgstr "Passo 4: Publique"
 
 # write:113
 msgid ""
 "To continue working on your book later, or to remove it from public view, "
 "click Save as draft. You will be able to return it from the Your Books page."
 " To publish your completed book, click Publish."
-msgstr "Ist ein Buch noch nicht fertig gestellt oder möchten Sie ein bereits veröffentlichtes Buch noch einmal bearbeiten, klicken Sie auf \"als Entwurf speichern\". Bereits veröffentlichte Bücher werden so aus der öffentlichen Liste entfernt. Um ein fertiges Buch einzustellen, wählen Sie \"veröffentlichen\"."
+msgstr "Para continuar a trabalhar no seu livro mais tarde, ou retirá-lo de visualização pública, clique Guardar rascunho. Pode voltar encontrá-lo na página Meus Livros. Para publicar o livro completo, clique Publicar."
 
 # write:115
 msgid ""
 "I have permission from any copyright holders to use the images I uploaded."
-msgstr "Ich habe die Erlaubnis von copyright-Inhabern zur Verwendung der Bilder, die ich hochgeladen."
+msgstr "Tenho permissão de quaisquer detentores de copyright para usar as imagens que carreguei."
 
 # write:118
 msgid "Save as draft"
-msgstr "als Entwurf speichern"
+msgstr "Guardar como rascunho"
 
 # write:119
 msgid "Publish"
-msgstr "veröffentlichen"
+msgstr "Publicar"
 
 # write:121
 msgid "Your book will not be published until you fix these issues."
-msgstr "Ihr Buch kann noch nicht veröffentlicht werden. Folgende Änderungen müssen Sie noch vornehmen:"
+msgstr "O seu livro não será publicado até resolver estes problemas."
 
 # write:122
 msgid "It must have a title."
-msgstr "Das Buch muss einen Titel haben."
+msgstr "Tem que ter um título."
 
 # write:123
 msgid "It must have an author."
-msgstr "Das Buch muss einen Autor haben."
+msgstr "Tem que ter um autor."
 
 # write:124
 msgid "Each page must have some text."
-msgstr "Jede Seite muss einen Text haben."
+msgstr "Todas as páginas têm que ter texto."
 
 # write:125
 msgid "The text on each page must be less than 130 characters in length."
-msgstr "Der Text einer Seite darf nicht mehr als 130 Zeichen umfassen."
+msgstr "O texto em cada página tem que ter menos de 130 caracteres."
 
 # write:126
 msgid "It must have at least 3 pages."
-msgstr "Ein Buch muss mindestens 3 Seiten haben."
+msgstr "Tem que ter pelo menos 3 páginas."
 
 # write:127
 msgid "It must specify the language."
-msgstr "Sie müssen eine Sprache für das Buches festlegen."
+msgstr "Tem que especificar a língua."
 
 # write:128
 msgid "It must be in no more than 4 categories."
-msgstr "Ein Buch darf nicht mehr als 4 Kategorien zugeordnet sein."
+msgstr "Não pode estar em mais de 4 categorias."
 
 # write:129
 msgid "You must check that you have permission to use uploaded images."
-msgstr "Sie müssen überprüfen, dass Sie die Berechtigung, hochgeladene Bilder zu verwenden."
+msgstr "Tem que confirmar que tem permissão para usar imagens carregadas."
 
 # write:130
 msgid "Your book has been saved as a draft."
-msgstr "Ihr Buch wurde als Entwurf gespeichert."
+msgstr "O seu livro foi guardado como rascunho."
 
 # write:137
 msgctxt "button label"
 msgid "Add to Book"
-msgstr "dem Buch hinzufügen"
+msgstr "Adicionar um Livro"
 
 # write:138
 msgctxt "button label"
 msgid "Close"
-msgstr "schließen"
+msgstr "Fechar"
 
 # write:139
 msgctxt "button label"
 msgid "Previous"
-msgstr "zurück"
+msgstr "Anterior"
 
 # write:140, collections:24, bookPage:26
 msgctxt "button label"
 msgid "Next"
-msgstr "weiter"
+msgstr "Seguinte"
 
 # write:141
 msgid "Page added to your book"
-msgstr "Die Seite wurde Ihrem Buch zugefügt."
+msgstr "Página adicionada ao seu livro"
 
 # write:142
 msgid "Page duplicated"
-msgstr "Seite dupliziert"
+msgstr "Página duplicada"
 
 # write:145
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
-msgstr "Klicken Sie auf den Text um diesen zu ändern. Um zwischen den Seiten zu wechseln, nutzen Sie die Schaltflächen \"weiter\" und \"zurück\". Wenn Sie fertig sind, schließen Sie den Editor, indem Sie auf das x oben rechts klicken."
+msgstr "Clique no texto para mudá-lo. Pode usar os botões Anterior e Seguinte para mudar de página. Quando terminar, feche o editor clicando no x do canto superior direito."
 
 # write:145
 msgid "Page Editor Help"
-msgstr "Hilfe"
+msgstr "Ajuda do Editor de Páginas"
 
 # write:147
 msgid "Click to edit"
-msgstr "Bearbeiten"
+msgstr "Clique para editar"
 
 # write:148
 msgid "Delete this page"
-msgstr "Seite löschen"
+msgstr "Apague esta página"
 
 # write:149
 msgid "Duplicate this page"
-msgstr "Diese Seite duplizieren"
+msgstr "Duplique esta página"
 
 # write:150
 msgid "If you leave you will lose your work on this book."
-msgstr "Wollen Sie diese Seite wirklich verlassen? Ihre Änderungen gehen verloren. "
+msgstr "Se sair, perderá o trabalho neste livro."
 
 # write:153
 msgid "Drop files here to upload"
-msgstr "Zum Hochladen ziehen Sie Ihre Dateien in dieses Feld."
+msgstr "Largue aqui os ficheiros que quer carregar"
 
 # write:154
 msgid "Upload"
-msgstr "Hochladen"
+msgstr "Carregar"
 
 # write:164
 msgid "Failed"
-msgstr "Fehlgeschlagen"
+msgstr "Erro"
 
 # yourbooks:2, write:2
 msgid "You must have Javascript enabled in order to write a book."
-msgstr "Sie müssen Javascript aktivieren, um ein Buch zu schreiben."
+msgstr "Tem que ter o Javascript activado para escrever um livro"
 
 # yourbooks:4, write:4
 msgid "Your web browser does not support writing books."
-msgstr "Das Schreiben von Büchern wird von ihrem Browser nicht unterstützt."
+msgstr "O seu navegador não suporta a escrita de livros."
 
 # yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:42,
 # yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:28,
 # write:28, write:35, write:35, write:45, write:45, write:67, write:67,
 # write:112, write:112, write:144, write:144
 msgid "Click for help"
-msgstr "Hilfe"
+msgstr "Clique para ajuda"
 
 # yourbooks:8
 msgid ""
 "Links to the main sections of this page are listed below. You may choose to "
 "use these links to help you get to the different sections of this page."
-msgstr "Links zu den wichtigsten Abschnitten dieser Seite sind unten aufgeführt. Sie können diese Links verwenden, um zu den verschiedenen Bereichen zu wechseln."
+msgstr "Os links para as secções principais desta página estão listados abaixo. Pode usar estes links para ver as diferentes secções desta página."
 
 # yourbooks:8, yourbooks:9
 msgid "Quick Navigation"
-msgstr "Schnellnavigation"
+msgstr "Navegação Rápida"
 
 # yourbooks:11, yourbooks:18, yourbooks:19
 msgid "Your Draft Books"
-msgstr "Ihre Entwürfe"
+msgstr "Meus Rascunhos"
 
 # yourbooks:12, yourbooks:43, yourbooks:44
 msgid "Your Published Books"
-msgstr "Ihre veröffentlichten Bücher"
+msgstr "Meus Livros Publicados"
 
 # yourbooks:13, yourbooks:67, yourbooks:68
 msgid "Your Collections"
-msgstr "Ihre Sammlungen"
+msgstr "Minhas Colecções"
 
 # yourbooks:18
 msgid ""
 "Your draft books are listed below. Click on a title to expose a menu that "
 "will allow you to edit or delete it."
-msgstr "Ihre Entwürfe sind unten aufgeführt. Klicken Sie auf einen Titel, um in den Bearbeitungsmodus zu wechseln."
+msgstr "Os seus rascunhos estão listados abaixo. Clique num título para ver um menu que permite editá-lo ou apagá-lo."
 
 # yourbooks:24, yourbooks:26
 msgid "untitled"
-msgstr "ohne Titel"
+msgstr "sem título"
 
 # yourbooks:27, yourbooks:52
 msgctxt "Button label"
 msgid "Read"
-msgstr "Lesen"
+msgstr "Ler"
 
 # yourbooks:28, yourbooks:53
 msgctxt "Button label"
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr "Editar"
 
 # yourbooks:29, yourbooks:97
 msgctxt "Button label"
 msgid "Delete"
-msgstr "Löschen"
+msgstr "Apagar"
 
 # yourbooks:30, yourbooks:54, yourbooks:83, yourbooks:98, busy:6, busy:11,
 # write:163
 msgctxt "Button label"
 msgid "Cancel"
-msgstr "abbrechen"
+msgstr "Cancelar"
 
 # yourbooks:37
 msgid "If you had any books saved as drafts they would appear here."
-msgstr "Hier finden Sie Ihre gespeicherten Entwürfe."
+msgstr "Se tiver livros em rascunho, aparecem aqui."
 
 # yourbooks:43
 msgid ""
 "Your published books are listed below. Click on a title to expose a menu "
 "that will allow you to edit it. From the editor you may return a book draft "
 "status by clicking Save as Draft."
-msgstr "Ihre veröffentlichen Bücher sind unten aufgeführt. Klicken sie auf den Titel, um in den Bearbeitungsmodus des Buches zu wechseln. Klicken sie auf \"in Entwürfe speichern\", um mit diesem Buch erneut in den Entwurfstatus zu wechseln."
+msgstr "Os seus livros publicados estão listados abaixo. Clique num título para ver um menu que permite editá-los. No editor, pode voltar a rascunho clicando em Guardar rascunho."
 
 # yourbooks:61
 msgid "If you had any published books they would be listed here."
-msgstr "Hier erscheint die Liste Ihrer veröffentlichten Bücher."
+msgstr "Se tivesse livros publicados, estariam listados aqui."
 
 # yourbooks:67
 msgid ""
 "Your collections are listed below. Click on the Favorites button to create a"
 " new collection. Click on a collection to expose a menu that will allow you "
 "to modify it."
-msgstr "Ihre ausgewählten Bücher sind unten aufgeführt. Klicken Sie auf die Schaltfläche Favoriten, um eine neue Sammlung zu erstellen.\nUm eine vorhandene Sammlung zu bearbeiten, klicken sie auf diese. Ein Menü zur weiteren Bearbeitung wird sich öffnen. "
+msgstr "As suas colecções estão listadas abaixo. Clique no botão Favoritos para criar uma nova colecção. Clique numa colecção para ver um menu que permite modificá-la."
 
 # yourbooks:73
 msgid "Favorites: {{count}} books"
-msgstr "Favoriten: {{Count}} Bücher"
+msgstr "Favoritos: {{count}} livros"
 
 # yourbooks:75, yourbooks:90, write:48
 msgid "Title"
-msgstr "Titel"
+msgstr "Título"
 
 # yourbooks:76, yourbooks:91
 msgid "Description"
-msgstr "Beschreibung"
+msgstr "Descrição"
 
 # yourbooks:77
 msgctxt "Button label"
 msgid "Save as a new Collection"
-msgstr "als neue Sammlung speichern"
+msgstr "Guardar como nova Colecção"
 
 # yourbooks:80
 msgid "Add books to your Favorites and come back here to save as a Collection"
-msgstr "Hier können Sie Bücher zu einer Sammlung zusammenfassen, die sie vorab als Favoriten markiert haben. "
+msgstr "Adicione livros aos Favoritos e volte aqui para guardar como Colecção"
 
 # yourbooks:82
 msgctxt "Button label"
 msgid "Clear Favorites list"
-msgstr "Favoriten-Liste leeren"
+msgstr "Limpe a lista de Favoritos"
 
 # yourbooks:92
 msgid "{{count}} books"
-msgstr "{{count}}Bücher"
+msgstr "{{count}} livros"
 
 # yourbooks:93
 msgctxt "Button label"
 msgid "Update title and description"
-msgstr "Titel und Beschreibung aktualisieren"
+msgstr "Actualize o título e descrição"
 
 # yourbooks:94
 msgctxt "Button label"
 msgid "Add to Favorites"
-msgstr "zu Favoriten hinzufügen"
+msgstr "Adicione aos Favoritos."
 
 # yourbooks:95
 msgid "Merge Favorites into here"
-msgstr "Favoriten hier sammeln"
+msgstr "Junte os Favoritos aqui"
 
 # yourbooks:96
 msgid "Replace with Favorites"
-msgstr "durch Favoriten ersetzen "
+msgstr "Substitua pelos Favoritos"
 
 # yourbooks:107
 msgid "You must be logged in to see your draft and published books."
-msgstr "Sie müssen angemeldet sein, um Ihre Entwürfe und veröffentlichten Bücher sehen zu können."
+msgstr "Tem que ter sessão iniciada para ver os seus rascunhos e publicações"
 
 # yourbooks:107, write:6, login:21
 msgctxt "link label"
 msgid "Log In"
-msgstr "Log in"
+msgstr "Entrar"
 
 # yourbooks:110
 msgid "Where in the world are these books read?"
-msgstr "Wo werden diese Bücher gelesen?"
+msgstr "Onde é que estes livros são lidos?"
 
 # yourbooks:111
 msgid "Check out our map of readers!"
-msgstr "Schauen sie sich die Karte unserer Leser an."
+msgstr "Veja o nosso mapa de leitores!"
