@@ -28,6 +28,13 @@ locale/it/LC_MESSAGES/thr.mo: languages/it.po
 Templates.it.json: languages/it.po locale/it/LC_MESSAGES/thr.mo Templates.en.json
 	python tools/BuildTemplate.py -compact --lang=it --output=Templates.it.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
+locale/pt/LC_MESSAGES/thr.mo: languages/pt.po
+	mkdir -p locale/pt/LC_MESSAGES
+	msgfmt languages/pt.po --output-file locale/pt/LC_MESSAGES/thr.mo
+
+Templates.pt.json: languages/pt.po locale/pt/LC_MESSAGES/thr.mo Templates.en.json
+	python tools/BuildTemplate.py -compact --lang=pt --output=Templates.pt.json templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+
 locale/tr/LC_MESSAGES/thr.mo: languages/tr.po
 	mkdir -p locale/tr/LC_MESSAGES
 	msgfmt languages/tr.po --output-file locale/tr/LC_MESSAGES/thr.mo
@@ -38,7 +45,7 @@ Templates.tr.json: languages/tr.po locale/tr/LC_MESSAGES/thr.mo Templates.en.jso
 Templates.en.json: tools/BuildTemplate.py templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python tools/BuildTemplate.py -compact --lang=en --output=Templates.en.json --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json style.css
+build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json style.css
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss

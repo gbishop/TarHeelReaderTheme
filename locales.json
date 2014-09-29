@@ -1,8 +1,9 @@
 [
-    { "label": "Deutsch",  "value":"de", "templates":"/theme/Templates.de.json" },
-    { "label": "English",  "value":"en", "selected":true },
+    { "label": "Deutsch", "value":"de", "templates":"/theme/Templates.de.json" },
+    { "label": "English", "value":"en", "selected":true },
+    { "label": "Español", "value":"es", "templates":"/theme/Templates.es.json"},
     { "label": "Français", "value":"fr", "templates":"/theme/Templates.fr.json"},
-    { "label": "Türkçe",   "value":"tr", "templates":"/theme/Templates.tr.json"},
-    { "label": "Español",  "value":"es", "templates":"/theme/Templates.es.json"},
-    { "label": "Italiano", "value":"it", "templates":"/theme/Templates.it.json"}
+    { "label": "Italiano", "value":"it", "templates":"/theme/Templates.it.json"},
+    { "label": "Türkçe", "value":"tr", "templates":"/theme/Templates.tr.json"},
+    { "label": "Português", "value":"pt", "templates":"/theme/Templates.pt.json"}
 ]
