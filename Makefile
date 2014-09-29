@@ -64,7 +64,7 @@ copygb:
 
 copyproduction:
 	rsync -az --delete . gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
-	launch.py http://tarheelreader.org/
+	# launch.py http://tarheelreader.org/
 
 gb: build copygb
 
