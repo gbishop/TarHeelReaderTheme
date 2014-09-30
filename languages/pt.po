@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2014-09-29 18:10+0000\n"
+"PO-Revision-Date: 2014-09-29 22:01+0000\n"
 "Last-Translator: Rui Fernandes <rui@cantic.org.pt>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/tar-heel-reader/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgid ""
 "Note the little well icon {{{wellicon}}} in the upper left corner of the "
 "page; clicking it will allow you to access the main menu. You can also click"
 " the settings icon {{{gearicon}}} to change settings on some pages."
-msgstr "O pequeno ícone do poço {{{wellicon}}} no canto superior esquerdo permite aceder ao menu principal. Pode também clicar nos menu de opções {{{gearicon}}} para mudar as opções de algumas páginas."
+msgstr "O pequeno ícone do poço {{{wellicon}}} no canto superior esquerdo permite aceder ao menu principal. Pode também clicar no menu de opções {{{gearicon}}} para mudar as opções de algumas páginas."
 
 # frontPage:9
 msgid ""
@@ -696,7 +696,7 @@ msgstr "Digite o que quer pesquisar no Flickr ou escreva o email que usa no Flic
 
 # write:12
 msgid "Step 1: Search Help"
-msgstr "Passo 1: Ajuda na Pesquisa"
+msgstr "Passo 1: Ajuda para Pesquisar"
 
 # write:16, collections:4, value:1
 msgctxt "button label"
@@ -717,7 +717,7 @@ msgstr "Voltar"
 
 # write:23
 msgid "More like these"
-msgstr "Mais como esta"
+msgstr "Mais como estas"
 
 # write:27
 msgid "Or upload your own pictures"
@@ -795,7 +795,7 @@ msgstr "Classifique o seu livro"
 
 # write:68
 msgid "Step 3: Categorize help"
-msgstr "Passo 3: Ajuda na classificação"
+msgstr "Passo 3: Ajuda para Classificar"
 
 # write:68
 msgid ""
@@ -855,18 +855,18 @@ msgstr "Revisto"
 
 # write:110
 msgid "Step 4: Publish"
-msgstr "Passo 4: Publi"
+msgstr "Passo 4: Publique"
 
 # write:113
 msgid "Step 4: Save help"
-msgstr "Passo 4: Publique"
+msgstr "Passo 4: Ajuda para Guardar"
 
 # write:113
 msgid ""
 "To continue working on your book later, or to remove it from public view, "
 "click Save as draft. You will be able to return it from the Your Books page."
 " To publish your completed book, click Publish."
-msgstr "Para continuar a trabalhar no seu livro mais tarde, ou retirá-lo de visualização pública, clique Guardar rascunho. Pode voltar encontrá-lo na página Meus Livros. Para publicar o livro completo, clique Publicar."
+msgstr "Para continuar a trabalhar no seu livro mais tarde, ou retirá-lo de visualização pública, clique Guardar rascunho. Pode retomá-lo na página Meus Livros. Para publicar o livro completo, clique Publicar."
 
 # write:115
 msgid ""
@@ -924,7 +924,7 @@ msgstr "O seu livro foi guardado como rascunho."
 # write:137
 msgctxt "button label"
 msgid "Add to Book"
-msgstr "Adicionar um Livro"
+msgstr "Adicionar ao Livro"
 
 # write:138
 msgctxt "button label"
@@ -1058,7 +1058,7 @@ msgstr "Cancelar"
 
 # yourbooks:37
 msgid "If you had any books saved as drafts they would appear here."
-msgstr "Se tiver livros em rascunho, aparecem aqui."
+msgstr "Se tivesse livros em rascunho, apareceriam aqui."
 
 # yourbooks:43
 msgid ""
