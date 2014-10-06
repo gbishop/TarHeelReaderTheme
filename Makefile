@@ -1,23 +1,22 @@
 all: build copygb
 
 transifex:
-	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it
-
-languages/fr.po: languages/fr_FR.po
+	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it,zh
 	mv languages/fr_FR.po languages/fr.po
-languages/pt.po: languages/pt_PT.po
 	mv languages/pt_PT.po languages/pt.po
-languages/es.po: languages/es_MX.po
 	mv languages/es_MX.po languages/es.po
 
 locale/%/LC_MESSAGES/thr.mo: languages/%.po
 	mkdir -p $(dir $@)
 	msgfmt $< --output-file $@
 
-Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo Templates.en.json
+Templates.en.json: templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py -compact --lang=en --output=$@ $^
+
+Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json style.css
+build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json style.css
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
