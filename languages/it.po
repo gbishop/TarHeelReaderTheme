@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2014-09-29 18:02+0000\n"
+"PO-Revision-Date: 2014-09-29 18:10+0000\n"
 "Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/tar-heel-reader/language/it/)\n"
 "MIME-Version: 1.0\n"

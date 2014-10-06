@@ -1,125 +1,125 @@
 # 
 # Translators:
-# Rui Fernandes <rui@cantic.org.pt>, 2014
+# Haiwei Chen <chw9308@hotmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2014-09-30 09:40+0000\n"
-"Last-Translator: Rui Fernandes <rui@cantic.org.pt>\n"
-"Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/tar-heel-reader/language/pt_PT/)\n"
+"PO-Revision-Date: 2014-10-03 15:50+0000\n"
+"Last-Translator: Haiwei Chen <chw9308@hotmail.com>\n"
+"Language-Team: Chinese (http://www.transifex.com/projects/p/tar-heel-reader/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_PT\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 # bookList:3
 msgid "Your favorites page is empty."
-msgstr "A sua página de favoritos está vazia."
+msgstr "你的收藏夹是空的！"
 
 # bookList:8
 msgid "Click here to try your search without restrictions."
-msgstr "Clique aqui para pesquisar sem restrições."
+msgstr "点此进行无限制的搜索"
 
 # bookList:8
 msgid "No books found."
-msgstr "Não foram encontrados livros."
+msgstr "找不到此图书"
 
 # bookList:22, bookList:22
 msgctxt "icon explanatory text"
 msgid "Reviewed for educational quality."
-msgstr "Revisto a nível de qualidade educativa."
+msgstr "经审查有教育意义的书目"
 
 # bookList:26, bookList:26
 msgctxt "icon explanatory text"
 msgid "May not be appropriate for all readers."
-msgstr "Pode não ser apropriado para todos os leitores."
+msgstr "可能不适于所有读者的书目"
 
 # busy:5
 msgid "Loading. Please wait."
-msgstr "A carregar. Espere, por favor."
+msgstr "你看到这行字的原因是我们没有钱购买更好的服务器...所以请静坐一阵子让我们慢慢载入"
 
 # busy:9
 msgid "Something went wrong. The message was:"
-msgstr "Algo correu mal. A mensagem foi:"
+msgstr "网站未响应，错误信息为："
 
 # busy:10
 msgctxt "Button label"
 msgid "Try again"
-msgstr "Tente novamente."
+msgstr "重试"
 
 # choicePage:2, choicePage:26
 msgid "What would you like to do now?"
-msgstr "O que quer fazer agora?"
+msgstr "你现在想做什么？"
 
 # choicePage:4, choicePage:28
 msgid "Read this book again."
-msgstr "Leia este livro novamente."
+msgstr "再读一次"
 
 # choicePage:5
 msgid "Rate this book."
-msgstr "Classifique este livro."
+msgstr "评价这本书"
 
 # choicePage:6, choicePage:29
 msgid "Read another book."
-msgstr "Leia outro livro."
+msgstr "读其他的书"
 
 # choicePage:10
 msgid "How do you rate this book?"
-msgstr "Como classifica este livro?"
+msgstr "你想如何评价这本书？"
 
 # choicePage:21
 msgid "Thank you for your opinion."
-msgstr "Obrigado pela sua opinião."
+msgstr "谢谢你的评价！"
 
 # choicePage:24
 msgid "Average Rating"
-msgstr "Classificação Média"
+msgstr "平均评价"
 
 # collections:1, navigation:16
 msgid "Collections"
-msgstr "Colecções"
+msgstr "收藏夹"
 
 # collections:3, description:1
 msgctxt "placeholder text for search box"
 msgid "Enter text to search"
-msgstr "Escreva o texto a pesquisar"
+msgstr "文本搜索"
 
 # collections:7
 msgid "No collections matching that query. Try again."
-msgstr "Não há colecções que correspondam à pesquisa. Tente novamente."
+msgstr "找不到您的搜寻对象，请重试"
 
 # collections:21
 msgid "Create your own collection"
-msgstr "Crie a sua colecção"
+msgstr "创建您的收藏夹"
 
 # collections:27, bookPage:23
 msgctxt "button label"
 msgid "Back"
-msgstr "Voltar"
+msgstr "返回"
 
 # find:5
 msgctxt "label for button to expose search fields on small devices"
 msgid "Press to search"
-msgstr "Pesquisar"
+msgstr "搜索...请按键"
 
 # find:10
 msgctxt "button label"
 msgid "Previous Books"
-msgstr "Livros Anteriores"
+msgstr "前一本书"
 
 # find:13
 msgctxt "button label"
 msgid "More Books"
-msgstr "Mais Livros"
+msgstr "更多书"
 
 # frontPage:1
 msgid "Welcome"
-msgstr "Bem-vindo"
+msgstr "欢迎"
 
 # frontPage:3
 msgid "Click here to learn more about alternative access methods."
-msgstr "Clique aqui para saber mais sobre métodos de acesso alternativos."
+msgstr "点击这里来查看更多浏览平台"
 
 # frontPage:3
 msgid ""
@@ -127,7 +127,7 @@ msgid ""
 "accessible books on a wide range of topics. Each book can be speech enabled "
 "and accessed using multiple interfaces, including touch screens, the "
 "IntelliKeys with custom overlays, and 1 to 3 switches."
-msgstr "Bem-vindo ao Tar Heel Reader, uma colecção de livros gratuitos, acessíveis e de fácil leitura sobre uma grande variedade de temas. Pode ouvir todos os livros com voz de síntese e consultá-los usando múltiplas interfaces, incluindo ecrãs tácteis, teclado Intellikeys com grelhas personalizadas e 1 a 3 manípulos."
+msgstr "欢迎来到北卡读者。此网站向您提供免费，简单易读的书目。我们的书本涵盖了多种多样的话题，并且提供模拟人声阅读功能。您可以通过许多阅读产品来浏览本网页，比如触屏产品，Intellikeys等等。"
 
 # frontPage:5
 msgid ""
@@ -135,1010 +135,1010 @@ msgid ""
 "{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
 "and revised to the best of your ability before publishing them to the site. "
 "While you are working on them, please save them as drafts."
-msgstr "Pode escrever os seus livros usando imagens da enorme colecção do {{{Flickr}}} ou imagens que carregue. Todos os livros devem ser completados, editados e revistos o melhor possível antes de os publicar no site. Enquanto está a trabalhar neles, guarde-os como rascunhos."
+msgstr "你可以使用Flickr的丰富图片来源来创建自己的书本。在出版前，你的书本必须经过仔细完善与修改。你可以将你未完成的书本保存为草稿。"
 
 # frontPage:7
 msgid ""
 "Note the little well icon {{{wellicon}}} in the upper left corner of the "
 "page; clicking it will allow you to access the main menu. You can also click"
 " the settings icon {{{gearicon}}} to change settings on some pages."
-msgstr "O pequeno ícone do poço {{{wellicon}}} no canto superior esquerdo permite aceder ao menu principal. Pode também clicar no menu de opções {{{gearicon}}} para mudar as opções de algumas páginas."
+msgstr "单击左上角的古井标志 {{{wellicon}}} 将进入主目录。你也可以单击设置标志 {{{gearicon}}} 来进行设置"
 
 # frontPage:9
 msgid ""
 "Your browser is unsupported. The site should work for finding and reading "
 "books but you will not have switch access or the ability to write books. We "
 "recommend that you upgrade to a modern browser or install Chrome Frame."
-msgstr "O seu navegador não é suportado. O site deve funcionar para pesquisa e leitura sde livros mas não deverá poder escrever livros ou ter acesso através de manípulos. Recomendamos que use um navegador actual ou instale o Chrome Frame."
+msgstr "您的浏览器不给力。此网页仍然可以帮助您寻找以及阅读图书，但是您的浏览器无法支持我们的创建图书功能。我们建议您尝试更新一个浏览器，或者安装Google Chrome"
 
 # frontPage:11
 msgid ""
 "You are in Classic mode. You will not have access to all of the features of "
 "the site but it may work better on older computers and web browsers. Click "
 "this text to leave Classic mode."
-msgstr "Está em Modo Clássico. Não tem acesso a todas as opções do site mas pode funcionar melhor em computadores e navegadores antigos. Clique neste texto para sair de Modo Clássico."
+msgstr "您现在处于经典模式。您将无法使用此网站的一部分功能，但是此模式有利于版本较旧的计算机或者网页浏览器。点此此栏以退出经典模式"
 
 # frontPage:13
 msgid "Ready to get started?"
-msgstr "Pronto para começar?"
+msgstr "你准备好了吗？"
 
 # frontPage:15, navigation:12
 msgid "Find a book"
-msgstr "Procure um livro"
+msgstr "找一本书"
 
 # frontPage:16, navigation:24
 msgid "Write a book"
-msgstr "Escreva um livro"
+msgstr "创建一本书"
 
 # frontPage:19
 msgid ""
 "This site is also available in other languages. To help with translation, "
 "contact us."
-msgstr "Este site está disponível noutras línguas. Para ajudar a traduzir, contacte-nos."
+msgstr "我们的网站提供其他语种。如果您有意加入我们的翻译团体，请联系我们。"
 
 # frontPage:27
 msgid "change language"
-msgstr "mudar língua"
+msgstr "变更语言"
 
 # frontPage:34
 msgid "Latest Announcements"
-msgstr "Últimas notícias"
+msgstr "最新公告"
 
 # heading:3
 msgctxt "icon explanatory text"
 msgid "Open Menu"
-msgstr "Menu Abrir"
+msgstr "打开菜单"
 
 # heading:7, heading:7, heading:11, heading:14
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
-msgstr "Seleccione Favoritos."
+msgstr "选择我的最爱"
 
 # heading:11
 msgid "Remove from Favorites"
-msgstr "Remova dos Favoritos."
+msgstr "从我的最爱移除"
 
 # heading:14
 msgid "Add to Favorites"
-msgstr "Adicione aos Favoritos."
+msgstr "加至我的最爱"
 
 # heading:19, heading:19, heading:22, heading:22
 msgctxt "icon explanatory text"
 msgid "Settings"
-msgstr "Opções."
+msgstr "设置"
 
 # heading:26
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
-msgstr "Livros para leitores emergentes de todas as idades."
+msgstr "适于全年龄入门读者的书目"
 
 # heading:26
 msgctxt "site name"
 msgid "Tar Heel Reader"
-msgstr "Tar Heel Reader"
+msgstr "北卡读者"
 
 # label:1
 msgid "All Topics"
-msgstr "Todos os Temas"
+msgstr "所有主题"
 
 # label:1
 msgid "Alphabet"
-msgstr "Alfabeto"
+msgstr "字母表顺序"
 
 # label:1
 msgid "Animals and Nature"
-msgstr "Animais e Natureza"
+msgstr "动物与自然"
 
 # label:1
 msgctxt "selection to ignore the audience rating"
 msgid "Any rating"
-msgstr "Qualquer classificação"
+msgstr "任何评价"
 
 # label:1
 msgid "Arabic"
-msgstr "Árabe"
+msgstr "阿拉伯语"
 
 # label:1
 msgid "Art and Music"
-msgstr "Arte e Música"
+msgstr "音乐与艺术"
 
 # label:1
 msgctxt "pulldown label for audience ratings"
 msgid "Audience"
-msgstr "Público"
+msgstr "读者对象"
 
 # label:1
 msgid "Basque"
-msgstr "Basco"
+msgstr "巴斯克语"
 
 # label:1
 msgid "Biographies"
-msgstr "Biografias"
+msgstr "人物志"
 
 # label:1
 msgid "Catalan"
-msgstr "Catalão"
+msgstr "加泰罗尼亚语"
 
 # label:1
 msgid "Chinese"
-msgstr "Chinês"
+msgstr "汉语"
 
 # label:1
 msgid "Danish"
-msgstr "Holandês"
+msgstr "丹麦语"
 
 # label:1
 msgid "English"
-msgstr "Inglês"
+msgstr "英语"
 
 # label:1
 msgid "Fairy and Folk Tales"
-msgstr "Fadas e Contos Tradicionais"
+msgstr "童话与传说"
 
 # label:1
 msgid "Fiction"
-msgstr "Ficção"
+msgstr "虚幻小说"
 
 # label:1
 msgid "Filipino"
-msgstr "Filipino"
+msgstr "菲律宾语"
 
 # label:1
 msgid "Finnish"
-msgstr "Finlandês"
+msgstr "芬兰语"
 
 # label:1
 msgid "Foods"
-msgstr "Comidas"
+msgstr "饮食"
 
 # label:1
 msgid "French"
-msgstr "Francês"
+msgstr "法语"
 
 # label:1
 msgid "Galician"
-msgstr "Galego"
+msgstr "加利西亚语"
 
 # label:1
 msgid "German"
-msgstr "Alemão"
+msgstr "德语"
 
 # label:1
 msgid "Greek"
-msgstr "Grego"
+msgstr "希腊语"
 
 # label:1
 msgid "Health"
-msgstr "Saúde"
+msgstr "健康"
 
 # label:1
 msgid "Hebrew"
-msgstr "Hebraico"
+msgstr "希伯来语"
 
 # label:1
 msgid "History"
-msgstr "História"
+msgstr "历史"
 
 # label:1
 msgid "Holidays"
-msgstr "Dias especiais"
+msgstr "度假"
 
 # label:1
 msgid "Icelandic"
-msgstr "Islandês"
+msgstr "冰岛语"
 
 # label:1
 msgid "Include unreviewed"
-msgstr "Incluir não revistos"
+msgstr "含未审查项"
 
 # label:1
 msgid "Indonesian"
-msgstr "Indonésio"
+msgstr "印度尼西亚语"
 
 # label:1
 msgid "Italian"
-msgstr "Italiano"
+msgstr "意大利语"
 
 # label:1
 msgid "Japanese"
-msgstr "Japonês"
+msgstr "日语"
 
 # label:1
 msgid "Latin"
-msgstr "Latim"
+msgstr "拉丁语"
 
 # label:1
 msgid "Math and Science"
-msgstr "Matemática e Ciências"
+msgstr "数学与科学"
 
 # label:1
 msgid "Nursery Rhymes"
-msgstr "Cantilenas"
+msgstr "童谣"
 
 # label:1
 msgid "People and Places"
-msgstr "Pessoas e Lugares"
+msgstr "人文"
 
 # label:1
 msgid "Poetry"
-msgstr "Poesia"
+msgstr "诗歌"
 
 # label:1
 msgid "Polish"
-msgstr "Polaco"
+msgstr "波兰语"
 
 # label:1
 msgid "Portuguese"
-msgstr "Português"
+msgstr "葡萄牙语"
 
 # label:1
 msgid "Recreation and Leisure"
-msgstr "Recreio e Lazer"
+msgstr "娱乐"
 
 # label:1
 msgctxt "pulldown label"
 msgid "Review status"
-msgstr "Estado de revisão"
+msgstr "审查状况"
 
 # label:1
 msgid "Reviewed only"
-msgstr "Só revisto"
+msgstr "仅已审查项"
 
 # label:1
 msgctxt "label for search box"
 msgid "Search for"
-msgstr "Procurar por"
+msgstr "搜索"
 
 # label:1
 msgid "Spanish"
-msgstr "Espanho"
+msgstr "西班牙语"
 
 # label:1
 msgid "Sports"
-msgstr "Desporto"
+msgstr "体育"
 
 # label:1
 msgid "Swedish"
-msgstr "Sueco"
+msgstr "瑞典语"
 
 # label:1
 msgctxt "pulldown label"
 msgid "Topics"
-msgstr "Temas"
+msgstr "主题"
 
 # label:1
 msgid "Turkish"
-msgstr "Turco"
+msgstr "土耳其语"
 
 # login:2
 msgid "Log in to Tar Heel Reader"
-msgstr "Entrar no Tar Heel Reader"
+msgstr "登入北卡读者"
 
 # login:3
 msgid "Login Failed"
-msgstr "Erro no Acesso"
+msgstr "登入失败"
 
 # login:6
 msgid "Username"
-msgstr "Nome de utilizador"
+msgstr "用户名"
 
 # login:11
 msgid "Password"
-msgstr "Palavra-chave"
+msgstr "密码"
 
 # login:17
 msgctxt "login checkbox label"
 msgid "Remember Me"
-msgstr "Lembrar-me"
+msgstr "自动登入"
 
 # login:26
 msgid "Lost Password"
-msgstr "Perdi a palavra-chave"
+msgstr "忘记密码"
 
 # login:27
 msgid "Register"
-msgstr "Registar"
+msgstr "注册"
 
 # login:30
 msgid "Log out of Tar Heel Reader"
-msgstr "Sair do Tar Heel Reader"
+msgstr "登出北卡读者"
 
 # login:31
 msgid "Log out"
-msgstr "Sair"
+msgstr "登出"
 
 # navigation:3
 msgid "Error 404: Page Not Found"
-msgstr "Erro 404: Página Não Encontrada"
+msgstr "Error 404: 槽糕，页面无法访问"
 
 # navigation:4
 msgid ""
 "We could not find the page you requested. Perhaps the links below will help "
 "you find the page you wanted."
-msgstr "Não encontramos a página que pediu. Talvez os links abaixo o ajudem a encontrar a página que procura."
+msgstr "我们无法寻找到此页面。一下的链接可能能引导你搜寻到你想要的内容"
 
 # navigation:8
 msgid "Home"
-msgstr "Início"
+msgstr "主页"
 
 # navigation:20
 msgid "Favorites"
-msgstr "Favoritos"
+msgstr "收藏"
 
 # navigation:28
 msgid "Log in"
-msgstr "Entrar"
+msgstr "登入"
 
 # navigation:32
 msgid "Help"
-msgstr "Ajuda"
+msgstr "帮助"
 
 # navigation:36
 msgid "Your books"
-msgstr "Meus Livros"
+msgstr "你的图书"
 
 # navigation:40
 msgid "Announcements"
-msgstr "Notícias"
+msgstr "通知"
 
 # navigation:44
 msgid "Photo credits"
-msgstr "Créditos das fotos"
+msgstr "照片来源"
 
 # readingControls:1
 msgid "Reading Preferences"
-msgstr "Preferências de Leitura"
+msgstr "阅读偏好"
 
 # readingControls:7
 msgid "Download this book"
-msgstr "Descarregue este livro"
+msgstr "下载这本书"
 
 # readingControls:8, settings:56
 msgid "PowerPoint"
-msgstr "PowerPoint"
+msgstr "幻灯"
 
 # readingControls:9, settings:57
 msgid "EPUB"
-msgstr "EPUB"
+msgstr "电子书"
 
 # readingControls:12
 msgid "Photo Credits"
-msgstr "Créditos das fotos"
+msgstr "照片来源"
 
 # readingControls:13
 msgid "Photo credits for this book"
-msgstr "Créditos das fotos deste livro"
+msgstr "此书的照片来源"
 
 # readingControls:17
 msgid "Change this book"
-msgstr "Mudar livro"
+msgstr "更改这本书"
 
 # readingControls:18
 msgid "Create a new one like it."
-msgstr "Criar um livro como este"
+msgstr "创建一个类似的图书"
 
 # readingControls:20
 msgid "Edit it."
-msgstr "Editar"
+msgstr "请编辑"
 
 # settings:4, label:1
 msgid "Speech"
-msgstr "Voz"
+msgstr "语音"
 
 # settings:7, label:1
 msgid "Silent"
-msgstr "Silencioso"
+msgstr "静音"
 
 # settings:8, label:1
 msgid "Child"
-msgstr "Criança"
+msgstr "儿童"
 
 # settings:9, label:1
 msgid "Woman"
-msgstr "Mulher"
+msgstr "女性"
 
 # settings:10, label:1
 msgid "Man"
-msgstr "Homem"
+msgstr "男性"
 
 # settings:16
 msgid "Colors"
-msgstr "Cores"
+msgstr "颜色"
 
 # settings:19, label:1
 msgid "Page Color"
-msgstr "Cor da Página"
+msgstr "页面颜色"
 
 # settings:22, settings:36, label:1, label:1
 msgid "Black"
-msgstr "Preto"
+msgstr "黑色"
 
 # settings:23, settings:37, label:1, label:1
 msgid "Blue"
-msgstr "Azul"
+msgstr "蓝色"
 
 # settings:24, settings:38, label:1, label:1
 msgid "Cyan"
-msgstr "Ciano"
+msgstr "青色"
 
 # settings:25, settings:39, label:1, label:1
 msgid "Green"
-msgstr "Verde"
+msgstr "绿色"
 
 # settings:26, settings:40, label:1, label:1
 msgid "Magenta"
-msgstr "Magenta"
+msgstr "洋红"
 
 # settings:27, settings:41, label:1, label:1
 msgid "Red"
-msgstr "Vermelho"
+msgstr "红色"
 
 # settings:28, settings:42, label:1, label:1
 msgid "White"
-msgstr "Branco"
+msgstr "白色"
 
 # settings:29, settings:43, label:1, label:1
 msgid "Yellow"
-msgstr "Amarelo"
+msgstr "黄色"
 
 # settings:33, label:1
 msgid "Text Color"
-msgstr "Cor do Texto"
+msgstr "文本颜色"
 
 # settings:53
 msgid "Download"
-msgstr "Descarregar"
+msgstr "下载"
 
 # settings:63
 msgid "Default"
-msgstr "Predefinição"
+msgstr "默认"
 
 # settings:65
 msgid "More..."
-msgstr "Mais..."
+msgstr "更多。。。"
 
 # text:1
 msgid "1.5 stars"
-msgstr "1,5 estrelas"
+msgstr "1.5 星"
 
 # text:1
 msgid "2.5 stars"
-msgstr "2,5 estrelas"
+msgstr "2.5 星"
 
 # text:1
 msgid "Not yet rated"
-msgstr "Não classificado ainda"
+msgstr "未接受任何评价"
 
 # text:1, choicePage:13
 msgid "1 star"
-msgstr "1 estrela"
+msgstr "1颗星"
 
 # text:1, choicePage:15
 msgid "2 stars"
-msgstr "2 estrelas"
+msgstr "2颗星"
 
 # text:1, choicePage:17
 msgid "3 stars"
-msgstr "3 estrelas"
+msgstr "3颗星"
 
 # value:1
 msgctxt "button label"
 msgid "Done"
-msgstr "Concluído"
+msgstr "完成"
 
 # whereAreReaders:1
 msgid "Where are the readers?"
-msgstr "Onde estão os leitores?"
+msgstr "读者来自何处？"
 
 # whereAreReaders:2
 msgid ""
 "Some of you may have wondered where in the world our books are read. The map"
 " and tables below depict the estimated locations of the computers that have "
 "read books on the site."
-msgstr "Algumas pessoas podem querer saber em que sítios do mundo é que lêem os seus livros. O mapa e tabelas abaixo mostram as localizações aproximadas dos computadores que têm livros lidos no site."
+msgstr "您可能会想知道我们的图书在世界的哪一角落正在被阅读。此栏以下的地图和表格将向您展示浏览此网页的计算机的大致位置"
 
 # whereAreReaders:5
 msgid "Map your books"
-msgstr "Mapeie os seus livros"
+msgstr "定位你的图书"
 
 # whereAreReaders:8
 msgid "Map all books"
-msgstr "Mapeie todos os livros"
+msgstr "定位所以的图书"
 
 # whereAreReaders:12
 msgid ""
 "As of {{date}} our books have been read {{total}} times in {{country_count}}"
 " countries and {{state_count}} US states and possessions."
-msgstr "Em {{date}} os nossos livros foram lidos {{total}} vezes em {{country_count}} países e {{state_count}} estados dos EUA."
+msgstr "截止至 {{date}} 我们的图书被阅读了 {{total}} 次， 阅读地点分布在{{country_count}} 和 {{state_count}}，美国。"
 
 # whereAreReaders:17
 msgid "Books by Language"
-msgstr "Livros por Língua"
+msgstr "根据语言选择图书"
 
 # whereAreReaders:18
 msgid "Books"
-msgstr "Livros"
+msgstr "图书"
 
 # whereAreReaders:26
 msgid "Readers by Country"
-msgstr "Leitores por País"
+msgstr "读者：根据国家排序"
 
 # whereAreReaders:27, whereAreReaders:35
 msgid "Books Read"
-msgstr "Livros Lidos"
+msgstr "已阅读的图书"
 
 # whereAreReaders:27, whereAreReaders:35
 msgid "Name"
-msgstr "Nome"
+msgstr "名字"
 
 # whereAreReaders:34
 msgid "Readers by US States and Possessions"
-msgstr "Livros por Estados e Possessões dos EUA"
+msgstr "在美国的读者"
 
 # whereAreReaders:42
 msgid "We do not yet have any of your books on the map."
-msgstr "Ainda não temos nenhum dos seus livros no mapa."
+msgstr "您的图书尚未被定位在地图上"
 
 # write:6
 msgid "You must be logged in to write a book. Please log in below."
-msgstr "Tem que iniciar sessão para escrever um livro. Inicie sessão abaixo."
+msgstr "要写这本书，你必须登入你的账户"
 
 # write:10
 msgid "Step 1: Find pictures"
-msgstr "Passo 1: Procure imagens"
+msgstr "第一步：搜索您想要的图片"
 
 # write:12
 msgid ""
 "Enter words to search Flickr or enter the email address you use at Flickr to"
 " see your personal photos. A set of pictures from Flickr will appear; click "
 "on one to preview."
-msgstr "Digite o que quer pesquisar no Flickr ou escreva o email que usa no Flickr para ver as suas fotos. Surgirá um conjunto de imagens do Flickr; clique numa para visualizar."
+msgstr "输入关键词在Flickr进行搜索，或者输入您的邮箱地址以获取您的Flickr照片。在本栏下方将会显示一系列Flickr照片，点击照片来查看"
 
 # write:12
 msgid "Step 1: Search Help"
-msgstr "Passo 1: Ajuda para Pesquisar"
+msgstr "步骤1：寻找“帮助”"
 
 # write:16, collections:4, value:1
 msgctxt "button label"
 msgid "Search"
-msgstr "Pesquisa"
+msgstr "搜索"
 
 # write:20
 msgid "No matching images found."
-msgstr "Não foram encontradas imagens correspondentes"
+msgstr "找不到您想要的图片"
 
 # write:21
 msgid "No matching email address found."
-msgstr "Não foi encontrado um email correspondente"
+msgstr "找不到您输入的邮箱地址"
 
 # write:23
 msgid "Go back"
-msgstr "Voltar"
+msgstr "返回"
 
 # write:23
 msgid "More like these"
-msgstr "Mais como estas"
+msgstr "更多类似的选择"
 
 # write:27
 msgid "Or upload your own pictures"
-msgstr "Ou carregue as suas imagens"
+msgstr "或上传本地照片"
 
 # write:29
 msgid ""
 "Click browse to find an image on your computer, then click upload to add it "
 "to your book. Pictures must be less than 2 megabytes in size to properly "
 "upload. They will be resized to 500x500 pixels."
-msgstr "Clique em Procurar para encontrar uma imagem no seu computador e depois clique em Carregar para adicioná-la ao seu livro. As imagens devem ter menos de 2 megabytes para carregarem correctamente. Serão redimensionadas para 500x500 pixéis."
+msgstr "点击“浏览”来上传本地图片，再点击“上传”来向你的书本添加图片。图片必须小于2M，并且将被修整为500x500规格"
 
 # write:29
 msgid "Step 1: Upload Help"
-msgstr "Passo 1: Ajuda para Carregar"
+msgstr "步骤1： 上传“帮助”"
 
 # write:34
 msgid "Step 2: Enter a short sentence for each page"
-msgstr "Passo 2: Escreva uma frase curta para cada página"
+msgstr "第二步：为每一页输入一段文字"
 
 # write:36
 msgid ""
 "Click on a page to edit it. You may reorder the pages with drag and drop."
-msgstr "Clique numa página para editá-la. Pode arrastar e largar para reordenar as páginas."
+msgstr "点击一张书页缩略图来进行编辑。可以通过鼠标拖拉来改变书页顺序"
 
 # write:36
 msgid "Step 2: Edit help"
-msgstr "Passso 2: Ajuda para Editar"
+msgstr "步骤2： 编辑“帮助”"
 
 # write:40
 msgid "After you select or upload pictures your pages will appear here."
-msgstr "Depois de seleccionar ou carregar imagens, as suas páginas aparecem aqui."
+msgstr "在你选择并上传图片后，你的书页缩略图将在此生成"
 
 # write:44
 msgid "Step 3: Fill in the details"
-msgstr "Passo 3: Introduza os detalhes"
+msgstr "第三部：填入详细信息"
 
 # write:46
 msgid ""
 "Fill in the title for your book and select its language from the list. You "
 "may use a psuedonym if you wish by changing the author field."
-msgstr "Escreva o título para o seu livro e seleccione a língua na listagem. Pode usar um pseudónimo mudando o campo de autor."
+msgstr "请填入书名，并在列表中选择该书的语言。你可以在作者姓名栏使用你想要的名字"
 
 # write:46
 msgid "Step 3: Details help"
-msgstr "Passo 3: Ajuda para Detalhes"
+msgstr "步骤3： 将 \"帮助\"具体化"
 
 # write:49
 msgid "Enter a title for your book"
-msgstr "Escreva título para o seu livro"
+msgstr "请输入你的书名"
 
 # write:51
 msgid "Author"
-msgstr "Autor"
+msgstr "作者"
 
 # write:52
 msgid "Enter a pseudonym"
-msgstr "Introduza um pseudónimo"
+msgstr "请输入你想要的名字"
 
 # write:54, whereAreReaders:18, label:1
 msgid "Language"
-msgstr "Língua"
+msgstr "语言"
 
 # write:56
 msgid "Choose a language"
-msgstr "Escolha uma língua"
+msgstr "请选择一种语言"
 
 # write:62
 msgid "Optionally"
-msgstr "Opcional"
+msgstr "选择性选项"
 
 # write:62, write:66
 msgid "Categorize your book"
-msgstr "Classifique o seu livro"
+msgstr "请输入此书本的类别"
 
 # write:68
 msgid "Step 3: Categorize help"
-msgstr "Passo 3: Ajuda para Classificar"
+msgstr "步骤3： 将“帮助”分类"
 
 # write:68
 msgid ""
 "You may select up to three library categories, an audience rating and BLF "
 "type if you wish."
-msgstr "Pode seleccionar até três categorias, um tipo de público e um tipo de MLE."
+msgstr "你可以最多选择三个图书类别以及你推荐的读者群体和一个入门阅读类别"
 
 # write:71
 msgid "Library Classification"
-msgstr "Classificação de biblioteca"
+msgstr "图书类别"
 
 # write:77
 msgid "Audience Rating"
-msgstr "Tipo de público"
+msgstr "读者群体"
 
 # write:79, write:88
 msgid "None"
-msgstr "Nenhum"
+msgstr "无"
 
 # write:80, label:1
 msgctxt "books appropriate for everyone"
 msgid "Rated E/Everybody"
-msgstr "Classificado T/Todos"
+msgstr "全年龄"
 
 # write:81, label:1
 msgctxt "books that may not be appropriate for all readers"
 msgid "Rated C/Caution"
-msgstr "Classificado A/Atenção"
+msgstr "需在成年人陪同下观看"
 
 # write:86
 msgid "Beginning Literacy Framework Type"
-msgstr "Tipo de Modelo de Literacia Emergente"
+msgstr "入门语言框架类型"
 
 # write:89
 msgid "Transitional"
-msgstr "Transicional"
+msgstr "过渡性"
 
 # write:90
 msgid "Conventional"
-msgstr "Convencional"
+msgstr "传统性"
 
 # write:91
 msgid "Other"
-msgstr "Outro"
+msgstr "其他"
 
 # write:96
 msgid "Tags"
-msgstr "Etiquetas"
+msgstr "标签"
 
 # write:98
 msgid "Enter a few descriptive words to make your book easier to find"
-msgstr "Introduza algumas palavras que tornem o livro mais fácil de encontrar"
+msgstr "输入几个关键词，它们将被搜索引擎识别"
 
 # write:103, whereAreReaders:18
 msgid "Reviewed"
-msgstr "Revisto"
+msgstr "已审查"
 
 # write:110
 msgid "Step 4: Publish"
-msgstr "Passo 4: Publique"
+msgstr "步骤四： 发布"
 
 # write:113
 msgid "Step 4: Save help"
-msgstr "Passo 4: Ajuda para Guardar"
+msgstr "步骤4： 保存“帮助”"
 
 # write:113
 msgid ""
 "To continue working on your book later, or to remove it from public view, "
 "click Save as draft. You will be able to return it from the Your Books page."
 " To publish your completed book, click Publish."
-msgstr "Para continuar a trabalhar no seu livro mais tarde, ou retirá-lo de visualização pública, clique Guardar rascunho. Pode retomá-lo na página Meus Livros. Para publicar o livro completo, clique Publicar."
+msgstr "如果你希望在一段时间后再继续编辑你的图书或者取消此书的可见性，请将你的书本保存为草稿。你将可以在之后的任何时间编辑或发布你保存过的图书"
 
 # write:115
 msgid ""
 "I have permission from any copyright holders to use the images I uploaded."
-msgstr "Tenho permissão de quaisquer detentores de copyright para usar as imagens que carreguei."
+msgstr "我拥有该版权持有者的准许使用这个图片"
 
 # write:118
 msgid "Save as draft"
-msgstr "Guardar como rascunho"
+msgstr "保存为草稿"
 
 # write:119
 msgid "Publish"
-msgstr "Publicar"
+msgstr "发布"
 
 # write:121
 msgid "Your book will not be published until you fix these issues."
-msgstr "O seu livro não será publicado até resolver estes problemas."
+msgstr "请在发布您的书本前解决这些问题。"
 
 # write:122
 msgid "It must have a title."
-msgstr "Tem que ter um título."
+msgstr "书本缺少标题"
 
 # write:123
 msgid "It must have an author."
-msgstr "Tem que ter um autor."
+msgstr "书本缺少作者"
 
 # write:124
 msgid "Each page must have some text."
-msgstr "Todas as páginas têm que ter texto."
+msgstr "每一页必须有文字"
 
 # write:125
 msgid "The text on each page must be less than 130 characters in length."
-msgstr "O texto em cada página tem que ter menos de 130 caracteres."
+msgstr "每页的文字必须少于130个字母"
 
 # write:126
 msgid "It must have at least 3 pages."
-msgstr "Tem que ter pelo menos 3 páginas."
+msgstr "至少要有三页纸"
 
 # write:127
 msgid "It must specify the language."
-msgstr "Tem que especificar a língua."
+msgstr "必须填写语言栏"
 
 # write:128
 msgid "It must be in no more than 4 categories."
-msgstr "Não pode estar em mais de 4 categorias."
+msgstr "必须少于四个标签"
 
 # write:129
 msgid "You must check that you have permission to use uploaded images."
-msgstr "Tem que confirmar que tem permissão para usar imagens carregadas."
+msgstr "请检查你是否有使用权上传该图片"
 
 # write:130
 msgid "Your book has been saved as a draft."
-msgstr "O seu livro foi guardado como rascunho."
+msgstr "你的书本已被保存为草稿"
 
 # write:137
 msgctxt "button label"
 msgid "Add to Book"
-msgstr "Adicionar ao Livro"
+msgstr "添加至你的图书"
 
 # write:138
 msgctxt "button label"
 msgid "Close"
-msgstr "Fechar"
+msgstr "关闭"
 
 # write:139
 msgctxt "button label"
 msgid "Previous"
-msgstr "Anterior"
+msgstr "前一页"
 
 # write:140, collections:24, bookPage:26
 msgctxt "button label"
 msgid "Next"
-msgstr "Seguinte"
+msgstr "下一页"
 
 # write:141
 msgid "Page added to your book"
-msgstr "Página adicionada ao seu livro"
+msgstr "你的书本已添加页面"
 
 # write:142
 msgid "Page duplicated"
-msgstr "Página duplicada"
+msgstr "页面被复制至剪贴板"
 
 # write:145
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
-msgstr "Clique no texto para mudá-lo. Pode usar os botões Anterior e Seguinte para mudar de página. Quando terminar, feche o editor clicando no x do canto superior direito."
+msgstr "点击文本来编辑。你可以通过点击上一页与下一页的按钮来翻页。当结束编辑的时候，请点击右上方的x来关闭此编辑页面"
 
 # write:145
 msgid "Page Editor Help"
-msgstr "Ajuda do Editor de Páginas"
+msgstr "帮助"
 
 # write:147
 msgid "Click to edit"
-msgstr "Clique para editar"
+msgstr "点击以编辑"
 
 # write:148
 msgid "Delete this page"
-msgstr "Apague esta página"
+msgstr "删除该页"
 
 # write:149
 msgid "Duplicate this page"
-msgstr "Duplique esta página"
+msgstr "复制该页"
 
 # write:150
 msgid "If you leave you will lose your work on this book."
-msgstr "Se sair, perderá o trabalho neste livro."
+msgstr "如果在此退出，你将失去目前的进度"
 
 # write:153
 msgid "Drop files here to upload"
-msgstr "Largue aqui os ficheiros que quer carregar"
+msgstr "将文件拖入此处上传"
 
 # write:154
 msgid "Upload"
-msgstr "Carregar"
+msgstr "上传"
 
 # write:164
 msgid "Failed"
-msgstr "Erro"
+msgstr "上传失败"
 
 # yourbooks:2, write:2
 msgid "You must have Javascript enabled in order to write a book."
-msgstr "Tem que ter o Javascript activado para escrever um livro"
+msgstr "要创建书目，请开启你的Javascript"
 
 # yourbooks:4, write:4
 msgid "Your web browser does not support writing books."
-msgstr "O seu navegador não suporta a escrita de livros."
+msgstr "您的浏览器并不支持在此网站创建图书"
 
 # yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:42,
 # yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:28,
 # write:28, write:35, write:35, write:45, write:45, write:67, write:67,
 # write:112, write:112, write:144, write:144
 msgid "Click for help"
-msgstr "Clique para ajuda"
+msgstr "点击这里以开启提示"
 
 # yourbooks:8
 msgid ""
 "Links to the main sections of this page are listed below. You may choose to "
 "use these links to help you get to the different sections of this page."
-msgstr "Os links para as secções principais desta página estão listados abaixo. Pode usar estes links para ver as diferentes secções desta página."
+msgstr "至不同模块的链接被列在此页下。你可以通过这些链接转至不同的模块"
 
 # yourbooks:8, yourbooks:9
 msgid "Quick Navigation"
-msgstr "Navegação Rápida"
+msgstr "简单导航"
 
 # yourbooks:11, yourbooks:18, yourbooks:19
 msgid "Your Draft Books"
-msgstr "Meus Rascunhos"
+msgstr "你的草稿"
 
 # yourbooks:12, yourbooks:43, yourbooks:44
 msgid "Your Published Books"
-msgstr "Meus Livros Publicados"
+msgstr "已发布的图书"
 
 # yourbooks:13, yourbooks:67, yourbooks:68
 msgid "Your Collections"
-msgstr "Minhas Colecções"
+msgstr "您的收藏夹"
 
 # yourbooks:18
 msgid ""
 "Your draft books are listed below. Click on a title to expose a menu that "
 "will allow you to edit or delete it."
-msgstr "Os seus rascunhos estão listados abaixo. Clique num título para ver um menu que permite editá-lo ou apagá-lo."
+msgstr "以下您的草稿。点击草稿标题以进行编辑或删除"
 
 # yourbooks:24, yourbooks:26
 msgid "untitled"
-msgstr "sem título"
+msgstr "未命名"
 
 # yourbooks:27, yourbooks:52
 msgctxt "Button label"
 msgid "Read"
-msgstr "Ler"
+msgstr "阅览"
 
 # yourbooks:28, yourbooks:53
 msgctxt "Button label"
 msgid "Edit"
-msgstr "Editar"
+msgstr "编辑"
 
 # yourbooks:29, yourbooks:97
 msgctxt "Button label"
 msgid "Delete"
-msgstr "Apagar"
+msgstr "删除"
 
 # yourbooks:30, yourbooks:54, yourbooks:83, yourbooks:98, busy:6, busy:11,
 # write:163
 msgctxt "Button label"
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "取消"
 
 # yourbooks:37
 msgid "If you had any books saved as drafts they would appear here."
-msgstr "Se tivesse livros em rascunho, apareceriam aqui."
+msgstr "你的草稿将被放置在这里"
 
 # yourbooks:43
 msgid ""
 "Your published books are listed below. Click on a title to expose a menu "
 "that will allow you to edit it. From the editor you may return a book draft "
 "status by clicking Save as Draft."
-msgstr "Os seus livros publicados estão listados abaixo. Clique num título para ver um menu que permite editá-los. No editor, pode voltar a rascunho clicando em Guardar rascunho."
+msgstr "以下是您发布的图书。点击以展开编辑目录。通过点击“保存为草稿”，你可以通过编辑将图书转为草稿"
 
 # yourbooks:61
 msgid "If you had any published books they would be listed here."
-msgstr "Se tivesse livros publicados, estariam listados aqui."
+msgstr "你已发布的图书将被放置在这里"
 
 # yourbooks:67
 msgid ""
 "Your collections are listed below. Click on the Favorites button to create a"
 " new collection. Click on a collection to expose a menu that will allow you "
 "to modify it."
-msgstr "As suas colecções estão listadas abaixo. Clique no botão Favoritos para criar uma nova colecção. Clique numa colecção para ver um menu que permite modificá-la."
+msgstr "以下是您的收藏夹。点击“我的最爱”按钮以创建一个新的收藏夹。点击一个收藏夹以展开编辑目录"
 
 # yourbooks:73
 msgid "Favorites: {{count}} books"
-msgstr "Favoritos: {{count}} livros"
+msgstr "我的最爱：{{count}} 图书"
 
 # yourbooks:75, yourbooks:90, write:48
 msgid "Title"
-msgstr "Título"
+msgstr "书名"
 
 # yourbooks:76, yourbooks:91
 msgid "Description"
-msgstr "Descrição"
+msgstr "描述"
 
 # yourbooks:77
 msgctxt "Button label"
 msgid "Save as a new Collection"
-msgstr "Guardar como nova Colecção"
+msgstr "保存为新的收藏夹"
 
 # yourbooks:80
 msgid "Add books to your Favorites and come back here to save as a Collection"
-msgstr "Adicione livros aos Favoritos e volte aqui para guardar como Colecção"
+msgstr "将图书加入“我的最爱”后再返回这里将此保存为收藏夹"
 
 # yourbooks:82
 msgctxt "Button label"
 msgid "Clear Favorites list"
-msgstr "Limpe a lista de Favoritos"
+msgstr "清除我的最爱列表"
 
 # yourbooks:92
 msgid "{{count}} books"
-msgstr "{{count}} livros"
+msgstr "{{count}} 图书"
 
 # yourbooks:93
 msgctxt "Button label"
 msgid "Update title and description"
-msgstr "Actualize o título e descrição"
+msgstr "更新标题和描述"
 
 # yourbooks:94
 msgctxt "Button label"
 msgid "Add to Favorites"
-msgstr "Adicione aos Favoritos."
+msgstr "加至我的最爱"
 
 # yourbooks:95
 msgid "Merge Favorites into here"
-msgstr "Junte os Favoritos aqui"
+msgstr "将我的最爱合并至此"
 
 # yourbooks:96
 msgid "Replace with Favorites"
-msgstr "Substitua pelos Favoritos"
+msgstr "替换我的最爱"
 
 # yourbooks:107
 msgid "You must be logged in to see your draft and published books."
-msgstr "Tem que ter sessão iniciada para ver os seus rascunhos e publicações"
+msgstr "请登入以查看你的草稿和发布图书"
 
 # yourbooks:107, write:6, login:21
 msgctxt "link label"
 msgid "Log In"
-msgstr "Entrar"
+msgstr "登入"
 
 # yourbooks:110
 msgid "Where in the world are these books read?"
-msgstr "Onde é que estes livros são lidos?"
+msgstr "这些书在哪里被阅读过？"
 
 # yourbooks:111
 msgid "Check out our map of readers!"
-msgstr "Veja o nosso mapa de leitores!"
+msgstr "瞧一眼我们的读者分布地图！"
