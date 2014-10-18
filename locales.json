@@ -5,5 +5,6 @@
     { "label": "Français", "value":"fr", "templates":"/theme/Templates.fr.json"},
     { "label": "Italiano", "value":"it", "templates":"/theme/Templates.it.json"},
     { "label": "Türkçe", "value":"tr", "templates":"/theme/Templates.tr.json"},
-    { "label": "Português", "value":"pt", "templates":"/theme/Templates.pt.json"}
+    { "label": "Português", "value":"pt", "templates":"/theme/Templates.pt.json"},
+    { "label": "汉语", "value":"zh", "templates":"/theme/Templates.zh.json"}
 ]
