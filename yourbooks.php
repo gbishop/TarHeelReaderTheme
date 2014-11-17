@@ -10,6 +10,7 @@ function returnJson($result) {
         $result = array('result' => $result);
     }
     $output = json_encode($result);
+    thr_setcookie();
     header('Content-Type: application/json');
     header('Content-Size: ' . strlen($output));
     echo $output;
