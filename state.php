@@ -97,7 +97,7 @@ function setTHR($p, $v) {
         if(!$pattern || preg_match($pattern, $v)) {
             $setCookie = 1;
             $THRState[$p] = $v;
-        } else {
+        } elseif ($p != 'type') {
             $log->logError("set error p=$p v=$v", $THRState);
         }
     }
