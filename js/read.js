@@ -6,30 +6,11 @@ define(["route",
         "keyboard",
         "state",
         "speech",
-        "ios"
-        ], function(route, page, templates, keys, state, speech, ios) {
+        "ios",
+        "store"
+        ], function(route, page, templates, keys, state, speech, ios, store) {
 
-    var book = null, // current book
-        picBoxSize = {}; // sizing the pic box same as last time
-
-    function fetchBook(slug) {
-        var $def = $.Deferred();
-        if (book && book.slug == encodeURI(slug).toLowerCase()) {
-            $def.resolve(book);
-        } else {
-            $.ajax({
-                url: '/book-as-json/',
-                data: {
-                    slug: slug
-                },
-                dataType: 'json'
-            }).done(function(data) {
-                book = data;
-                $def.resolve(book);
-            });
-        }
-        return $def;
-    }
+    var picBoxSize = {}; // sizing the pic box same as last time
 
     function pageLink(link, page) {
         if (page === 1) {
@@ -47,8 +28,8 @@ define(["route",
             return false; // it will get rendered by the host
         }
         var $def = $.Deferred();
-        fetchBook(slug).then(function(book) {
-
+        store.fetchBook(slug).then(function(book) {
+            console.log('in read', book);
             var view = {};
             if (!pageNumber) {
                 pageNumber = 1;
@@ -74,7 +55,9 @@ define(["route",
                     view.nextLink = pageLink(book.link, pageNumber+1);
                 }
                 templates.setImageSizes(view.image);
+                console.log('view', view, view.image.url);
                 newContent = templates.render('bookPage', view);
+                console.log('nc', newContent);
                 if (speech.hasSpeech[book.language]) {
                     speech.play(book.ID, state.get('voice'), pageNumber, book.bust);
                 }

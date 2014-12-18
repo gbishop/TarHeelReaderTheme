@@ -9,8 +9,9 @@ define([ "route",
          "speech",
          "page",
          "ios",
+         "store",
          "jquery.scrollIntoView"
-        ], function(route, templates, state, keys, speech, page, ios) {
+        ], function(route, templates, state, keys, speech, page, ios, store) {
 
     // return the url that will restore the find page state
     function find_url(page) {
@@ -42,33 +43,27 @@ define([ "route",
         view.searchForm = templates.searchForm(); // sets the selects based on the state
 
         // fetch the json for the current set of books
-        $.ajax({
-            url: url,
-            data: 'json=1',
-            dataType: 'json',
-            timeout: 30000,
-            success: function(data, textStatus, jqXHR) {
-                // setup the image width and height for the template
-                for(var i=0; i<data.books.length; i++) {
-                    templates.setImageSizes(data.books[i].cover);
-                }
-                view.bookList = templates.render('bookList', data);
-                var pageNumber = +state.get('page');
-                if (data.more) {
-                    view.nextLink = find_url(pageNumber + 1);
-                }
-                if (pageNumber > 1) {
-                    view.backLink = find_url(pageNumber - 1);
-                }
-                var $newPage = page.getInactive('find-page');
-                $newPage.empty()
-                    .append(templates.render('heading',
-                        {settings:true, chooseFavorites:true}))
-                    .append('<div class="content-wrap">' +
-                            templates.render('find', view) +
-                            '</div>');
-                $def.resolve($newPage, {title: 'Tar Heel Reader | Find', colors: true});
+        store.find(url).then(function(data) {
+            // setup the image width and height for the template
+            for(var i=0; i<data.books.length; i++) {
+                templates.setImageSizes(data.books[i].cover);
             }
+            view.bookList = templates.render('bookList', data);
+            var pageNumber = +state.get('page');
+            if (data.more) {
+                view.nextLink = find_url(pageNumber + 1);
+            }
+            if (pageNumber > 1) {
+                view.backLink = find_url(pageNumber - 1);
+            }
+            var $newPage = page.getInactive('find-page');
+            $newPage.empty()
+                .append(templates.render('heading',
+                    {settings:true, chooseFavorites:true}))
+                .append('<div class="content-wrap">' +
+                        templates.render('find', view) +
+                        '</div>');
+            $def.resolve($newPage, {title: 'Tar Heel Reader | Find', colors: true});
         });
         return $def;
     }

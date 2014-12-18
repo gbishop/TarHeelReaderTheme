@@ -64,12 +64,14 @@
         <?php if (THR('debug') == 1): ?>
             function logMessage(msg) {
                 console.log(msg);
-                $.post('/log-message/', {message: msg});
+                //$.post('/log-message/', {message: msg});
             }
+            /*
             window.onerror = function(message, url, line) {
                 logEvent('onerror', message, url+" ("+line+")");
                 return true;
             };
+            */
             function logEvent(category, label, arg) {
                 logMessage(category + '|' + label + '|' + arg);
             }
