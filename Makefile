@@ -1,4 +1,7 @@
-all: build copygb
+all: manifest build copygb
+
+manifest:
+	python tools/manifest.py > manifest.appcache
 
 transifex:
 	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it,zh
