@@ -267,19 +267,6 @@ define(['state', 'templates'], function(state, templates) {
 
     function bookToFindResult($book) {
         // copied from the php
-        function rating_info(rating_value) {
-            //console.log(100);
-            var ratings = templates.get('ratings'),
-                result;
-            if (rating_value == 0) {
-                result = ratings[0];
-            } else {
-                index = Math.round(2*rating_value) - 1;
-                result = ratings[index];
-            }
-            return result;
-        }
-
         var $po = {};
         //console.log($book);
         $po['title'] = $book['title'];
@@ -287,7 +274,7 @@ define(['state', 'templates'], function(state, templates) {
         $po['slug'] = $book['slug'];
         $po['link'] = $book['link'];
         $po['author'] = $book['author'];
-        $po['rating'] = rating_info($book['rating_value']);
+        $po['rating'] = templates.rating_info($book['rating_value']);
         $po['tags'] = $book['tags'];
         $po['categories'] = $book['categories'];
         $po['reviewed'] = $book['reviewed'];
