@@ -265,30 +265,30 @@ define(['state', 'templates'], function(state, templates) {
         });
     }
 
-    function bookToFindResult($book) {
+    function bookToFindResult(book) {
         // copied from the php
-        var $po = {};
-        //console.log($book);
-        $po['title'] = $book['title'];
-        $po['ID'] = $book['ID'];
-        $po['slug'] = $book['slug'];
-        $po['link'] = $book['link'];
-        $po['author'] = $book['author'];
-        $po['rating'] = templates.rating_info($book['rating_value']);
-        $po['tags'] = $book['tags'];
-        $po['categories'] = $book['categories'];
-        $po['reviewed'] = $book['reviewed'];
-        $po['audience'] = $book['audience'];
-        $po['caution'] = $book['audience'] == 'C';
-        $po['cover'] = $book['pages'][0];
-        $po['preview'] = $book['pages'][1];
-        $po['preview']['text'] = $po['title'];
-        $po['pages'] = $book['pages'].length;
-        $po['language'] = $book['language'];
-        $po['bust'] = $book['bust'];
+        var fr = {};
+        //console.log(book);
+        fr.title = book.title;
+        fr.ID = book.ID;
+        fr.slug = book.slug;
+        fr.link = book.link;
+        fr.author = book.author;
+        fr.rating = templates.rating_info(book.rating_value);
+        fr.tags = book.tags;
+        fr.categories = book.categories;
+        fr.reviewed = book.reviewed;
+        fr.audience = book.audience;
+        fr.caution = book.audience == 'C';
+        fr.cover = book.pages[0];
+        fr.preview = book.pages[1];
+        fr.preview.text = fr.title;
+        fr.pages = book.pages.length;
+        fr.language = book.language;
+        fr.bust = book.bust;
 
-        //console.log($po);
-        return $po;
+        //console.log(fr);
+        return fr;
     }
 
     function findLocal(url) {
