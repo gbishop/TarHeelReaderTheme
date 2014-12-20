@@ -1,4 +1,4 @@
-define(['state', 'templates'], function(state, templates) {
+define(['state', 'templates', 'promise'], function(state, templates) {
 
     /* log to the dom so I can see on the iPad */
     function log(s) {
@@ -136,7 +136,7 @@ define(['state', 'templates'], function(state, templates) {
             req.onsuccess = function(e) {
                 var image = e.target.result;
                 if (image) {
-                    console.log('already got ' + key);
+                    //console.log('already got ' + key);
                     resolve(key);
                 } else {
                     get(uri, 'blob').then(function(blob) {
@@ -293,47 +293,47 @@ define(['state', 'templates'], function(state, templates) {
 
     function findLocal(url) {
         // simply list the books in the db for starters
-        var $def = $.Deferred();
-        console.log('findLocal', url);
-        initDB('thr').then(function(db) {
-            console.log('db ready');
-            var transaction = db.transaction(['books'], "readonly"),
-                store = transaction.objectStore('books'),
-                cursorRequest = store.openCursor(),
-                result = {
-                    books: []
+        return new Promise(function(resolve, reject) {
+            //console.log('findLocal', url);
+            initDB('thr').then(function(db) {
+                //console.log('db ready');
+                var transaction = db.transaction(['books'], "readonly"),
+                    store = transaction.objectStore('books'),
+                    cursorRequest = store.openCursor(),
+                    result = {
+                        books: []
+                    };
+
+                transaction.oncomplete = function(e) {
+                    //console.log('transaction complete', result);
+                    pmap(result.books, function(book) {
+                        return pmap([book.cover.url, book.preview.url], function(url) {
+                            return localizeImage(db, url);
+                        }).then(function(urls) {
+                            book.cover.url = urls[0];
+                            book.preview.url = urls[1];
+                            return book;
+                        });
+                    }).then(function() {
+                        //console.log('resolving', result);
+                        resolve(result);
+                    });
                 };
 
-            transaction.oncomplete = function(e) {
-                console.log('transaction complete', result);
-                pmap(result.books, function(book) {
-                    return pmap([book.cover.url, book.preview.url], function(url) {
-                        return localizeImage(db, url);
-                    }).then(function(urls) {
-                        book.cover.url = urls[0];
-                        book.preview.url = urls[1];
-                        return book;
-                    });
-                }).then(function() {
-                    console.log('resolving', result);
-                    $def.resolve(result);
-                });
-            };
+                cursorRequest.onerror = function(error) {
+                    console.log('cursorRequest error', error);
+                };
 
-            cursorRequest.onerror = function(error) {
-                console.log('cursorRequest error', error);
-            };
-
-            cursorRequest.onsuccess = function(e) {
-                var cursor = e.target.result;
-                if (cursor) {
-                    var fr = bookToFindResult(cursor.value);
-                    result.books.push(fr);
-                    cursor.continue();
-                }
-            };
+                cursorRequest.onsuccess = function(e) {
+                    var cursor = e.target.result;
+                    if (cursor) {
+                        var fr = bookToFindResult(cursor.value);
+                        result.books.push(fr);
+                        cursor.continue();
+                    }
+                };
+            });
         });
-        return $def;
     }
 
     function find(url) {
@@ -364,64 +364,61 @@ define(['state', 'templates'], function(state, templates) {
 
     function localizeBook(slug) {
         // find the book and update its image urls
-        var $def = $.Deferred();
-        console.log('slug', slug);
-        initDB('thr').then(function(db) {
-            var transaction = db.transaction(['books'], 'readonly'),
-                store = transaction.objectStore('books'),
-                index = store.index('slug'),
-                req = index.get(encodeURI(slug).toLowerCase());
-            req.onsuccess = function(e) {
-                console.log('event', e);
-                var book = req.result;
-                console.log('book', book);
-                if (!book) {
-                    $def.reject(slug + ' not found');
-                } else {
-                    pmap(book.pages, function(page) {
-                        return localizeImage(db, page.url).then(function(result) {
-                            page.url = result;
+        return new Promise(function(resolve, reject) {
+            console.log('slug', slug);
+            initDB('thr').then(function(db) {
+                var transaction = db.transaction(['books'], 'readonly'),
+                    store = transaction.objectStore('books'),
+                    index = store.index('slug'),
+                    req = index.get(encodeURI(slug).toLowerCase());
+                req.onsuccess = function(e) {
+                    var book = req.result;
+                    if (!book) {
+                        reject(slug + ' not found');
+                    } else {
+                        pmap(book.pages, function(page) {
+                            return localizeImage(db, page.url).then(function(result) {
+                                page.url = result;
+                            });
+                        }).then(function() {
+                            resolve(book);
                         });
-                    }).then(function() {
-                        console.log('lb', book);
-                        $def.resolve(book);
-                    });
+                    }
+                };
+                req.onerror = function(e) {
+                    console.log('book fetch failed', e);
+                    reject();
                 }
-            };
-            req.onerror = function(e) {
-                console.log('book fetch failed', e);
-            }
+            });
         });
-        return $def;
     }
 
     var book = null; // current book
 
     function fetchBook(slug) {
-        var $def = $.Deferred();
-        if (book && book.slug == encodeURI(slug).toLowerCase()) {
-            $def.resolve(book);
-        } else if (state.get('offline') == "1") {
-            console.log('offline');
-            localizeBook(slug).then(function(data) {
-                //book = data;
-                console.log('fb', data, data.pages[0].url);
-                $def.resolve(data);
-            });
-        } else {
-            console.log('online');
-            $.ajax({
-                url: '/book-as-json/',
-                data: {
-                    slug: slug
-                },
-                dataType: 'json'
-            }).done(function(data) {
-                //book = data;
-                $def.resolve(data);
-            });
-        }
-        return $def;
+        return new Promise(function(resolve, reject) {
+            if (book && book.slug == encodeURI(slug).toLowerCase()) {
+                resolve(book);
+            } else if (state.get('offline') == "1") {
+                console.log('offline');
+                localizeBook(slug).then(function(data) {
+                    //book = data;
+                    resolve(data);
+                });
+            } else {
+                console.log('online');
+                $.ajax({
+                    url: '/book-as-json/',
+                    data: {
+                        slug: slug
+                    },
+                    dataType: 'json'
+                }).done(function(data) {
+                    //book = data;
+                    resolve(data);
+                });
+            }
+        });
     }
 
     /* hack test fixture */
