@@ -1,34 +1,36 @@
-define(['state', 'templates', 'promise'], function(state, templates) {
+define(['state', 'templates', 'promise'], function(state, templates, promise) {
+
+    // for browsers that don't support native Promise
+    var Promise = promise.Promise;
 
     /* log to the dom so I can see on the iPad */
     function log(s) {
-        //$('#log').append(s + '\n');
+        $('#log').append(s + '\n');
         console.log(s);
     }
-    log('start');
+
+    // trying to get errors logged in weinre, why doesn't this work?
+    //window.onerror = function (errorMsg, url, lineNumber) {
+    //    console.log('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
+    //};
 
     /* delete the database for testing so I can start clean */
-    function deleteDB(name, fake) {
+    function deleteDB(name) {
         return new Promise(function(resolve, reject) {
-            if (fake) {
+            log('delete DB');
+            var req = indexedDB.deleteDatabase(name);
+            req.onsuccess = function () {
+                log('delete success');
                 resolve();
-            } else {
-                log('delete DB');
-                var req = indexedDB.deleteDatabase(name);
-                req.onsuccess = function () {
-                    log('delete success');
-                    resolve();
-                };
-                req.onerror = function () {
-                    log('delete failed');
-                    reject('error on delete');
-                };
-                req.onblocked = function () {
-                    log('delete blocked');
-                    reject('delete blocked');
-                };
-            }
-
+            };
+            req.onerror = function () {
+                log('delete failed');
+                reject('error on delete');
+            };
+            req.onblocked = function () {
+                log('delete blocked');
+                reject('delete blocked');
+            };
         });
     }
 
@@ -52,7 +54,21 @@ define(['state', 'templates', 'promise'], function(state, templates) {
 
             request.onsuccess = function(event) {
                 log('db initialized');
-                resolve(event.target.result);
+                var db = event.target.result;
+                var PersistentStorage = navigator.webkitPersistentStorage || undefined;
+                if (PersistentStorage && PersistentStorage.requestQuota) {
+                    log('requesting quota');
+                    PersistentStorage.requestQuota(100*1024*1024,
+                        function(allocated) {
+                            log('quota is ' + allocated);
+                            resolve(db);
+                        },
+                        function(error) {
+                            log('quota error ' + error);
+                        });
+                } else {
+                    resolve(db);
+                }
             }
         });
     }
@@ -67,13 +83,17 @@ define(['state', 'templates', 'promise'], function(state, templates) {
             xhr.open('GET', uri, true);
             xhr.responseType = type;
             xhr.onload = function() {
-                resolve(xhr.response);
+                var result = xhr.response;
+                if (type === 'json' && typeof result === 'string') {
+                    result = JSON.parse(result);
+                }
+                resolve(result);
             };
             xhr.onerror = function() {
                 log('fetchImage failed ' + uri);
                 reject('fetchImage failed');
             };
-            //console.log('loading ' + uri);
+            //log('loading ' + uri);
             xhr.send();
         });
     }
@@ -108,6 +128,14 @@ define(['state', 'templates', 'promise'], function(state, templates) {
             transaction.onerror = function(e) {
                 reject('image write failed');
             };
+            transaction.onabort = function(e) {
+                var error = event.target.error; // DOMError
+                if (error.name == 'QuotaExceededError') {
+                  // Fallback code comes here
+                  log('quota exceeded');
+                }
+                reject(error.name);
+            }
             transaction.oncomplete = function(event) {
                 resolve(key);
             };
@@ -136,7 +164,7 @@ define(['state', 'templates', 'promise'], function(state, templates) {
             req.onsuccess = function(e) {
                 var image = e.target.result;
                 if (image) {
-                    //console.log('already got ' + key);
+                    console.log('already got ' + key);
                     resolve(key);
                 } else {
                     get(uri, 'blob').then(function(blob) {
@@ -146,13 +174,18 @@ define(['state', 'templates', 'promise'], function(state, templates) {
                             imageBlobSize += blob.size;
                             resolve(key);
                         }).catch(function(e) {
+                            log('write blob fails, try base64');
                             // storing blob failed so write as base64
                             encodeBlob(blob).then(function(data) {
+                                log('writing encoded');
                                 writeDb(db, 'images', key, data).then(function(key) {
+                                    log('write encoded succeeds');
                                     imageCount += 1;
                                     imageBlobSize += blob.size;
                                     imageDataSize += data.length;
                                     resolve(key);
+                                }).catch(function(error) {
+                                    log('write base64 failed');
                                 });
                             });
                         });
@@ -191,7 +224,8 @@ define(['state', 'templates', 'promise'], function(state, templates) {
                 } else {
                     get(host + bookAsJson + id, 'json').then(function(book) {
                         // cache all the images first
-                        pmapp(book.pages, function(page) {
+                        pmap(book.pages, function(page) {
+                            console.log('page ', page);
                             return cacheImage(db, host + page.url);
                         }).then(function(results) {
                             // now save the json for the book
@@ -202,7 +236,7 @@ define(['state', 'templates', 'promise'], function(state, templates) {
                             };
                             transaction.onerror = function(event) {
                                 console.log('book save error');
-                                //console.log(event);
+                                console.log(event);
                                 reject('db write failed');
                             };
                             objectStore.put(book);
@@ -229,19 +263,18 @@ define(['state', 'templates', 'promise'], function(state, templates) {
     }
 
     /* display the title page for a book, I'm using it for progress */
-    function displayImage(db, id) {
+    function displayImage(id) {
         //log('display ' + key);
-        return new Promise(function(resolve, reject) {
-            readDb(db, 'books', id).then(function(book) {
+        return db.then(function(db) {
+            return readDb(db, 'books', id).then(function(book) {
                 var key = uriToKey(book.pages[0].url);
-                readDb(db, 'images', key).then(function(result) {
+                return readDb(db, 'images', key).then(function(result) {
                     var $img = $('<img>');
                     if (result instanceof Blob) {
                         result = window.URL.createObjectURL(result);
                     }
                     $img.attr('src', result);
-                    $img.appendTo('#images');
-                    resolve();
+                    return $img;
                 });
             });
         });
@@ -268,7 +301,7 @@ define(['state', 'templates', 'promise'], function(state, templates) {
     function bookToFindResult(book) {
         // copied from the php
         var fr = {};
-        //console.log(book);
+        console.log(book);
         fr.title = book.title;
         fr.ID = book.ID;
         fr.slug = book.slug;
@@ -287,16 +320,16 @@ define(['state', 'templates', 'promise'], function(state, templates) {
         fr.language = book.language;
         fr.bust = book.bust;
 
-        //console.log(fr);
+        console.log(fr);
         return fr;
     }
 
     function findLocal(url) {
         // simply list the books in the db for starters
         return new Promise(function(resolve, reject) {
-            //console.log('findLocal', url);
-            initDB('thr').then(function(db) {
-                //console.log('db ready');
+            console.log('findLocal', url);
+            db.then(function(db) {
+                console.log('db ready');
                 var transaction = db.transaction(['books'], "readonly"),
                     store = transaction.objectStore('books'),
                     cursorRequest = store.openCursor(),
@@ -305,7 +338,7 @@ define(['state', 'templates', 'promise'], function(state, templates) {
                     };
 
                 transaction.oncomplete = function(e) {
-                    //console.log('transaction complete', result);
+                    console.log('transaction complete', result);
                     pmap(result.books, function(book) {
                         return pmap([book.cover.url, book.preview.url], function(url) {
                             return localizeImage(db, url);
@@ -315,7 +348,7 @@ define(['state', 'templates', 'promise'], function(state, templates) {
                             return book;
                         });
                     }).then(function() {
-                        //console.log('resolving', result);
+                        console.log('resolving', result);
                         resolve(result);
                     });
                 };
@@ -336,23 +369,8 @@ define(['state', 'templates', 'promise'], function(state, templates) {
         });
     }
 
-    function find(url) {
-        if (state.get('offline') == "0") {
-            console.log('online', state);
-            return $.ajax({
-                url: url,
-                data: 'json=1',
-                dataType: 'json',
-                timeout: 30000,
-            });
-        } else {
-            console.log("offline");
-            return findLocal(url);
-        }
-    }
-
     function localizeImage(db, uri) {
-        console.log('localizeImage', uri);
+        //console.log('localizeImage', uri);
         var key = uriToKey(uri);
         return readDb(db, 'images', key).then(function(result) {
             if (result instanceof Blob) {
@@ -365,8 +383,8 @@ define(['state', 'templates', 'promise'], function(state, templates) {
     function localizeBook(slug) {
         // find the book and update its image urls
         return new Promise(function(resolve, reject) {
-            console.log('slug', slug);
-            initDB('thr').then(function(db) {
+            //console.log('slug', slug);
+            db.then(function(db) {
                 var transaction = db.transaction(['books'], 'readonly'),
                     store = transaction.objectStore('books'),
                     index = store.index('slug'),
@@ -393,20 +411,24 @@ define(['state', 'templates', 'promise'], function(state, templates) {
         });
     }
 
+    /* External interface */
+
     var book = null; // current book
+
+    /* Return a book's json given its slug */
 
     function fetchBook(slug) {
         return new Promise(function(resolve, reject) {
             if (book && book.slug == encodeURI(slug).toLowerCase()) {
                 resolve(book);
             } else if (state.get('offline') == "1") {
-                console.log('offline');
+                log('offline');
                 localizeBook(slug).then(function(data) {
                     //book = data;
                     resolve(data);
                 });
             } else {
-                console.log('online');
+                log('online');
                 $.ajax({
                     url: '/book-as-json/',
                     data: {
@@ -421,19 +443,45 @@ define(['state', 'templates', 'promise'], function(state, templates) {
         });
     }
 
-    /* hack test fixture */
-    if (true) {
-        console.log('creating test data');
-        deleteDB('thr', true).then(function() {
-            //log('deleted the db');
-            return initDB('thr');
-        }).then(function(db) {
-            log('opened the db');
+    /* return books that match the query */
+
+    function find(url) {
+        if (state.get('offline') == "0") {
+            log('online', state);
+            return $.ajax({
+                url: url,
+                data: 'json=1',
+                dataType: 'json',
+                timeout: 30000,
+            });
+        } else {
+            log("offline");
+            return findLocal(url);
+        }
+    }
+
+    /* add the listed books to the offline storage */
+
+    function addBooksToOffline(ids, progress) {
+        return db.then(function(db) {
+            return cacheBooks(db, ids, progress);
+        });
+    }
+
+    /* initialze the db object */
+    var db = initDB('thr');
+    db.then(function(db) {
+        log('got the db');
+    });
+
+    /* some data for testing */
+    if (false) {
+        db.then(function(db) {
+            log('got the db');
             getBookIds(10).then(function(ids) {
-                console.log('ids', ids);
                 var tstart = +new Date();
                 cacheBooks(db, ids, function(id) {
-                    displayImage(db, id);
+                    displayImage(id);
                 }).then(function(ids) {
                     log((+new Date() - tstart)/1000);
                     console.log('cached', ids);
@@ -452,6 +500,8 @@ define(['state', 'templates', 'promise'], function(state, templates) {
 
     return {
        find: find,
-       fetchBook: fetchBook
+       fetchBook: fetchBook,
+       addBooksToOffline: addBooksToOffline,
+       displayImage: displayImage
     };
 });
