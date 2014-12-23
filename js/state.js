@@ -1,4 +1,4 @@
-define([ "route", "json!../state.json", "jquery.cookie" ], function(route, rules) {
+define([ "json!../state.json", "jquery.cookie" ], function(rules) {
     var state = {};
 
     // set up the defaults
