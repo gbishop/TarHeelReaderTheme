@@ -56,7 +56,7 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
                 log('db initialized');
                 var db = event.target.result;
                 var PersistentStorage = navigator.webkitPersistentStorage || undefined;
-                if (PersistentStorage && PersistentStorage.requestQuota) {
+                if (false && PersistentStorage && PersistentStorage.requestQuota) {
                     log('requesting quota');
                     PersistentStorage.requestQuota(100*1024*1024,
                         function(allocated) {
@@ -225,7 +225,6 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
                     get(host + bookAsJson + id, 'json').then(function(book) {
                         // cache all the images first
                         pmap(book.pages, function(page) {
-                            console.log('page ', page);
                             return cacheImage(db, host + page.url);
                         }).then(function(results) {
                             // now save the json for the book
@@ -468,6 +467,15 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
         });
     }
 
+    function reset() {
+        return db.then(function(olddb) {
+            olddb.close();
+            return deleteDB('thr').then(function() {
+                db = initDB('thr');
+            });
+        });
+    }
+
     /* initialze the db object */
     var db = initDB('thr');
     db.then(function(db) {
@@ -502,6 +510,7 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
        find: find,
        fetchBook: fetchBook,
        addBooksToOffline: addBooksToOffline,
-       displayImage: displayImage
+       displayImage: displayImage,
+       reset: reset
     };
 });
