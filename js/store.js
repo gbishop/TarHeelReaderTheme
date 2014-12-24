@@ -173,7 +173,7 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
                             imageCount += 1;
                             imageBlobSize += blob.size;
                             resolve(key);
-                        }).catch(function(e) {
+                        })['catch'](function(e) {
                             log('write blob fails, try base64');
                             // storing blob failed so write as base64
                             encodeBlob(blob).then(function(data) {
@@ -184,7 +184,7 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
                                     imageBlobSize += blob.size;
                                     imageDataSize += data.length;
                                     resolve(key);
-                                }).catch(function(error) {
+                                })['catch'](function(error) {
                                     log('write base64 failed');
                                 });
                             });
@@ -239,7 +239,7 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
                                 reject('db write failed');
                             };
                             objectStore.put(book);
-                        }).catch(function(err) {
+                        })['catch'](function(err) {
                             console.log('error', err);
                         });
                     });
@@ -361,7 +361,7 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
                     if (cursor) {
                         var fr = bookToFindResult(cursor.value);
                         result.books.push(fr);
-                        cursor.continue();
+                        cursor['continue']();
                     }
                 };
             });
@@ -473,6 +473,8 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
             return deleteDB('thr').then(function() {
                 db = initDB('thr');
             });
+        }, function(err) {
+            console.log('reset fails');
         });
     }
 
@@ -501,7 +503,7 @@ define(['state', 'templates', 'promise'], function(state, templates, promise) {
                     log('total data size = ' + imageDataSize);
                 });
             });
-        }).catch(function(msg) {
+        })['catch'](function(msg) {
             log('failed ' + msg);
         });
     }
