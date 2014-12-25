@@ -252,22 +252,55 @@
     li {
       height: 3em;
       overflow: hidden;
-      position: relative; // for positioning the disclosure icon
 
-      // position disclosure icon to the right
-      img.disclosure-icon {
-        position: absolute;
-        right: 0.5em;
-        top: 0.5em;
-        max-width: 2em;
-        max-height: 2em;
+      background-size: 1.5em !important;
+      background-position: 0.75em;
+      background-repeat: no-repeat;
+
+      &.homeLink {
+        background-image: url(/theme/images/home_32.png);
+      }
+
+      &.findLink {
+        background-image: url(/theme/images/find_book_icon.png);
+      }
+
+      &.collectionsLink {
+        background-image: url(/theme/images/collections.png);
+      }
+
+      &.favoritesLink {
+        background-image: url(/theme/images/favorite_book.png);
+      }
+
+      &.writeLink {
+        background-image: url(/theme/images/write_book.png);
+      }
+
+      &.loginLink {
+        background-image: url(/theme/images/user.png);
+      }
+
+      &.helpLink {
+        background-image: url(/theme/images/info.png);
+      }
+
+      &.yourBooksLink {
+        background-image: url(/theme/images/my_book.png);
+      }
+
+      &.blogLink {
+        background-image: url(/theme/images/announcements_icon.png);
+      }
+
+      &.photoCreditsLink {
+        background-image: url(/theme/images/photo_credits_icon.png);
       }
 
       a {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        background-size: 1.5em !important;
         padding: 0 3em;
         width: 100;
 
@@ -278,77 +311,13 @@
 
         &:focus {
           color: $carolinaBlue;
+          background-color: white;
         }
 
-        &.homeLink {
-          background: url(/theme/images/home_32.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/home_32.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.findLink {
-          background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/find_book_icon.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.collectionsLink {
-          background: url(/theme/images/collections.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/collections.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.favoritesLink {
-          background: url(/theme/images/favorite_book.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/favorite_book.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.writeLink {
-          background: url(/theme/images/write_book.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/write_book.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.loginLink {
-          background: url(/theme/images/user.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/user.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.helpLink {
-          background: url(/theme/images/info.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/info.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.yourBooksLink {
-          background: url(/theme/images/my_book.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/my_book.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.blogLink {
-          background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/announcements_icon.png) 0.75em center no-repeat, #FFF;
-          }
-        }
-
-        &.photoCreditsLink {
-          background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat;
-          &:focus {
-            background: url(/theme/images/photo_credits_icon.png) 0.75em center no-repeat, #FFF;
-          }
-        }
+        background-image: url(/theme/images/disclosure_icon.png);
+        background-size: 1.5em !important;
+        background-position: 100% 0.4em;
+        background-repeat: no-repeat;
 
       } // end a
     } // end li
