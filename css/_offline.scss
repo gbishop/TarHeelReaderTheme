@@ -1,0 +1,61 @@
+.offline-page {
+    button {
+      @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
+    }
+
+    ul {
+        margin-top: 1em;
+        list-style-type: none;
+
+        input {
+            margin-right: 0.5em;
+        }
+    }
+}
+
+p#statusOnline {
+    display: block;
+}
+p#statusOffline, button#goOnline {
+    display: none;
+}
+
+button#goOnline {
+    display: none;
+}
+
+button#goOffline {
+    display: inline;
+}
+
+.offline {
+    a.thr-well-icon {
+        text-decoration: none;
+        &:after {
+            content: "\2708";
+            font-size: 2em;
+        }
+        //max-width: 3em !important;
+
+    }
+    img {
+        vertical-align: bottom;
+    }
+
+    p#statusOnline {
+        display:none;
+    }
+    p#statusOffline {
+        display:block;
+    }
+    button#goOnline {
+        display: inline;
+    }
+
+    button#goOffline {
+        display: none;
+    }
+
+
+}
+

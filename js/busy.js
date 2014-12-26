@@ -22,6 +22,17 @@ define(['templates'], function(templates) {
         $blocker.delay(500).fadeIn(1000);
     }
 
+    function waitManual() {
+        $blocker.addClass('isBusy').removeClass('isError')
+            .css('top', $(window).scrollTop() + $(window).height() / 3 + 'px');
+        $blocker.delay(500).fadeIn(1000);
+    }
+
+    function doneManual() {
+        $blocker.stop(true);
+        $blocker.hide();
+    }
+
     function removeBusy(jqXHR) {
         for (var i=0; i<busyXHR.length; i++) {
             if (jqXHR === busyXHR[i]) {
@@ -62,7 +73,7 @@ define(['templates'], function(templates) {
 
     return {
         cancel: cancel,
-        wait: wait,
-        done: done
+        wait: waitManual,
+        done: doneManual
     };
 });

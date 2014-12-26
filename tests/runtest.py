@@ -2,13 +2,16 @@ import requests
 from requests.auth import HTTPBasicAuth
 import argparse
 import os
+import os.path as osp
 import json
 import time
 
 browsers = {
     'ipad': ["OS X 10.9", "iPad", "8.1"],
     'ie11': [ "Windows 2012 R2", "Internet Explorer", "11"],
-    'ie8': ["Windows 2003", "Internet Explorer", "8"],
+    'ie8': ["Windows 2008", "Internet Explorer", "8"],
+    'ie9': ["Windows 2008", "Internet Explorer", "9"],
+    'ie10': ["Windows 2008", "Internet Explorer", "10"],
     'macchrome': ["OS X 10.10", "googlechrome", ""],
     'win7chrome': ["Windows 7", "googlechrome", ""],
     'macsafari': ["OS X 10.10", "Safari", "8"],
@@ -29,10 +32,16 @@ args = parser.parse_args()
 
 url = 'https://saucelabs.com/rest/v1/%s/js-tests' % args.user
 headers = {'content-type': 'application/json'}
+testurl = args.url
+if not testurl.startswith('http'):
+    testurl = 'http://gbserver3.cs.unc.edu/theme/tests/' + testurl
+name = osp.basename(testurl)
+
 data = {
     'platforms': [ browsers[args.browser] ],
     'framework': 'mocha',
-    'url': args.url
+    'url': testurl,
+    'name': name
 }
 auth = HTTPBasicAuth(args.user, args.key)
 resp = requests.post(url, auth=auth, data=json.dumps(data),
@@ -41,6 +50,7 @@ resp = requests.post(url, auth=auth, data=json.dumps(data),
 r = resp.json()
 print r
 id = r['js tests'][0]
+status = ''
 while True:
     time.sleep(10)
     rsp = requests.post(url+'/status', auth=auth, headers=headers,
@@ -48,6 +58,10 @@ while True:
     s = rsp.json()
     if s['completed']:
         break
+    stat = s['js tests'][0]['status']
+    if stat != status:
+        print stat
+        status = stat
 print s
 
 '''

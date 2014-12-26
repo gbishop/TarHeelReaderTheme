@@ -8,7 +8,8 @@ define([
     "busy",
     "navigation",
     "help",
-    "yourbooks"],
+    "yourbooks",
+    "offline"],
     function(route, state, controller) {
         $(function() {
             var url = window.location.href,

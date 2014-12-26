@@ -132,6 +132,7 @@ define([ "json!../state.json", "jquery.cookie" ], function(rules) {
         removeFavorite: removeFavorite,
         isFavorite: isFavorite,
         favoritesArray: favoritesArray,
-        favoritesURL: favoritesURL
+        favoritesURL: favoritesURL,
+        offline: function() { return state['offline'] == '1'; }
     };
 });

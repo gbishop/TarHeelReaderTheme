@@ -37,7 +37,7 @@
     top: 0.65em;
     z-index: 10;
 
-    width: 2.5em;
+    //width: 2.5em;
     min-width: 24px;
     height: 2.5em;
     min-height: 24px;
@@ -296,6 +296,11 @@
       &.photoCreditsLink {
         background-image: url(/theme/images/photo_credits_icon.png);
       }
+
+      &.offlineLink {
+        background-image: url(/theme/images/offline_icon.png);
+      }
+
 
       a {
         -webkit-box-sizing: border-box;
