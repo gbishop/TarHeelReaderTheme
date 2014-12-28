@@ -1,14 +1,14 @@
 define([
     'state',
     'route',
-    'page', 'store',
+    'page',
+    'store',
     'templates',
     'busy'
     ], function(state, route, page, store, templates, busy) {
 
     function offlineList() {
         return store.listBooks().then(function(books) {
-            console.log('got books', books);
             return templates.render('offlineList', { books: books });
         }, function(err) {
             console.log('offlineList', err);
@@ -26,7 +26,6 @@ define([
 
         offlineList().then(function(list) {
             var view = { list: list };
-            console.log('offlineRender', list);
             var $newPage = page.getInactive('offline-page');
             $newPage.empty()
                 .append(templates.render('heading',
@@ -39,7 +38,6 @@ define([
             $def.reject(err);
         });
         return $def;
-
     }
 
     function offlineConfigure() {
@@ -49,11 +47,9 @@ define([
         $page.find('button#addFavorites')
             .prop('disabled', favs.length === 0)
             .on('click', function(e) {
-                console.log('click favs', favs);
                 busy.wait();
                 $page.find('li#noOfflineBooks').remove();
                 return store.addBooksToOffline(favs, function(id, added) {
-                    console.log('progress', id, added);
                     if (added) {
                         store.bookTitle(id).then(function(book) {
                             var li = templates.render('offlineList', { books: [ book ]});
@@ -64,16 +60,19 @@ define([
                     busy.done();
                 });
             });
+
         $page.find('button#goOffline')
             .on('click', function(e) {
                 state.set('offline', '1');
                 $('html').addClass('offline');
             });
+
         $page.find('button#goOnline')
             .on('click', function(e) {
                 state.set('offline', '0');
                 $('html').removeClass('offline');
             });
+
         $page.find('button#clearOffline')
             .on('click', function(e) {
                 busy.wait();
@@ -86,21 +85,17 @@ define([
 
         $page.find('button#clearSelected')
             .on('click', function(e) {
-                console.log('clicked clearSelected');
-                var ids = $page.find('input:checked').map(function() { return $(this).val()}).toArray();
-                console.log('clear', ids);
-                //busy.wait();
+                var ids = $page.find('input:checked')
+                    .map(function() { return +$(this).val()}).toArray();
+                busy.wait();
                 store.removeBooksFromOffline(ids, function(id) {
-                    console.log('cleared', id);
                     $page.find('#offlineBooks input')
                         .filter(function() { return this.value == id})
                         .parent()
                         .parent()
                         .remove();
-                }, function(err) {
-                    console.log('error', err);
                 }).then(function() {
-                    //busy.done();
+                    busy.done();
                 });
             });
     }
