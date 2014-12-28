@@ -3,6 +3,7 @@ generate the find page locally and enable switch selection of items
 */
 
 define([ "route",
+         "controller",
          "templates",
          "state",
          "keyboard",
@@ -11,7 +12,7 @@ define([ "route",
          "ios",
          "store",
          "jquery.scrollIntoView"
-        ], function(route, templates, state, keys, speech, page, ios, store) {
+        ], function(route, controller, templates, state, keys, speech, page, ios, store) {
 
     // return the url that will restore the find page state
     function find_url(page) {
@@ -37,10 +38,17 @@ define([ "route",
     function findRender(url, query) {
         //console.log('findRender', url);
         var view = {},
-            $def = $.Deferred();
+            $def = $.Deferred(),
+            isFav = false;
         // record the state so we can come back here
-        state.set('findAnotherLink', find_url());
-        view.searchForm = templates.searchForm(); // sets the selects based on the state
+        if (url.match('/favorites/')) {
+            state.set('findAnotherLink', '/favorites/');
+            view.searchForm = '';
+            isFav = true;
+        } else {
+            state.set('findAnotherLink', find_url());
+            view.searchForm = templates.searchForm(); // sets the selects based on the state
+        }
 
         // fetch the json for the current set of books
         store.find(url).then(function(data) {
@@ -49,14 +57,14 @@ define([ "route",
                 templates.setImageSizes(data.books[i].cover);
             }
             view.bookList = templates.render('bookList', data);
-            var pageNumber = +state.get('page');
+            var pageNumber = isFav ? +state.get('fpage') : +state.get('page');
             if (data.more) {
                 view.nextLink = find_url(pageNumber + 1);
             }
             if (pageNumber > 1) {
                 view.backLink = find_url(pageNumber - 1);
             }
-            var $newPage = page.getInactive('find-page');
+            var $newPage = page.getInactive(isFav ? 'favorites-page' : 'find-page');
             $newPage.empty()
                 .append(templates.render('heading',
                     {settings:true, chooseFavorites:true}))
@@ -236,7 +244,7 @@ define([ "route",
             ev.preventDefault();
     });
     $(document).on('click', '.favorites-page.chooseFavorites .thr-favorites-icon', function(ev) {
-        window.location.href = '/favorites/'; // force a refresh after changing favorites on favorites page
+        controller.gotoUrl(state.favoritesURL()); // force a refresh after changing favorites on favorites page
     });
     $(document).on('click', '.reviewer li', function(ev) {
         if (!ev.shiftKey) return true;
@@ -248,6 +256,7 @@ define([ "route",
     });
 
     route.add('render', /^\/find\/(\?.*)?$/, findRender);
+    route.add('render', /^\/favorites\/(\?.*)?$/, findRender);
     route.add('init', /^\/find\/(\?.*)?$/, findConfigure);
     route.add('init', /^\/favorites\/(\?.*)?$/, findConfigure);
 
