@@ -1,11 +1,56 @@
+// only show the offline reading menu item on capable browsers
+.offlineLink {
+    display: none;
+}
+
+.applicationcache.indexeddb .offlineLink {
+    display: block;
+}
+
+// hide menu items that only work online
+.offline .navigationMenu .onlineOnly {
+    display: none;
+}
+.offline .mainSettings .onlineOnly {
+    display: none;
+}
+
+.offline a.onlineOnly {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+// disable the write link on the home page
+/*
+.offline a.homeLink[href="/write/"] {
+    opacity: 0.5;
+    pointer-events: none;
+}*/
+
 .offline-page {
+
+    #offlineControls {
+        text-align: center;
+    }
+
     button {
-      @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 10em);
+      @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 40%);
+      margin: 0.5em;
+      min-height: 40px;
+      min-width: 10em;
+    }
+
+    h1 {
+        top-margin: 1em;
     }
 
     ul {
         margin-top: 1em;
         list-style-type: none;
+
+        li {
+            margin-top: 1em;
+        }
 
         input {
             margin-right: 0.5em;
@@ -55,7 +100,5 @@ button#goOffline {
     button#goOffline {
         display: none;
     }
-
-
 }
 
