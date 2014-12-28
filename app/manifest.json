@@ -1,0 +1,23 @@
+{
+  "name": "Tar Heel Reader",
+  "description": "Books for beginning readers of all ages",
+  "manifest_version": 2,
+  "version": "4.0",
+  "app": {
+    "urls": [
+      "*://gbserver3.cs.unc.edu/"
+    ],
+    "launch": {
+      "web_url": "http://gbserver3.cs.unc.edu",
+      "container": "panel",
+      "height": 2048,
+      "width": 2048
+    }
+  },
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "permissions": [
+    "unlimitedStorage"
+  ]
+}

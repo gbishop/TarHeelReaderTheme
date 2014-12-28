@@ -21,8 +21,6 @@ define([ "json!../state.json", "jquery.cookie" ], function(rules) {
     }
 
     function stateUpdate(url) {
-        // console.log('url', url);
-
         // get the old value
         var cookieJson = $.cookie('thr');
         var cookie = $.parseJSON(cookieJson);
@@ -121,6 +119,18 @@ define([ "json!../state.json", "jquery.cookie" ], function(rules) {
         return '/favorites/?' + $.param(p);
     }
 
+    function queryParameters() {
+        return {
+            reviewed: state['reviewed'],
+            language: state['language'],
+            page: +state['page'],
+            category: state['category'],
+            type: state['type'],
+            audience: state['audience'],
+            search: state['search']
+        };
+    }
+
     stateUpdate(window.location.href);
 
     return {
@@ -133,6 +143,7 @@ define([ "json!../state.json", "jquery.cookie" ], function(rules) {
         isFavorite: isFavorite,
         favoritesArray: favoritesArray,
         favoritesURL: favoritesURL,
+        queryParameters: queryParameters,
         offline: function() { return state['offline'] == '1'; }
     };
 });

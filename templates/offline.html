@@ -1,10 +1,14 @@
 <p id="statusOnline">_(You are online)</p>
 <p id="statusOffline">_(The airplane symbol near the Old Well shows that you are offline)</p>
-<button id="addFavorites">_(Add Favorites)</button>
-<button id="goOnline">_(Go Online)</button>
-<button id="goOffline">_(Go Offline)</button>
-<button id="clearOffline">_(Clear All)</button>
-<button id="clearSelected">_(Clear Selected)</button>
+
+<div id="offlineControls">
+    <button id="goOnline">_(Go Online)</button>
+    <button id="goOffline">_(Go Offline)</button>
+    <button id="addFavorites">_(Add Favorites)</button>
+    <button id="clearOffline">_(Clear All)</button>
+    <button id="clearSelected">_(Clear Selected)</button>
+</div>
+<h1>Books saved for offline reading</h1>
 <ul id="offlineBooks">
     {{&list}}
 </ul>
