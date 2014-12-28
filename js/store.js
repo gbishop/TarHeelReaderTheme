@@ -153,6 +153,32 @@ define(['state', 'templates'], function(state, templates) {
         return $def;
     }
 
+    /* visit every record in the db */
+    function visitDbRecords(db, table, visitor) {
+        var $def = $.Deferred();
+        var transaction = db.transaction([table], "readonly"),
+            store = transaction.objectStore(table),
+            cursorRequest = store.openCursor();
+
+        transaction.oncomplete = function(e) {
+            $def.resolve();
+        };
+
+        cursorRequest.onerror = function(error) {
+            console.log('cursorRequest error', error);
+            $def.reject();
+        };
+
+        cursorRequest.onsuccess = function(e) {
+            var cursor = e.target.result;
+            if (cursor) {
+                visitor(cursor);
+                cursor['continue']();
+            }
+        };
+        return $def;
+    }
+
     /* base64 encode a blog */
     function encodeBlob(blob) {
         var $def = $.Deferred();
@@ -268,6 +294,8 @@ define(['state', 'templates'], function(state, templates) {
 
     /* remove books from the cache */
     function unCacheBooks(db, ids, progress) {
+        var imagesInUse = {}, // all the images used by books
+            imagesInStore = {}; // all the images in the store
         return pmap(ids, function(id) {
             return deleteDbRecord(db, 'books', +id).then(function(key) {
                 if(progress) {
@@ -275,8 +303,30 @@ define(['state', 'templates'], function(state, templates) {
                 }
                 return id;
             });
+        }).then(function() {
+            // accumulate all the images from the books in a dictionary
+            return visitDbRecords(db, 'books', function(cursor) {
+                var book = cursor.value;
+                for (var i=0; i<book.pages.length; i++) {
+                    imagesInUse[uriToKey(book.pages[i].url)] = true;
+                }
+            });
+        }).then(function() {
+            // accumulate all the images from the store in a dictionary
+            return visitDbRecords(db, 'images', function(cursor) {
+                var key = cursor.primaryKey;
+                imagesInStore[key] = true;
+            });
+        }).then(function() {
+            // remove the keys that are in use
+            for (var key in imagesInUse) {
+                delete imagesInStore[key];
+            }
+            // clean up those remaining
+            return pmap(Object.keys(imagesInStore), function(key) {
+                return deleteDbRecord(db, 'images', key);
+            });
         });
-        /* TODO: remove the images */
     }
 
     /* display the title page for a book, I'm using it for progress */
