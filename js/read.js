@@ -29,7 +29,6 @@ define(["route",
         }
         var $def = $.Deferred();
         store.fetchBook(slug).then(function(book) {
-            console.log('in read', book);
             var view = {};
             if (!pageNumber) {
                 pageNumber = 1;
@@ -55,9 +54,7 @@ define(["route",
                     view.nextLink = pageLink(book.link, pageNumber+1);
                 }
                 templates.setImageSizes(view.image);
-                console.log('view', view, view.image.url);
                 newContent = templates.render('bookPage', view);
-                console.log('nc', newContent);
                 if (speech.hasSpeech[book.language]) {
                     speech.play(book.ID, state.get('voice'), pageNumber, book.bust);
                 }
