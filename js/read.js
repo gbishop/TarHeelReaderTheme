@@ -242,7 +242,7 @@ define(["route",
     function updateRating(book, url) {
         var ratingRE = /rating=([123])/;
         var m = ratingRE.exec(url);
-        if (m) {
+        if (m && !state.offline()) {
             var rating = parseInt(m[1], 10);
             book.rating_count += 1;
             book.rating_total += rating;
