@@ -1,11 +1,7 @@
 define(['state', 'templates'], function(state, templates) {
 
     /* initialize the db and return it */
-    var holdDb = null;
     function initDB(name) {
-        if (holdDb) {
-            return $.when(holdDb);
-        }
         var $def = $.Deferred();
         if (!window.indexedDB) {
             $def.reject('no indexedDB');
@@ -26,7 +22,6 @@ define(['state', 'templates'], function(state, templates) {
 
         request.onsuccess = function(event) {
             var db = event.target.result;
-            //holdDb = db;
             var PersistentStorage = navigator.webkitPersistentStorage || undefined;
             if (false && PersistentStorage && PersistentStorage.requestQuota) {
                 PersistentStorage.requestQuota(100*1024*1024,
@@ -46,10 +41,6 @@ define(['state', 'templates'], function(state, templates) {
     /* delete the database for testing so I can start clean */
     function deleteDB(name) {
         var $def = $.Deferred();
-        if (holdDb) {
-            holdDb.close();
-            holdDb = null;
-        }
         var req = indexedDB.deleteDatabase(name);
         req.onsuccess = function () {
             $def.resolve();
@@ -99,13 +90,17 @@ define(['state', 'templates'], function(state, templates) {
     }
 
     /* read a record from the db */
-    function readDb(db, table, key) {
+    function readRecord(db, table, key, useIndex) {
         var $def = $.Deferred();
         var transaction = db.transaction([table], 'readonly'),
             store = transaction.objectStore(table),
-            req = store.get(key);
+            index = useIndex ? store.index(useIndex) : store,
+            req = index.get(key);
         req.onsuccess = function(e) {
-            $def.resolve(e.target.result);
+            if (e.target.result)
+                $def.resolve(e.target.result);
+            else
+                $def.reject();
         };
         req.onerror = function(e) {
             $def.reject();
@@ -114,10 +109,12 @@ define(['state', 'templates'], function(state, templates) {
     }
 
     /* write the image to the db */
-    function writeDb(db, table, key, data) {
+    function writeRecord(db, table, data, key) {
         var $def = $.Deferred();
         try {
-            var transaction = db.transaction([table], 'readwrite');
+            var transaction = db.transaction([table], 'readwrite'),
+                store = transaction.objectStore(table);
+
             transaction.onerror = function(e) {
                 $def.reject('image write failed');
             };
@@ -132,7 +129,11 @@ define(['state', 'templates'], function(state, templates) {
             transaction.oncomplete = function(event) {
                 $def.resolve(key);
             };
-            transaction.objectStore(table).put(data, key);
+            if (key) {
+                store.put(data, key);
+            } else {
+                store.put(data);
+            }
         } catch(e) {
             $def.reject('write exception');
         }
@@ -140,7 +141,7 @@ define(['state', 'templates'], function(state, templates) {
     }
 
     /* delete the record from the db */
-    function deleteDbRecord(db, table, key) {
+    function deleteRecord(db, table, key) {
         var $def = $.Deferred();
         var transaction = db.transaction([table], 'readwrite');
         var req = transaction.objectStore(table).delete(key);
@@ -154,11 +155,11 @@ define(['state', 'templates'], function(state, templates) {
     }
 
     /* visit every record in the db */
-    function visitDbRecords(db, table, visitor) {
+    function visitRecords(db, table, visitor) {
         var $def = $.Deferred();
         var transaction = db.transaction([table], "readonly"),
             store = transaction.objectStore(table),
-            cursorRequest = store.openCursor();
+            cursorRequest = store.openCursor(null, 'prev');
 
         transaction.oncomplete = function(e) {
             $def.resolve();
@@ -172,14 +173,28 @@ define(['state', 'templates'], function(state, templates) {
         cursorRequest.onsuccess = function(e) {
             var cursor = e.target.result;
             if (cursor) {
-                visitor(cursor);
-                cursor['continue']();
+                if (visitor(cursor) !== false)
+                    cursor['continue']();
             }
         };
         return $def;
     }
 
-    /* base64 encode a blog */
+    function clearStore(db, table) {
+        var $def = $.Deferred(),
+            transaction = db.transaction([table], "readwrite"),
+            store = transaction.objectStore(table),
+            req = store.clear();
+        transaction.oncomplete = function(event) {
+            $def.resolve();
+        };
+        transaction.onerror = function(err) {
+            $def.reject(err);
+        };
+        return $def;
+    }
+
+    /* base64 encode a blob */
     function encodeBlob(blob) {
         var $def = $.Deferred();
         var reader = new FileReader();
@@ -192,6 +207,32 @@ define(['state', 'templates'], function(state, templates) {
 
     /* cache a single image in the db */
     function cacheImage(db, uri) {
+        var key = uriToKey(uri);
+        return readRecord(db, 'images', key).then(function(image) {
+            return key;
+        }, function() {
+            return get(uri, 'blob').then(function(blob) {
+                // attempt to store as a blob
+                return writeRecord(db, 'images', blob, key).then(function(key) {
+                    imageCount += 1;
+                    imageBlobSize += blob.size;
+                    return key;
+                }, function(e) {
+                    // storing blob failed so write as base64
+                    return encodeBlob(blob).then(function(data) {
+                        return writeRecord(db, 'images', data, key).then(function(key) {
+                            imageCount += 1;
+                            imageBlobSize += blob.size;
+                            imageDataSize += data.length;
+                            return key;
+                        }, function(error) {
+                            console.log('write base64 failed');
+                        });
+                    });
+                });
+            });
+        });
+        /*
         var $def = $.Deferred();
         var transaction = db.transaction(['images'], 'readonly'),
             store = transaction.objectStore('images'),
@@ -204,14 +245,14 @@ define(['state', 'templates'], function(state, templates) {
             } else {
                 get(uri, 'blob').then(function(blob) {
                     // attempt to store as a blob
-                    writeDb(db, 'images', key, blob).then(function(key) {
+                    writeRecord(db, 'images', blob, key).then(function(key) {
                         imageCount += 1;
                         imageBlobSize += blob.size;
                         $def.resolve(key);
                     }, function(e) {
                         // storing blob failed so write as base64
                         encodeBlob(blob).then(function(data) {
-                            writeDb(db, 'images', key, data).then(function(key) {
+                            writeRecord(db, 'images', data, key).then(function(key) {
                                 imageCount += 1;
                                 imageBlobSize += blob.size;
                                 imageDataSize += data.length;
@@ -225,6 +266,7 @@ define(['state', 'templates'], function(state, templates) {
             }
         };
         return $def;
+        */
     }
 
     /* promise-based sequential map */
@@ -248,35 +290,24 @@ define(['state', 'templates'], function(state, templates) {
 
     /* cache a single book and its images */
     function cacheOneBook(db, id) {
-        var $def = $.Deferred();
-        readDb(db, 'books', id).then(function(book) {
-            if (book) {
-                $def.resolve({ ID: id, added: false });
-            } else {
-                get(bookAsJson + id, 'json').then(function(book) {
-                    // cache all the images first
-                    pmap(book.pages, function(page) {
-                        return cacheImage(db, page.url);
-                    }).then(function(results) {
-                        // now save the json for the book
-                        var transaction = db.transaction(['books'], 'readwrite'),
-                            objectStore = transaction.objectStore('books');
-                        transaction.oncomplete = function(event) {
-                            $def.resolve({ ID: book.ID, added: true} );
-                        };
-                        transaction.onerror = function(event) {
-                            console.log('book save error');
-                            console.log(event);
-                            $def.reject('db write failed');
-                        };
-                        objectStore.put(book);
-                    }, function(err) {
-                        console.log('error', err);
+        //var $def = $.Deferred();
+        return readRecord(db, 'books', id).then(function(book) {
+            return { ID: id, added: false };
+        }, function() {
+            return get(bookAsJson + id, 'json').then(function(book) {
+                // cache all the images first
+                return pmap(book.pages, function(page) {
+                    return cacheImage(db, page.url);
+                }).then(function(results) {
+                    // now save the json for the book
+                    return writeRecord(db, 'books', book).then(function() {
+                        return { ID: book.ID, added: true};
                     });
+                }, function(err) {
+                    console.log('error', err);
                 });
-            }
+            });
         });
-        return $def;
     }
 
     /* cache all the books in the list of ids,
@@ -297,7 +328,7 @@ define(['state', 'templates'], function(state, templates) {
         var imagesInUse = {}, // all the images used by books
             imagesInStore = {}; // all the images in the store
         return pmap(ids, function(id) {
-            return deleteDbRecord(db, 'books', +id).then(function(key) {
+            return deleteRecord(db, 'books', +id).then(function(key) {
                 if(progress) {
                     progress(id);
                 }
@@ -305,7 +336,7 @@ define(['state', 'templates'], function(state, templates) {
             });
         }).then(function() {
             // accumulate all the images from the books in a dictionary
-            return visitDbRecords(db, 'books', function(cursor) {
+            return visitRecords(db, 'books', function(cursor) {
                 var book = cursor.value;
                 for (var i=0; i<book.pages.length; i++) {
                     imagesInUse[uriToKey(book.pages[i].url)] = true;
@@ -313,7 +344,7 @@ define(['state', 'templates'], function(state, templates) {
             });
         }).then(function() {
             // accumulate all the images from the store in a dictionary
-            return visitDbRecords(db, 'images', function(cursor) {
+            return visitRecords(db, 'images', function(cursor) {
                 var key = cursor.primaryKey;
                 imagesInStore[key] = true;
             });
@@ -324,7 +355,7 @@ define(['state', 'templates'], function(state, templates) {
             }
             // clean up those remaining
             return pmap(Object.keys(imagesInStore), function(key) {
-                return deleteDbRecord(db, 'images', key);
+                return deleteRecord(db, 'images', key);
             });
         });
     }
@@ -333,9 +364,9 @@ define(['state', 'templates'], function(state, templates) {
     function displayImage(id) {
         //log('display ' + key);
         return initDB('thr').then(function(db) {
-            return readDb(db, 'books', id).then(function(book) {
+            return readRecord(db, 'books', id).then(function(book) {
                 var key = uriToKey(book.pages[0].url);
-                return readDb(db, 'images', key).then(function(result) {
+                return readRecord(db, 'images', key).then(function(result) {
                     var $img = $('<img>');
                     if (result instanceof Blob) {
                         result = window.URL.createObjectURL(result);
@@ -430,71 +461,51 @@ define(['state', 'templates'], function(state, templates) {
     }
 
     function favoritesLocal() {
-        var $def = $.Deferred(),
-            result = {
+        var result = {
                 books: []
             };
-        initDB('thr').then(function(db) {
-            pmap(state.favoritesArray(), function(id) {
-                return readDb(db, 'books', +id).then(function(book) {
-                    if (book) {
-                        var fr = bookToFindResult(book);
-                        result.books.push(fr);
-                    }
+        return initDB('thr').then(function(db) {
+            return pmap(state.favoritesArray(), function(id) {
+                return readRecord(db, 'books', +id).then(function(book) {
+                    var fr = bookToFindResult(book);
+                    result.books.push(fr);
                 });
             }).then(function()  {
-                pmap(result.books, function(fr) {
+                return pmap(result.books, function(fr) {
                     return localizeFindResult(db, fr);
                 }).then(function() {
-                    $def.resolve(result);
+                    return result;
                 });
             });
         });
-        return $def;
     }
 
     function findLocal(url) {
         // simply list the books in the db for starters
         var qp = state.queryParameters();
-        var $def = $.Deferred();
-        initDB('thr').then(function(db) {
-            var transaction = db.transaction(['books'], "readonly"),
-                store = transaction.objectStore('books'),
-                cursorRequest = store.openCursor(null, 'prev'),
-                result = {
+        return initDB('thr').then(function(db) {
+            var result = {
                     books: []
                 };
-
-            transaction.oncomplete = function(e) {
-                pmap(result.books, function(fr) {
+            return visitRecords(db, 'books', function(cursor) {
+                var book = cursor.value;
+                if (filterBook(qp, book)) {
+                    var fr = bookToFindResult(book);
+                    result.books.push(fr);
+                }
+            }).then(function() {
+                return pmap(result.books, function(fr) {
                     return localizeFindResult(db, fr);
                 }).then(function() {
-                    $def.resolve(result);
+                    return result;
                 });
-            };
-
-            cursorRequest.onerror = function(error) {
-                console.log('cursorRequest error', error);
-            };
-
-            cursorRequest.onsuccess = function(e) {
-                var cursor = e.target.result;
-                if (cursor) {
-                    var book = cursor.value;
-                    if (filterBook(qp, book)) {
-                        var fr = bookToFindResult(book);
-                        result.books.push(fr);
-                    }
-                    cursor['continue']();
-                }
-            };
+            });
         });
-        return $def;
     }
 
     function localizeImage(db, uri) {
         var key = uriToKey(uri);
-        return readDb(db, 'images', key).then(function(result) {
+        return readRecord(db, 'images', key).then(function(result) {
             if (result instanceof Blob) {
                 result = window.URL.createObjectURL(result);
             }
@@ -504,31 +515,18 @@ define(['state', 'templates'], function(state, templates) {
 
     function localizeBook(slug) {
         // find the book and update its image urls
-        var $def = $.Deferred();
-        initDB('thr').then(function(db) {
-            var transaction = db.transaction(['books'], 'readonly'),
-                store = transaction.objectStore('books'),
-                index = store.index('slug'),
-                req = index.get(encodeURI(slug).toLowerCase());
-            req.onsuccess = function(e) {
-                var book = req.result;
-                if (!book) {
-                    $def.reject(slug + ' not found');
-                } else {
-                    pmap(book.pages, function(page) {
-                        return localizeImage(db, page.url).then(function(result) {
-                            page.url = result;
-                        });
-                    }).then(function() {
-                        $def.resolve(book);
+        return initDB('thr').then(function(db) {
+            var key = encodeURI(slug).toLowerCase();
+            return readRecord(db, 'books', key, 'slug').then(function(book) {
+                return pmap(book.pages, function(page) {
+                    return localizeImage(db, page.url).then(function(result) {
+                        page.url = result;
                     });
-                }
-            };
-            req.onerror = function(e) {
-                $def.reject();
-            }
+                }).then(function() {
+                    return book;
+                });
+            });
         });
-        return $def;
     }
 
     /* External interface */
@@ -569,12 +567,14 @@ define(['state', 'templates'], function(state, templates) {
 
     function find(url) {
         if (!state.offline()) {
-            console.log('online', state);
             return $.ajax({
                 url: url,
                 data: 'json=1',
                 dataType: 'json',
                 timeout: 30000,
+            }).then(function(books) {
+                state.update(''); // pick up changes to favorites from the host
+                return books;
             });
         } else if (url.match(/favorites/)) {
             console.log('offline favs');
@@ -595,6 +595,8 @@ define(['state', 'templates'], function(state, templates) {
         });
     }
 
+    /* remove the listed books from offline storage */
+
     function removeBooksFromOffline(ids, progress) {
         return initDB('thr').then(function(db) {
             return unCacheBooks(db, ids, progress);
@@ -603,6 +605,8 @@ define(['state', 'templates'], function(state, templates) {
             return ids;
         });
     }
+
+    /* true if the browser appears to have the right stuff for offline */
 
     function offlineCapable() {
         var $def = $.Deferred();
@@ -614,59 +618,31 @@ define(['state', 'templates'], function(state, templates) {
         return $def;
     }
 
+    /* return the title and ID of books available offline */
+
     function listBooks() {
         return initDB('thr').then(function(db) {
-            var $def = $.Deferred();
-            var transaction = db.transaction(['books'], "readonly"),
-                store = transaction.objectStore('books'),
-                cursorRequest = store.openCursor(),
-                books = [];
-
-            transaction.oncomplete = function(e) {
-                $def.resolve(books);
-            };
-
-            cursorRequest.onerror = function(error) {
-                console.log('cursorRequest error', error);
-            };
-
-            cursorRequest.onsuccess = function(e) {
-                var cursor = e.target.result;
-                if (cursor) {
-                    var book = cursor.value;
-                    books.push({ID: book.ID, title:book.title});
-                    cursor['continue']();
-                }
-            };
-            return $def;
+            var books = [];
+            return visitRecords(db, 'books', function(cursor) {
+                var book = cursor.value;
+                books.push({ID: book.ID, title: book.title});
+            }).then(function() {
+                return books;
+            });
         });
     }
 
-        /* return the title for a book, I'm using it for progress */
+    /* return the title for a book, I'm using it for progress */
     function bookTitle(id) {
         //log('display ' + key);
         return initDB('thr').then(function(db) {
-            return readDb(db, 'books', +id).then(function(book) {
+            return readRecord(db, 'books', +id).then(function(book) {
                 return { ID: book.ID, title: book.title };
             });
         });
     }
 
     /* for testing */
-
-    function clearStore(db, table) {
-        var $def = $.Deferred(),
-            transaction = db.transaction([table], "readwrite"),
-            store = transaction.objectStore(table),
-            req = store.clear();
-        transaction.oncomplete = function(event) {
-            $def.resolve();
-        };
-        transaction.onerror = function(err) {
-            $def.reject(err);
-        };
-        return $def;
-    }
 
     function reset() {
         return initDB('thr').then(function(db) {
