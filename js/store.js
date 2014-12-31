@@ -426,6 +426,9 @@ define(['state', 'templates'], function(state, templates) {
     }
 
     function favoritesLocal() {
+        var p = +state.get('fpage'),
+            start = (p-1)*24,
+            end = start + 24;
         var result = {
                 books: []
             };
@@ -436,6 +439,8 @@ define(['state', 'templates'], function(state, templates) {
                     result.books.push(fr);
                 });
             }).then(function()  {
+                result.more = result.books.length > end;
+                result.books = result.books.slice(start, end);
                 return pmap(result.books, function(fr) {
                     return localizeFindResult(db, fr);
                 }).then(function() {
@@ -459,6 +464,10 @@ define(['state', 'templates'], function(state, templates) {
                     result.books.push(fr);
                 }
             }).then(function() {
+                var start = (+qp.page - 1) * 24,
+                    end = start + 24;
+                result.more = result.books.length > end;
+                result.books = result.books.slice(start, end);
                 return pmap(result.books, function(fr) {
                     return localizeFindResult(db, fr);
                 }).then(function() {
