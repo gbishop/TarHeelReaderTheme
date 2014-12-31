@@ -1,5 +1,9 @@
 tests/.sauce
+tests/output.xml
+tests/log.html
+tests/report.html
 tests/robot
+tests/selenium*
 _mediaqueries.scss
 manifest.appcache
 style.css
