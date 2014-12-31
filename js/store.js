@@ -232,41 +232,6 @@ define(['state', 'templates'], function(state, templates) {
                 });
             });
         });
-        /*
-        var $def = $.Deferred();
-        var transaction = db.transaction(['images'], 'readonly'),
-            store = transaction.objectStore('images'),
-            key = uriToKey(uri),
-            req = store.get(key);
-        req.onsuccess = function(e) {
-            var image = e.target.result;
-            if (image) {
-                $def.resolve(key);
-            } else {
-                get(uri, 'blob').then(function(blob) {
-                    // attempt to store as a blob
-                    writeRecord(db, 'images', blob, key).then(function(key) {
-                        imageCount += 1;
-                        imageBlobSize += blob.size;
-                        $def.resolve(key);
-                    }, function(e) {
-                        // storing blob failed so write as base64
-                        encodeBlob(blob).then(function(data) {
-                            writeRecord(db, 'images', data, key).then(function(key) {
-                                imageCount += 1;
-                                imageBlobSize += blob.size;
-                                imageDataSize += data.length;
-                                $def.resolve(key);
-                            }, function(error) {
-                                console.log('write base64 failed');
-                            });
-                        });
-                    });
-                });
-            }
-        };
-        return $def;
-        */
     }
 
     /* promise-based sequential map */
