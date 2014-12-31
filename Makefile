@@ -77,11 +77,3 @@ siteSpeech: build
 	mv speech/foo.mp3 speech/en-1star-c.mp3
 	lame --quiet --preset phon+ speech/en-1star-f.mp3 speech/foo.mp3
 	mv speech/foo.mp3 speech/en-1star-f.mp3
-
-functional:
-	robot/bin/pybot -v DESIRED_CAPABILITIES:"platform:Windows 2012 R2,browserName:internet explorer,version:11" -v REMOTE_URL:http://gbthr:2d81d984-8060-4adc-aab7-79efc95b4b4f@ondemand.saucelabs.com:80/wd/hub thr.robot
-
-test-setup:
-	virtualenv robot --no-site-packages
-	robot/bin/pip install robotframework-selenium2library
-	robot/bin/pip install simplejson requests

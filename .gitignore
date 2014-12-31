@@ -1,3 +1,5 @@
+tests/.sauce
+tests/robot
 _mediaqueries.scss
 manifest.appcache
 style.css
@@ -8,3 +10,4 @@ theme.sublime-workspace
 speech/*.mp3
 languages/thr.pot
 *.swp
+*.pyc
