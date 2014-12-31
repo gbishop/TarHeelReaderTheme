@@ -14,8 +14,11 @@ define(['templates'], function(templates) {
         $blocker.hide();
     }
 
+    window.thr_ajax_count = 0;
+
     function wait(jqXHR, settings) {
         //console.log('ajax start', jqXHR);
+        window.thr_ajax_count += 1;
         busyXHR.push(jqXHR);
         $blocker.addClass('isBusy').removeClass('isError')
             .css('top', $(window).scrollTop() + $(window).height() / 3 + 'px');
