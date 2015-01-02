@@ -49,6 +49,7 @@ define([
             .on('click', function(e) {
                 busy.wait();
                 $page.find('li#noOfflineBooks').remove();
+                logEvent('offline', 'addFavorites', 'count', favs.length);
                 return store.addBooksToOffline(favs, function(id, added) {
                     if (added) {
                         store.bookTitle(id).then(function(book) {
@@ -63,12 +64,14 @@ define([
 
         $page.find('button#goOffline')
             .on('click', function(e) {
+                logEvent('offline', 'go offline', 'count', $('#offlineBooks li').length);
                 state.set('offline', '1');
                 $('html').addClass('offline');
             });
 
         $page.find('button#goOnline')
             .on('click', function(e) {
+                logEvent('offline', 'go online');
                 state.set('offline', '0');
                 $('html').removeClass('offline');
             });

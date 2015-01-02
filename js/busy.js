@@ -19,6 +19,7 @@ define(['templates'], function(templates) {
     function wait(jqXHR, settings) {
         //console.log('ajax start', jqXHR);
         window.thr_ajax_count += 1;
+        if (!settings.global) return; // why do I need this?
         busyXHR.push(jqXHR);
         $blocker.addClass('isBusy').removeClass('isError')
             .css('top', $(window).scrollTop() + $(window).height() / 3 + 'px');

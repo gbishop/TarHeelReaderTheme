@@ -1,4 +1,4 @@
-define(["templates" ], function(templates) {
+define(["templates", "state" ], function(templates, state) {
     var SpeechBase = "/cache/speech/";
     var languages = templates.get('languages');
     var hasSpeech = {};
@@ -7,7 +7,7 @@ define(["templates" ], function(templates) {
     }
     var audio = null; // the html5 audio node will go here if we use it
     function initialize () {
-        if (audio) return;
+        if (audio || state.offline()) return;
 
         // use html5 audio if it is available and if it supports mp3.
         // I'd rather use ogg but I need mp3 for flash fallback anyway.
@@ -59,7 +59,7 @@ define(["templates" ], function(templates) {
     function play(id, voice, page, bust) {
         voice = voice[0]; // assure we're only using the 1st letter
         //console.log('play', id, voice, page, audio);
-        if (!audio || voice === 's') {
+        if (!audio || voice === 's' || state.offline()) {
             return;
         }
 

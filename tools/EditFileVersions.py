@@ -6,7 +6,7 @@ import hashlib
 import re
 import argparse
 
-parser = argparse.ArgumentParser(description="Process templates to produce locale specific json files.")
+parser = argparse.ArgumentParser(description="Edit urls to include version numbers")
 parser.add_argument('--staticHost', default='')
 parser.add_argument('--db', default='../gbVersion')
 parser.add_argument('files', nargs='+')

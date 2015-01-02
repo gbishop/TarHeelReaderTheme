@@ -26,6 +26,7 @@ define([
                 $page.trigger('PageRendered');
                 route.go('init', url, $page);
                 $page.trigger('PageVisible');
+                $('div.loading').removeClass('loading');
             }
         });
     });

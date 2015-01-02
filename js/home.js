@@ -1,4 +1,4 @@
-define(['page', 'templates', 'route'], function(page, templates, route) {
+define(['page', 'templates', 'route', 'state'], function(page, templates, route, state) {
     function homeRender(url, query) {
         console.log('homeRender', url);
         var $def = $.Deferred(),
@@ -25,5 +25,20 @@ define(['page', 'templates', 'route'], function(page, templates, route) {
         $def.resolve($newPage, {title: 'Tar Heel Reader', colors: false});
         return $def;
     }
+    function homeInit(url, query) {
+        // update the announcements unless offline
+        var $page = $(this);
+        if (!state.offline()) {
+            $.ajax('/blog/', {
+                data: { json: 1 },
+                dataType: 'json',
+                global: false
+            }).then(function(data) {
+                $page.find('div.announcements').empty()
+                    .append(templates.render('announcements', data))
+            });
+        }
+    }
     route.add('render', /^\/(\?.*)?$/, homeRender);
+    route.add('init', /^\/(\?.*)?$/, homeInit);
 });

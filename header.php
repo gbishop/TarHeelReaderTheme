@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     $manifest = 'manifest="/theme/manifest.appcache"';
-    $manifest = '';
+    //$manifest = '';
     $classic = "";
     if (THR('classic')) {
         $classic = " classic";
@@ -30,67 +30,38 @@
         echo template_render('styleColor', $view);
     ?>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
-    <script>
-        if (!window.console) window.console = {};
-        if (!window.console.log) window.console.log = function () { };
-    </script>
     <?php if (!THR('classic')) : ?>
         <![if gt IE 7]>
         <script src="/theme/js/modernizr.custom.js"></script>
         <script src="/theme/js/json2.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+        <script>
+            var require = { waitSeconds: 200 };
+            if (!window.console) window.console = {};
+            if (!window.console.log) window.console.log = function () { };
+        </script>
+        <script data-main="/theme/js/main" src="/theme/js/require.min.js"></script>
         <![endif]>
     <?php endif ?>
     <?php wp_head(); ?>
 
     <script>
-        // Google Analytics
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-6128682-1']);
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        <?php if ($_SERVER['HTTP_X_PURPOSE'] != 'preview' &&
-                  $_SERVER['HTTP_X_MOZ'] != 'prefetch' &&
-                  $_SERVER['HTTP_X_PURPOSE'] != 'instant') : ?>
-        _gaq.push(['_trackPageview']);
-        <?php endif; ?>
-
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
-        var __E__ = [];
-        function _E_(n) {
-            __E__.push(n);
+      ga('create', 'UA-6128682-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script>
+        function logMessage(msg) {
+            console.log('logMessage', msg);
         }
-        <?php if (THR('debug') == 1): ?>
-            function logMessage(msg) {
-                console.log(msg);
-                //$.post('/log-message/', {message: msg});
-            }
-            /*
-            window.onerror = function(message, url, line) {
-                logEvent('onerror', message, url+" ("+line+")");
-                return true;
-            };
-            */
-            function logEvent(category, label, arg) {
-                logMessage(category + '|' + label + '|' + arg);
-            }
-        <?php else: ?>
-            function logMessage(msg) {
-            }
-            window.onerror = function(message, url, line) {
-                if (typeof(_gaq) === "object" && url.match(/theme|jquery/)) {
-                    logEvent('onerror', message,
-                        url+" ("+line+':'+__E__.slice(-20).join()+")");
-                }
-                return true;
-            };
-            function logEvent(category, label, arg) {
-                _gaq.push(["_trackEvent", category, label, arg, 0, true]);
-            }
-        <?php endif; ?>
-
+        function logEvent(category, action, label, value) {
+            ga('send', 'event', category, action, label, value);
+            console.log('logEvent', category, action, label, value);
+        }
     </script>
 </head>

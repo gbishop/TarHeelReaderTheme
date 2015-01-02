@@ -110,7 +110,7 @@ define([  "route",
         }
         renderUrl(url, context).then(function(title) {
             document.title = title;
-            _gaq.push(['_trackPageview', url.replace(rootUrl, '/')]);
+            ga('send', 'pageview', { page: url.replace(rootUrl, '/'), title: title });
         });
     }
 

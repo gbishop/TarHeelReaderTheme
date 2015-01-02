@@ -22,18 +22,7 @@ define(['state', 'templates'], function(state, templates) {
 
         request.onsuccess = function(event) {
             var db = event.target.result;
-            var PersistentStorage = navigator.webkitPersistentStorage || undefined;
-            if (false && PersistentStorage && PersistentStorage.requestQuota) {
-                PersistentStorage.requestQuota(100*1024*1024,
-                    function(allocated) {
-                        $def.resolve(db);
-                    },
-                    function(error) {
-                        console.log('quota error ' + error);
-                    });
-            } else {
-                $def.resolve(db);
-            }
+            $def.resolve(db);
         }
         return $def;
     }
@@ -72,7 +61,6 @@ define(['state', 'templates'], function(state, templates) {
             $def.resolve(result);
         };
         xhr.onerror = function() {
-            console.log('fetchImage failed ' + uri);
             $def.reject('fetchImage failed');
         };
         //log('loading ' + uri);
@@ -122,7 +110,7 @@ define(['state', 'templates'], function(state, templates) {
                 var error = event.target.error; // DOMError
                 if (error.name == 'QuotaExceededError') {
                   // Fallback code comes here
-                  console.log('quota exceeded');
+                  logEvent('offline', 'quota exceeded')
                 }
                 $def.reject(error.name);
             }
@@ -166,7 +154,6 @@ define(['state', 'templates'], function(state, templates) {
         };
 
         cursorRequest.onerror = function(error) {
-            console.log('cursorRequest error', error);
             $def.reject();
         };
 
@@ -514,7 +501,6 @@ define(['state', 'templates'], function(state, templates) {
         if (book && book.slug == encodeURI(slug).toLowerCase()) {
             $def.resolve(book);
         } else if (state.offline()) {
-            console.log('offline');
             localizeBook(slug).then(function(data) {
                 //book = data;
                 $def.resolve(data);
@@ -522,7 +508,6 @@ define(['state', 'templates'], function(state, templates) {
                 $def.reject(err);
             });
         } else {
-            console.log('online');
             $.ajax({
                 url: '/book-as-json/',
                 data: {
@@ -551,10 +536,8 @@ define(['state', 'templates'], function(state, templates) {
                 return books;
             });
         } else if (url.match(/favorites/)) {
-            console.log('offline favs');
             return favoritesLocal();
         } else {
-            console.log("offline");
             return findLocal(url);
         }
     }
@@ -575,7 +558,6 @@ define(['state', 'templates'], function(state, templates) {
         return initDB('thr').then(function(db) {
             return unCacheBooks(db, ids, progress);
         }, function() {
-            console.log('failed');
             return ids;
         });
     }
@@ -623,28 +605,6 @@ define(['state', 'templates'], function(state, templates) {
             clearStore(db, 'books').then(function() {
                 clearStore(db, 'images');
             });
-        });
-    }
-
-    /* some data for testing */
-    if (false) {
-        db.then(function(db) {
-            getBookIds(10).then(function(ids) {
-                var tstart = +new Date();
-                cacheBooks(db, ids, function(id) {
-                    displayImage(id);
-                }).then(function(ids) {
-                    console.log((+new Date() - tstart)/1000);
-                    //log(performance.now()/1000);
-                    console.log('count = ' + imageCount);
-                    console.log('average blob size = ' + imageBlobSize / imageCount);
-                    console.log('total blob size = ' + imageBlobSize);
-                    console.log('average data size = ' + imageDataSize / imageCount);
-                    console.log('total data size = ' + imageDataSize);
-                });
-            });
-        }, function(msg) {
-            console.log('failed ' + msg);
         });
     }
 
