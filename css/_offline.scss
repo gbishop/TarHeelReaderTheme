@@ -40,6 +40,10 @@
       min-width: 10em;
     }
 
+    button:disabled {
+        opacity: 0.5;
+    }
+
     h1 {
         top-margin: 1em;
     }
@@ -58,10 +62,10 @@
     }
 }
 
-p#statusOnline {
+.statusOnline {
     display: block;
 }
-p#statusOffline, button#goOnline {
+.statusOffline, button#goOnline {
     display: none;
 }
 
@@ -74,23 +78,29 @@ button#goOffline {
 }
 
 .offline {
+    /*
     a.thr-well-icon {
         text-decoration: none;
         &:after {
             content: "\2708";
             font-size: 2em;
         }
-        //max-width: 3em !important;
-
+    }
+    */
+    span.statusOffline {
+        display: block;
+        position: absolute;
+        left: 4em;
+        top: 1em;
     }
     img {
         vertical-align: bottom;
     }
 
-    p#statusOnline {
+    p.statusOnline {
         display:none;
     }
-    p#statusOffline {
+    p.statusOffline {
         display:block;
     }
     button#goOnline {

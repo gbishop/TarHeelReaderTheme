@@ -31,10 +31,10 @@ Book reading
 Offline reading page
     Open home page
     Open offline reading page
-    Page should contain button  Go Offline
-    Page should contain button  Add Favorites
-    Page should contain button  Clear All
-    Page should contain button  Clear Selected
+    Page should contain button  Read offline
+    Page should contain button  Add Favorites to local books
+    Page should contain button  Clear all local books
+    Page should contain button  Clear selected local books
 
 Choosing favorites
     #Set selenium speed  0.1
@@ -49,12 +49,12 @@ Read a book offline
     Open home page
     Select favorites
     Open offline reading page
-    Click button  Add Favorites
+    Click button  Add Favorites to local books
     Wait until element is visible  css=div.busyBlocker
     Wait for condition  return $('div.busyBlocker:visible').length==0  timeout=60
     ${count}=  execute javascript  return $('#offlineBooks li').length
     Should be true  ${count}==4
-    Click button  Go Offline
+    Click button  Read offline
     Wait until element is visible  css=button#goOnline
     ${astart}=  execute javascript  return window.thr_ajax_count
     Read a book
