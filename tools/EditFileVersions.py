@@ -9,6 +9,7 @@ import argparse
 parser = argparse.ArgumentParser(description="Edit urls to include version numbers")
 parser.add_argument('--staticHost', default='')
 parser.add_argument('--db', default='../gbVersion')
+parser.add_argument('--used')
 parser.add_argument('files', nargs='+')
 args = parser.parse_args()
 
@@ -18,6 +19,7 @@ target = re.compile(r'''(?<=['"(])/theme(V[0-9]+)?/([^'"\\)]*)''')
 
 db = shelve.open(args.db)
 
+used = {}
 
 def insertVersion(m):
     name = m.group(2)
@@ -46,6 +48,8 @@ def insertVersion(m):
         name = ('%s/themeV%d/' % (staticHost, version)) + name
     else:
         name = ('/themeV%d/' % version) + name
+
+    used[fullname] = True
     return name
 
 for fname in args.files:
@@ -56,3 +60,6 @@ for fname in args.files:
         print fname
         file(fname, 'w').write(nbytes)
 db.close()
+
+if args.used:
+    file(args.used, 'w').write('\n'.join(sorted(used.keys())))

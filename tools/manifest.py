@@ -2,13 +2,12 @@ import glob
 import re
 from datetime import datetime
 import argparse
-import shelve
 
 parser = argparse.ArgumentParser(description="Construct the manifest file")
-parser.add_argument('--db', default='../gbVersion')
+parser.add_argument('used')
 args = parser.parse_args()
 
-db = shelve.open(args.db)
+used = [ s.strip() for s in file(args.used, 'r').readlines() if '.mp3' not in s ]
 
 ManifestHead = '''
 CACHE MANIFEST
@@ -30,17 +29,7 @@ FALLBACK:
 '''
 ManifestHead = ManifestHead % datetime.now()
 
-files = [ ]
-for name in sorted(db.keys()):
-    if name.endswith('.mp3'):
-        continue
-    if 'analytics' in name:
-        continue
-    version, fhash = db[name]
-    path = '/themeV%d/%s' % (version, name)
-    files.append(path)
-
-ManifestMiddle = '\n'.join(files)
+ManifestMiddle = '\n'.join(used)
 
 print ManifestHead.strip()
 print ManifestMiddle
