@@ -613,3 +613,10 @@
     color: black;
 }
 
+.speechSynthesisOnly {
+  display: none;
+}
+
+.speechsynthesis .speechSynthesisOnly {
+  display: block;
+}

@@ -55,9 +55,8 @@ define(["route",
                 }
                 templates.setImageSizes(view.image);
                 newContent = templates.render('bookPage', view);
-                if (speech.hasSpeech[book.language]) {
-                    speech.play(book.ID, state.get('voice'), pageNumber, book.bust);
-                }
+                speech.play(book.ID, pageNumber, book.language,
+                    book.pages[pageNumber-1].text, book.bust);
             } else {
                 if (pageNumber === N+1) {
                     logEvent('read', 'complete', book.slug + ':' + book.ID);
@@ -215,9 +214,7 @@ define(["route",
             $choice.addClass('selected');
             var toSay = $choice.attr('data-speech');
             if (toSay) {
-                if (speech.hasSpeech[state.get('locale')]) {
-                    speech.play('site', state.get('voice'), toSay);
-                }
+                speech.play('site', toSay, state.get('locale'));
             }
         } else {
             console.log('no choices');
@@ -301,7 +298,7 @@ define(["route",
         $page.find('.thr-pic').fadeIn(200);
         var toSay = $page.find('.thr-question').attr('data-speech');
         if (toSay) {
-            speech.play('site', state.get('voice'), toSay);
+            speech.play('site', toSay, state.get('locale'));
         }
 
         ios.focusVoiceOverOnText($page);

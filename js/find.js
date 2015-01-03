@@ -104,18 +104,14 @@ define([ "route",
         }
         toSelect.addClass('selected');
         // speak the title
-        var voice = state.get('voice');
         if (toSelect.attr('data-speech')) {
-            if (speech.hasSpeech[state.get('locale')]) {
-                speech.play('site', voice, toSelect.attr('data-speech'));
-            }
+            speech.play('site', toSelect.attr('data-speech'), state.get('locale'));
         } else {
             var id = toSelect.attr('data-id'),
+                bust = toSelect.attr('data-bust'),
                 lang = toSelect.attr('lang'),
-                bust = toSelect.attr('data-bust');
-            if (speech.hasSpeech[lang]) {
-                speech.play(id, voice, 1, bust);
-            }
+                text = toSelect.find('h2').text();
+            speech.play(id, 1, lang, text, bust);
         }
         // make sure it is visible
         toSelect.scrollIntoView({

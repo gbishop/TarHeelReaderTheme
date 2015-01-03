@@ -7,7 +7,7 @@ define(["templates", "state" ], function(templates, state) {
     }
     var audio = null; // the html5 audio node will go here if we use it
     function initialize () {
-        if (audio || state.offline()) return;
+        if (audio) return;
 
         // use html5 audio if it is available and if it supports mp3.
         // I'd rather use ogg but I need mp3 for flash fallback anyway.
@@ -49,17 +49,57 @@ define(["templates", "state" ], function(templates, state) {
         }
     }
 
+    // fake up what Modernizr might do for speechsynthesis
+    if (window.speechSynthesis && window.SpeechSynthesisUtterance) {
+        Modernizr.speechsynthesis = true;
+        $('html').addClass('speechsynthesis');
+    }
+
     $(function() {
         // wait for a user interaction to initialize audio because Apple knows best
         $(document.body).one('mousedown keydown touchstart', function(e) {
             initialize();
+            if (Modernizr.speechsynthesis) {
+                var msg = new SpeechSynthesisUtterance(' ');
+                window.speechSynthesis.speak(msg);
+                window.speechSynthesis.cancel();
+            }
         });
     });
 
-    function play(id, voice, page, bust) {
-        voice = voice[0]; // assure we're only using the 1st letter
-        //console.log('play', id, voice, page, audio);
-        if (!audio || voice === 's' || state.offline()) {
+    var browserLang = {
+        'en': 'en-US',
+        'de': 'de-DE',
+        'es': 'es-US',
+        'fr': 'fr-FR',
+        'it': 'it-IT',
+        'ko': 'ko-KO',
+        'pt': 'pt-BR'
+    };
+    function browserPlay(id, page, lang, text, bust) {
+        //console.log('bp', id, page, lang, text);
+        if (id == 'site') {
+            var siteSpeech = templates.get('siteSpeech'),
+                key = page + '-c';
+            text = siteSpeech[key].text;
+        }
+        window.speechSynthesis.cancel();
+        var msg = new SpeechSynthesisUtterance(text);
+        if (lang in browserLang)
+            lang = browserLang[lang];
+        msg.lang = lang;
+        msg.rate = 0.3; // needed on ios8, others ignore?
+        window.speechSynthesis.speak(msg);
+    }
+
+    function play(id, page, lang, text, bust) {
+        var voice = state.get('voice')[0];
+        //console.log('play', id, page, lang, voice, text, bust);
+
+        if (voice == 'b' && Modernizr.speechsynthesis) {
+            return browserPlay(id, page, lang, text, bust);
+        }
+        if (!audio || voice === 's' || !hasSpeech[lang] || state.offline()) {
             return;
         }
 
