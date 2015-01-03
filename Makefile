@@ -1,4 +1,4 @@
-all: manifest build copygb
+all: build copygb
 
 manifest:
 	python tools/manifest.py > manifest.appcache
@@ -43,10 +43,10 @@ optimized: build
 	cp --parents -r *.php *.json EPub PowerPoint js/main-combined.js js/json2.min.js js/modernizr.custom.js js/require.min.js *.swf *.png images speech style.css ../Theme-build
 	mv ../Theme-build/js/main-combined.js ../Theme-build/js/main.js
 	make versioned
-	python tools/manifest.py > ../Theme-build/manifest.appcache
+	python tools/manifest.py ../Theme-build/used.txt > ../Theme-build/manifest.appcache
 
 versioned:
-	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py *.php js/main.js style.css Templates*.json
+	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
 testprod:
 	make optimized
