@@ -45,12 +45,12 @@ def insertVersion(m):
             db[fullname] = (version, newhash)
 
     if useStaticHost:
-        name = ('%s/themeV%d/' % (staticHost, version)) + name
+        prefix = ('%s/themeV%d/' % (staticHost, version))
     else:
-        name = ('/themeV%d/' % version) + name
+        prefix = ('/themeV%d/' % version)
 
-    used[fullname] = True
-    return name
+    used[prefix + fullname] = True
+    return prefix + name
 
 for fname in args.files:
     p, ext = osp.splitext(fname)
