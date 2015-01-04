@@ -36,7 +36,7 @@ define([ "route",
 
     // handle find locally
     function findRender(url, query) {
-        //console.log('findRender', url);
+        console.log('findRender', url, query);
         var view = {},
             $def = $.Deferred(),
             isFav = false;

@@ -57,7 +57,7 @@ if (array_key_exists('favorites', $_GET) && preg_match('/^[AR]/', $_GET['favorit
 
 // construct the where clause
 $where = array();
-$where[] = "p.post_status = 'publish'";
+//$where[] = "p.post_status = 'publish'";
 $collection = THR('collection');
 if ($collection) {
     $favorites = $wpdb->get_var($wpdb->prepare("SELECT booklist FROM $collections_table WHERE slug = %s", $collection));

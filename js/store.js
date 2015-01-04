@@ -474,11 +474,12 @@ define(['state', 'templates'], function(state, templates) {
         });
     }
 
-    function localizeBook(slug) {
+    function localizeBook(slug, id) {
         // find the book and update its image urls
         return initDB('thr').then(function(db) {
-            var key = encodeURI(slug).toLowerCase();
-            return readRecord(db, 'books', key, 'slug').then(function(book) {
+            var key = id || encodeURI(slug).toLowerCase(),
+                index = !id && 'slug';
+            return readRecord(db, 'books', key, index).then(function(book) {
                 return pmap(book.pages, function(page) {
                     return localizeImage(db, page.url).then(function(result) {
                         page.url = result;
@@ -497,22 +498,23 @@ define(['state', 'templates'], function(state, templates) {
     /* Return a book's json given its slug */
 
     function fetchBook(slug) {
-        var $def = $.Deferred();
-        if (book && book.slug == encodeURI(slug).toLowerCase()) {
+        var $def = $.Deferred(),
+            m = slug.match(/p=(\d+)/),
+            id = m && +m[1];
+        if (book && (id && book.ID == id || book.slug == encodeURI(slug).toLowerCase())) {
             $def.resolve(book);
         } else if (state.offline()) {
-            localizeBook(slug).then(function(data) {
+            localizeBook(slug, id).then(function(data) {
                 //book = data;
                 $def.resolve(data);
             }, function(err) {
                 $def.reject(err);
             });
         } else {
+            var data = !id ? { slug: slug } : { id: id };
             $.ajax({
                 url: '/book-as-json/',
-                data: {
-                    slug: slug
-                },
+                data: data,
                 dataType: 'json'
             }).done(function(data) {
                 //book = data;

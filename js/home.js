@@ -1,6 +1,7 @@
 define(['page', 'templates', 'route', 'state'], function(page, templates, route, state) {
     function homeRender(url, query) {
-        console.log('homeRender', url);
+        //console.log('homeRender', url, query);
+
         var $def = $.Deferred(),
             $newPage = page.getInactive('home-page'),
             view = {
@@ -39,6 +40,6 @@ define(['page', 'templates', 'route', 'state'], function(page, templates, route,
             });
         }
     }
-    route.add('render', /^\/(\?.*)?$/, homeRender);
-    route.add('init', /^\/(\?.*)?$/, homeInit);
+    route.add('render', /^\/(\?(?!p=).*)?$/, homeRender);
+    route.add('init', /^\/(\?(?!p=).*)?$/, homeInit);
 });

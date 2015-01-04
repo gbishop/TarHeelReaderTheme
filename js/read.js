@@ -15,6 +15,8 @@ define(["route",
     function pageLink(link, page) {
         if (page === 1) {
             return link;
+        } else if (link.match(/^\/\?p=.*/)) {
+            return link + '&page=' + page;
         } else {
             return link + page + '/';
         }
@@ -40,6 +42,10 @@ define(["route",
             view.ID = book.ID;
             var newContent;
             var N = book.pages.length;
+            if (N == 0 || !book.pages[0]) {
+                $def.reject();
+                return;
+            }
             if (pageNumber <= N) {
                 view.author = book.author;
                 view.pageNumber = pageNumber;
@@ -305,6 +311,7 @@ define(["route",
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
+    route.add('render', /^\/(?:\?(p=\d+))(?:&page=(\d+))?/, renderBook);
     route.add('init', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, configureBook);
     route.add('init', /^\/(?:\?p=.*)$/, configureBook);
 
