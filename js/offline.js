@@ -22,10 +22,15 @@ define([
     }
 
     function offlineRender() {
-        var $def = $.Deferred();
+        var $def = $.Deferred(),
+            view = {};
 
         offlineList().then(function(list) {
-            var view = { list: list };
+            view = { list: list };
+        }).fail(function(error) {
+            console.log('open failed');
+            view = { openFailed: true, list: [] }
+        }).always(function() {
             var $newPage = page.getInactive('offline-page');
             $newPage.empty()
                 .append(templates.render('heading',
@@ -34,8 +39,6 @@ define([
                         templates.render('offline', view) +
                         '</div>');
             $def.resolve($newPage, {title: 'Tar Heel Reader | Offline', colors: false});
-        }, function(err) {
-            $def.reject(err);
         });
         return $def;
     }
