@@ -8,11 +8,13 @@ define(['state', 'templates'], function(state, templates) {
             return $def;
         }
         var request = indexedDB.open(name, 3);
-
+        if (!request) {
+            $def.reject('open returns null');
+            return $def;
+        }
         request.onerror = function(event) {
             $def.reject('open failed');
         };
-
         request.onupgradeneeded = function(event) {
             var db = event.target.result;
             var bookStore = db.createObjectStore("books", { keyPath: "ID"});
