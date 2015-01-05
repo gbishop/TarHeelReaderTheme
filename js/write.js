@@ -34,7 +34,7 @@ define(['route',
                 $('.gallery').empty();
                 var query = $page.find('input[name=query]').val();
                 var emailRe = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})\b/i;
-		var useridRe = /\b(by:[-a-zA-Z0-9_.]+)\b/i;
+		        var useridRe = /\b(by:[-a-zA-Z0-9_.]+)\b/i;
                 var match = query.match(emailRe) || query.match(useridRe);
                 if (match) { // email or username query
                     query = query.replace(match[0], '');
@@ -42,8 +42,8 @@ define(['route',
                         fetchGallery({ user_id: nsid, query: query });
                     });
                 } else {
-		    fetchGallery({ query: query });
-		}
+		            fetchGallery({ query: query });
+		        }
                 return false;
             });
 
@@ -136,11 +136,11 @@ define(['route',
                     q = q.slice(1);
                 }
                 galleryData.text = q;
-		if (q) {
+		        if (q) {
                     galleryData.sort = 'relevance';
-		} else {
+		        } else {
                     galleryData.sort = 'interestingness-desc';
-		}
+		        }
             }
             if ('user_id' in options) {
                 galleryData.user_id = options.user_id;
