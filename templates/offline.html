@@ -1,3 +1,4 @@
+{{^openFailed}}
 <p class="statusOnline">_(You are accessing the Tar Heel Reader web site online.)</p>
 <p class="statusOffline">_(You are reading books stored on your computer.)</p>
 
@@ -12,3 +13,7 @@
 <ul id="offlineBooks">
     {{&list}}
 </ul>
+{{/openFailed}}
+{{#openFailed}}
+<p>_(Your browser appears to support local storage but when we tried to use it, we failed. Perhaps you are in Private Browsing mode or have otherwise disabled local storage?  You'll need to correct the settings on your computer before offline reading will function correctly.)</p>
+{{/openFailed}}
