@@ -149,8 +149,15 @@ define([ "route",
                         $(this).remove(); // then remove it.
                     });
                 // replace the images with high res versions
-                $page.find('.preview')
+                $page.find('li.preview')
+                    .each(function(i, li) {
+                        var $li = $(li),
+                            src = $li.attr('data-preview'),
+                            $img = $li.find('.thr-thumb');
+                        $img.attr('src', src);
+                    })
                     .find('img')
+                    .not('.thr-thumb')
                     .each(function(i, img){
                         img.src = img.src.replace('_t', '');
                     });
