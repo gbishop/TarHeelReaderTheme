@@ -1,7 +1,12 @@
+test: thr.robot
+	robot/bin/pybot $^
 REMOTE=-v REMOTE_URL:http://$(SAUCE_USER):$(SAUCE_KEY)@ondemand.saucelabs.com:80/wd/hub
 
 win8ie11: thr.robot
 	robot/bin/pybot -v DESIRED_CAPABILITIES:"platform:Windows 2012 R2,browserName:internet explorer,version:11" $(REMOTE) $^
+
+winxpie8: thr.robot
+	robot/bin/pybot -v DESIRED_CAPABILITIES:"platform:Windows XP,browserName:internet explorer,version:8" $(REMOTE) $^
 
 win7ie11: thr.robot
 	robot/bin/pybot -v DESIRED_CAPABILITIES:"platform:Windows 7,browserName:internet explorer,version:11" $(REMOTE) $^
