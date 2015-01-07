@@ -14,7 +14,7 @@ ${DESIRED_CAPABILITIES}
 
 ${LOGIN_FAIL_MSG}  Incorrect username or password.
 
-${MENU}  css=.active-page a.thr-well-icon
+${MENU}  css=a.thr-well-icon
 ${HEART}  css=a.thr-favorites-icon
 
 *** Test Cases ***
@@ -37,7 +37,7 @@ Offline reading page
     Page should contain button  Clear selected local books
 
 Choosing favorites
-    #Set selenium speed  0.1
+    #Set selenium speed  1
     Open home page
     Select favorites
     Open favorites page
@@ -67,26 +67,29 @@ Open test browser
     Open browser  about:  ${BROWSER}
     ...  remote_url=${REMOTE_URL}
     ...  desired_capabilities=${DESIRED_CAPABILITIES}
+    #Set window size  1024  768
 
 Open home page
     [arguments]  ${options}=
     Go to  http://gbserver3.cs.unc.edu/${options}
-    Wait until page contains  Welcome
+    Wait for condition  return $('div.loading').length==0
 
 Open navigation menu
-    [arguments]  ${target}=li.homeLink
     Click link  ${MENU}
-    Wait until element is visible  css=.active-page ${target}
+
+Click visible link
+    [arguments]  ${loc}
+    Wait until element is visible   link=${loc}
+    Click element   link=${loc}
 
 Open offline reading page
-    #Open home page
-    Open navigation menu  li.offlineLink
-    Click element  css=.active-page li.offlineLink a
+    Open navigation menu
+    Click visible link  Read books offline
     Wait until element is visible  css=button#goOffline
 
 Open find page
     Open navigation menu
-    Click element  css=.active-page li.findLink a
+    Click visible link  Find a book
     Wait until page appears  find-page
 
 Wait until page appears
@@ -99,26 +102,32 @@ Wait until search results appear
 
 Open favorites page
     Open navigation menu
-    Click link  css=.active-page li.favoritesLink a
-    Wait until element is visible  css=.favorites-page
+    Click visible link   Favorites
+    Wait until page appears  favorites-page
 
 Select favorites
     Open find page
     Click link  ${HEART}
-    #Wait until page contains  css=img.favoriteNo
-    Click element  css=li.selectable:nth-child(3) img.favoriteNo
-    Click element  css=li.selectable:nth-child(1) img.favoriteNo
-    Click element  css=li.selectable:nth-child(2) img.favoriteNo
-    Click element  css=li.selectable:nth-child(4) img.favoriteNo
+    Click a heart  3
+    Click a heart  1
+    Click a heart  2
+    Click a heart  4
     Click link  ${HEART}
+    Wait for hearts to disappear
+
+Wait for hearts to disappear
     Wait for condition  return $('img.favoriteYes:visible').length==0 && $('img.favoriteNo:visible').length==0;
+
+Click a heart
+    [arguments]  ${index}
+    execute javascript  $('li.selectable:nth-child(${index}) img.favoriteNo').click()
 
 Read a book
     Open find page
     Input text  search  our garden karen
     Click button  Search
     Wait until search results appear  1
-    Click element  css=.active-page ul.thr-book-list li.selectable a
+    Click link  css=li.selectable a
     Turn page  2
     Turn page  3
     Turn page  4
