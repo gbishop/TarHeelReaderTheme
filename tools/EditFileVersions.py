@@ -31,7 +31,7 @@ def insertVersion(m):
     elif fullname.endswith('.json') or fullname.endswith('.swf'):
         useStaticHost = False
     if not osp.exists(fullname):
-        print 'missing', fname, name
+        #print 'missing', fname, name
         return m.group(0)
 
     newhash = hashlib.md5(file(fullname).read()).hexdigest()
