@@ -88,7 +88,7 @@ define(["templates", "state" ], function(templates, state) {
         if (lang in browserLang)
             lang = browserLang[lang];
         msg.lang = lang;
-        msg.rate = 0.3; // needed on ios8, others ignore?
+        //msg.rate = 0.3; // needed on ios8, others ignore?
         window.speechSynthesis.speak(msg);
     }
 
