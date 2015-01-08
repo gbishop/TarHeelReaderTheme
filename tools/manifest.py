@@ -16,8 +16,8 @@ CACHE MANIFEST
 
 CACHE:
 http://code.jquery.com/jquery-1.11.2.min.js
-http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css
-http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js
+http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.min.css
+http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js
 '''
 
 ManifestTail = '''
