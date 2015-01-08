@@ -37,7 +37,7 @@
       @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 40%);
       margin: 0.5em;
       min-height: 40px;
-      min-width: 10em;
+      width: 15em;
     }
 
     button:disabled {
