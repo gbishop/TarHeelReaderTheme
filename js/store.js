@@ -1,5 +1,26 @@
 define(['state', 'templates'], function(state, templates) {
 
+    /* ask for persistent storage if the api is available */
+    function requestQuota() {
+        var $def = $.Deferred(),
+            PersistentStorage = navigator.webkitPersistentStorage || undefined;
+        if (PersistentStorage && PersistentStorage.requestQuota) {
+            PersistentStorage.requestQuota(150*1024*1024,
+                function(allocated) {
+                    console.log('allocated', allocated);
+                    $def.resolve(allocated);
+                },
+                function(error) {
+                    console.log('quota error ' + error);
+                    $def.reject(error);
+                });
+        } else {
+            console.log('no quota api');
+            $def.resolve(0);
+        }
+        return $def;
+    }
+
     /* initialize the db and return it */
     function initDB(name) {
         var $def = $.Deferred();
@@ -549,7 +570,9 @@ define(['state', 'templates'], function(state, templates) {
     /* add the listed books to the offline storage */
 
     function addBooksToOffline(ids, progress) {
-        return initDB('thr').then(function(db) {
+        return requestQuota().then(function(allocated) {
+            return initDB('thr');
+        }).then(function(db) {
             return cacheBooks(db, ids, progress);
         }, function() {
             return ids;
