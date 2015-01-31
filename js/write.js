@@ -2,10 +2,11 @@ define(['route',
         'templates',
         'controller',
         'fileuploader',
+        'store',
         'jquery.ui.touch-punch',
         'jquery.inlineedit'
         ],
-    function(route, templates, controller, fileuploader) {
+    function(route, templates, controller, fileuploader, store) {
         var maxCaptionLength = 130;  // no page text may be longer than this
 
         var galleryData = {}; // parameters for the photo search
@@ -414,6 +415,7 @@ define(['route',
             }).then(function(nBook) {
                 //console.log('post returns', nBook);
                 clearModified();
+                store.flushBook(); // avoid returning old version
                 if (nBook.status == 'publish') {
                     controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
                     logEvent('write', 'publish', nBook.slug);

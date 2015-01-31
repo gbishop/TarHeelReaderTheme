@@ -528,7 +528,7 @@ define(['state', 'templates'], function(state, templates) {
             $def.resolve(book);
         } else if (state.offline()) {
             localizeBook(slug, id).then(function(data) {
-                //book = data;
+                book = data;
                 $def.resolve(data);
             }, function(err) {
                 $def.reject(err);
@@ -540,11 +540,17 @@ define(['state', 'templates'], function(state, templates) {
                 data: data,
                 dataType: 'json'
             }).done(function(data) {
-                //book = data;
+                book = data;
                 $def.resolve(data);
             });
         }
         return $def;
+    }
+
+    /* clear the cached book after editing */
+
+    function flushBook() {
+        book = null;
     }
 
     /* return books that match the query */
@@ -638,6 +644,7 @@ define(['state', 'templates'], function(state, templates) {
     return {
        find: find,
        fetchBook: fetchBook,
+       flushBook: flushBook,
        addBooksToOffline: addBooksToOffline,
        removeBooksFromOffline: removeBooksFromOffline,
        displayImage: displayImage,
