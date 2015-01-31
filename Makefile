@@ -1,4 +1,4 @@
-all: build copygb
+all: testprod
 
 manifest:
 	python tools/manifest.py > manifest.appcache

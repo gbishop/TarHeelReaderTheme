@@ -8,6 +8,8 @@ Test Teardown  Close test browser
 
 *** Variables ***
 
+${HOST}  gbserver3.cs.unc.edu
+
 ${BROWSER}  googlechrome
 ${REMOTE_URL}
 ${DESIRED_CAPABILITIES}
@@ -71,7 +73,7 @@ Open test browser
 
 Open home page
     [arguments]  ${options}=
-    Go to  http://gbserver3.cs.unc.edu/${options}
+    Go to  http://${HOST}/${options}
     Wait for condition  return $('div.loading').length==0
 
 Open navigation menu

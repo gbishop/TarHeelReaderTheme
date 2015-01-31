@@ -29,6 +29,9 @@ win7chrome: thr.robot
 win7firefox: thr.robot
 	robot/bin/pybot -v DESIRED_CAPABILITIES:"platform:Windows 7,browserName:firefox" $(REMOTE) $^
 
+android: thr.robot
+	robot/bin/pybot -v DESIRED_CAPABILITIES:"platform:Linux,browserName:Android,deviceName:Google Nexus 7 HD Emulator,version:4.4,orientation:landscape" $(REMOTE) $^
+
 
 test-setup:
 	virtualenv robot --no-site-packages
