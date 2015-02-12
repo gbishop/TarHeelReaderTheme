@@ -1,4 +1,4 @@
-all: testprod
+all: devel
 
 manifest:
 	python tools/manifest.py > manifest.appcache
@@ -48,8 +48,9 @@ optimized: build
 versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
-testprod:
-	make optimized
+devel: build copygb
+
+testprod: optimized
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/test.tarheelreader.org/wp-content/themes/thr3
 
 production:
