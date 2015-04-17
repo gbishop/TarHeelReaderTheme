@@ -17,6 +17,7 @@
         { "label": "_(Italian)",    "tag": "Italian",    "value": "it",  "speech": true },
         { "label": "_(Japanese)",   "tag": "Japanese",   "value": "ja",  "speech": false },
         { "label": "_(Latin)",      "tag": "Latin",      "value": "la",  "speech": false },
+        { "label": "_(Norwegian)",  "tag": "Norwegian",  "value": "no",  "speech": false },
         { "label": "_(Polish)",     "tag": "Polish",     "value": "pl",  "speech": false },
         { "label": "_(Portuguese)", "tag": "Portuguese", "value": "pt",  "speech": true },
         { "label": "_(Spanish)",    "tag": "Spanish",    "value": "es",  "speech": true },
