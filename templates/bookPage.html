@@ -1,5 +1,5 @@
     {{#frontPage}}
-    <h1 class="title VOSay" data-id="{{ID}}" tabindex="-1">{{title}}</h1>
+    <h1 class="title VOSay" data-id="{{ID}}" tabindex="-1"><span class="thetext">{{title}}</span></h1>
     <p class="thr-author">{{author}}</p>
     {{/frontPage}}
     {{^frontPage}}
@@ -15,7 +15,7 @@
     </div>
     {{^frontPage}}
     <div class="thr-caption-box">
-        <p class="thr-caption VOSay" tabindex="-1">{{caption}}</p>
+        <p class="thr-caption VOSay" tabindex="-1"><span class="thetext">{{caption}}</span></p>
     </div>
     {{/frontPage}}
     <a class="thr-back-link thr-colors-invert key-p VOHide" href="{{backLink}}"

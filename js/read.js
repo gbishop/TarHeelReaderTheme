@@ -294,6 +294,57 @@ define(["route",
         $page.find('header').replaceWith(bookHeading(1, id));
     });
 
+    function notifyTracker($page, slug, page) {
+        // hack to try talking to Megan's tracker
+        function pos($obj) {
+            var o = $obj.offset(),
+                p = $obj.outerHeight() - $obj.height(),
+                y = Math.round(o.top) + p,
+                x = Math.round(o.left),
+                w = Math.round($obj.width()),
+                h = Math.round($obj.height());
+            console.log(x, y, w, h);
+            return {
+                t: y,
+                l: x,
+                r: x+w,
+                b: y+h
+            }
+        }
+        var $text = $page.find('span.thetext'),
+            choice = $page.is('.choice-page'),
+            $pic = $page.find('img.thr-pic'),
+            data = { page: page, slug: slug, choice: choice };
+
+        if (!choice) {
+            var c = pos($text),
+                p = pos($pic),
+                d = {
+                    tl: c.l,
+                    tr: c.r,
+                    tt: c.t,
+                    tb: c.b,
+                    pl: p.l,
+                    pr: p.r,
+                    pt: p.t,
+                    pb: p.b
+                };
+            $.extend(data, d);
+        }
+
+        $.ajax('http://localhost:8008/', {
+            data: data,
+            error: null,
+            beforeSend: null
+        }).done(function(data) {
+            console.log('tracker says', data);
+        }).fail(function(err) {
+            console.log('tracker error', err);
+        });
+        // end hack
+    }
+
+
     function configureBook(url, slug, pageNumber) {
         //console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
@@ -308,6 +359,8 @@ define(["route",
         }
 
         ios.focusVoiceOverOnText($page);
+
+        notifyTracker($page, slug, pageNumber);
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
