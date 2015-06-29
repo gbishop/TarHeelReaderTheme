@@ -294,7 +294,7 @@ define(["route",
         $page.find('header').replaceWith(bookHeading(1, id));
     });
 
-    function notifyTracker($page, slug, page) {
+    function notifyTracker($page, slug, pageNumber) {
         // hack to try talking to Megan's tracker
         function pos($obj) {
             var o = $obj.offset(),
@@ -314,7 +314,7 @@ define(["route",
         var $text = $page.find('span.thetext'),
             choice = $page.is('.choice-page'),
             $pic = $page.find('img.thr-pic'),
-            data = { page: page, slug: slug, choice: choice };
+            data = { page: pageNumber, slug: slug, choice: choice };
 
         if (!choice) {
             var c = pos($text),
@@ -331,7 +331,7 @@ define(["route",
                 };
             $.extend(data, d);
         }
-
+        console.log('data', data);
         $.ajax('http://localhost:8008/', {
             data: data,
             error: null,
@@ -346,7 +346,10 @@ define(["route",
 
 
     function configureBook(url, slug, pageNumber) {
-        //console.log('configureBook', url, slug, pageNumber);
+        if (!pageNumber) {
+            pageNumber = 1;
+        }
+        console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         if (!$page.is('.thr-book-page')) {
             console.log('not book page, no configure');
@@ -360,7 +363,9 @@ define(["route",
 
         ios.focusVoiceOverOnText($page);
 
-        notifyTracker($page, slug, pageNumber);
+        if (state.get('eyetracker') == '1') {
+            notifyTracker($page, slug, pageNumber);
+        }
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);

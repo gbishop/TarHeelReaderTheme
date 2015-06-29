@@ -16,5 +16,6 @@
     "findAnotherLink": { "pattern": "", "default": "/find/" },
     "classic": { "pattern": "^[01]$", "default": "0" },
     "debug": { "pattern": "^[01]$", "default": "0" },
-    "offline" : { "pattern": "^[01]$", "default": "0" }
+    "offline" : { "pattern": "^[01]$", "default": "0" },
+    "eyetracker": { "pattern": "^[01]$", "default": "0"}
 }
