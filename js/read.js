@@ -294,6 +294,9 @@ define(["route",
         $page.find('header').replaceWith(bookHeading(1, id));
     });
 
+    var trackerSocket = null;
+    var trackerQueue = [];
+
     function notifyTracker($page, slug, pageNumber) {
         // hack to try talking to Megan's tracker
         function pos($obj) {
@@ -309,6 +312,15 @@ define(["route",
                 l: x,
                 r: x+w,
                 b: y+h
+            }
+        }
+        if (!trackerSocket || trackerSocket.readyState == 3) {
+            trackerSocket = new WebSocket('ws://localhost:8008/');
+            trackerSocket.onopen = function() {
+                console.log('sending queued');
+                while (trackerQueue.length > 0) {
+                    trackerSocket.send(trackerQueue.shift());
+                }
             }
         }
         var $text = $page.find('span.thetext'),
@@ -332,15 +344,14 @@ define(["route",
             $.extend(data, d);
         }
         console.log('data', data);
-        $.ajax('http://localhost:8008/', {
-            data: data,
-            error: null,
-            beforeSend: null
-        }).done(function(data) {
-            console.log('tracker says', data);
-        }).fail(function(err) {
-            console.log('tracker error', err);
-        });
+        var jdata = JSON.stringify(data);
+        if (trackerSocket.readyState == 1) {
+            console.log('sending');
+            trackerSocket.send(jdata);
+        } else {
+            console.log('queueing');
+            trackerQueue.push(jdata);
+        }
         // end hack
     }
 
