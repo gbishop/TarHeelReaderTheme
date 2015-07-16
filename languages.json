@@ -4,6 +4,7 @@
         { "label": "_(Catalan)",    "tag": "Catalan",    "value": "ca",  "speech": false },
         { "label": "_(Chinese)",    "tag": "Chinese",    "value": "zh",  "speech": false },
         { "label": "_(Danish)",     "tag": "Danish",     "value": "da",  "speech": false },
+        { "label": "_(Dutch)",      "tag": "Dutch",      "value": "nl",  "speech": false },
         { "label": "_(English)",    "tag": "English",    "value": "en",  "speech": true },
         { "label": "_(Filipino)",   "tag": "Filipino",   "value": "fil", "speech": false },
         { "label": "_(Finnish)",    "tag": "Finnish",    "value": "fi",  "speech": false },
