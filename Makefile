@@ -43,7 +43,7 @@ cenk: build
 	rsync -az --delete . gbserver3s:/var/www/tarheelreader/wp-content/themes/thr3
 
 
-optimized:
+optimized: build
 	rm -rf ../Theme-build/*
 	cd js; nodejs ../../r.js -o app.build.js
 	cd ../Theme-build; make build
