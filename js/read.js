@@ -323,6 +323,7 @@ define(["route",
                 }
             }
         }
+        $('.thr-text').contents().wrap('<span class="thetext"></span>');
         var $text = $page.find('span.thetext'),
             choice = $page.is('.choice-page'),
             $pic = $page.find('img.thr-pic'),
