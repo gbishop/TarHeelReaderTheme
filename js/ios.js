@@ -12,7 +12,8 @@ define(["state"], function(state) {
         setLastUrl: nop,
         focusVoiceOverOnText: nop,
         focusMenu: nop,
-        cancelNav: nop
+        cancelNav: nop,
+        speechRate: nop
     };
 
     if (iOS) {
@@ -59,6 +60,10 @@ define(["state"], function(state) {
             return cancel;
         };
 
+        res.speechRate = function(msg) {
+            // iOS talks too fast
+            msg.rate = 0.3;
+        };
     }
 
     return res;

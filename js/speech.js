@@ -1,4 +1,4 @@
-define(["templates", "state" ], function(templates, state) {
+define(["templates", "state", "ios" ], function(templates, state, ios) {
     var SpeechBase = "/cache/speech/";
     var languages = templates.get('languages');
     var hasSpeech = {};
@@ -88,7 +88,7 @@ define(["templates", "state" ], function(templates, state) {
         if (lang in browserLang)
             lang = browserLang[lang];
         msg.lang = lang;
-        //msg.rate = 0.3; // needed on ios8, others ignore?
+        ios.speechRate(msg);
         window.speechSynthesis.speak(msg);
     }
 
