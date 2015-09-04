@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
     if (count($terms) > 0) {
-        $qstring = mysql_real_escape_string(implode(' ', $terms));
+        $qstring = esc_sql(implode(' ', $terms));
         $where[] = "MATCH(title,description) AGAINST('$qstring' IN BOOLEAN MODE)";
     }
     $page = getParam('cpage', '1', '/\d+/');

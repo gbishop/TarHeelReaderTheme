@@ -1,4 +1,22 @@
 {
+	"build_systems":
+	[
+		{
+			"cmd":
+			[ "make" ],
+			"name": "myMake",
+			"working_dir": "${project_path}"
+		},
+		{
+			"cmd":
+			[
+				"make",
+				"deploy"
+			],
+			"name": "Deploy",
+			"working_dir": "${project_path}"
+		}
+	],
 	"folders":
 	[
 		{
