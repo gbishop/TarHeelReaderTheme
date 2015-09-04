@@ -294,8 +294,74 @@ define(["route",
         $page.find('header').replaceWith(bookHeading(1, id));
     });
 
+    var trackerSocket = null;
+    var trackerQueue = [];
+
+    function notifyTracker($page, slug, pageNumber) {
+        // hack to try talking to Megan's tracker
+        function pos($obj) {
+            var o = $obj.offset(),
+                p = $obj.outerHeight() - $obj.height(),
+                y = Math.round(o.top) + p,
+                x = Math.round(o.left),
+                w = Math.round($obj.width()),
+                h = Math.round($obj.height());
+            console.log(x, y, w, h);
+            return {
+                t: y,
+                l: x,
+                r: x+w,
+                b: y+h
+            }
+        }
+        if (!trackerSocket || trackerSocket.readyState == 3) {
+            trackerSocket = new WebSocket('ws://localhost:8008/');
+            trackerSocket.onopen = function() {
+                console.log('sending queued');
+                while (trackerQueue.length > 0) {
+                    trackerSocket.send(trackerQueue.shift());
+                }
+            }
+        }
+        $('.thr-text').contents().wrap('<span class="thetext"></span>');
+        var $text = $page.find('span.thetext'),
+            choice = $page.is('.choice-page'),
+            $pic = $page.find('img.thr-pic'),
+            data = { page: pageNumber, slug: slug, choice: choice };
+
+        if (!choice) {
+            var c = pos($text),
+                p = pos($pic),
+                d = {
+                    tl: c.l,
+                    tr: c.r,
+                    tt: c.t,
+                    tb: c.b,
+                    pl: p.l,
+                    pr: p.r,
+                    pt: p.t,
+                    pb: p.b
+                };
+            $.extend(data, d);
+        }
+        console.log('data', data);
+        var jdata = JSON.stringify(data);
+        if (trackerSocket.readyState == 1) {
+            console.log('sending');
+            trackerSocket.send(jdata);
+        } else {
+            console.log('queueing');
+            trackerQueue.push(jdata);
+        }
+        // end hack
+    }
+
+
     function configureBook(url, slug, pageNumber) {
-        //console.log('configureBook', url, slug, pageNumber);
+        if (!pageNumber) {
+            pageNumber = 1;
+        }
+        console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         if (!$page.is('.thr-book-page')) {
             console.log('not book page, no configure');
@@ -308,6 +374,10 @@ define(["route",
         }
 
         ios.focusVoiceOverOnText($page);
+
+        if (state.get('eyetracker') == '1') {
+            notifyTracker($page, slug, pageNumber);
+        }
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
