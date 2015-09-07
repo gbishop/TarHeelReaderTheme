@@ -2,18 +2,22 @@
 # Translators:
 # Ana Karen Martinez-Gomez <anakmtzg@gmail.com>, 2013
 # Andrea <andrea.tam28@gmail.com>, 2013
-# Gary Bishop <gb@cs.unc.edu>, 2012-2014
+# Gary Bishop <gb@cs.unc.edu>, 2012-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2014-09-29 18:10+0000\n"
+"PO-Revision-Date: 2015-09-07 12:10+0000\n"
 "Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
-"Language-Team: Spanish (Mexico) (http://www.transifex.com/projects/p/tar-heel-reader/language/es_MX/)\n"
+"Language-Team: Spanish (Mexico) (http://www.transifex.com/garybishop/tar-heel-reader/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es_MX\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# announcements:1
+msgid "Latest Announcements"
+msgstr "Los Anuncios Mas Recientes"
 
 # bookList:3
 msgid "Your favorites page is empty."
@@ -78,7 +82,7 @@ msgstr "Gracias por su opinión."
 msgid "Average Rating"
 msgstr "Calificación media"
 
-# collections:1, navigation:16
+# collections:1, navigation:14
 msgid "Collections"
 msgstr "Colecciones "
 
@@ -115,15 +119,15 @@ msgctxt "button label"
 msgid "More Books"
 msgstr "Más libros"
 
-# frontPage:1
+# frontPage:5
 msgid "Welcome"
 msgstr "Bienvenido!"
 
-# frontPage:3
+# frontPage:7
 msgid "Click here to learn more about alternative access methods."
 msgstr "Haga clic aqui para aprender más sobre los métodos alternativos de acceso."
 
-# frontPage:3
+# frontPage:7
 msgid ""
 "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and "
 "accessible books on a wide range of topics. Each book can be speech enabled "
@@ -131,7 +135,7 @@ msgid ""
 "IntelliKeys with custom overlays, and 1 to 3 switches."
 msgstr "Bienvenidos a Tar Heel Reader. Tar Heel Reader es una colección de libros faciles, gratis, y accesibles. Hay libros de muchos temas. Cada libro puede ser leído en voz alta y ser accedido con muchas interfaces que incluyen las pantallas táctiles, los \"IntelliKeys\" con superpuestas personalizadas, y 1 a 3 conmutaciones."
 
-# frontPage:5
+# frontPage:9
 msgid ""
 "You may write your own books using pictures from the huge collection at "
 "{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
@@ -139,82 +143,82 @@ msgid ""
 "While you are working on them, please save them as drafts."
 msgstr "Usted podrá escribir sus propios libros usando las fotografias de la gran colección en {{{Flickr}}} o las fotografias que usted suba. Todos los libros deberían de estar completos, editados, y revisados de la mejor manera posible antes de que los publique a este sitio. Por favor guarde sus libros como borradores cuando este trabajando en ellos."
 
-# frontPage:7
+# frontPage:11
 msgid ""
 "Note the little well icon {{{wellicon}}} in the upper left corner of the "
 "page; clicking it will allow you to access the main menu. You can also click"
 " the settings icon {{{gearicon}}} to change settings on some pages."
 msgstr "Por favor note que el icono del pozo {{{wellicon}}} que esta en la esquina superior a la izquierda; si hace clic ahi, podrá tener acceso al menu principal. Tambien puede hacer clic en el  icono de configuración {{{gearicon}}} para cambiar las configuraciones de algunas paginas. "
 
-# frontPage:9
+# frontPage:13
 msgid ""
 "Your browser is unsupported. The site should work for finding and reading "
 "books but you will not have switch access or the ability to write books. We "
 "recommend that you upgrade to a modern browser or install Chrome Frame."
 msgstr "Su navegador no es compatible con nuestro sitio. Este sitio debería de funcionar para encontrar y leer libros pero no va a tener acceso de conmutación o la habilidad de escribir libro. Le recomendamos que actualize su navegador o instale Chrome Frame.  "
 
-# frontPage:11
+# frontPage:15
 msgid ""
 "You are in Classic mode. You will not have access to all of the features of "
 "the site but it may work better on older computers and web browsers. Click "
 "this text to leave Classic mode."
 msgstr "Usted está en la version Clásica. Usted no tendra aceso a todas las opciones de este sitio pero puede ser mejor para computadoras y navegadores de web que son mas antiguos. "
 
-# frontPage:13
+# frontPage:17
 msgid "Ready to get started?"
 msgstr "¿Estás listo para empezar?"
 
-# frontPage:15, navigation:12
+# frontPage:19, navigation:11
 msgid "Find a book"
 msgstr "Buscar un libro"
 
-# frontPage:16, navigation:24
+# frontPage:20, navigation:20
 msgid "Write a book"
 msgstr "Escribir un libro"
 
-# frontPage:19
+# frontPage:23
 msgid ""
 "This site is also available in other languages. To help with translation, "
 "contact us."
 msgstr "Este sitio está disponible en otros idiomas. Para ayudar con la traducción, por favor contáctenos. "
 
-# frontPage:27
+# frontPage:31
 msgid "change language"
 msgstr "Cambia el idoma"
-
-# frontPage:34
-msgid "Latest Announcements"
-msgstr "Los Anuncios Mas Recientes"
 
 # heading:3
 msgctxt "icon explanatory text"
 msgid "Open Menu"
 msgstr "Abrir el menú"
 
-# heading:7, heading:7, heading:11, heading:14
+# heading:6
+msgid "Offline"
+msgstr "Fuera de línea"
+
+# heading:8, heading:8, heading:12, heading:15
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
 msgstr "Seleccionar Favoritos"
 
-# heading:11
+# heading:12
 msgid "Remove from Favorites"
 msgstr "Quitar de favoritos"
 
-# heading:14
+# heading:15
 msgid "Add to Favorites"
 msgstr "Añadir a favoritos"
 
-# heading:19, heading:19, heading:22, heading:22
+# heading:20, heading:20, heading:23, heading:23
 msgctxt "icon explanatory text"
 msgid "Settings"
 msgstr "Configuración"
 
-# heading:26
+# heading:27
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
 msgstr "Libros para lectores de todas las edades"
 
-# heading:26
+# heading:27
 msgctxt "site name"
 msgid "Tar Heel Reader"
 msgstr "Tar Heel Reader"
@@ -268,6 +272,10 @@ msgstr "Chino"
 # label:1
 msgid "Danish"
 msgstr "Danés"
+
+# label:1
+msgid "Dutch"
+msgstr "Holandés"
 
 # label:1
 msgid "English"
@@ -354,6 +362,10 @@ msgid "Math and Science"
 msgstr "Matemáticas y Ciencias"
 
 # label:1
+msgid "Norwegian"
+msgstr "Noruego"
+
+# label:1
 msgid "Nursery Rhymes"
 msgstr "Canciones de Cuna "
 
@@ -385,6 +397,10 @@ msgstr "Estado de revisión"
 # label:1
 msgid "Reviewed only"
 msgstr "Solamente revisado"
+
+# label:1
+msgid "Sanskrit"
+msgstr "Sánscrito"
 
 # label:1
 msgctxt "label for search box"
@@ -463,29 +479,69 @@ msgstr "No hemos podido encontrar la pagina que usted ha solicitado. Quizá los 
 msgid "Home"
 msgstr "Inicio"
 
-# navigation:20
-msgid "Favorites"
-msgstr "Favoritos"
+# navigation:23
+msgid "Read books offline"
+msgstr "Leer libros sin conexión"
 
-# navigation:28
+# navigation:26
 msgid "Log in"
 msgstr "Iniciar la sesión"
 
-# navigation:32
+# navigation:29
 msgid "Help"
 msgstr "Ayuda "
 
-# navigation:36
+# navigation:32
 msgid "Your books"
 msgstr "Sus libros"
 
-# navigation:40
+# navigation:35
 msgid "Announcements"
 msgstr "Anuncios"
 
-# navigation:44
+# navigation:38
 msgid "Photo credits"
 msgstr "Créditos de la foto"
+
+# offline:2
+msgid "You are accessing the Tar Heel Reader website online."
+msgstr "Accede a la Página Web de Tar Heel Reader en línea."
+
+# offline:3
+msgid "You are reading books stored on your computer."
+msgstr "Estás leyendo libros almacenados en su computadora."
+
+# offline:6
+msgid "Read online"
+msgstr "Leer online"
+
+# offline:7
+msgid "Read offline"
+msgstr "Leer fuera de línea"
+
+# offline:8
+msgid "Add Favorites to local books"
+msgstr "Añadir favoritos a libros locales"
+
+# offline:9
+msgid "Clear all local books"
+msgstr "Claro todos los libros locales"
+
+# offline:10
+msgid "Clear selected local books"
+msgstr "Claros libros locales seleccionados"
+
+# offline:18
+msgid ""
+"Your browser appears to support local storage but when we tried to use it, "
+"we failed. Perhaps you are in Private Browsing mode or have otherwise "
+"disabled local storage?  You'll need to correct the settings on your "
+"computer before offline reading will function correctly."
+msgstr "Su navegador parece apoyar almacenamiento local pero cuando intentamos usarlo, fallamos. ¿Tal vez usted está en modo de navegación privada o si no ha desactivado el almacenamiento local?  Usted tendrá que corregir la configuración de su ordenador antes de lectura offline funcionará correctamente."
+
+# offlineList:7
+msgid "You have no books saved for offline reading."
+msgstr "Tienes no hay libros para lectura offline."
 
 # readingControls:1
 msgid "Reading Preferences"
@@ -495,11 +551,11 @@ msgstr "Preferencias de lectura"
 msgid "Download this book"
 msgstr "Descargar este libro"
 
-# readingControls:8, settings:56
+# readingControls:8, settings:57
 msgid "PowerPoint"
 msgstr "PowerPoint"
 
-# readingControls:9, settings:57
+# readingControls:9, settings:58
 msgid "EPUB"
 msgstr "EPUB"
 
@@ -543,59 +599,63 @@ msgstr "Mujer"
 msgid "Man"
 msgstr "Hombre"
 
-# settings:16
+# settings:11
+msgid "Built in"
+msgstr "Construido en"
+
+# settings:17
 msgid "Colors"
 msgstr "Los Colores"
 
-# settings:19, label:1
+# settings:20, label:1
 msgid "Page Color"
 msgstr "El color de la página"
 
-# settings:22, settings:36, label:1, label:1
+# settings:23, settings:37, label:1, label:1
 msgid "Black"
 msgstr "Negro"
 
-# settings:23, settings:37, label:1, label:1
+# settings:24, settings:38, label:1, label:1
 msgid "Blue"
 msgstr "Azul"
 
-# settings:24, settings:38, label:1, label:1
+# settings:25, settings:39, label:1, label:1
 msgid "Cyan"
 msgstr "Cian"
 
-# settings:25, settings:39, label:1, label:1
+# settings:26, settings:40, label:1, label:1
 msgid "Green"
 msgstr "Verde"
 
-# settings:26, settings:40, label:1, label:1
+# settings:27, settings:41, label:1, label:1
 msgid "Magenta"
 msgstr "Magenta"
 
-# settings:27, settings:41, label:1, label:1
+# settings:28, settings:42, label:1, label:1
 msgid "Red"
 msgstr "Rojo"
 
-# settings:28, settings:42, label:1, label:1
+# settings:29, settings:43, label:1, label:1
 msgid "White"
 msgstr "Blanco"
 
-# settings:29, settings:43, label:1, label:1
+# settings:30, settings:44, label:1, label:1
 msgid "Yellow"
 msgstr "Amarillo"
 
-# settings:33, label:1
+# settings:34, label:1
 msgid "Text Color"
 msgstr "El color del texto"
 
-# settings:53
+# settings:54
 msgid "Download"
 msgstr "Descargar"
 
-# settings:63
+# settings:64
 msgid "Default"
 msgstr "Estado predeterminado"
 
-# settings:65
+# settings:66
 msgid "More..."
 msgstr "Mas..."
 
@@ -1079,6 +1139,10 @@ msgid ""
 " new collection. Click on a collection to expose a menu that will allow you "
 "to modify it."
 msgstr "Sus colecciones aparecen en el siguiente espacio. Haga clic en el boton \"Favoritos\" para crear una nueva colección. Haga clic en una colección para abrir un menu que le permitira modificarla.  "
+
+# yourbooks:71, navigation:17
+msgid "Favorites"
+msgstr "Favoritos"
 
 # yourbooks:73
 msgid "Favorites: {{count}} books"
