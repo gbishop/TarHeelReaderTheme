@@ -576,9 +576,7 @@ define(['state', 'templates'], function(state, templates) {
     /* add the listed books to the offline storage */
 
     function addBooksToOffline(ids, progress) {
-        return requestQuota().then(function(allocated) {
-            return initDB('thr');
-        }).then(function(db) {
+        return initDB('thr').then(function(db) {
             return cacheBooks(db, ids, progress);
         }, function() {
             return ids;
