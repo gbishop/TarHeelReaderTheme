@@ -685,6 +685,11 @@ function removeHeadLinks() {
     remove_filter( 'comment_text', 'capital_P_dangit' );
     // Hide the version of WordPress you're running from source and RSS feed // Want to JUST remove it from the source? Try:
     remove_action('wp_head', 'wp_generator');
+    // remove emoji crap
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_action( 'admin_print_styles', 'print_emoji_styles' );
 
 }
 add_action('init', 'removeHeadLinks');
