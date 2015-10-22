@@ -3,6 +3,7 @@
         { "label": "_(Basque)",     "tag": "Basque",     "value": "eu",  "speech": false },
         { "label": "_(Catalan)",    "tag": "Catalan",    "value": "ca",  "speech": false },
         { "label": "_(Chinese)",    "tag": "Chinese",    "value": "zh",  "speech": false },
+        { "label": "_(Cherokee)",   "tag": "Cherokee",   "value": "chr", "speech": false },
         { "label": "_(Danish)",     "tag": "Danish",     "value": "da",  "speech": false },
         { "label": "_(Dutch)",      "tag": "Dutch",      "value": "nl",  "speech": false },
         { "label": "_(English)",    "tag": "English",    "value": "en",  "speech": true },
