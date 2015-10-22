@@ -111,7 +111,8 @@ function thr_header($pageType, $view=array()) {
 
         The only way I see around this is to carry the query paramters that determine content everywhere.
     */
-    header('Expires: -1');
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Cache-Control: post-check=0, pre-check=0", false);
 
     if (is_ajax()) {
         // this is a ajax request for the page, give it the mininimum header

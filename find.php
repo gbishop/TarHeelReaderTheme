@@ -24,7 +24,7 @@ if ($query) {
     $i = preg_match_all('/[\w0-9\'*]+|"[\w0-9\'* ]+"/', $query, $words);
     foreach($words[0] as $word) {
         if (strlen($word) < 3) {
-            $esc = mysql_real_escape_string($word);
+            $esc = esc_sql($word);
             $where[] = "s.content REGEXP '[[:<:]]" . $esc . "[[:>:]]'";
         } else {
             $terms[] = '+' . $word;
@@ -33,7 +33,7 @@ if ($query) {
 }
 
 if (count($terms) > 0) {
-    $qstring = mysql_real_escape_string(implode(' ', $terms));
+    $qstring = esc_sql(implode(' ', $terms));
     $where[] = "MATCH(s.content) AGAINST('$qstring' IN BOOLEAN MODE)";
 }
 
