@@ -464,7 +464,7 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
                     // ask the speech server to generate a mp3
                     $params = array('http' => array('method' => 'POST', 'content' => http_build_query($data)));
                     $ctx = stream_context_create($params);
-                    $mp3 = fopen('http://gbserver3.cs.unc.edu/synth/', 'rb', false, $ctx);
+                    $mp3 = fopen(WP_SITEURL . '/synth/', 'rb', false, $ctx);
                     // save it
                     $fname = "$path/$i-" . substr($voice, 0, 1) . ".mp3";
                     file_put_contents($fname, $mp3);
