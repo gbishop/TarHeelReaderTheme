@@ -34,7 +34,7 @@ copygb:
 	#launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
+	rsync -az --delete ../Theme-build/ gbserver:/var/www/gbserver/wp-content/themes/thr3
 	#launch.py http://tarheelreader.org/
 
 optimized: build
@@ -51,7 +51,7 @@ versioned:
 devel: build copygb
 
 testprod: optimized
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/test.tarheelreader.org/wp-content/themes/thr3
+	rsync -az --delete ../Theme-build/ gbserver:/var/www/gbserver/wp-content/themes/thr3
 
 production:
 	make optimized
