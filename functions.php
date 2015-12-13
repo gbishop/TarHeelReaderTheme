@@ -765,4 +765,91 @@ function no_mo_dashboard() {
         exit;
     }
 }
+
+// modify the registration form
+function my_custom_login_logo() {
+    echo '<style type="text/css">
+    h1 a {background-image:url(/theme/images/apple-touch-icon.png) !important; margin:0 auto;}
+    </style>';
+}
+add_filter( 'login_head', 'my_custom_login_logo' );
+
+// Require the access code
+add_action( 'register_form', 'my_register_form' );
+function my_register_form() {
+    ?>
+    <p>
+        <label for="access_code">Registration Code<br />
+            <input type="text" name="access_code" id="access_code" class="input" size="25"
+                   value="<?php if(isset($_POST['access_code'])) echo $_POST['access_code'];?>"/>
+        </label>
+    </p>
+    <p>
+        <label for="first_name">First Name<br />
+            <input type="text" name="first_name" id="first_name" class="input" size="25"
+                   value="<?php if(isset($_POST['first_name'])) echo $_POST['first_name'];?>"/>
+        </label>
+    </p>
+    <p>
+        <label for="last_name">Last Name<br />
+            <input type="text" name="last_name" id="last_name" class="input" size="25"
+                   value="<?php if(isset($_POST['last_name'])) echo $_POST['last_name'];?>"/>
+        </label>
+    </p>
+    <p>
+        <label for="about">About Yourself<br />
+        <textarea name="about" id="about" rows="5" cols="30"
+            ><?php if(isset($_POST['about'])) echo $_POST['about'];?></textarea>
+        </label>
+    </p>
+    <p>
+        <label>Copyright Policy <br />
+            I understand that Tar Heel Reader is a copyright-free environment.
+            I agree to seek permission from copyright holders before posting any copy written
+            materials to the site.<br />
+            <input name="license" value="1" type="checkbox"/> I agree.
+        </label>
+    </p>
+
+    <?php
+}
+
+// Validate the access code
+add_filter( 'registration_errors', 'my_registration_errors', 10, 3 );
+function my_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+
+    if (empty($_POST['access_code']) ||
+        strtolower(trim( $_POST['access_code'] )) != ACCESS_CODE) {
+        $errors->add( 'access_code_error',
+                      '<strong>ERROR</strong>: You must include the access code.');
+    }
+    if (empty($_POST['first_name']) ||
+        trim( $_POST['first_name']) == '') {
+        $errors->add( 'first_name_error',
+                      '<strong>ERROR</strong>: You must include a first name.');
+    }
+    if (empty($_POST['last_name']) ||
+        trim( $_POST['last_name']) == '') {
+        $errors->add( 'last_name_error',
+                      '<strong>ERROR</strong>: You must include a last name.');
+    }
+    if (empty($_POST['license'])) {
+        $errors->add( 'license_error',
+                      '<strong>ERROR</strong>: You must agree to the license.');
+    }
+
+    return $errors;
+}
+add_action( 'user_register', 'my_user_register' );
+function my_user_register( $user_id ) {
+    if (!empty($_POST['first_name'])) {
+        update_user_meta($user_id, 'first_name', trim($_POST['first_name']));
+    }
+    if (!empty($_POST['last_name'])) {
+        update_user_meta($user_id, 'last_name', trim($_POST['last_name']));
+    }
+    if (!empty($_POST['about'])) {
+        update_user_meta($user_id, 'description', trim($_POST['about']));
+    }
+}
 ?>
