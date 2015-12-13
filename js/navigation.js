@@ -7,7 +7,8 @@ define(["state", "controller", "templates", "ios"], function(state, controller, 
                 silent: 'silent',
                 child: 'child',
                 woman: 'female',
-                man: 'male'
+                man: 'male',
+                browser: 'browser'
             },
             colors: {
                 black: '000',

@@ -630,6 +630,49 @@ p.unsupported, p.classic {
   background-color: #FCC;
 }
 
+.js .loading {
+  a.thr-well-icon {
+    -webkit-animation: rotation 3s infinite linear;
+    -moz-animation: rotation 3s infinite linear;
+    -o-animation: rotation 3s infinite linear;
+    animation: rotation 3s infinite linear;
+  }
+  div.header:after {
+    content: 'Loading...';
+    position: absolute;
+    left: 3em;
+    top: 0.5em;
+    font-size: 2em;
+  }
+  div.content-wrap {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  a {
+    pointer-events: none;
+  }
+}
+
+@-webkit-keyframes rotation {
+from {-webkit-transform: rotate(0deg);}
+to {-webkit-transform: rotate(359deg);}
+}
+
+@-moz-keyframes rotation {
+from {-moz-transform: rotate(0deg);}
+to {-moz-transform: rotate(359deg);}
+}
+
+@-o-keyframes rotation {
+from {-o-transform: rotate(0deg);}
+to {-o-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+from {transform: rotate(0deg);}
+to {transform: rotate(359deg);}
+}
+
 @import "css/fileuploader";
 @import "css/writebooks";
 @import "css/yourbooks";
@@ -637,3 +680,4 @@ p.unsupported, p.classic {
 @import "css/allmediaqueries";
 @import "css/map-page";
 @import "css/ie";
+@import "css/offline";

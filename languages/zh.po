@@ -1,17 +1,22 @@
 # 
 # Translators:
+# Gary Bishop <gb@cs.unc.edu>, 2015
 # Haiwei Chen <chw9308@hotmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2014-10-03 15:50+0000\n"
-"Last-Translator: Haiwei Chen <chw9308@hotmail.com>\n"
-"Language-Team: Chinese (http://www.transifex.com/projects/p/tar-heel-reader/language/zh/)\n"
+"PO-Revision-Date: 2015-09-07 12:19+0000\n"
+"Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
+"Language-Team: Chinese (http://www.transifex.com/garybishop/tar-heel-reader/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+# announcements:1
+msgid "Latest Announcements"
+msgstr "最新公告"
 
 # bookList:3
 msgid "Your favorites page is empty."
@@ -76,7 +81,7 @@ msgstr "谢谢你的评价！"
 msgid "Average Rating"
 msgstr "平均评价"
 
-# collections:1, navigation:16
+# collections:1, navigation:14
 msgid "Collections"
 msgstr "收藏夹"
 
@@ -113,15 +118,15 @@ msgctxt "button label"
 msgid "More Books"
 msgstr "更多书"
 
-# frontPage:1
+# frontPage:5
 msgid "Welcome"
 msgstr "欢迎"
 
-# frontPage:3
+# frontPage:7
 msgid "Click here to learn more about alternative access methods."
 msgstr "点击这里来查看更多浏览平台"
 
-# frontPage:3
+# frontPage:7
 msgid ""
 "Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and "
 "accessible books on a wide range of topics. Each book can be speech enabled "
@@ -129,7 +134,7 @@ msgid ""
 "IntelliKeys with custom overlays, and 1 to 3 switches."
 msgstr "欢迎来到北卡读者。此网站向您提供免费，简单易读的书目。我们的书本涵盖了多种多样的话题，并且提供模拟人声阅读功能。您可以通过许多阅读产品来浏览本网页，比如触屏产品，Intellikeys等等。"
 
-# frontPage:5
+# frontPage:9
 msgid ""
 "You may write your own books using pictures from the huge collection at "
 "{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
@@ -137,82 +142,82 @@ msgid ""
 "While you are working on them, please save them as drafts."
 msgstr "你可以使用Flickr的丰富图片来源来创建自己的书本。在出版前，你的书本必须经过仔细完善与修改。你可以将你未完成的书本保存为草稿。"
 
-# frontPage:7
+# frontPage:11
 msgid ""
 "Note the little well icon {{{wellicon}}} in the upper left corner of the "
 "page; clicking it will allow you to access the main menu. You can also click"
 " the settings icon {{{gearicon}}} to change settings on some pages."
 msgstr "单击左上角的古井标志 {{{wellicon}}} 将进入主目录。你也可以单击设置标志 {{{gearicon}}} 来进行设置"
 
-# frontPage:9
+# frontPage:13
 msgid ""
 "Your browser is unsupported. The site should work for finding and reading "
 "books but you will not have switch access or the ability to write books. We "
 "recommend that you upgrade to a modern browser or install Chrome Frame."
 msgstr "您的浏览器不给力。此网页仍然可以帮助您寻找以及阅读图书，但是您的浏览器无法支持我们的创建图书功能。我们建议您尝试更新一个浏览器，或者安装Google Chrome"
 
-# frontPage:11
+# frontPage:15
 msgid ""
 "You are in Classic mode. You will not have access to all of the features of "
 "the site but it may work better on older computers and web browsers. Click "
 "this text to leave Classic mode."
 msgstr "您现在处于经典模式。您将无法使用此网站的一部分功能，但是此模式有利于版本较旧的计算机或者网页浏览器。点此此栏以退出经典模式"
 
-# frontPage:13
+# frontPage:17
 msgid "Ready to get started?"
 msgstr "你准备好了吗？"
 
-# frontPage:15, navigation:12
+# frontPage:19, navigation:11
 msgid "Find a book"
 msgstr "找一本书"
 
-# frontPage:16, navigation:24
+# frontPage:20, navigation:20
 msgid "Write a book"
 msgstr "创建一本书"
 
-# frontPage:19
+# frontPage:23
 msgid ""
 "This site is also available in other languages. To help with translation, "
 "contact us."
 msgstr "我们的网站提供其他语种。如果您有意加入我们的翻译团体，请联系我们。"
 
-# frontPage:27
+# frontPage:31
 msgid "change language"
 msgstr "变更语言"
-
-# frontPage:34
-msgid "Latest Announcements"
-msgstr "最新公告"
 
 # heading:3
 msgctxt "icon explanatory text"
 msgid "Open Menu"
 msgstr "打开菜单"
 
-# heading:7, heading:7, heading:11, heading:14
+# heading:6
+msgid "Offline"
+msgstr "当前离线"
+
+# heading:8, heading:8, heading:12, heading:15
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
 msgstr "选择我的最爱"
 
-# heading:11
+# heading:12
 msgid "Remove from Favorites"
 msgstr "从我的最爱移除"
 
-# heading:14
+# heading:15
 msgid "Add to Favorites"
 msgstr "加至我的最爱"
 
-# heading:19, heading:19, heading:22, heading:22
+# heading:20, heading:20, heading:23, heading:23
 msgctxt "icon explanatory text"
 msgid "Settings"
 msgstr "设置"
 
-# heading:26
+# heading:27
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
 msgstr "适于全年龄入门读者的书目"
 
-# heading:26
+# heading:27
 msgctxt "site name"
 msgid "Tar Heel Reader"
 msgstr "北卡读者"
@@ -266,6 +271,10 @@ msgstr "汉语"
 # label:1
 msgid "Danish"
 msgstr "丹麦语"
+
+# label:1
+msgid "Dutch"
+msgstr "荷兰人"
 
 # label:1
 msgid "English"
@@ -352,6 +361,10 @@ msgid "Math and Science"
 msgstr "数学与科学"
 
 # label:1
+msgid "Norwegian"
+msgstr "挪威"
+
+# label:1
 msgid "Nursery Rhymes"
 msgstr "童谣"
 
@@ -383,6 +396,10 @@ msgstr "审查状况"
 # label:1
 msgid "Reviewed only"
 msgstr "仅已审查项"
+
+# label:1
+msgid "Sanskrit"
+msgstr "梵语"
 
 # label:1
 msgctxt "label for search box"
@@ -461,29 +478,69 @@ msgstr "我们无法寻找到此页面。一下的链接可能能引导你搜寻
 msgid "Home"
 msgstr "主页"
 
-# navigation:20
-msgid "Favorites"
-msgstr "收藏"
+# navigation:23
+msgid "Read books offline"
+msgstr "离线阅读图书"
 
-# navigation:28
+# navigation:26
 msgid "Log in"
 msgstr "登入"
 
-# navigation:32
+# navigation:29
 msgid "Help"
 msgstr "帮助"
 
-# navigation:36
+# navigation:32
 msgid "Your books"
 msgstr "你的图书"
 
-# navigation:40
+# navigation:35
 msgid "Announcements"
 msgstr "通知"
 
-# navigation:44
+# navigation:38
 msgid "Photo credits"
 msgstr "照片来源"
+
+# offline:2
+msgid "You are accessing the Tar Heel Reader website online."
+msgstr "您正在访问的在线焦油踵Reader网站。"
+
+# offline:3
+msgid "You are reading books stored on your computer."
+msgstr "您正在阅读存储在计算机上的书籍。"
+
+# offline:6
+msgid "Read online"
+msgstr "在线阅读"
+
+# offline:7
+msgid "Read offline"
+msgstr "离线阅读"
+
+# offline:8
+msgid "Add Favorites to local books"
+msgstr "加入收藏夹到本地图书"
+
+# offline:9
+msgid "Clear all local books"
+msgstr "清除所有本地图书"
+
+# offline:10
+msgid "Clear selected local books"
+msgstr "清除选定本地图书"
+
+# offline:18
+msgid ""
+"Your browser appears to support local storage but when we tried to use it, "
+"we failed. Perhaps you are in Private Browsing mode or have otherwise "
+"disabled local storage?  You'll need to correct the settings on your "
+"computer before offline reading will function correctly."
+msgstr "您的浏览器似乎支持本地存储，但是，当我们试图使用它，我们失败了。也许你是在隐私浏览模式或者以其他方式禁用本地存储？您需要更正您的计算机上的设置之前离线阅读将正常工作。"
+
+# offlineList:7
+msgid "You have no books saved for offline reading."
+msgstr "你有没有保存以供离线阅读的书籍。"
 
 # readingControls:1
 msgid "Reading Preferences"
@@ -493,11 +550,11 @@ msgstr "阅读偏好"
 msgid "Download this book"
 msgstr "下载这本书"
 
-# readingControls:8, settings:56
+# readingControls:8, settings:57
 msgid "PowerPoint"
 msgstr "幻灯"
 
-# readingControls:9, settings:57
+# readingControls:9, settings:58
 msgid "EPUB"
 msgstr "电子书"
 
@@ -541,59 +598,63 @@ msgstr "女性"
 msgid "Man"
 msgstr "男性"
 
-# settings:16
+# settings:11
+msgid "Built in"
+msgstr "内置"
+
+# settings:17
 msgid "Colors"
 msgstr "颜色"
 
-# settings:19, label:1
+# settings:20, label:1
 msgid "Page Color"
 msgstr "页面颜色"
 
-# settings:22, settings:36, label:1, label:1
+# settings:23, settings:37, label:1, label:1
 msgid "Black"
 msgstr "黑色"
 
-# settings:23, settings:37, label:1, label:1
+# settings:24, settings:38, label:1, label:1
 msgid "Blue"
 msgstr "蓝色"
 
-# settings:24, settings:38, label:1, label:1
+# settings:25, settings:39, label:1, label:1
 msgid "Cyan"
 msgstr "青色"
 
-# settings:25, settings:39, label:1, label:1
+# settings:26, settings:40, label:1, label:1
 msgid "Green"
 msgstr "绿色"
 
-# settings:26, settings:40, label:1, label:1
+# settings:27, settings:41, label:1, label:1
 msgid "Magenta"
 msgstr "洋红"
 
-# settings:27, settings:41, label:1, label:1
+# settings:28, settings:42, label:1, label:1
 msgid "Red"
 msgstr "红色"
 
-# settings:28, settings:42, label:1, label:1
+# settings:29, settings:43, label:1, label:1
 msgid "White"
 msgstr "白色"
 
-# settings:29, settings:43, label:1, label:1
+# settings:30, settings:44, label:1, label:1
 msgid "Yellow"
 msgstr "黄色"
 
-# settings:33, label:1
+# settings:34, label:1
 msgid "Text Color"
 msgstr "文本颜色"
 
-# settings:53
+# settings:54
 msgid "Download"
 msgstr "下载"
 
-# settings:63
+# settings:64
 msgid "Default"
 msgstr "默认"
 
-# settings:65
+# settings:66
 msgid "More..."
 msgstr "更多。。。"
 
@@ -1077,6 +1138,10 @@ msgid ""
 " new collection. Click on a collection to expose a menu that will allow you "
 "to modify it."
 msgstr "以下是您的收藏夹。点击“我的最爱”按钮以创建一个新的收藏夹。点击一个收藏夹以展开编辑目录"
+
+# yourbooks:71, navigation:17
+msgid "Favorites"
+msgstr "收藏"
 
 # yourbooks:73
 msgid "Favorites: {{count}} books"

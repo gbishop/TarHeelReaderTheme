@@ -2,10 +2,11 @@ define(['route',
         'templates',
         'controller',
         'fileuploader',
+        'store',
         'jquery.ui.touch-punch',
         'jquery.inlineedit'
         ],
-    function(route, templates, controller, fileuploader) {_E_(1);
+    function(route, templates, controller, fileuploader, store) {
         var maxCaptionLength = 130;  // no page text may be longer than this
 
         var galleryData = {}; // parameters for the photo search
@@ -17,16 +18,16 @@ define(['route',
         var editId = null; // set to the id of the book we are editing
         var notAgain = false; // true after publish to prevent multiple hits
 
-        function setupGallery() {_E_(2);
+        function setupGallery() {
             var $page = $('.write-page.active-page');
 
-            $('.gallery').on('click', 'img', function(e) {_E_(3);
+            $('.gallery').on('click', 'img', function(e) {
                 var $imgs = $('.gallery img'),
                     index = $imgs.index(this);
                 showGalleryPreview(index);
             });
             var $form = $page.find('.image-search');
-            $form.submit(function(e) {_E_(4);
+            $form.submit(function(e) {
                 e.preventDefault();
                 //console.log('submit');
                 clearErrors();
@@ -34,25 +35,25 @@ define(['route',
                 $('.gallery').empty();
                 var query = $page.find('input[name=query]').val();
                 var emailRe = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})\b/i;
-		var useridRe = /\b(by:[-a-zA-Z0-9_.]+)\b/i;
+		        var useridRe = /\b(by:[-a-zA-Z0-9_.]+)\b/i;
                 var match = query.match(emailRe) || query.match(useridRe);
                 if (match) { // email or username query
                     query = query.replace(match[0], '');
-                    $.when(getNsidFromEmailOrUserid(match[0])).then(function(nsid) {_E_(5);
+                    $.when(getNsidFromEmailOrUserid(match[0])).then(function(nsid) {
                         fetchGallery({ user_id: nsid, query: query });
                     });
                 } else {
-		    fetchGallery({ query: query });
-		}
+		            fetchGallery({ query: query });
+		        }
                 return false;
             });
 
             $('.button', '.writing-controls').button().button('disable');
-            $('.gallery-back').click(function() {_E_(6);
+            $('.gallery-back').click(function() {
                 fetchAnotherGallery(-1);
                 return false;
             });
-            $('.gallery-more').click(function() {_E_(7);
+            $('.gallery-more').click(function() {
                 fetchAnotherGallery(+1);
                 return false;
             });
@@ -60,7 +61,7 @@ define(['route',
             $(window).resize(updateThumbnailSize); // update the thumbnails' size on window resize
         }
 
-        function fetchAnotherGallery(step) {_E_(8);
+        function fetchAnotherGallery(step) {
             clearErrors();
             galleryData.page += step;
             $.ajax({
@@ -68,7 +69,7 @@ define(['route',
                 data: galleryData,
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
-                success: function (result) {_E_(9);
+                success: function (result) {
                     //console.log('success!', result);
                     var p = result.photos,
                         g = $('.gallery');
@@ -78,7 +79,7 @@ define(['route',
                         showError('em-g-not-found');
                         return;
                     }
-                    $.each(p.photo, function (index, photo) {_E_(10);
+                    $.each(p.photo, function (index, photo) {
                         var url = '/photo' + photo.farm + '/' + photo.server + '/' + photo.id + '_' + photo.secret,
                             w = parseInt(photo.width_m, 10),
                             h = parseInt(photo.height_m, 10);
@@ -95,7 +96,7 @@ define(['route',
             });
         }
 
-        function updateThumbnailSize() {_E_(11);
+        function updateThumbnailSize() {
             var $g = $(".gallery"),
                 $images = $g.find("img"),
                 gwidth = $g.width(),
@@ -121,7 +122,7 @@ define(['route',
             }
         }
 
-        function fetchGallery(options) {_E_(12);
+        function fetchGallery(options) {
             //console.log('fetchGallery', options);
             // TODO: set loading here
             galleryData = {
@@ -136,11 +137,11 @@ define(['route',
                     q = q.slice(1);
                 }
                 galleryData.text = q;
-		if (q) {
+		        if (q) {
                     galleryData.sort = 'relevance';
-		} else {
+		        } else {
                     galleryData.sort = 'interestingness-desc';
-		}
+		        }
             }
             if ('user_id' in options) {
                 galleryData.user_id = options.user_id;
@@ -149,10 +150,10 @@ define(['route',
             fetchAnotherGallery(0);
         }
 
-        function showGalleryPreview(startIndex) {_E_(13);
+        function showGalleryPreview(startIndex) {
             galleryIndex = startIndex;
 
-            function showPreviewImage() {_E_(14); // display the currently selected image in the preview dialog
+            function showPreviewImage() { // display the currently selected image in the preview dialog
                 // get all the images
                 var $imgs = $('.gallery img');
                 // restrict the galleryIndex to the range
@@ -193,17 +194,17 @@ define(['route',
                     modal: true,
                     draggable: false,
                     autoOpen: false,
-                    open: function() {_E_(15);
+                    open: function() {
                         $(this).parents('.ui-dialog-buttonpane button:eq(2)').focus();
                     },
                     buttons: [
                         {
                             text: $('.wlPrevious').html(),
-                            click: function() {_E_(16); galleryIndex -= 1; showPreviewImage(); }
+                            click: function() { galleryIndex -= 1; showPreviewImage(); }
                         },
                         {
                             text: $('.wlAddToBook').html(),
-                            click: function() {_E_(17);
+                            click: function() {
                                 var $img = $(this).find('>img');
                                 //console.log('img', $img);
                                 var page = {
@@ -231,7 +232,7 @@ define(['route',
                                         width: '40px',
                                         height: '40px',
                                         opacity: 0
-                                    },1000, function() {_E_(18);
+                                    },1000, function() {
                                         $(this).remove();
                                         $('.step2 h3').effect('highlight', {}, 1000);
                                     });
@@ -239,7 +240,7 @@ define(['route',
                         },
                         {
                             text: $('.wlNext').html(), // pulling the labels from the page
-                            click: function() {_E_(19); galleryIndex += 1; showPreviewImage(); }
+                            click: function() { galleryIndex += 1; showPreviewImage(); }
                         }
                     ]
                 });
@@ -250,7 +251,7 @@ define(['route',
         }
 
         // add a page to the book
-        function addPage(page, isInit) {_E_(20);
+        function addPage(page, isInit) {
             var view = {
                 image: page,
                 caption: page.text || ''
@@ -273,32 +274,32 @@ define(['route',
             }
         }
         // initialize book pages from an existing book
-        function initializeBookState(book) {_E_(21);
+        function initializeBookState(book) {
             //console.log('initBook', book);
             $('input[name=title]').val(book.title);
             $('input[name=author]').val(book.author);
             $('select[name=language]').val(book.language);
             $('input[name=category]').prop('checked', false);
-            $.each(book.categories, function (index, category) {_E_(22);
+            $.each(book.categories, function (index, category) {
                 $('input[value=' + category + ']').prop('checked', true);
             });
             $('select[name=audience]').val(book.audience);
             $('select[name=type]').val(book.type);
             $('input[name=tags]').val(book.tags.join(' '));
             $('input[name=reviewed]').prop('checked', book.reviewed);
-            $.each(book.pages.slice(1), function (index, page) {_E_(23);
+            $.each(book.pages.slice(1), function (index, page) {
                 addPage(page, true);
             });
         }
         // extract the books state from the controls
-        function extractBookState() {_E_(24);
+        function extractBookState() {
             //console.log('start extract');
 
             var book = {},
                 $write = $('.active-page.write-page');
             book.title = $.trim($write.find('input[name=title]').val());
             book.author = $.trim($write.find('input[name=author]').val());
-            book.categories = $write.find('.categories input[type=checkbox]:checked').map(function(i, v) {_E_(25);
+            book.categories = $write.find('.categories input[type=checkbox]:checked').map(function(i, v) {
                 return $(v).prop('value'); }).get();
             book.type = $write.find('select[name=type]').val();
             book.audience = $write.find('select[name=audience]').val();
@@ -308,7 +309,7 @@ define(['route',
             tags = tags.replace(/\s{2,}/g, " ");
             book.tags = tags.split(' ');
             book.reviewed = $write.find('input[name=reviewed]:checked').length > 0;
-            book.pages = $write.find('.write-pages li').map(function(i, p) {_E_(26);
+            book.pages = $write.find('.write-pages li').map(function(i, p) {
                 var $p = $(p),
                     caption = $.trim($p.find('.thr-caption').html()) || '',
                     img = $p.find('img.thr-pic'),
@@ -333,7 +334,7 @@ define(['route',
             }
             return book;
         }
-        function saveAsDraft() {_E_(27);
+        function saveAsDraft() {
             clearErrors();
             $('.save').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
@@ -347,7 +348,7 @@ define(['route',
                     id: editId
                 },
                 dataType: 'json'
-            }).then(function(nBook) {_E_(28);
+            }).then(function(nBook) {
                 //console.log('post returns', nBook);
                 logEvent('write', 'draft', nBook.ID);
                 editId = nBook.ID;
@@ -356,13 +357,13 @@ define(['route',
                 showError('peSaved');
             });
         }
-        function validate(condition, id) {_E_(29);
+        function validate(condition, id) {
             if (!condition) {
                 showError('peMessage');
                 showError(id);
             }
         }
-        function publish() {_E_(30);
+        function publish() {
             $('.publish').attr('disabled', 'disabled'); // disable the button to prevent multiples
             var book = extractBookState();
             // validate the book locally
@@ -388,7 +389,7 @@ define(['route',
                 $('.publishErrors').get(0).scrollIntoView(false);
                 $('.publish').removeAttr('disabled');
                 var errors = [];
-                $('.publishErrors').find('.show-error').each(function() {_E_(31);
+                $('.publishErrors').find('.show-error').each(function() {
                     var cls = $(this).attr('class');
                     var msg = /pe\w+/.exec(cls)[0];
                     errors.push(msg);
@@ -411,9 +412,10 @@ define(['route',
                     id: editId
                 },
                 dataType: 'json'
-            }).then(function(nBook) {_E_(32);
+            }).then(function(nBook) {
                 //console.log('post returns', nBook);
                 clearModified();
+                store.flushBook(); // avoid returning old version
                 if (nBook.status == 'publish') {
                     controller.gotoUrl(nBook.link, nBook.title, { data_type: 'book' });
                     logEvent('write', 'publish', nBook.slug);
@@ -426,14 +428,14 @@ define(['route',
             });
         }
         // create the page editor dialog
-        function createPageEditDialog() {_E_(33);
+        function createPageEditDialog() {
             $editDialog = $('<div class="thr-book-page edit-page"></div>').dialog({
                 width: 'auto',
                 resizable: false,
                 modal: true,
                 draggable: false,
                 autoOpen: false,
-                open: function(event, ui) {_E_(34);
+                open: function(event, ui) {
                     $(this).find('.thr-caption').inlineEdit({
                         buttons: '',
                         saveOnBlur: true,
@@ -441,17 +443,16 @@ define(['route',
                         placeholder: $('.wlClickToEdit').html(),
                         save: saveEditCaption
                     });
-                    _E_(34.9);
 
                 }
             });
-            $editDialog.on('click', 'a.thr-back-link', function() {_E_(35);
+            $editDialog.on('click', 'a.thr-back-link', function() {
                 editIndex -= 1;
                 //console.log('prev', editIndex);
                 setupEditContent();
                 return false;
             });
-            $editDialog.on('click', 'a.thr-next-link', function() {_E_(36);
+            $editDialog.on('click', 'a.thr-next-link', function() {
                 editIndex += 1;
                 //console.log('next', editIndex);
                 setupEditContent();
@@ -460,7 +461,7 @@ define(['route',
             $editDialog.on('click', 'img.deleteIcon', deletePage);
             $editDialog.on('click', 'img.copyIcon', copyPage);
             // limit max caption length
-            $editDialog.on('keyup input paste', 'textarea', function(){_E_(37);
+            $editDialog.on('keyup input paste', 'textarea', function(){
                 var warnLength = maxCaptionLength - 10,
                     $this = $(this),
                     text = $this.val() || '',
@@ -473,7 +474,7 @@ define(['route',
         }
 
         // initialize the page editor with its content
-        function setupEditContent() {_E_(38);
+        function setupEditContent() {
             var $wp = $('.write-pages li'); // the list of book pages
             // make sure the index is in bound wrapping at the ends
             if (editIndex < 0) {
@@ -505,11 +506,10 @@ define(['route',
             $editDialog.dialog('option', 'title', '');  // clear the title
             $editDialog.find('p.thr-caption').toggleClass('text-too-long',
                 caption.length >= maxCaptionLength);
-            _E_(38.9);
         }
 
         // save the edited caption
-        function saveEditCaption(e, data) {_E_(39);
+        function saveEditCaption(e, data) {
             var $wp = $('.write-pages li'), // the list of book pages
                 $page = $($wp.get(editIndex)), // the current page
                 $caption = $page.find('p.thr-caption'),
@@ -522,7 +522,7 @@ define(['route',
         }
 
         // delete a book page
-        function deletePage() {_E_(40);
+        function deletePage() {
             var $wp = $('.write-pages li'); // the list of book pages
             var $page = $($wp.get(editIndex)); // the current page
             $page.remove(); // remove it
@@ -531,7 +531,7 @@ define(['route',
         }
 
         // copy a book page
-        function copyPage() {_E_(41);
+        function copyPage() {
             var $wp = $('.write-pages li'); // the list of book pages
             var $page = $($wp.get(editIndex)); // the current page
             var $copy = $page.clone();
@@ -541,7 +541,7 @@ define(['route',
         }
 
         // edit a book page
-        function editPage(e) {_E_(42);
+        function editPage(e) {
             if (!$editDialog) {
                 createPageEditDialog();
             }
@@ -556,11 +556,10 @@ define(['route',
             setupEditContent();
             $editDialog.css('font-size', p + 'px');
             $editDialog.dialog('open');
-            _E_(42.9);
         }
 
         // warn the user if they are leaving the page without saving
-        function confirmLeaving(e) {_E_(43);
+        function confirmLeaving(e) {
             if (isModified) {
                 if (!confirm(warnModified())) {
                     e.preventDefault();
@@ -573,23 +572,22 @@ define(['route',
         }
 
         // warning message for beforeunload
-        function warnModified() {_E_(44);
+        function warnModified() {
             return $('.wLoseWork').html();
         }
 
         // set the indicator that the book has been modified
-        function setModified() {_E_(45);
+        function setModified() {
             //console.log('setModified', isModified);
             if (!isModified) {
                 isModified = true;
                 $(window).on('beforeunload', warnModified);
                 $('.save').removeAttr('disabled');
             }
-            _E_(45.9);
         }
 
         // clear the modified indication
-        function clearModified() {_E_(46);
+        function clearModified() {
             if (isModified) {
                 isModified = false;
                 $(window).off('beforeunload');
@@ -598,18 +596,18 @@ define(['route',
         }
 
         // show an error message
-        function showError(className) {_E_(47);
+        function showError(className) {
             $('.' + className).addClass('show-error');
         }
 
         // hide error messages
-        function clearErrors() {_E_(48);
+        function clearErrors() {
             $('.error-messages p').removeClass('show-error');
         }
 
         // translate email address into flickr nsid
         var nsidCache = {}; // store translations to avoid multiple lookups
-        function getNsidFromEmailOrUserid(email) {_E_(49);
+        function getNsidFromEmailOrUserid(email) {
             if (email in nsidCache) {
                 return nsidCache[email]; // return from the cache
             } else {
@@ -622,7 +620,7 @@ define(['route',
                     data: data,
                     dataType: 'jsonp',
                     jsonp: 'jsoncallback',
-                    success: function(data) {_E_(50);
+                    success: function(data) {
                         if (data.stat === 'ok') {
                             nsidCache[email] = data.user.nsid;
                             def.resolve(data.user.nsid);
@@ -631,7 +629,7 @@ define(['route',
                             def.reject();
                         }
                     },
-                    error: function() {_E_(51);
+                    error: function() {
                         showError('em-g-network-error');
                         def.reject();
                     }
@@ -641,7 +639,7 @@ define(['route',
         }
 
         // initialize the writing page.
-        function writeInit(url, id, copyId) {_E_(52);
+        function writeInit(url, id, copyId) {
             //console.log('write', id, copyId);
             var $page = this;
 
@@ -659,13 +657,13 @@ define(['route',
                 });
             }
 
-            $(function() {_E_(53);
+            $(function() {
                 var uploader = new fileuploader.FileUploader({
                     element: $('.file-uploader').get(0),
                     action: '/upload-image/',
                     allowedExtensions: ['jpg', 'png', 'jpeg', 'gif'],
                     sizeLimit: 10 * 1024 * 1024,
-                    onComplete: function(id, fileName, response) {_E_(54);
+                    onComplete: function(id, fileName, response) {
                         //console.log('upload complete', id, fileName, response);
                         if (response.success) {
                             var page = {
@@ -690,14 +688,14 @@ define(['route',
             $('.active-page .thr-well-icon img').on('click', confirmLeaving);
             $('.save').on('click', saveAsDraft);
             $('.publish').on('click', publish);
-            $('.categorizeButton').on('click', function() {_E_(55);
+            $('.categorizeButton').on('click', function() {
                 $('.step3a').toggle();
             });
             if ($('input[name=imagefile]').attr('disabled')) {
                 $('.step1a').hide();
             }
 
-            $.when(bookContent).then(function(book) {_E_(56);
+            $.when(bookContent).then(function(book) {
                 if (book.ID) { // editing an existing book
                     initializeBookState(book);
                 }

@@ -8,12 +8,14 @@
     "search": { "pattern": "", "default": "" },
     "pageColor": { "pattern": "^[f0]{3}$", "default": "fff" },
     "textColor": { "pattern": "^[f0]{3}$", "default": "000" },
-    "voice": { "pattern": "^(silent|male|female|child)$", "default": "silent" },
+    "voice": { "pattern": "^(silent|male|female|child|browser)$", "default": "silent" },
     "locale": { "pattern": "^[a-z]{2,3}$", "default": "en" },
     "favorites": { "pattern": "(^[AR]?\\d+(,+\\d+)*$)|(^$)", "default": "" },
     "fpage": { "pattern": "^\\d+$", "default": "1" },
     "collection": { "pattern": "^[-\\w\\d]*$", "default": "" },
     "findAnotherLink": { "pattern": "", "default": "/find/" },
     "classic": { "pattern": "^[01]$", "default": "0" },
-    "debug": { "pattern": "^[01]$", "default": "0" }
+    "debug": { "pattern": "^[01]$", "default": "0" },
+    "offline" : { "pattern": "^[01]$", "default": "0" },
+    "eyetracker": { "pattern": "^[01]$", "default": "0"}
 }

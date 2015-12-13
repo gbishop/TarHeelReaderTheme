@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4">
+
+    <title>Store test</title>
+    <!-- <script src="http://152.2.129.207:8008/target/target-script-min.js#anonymous"></script> -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" media="all" href="vendor/mocha.css">
+    <script src="vendor/mocha.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script src="vendor/assert.js"></script>
+    <script src="vendor/assertive-chai.js"></script>
+    <!--<script src="vendor/chai.js"></script> -->
+    <script>var require = {
+        waitSeconds: 200,
+        baseUrl: '/theme/js'
+    };
+    </script>
+    <script data-main="testStore.js" src="/theme/js/require.js"></script>
+</head>
+<body>
+    <div id="mocha"><p><a href=".">Index</a></p></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+    <script>//mocha.run();</script>
+</body>
+</html>

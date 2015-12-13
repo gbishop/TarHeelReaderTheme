@@ -1,0 +1,19 @@
+{{^openFailed}}
+<p class="statusOnline">_(You are accessing the Tar Heel Reader website online.)</p>
+<p class="statusOffline">_(You are reading books stored on your computer.)</p>
+
+<div id="offlineControls">
+    <button id="goOnline">_(Read online)</button>
+    <button id="goOffline">_(Read offline)</button>
+    <button id="addFavorites" class="onlineOnly">_(Add Favorites to local books)</button>
+    <button id="clearOffline">_(Clear all local books)</button>
+    <button id="clearSelected">_(Clear selected local books)</button>
+</div>
+<h1>Books available for offline reading</h1>
+<ul id="offlineBooks">
+    {{&list}}
+</ul>
+{{/openFailed}}
+{{#openFailed}}
+<p>_(Your browser appears to support local storage but when we tried to use it, we failed. Perhaps you are in Private Browsing mode or have otherwise disabled local storage?  You'll need to correct the settings on your computer before offline reading will function correctly.)</p>
+{{/openFailed}}

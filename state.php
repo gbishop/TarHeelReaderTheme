@@ -65,6 +65,9 @@ if (!in_array(THR('language'), array('en', 'la')) && $THRState['reviewed'] == 'R
     setTHR('reviewed', '');
 }
 
+// if you hear from the server you are online
+setTHR('offline', '0');
+
 function thr_setcookie($force=0) {
     global $setCookie, $THRState;
 

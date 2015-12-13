@@ -1,0 +1,114 @@
+// only show the offline reading menu item on capable browsers
+.offlineLink {
+    display: none;
+}
+
+.applicationcache.indexeddb .offlineLink {
+    display: block;
+}
+
+// hide menu items that only work online
+.offline .navigationMenu .onlineOnly {
+    display: none;
+}
+.offline .mainSettings .onlineOnly {
+    display: none;
+}
+
+.offline .onlineOnly {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+// disable the write link on the home page
+/*
+.offline a.homeLink[href="/write/"] {
+    opacity: 0.5;
+    pointer-events: none;
+}*/
+
+.offline-page {
+
+    #offlineControls {
+        text-align: center;
+    }
+
+    button {
+      @include decoratedButton(0.1em, #61A0B3, 0.5em, 0, $carolinaBlue, #286DA3, 1.1em, 0.1em, 1em, #EEE, #81BEF0, #FFF, 0, 40%);
+      margin: 0.5em;
+      min-height: 40px;
+      width: 15em;
+    }
+
+    button:disabled {
+        opacity: 0.5;
+    }
+
+    h1 {
+        top-margin: 1em;
+    }
+
+    ul#offlineBooks {
+        margin-top: 1em;
+        list-style-type: none;
+
+        li {
+            margin-top: 1em;
+        }
+
+        input {
+            margin-right: 0.5em;
+        }
+    }
+}
+
+.statusOnline {
+    display: block;
+}
+.statusOffline, button#goOnline {
+    display: none;
+}
+
+button#goOnline {
+    display: none;
+}
+
+button#goOffline {
+    display: inline;
+}
+
+.offline {
+    /*
+    a.thr-well-icon {
+        text-decoration: none;
+        &:after {
+            content: "\2708";
+            font-size: 2em;
+        }
+    }
+    */
+    span.statusOffline {
+        display: block;
+        position: absolute;
+        left: 4em;
+        top: 1em;
+    }
+    img {
+        vertical-align: bottom;
+    }
+
+    p.statusOnline {
+        display:none;
+    }
+    p.statusOffline {
+        display:block;
+    }
+    button#goOnline {
+        display: inline;
+    }
+
+    button#goOffline {
+        display: none;
+    }
+}
+

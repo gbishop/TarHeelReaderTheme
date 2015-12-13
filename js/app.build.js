@@ -1,7 +1,5 @@
 ({
-    appDir: "../",
-    baseUrl: "js",
-    dir: "../../Theme-build",
+    out: "main-combined.js",
     preserveLicenseComments: false,
     name: "main"
 })

@@ -1,4 +1,4 @@
-define(["templates" ], function(templates) {
+define(["templates", "state", "ios" ], function(templates, state, ios) {
     var SpeechBase = "/cache/speech/";
     var languages = templates.get('languages');
     var hasSpeech = {};
@@ -49,17 +49,57 @@ define(["templates" ], function(templates) {
         }
     }
 
+    // fake up what Modernizr might do for speechsynthesis
+    if (window.speechSynthesis && window.SpeechSynthesisUtterance) {
+        Modernizr.speechsynthesis = true;
+        $('html').addClass('speechsynthesis');
+    }
+
     $(function() {
         // wait for a user interaction to initialize audio because Apple knows best
         $(document.body).one('mousedown keydown touchstart', function(e) {
             initialize();
+            if (Modernizr.speechsynthesis) {
+                var msg = new SpeechSynthesisUtterance(' ');
+                window.speechSynthesis.speak(msg);
+                window.speechSynthesis.cancel();
+            }
         });
     });
 
-    function play(id, voice, page, bust) {
-        voice = voice[0]; // assure we're only using the 1st letter
-        //console.log('play', id, voice, page, audio);
-        if (!audio || voice === 's') {
+    var browserLang = {
+        'en': 'en-US',
+        'de': 'de-DE',
+        'es': 'es-US',
+        'fr': 'fr-FR',
+        'it': 'it-IT',
+        'ko': 'ko-KO',
+        'pt': 'pt-BR'
+    };
+    function browserPlay(id, page, lang, text, bust) {
+        //console.log('bp', id, page, lang, text);
+        if (id == 'site') {
+            var siteSpeech = templates.get('siteSpeech'),
+                key = page + '-c';
+            text = siteSpeech[key].text;
+        }
+        window.speechSynthesis.cancel();
+        var msg = new SpeechSynthesisUtterance(text);
+        if (lang in browserLang)
+            lang = browserLang[lang];
+        msg.lang = lang;
+        ios.speechRate(msg);
+        window.speechSynthesis.speak(msg);
+    }
+
+    function play(id, page, lang, text, bust) {
+        var voice = state.get('voice')[0];
+        //console.log('play', id, page, lang, voice, text, bust);
+
+        if (voice == 'b' && Modernizr.speechsynthesis) {
+            return browserPlay(id, page, lang, text, bust);
+        }
+        if (!audio || voice === 's' || !hasSpeech[lang] || state.offline()) {
             return;
         }
 

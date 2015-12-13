@@ -1,3 +1,24 @@
+<?php
+$json = array_key_exists('json', $_GET) && $_GET['json'] == 1;
+
+if ($json) {
+    $items = array();
+    if (have_posts()) {
+        while (have_posts() && count($items) < 5) {
+            the_post();
+            $item = array('title'=>get_the_title(),
+                          'link'=>get_permalink());
+            $items[] = $item;
+        }
+    $result = array('announcements'=>$items);
+    $output = json_encode($result);
+    header('Content-Type: application/json');
+    header('Content-Size: ' . strlen($output));
+    echo $output;
+    die();
+    }
+}
+?>
 <?php thr_header(''); ?>
 <!-- index.php -->
 

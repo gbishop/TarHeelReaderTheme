@@ -6,34 +6,17 @@ define(["route",
         "keyboard",
         "state",
         "speech",
-        "ios"
-        ], function(route, page, templates, keys, state, speech, ios) {
+        "ios",
+        "store"
+        ], function(route, page, templates, keys, state, speech, ios, store) {
 
-    var book = null, // current book
-        picBoxSize = {}; // sizing the pic box same as last time
-
-    function fetchBook(slug) {
-        var $def = $.Deferred();
-        if (book && book.slug == encodeURI(slug).toLowerCase()) {
-            $def.resolve(book);
-        } else {
-            $.ajax({
-                url: '/book-as-json/',
-                data: {
-                    slug: slug
-                },
-                dataType: 'json'
-            }).done(function(data) {
-                book = data;
-                $def.resolve(book);
-            });
-        }
-        return $def;
-    }
+    var picBoxSize = {}; // sizing the pic box same as last time
 
     function pageLink(link, page) {
         if (page === 1) {
             return link;
+        } else if (link.match(/^\/\?p=.*/)) {
+            return link + '&page=' + page;
         } else {
             return link + page + '/';
         }
@@ -47,8 +30,7 @@ define(["route",
             return false; // it will get rendered by the host
         }
         var $def = $.Deferred();
-        fetchBook(slug).then(function(book) {
-
+        store.fetchBook(slug).then(function(book) {
             var view = {};
             if (!pageNumber) {
                 pageNumber = 1;
@@ -60,6 +42,10 @@ define(["route",
             view.ID = book.ID;
             var newContent;
             var N = book.pages.length;
+            if (N == 0 || !book.pages[0]) {
+                $def.reject();
+                return;
+            }
             if (pageNumber <= N) {
                 view.author = book.author;
                 view.pageNumber = pageNumber;
@@ -75,9 +61,8 @@ define(["route",
                 }
                 templates.setImageSizes(view.image);
                 newContent = templates.render('bookPage', view);
-                if (speech.hasSpeech[book.language]) {
-                    speech.play(book.ID, state.get('voice'), pageNumber, book.bust);
-                }
+                speech.play(book.ID, pageNumber, book.language,
+                    book.pages[pageNumber-1].text, book.bust);
             } else {
                 if (pageNumber === N+1) {
                     logEvent('read', 'complete', book.slug + ':' + book.ID);
@@ -235,9 +220,7 @@ define(["route",
             $choice.addClass('selected');
             var toSay = $choice.attr('data-speech');
             if (toSay) {
-                if (speech.hasSpeech[state.get('locale')]) {
-                    speech.play('site', state.get('voice'), toSay);
-                }
+                speech.play('site', toSay, state.get('locale'));
             }
         } else {
             console.log('no choices');
@@ -262,7 +245,7 @@ define(["route",
     function updateRating(book, url) {
         var ratingRE = /rating=([123])/;
         var m = ratingRE.exec(url);
-        if (m) {
+        if (m && !state.offline()) {
             var rating = parseInt(m[1], 10);
             book.rating_count += 1;
             book.rating_total += rating;
@@ -311,8 +294,74 @@ define(["route",
         $page.find('header').replaceWith(bookHeading(1, id));
     });
 
+    var trackerSocket = null;
+    var trackerQueue = [];
+
+    function notifyTracker($page, slug, pageNumber) {
+        // hack to try talking to Megan's tracker
+        function pos($obj) {
+            var o = $obj.offset(),
+                p = $obj.outerHeight() - $obj.height(),
+                y = Math.round(o.top) + p,
+                x = Math.round(o.left),
+                w = Math.round($obj.width()),
+                h = Math.round($obj.height());
+            console.log(x, y, w, h);
+            return {
+                t: y,
+                l: x,
+                r: x+w,
+                b: y+h
+            }
+        }
+        if (!trackerSocket || trackerSocket.readyState == 3) {
+            trackerSocket = new WebSocket('ws://localhost:8008/');
+            trackerSocket.onopen = function() {
+                console.log('sending queued');
+                while (trackerQueue.length > 0) {
+                    trackerSocket.send(trackerQueue.shift());
+                }
+            }
+        }
+        $('.thr-text').contents().wrap('<span class="thetext"></span>');
+        var $text = $page.find('span.thetext'),
+            choice = $page.is('.choice-page'),
+            $pic = $page.find('img.thr-pic'),
+            data = { page: pageNumber, slug: slug, choice: choice };
+
+        if (!choice) {
+            var c = pos($text),
+                p = pos($pic),
+                d = {
+                    tl: c.l,
+                    tr: c.r,
+                    tt: c.t,
+                    tb: c.b,
+                    pl: p.l,
+                    pr: p.r,
+                    pt: p.t,
+                    pb: p.b
+                };
+            $.extend(data, d);
+        }
+        console.log('data', data);
+        var jdata = JSON.stringify(data);
+        if (trackerSocket.readyState == 1) {
+            console.log('sending');
+            trackerSocket.send(jdata);
+        } else {
+            console.log('queueing');
+            trackerQueue.push(jdata);
+        }
+        // end hack
+    }
+
+
     function configureBook(url, slug, pageNumber) {
-        //console.log('configureBook', url, slug, pageNumber);
+        if (!pageNumber) {
+            pageNumber = 1;
+        }
+        console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         if (!$page.is('.thr-book-page')) {
             console.log('not book page, no configure');
@@ -321,13 +370,18 @@ define(["route",
         $page.find('.thr-pic').fadeIn(200);
         var toSay = $page.find('.thr-question').attr('data-speech');
         if (toSay) {
-            speech.play('site', state.get('voice'), toSay);
+            speech.play('site', toSay, state.get('locale'));
         }
 
         ios.focusVoiceOverOnText($page);
+
+        if (state.get('eyetracker') == '1') {
+            notifyTracker($page, slug, pageNumber);
+        }
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
+    route.add('render', /^\/(?:\?(p=\d+))(?:&page=(\d+))?/, renderBook);
     route.add('init', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, configureBook);
     route.add('init', /^\/(?:\?p=.*)$/, configureBook);
 
