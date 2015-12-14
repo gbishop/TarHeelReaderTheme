@@ -8,15 +8,14 @@ define(['jquery.ui.touch-punch'], function() {
                 return;
             }
             var $this = $(this);
-            window.foo = $this;
-            var offset = $this.offset(),
-                ww = $(window).width(),
-                tw = Math.max(200, ww/3),
-                $tip = $this.next('.help-text').clone().dialog({
-                    position: [offset.left - tw - 20, offset.top - $(window).scrollTop()],
-                    width: tw
+            var $tip = $this.next('.help-text').dialog({
+                    position: {
+                        my: "right top",
+                        at: "left bottom",
+                        of: $this
+                    },
+                    width: "15em"
                 });
-                //console.log('help', $tip);
         });
     });
     return {};

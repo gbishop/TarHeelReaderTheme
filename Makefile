@@ -1,4 +1,7 @@
-all: build copygb
+all: devel
+
+manifest:
+	python tools/manifest.py > manifest.appcache
 
 transifex:
 	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it,zh
@@ -17,54 +20,41 @@ Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html se
 	python tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json style.css
+	rm -f manifest.appcache
 
-style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss
+style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss css/_offline.scss
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
-	sass --style=compact style.scss style.css
+	sass --style=compressed style.scss style.css
 
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-copyameem:
-	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
-	#launch.py http://gbserver3.cs.unc.edu/
-
 copygb:
-	rsync -az --delete . gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
+	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/gbserver/wp-content/themes/thr3
 	#launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
-	rsync -az --delete . gbserver3:/var/www/tarheelreader3/wp-content/themes/thr3
-	# launch.py http://tarheelreader.org/
-
-gb: build copygb
-
-cenk: build
-	rsync -az --delete . gbserver3s:/var/www/tarheelreader/wp-content/themes/thr3
-
+	rsync -az --delete ../Theme-build/ gbserver:/var/www/gbserver/wp-content/themes/thr3
+	#launch.py http://tarheelreader.org/
 
 optimized: build
 	rm -rf ../Theme-build/*
-	cd js; nodejs ../../r.js -o app.build.js
-	cd ../Theme-build; make build
-	cd ../Theme-build; python tools/AddNewlines.py js/main.js
+	nodejs ../r.js -o js/app.build.js
+	cp --parents -r *.php *.json EPub PowerPoint js/main-combined.js js/json2.min.js js/modernizr.custom.js js/require.min.js *.swf *.png images speech style.css ../Theme-build
+	mv ../Theme-build/js/main-combined.js ../Theme-build/js/main.js
 	make versioned
+	python tools/manifest.py ../Theme-build/used.txt > ../Theme-build/manifest.appcache
 
 versioned:
-	cd ../Theme-build; python tools/EditFileVersions.py *.php js/main.js style.css Templates*.json
+	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
-gbopt:
-	make optimized STATICHOST=http://tarheelreader3s.cs.unc.edu
-	cd ../Theme-build; make copygba
+devel: build copygb
 
-testprod:
-	rm -rf ../Theme-build/*
-	cd js; nodejs ../../r.js -o app.build.js
-	cd ../Theme-build; make build
-	cd ../Theme-build; make copygba
+testprod: optimized
+	rsync -az --delete ../Theme-build/ gbserver:/var/www/gbserver/wp-content/themes/thr3
 
 production:
-	make optimized STATICHOST=http://tarheelreader3s.cs.unc.edu
+	make optimized
 	cd ../Theme-build; make copyproduction
 
 siteSpeech: build

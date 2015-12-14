@@ -14,12 +14,28 @@ define(['templates'], function(templates) {
         $blocker.hide();
     }
 
+    window.thr_ajax_count = 0;
+
     function wait(jqXHR, settings) {
         //console.log('ajax start', jqXHR);
+        window.thr_ajax_count += 1;
+        if (!settings.global) return; // why do I need this?
+        if (settings.suppressErrors) return;
         busyXHR.push(jqXHR);
         $blocker.addClass('isBusy').removeClass('isError')
             .css('top', $(window).scrollTop() + $(window).height() / 3 + 'px');
         $blocker.delay(500).fadeIn(1000);
+    }
+
+    function waitManual() {
+        $blocker.addClass('isBusy').removeClass('isError')
+            .css('top', $(window).scrollTop() + $(window).height() / 3 + 'px');
+        $blocker.delay(500).fadeIn(1000);
+    }
+
+    function doneManual() {
+        $blocker.stop(true);
+        $blocker.hide();
     }
 
     function removeBusy(jqXHR) {
@@ -62,7 +78,7 @@ define(['templates'], function(templates) {
 
     return {
         cancel: cancel,
-        wait: wait,
-        done: done
+        wait: waitManual,
+        done: doneManual
     };
 });

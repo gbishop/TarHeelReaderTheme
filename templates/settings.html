@@ -5,9 +5,10 @@
                 <!-- Begin submenu -->
                 <ul class="submenu speechOptions">
                     <li><span class="silent">_(Silent)</span></li>
-                    <li><span class="child">_(Child)</span></li>
-                    <li><span class="woman">_(Woman)</span></li>
-                    <li><span class="man">_(Man)</span></li>
+                    <li class="onlineOnly"><span class="child">_(Child)</span></li>
+                    <li class="onlineOnly"><span class="woman">_(Woman)</span></li>
+                    <li class="onlineOnly"><span class="man">_(Man)</span></li>
+                    <li class="speechSynthesisOnly"><span class="browser">_(Built in)</span></li>
                 </ul>
                 <!-- End submenu -->
             </li>
@@ -50,7 +51,7 @@
             <!-- End Colors -->
             <!-- Begin Download (only show if we have book ID)-->
             {{#ID}}
-            <li><span class="download">_(Download)</span>
+            <li class="onlineOnly"><span class="download">_(Download)</span>
                 <!-- Begin submenu -->
                 <ul class="submenu downloadOptions">
                     <li><a class="powerpoint no-ajaxy" href="/download-book/?type=pptx&id={{ID}}" data-log="{{ID}}-pptx">_(PowerPoint)</a></li>
@@ -62,7 +63,7 @@
             <!-- End Download -->
             <li><span class="default">_(Default)</span></li>
             {{#ID}}
-            <li><span class="more" data-id="{{ID}}">_(More...)</span></li>
+            <li class="onlineOnly"><span class="more" data-id="{{ID}}">_(More...)</span></li>
             {{/ID}}
         </ul>
     <!-- End Settings Panel -->

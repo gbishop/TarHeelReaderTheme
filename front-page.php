@@ -44,28 +44,14 @@ thr_header('home-page'); ?> <!-- front-page.php -->
 			$announcements[] = $ann;
 		}
 	}
-?>
-	<article>
-
-		<div class="post" >
-
-			<div class="entry">
-
-				<?php
-				// construct the view for the template
-				$view = array(
-					'wellicon' => '<img src="/theme/images/well.png" class="tinyicon" title="old well icon" alt=" "/>',
-					'gearicon' => '<img src="/theme/images/settings.png" class="tinyicon" title="gear icon" alt=" "/>',
-					'Flickr' => '<a href="http://flickr.com">Flickr</a>',
-					'locales' => $Templates['locales'],
-					'content' => $content,
-					'announcements' => $announcements
-				);
-				echo template_render('frontPage', $view);
-				?>
-			</div>
-		</div>
-
-	</article>
-
-<?php thr_footer(); ?>
+// construct the view for the template
+$view = array(
+	'wellicon' => '<img src="/theme/images/well.png" class="tinyicon" title="old well icon" alt=" "/>',
+	'gearicon' => '<img src="/theme/images/settings.png" class="tinyicon" title="gear icon" alt=" "/>',
+	'Flickr' => '<a href="http://flickr.com">Flickr</a>',
+	'locales' => $Templates['locales'],
+	'content' => $content,
+	'announcements' => $announcements
+);
+echo template_render('frontPage', $view);
+thr_footer(); ?>

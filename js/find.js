@@ -3,14 +3,16 @@ generate the find page locally and enable switch selection of items
 */
 
 define([ "route",
+         "controller",
          "templates",
          "state",
          "keyboard",
          "speech",
          "page",
          "ios",
+         "store",
          "jquery.scrollIntoView"
-        ], function(route, templates, state, keys, speech, page, ios) {
+        ], function(route, controller, templates, state, keys, speech, page, ios, store) {
 
     // return the url that will restore the find page state
     function find_url(page) {
@@ -34,41 +36,45 @@ define([ "route",
 
     // handle find locally
     function findRender(url, query) {
-        //console.log('findRender', url);
+        console.log('findRender', url, query);
         var view = {},
-            $def = $.Deferred();
+            $def = $.Deferred(),
+            isFav = false;
         // record the state so we can come back here
-        state.set('findAnotherLink', find_url());
-        view.searchForm = templates.searchForm(); // sets the selects based on the state
+        if (url.match('/favorites/')) {
+            state.set('findAnotherLink', '/favorites/');
+            view.searchForm = '';
+            isFav = true;
+        } else {
+            state.set('findAnotherLink', find_url());
+            view.searchForm = templates.searchForm(); // sets the selects based on the state
+        }
 
         // fetch the json for the current set of books
-        $.ajax({
-            url: url,
-            data: 'json=1',
-            dataType: 'json',
-            timeout: 30000,
-            success: function(data, textStatus, jqXHR) {
-                // setup the image width and height for the template
-                for(var i=0; i<data.books.length; i++) {
-                    templates.setImageSizes(data.books[i].cover);
-                }
-                view.bookList = templates.render('bookList', data);
-                var pageNumber = +state.get('page');
-                if (data.more) {
-                    view.nextLink = find_url(pageNumber + 1);
-                }
-                if (pageNumber > 1) {
-                    view.backLink = find_url(pageNumber - 1);
-                }
-                var $newPage = page.getInactive('find-page');
-                $newPage.empty()
-                    .append(templates.render('heading',
-                        {settings:true, chooseFavorites:true}))
-                    .append('<div class="content-wrap">' +
-                            templates.render('find', view) +
-                            '</div>');
-                $def.resolve($newPage, {title: 'Tar Heel Reader | Find', colors: true});
+        store.find(url).then(function(data) {
+            // setup the image width and height for the template
+            for(var i=0; i<data.books.length; i++) {
+                templates.setImageSizes(data.books[i].cover);
             }
+            if (isFav) {
+                data.favorites = true;
+            }
+            view.bookList = templates.render('bookList', data);
+            var pageNumber = isFav ? +state.get('fpage') : +state.get('page');
+            if (data.more) {
+                view.nextLink = find_url(pageNumber + 1);
+            }
+            if (pageNumber > 1) {
+                view.backLink = find_url(pageNumber - 1);
+            }
+            var $newPage = page.getInactive(isFav ? 'favorites-page' : 'find-page');
+            $newPage.empty()
+                .append(templates.render('heading',
+                    {settings:true, chooseFavorites:true}))
+                .append('<div class="content-wrap">' +
+                        templates.render('find', view) +
+                        '</div>');
+            $def.resolve($newPage, {title: 'Tar Heel Reader | Find', colors: true});
         });
         return $def;
     }
@@ -98,18 +104,14 @@ define([ "route",
         }
         toSelect.addClass('selected');
         // speak the title
-        var voice = state.get('voice');
         if (toSelect.attr('data-speech')) {
-            if (speech.hasSpeech[state.get('locale')]) {
-                speech.play('site', voice, toSelect.attr('data-speech'));
-            }
+            speech.play('site', toSelect.attr('data-speech'), state.get('locale'));
         } else {
             var id = toSelect.attr('data-id'),
+                bust = toSelect.attr('data-bust'),
                 lang = toSelect.attr('lang'),
-                bust = toSelect.attr('data-bust');
-            if (speech.hasSpeech[lang]) {
-                speech.play(id, voice, 1, bust);
-            }
+                text = toSelect.find('h2').text();
+            speech.play(id, 1, lang, text, bust);
         }
         // make sure it is visible
         toSelect.scrollIntoView({
@@ -147,8 +149,15 @@ define([ "route",
                         $(this).remove(); // then remove it.
                     });
                 // replace the images with high res versions
-                $page.find('.preview')
+                $page.find('li.preview')
+                    .each(function(i, li) {
+                        var $li = $(li),
+                            src = $li.attr('data-preview'),
+                            $img = $li.find('.thr-thumb');
+                        $img.attr('src', src);
+                    })
                     .find('img')
+                    .not('.thr-thumb')
                     .each(function(i, img){
                         img.src = img.src.replace('_t', '');
                     });
@@ -241,7 +250,7 @@ define([ "route",
             ev.preventDefault();
     });
     $(document).on('click', '.favorites-page.chooseFavorites .thr-favorites-icon', function(ev) {
-        window.location.href = '/favorites/'; // force a refresh after changing favorites on favorites page
+        controller.gotoUrl(state.favoritesURL()); // force a refresh after changing favorites on favorites page
     });
     $(document).on('click', '.reviewer li', function(ev) {
         if (!ev.shiftKey) return true;
@@ -253,6 +262,7 @@ define([ "route",
     });
 
     route.add('render', /^\/find\/(\?.*)?$/, findRender);
+    route.add('render', /^\/favorites\/(\?.*)?$/, findRender);
     route.add('init', /^\/find\/(\?.*)?$/, findConfigure);
     route.add('init', /^\/favorites\/(\?.*)?$/, findConfigure);
 

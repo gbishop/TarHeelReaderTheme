@@ -113,7 +113,8 @@ define([
                window.location.reload(false);  // keep the deletion behavior consistent: refresh page
             }, 'json');
         } else if(action === 'read') {
-            controller.gotoUrl(link);
+            state.set('findAnotherLink', '/your-books/');
+            controller.gotoUrl(link, '', { 'data_type': 'book'});
         }
     }); // end click
 

@@ -1,0 +1,8 @@
+    {{#books}}
+    <li>
+        <label><input type="checkbox" value="{{ID}}">{{title}}</label>
+    </li>
+    {{/books}}
+    {{^books}}
+    <li id="noOfflineBooks">_(You have no books saved for offline reading.)</li>
+    {{/books}}

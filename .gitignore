@@ -1,4 +1,12 @@
+/js/main-combined.js
+tests/.sauce
+tests/output.xml
+tests/log.html
+tests/report.html
+tests/robot
+tests/selenium*
 _mediaqueries.scss
+manifest.appcache
 style.css
 .sass-cache
 Templates.json
@@ -7,3 +15,4 @@ theme.sublime-workspace
 speech/*.mp3
 languages/thr.pot
 *.swp
+*.pyc

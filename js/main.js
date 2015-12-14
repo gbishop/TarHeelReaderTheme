@@ -8,7 +8,9 @@ define([
     "busy",
     "navigation",
     "help",
-    "yourbooks"],
+    "yourbooks",
+    "offline",
+    "home"],
     function(route, state, controller) {
         $(function() {
             var url = window.location.href,
@@ -24,6 +26,7 @@ define([
                 $page.trigger('PageRendered');
                 route.go('init', url, $page);
                 $page.trigger('PageVisible');
+                $('div.loading').removeClass('loading');
             }
         });
     });

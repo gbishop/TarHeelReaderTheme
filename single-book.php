@@ -8,11 +8,7 @@
             $link = $book['link'];
             $preview = substr($link, 0, 4) == '/?p=';
 
-            if ($preview) {
-                $findLink = '/your-books/';
-            } else {
-                $findLink = THR('findAnotherLink');
-            }
+            $findLink = THR('findAnotherLink');
             $mp3 = null;
             if (has_speech($book['language'])) {
                 $voice = THR('voice');

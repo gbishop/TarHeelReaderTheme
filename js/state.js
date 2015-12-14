@@ -1,4 +1,4 @@
-define([ "route", "json!../state.json", "jquery.cookie" ], function(route, rules) {
+define([ "json!../state.json", "jquery.cookie" ], function(rules) {
     var state = {};
 
     // set up the defaults
@@ -21,8 +21,6 @@ define([ "route", "json!../state.json", "jquery.cookie" ], function(route, rules
     }
 
     function stateUpdate(url) {
-        // console.log('url', url);
-
         // get the old value
         var cookieJson = $.cookie('thr');
         var cookie = $.parseJSON(cookieJson);
@@ -121,6 +119,18 @@ define([ "route", "json!../state.json", "jquery.cookie" ], function(route, rules
         return '/favorites/?' + $.param(p);
     }
 
+    function queryParameters() {
+        return {
+            reviewed: state['reviewed'],
+            language: state['language'],
+            page: +state['page'],
+            category: state['category'],
+            type: state['type'],
+            audience: state['audience'],
+            search: state['search']
+        };
+    }
+
     stateUpdate(window.location.href);
 
     return {
@@ -132,6 +142,8 @@ define([ "route", "json!../state.json", "jquery.cookie" ], function(route, rules
         removeFavorite: removeFavorite,
         isFavorite: isFavorite,
         favoritesArray: favoritesArray,
-        favoritesURL: favoritesURL
+        favoritesURL: favoritesURL,
+        queryParameters: queryParameters,
+        offline: function() { return state['offline'] == '1'; }
     };
 });

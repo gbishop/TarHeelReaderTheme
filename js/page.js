@@ -4,12 +4,7 @@ define(["state", "ios"], function(state, ios) {
 
     // find or create an inactive page of the indicated type
     function getInactive(type) {
-        var selector = 'body > .' + type + ':not(.active-page):first',
-            $page = $(selector).removeClass().addClass(type).addClass('page-wrap');
-        if ($page.length === 0) {
-            // not found create it and add it to the body
-            $page = $('<div class="' + type + ' page-wrap"></div>').appendTo('body');
-        }
+        var $page = $('<div class="' + type + ' page-wrap"></div>').appendTo('body');
         return $page;
     }
 
@@ -26,9 +21,7 @@ define(["state", "ios"], function(state, ios) {
             options = $.extend({title:null, effect:'fade'}, options),
             $oldpage = $('.active-page');
 
-        $oldpage.css('display', 'none');
-        $oldpage.attr('aria-hidden', 'true');
-        $oldpage.removeClass('active-page');
+        $oldpage.remove();
         $page.css('display', 'block').addClass('active-page');
         $page.attr('aria-hidden', 'false');
         ios.focusMenu($page);
