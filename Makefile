@@ -55,7 +55,7 @@ testprod: optimized
 
 production:
 	make optimized
-	cd ../Theme-build; make copyproduction
+	make copyproduction
 
 siteSpeech: build
 	python tools/makeSiteSpeech.py Templates.*.json
