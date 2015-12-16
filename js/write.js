@@ -278,7 +278,7 @@ define(['route',
             //console.log('initBook', book);
             $('input[name=title]').val(book.title);
             $('input[name=author]').val(book.author);
-            $('select[name=language]').val(book.language);
+            $('select[name=language]').val(book.language || ' ');
             $('input[name=category]').prop('checked', false);
             $.each(book.categories, function (index, category) {
                 $('input[value=' + category + ']').prop('checked', true);
@@ -378,7 +378,7 @@ define(['route',
             }
             validate(cap, 'peCaption');
             validate(len, 'peCaptionLength');
-            validate(book.language != ' ', 'peLanguage');
+            validate(book.language && book.language != ' ', 'peLanguage');
             validate(book.categories && book.categories.length <= 4, 'peCategories');
             // check for image upload permission if needed
             var needPermission = $('label.uploadPermission').hasClass('needPermission');
