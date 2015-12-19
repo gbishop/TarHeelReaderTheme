@@ -14,5 +14,8 @@ Templates.*.json
 theme.sublime-workspace
 speech/*.mp3
 languages/thr.pot
+.c9
+.tx
+style.css.map
 *.swp
 *.pyc

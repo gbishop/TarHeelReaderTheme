@@ -31,7 +31,6 @@ translate:
 
 copygb:
 	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/gbserver/wp-content/themes/thr3
-	#launch.py http://gbserver3a.cs.unc.edu/
 
 copyproduction:
 	rsync -az --delete ../Theme-build/ gbserver:/var/www/tarheelreader/wp-content/themes/thr3
