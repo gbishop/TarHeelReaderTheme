@@ -108,7 +108,7 @@ define([
         if(action === 'edit') {
             controller.gotoUrl("/write/?id=" + bookID); // simply change URL, this is all we need to do, right?
         } else if(action === 'delete') {
-            $.post('/your-books/', {action: action + '-draft', id: bookID }, function(data, status) {
+            $.post('/your-books/', {c_action: action + '-draft', id: bookID }, function(data, status) {
                // removeFromList(data, status, $li, $li.find('div')); // we can use this for deletion without reload
                window.location.reload(false);  // keep the deletion behavior consistent: refresh page
             }, 'json');
@@ -129,15 +129,15 @@ define([
 
         if (action == 'save') {
             args = {
-                action: 'update-collection',
-                id: id,
-                title: $div.find('input[name="title"]').val(),
-                description: $div.find('textarea[name="description"]').val()
+                c_action: 'update-collection',
+                c_id: id,
+                c_title: $div.find('input[name="title"]').val(),
+                c_description: $div.find('textarea[name="description"]').val()
             };
         } else if (action == 'merge' || action == 'replace' || action == 'delete' || action == 'add') {
             args = {
-                action: action + '-collection',
-                id: id
+                c_action: action + '-collection',
+                c_id: id
             };
         } else if (action == 'clear') {
             state.set('favorites', '');

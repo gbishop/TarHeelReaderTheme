@@ -31,8 +31,8 @@ $userid = get_current_user_id();
 $collections_table = $wpdb->prefix . 'book_collections';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $userid != 0) {
-    $action = getParam('action', '', '/[-a-z]+/', 'post');
-    $id = getParam('id', 'new', '/\d+/', 'post');
+    $action = getParam('c_action', '', '/[-a-z]+/', 'post');
+    $id = getParam('c_id', 'new', '/\d+/', 'post');
     if ($action == 'delete-draft' && $id != 'new') {
         $post = get_post($id);
         if($post && $post->post_author == $userid) {
@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $userid != 0) {
             returnJson(0);
         }
     } elseif ($action == 'update-collection') {
-        $title = getParam('title', '', null, 'post');
-        $description = getParam('description', '', null, 'post');
+        $title = getParam('c_title', '', null, 'post');
+        $description = getParam('c_description', '', null, 'post');
         $result = false;
         if ($title) {
             $data = array(
@@ -65,12 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $userid != 0) {
                 $data['slug'] = $alt_slug;
                 $data['owner'] = $userid;
                 // get the language of all the books in the collection
-                $langs = $wpdb->get_col("SELECT language from $collections_table WHERE id in ($favs)");
-                $lang = $langs[0];
-                if (count(array_unique($langs)) > 1) {
-                    $lang = 'xx';
-                }
-                $data['language'] = $lang;  // compute from the books included, used 'xxx' if they aren't all the same
+                $lang = 'xx';
+                $data['language'] = $lang;  // compute from the books included, used 'xx' if they aren't all the same
                 $r = $wpdb->insert($collections_table, $data);
                 if ($r == 1) {
                     $result = $wpdb->insert_id;
