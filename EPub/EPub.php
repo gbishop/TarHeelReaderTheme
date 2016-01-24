@@ -598,7 +598,7 @@ class EPub {
 		$this->opf_manifest = "\t\t<item id=\"coverImage\" href=\"" . $imgPath . "\" media-type=\"" . $mimetype . "\" />\n" . $this->opf_manifest;
 		$this->opf_manifest = "\t\t<item id=\"coverPage\" href=\"CoverPage.html\" media-type=\"application/xhtml+xml\" />\n" . $this->opf_manifest;
 		$this->opf_spine = "\t\t<itemref idref=\"coverPage\" linear=\"no\" />\n" . $this->opf_spine;
-		$this->opf_guide .= "\t\t<reference href=\"CoverPage.html\" type=\"cover\" title=\"coverPage\"/>\n";
+		$this->opf_guide = "\t\t<reference href=\"CoverPage.html\" type=\"cover\" title=\"coverPage\"/>\n";
 		$this->ncx_navmap = "\n\t\t<navPoint id=\"\" playOrder=\"0\">\n\t\t\t<navLabel><text>Cover</text></navLabel>\n\t\t\t<content src=\"CoverPage.html\" />\n\t\t</navPoint>\n" . $this->ncx_navmap;
 
 		$this->isCoverImageSet = TRUE;
