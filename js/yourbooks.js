@@ -108,7 +108,7 @@ define([
         if(action === 'edit') {
             controller.gotoUrl("/write/?id=" + bookID); // simply change URL, this is all we need to do, right?
         } else if(action === 'delete') {
-            $.post('/your-books/', {c_action: action + '-draft', id: bookID }, function(data, status) {
+            $.post('/your-books/', {c_action: action + '-draft', c_id: bookID }, function(data, status) {
                // removeFromList(data, status, $li, $li.find('div')); // we can use this for deletion without reload
                window.location.reload(false);  // keep the deletion behavior consistent: refresh page
             }, 'json');
