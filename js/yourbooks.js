@@ -110,7 +110,7 @@ define([
         } else if(action === 'delete') {
             $.post('/your-books/', {c_action: action + '-draft', c_id: bookID }, function(data, status) {
                // removeFromList(data, status, $li, $li.find('div')); // we can use this for deletion without reload
-               window.location.reload(false);  // keep the deletion behavior consistent: refresh page
+               window.location.reload(true);  // keep the deletion behavior consistent: refresh page
             }, 'json');
         } else if(action === 'read') {
             state.set('findAnotherLink', '/your-books/');
