@@ -481,6 +481,25 @@ h2 {
     }
 }
 
+// tweaks for big fonts
+.big-fonts .thr-book-page {
+    .thr-caption-box {
+        height: 13em;
+    }
+    .thr-caption {
+        font-size: 3.6em;
+    }
+    hi.title {
+        height: 2.5em;
+    }
+    h1 {
+        font-size: 4em;
+        margin: 1em auto;
+        margin-bottom: 0.1em;
+    }
+}
+
+
 .reading-controls {
     label {
         display: block;

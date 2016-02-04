@@ -123,7 +123,7 @@ function thr_header($pageType, $view=array()) {
     } else {
         // this is a request from a browser for the full page.
         get_header();
-        echo "<body>\n";
+        echo "<body class=\"big-fonts\">\n";
         echo "<div class=\"$pageType page-wrap active-page loading\" >\n";
     }
     echo template_render('heading', $view);
