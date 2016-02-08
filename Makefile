@@ -50,7 +50,7 @@ versioned:
 devel: build copygb
 
 testprod: optimized
-	rsync -az --delete ../Theme-build/ gbserver:/var/www/tarheelreader/wp-content/themes/thr3
+	rsync -az --delete ../Theme-build/ gbserver:/var/www/gbserver/wp-content/themes/thr3
 
 production:
 	make optimized
