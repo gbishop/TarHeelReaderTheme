@@ -856,4 +856,11 @@ function my_user_register( $user_id ) {
         update_user_meta($user_id, 'description', trim($_POST['about']));
     }
 }
+
+// fix the registration email by removing <> around url
+add_filter('retrieve_password_message', 'my_password_message');
+function my_password_message($message, $key, $user_login, $user_data) {
+    $message = preg_replace('/^<([^>]+)>$/m', "$1", $message);
+}
+
 ?>
