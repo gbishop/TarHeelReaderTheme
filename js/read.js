@@ -336,7 +336,7 @@ define(["route",
 
     // configure the keyboard controls
     keys.setMap('.active-page.thr-book-page', {
-        'left space': '/read/chooseOrPreviousPage',
+        'left enter': '/read/chooseOrPreviousPage',
         'right space': '/read/nextChoiceOrPage',
         'up': '/read/previousChoiceOrPage',
         'down': '/read/makeChoice',
