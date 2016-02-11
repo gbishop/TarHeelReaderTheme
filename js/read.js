@@ -142,48 +142,49 @@ define(["route",
     }
 
     // display big fonts
-    var ZoomFactor = 1;
+    var ZoomFactor = 1,
+        ZoomText = false;
     function zoom() {
         ZoomFactor += 1;
         if(ZoomFactor > 4) ZoomFactor = 1;
+        ZoomText = true;
         bigFonts(ZoomFactor);
-        var $page = $('.active-page.thr-book-page');
-        if ($page.length === 1) {
-            //console.log('book resize');
-            scalePicture($page);
-        }
     }
 
     function bigFonts(zoom) {
         if(zoom <= 1) {
             $('.active-page [style]').not('img').removeAttr('style');
-            return;
-        }
+        } else {
+            // make the text area large
+            $('.thr-caption-box').css({
+                width: '100%',
+                height: $(window).height() * Math.min(0.3 * zoom, 0.9),
+                overflowY: 'auto'
+            });
+            $('.thr-caption').css({
+                fontSize: 1.8 * zoom + 'em'
+            });
+            $('.thr-next-link').css({
+                opacity: 0.3
+            });
+            $('.thr-back-link').css({
+                opacity: 0.3
+            });
+            $('h1').css({
+                fontSize: zoom * 2 + 'em',
+                marginTop: 1 / zoom + 'em',
+                marginBottom: 0.2 / zoom + 'em',
+                width: '100%',
+                overflow: 'hidden'
+            });
+            $('h1.thr-question').css('fontSize', zoom + 'em')
+            $('.thr-choices').css('fontSize', zoom + 'em');
 
-        // make the text area large
-        $('.thr-caption-box').css({
-            width: '100%',
-            height: $(window).height() / 2,
-            overflowY: 'auto'
-        });
-        $('.thr-caption').css({
-            fontSize: 1.8 * zoom + 'em'
-        });
-        $('.thr-next-link').css({
-            opacity: 0.3
-        });
-        $('.thr-back-link').css({
-            opacity: 0.3
-        });
-        $('h1').css({
-            fontSize: zoom * 2 + 'em',
-            marginTop: 1 / zoom + 'em',
-            marginBottom: 0.2 / zoom + 'em',
-            width: '100%'
-        });
-        $('h1.thr-question').css('fontSize', zoom + 'em')
-        $('.thr-choices').css('fontSize', zoom + 'em');
-
+       }
+       var $page = $('.active-page.thr-book-page');
+       if ($page.length === 1) {
+           scalePicture($page);
+       }
     }
 
     // only resize when we're done instead of every 20ms
@@ -239,11 +240,31 @@ define(["route",
     }
 
     function previousPage() {
-        $('.active-page a.thr-back-link').click();
+        if(ZoomFactor > 1) {
+            if(ZoomText) {
+                ZoomText = false;
+                bigFonts(1);
+            } else {
+                ZoomText = true;
+                $('.active-page a.thr-back-link').click();
+            }
+        } else {
+            $('.active-page a.thr-back-link').click();
+        }
     }
 
     function nextPage() {
-        $('.active-page a.thr-next-link').click();
+        if(ZoomFactor > 1) {
+            if(!ZoomText) {
+                ZoomText = true;
+                bigFonts(ZoomFactor);
+            } else {
+                ZoomText = false;
+                $('.active-page a.thr-next-link').click();
+            }
+        } else {
+            $('.active-page a.thr-next-link').click();
+        }
     }
 
     function changeChoice(dir) {
@@ -413,8 +434,7 @@ define(["route",
         if (!$page.is('.thr-book-page')) {
             console.log('not book page, no configure');
         }
-        bigFonts(ZoomFactor);
-        scalePicture($page);
+        bigFonts(ZoomText ? ZoomFactor : 1);
         $page.find('.thr-pic').fadeIn(200);
         var toSay = $page.find('.thr-question').attr('data-speech');
         if (toSay) {
