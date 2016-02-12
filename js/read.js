@@ -7,8 +7,9 @@ define(["route",
         "state",
         "speech",
         "ios",
-        "store"
-        ], function(route, page, templates, keys, state, speech, ios, store) {
+        "store",
+        "controller"
+        ], function(route, page, templates, keys, state, speech, ios, store, controller) {
 
     var picBoxSize = {}; // sizing the pic box same as last time
 
@@ -239,6 +240,14 @@ define(["route",
         }
     }
 
+    function click(ref) {
+        var $link = $(ref),
+            href = $link.attr('href'),
+            dtype = $link.attr('data-type'),
+            context = { data_type: dtype };
+        controller.gotoUrl(href, '', context);
+    }
+
     function previousPage() {
         if(ZoomFactor > 1) {
             if(ZoomText) {
@@ -246,24 +255,24 @@ define(["route",
                 bigFonts(1);
             } else {
                 ZoomText = true;
-                $('.active-page a.thr-back-link').click();
+                click('.active-page a.thr-back-link');
             }
         } else {
-            $('.active-page a.thr-back-link').click();
+            click('.active-page a.thr-back-link');
         }
     }
 
-    function nextPage() {
+   function nextPage() {
         if(ZoomFactor > 1) {
             if(!ZoomText) {
                 ZoomText = true;
                 bigFonts(ZoomFactor);
             } else {
                 ZoomText = false;
-                $('.active-page a.thr-next-link').click();
+                click('.active-page a.thr-next-link');
             }
         } else {
-            $('.active-page a.thr-next-link').click();
+            click('.active-page a.thr-next-link');
         }
     }
 
@@ -343,6 +352,16 @@ define(["route",
         'p n m c a r d 1 2 3': '/read/key',
         'swipe': '/read/swipe',
         'z': '/read/zoom'
+    });
+
+    // locally bind the next and back button
+    $(document).on('click', '.thr-next-link', function(ev) {
+        ev.preventDefault();
+        nextPage();
+    });
+    $(document).on('click', '.thr-back-link', function(ev) {
+        ev.preventDefault();
+        previousPage();
     });
 
     // handle toggling favorites
