@@ -32,9 +32,11 @@ translate:
 copygb:
 	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/gbserver/wp-content/themes/thr3
 
+copytest:
+	rsync -az --delete ../Theme-build/ gbserver:/var/www/test.tarheelreader/wp-content/themes/thr3
+
 copyproduction:
 	rsync -az --delete ../Theme-build/ gbserver:/var/www/tarheelreader/wp-content/themes/thr3
-	#launch.py http://tarheelreader.org/
 
 optimized: build
 	rm -rf ../Theme-build/*
@@ -55,6 +57,10 @@ testprod: optimized
 production:
 	make optimized
 	make copyproduction
+
+test:
+	make optimized
+	make copytest
 
 siteSpeech: build
 	python tools/makeSiteSpeech.py Templates.*.json
