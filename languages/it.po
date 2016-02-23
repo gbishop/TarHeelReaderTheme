@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2015-09-07 12:09+0000\n"
+"PO-Revision-Date: 2016-02-23 15:03+0000\n"
 "Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
 "Language-Team: Italian (http://www.transifex.com/garybishop/tar-heel-reader/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -263,6 +263,10 @@ msgstr "Biografie"
 # label:1
 msgid "Catalan"
 msgstr "Catalano"
+
+# label:1
+msgid "Cherokee"
+msgstr ""
 
 # label:1
 msgid "Chinese"
@@ -530,6 +534,10 @@ msgstr "Deselezionare tutti i libri locali"
 msgid "Clear selected local books"
 msgstr "Libri locali selezionati chiari"
 
+# offline:12
+msgid "Books available for offline reading"
+msgstr ""
+
 # offline:18
 msgid ""
 "Your browser appears to support local storage but when we tried to use it, "
@@ -784,268 +792,274 @@ msgstr "Altri come questi"
 msgid "Or upload your own pictures"
 msgstr "Oppure caricare una foto tua"
 
-# write:29
+# write:28
+msgid ""
+"Do not upload SymbolStix or other images unless you have permission from the"
+" copyright holder."
+msgstr ""
+
+# write:30
 msgid ""
 "Click browse to find an image on your computer, then click upload to add it "
 "to your book. Pictures must be less than 2 megabytes in size to properly "
 "upload. They will be resized to 500x500 pixels."
 msgstr "Fare clic su sfoglia per trovare l'immagine sul computer, quindi fare clic su carica per aggiungerlo al tuo libro. Immagini deve essere inferiore a 2 megabyte per caricare correttamente. Essi verranno ridimensionate a 500x500 pixel."
 
-# write:29
+# write:30
 msgid "Step 1: Upload Help"
 msgstr "Passo 1: Carica aiuto"
 
-# write:34
+# write:35
 msgid "Step 2: Enter a short sentence for each page"
 msgstr "Passo 2: Inserire una breve frase per ogni pagina"
 
-# write:36
+# write:37
 msgid ""
 "Click on a page to edit it. You may reorder the pages with drag and drop."
 msgstr "Fare clic su una pagina per modificarlo. È possibile riordinare le pagine con il drag and drop."
 
-# write:36
+# write:37
 msgid "Step 2: Edit help"
 msgstr "Passo 2: Modificare aiuto"
 
-# write:40
+# write:41
 msgid "After you select or upload pictures your pages will appear here."
 msgstr "Dopo aver selezionato o caricare le foto le pagine verranno visualizzate qui."
 
-# write:44
+# write:45
 msgid "Step 3: Fill in the details"
 msgstr "Step 3: i dettagli"
 
-# write:46
+# write:47
 msgid ""
 "Fill in the title for your book and select its language from the list. You "
 "may use a psuedonym if you wish by changing the author field."
 msgstr "Digitare il titolo del tuo libro e selezionare la lingua dall'elenco. È possibile utilizzare un pseudonimo se si desidera cambiando il campo autore."
 
-# write:46
+# write:47
 msgid "Step 3: Details help"
 msgstr "Passo 3: Dettagli di aiuto"
 
-# write:49
+# write:50
 msgid "Enter a title for your book"
 msgstr "Inserisci un titolo per il tuo libro"
 
-# write:51
+# write:52
 msgid "Author"
 msgstr "Autore"
 
-# write:52
+# write:53
 msgid "Enter a pseudonym"
 msgstr "Inserisci  pseudonimo"
 
-# write:54, whereAreReaders:18, label:1
+# write:55, whereAreReaders:18, label:1
 msgid "Language"
 msgstr "Lingua"
 
-# write:56
+# write:57
 msgid "Choose a language"
 msgstr "Scegli una lingua"
 
-# write:62
+# write:63
 msgid "Optionally"
 msgstr "Facoltativamente"
 
-# write:62, write:66
+# write:63, write:67
 msgid "Categorize your book"
 msgstr "Classifichi il tuo libro"
 
-# write:68
+# write:69
 msgid "Step 3: Categorize help"
 msgstr "Passo 3: Categorizza aiuto"
 
-# write:68
+# write:69
 msgid ""
 "You may select up to three library categories, an audience rating and BLF "
 "type if you wish."
 msgstr "È possibile selezionare fino a tre categorie di libreria, un rating pubblico e BLF tipo, se lo si desidera."
 
-# write:71
+# write:72
 msgid "Library Classification"
 msgstr "Classificazione della biblioteca "
 
-# write:77
+# write:78
 msgid "Audience Rating"
 msgstr "Indice di ascolto"
 
-# write:79, write:88
+# write:80, write:89
 msgid "None"
 msgstr "Nessuno"
 
-# write:80, label:1
+# write:81, label:1
 msgctxt "books appropriate for everyone"
 msgid "Rated E/Everybody"
 msgstr "Voto E /Tutti"
 
-# write:81, label:1
+# write:82, label:1
 msgctxt "books that may not be appropriate for all readers"
 msgid "Rated C/Caution"
 msgstr "Valutato C/ Cautela"
 
-# write:86
+# write:87
 msgid "Beginning Literacy Framework Type"
 msgstr "Inizio alfabetizzazione tipo quadro"
 
-# write:89
+# write:90
 msgid "Transitional"
 msgstr "Di transizione"
 
-# write:90
+# write:91
 msgid "Conventional"
 msgstr "Convenzionale"
 
-# write:91
+# write:92
 msgid "Other"
 msgstr "Altro"
 
-# write:96
+# write:97
 msgid "Tags"
 msgstr "Tags"
 
-# write:98
+# write:99
 msgid "Enter a few descriptive words to make your book easier to find"
 msgstr "Inserisci alcune parole descrittive per rendere il libro più facile da trovare"
 
-# write:103, whereAreReaders:18
+# write:104, whereAreReaders:18
 msgid "Reviewed"
 msgstr "Recensito"
 
-# write:110
+# write:111
 msgid "Step 4: Publish"
 msgstr "Passo 4: Pubblica"
 
-# write:113
+# write:114
 msgid "Step 4: Save help"
 msgstr "Passo 4: Registrazione di aiuto"
 
-# write:113
+# write:114
 msgid ""
 "To continue working on your book later, or to remove it from public view, "
 "click Save as draft. You will be able to return it from the Your Books page."
 " To publish your completed book, click Publish."
 msgstr "Per continuare a lavorare sul libro più tardi, o per rimuoverlo dalla vista pubblica, fare clic su Salva come bozza. Sarete in grado di tornare dalla tua pagina di libri. Per pubblicare il tuo libro, fare clic su pubblica."
 
-# write:115
+# write:116
 msgid ""
 "I have permission from any copyright holders to use the images I uploaded."
 msgstr "Ho il permesso da eventuali detentori del copyright di utilizzare le immagini che ho caricato."
 
-# write:118
+# write:119
 msgid "Save as draft"
 msgstr "Salva come bozza"
 
-# write:119
+# write:120
 msgid "Publish"
 msgstr "Pubblica"
 
-# write:121
+# write:122
 msgid "Your book will not be published until you fix these issues."
 msgstr "Il tuo libro non verrà pubblicato fino a quando non avrai risolto questi problemi."
 
-# write:122
+# write:123
 msgid "It must have a title."
 msgstr "Deve avere un titolo."
 
-# write:123
+# write:124
 msgid "It must have an author."
 msgstr "Deve avere un autore."
 
-# write:124
+# write:125
 msgid "Each page must have some text."
 msgstr "Ogni pagina deve avere un po 'di testo."
 
-# write:125
+# write:126
 msgid "The text on each page must be less than 130 characters in length."
 msgstr "Il testo su ogni pagina deve essere inferiore a 130 caratteri."
 
-# write:126
+# write:127
 msgid "It must have at least 3 pages."
 msgstr "Deve avere almeno 3 pagine."
 
-# write:127
+# write:128
 msgid "It must specify the language."
 msgstr "E 'necessario specificare la lingua."
 
-# write:128
+# write:129
 msgid "It must be in no more than 4 categories."
 msgstr "Deve essere in non più di 4 categorie."
 
-# write:129
+# write:130
 msgid "You must check that you have permission to use uploaded images."
 msgstr "Deve controllare di avere il permesso di utilizzare immagini caricate."
 
-# write:130
+# write:131
 msgid "Your book has been saved as a draft."
 msgstr "Il tuo libro è stato salvato come bozza."
 
-# write:137
+# write:138
 msgctxt "button label"
 msgid "Add to Book"
 msgstr "Aggiungi al libro"
 
-# write:138
+# write:139
 msgctxt "button label"
 msgid "Close"
 msgstr "Chiudere"
 
-# write:139
+# write:140
 msgctxt "button label"
 msgid "Previous"
 msgstr "Prima"
 
-# write:140, collections:24, bookPage:26
+# write:141, collections:24, bookPage:26
 msgctxt "button label"
 msgid "Next"
 msgstr "Prossimo"
 
-# write:141
+# write:142
 msgid "Page added to your book"
 msgstr "Pagina aggiunto al tuo libro"
 
-# write:142
+# write:143
 msgid "Page duplicated"
 msgstr "Pagina duplicata"
 
-# write:145
+# write:146
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
 msgstr "Fare clic sul testo per modificarlo. È possibile utilizzare i pulsanti avanti e indietro per spostarsi tra le pagine. Al termine, chiudere l'editor cliccando sulla x in alto a destra."
 
-# write:145
+# write:146
 msgid "Page Editor Help"
 msgstr "Editor page aiuto"
 
-# write:147
+# write:148
 msgid "Click to edit"
 msgstr "Fai clic per modificare"
 
-# write:148
+# write:149
 msgid "Delete this page"
 msgstr "Elimina questa pagina"
 
-# write:149
+# write:150
 msgid "Duplicate this page"
 msgstr "Duplicare questa pagina"
 
-# write:150
+# write:151
 msgid "If you leave you will lose your work on this book."
 msgstr "Se si lascia si perde il lavoro su questo libro."
 
-# write:153
+# write:154
 msgid "Drop files here to upload"
 msgstr "Rilasciare i file qui per caricare"
 
-# write:154
+# write:155
 msgid "Upload"
 msgstr "Caricare"
 
-# write:164
+# write:165
 msgid "Failed"
 msgstr "Mancato"
 
@@ -1058,9 +1072,9 @@ msgid "Your web browser does not support writing books."
 msgstr "Il tuo browser non supporta i libri di scrittura."
 
 # yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:42,
-# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:28,
-# write:28, write:35, write:35, write:45, write:45, write:67, write:67,
-# write:112, write:112, write:144, write:144
+# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:29,
+# write:29, write:36, write:36, write:46, write:46, write:68, write:68,
+# write:113, write:113, write:145, write:145
 msgid "Click for help"
 msgstr "Clicca per ricevere aiuto"
 
@@ -1112,7 +1126,7 @@ msgid "Delete"
 msgstr "Cancellare"
 
 # yourbooks:30, yourbooks:54, yourbooks:83, yourbooks:98, busy:6, busy:11,
-# write:163
+# write:164
 msgctxt "Button label"
 msgid "Cancel"
 msgstr "Cancellare."
@@ -1147,7 +1161,7 @@ msgstr "Favoriti"
 msgid "Favorites: {{count}} books"
 msgstr "Preferiti: {{count}} libri"
 
-# yourbooks:75, yourbooks:90, write:48
+# yourbooks:75, yourbooks:90, write:49
 msgid "Title"
 msgstr "Titolo"
 

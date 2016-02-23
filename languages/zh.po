@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2015-09-07 12:19+0000\n"
+"PO-Revision-Date: 2016-02-23 15:03+0000\n"
 "Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
 "Language-Team: Chinese (http://www.transifex.com/garybishop/tar-heel-reader/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -263,6 +263,10 @@ msgstr "人物志"
 # label:1
 msgid "Catalan"
 msgstr "加泰罗尼亚语"
+
+# label:1
+msgid "Cherokee"
+msgstr ""
 
 # label:1
 msgid "Chinese"
@@ -530,6 +534,10 @@ msgstr "清除所有本地图书"
 msgid "Clear selected local books"
 msgstr "清除选定本地图书"
 
+# offline:12
+msgid "Books available for offline reading"
+msgstr ""
+
 # offline:18
 msgid ""
 "Your browser appears to support local storage but when we tried to use it, "
@@ -784,268 +792,274 @@ msgstr "更多类似的选择"
 msgid "Or upload your own pictures"
 msgstr "或上传本地照片"
 
-# write:29
+# write:28
+msgid ""
+"Do not upload SymbolStix or other images unless you have permission from the"
+" copyright holder."
+msgstr ""
+
+# write:30
 msgid ""
 "Click browse to find an image on your computer, then click upload to add it "
 "to your book. Pictures must be less than 2 megabytes in size to properly "
 "upload. They will be resized to 500x500 pixels."
 msgstr "点击“浏览”来上传本地图片，再点击“上传”来向你的书本添加图片。图片必须小于2M，并且将被修整为500x500规格"
 
-# write:29
+# write:30
 msgid "Step 1: Upload Help"
 msgstr "步骤1： 上传“帮助”"
 
-# write:34
+# write:35
 msgid "Step 2: Enter a short sentence for each page"
 msgstr "第二步：为每一页输入一段文字"
 
-# write:36
+# write:37
 msgid ""
 "Click on a page to edit it. You may reorder the pages with drag and drop."
 msgstr "点击一张书页缩略图来进行编辑。可以通过鼠标拖拉来改变书页顺序"
 
-# write:36
+# write:37
 msgid "Step 2: Edit help"
 msgstr "步骤2： 编辑“帮助”"
 
-# write:40
+# write:41
 msgid "After you select or upload pictures your pages will appear here."
 msgstr "在你选择并上传图片后，你的书页缩略图将在此生成"
 
-# write:44
+# write:45
 msgid "Step 3: Fill in the details"
 msgstr "第三部：填入详细信息"
 
-# write:46
+# write:47
 msgid ""
 "Fill in the title for your book and select its language from the list. You "
 "may use a psuedonym if you wish by changing the author field."
 msgstr "请填入书名，并在列表中选择该书的语言。你可以在作者姓名栏使用你想要的名字"
 
-# write:46
+# write:47
 msgid "Step 3: Details help"
 msgstr "步骤3： 将 \"帮助\"具体化"
 
-# write:49
+# write:50
 msgid "Enter a title for your book"
 msgstr "请输入你的书名"
 
-# write:51
+# write:52
 msgid "Author"
 msgstr "作者"
 
-# write:52
+# write:53
 msgid "Enter a pseudonym"
 msgstr "请输入你想要的名字"
 
-# write:54, whereAreReaders:18, label:1
+# write:55, whereAreReaders:18, label:1
 msgid "Language"
 msgstr "语言"
 
-# write:56
+# write:57
 msgid "Choose a language"
 msgstr "请选择一种语言"
 
-# write:62
+# write:63
 msgid "Optionally"
 msgstr "选择性选项"
 
-# write:62, write:66
+# write:63, write:67
 msgid "Categorize your book"
 msgstr "请输入此书本的类别"
 
-# write:68
+# write:69
 msgid "Step 3: Categorize help"
 msgstr "步骤3： 将“帮助”分类"
 
-# write:68
+# write:69
 msgid ""
 "You may select up to three library categories, an audience rating and BLF "
 "type if you wish."
 msgstr "你可以最多选择三个图书类别以及你推荐的读者群体和一个入门阅读类别"
 
-# write:71
+# write:72
 msgid "Library Classification"
 msgstr "图书类别"
 
-# write:77
+# write:78
 msgid "Audience Rating"
 msgstr "读者群体"
 
-# write:79, write:88
+# write:80, write:89
 msgid "None"
 msgstr "无"
 
-# write:80, label:1
+# write:81, label:1
 msgctxt "books appropriate for everyone"
 msgid "Rated E/Everybody"
 msgstr "全年龄"
 
-# write:81, label:1
+# write:82, label:1
 msgctxt "books that may not be appropriate for all readers"
 msgid "Rated C/Caution"
 msgstr "需在成年人陪同下观看"
 
-# write:86
+# write:87
 msgid "Beginning Literacy Framework Type"
 msgstr "入门语言框架类型"
 
-# write:89
+# write:90
 msgid "Transitional"
 msgstr "过渡性"
 
-# write:90
+# write:91
 msgid "Conventional"
 msgstr "传统性"
 
-# write:91
+# write:92
 msgid "Other"
 msgstr "其他"
 
-# write:96
+# write:97
 msgid "Tags"
 msgstr "标签"
 
-# write:98
+# write:99
 msgid "Enter a few descriptive words to make your book easier to find"
 msgstr "输入几个关键词，它们将被搜索引擎识别"
 
-# write:103, whereAreReaders:18
+# write:104, whereAreReaders:18
 msgid "Reviewed"
 msgstr "已审查"
 
-# write:110
+# write:111
 msgid "Step 4: Publish"
 msgstr "步骤四： 发布"
 
-# write:113
+# write:114
 msgid "Step 4: Save help"
 msgstr "步骤4： 保存“帮助”"
 
-# write:113
+# write:114
 msgid ""
 "To continue working on your book later, or to remove it from public view, "
 "click Save as draft. You will be able to return it from the Your Books page."
 " To publish your completed book, click Publish."
 msgstr "如果你希望在一段时间后再继续编辑你的图书或者取消此书的可见性，请将你的书本保存为草稿。你将可以在之后的任何时间编辑或发布你保存过的图书"
 
-# write:115
+# write:116
 msgid ""
 "I have permission from any copyright holders to use the images I uploaded."
 msgstr "我拥有该版权持有者的准许使用这个图片"
 
-# write:118
+# write:119
 msgid "Save as draft"
 msgstr "保存为草稿"
 
-# write:119
+# write:120
 msgid "Publish"
 msgstr "发布"
 
-# write:121
+# write:122
 msgid "Your book will not be published until you fix these issues."
 msgstr "请在发布您的书本前解决这些问题。"
 
-# write:122
+# write:123
 msgid "It must have a title."
 msgstr "书本缺少标题"
 
-# write:123
+# write:124
 msgid "It must have an author."
 msgstr "书本缺少作者"
 
-# write:124
+# write:125
 msgid "Each page must have some text."
 msgstr "每一页必须有文字"
 
-# write:125
+# write:126
 msgid "The text on each page must be less than 130 characters in length."
 msgstr "每页的文字必须少于130个字母"
 
-# write:126
+# write:127
 msgid "It must have at least 3 pages."
 msgstr "至少要有三页纸"
 
-# write:127
+# write:128
 msgid "It must specify the language."
 msgstr "必须填写语言栏"
 
-# write:128
+# write:129
 msgid "It must be in no more than 4 categories."
 msgstr "必须少于四个标签"
 
-# write:129
+# write:130
 msgid "You must check that you have permission to use uploaded images."
 msgstr "请检查你是否有使用权上传该图片"
 
-# write:130
+# write:131
 msgid "Your book has been saved as a draft."
 msgstr "你的书本已被保存为草稿"
 
-# write:137
+# write:138
 msgctxt "button label"
 msgid "Add to Book"
 msgstr "添加至你的图书"
 
-# write:138
+# write:139
 msgctxt "button label"
 msgid "Close"
 msgstr "关闭"
 
-# write:139
+# write:140
 msgctxt "button label"
 msgid "Previous"
 msgstr "前一页"
 
-# write:140, collections:24, bookPage:26
+# write:141, collections:24, bookPage:26
 msgctxt "button label"
 msgid "Next"
 msgstr "下一页"
 
-# write:141
+# write:142
 msgid "Page added to your book"
 msgstr "你的书本已添加页面"
 
-# write:142
+# write:143
 msgid "Page duplicated"
 msgstr "页面被复制至剪贴板"
 
-# write:145
+# write:146
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
 msgstr "点击文本来编辑。你可以通过点击上一页与下一页的按钮来翻页。当结束编辑的时候，请点击右上方的x来关闭此编辑页面"
 
-# write:145
+# write:146
 msgid "Page Editor Help"
 msgstr "帮助"
 
-# write:147
+# write:148
 msgid "Click to edit"
 msgstr "点击以编辑"
 
-# write:148
+# write:149
 msgid "Delete this page"
 msgstr "删除该页"
 
-# write:149
+# write:150
 msgid "Duplicate this page"
 msgstr "复制该页"
 
-# write:150
+# write:151
 msgid "If you leave you will lose your work on this book."
 msgstr "如果在此退出，你将失去目前的进度"
 
-# write:153
+# write:154
 msgid "Drop files here to upload"
 msgstr "将文件拖入此处上传"
 
-# write:154
+# write:155
 msgid "Upload"
 msgstr "上传"
 
-# write:164
+# write:165
 msgid "Failed"
 msgstr "上传失败"
 
@@ -1058,9 +1072,9 @@ msgid "Your web browser does not support writing books."
 msgstr "您的浏览器并不支持在此网站创建图书"
 
 # yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:42,
-# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:28,
-# write:28, write:35, write:35, write:45, write:45, write:67, write:67,
-# write:112, write:112, write:144, write:144
+# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:29,
+# write:29, write:36, write:36, write:46, write:46, write:68, write:68,
+# write:113, write:113, write:145, write:145
 msgid "Click for help"
 msgstr "点击这里以开启提示"
 
@@ -1112,7 +1126,7 @@ msgid "Delete"
 msgstr "删除"
 
 # yourbooks:30, yourbooks:54, yourbooks:83, yourbooks:98, busy:6, busy:11,
-# write:163
+# write:164
 msgctxt "Button label"
 msgid "Cancel"
 msgstr "取消"
@@ -1147,7 +1161,7 @@ msgstr "收藏"
 msgid "Favorites: {{count}} books"
 msgstr "我的最爱：{{count}} 图书"
 
-# yourbooks:75, yourbooks:90, write:48
+# yourbooks:75, yourbooks:90, write:49
 msgid "Title"
 msgstr "书名"
 
