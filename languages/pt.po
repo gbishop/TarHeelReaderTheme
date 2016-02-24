@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Gary Bishop <gb@cs.unc.edu>, 2015
-# Rui Fernandes <rui@cantic.org.pt>, 2014
+# Rui Fernandes <rui@cantic.org.pt>, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Tar Heel Reader\n"
-"PO-Revision-Date: 2015-09-07 12:09+0000\n"
-"Last-Translator: Gary Bishop <gb@cs.unc.edu>\n"
+"PO-Revision-Date: 2016-02-23 16:27+0000\n"
+"Last-Translator: Rui Fernandes <rui@cantic.org.pt>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/garybishop/tar-heel-reader/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,14 +154,14 @@ msgid ""
 "Your browser is unsupported. The site should work for finding and reading "
 "books but you will not have switch access or the ability to write books. We "
 "recommend that you upgrade to a modern browser or install Chrome Frame."
-msgstr "O seu navegador não é suportado. O site deve funcionar para pesquisa e leitura sde livros mas não deverá poder escrever livros ou ter acesso através de manípulos. Recomendamos que use um navegador actual ou instale o Chrome Frame."
+msgstr "O seu navegador não é suportado. O site deve funcionar para pesquisa e leitura de livros mas não deverá poder escrever livros ou ter acesso através de manípulos. Recomendamos que use um navegador actual ou instale o Chrome."
 
 # frontPage:15
 msgid ""
 "You are in Classic mode. You will not have access to all of the features of "
 "the site but it may work better on older computers and web browsers. Click "
 "this text to leave Classic mode."
-msgstr "Está em Modo Clássico. Não tem acesso a todas as opções do site mas pode funcionar melhor em computadores e navegadores antigos. Clique neste texto para sair de Modo Clássico."
+msgstr "Está em Modo Clássico. Não tem acesso a todas as opções do site mas pode funcionar melhor em computadores e navegadores antigos. Clique neste texto para sair do Modo Clássico."
 
 # frontPage:17
 msgid "Ready to get started?"
@@ -192,30 +192,30 @@ msgstr "Menu Abrir"
 
 # heading:6
 msgid "Offline"
-msgstr "Off-line"
+msgstr "Offline"
 
 # heading:8, heading:8, heading:12, heading:15
 msgctxt "icon explanatory text"
 msgid "Select Favorites"
-msgstr "Seleccione Favoritos."
+msgstr "Seleccione Favoritos"
 
 # heading:12
 msgid "Remove from Favorites"
-msgstr "Remova dos Favoritos."
+msgstr "Remova dos Favoritos"
 
 # heading:15
 msgid "Add to Favorites"
-msgstr "Adicione aos Favoritos."
+msgstr "Adicione aos Favoritos"
 
 # heading:20, heading:20, heading:23, heading:23
 msgctxt "icon explanatory text"
 msgid "Settings"
-msgstr "Opções."
+msgstr "Opções"
 
 # heading:27
 msgctxt "site sub-heading"
 msgid "Books for beginning readers of all ages"
-msgstr "Livros para leitores emergentes de todas as idades."
+msgstr "Livros para leitores emergentes de todas as idades"
 
 # heading:27
 msgctxt "site name"
@@ -265,12 +265,16 @@ msgid "Catalan"
 msgstr "Catalão"
 
 # label:1
+msgid "Cherokee"
+msgstr "Cherokee"
+
+# label:1
 msgid "Chinese"
 msgstr "Chinês"
 
 # label:1
 msgid "Danish"
-msgstr "Holandês"
+msgstr "Dinamarquês"
 
 # label:1
 msgid "Dutch"
@@ -408,7 +412,7 @@ msgstr "Procurar por"
 
 # label:1
 msgid "Spanish"
-msgstr "Espanho"
+msgstr "Espanhol"
 
 # label:1
 msgid "Sports"
@@ -480,7 +484,7 @@ msgstr "Início"
 
 # navigation:23
 msgid "Read books offline"
-msgstr "Livros de leitura off-line"
+msgstr "Livros de leitura offline"
 
 # navigation:26
 msgid "Log in"
@@ -504,31 +508,35 @@ msgstr "Créditos das fotos"
 
 # offline:2
 msgid "You are accessing the Tar Heel Reader website online."
-msgstr "Você está acessando o site Tar Heel leitor on-line."
+msgstr "Está a usar a plataforma Tar Heel Reader online."
 
 # offline:3
 msgid "You are reading books stored on your computer."
-msgstr "Você está lendo livros armazenados em seu computador."
+msgstr "Está a ler livros guardados no seu computador."
 
 # offline:6
 msgid "Read online"
-msgstr "Leia online"
+msgstr "Ler online"
 
 # offline:7
 msgid "Read offline"
-msgstr "Leitura off-line"
+msgstr "Ler offline"
 
 # offline:8
 msgid "Add Favorites to local books"
-msgstr "Adicionar a favoritos para livros locais"
+msgstr "Adicionar a Favoritos para livros locais"
 
 # offline:9
 msgid "Clear all local books"
-msgstr "Limpar todos os livros locais"
+msgstr "Apagar todos os livros locais"
 
 # offline:10
 msgid "Clear selected local books"
-msgstr "Claros livros locais selecionados"
+msgstr "Apagar livros locais seleccionados"
+
+# offline:12
+msgid "Books available for offline reading"
+msgstr "Livros disponíveis para leitura offline"
 
 # offline:18
 msgid ""
@@ -536,11 +544,11 @@ msgid ""
 "we failed. Perhaps you are in Private Browsing mode or have otherwise "
 "disabled local storage?  You'll need to correct the settings on your "
 "computer before offline reading will function correctly."
-msgstr "Seu navegador é exibida oferecer suporte a armazenamento local, mas quando tentamos usá-lo, nós falhamos. Talvez você está no modo de navegação privativa ou caso contrário ter desabilitado o armazenamento local?  Você precisará corrigir as configurações no seu computador antes de leitura offline irá funcionar corretamente."
+msgstr "O seu navegador parece suportar armazenamento local, mas quando tentámos usá-lo, falhou. Está em modo de navegação sem registo ou desactivou o armazenamento local?  Corrija as configurações no seu computador para que a leitura offline funcione correctamente."
 
 # offlineList:7
 msgid "You have no books saved for offline reading."
-msgstr "Você não tem nenhum livros salvos para leitura offline."
+msgstr "Não tem livros guardados para leitura offline."
 
 # readingControls:1
 msgid "Reading Preferences"
@@ -600,7 +608,7 @@ msgstr "Homem"
 
 # settings:11
 msgid "Built in"
-msgstr "Construído em"
+msgstr "Sistema"
 
 # settings:17
 msgid "Colors"
@@ -696,7 +704,7 @@ msgid ""
 "Some of you may have wondered where in the world our books are read. The map"
 " and tables below depict the estimated locations of the computers that have "
 "read books on the site."
-msgstr "Algumas pessoas podem querer saber em que sítios do mundo é que lêem os seus livros. O mapa e tabelas abaixo mostram as localizações aproximadas dos computadores que têm livros lidos no site."
+msgstr "Algumas pessoas podem querer saber em que sítios do mundo é que os seus livros são lidos. O mapa e tabelas abaixo mostram as localizações aproximadas dos computadores que têm livros lidos no site."
 
 # whereAreReaders:5
 msgid "Map your books"
@@ -784,268 +792,274 @@ msgstr "Mais como estas"
 msgid "Or upload your own pictures"
 msgstr "Ou carregue as suas imagens"
 
-# write:29
+# write:28
+msgid ""
+"Do not upload SymbolStix or other images unless you have permission from the"
+" copyright holder."
+msgstr "Não carregue pictogramas SymbolStix ou outras imagens se não tiver permissão do detentor dos direitos."
+
+# write:30
 msgid ""
 "Click browse to find an image on your computer, then click upload to add it "
 "to your book. Pictures must be less than 2 megabytes in size to properly "
 "upload. They will be resized to 500x500 pixels."
 msgstr "Clique em Procurar para encontrar uma imagem no seu computador e depois clique em Carregar para adicioná-la ao seu livro. As imagens devem ter menos de 2 megabytes para carregarem correctamente. Serão redimensionadas para 500x500 pixéis."
 
-# write:29
+# write:30
 msgid "Step 1: Upload Help"
 msgstr "Passo 1: Ajuda para Carregar"
 
-# write:34
+# write:35
 msgid "Step 2: Enter a short sentence for each page"
 msgstr "Passo 2: Escreva uma frase curta para cada página"
 
-# write:36
+# write:37
 msgid ""
 "Click on a page to edit it. You may reorder the pages with drag and drop."
 msgstr "Clique numa página para editá-la. Pode arrastar e largar para reordenar as páginas."
 
-# write:36
+# write:37
 msgid "Step 2: Edit help"
 msgstr "Passso 2: Ajuda para Editar"
 
-# write:40
+# write:41
 msgid "After you select or upload pictures your pages will appear here."
 msgstr "Depois de seleccionar ou carregar imagens, as suas páginas aparecem aqui."
 
-# write:44
+# write:45
 msgid "Step 3: Fill in the details"
-msgstr "Passo 3: Introduza os detalhes"
+msgstr "Passo 3: Introduza os pormenores"
 
-# write:46
+# write:47
 msgid ""
 "Fill in the title for your book and select its language from the list. You "
 "may use a psuedonym if you wish by changing the author field."
 msgstr "Escreva o título para o seu livro e seleccione a língua na listagem. Pode usar um pseudónimo mudando o campo de autor."
 
-# write:46
+# write:47
 msgid "Step 3: Details help"
-msgstr "Passo 3: Ajuda para Detalhes"
+msgstr "Passo 3: Ajuda para Pormenores"
 
-# write:49
+# write:50
 msgid "Enter a title for your book"
-msgstr "Escreva título para o seu livro"
+msgstr "Escreva um título para o seu livro"
 
-# write:51
+# write:52
 msgid "Author"
 msgstr "Autor"
 
-# write:52
+# write:53
 msgid "Enter a pseudonym"
-msgstr "Introduza um pseudónimo"
+msgstr "Escreva um pseudónimo"
 
-# write:54, whereAreReaders:18, label:1
+# write:55, whereAreReaders:18, label:1
 msgid "Language"
 msgstr "Língua"
 
-# write:56
+# write:57
 msgid "Choose a language"
 msgstr "Escolha uma língua"
 
-# write:62
+# write:63
 msgid "Optionally"
 msgstr "Opcional"
 
-# write:62, write:66
+# write:63, write:67
 msgid "Categorize your book"
 msgstr "Classifique o seu livro"
 
-# write:68
+# write:69
 msgid "Step 3: Categorize help"
 msgstr "Passo 3: Ajuda para Classificar"
 
-# write:68
+# write:69
 msgid ""
 "You may select up to three library categories, an audience rating and BLF "
 "type if you wish."
 msgstr "Pode seleccionar até três categorias, um tipo de público e um tipo de MLE."
 
-# write:71
+# write:72
 msgid "Library Classification"
 msgstr "Classificação de biblioteca"
 
-# write:77
+# write:78
 msgid "Audience Rating"
 msgstr "Tipo de público"
 
-# write:79, write:88
+# write:80, write:89
 msgid "None"
 msgstr "Nenhum"
 
-# write:80, label:1
+# write:81, label:1
 msgctxt "books appropriate for everyone"
 msgid "Rated E/Everybody"
 msgstr "Classificado T/Todos"
 
-# write:81, label:1
+# write:82, label:1
 msgctxt "books that may not be appropriate for all readers"
 msgid "Rated C/Caution"
 msgstr "Classificado A/Atenção"
 
-# write:86
+# write:87
 msgid "Beginning Literacy Framework Type"
 msgstr "Tipo de Modelo de Literacia Emergente"
 
-# write:89
+# write:90
 msgid "Transitional"
 msgstr "Transicional"
 
-# write:90
+# write:91
 msgid "Conventional"
 msgstr "Convencional"
 
-# write:91
+# write:92
 msgid "Other"
 msgstr "Outro"
 
-# write:96
+# write:97
 msgid "Tags"
 msgstr "Etiquetas"
 
-# write:98
+# write:99
 msgid "Enter a few descriptive words to make your book easier to find"
 msgstr "Introduza algumas palavras que tornem o livro mais fácil de encontrar"
 
-# write:103, whereAreReaders:18
+# write:104, whereAreReaders:18
 msgid "Reviewed"
 msgstr "Revisto"
 
-# write:110
+# write:111
 msgid "Step 4: Publish"
 msgstr "Passo 4: Publique"
 
-# write:113
+# write:114
 msgid "Step 4: Save help"
 msgstr "Passo 4: Ajuda para Guardar"
 
-# write:113
+# write:114
 msgid ""
 "To continue working on your book later, or to remove it from public view, "
 "click Save as draft. You will be able to return it from the Your Books page."
 " To publish your completed book, click Publish."
-msgstr "Para continuar a trabalhar no seu livro mais tarde, ou retirá-lo de visualização pública, clique Guardar rascunho. Pode retomá-lo na página Meus Livros. Para publicar o livro completo, clique Publicar."
+msgstr "Para continuar a trabalhar no seu livro mais tarde ou retirá-lo de visualização pública, clique Guardar rascunho. Pode retomá-lo na página Meus Livros. Para publicar o livro completo, clique em Publicar."
 
-# write:115
+# write:116
 msgid ""
 "I have permission from any copyright holders to use the images I uploaded."
 msgstr "Tenho permissão de quaisquer detentores de copyright para usar as imagens que carreguei."
 
-# write:118
+# write:119
 msgid "Save as draft"
 msgstr "Guardar como rascunho"
 
-# write:119
+# write:120
 msgid "Publish"
 msgstr "Publicar"
 
-# write:121
+# write:122
 msgid "Your book will not be published until you fix these issues."
 msgstr "O seu livro não será publicado até resolver estes problemas."
 
-# write:122
+# write:123
 msgid "It must have a title."
 msgstr "Tem que ter um título."
 
-# write:123
+# write:124
 msgid "It must have an author."
 msgstr "Tem que ter um autor."
 
-# write:124
+# write:125
 msgid "Each page must have some text."
 msgstr "Todas as páginas têm que ter texto."
 
-# write:125
+# write:126
 msgid "The text on each page must be less than 130 characters in length."
 msgstr "O texto em cada página tem que ter menos de 130 caracteres."
 
-# write:126
+# write:127
 msgid "It must have at least 3 pages."
 msgstr "Tem que ter pelo menos 3 páginas."
 
-# write:127
+# write:128
 msgid "It must specify the language."
 msgstr "Tem que especificar a língua."
 
-# write:128
-msgid "It must be in no more than 4 categories."
-msgstr "Não pode estar em mais de 4 categorias."
-
 # write:129
-msgid "You must check that you have permission to use uploaded images."
-msgstr "Tem que confirmar que tem permissão para usar imagens carregadas."
+msgid "It must be in no more than 4 categories."
+msgstr "Não pode usar mais de 4 categorias."
 
 # write:130
+msgid "You must check that you have permission to use uploaded images."
+msgstr "Tem que confirmar que tem permissão para usar as imagens que carregou."
+
+# write:131
 msgid "Your book has been saved as a draft."
 msgstr "O seu livro foi guardado como rascunho."
 
-# write:137
+# write:138
 msgctxt "button label"
 msgid "Add to Book"
 msgstr "Adicionar ao Livro"
 
-# write:138
+# write:139
 msgctxt "button label"
 msgid "Close"
 msgstr "Fechar"
 
-# write:139
+# write:140
 msgctxt "button label"
 msgid "Previous"
 msgstr "Anterior"
 
-# write:140, collections:24, bookPage:26
+# write:141, collections:24, bookPage:26
 msgctxt "button label"
 msgid "Next"
 msgstr "Seguinte"
 
-# write:141
+# write:142
 msgid "Page added to your book"
 msgstr "Página adicionada ao seu livro"
 
-# write:142
+# write:143
 msgid "Page duplicated"
 msgstr "Página duplicada"
 
-# write:145
+# write:146
 msgid ""
 "Click on the text to change it. You may use the next and previous buttons to"
 " move between pages. When you're finished, close the editor by clicking on "
 "the x in the upper right."
 msgstr "Clique no texto para mudá-lo. Pode usar os botões Anterior e Seguinte para mudar de página. Quando terminar, feche o editor clicando no x do canto superior direito."
 
-# write:145
+# write:146
 msgid "Page Editor Help"
 msgstr "Ajuda do Editor de Páginas"
 
-# write:147
+# write:148
 msgid "Click to edit"
 msgstr "Clique para editar"
 
-# write:148
+# write:149
 msgid "Delete this page"
 msgstr "Apague esta página"
 
-# write:149
+# write:150
 msgid "Duplicate this page"
 msgstr "Duplique esta página"
 
-# write:150
+# write:151
 msgid "If you leave you will lose your work on this book."
 msgstr "Se sair, perderá o trabalho neste livro."
 
-# write:153
+# write:154
 msgid "Drop files here to upload"
 msgstr "Largue aqui os ficheiros que quer carregar"
 
-# write:154
+# write:155
 msgid "Upload"
 msgstr "Carregar"
 
-# write:164
+# write:165
 msgid "Failed"
 msgstr "Erro"
 
@@ -1058,9 +1072,9 @@ msgid "Your web browser does not support writing books."
 msgstr "O seu navegador não suporta a escrita de livros."
 
 # yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:42,
-# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:28,
-# write:28, write:35, write:35, write:45, write:45, write:67, write:67,
-# write:112, write:112, write:144, write:144
+# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:29,
+# write:29, write:36, write:36, write:46, write:46, write:68, write:68,
+# write:113, write:113, write:145, write:145
 msgid "Click for help"
 msgstr "Clique para ajuda"
 
@@ -1112,7 +1126,7 @@ msgid "Delete"
 msgstr "Apagar"
 
 # yourbooks:30, yourbooks:54, yourbooks:83, yourbooks:98, busy:6, busy:11,
-# write:163
+# write:164
 msgctxt "Button label"
 msgid "Cancel"
 msgstr "Cancelar"
@@ -1147,7 +1161,7 @@ msgstr "Favoritos"
 msgid "Favorites: {{count}} books"
 msgstr "Favoritos: {{count}} livros"
 
-# yourbooks:75, yourbooks:90, write:48
+# yourbooks:75, yourbooks:90, write:49
 msgid "Title"
 msgstr "Título"
 
@@ -1202,7 +1216,7 @@ msgstr "Entrar"
 
 # yourbooks:110
 msgid "Where in the world are these books read?"
-msgstr "Onde é que estes livros são lidos?"
+msgstr "Em que partes do mundo é que estes livros são lidos?"
 
 # yourbooks:111
 msgid "Check out our map of readers!"
