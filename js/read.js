@@ -7,9 +7,8 @@ define(["route",
         "state",
         "speech",
         "ios",
-        "store",
-        "controller"
-        ], function(route, page, templates, keys, state, speech, ios, store, controller) {
+        "store"
+        ], function(route, page, templates, keys, state, speech, ios, store) {
 
     var picBoxSize = {}; // sizing the pic box same as last time
 
@@ -142,52 +141,6 @@ define(["route",
         $box.css(picBoxSize);
     }
 
-    // display big fonts
-    var ZoomFactor = 1,
-        ZoomText = false;
-    function zoom() {
-        ZoomFactor += 1;
-        if(ZoomFactor > 4) ZoomFactor = 1;
-        ZoomText = true;
-        bigFonts(ZoomFactor);
-    }
-
-    function bigFonts(zoom) {
-        if(zoom <= 1) {
-            $('.active-page [style]').not('img').removeAttr('style');
-        } else {
-            // make the text area large
-            $('.thr-caption-box').css({
-                width: '100%',
-                height: $(window).height() * Math.min(0.3 * zoom, 0.9),
-                overflowY: 'auto'
-            });
-            $('.thr-caption').css({
-                fontSize: 1.8 * zoom + 'em'
-            });
-            $('.thr-next-link').css({
-                opacity: 0.3
-            });
-            $('.thr-back-link').css({
-                opacity: 0.3
-            });
-            $('h1').css({
-                fontSize: zoom * 2 + 'em',
-                marginTop: 1 / zoom + 'em',
-                marginBottom: 0.2 / zoom + 'em',
-                width: '100%',
-                overflow: 'hidden'
-            });
-            $('h1.thr-question').css('fontSize', zoom + 'em')
-            $('.thr-choices').css('fontSize', zoom + 'em');
-
-       }
-       var $page = $('.active-page.thr-book-page');
-       if ($page.length === 1) {
-           scalePicture($page);
-       }
-    }
-
     // only resize when we're done instead of every 20ms
     $(window).on('resize', function() {
         if (this.resizeTO) {
@@ -240,40 +193,12 @@ define(["route",
         }
     }
 
-    function click(ref) {
-        var $link = $(ref),
-            href = $link.attr('href'),
-            dtype = $link.attr('data-type'),
-            context = { data_type: dtype };
-        controller.gotoUrl(href, '', context);
-    }
-
     function previousPage() {
-        if(ZoomFactor > 1) {
-            if(ZoomText) {
-                ZoomText = false;
-                bigFonts(1);
-            } else {
-                ZoomText = true;
-                click('.active-page a.thr-back-link');
-            }
-        } else {
-            click('.active-page a.thr-back-link');
-        }
+        $('.active-page a.thr-back-link').click();
     }
 
-   function nextPage() {
-        if(ZoomFactor > 1) {
-            if(!ZoomText) {
-                ZoomText = true;
-                bigFonts(ZoomFactor);
-            } else {
-                ZoomText = false;
-                click('.active-page a.thr-next-link');
-            }
-        } else {
-            click('.active-page a.thr-next-link');
-        }
+    function nextPage() {
+        $('.active-page a.thr-next-link').click();
     }
 
     function changeChoice(dir) {
@@ -341,7 +266,6 @@ define(["route",
     $.subscribe('/read/makeChoice', makeChoice);
     $.subscribe('/read/key', keyChoice);
     $.subscribe('/read/swipe', swipe);
-    $.subscribe('/read/zoom', zoom);
 
     // configure the keyboard controls
     keys.setMap('.active-page.thr-book-page', {
@@ -350,18 +274,7 @@ define(["route",
         'up': '/read/previousChoiceOrPage',
         'down': '/read/makeChoice',
         'p n m c a r d 1 2 3': '/read/key',
-        'swipe': '/read/swipe',
-        'z': '/read/zoom'
-    });
-
-    // locally bind the next and back button
-    $(document).on('click', '.thr-next-link', function(ev) {
-        ev.preventDefault();
-        nextPage();
-    });
-    $(document).on('click', '.thr-back-link', function(ev) {
-        ev.preventDefault();
-        previousPage();
+        'swipe': '/read/swipe'
     });
 
     // handle toggling favorites
@@ -453,7 +366,7 @@ define(["route",
         if (!$page.is('.thr-book-page')) {
             console.log('not book page, no configure');
         }
-        bigFonts(ZoomText ? ZoomFactor : 1);
+        scalePicture($page);
         $page.find('.thr-pic').fadeIn(200);
         var toSay = $page.find('.thr-question').attr('data-speech');
         if (toSay) {
