@@ -33,13 +33,13 @@
             echo '    <script src="http://152.2.129.207:8008/target/target-script-min.js#anonymous"></script>';
         }
     ?>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/libraries/jqueryui/1.11.2/themes/smoothness/jquery-ui.min.css">
     <?php if (!THR('classic')) : ?>
         <![if gt IE 7]>
         <script src="/theme/js/modernizr.custom.js"></script>
         <script src="/theme/js/json2.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
         <script>
             var require = { waitSeconds: 200 };
             if (!window.console) window.console = {};
