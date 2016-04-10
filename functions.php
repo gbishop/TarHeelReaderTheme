@@ -818,10 +818,25 @@ function my_register_form() {
     <?php
 }
 
+// Check for hotmail
+function isHotmailAddress($email) {
+    $domain = substr(strrchr($email, '@'), 1);
+
+    $mxs = array();
+    getmxrr($domain, $mxs);
+
+    $hotmailMxs = preg_grep('/(hotmail|outlook)\.com$/', $mxs);
+    return (count($hotmailMxs) > 0);
+}
+
 // Validate the access code
 add_filter( 'registration_errors', 'my_registration_errors', 10, 3 );
 function my_registration_errors( $errors, $sanitized_user_login, $user_email ) {
 
+    if (isHotmailAddress($user_email)) {
+        $errors->add( 'hotmail_error',
+                      '<strong>ERROR</strong>: Hotmail addresses do not work. They hate us for some reason. Choose a better email provider.');
+    }
     if (empty($_POST['access_code']) ||
         strtolower(trim( $_POST['access_code'] )) != ACCESS_CODE) {
         $errors->add( 'access_code_error',
