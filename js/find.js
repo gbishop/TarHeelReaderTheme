@@ -48,9 +48,6 @@ define([ "route",
             for(var i=0; i<data.books.length; i++) {
                 templates.setImageSizes(data.books[i].cover);
             }
-            if (isFav) {
-                data.favorites = true;
-            }
             view.bookList = templates.render('bookList', data);
             var pageNumber = +state.get('page');
             if (data.more) {
