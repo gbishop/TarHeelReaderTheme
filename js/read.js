@@ -378,6 +378,23 @@ define(["route",
         if (state.get('eyetracker') == '1') {
             notifyTracker($page, slug, pageNumber);
         }
+
+        var biglinks = +state.get('biglinks');
+        if (biglinks) {
+            $('a.thr-next-link').css({
+                border: "none",
+                paddingLeft: 6 * biglinks + 'em',
+                paddingTop: 4 * biglinks + 'em',
+                backgroundColor: "inherit"
+            });
+            $('a.thr-back-link').css({
+                border: "none",
+                paddingRight: 6 * biglinks + 'em',
+                paddingTop: 4 * biglinks + 'em',
+                backgroundColor: "inherit"
+            });
+        }
+
     }
 
     route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);

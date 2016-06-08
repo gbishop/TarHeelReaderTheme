@@ -38,6 +38,16 @@
                 { "label": "_(Yellow)", "value": "ff0"}
             ]
         },
+        {   "label": "_(Reading Link Size)",
+            "name": "biglinks",
+            "select": true,
+            "options": [
+                { "label": "_(Normal)", "value": "0" },
+                { "label": "_(Large)", "value": "1" },
+                { "label": "_(Huge)", "value": "2" },
+                { "label": "_(Gigantic)", "value": "3" }
+            ]
+        },
         {   "input": true,
             "type": "submit",
             "value": "_(Done|button label)"
