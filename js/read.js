@@ -379,20 +379,42 @@ define(["route",
             notifyTracker($page, slug, pageNumber);
         }
 
+        // enable larger targets for eye gaze users
         var biglinks = +state.get('biglinks');
         if (biglinks) {
+            var $window = $(window),
+                $container = $page.find('.content-wrap'),
+                ww = $container.width(),
+                wh = $window.height(),
+                fs = parseFloat($('body').css('fontSize')),
+                target = fs * (0.9 + 3.6 * biglinks),
+                top = 10 * fs,
+                bar = wh - top,
+                ptb = (bar - target) / 2;
             $('a.thr-next-link').css({
-                border: "none",
-                paddingLeft: 6 * biglinks + 'em',
-                paddingTop: 4 * biglinks + 'em',
-                backgroundColor: "inherit"
-            });
+                width: 'initial',
+                height: 'initial',
+                paddingTop: ptb + 'px',
+                paddingBottom: ptb + 'px',
+                paddingLeft: fs,
+                paddingRight: fs,
+                backgroundColor: "inherit",
+                right: 0,
+                bottom: 0
+            }).find('img').css('zoom', 2*biglinks);
             $('a.thr-back-link').css({
-                border: "none",
-                paddingRight: 6 * biglinks + 'em',
-                paddingTop: 4 * biglinks + 'em',
-                backgroundColor: "inherit"
-            });
+                width: 'initial',
+                height: 'initial',
+                paddingTop: ptb + 'px',
+                paddingBottom: ptb + 'px',
+                paddingLeft: fs,
+                paddingRight: fs,
+                backgroundColor: 'inherit',
+                left: 0,
+                bottom: 0
+            }).find('img').css('zoom', 2*biglinks);
+            // remove the vertical scrollbar to allow the right boundary to help
+            $('html').css('overflow-y', 'auto');
         }
 
     }
