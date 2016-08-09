@@ -30,13 +30,13 @@ translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 copygb:
-	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/gbserver/wp-content/themes/thr3
+	rsync -az --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
 
 copytest:
-	rsync -az --delete ../Theme-build/ gbserver:/var/www/test.tarheelreader/wp-content/themes/thr3
+	rsync -az --delete ../Theme-build/ gbserver3:/var/www/test.tarheelreader/wp-content/themes/thr3
 
 copyproduction:
-	rsync -az --delete ../Theme-build/ gbserver:/var/www/tarheelreader/wp-content/themes/thr3
+	rsync -az --delete ../Theme-build/ gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
 
 optimized: build
 	rm -rf ../Theme-build/*
@@ -52,7 +52,7 @@ versioned:
 devel: build copygb
 
 testprod: optimized
-	rsync -az --delete ../Theme-build/ gbserver:/var/www/gbserver/wp-content/themes/thr3
+	rsync -az --delete ../Theme-build/ gbserver3:/var/www/gbserver/wp-content/themes/thr3
 
 production:
 	make optimized
