@@ -172,13 +172,17 @@ define([ "route",
             link.click();
         }
     });
+    $.subscribe('/find/focusSearch', function(e, name, code) {
+        $('input[name="search"]').focus().val('');
+    });
 
     // configure the keyboard controls
     function setFindKeyMap(page) {
         keys.setMap(page, {
             'left down enter c': '/find/select',
             'right space m': '/find/next',
-            'up': '/find/prev'
+            'up': '/find/prev',
+            's': '/find/focusSearch'
         });
     }
     setFindKeyMap('.active-page.find-page');
