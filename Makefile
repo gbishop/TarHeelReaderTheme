@@ -4,10 +4,11 @@ manifest:
 	python tools/manifest.py > manifest.appcache
 
 transifex:
-	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it,zh
+	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it,zh,nb
 	mv languages/fr_FR.po languages/fr.po
 	mv languages/pt_PT.po languages/pt.po
 	mv languages/es_MX.po languages/es.po
+	mv languages/nb.po languages/no.po
 
 locale/%/LC_MESSAGES/thr.mo: languages/%.po
 	mkdir -p $(dir $@)
@@ -19,7 +20,7 @@ Templates.en.json: templates/*.html searchForm.json readingForm.json categories.
 Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json style.css
+build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json Templates.no.json style.css
 	rm -f manifest.appcache
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss css/_offline.scss

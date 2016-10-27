@@ -1,0 +1,1222 @@
+# 
+# Translators:
+# Hanne Almås <hanne.almas@statped.no>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Tar Heel Reader\n"
+"PO-Revision-Date: 2016-10-27 12:20+0000\n"
+"Last-Translator: Hanne Almås <hanne.almas@statped.no>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/garybishop/tar-heel-reader/language/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# announcements:1
+msgid "Latest Announcements"
+msgstr "Nye oppdateringer"
+
+# bookList:3
+msgid "Your favorites page is empty."
+msgstr "Favorittsiden din er tom"
+
+# bookList:8
+msgid "Click here to try your search without restrictions."
+msgstr "Klipp her for å søke uten restriksjoner"
+
+# bookList:8
+msgid "No books found."
+msgstr "Ingen bøker funnet"
+
+# bookList:22, bookList:22
+msgctxt "icon explanatory text"
+msgid "Reviewed for educational quality."
+msgstr "Gjennomgått i forhold til undervisningskvalitet."
+
+# bookList:26, bookList:26
+msgctxt "icon explanatory text"
+msgid "May not be appropriate for all readers."
+msgstr "Passer ikke for alle lesere."
+
+# busy:5
+msgid "Loading. Please wait."
+msgstr "Laster. Vennligst vent."
+
+# busy:9
+msgid "Something went wrong. The message was:"
+msgstr "Noe gikk galt. Feilmeldingen var:"
+
+# busy:10
+msgctxt "Button label"
+msgid "Try again"
+msgstr "Prøv igjen"
+
+# choicePage:2, choicePage:26
+msgid "What would you like to do now?"
+msgstr "Hva ønsker du å gjøre nå?"
+
+# choicePage:4, choicePage:28
+msgid "Read this book again."
+msgstr "Les denne boka en gang til."
+
+# choicePage:5
+msgid "Rate this book."
+msgstr "Vurder denne boka."
+
+# choicePage:6, choicePage:29
+msgid "Read another book."
+msgstr "Les en annen bok."
+
+# choicePage:10
+msgid "How do you rate this book?"
+msgstr "Hvordan vurderer du denne boka?"
+
+# choicePage:21
+msgid "Thank you for your opinion."
+msgstr "Takk for tilbakemeldingen."
+
+# choicePage:24
+msgid "Average Rating"
+msgstr "Gjennomsnittlig vurdering."
+
+# collections:1, navigation:14
+msgid "Collections"
+msgstr "Samlinger"
+
+# collections:3, description:1
+msgctxt "placeholder text for search box"
+msgid "Enter text to search"
+msgstr "Skriv inn tekst for å søke"
+
+# collections:7
+msgid "No collections matching that query. Try again."
+msgstr "Ingen treff for dette søket. Prøv igjen."
+
+# collections:21
+msgid "Create your own collection"
+msgstr "Lag din egen samling."
+
+# collections:27, bookPage:23
+msgctxt "button label"
+msgid "Back"
+msgstr "Tilbake"
+
+# find:5
+msgctxt "label for button to expose search fields on small devices"
+msgid "Press to search"
+msgstr "Trykk for å søke"
+
+# find:10
+msgctxt "button label"
+msgid "Previous Books"
+msgstr "Tidligere bøker"
+
+# find:13
+msgctxt "button label"
+msgid "More Books"
+msgstr "Flere bøker"
+
+# frontPage:5
+msgid "Welcome"
+msgstr "Velkommen"
+
+# frontPage:7
+msgid "Click here to learn more about alternative access methods."
+msgstr "Klikk her for å lære mer om alternative tilganger."
+
+# frontPage:7
+msgid ""
+"Welcome to the Tar Heel Reader, a collection of free, easy-to-read, and "
+"accessible books on a wide range of topics. Each book can be speech enabled "
+"and accessed using multiple interfaces, including touch screens, the "
+"IntelliKeys with custom overlays, and 1 to 3 switches."
+msgstr "Velkommen til Tar Heel Reader, en samling av gratis , lettleste, og lett tilgjengelige bøker med et bredt spekter av tema. Bøkene kan du få opplest med syntetisk tale. De kan åpnes ved hjelp av ulike brukergrensesnitt , inkludert berøringsskjermer, intelligente taster med tilpassede overlegg, eller med 1-3 brytere."
+
+# frontPage:9
+msgid ""
+"You may write your own books using pictures from the huge collection at "
+"{{{Flickr}}} or pictures you upload. All books should be complete, edited, "
+"and revised to the best of your ability before publishing them to the site. "
+"While you are working on them, please save them as drafts."
+msgstr "Du kan skrive dine egne bøker med bilder fra den store samlingen på {{{Flickr}}} eller laste opp egne bilder.  Alle bøker bør være ferdigstilte, redigert og gjennomgått etter beste evne før du publiserer dem på nettstedet. Du lagre dem som utkast hvis bøkene er under produksjon."
+
+# frontPage:11
+msgid ""
+"Note the little well icon {{{wellicon}}} in the upper left corner of the "
+"page; clicking it will allow you to access the main menu. You can also click"
+" the settings icon {{{gearicon}}} to change settings on some pages."
+msgstr "Legg merke til ikonet {{{wellicon}}} øverst i venstre hjørne på siden. Ved å klikke på det vil du få tilgang til hovedmenyen . Du kan også klikke på ikonet for innstillinger {{{gearicon}}} for å endre innstillinger på enkelte sider."
+
+# frontPage:13
+msgid ""
+"Your browser is unsupported. The site should work for finding and reading "
+"books but you will not have switch access or the ability to write books. We "
+"recommend that you upgrade to a modern browser or install Chrome Frame."
+msgstr "Nettleseren din støttes ikke. Nettstedet skal fungere for å finne og lese bøker, men du vil ikke ha brytertilgang eller mulighet til å skrive bøker. Vi anbefaler at du oppgraderer din nettleser eller installere Chrome Frame."
+
+# frontPage:15
+msgid ""
+"You are in Classic mode. You will not have access to all of the features of "
+"the site but it may work better on older computers and web browsers. Click "
+"this text to leave Classic mode."
+msgstr "Du er i klassisk modus. Du vil ikke ha tilgang til alle funksjonene i området, men det kan fungere bedre på eldre datamaskiner og nettlesere . Klikk på denne teksten å forlate klassisk modus."
+
+# frontPage:17
+msgid "Ready to get started?"
+msgstr "Klar for å begynne?"
+
+# frontPage:19, navigation:11
+msgid "Find a book"
+msgstr "Finn en bok"
+
+# frontPage:20, navigation:20
+msgid "Write a book"
+msgstr "Lag en bok"
+
+# frontPage:23
+msgid ""
+"This site is also available in other languages. To help with translation, "
+"contact us."
+msgstr "Denne siden er tilgjengelig på andre språk. For å hjelpe til med oversettelse, ta kontakt med oss."
+
+# frontPage:31
+msgid "change language"
+msgstr "Endre språk"
+
+# heading:3
+msgctxt "icon explanatory text"
+msgid "Open Menu"
+msgstr "Åpne menyen"
+
+# heading:6
+msgid "Offline"
+msgstr "frakoblet"
+
+# heading:8, heading:8, heading:12, heading:15
+msgctxt "icon explanatory text"
+msgid "Select Favorites"
+msgstr "Velg favoritter"
+
+# heading:12
+msgid "Remove from Favorites"
+msgstr "Slett fra favoritter"
+
+# heading:15
+msgid "Add to Favorites"
+msgstr "Legg til i favoritter"
+
+# heading:20, heading:20, heading:23, heading:23
+msgctxt "icon explanatory text"
+msgid "Settings"
+msgstr "Innstillinger"
+
+# heading:27
+msgctxt "site sub-heading"
+msgid "Books for beginning readers of all ages"
+msgstr "Bøker for personer som er tidlig i leseopplæringen - gjelder alle aldre"
+
+# heading:27
+msgctxt "site name"
+msgid "Tar Heel Reader"
+msgstr "Tar Heel Reader"
+
+# label:1
+msgid "All Topics"
+msgstr "Alle kategorier"
+
+# label:1
+msgid "Alphabet"
+msgstr "Alfabetet"
+
+# label:1
+msgid "Animals and Nature"
+msgstr "Dyr og natur"
+
+# label:1
+msgctxt "selection to ignore the audience rating"
+msgid "Any rating"
+msgstr "Noen vurderinger"
+
+# label:1
+msgid "Arabic"
+msgstr "Arabisk"
+
+# label:1
+msgid "Art and Music"
+msgstr "Kunst og musikk"
+
+# label:1
+msgctxt "pulldown label for audience ratings"
+msgid "Audience"
+msgstr "Publikum"
+
+# label:1
+msgid "Basque"
+msgstr "Baskisk"
+
+# label:1
+msgid "Biographies"
+msgstr "Biografier"
+
+# label:1
+msgid "Catalan"
+msgstr "Catalansk"
+
+# label:1
+msgid "Cherokee"
+msgstr "Cherokee"
+
+# label:1
+msgid "Chinese"
+msgstr "Kinesisk"
+
+# label:1
+msgid "Danish"
+msgstr "Dansk"
+
+# label:1
+msgid "Dutch"
+msgstr "Nederlandsk"
+
+# label:1
+msgid "English"
+msgstr "Engelsk"
+
+# label:1
+msgid "Fairy and Folk Tales"
+msgstr "Figurer og eventyr"
+
+# label:1
+msgid "Fiction"
+msgstr "Skjønnlitteratur"
+
+# label:1
+msgid "Filipino"
+msgstr "Filippinsk"
+
+# label:1
+msgid "Finnish"
+msgstr "finsk"
+
+# label:1
+msgid "Foods"
+msgstr "Mat"
+
+# label:1
+msgid "French"
+msgstr "Fransk"
+
+# label:1
+msgid "Galician"
+msgstr "Galiciansk"
+
+# label:1
+msgid "German"
+msgstr "Tysk"
+
+# label:1
+msgid "Greek"
+msgstr "Gresk"
+
+# label:1
+msgid "Health"
+msgstr "Helse"
+
+# label:1
+msgid "Hebrew"
+msgstr "Hebrew"
+
+# label:1
+msgid "History"
+msgstr "Historie"
+
+# label:1
+msgid "Holidays"
+msgstr "Ferie"
+
+# label:1
+msgid "Icelandic"
+msgstr "Islandsk"
+
+# label:1
+msgid "Include unreviewed"
+msgstr "Inkluder uanmeldte"
+
+# label:1
+msgid "Indonesian"
+msgstr "Indonesisk"
+
+# label:1
+msgid "Italian"
+msgstr "Italiensk"
+
+# label:1
+msgid "Japanese"
+msgstr "Japansk"
+
+# label:1
+msgid "Latin"
+msgstr "Latinsk"
+
+# label:1
+msgid "Math and Science"
+msgstr "Matematikk og vitenskap"
+
+# label:1
+msgid "Norwegian"
+msgstr "Norsk"
+
+# label:1
+msgid "Nursery Rhymes"
+msgstr "Rim og regler"
+
+# label:1
+msgid "People and Places"
+msgstr "Personer og steder"
+
+# label:1
+msgid "Poetry"
+msgstr "Dikt"
+
+# label:1
+msgid "Polish"
+msgstr "Polsk"
+
+# label:1
+msgid "Portuguese"
+msgstr "Portugisisk"
+
+# label:1
+msgid "Recreation and Leisure"
+msgstr "Fritid"
+
+# label:1
+msgctxt "pulldown label"
+msgid "Review status"
+msgstr "Se omtale"
+
+# label:1
+msgid "Reviewed only"
+msgstr "Kun anmeldte"
+
+# label:1
+msgid "Sanskrit"
+msgstr "Sanskrit"
+
+# label:1
+msgctxt "label for search box"
+msgid "Search for"
+msgstr "Søk etter"
+
+# label:1
+msgid "Spanish"
+msgstr "Spansk"
+
+# label:1
+msgid "Sports"
+msgstr "Sport"
+
+# label:1
+msgid "Swedish"
+msgstr "Svensk"
+
+# label:1
+msgctxt "pulldown label"
+msgid "Topics"
+msgstr "Kategorier"
+
+# label:1
+msgid "Turkish"
+msgstr "Tyrkisk"
+
+# login:2
+msgid "Log in to Tar Heel Reader"
+msgstr "Logg på Tar Heel Reader"
+
+# login:3
+msgid "Login Failed"
+msgstr "Innlogging feilet"
+
+# login:6
+msgid "Username"
+msgstr "Brukernavn"
+
+# login:11
+msgid "Password"
+msgstr "Passord"
+
+# login:17
+msgctxt "login checkbox label"
+msgid "Remember Me"
+msgstr "Husk meg"
+
+# login:26
+msgid "Lost Password"
+msgstr "Glemt passord"
+
+# login:27
+msgid "Register"
+msgstr "Registrer"
+
+# login:30
+msgid "Log out of Tar Heel Reader"
+msgstr "Logg ut av Tar Heel Reader"
+
+# login:31
+msgid "Log out"
+msgstr "Logg ut"
+
+# navigation:3
+msgid "Error 404: Page Not Found"
+msgstr "Error 404: Side ikke funnet"
+
+# navigation:4
+msgid ""
+"We could not find the page you requested. Perhaps the links below will help "
+"you find the page you wanted."
+msgstr "Vi kunne ikke finne siden. Kanskje linkene nedenfor vil hjelpe deg å finne den siden du ønsket."
+
+# navigation:8
+msgid "Home"
+msgstr "Hjem"
+
+# navigation:23
+msgid "Read books offline"
+msgstr "Les bøker frakoblet"
+
+# navigation:26
+msgid "Log in"
+msgstr "Logg inn"
+
+# navigation:29
+msgid "Help"
+msgstr "Hjelp"
+
+# navigation:32
+msgid "Your books"
+msgstr "Dine bøker"
+
+# navigation:35
+msgid "Announcements"
+msgstr "Kunngjøringer"
+
+# navigation:38
+msgid "Photo credits"
+msgstr "Photo credits"
+
+# offline:2
+msgid "You are accessing the Tar Heel Reader website online."
+msgstr "Du har tilgang til Tar Heel Reader nettside på Internett."
+
+# offline:3
+msgid "You are reading books stored on your computer."
+msgstr "Du leser bøker som er lagret på din datamaskin."
+
+# offline:6
+msgid "Read online"
+msgstr "Les med nettilgang"
+
+# offline:7
+msgid "Read offline"
+msgstr "Les frakoblet"
+
+# offline:8
+msgid "Add Favorites to local books"
+msgstr "Legg Favoritt til lokale bøker"
+
+# offline:9
+msgid "Clear all local books"
+msgstr "Fjerne alle lokale bøker"
+
+# offline:10
+msgid "Clear selected local books"
+msgstr "Fjern utvalgte lokale bøker"
+
+# offline:12
+msgid "Books available for offline reading"
+msgstr "Bøker tilgjengelig for lesing uten nettilgang"
+
+# offline:18
+msgid ""
+"Your browser appears to support local storage but when we tried to use it, "
+"we failed. Perhaps you are in Private Browsing mode or have otherwise "
+"disabled local storage?  You'll need to correct the settings on your "
+"computer before offline reading will function correctly."
+msgstr "Nettleseren din ser ut til å støtte lokal lagring, men dette mislyktes. Kanskje du er i privat nettlesingsmodus eller har deaktivert lokal lagring? Du må justere innstillingene på datamaskinen før frakoblet lesing vil fungere riktig."
+
+# offlineList:7
+msgid "You have no books saved for offline reading."
+msgstr "Du har ingen bøker lagret for lesing i frakoblet modus."
+
+# readingControls:1
+msgid "Reading Preferences"
+msgstr "Lese preferanse"
+
+# readingControls:7
+msgid "Download this book"
+msgstr "Last ned denne boka"
+
+# readingControls:8, settings:57
+msgid "PowerPoint"
+msgstr "PowerPoint"
+
+# readingControls:9, settings:58
+msgid "EPUB"
+msgstr "EPUB"
+
+# readingControls:12
+msgid "Photo Credits"
+msgstr "Foto Credits"
+
+# readingControls:13
+msgid "Photo credits for this book"
+msgstr "Foto credits for denne boka"
+
+# readingControls:17
+msgid "Change this book"
+msgstr "Endre denne boka"
+
+# readingControls:18
+msgid "Create a new one like it."
+msgstr "Lag en ny bok, lik denne."
+
+# readingControls:20
+msgid "Edit it."
+msgstr "Rediger den"
+
+# settings:4, label:1
+msgid "Speech"
+msgstr "Tale"
+
+# settings:7, label:1
+msgid "Silent"
+msgstr "Stille"
+
+# settings:8, label:1
+msgid "Child"
+msgstr "Barn"
+
+# settings:9, label:1
+msgid "Woman"
+msgstr "Dame"
+
+# settings:10, label:1
+msgid "Man"
+msgstr "Mann"
+
+# settings:11
+msgid "Built in"
+msgstr "Innebygd"
+
+# settings:17
+msgid "Colors"
+msgstr "Farger"
+
+# settings:20, label:1
+msgid "Page Color"
+msgstr "Sidefarge"
+
+# settings:23, settings:37, label:1, label:1
+msgid "Black"
+msgstr "Svart"
+
+# settings:24, settings:38, label:1, label:1
+msgid "Blue"
+msgstr "Blå"
+
+# settings:25, settings:39, label:1, label:1
+msgid "Cyan"
+msgstr "Cyan Turkis"
+
+# settings:26, settings:40, label:1, label:1
+msgid "Green"
+msgstr "Grønn"
+
+# settings:27, settings:41, label:1, label:1
+msgid "Magenta"
+msgstr "Magenta Rosa"
+
+# settings:28, settings:42, label:1, label:1
+msgid "Red"
+msgstr "Rød"
+
+# settings:29, settings:43, label:1, label:1
+msgid "White"
+msgstr "Hvit"
+
+# settings:30, settings:44, label:1, label:1
+msgid "Yellow"
+msgstr "Gul"
+
+# settings:34, label:1
+msgid "Text Color"
+msgstr "Tekst farge"
+
+# settings:54
+msgid "Download"
+msgstr "Last ned"
+
+# settings:64
+msgid "Default"
+msgstr "Mislykket"
+
+# settings:66
+msgid "More..."
+msgstr "Mer..."
+
+# text:1
+msgid "1.5 stars"
+msgstr "1,5 stjerner"
+
+# text:1
+msgid "2.5 stars"
+msgstr "2,5 stjerner"
+
+# text:1
+msgid "Not yet rated"
+msgstr "Ikke vurdert enda"
+
+# text:1, choicePage:13
+msgid "1 star"
+msgstr "1 stjerne"
+
+# text:1, choicePage:15
+msgid "2 stars"
+msgstr "2 stjerner"
+
+# text:1, choicePage:17
+msgid "3 stars"
+msgstr "3 stjerner"
+
+# value:1
+msgctxt "button label"
+msgid "Done"
+msgstr "Ferdig"
+
+# whereAreReaders:1
+msgid "Where are the readers?"
+msgstr "Hvor er leserne?"
+
+# whereAreReaders:2
+msgid ""
+"Some of you may have wondered where in the world our books are read. The map"
+" and tables below depict the estimated locations of the computers that have "
+"read books on the site."
+msgstr "Noen av dere har kanskje lurt på hvor i verden våre bøker blir lest. Kartet og tabellene nedenfor viser de estimerte plasseringene av datamaskiner som har lest bøkene på nettstedet."
+
+# whereAreReaders:5
+msgid "Map your books"
+msgstr "Se hvor dine bøker er lest"
+
+# whereAreReaders:8
+msgid "Map all books"
+msgstr "Se hvor alle bøker leses"
+
+# whereAreReaders:12
+msgid ""
+"As of {{date}} our books have been read {{total}} times in {{country_count}}"
+" countries and {{state_count}} US states and possessions."
+msgstr "Pr {{date}} har våre bøker blitt lest {{total}} ganger i {{country_count}} land og i {{stater telle}} amerikanske stater."
+
+# whereAreReaders:17
+msgid "Books by Language"
+msgstr "Bøker sortert etter språk"
+
+# whereAreReaders:18
+msgid "Books"
+msgstr "Bøker"
+
+# whereAreReaders:26
+msgid "Readers by Country"
+msgstr "Lesere sortert etter land"
+
+# whereAreReaders:27, whereAreReaders:35
+msgid "Books Read"
+msgstr "Bøker som er lest"
+
+# whereAreReaders:27, whereAreReaders:35
+msgid "Name"
+msgstr "Navn"
+
+# whereAreReaders:34
+msgid "Readers by US States and Possessions"
+msgstr "Lesere fra amerikanske stater"
+
+# whereAreReaders:42
+msgid "We do not yet have any of your books on the map."
+msgstr "Vi har ikke noen av bøkene dine på kartet enda."
+
+# write:6
+msgid "You must be logged in to write a book. Please log in below."
+msgstr "Du må være innlogget for å kunne skrive en bok. Vennligst logg inn nedenfor."
+
+# write:10
+msgid "Step 1: Find pictures"
+msgstr "Steg 1: Finn bilder"
+
+# write:12
+msgid ""
+"Enter words to search Flickr or enter the email address you use at Flickr to"
+" see your personal photos. A set of pictures from Flickr will appear; click "
+"on one to preview."
+msgstr "Skriv inn søkeord på Flickr eller skriv e-postadressen du bruker på Flickr for å se dine personlige bilder. Et utvalg av bilder fra Flickr vil vises. Klikk for å forhåndsvise bildet."
+
+# write:12
+msgid "Step 1: Search Help"
+msgstr "Steg 1: Søk etter hjelp"
+
+# write:16, collections:4, value:1
+msgctxt "button label"
+msgid "Search"
+msgstr "Søk"
+
+# write:20
+msgid "No matching images found."
+msgstr "Ingen passende bilder ble funnet."
+
+# write:21
+msgid "No matching email address found."
+msgstr "Ingen samsvarende e-postadresse ble funnet."
+
+# write:23
+msgid "Go back"
+msgstr "Gå tilbake"
+
+# write:23
+msgid "More like these"
+msgstr "Mer som dette"
+
+# write:27
+msgid "Or upload your own pictures"
+msgstr "eller last opp dine egne bilder"
+
+# write:28
+msgid ""
+"Do not upload SymbolStix or other images unless you have permission from the"
+" copyright holder."
+msgstr "Ikke last opp SymbolStix eller andre bilder med mindre du har tillatelse fra opphavsrettsinnehaveren."
+
+# write:30
+msgid ""
+"Click browse to find an image on your computer, then click upload to add it "
+"to your book. Pictures must be less than 2 megabytes in size to properly "
+"upload. They will be resized to 500x500 pixels."
+msgstr "Klikk Bla gjennom for å finne et bilde på din datamaskinen. Velg deretter last opp for å legge den til i boka. Bildene må være mindre enn 2 megabyte for å kunne lastes opp. De vil bli endret til 500x500 piksler etter opplasting."
+
+# write:30
+msgid "Step 1: Upload Help"
+msgstr "Trinn 1: Opplastningshjelp"
+
+# write:35
+msgid "Step 2: Enter a short sentence for each page"
+msgstr "Trinn 2: Skriv inn en kort setning for hver side"
+
+# write:37
+msgid ""
+"Click on a page to edit it. You may reorder the pages with drag and drop."
+msgstr "Klikk på en side for å redigere den. Du kan endre rekkefølgen på sidene ved å klikke og dra."
+
+# write:37
+msgid "Step 2: Edit help"
+msgstr "Trinn 2: Redigeringshjelp"
+
+# write:41
+msgid "After you select or upload pictures your pages will appear here."
+msgstr "Når du har valg eller lastet opp bilder, vil sidene dine vises her."
+
+# write:45
+msgid "Step 3: Fill in the details"
+msgstr "Steg 3: Fyll inn detaljene"
+
+# write:47
+msgid ""
+"Fill in the title for your book and select its language from the list. You "
+"may use a psuedonym if you wish by changing the author field."
+msgstr "Skriv inn tittelen på boka di, og velge riktig språk fra listen. Det er mulig å bruke et pseudonym. Dette endres i forfatterfeltet."
+
+# write:47
+msgid "Step 3: Details help"
+msgstr "Trinn 3: Hjelp med detaljene"
+
+# write:50
+msgid "Enter a title for your book"
+msgstr "Skriv en boktittel"
+
+# write:52
+msgid "Author"
+msgstr "Forfatter"
+
+# write:53
+msgid "Enter a pseudonym"
+msgstr "Velg pseudonym"
+
+# write:55, whereAreReaders:18, label:1
+msgid "Language"
+msgstr "Språk"
+
+# write:57
+msgid "Choose a language"
+msgstr "Velg et språk"
+
+# write:63
+msgid "Optionally"
+msgstr "Eventuelt"
+
+# write:63, write:67
+msgid "Categorize your book"
+msgstr "Velg kategori for boken din"
+
+# write:69
+msgid "Step 3: Categorize help"
+msgstr "Trinn 3: Hjelp med kategorier"
+
+# write:69
+msgid ""
+"You may select up to three library categories, an audience rating and BLF "
+"type if you wish."
+msgstr "Du kan velge opptil tre kategorier, en publikumsvurdering og BLF-type hvis du ønsker det."
+
+# write:72
+msgid "Library Classification"
+msgstr "Kategorisering"
+
+# write:78
+msgid "Audience Rating"
+msgstr "Publikumsvurdering"
+
+# write:80, write:89
+msgid "None"
+msgstr "Ingen"
+
+# write:81, label:1
+msgctxt "books appropriate for everyone"
+msgid "Rated E/Everybody"
+msgstr "Vurdering E/ Alle"
+
+# write:82, label:1
+msgctxt "books that may not be appropriate for all readers"
+msgid "Rated C/Caution"
+msgstr "Vurdering C/ Vær oppmerksom"
+
+# write:87
+msgid "Beginning Literacy Framework Type"
+msgstr "Oppsett for begynnende lesere "
+
+# write:90
+msgid "Transitional"
+msgstr "Overganger"
+
+# write:91
+msgid "Conventional"
+msgstr "Ordinær"
+
+# write:92
+msgid "Other"
+msgstr "Andre"
+
+# write:97
+msgid "Tags"
+msgstr "Tag"
+
+# write:99
+msgid "Enter a few descriptive words to make your book easier to find"
+msgstr "Skriv inn noen beskrivende ord for å gjøre boken lettere søkbar"
+
+# write:104, whereAreReaders:18
+msgid "Reviewed"
+msgstr "Vurdert"
+
+# write:111
+msgid "Step 4: Publish"
+msgstr "Steg 4: Publiser"
+
+# write:114
+msgid "Step 4: Save help"
+msgstr "Steg 4: Hjelp med lagring"
+
+# write:114
+msgid ""
+"To continue working on your book later, or to remove it from public view, "
+"click Save as draft. You will be able to return it from the Your Books page."
+" To publish your completed book, click Publish."
+msgstr "For å fortsette og arbeide med boka senere, eller fjerne den fra offentlig innsyn, klikker du på Lagre som utkast. Du vil finne den igjen under Dine bøker. For å publisere den ferdige boka, klikk på Publiser."
+
+# write:116
+msgid ""
+"I have permission from any copyright holders to use the images I uploaded."
+msgstr "Jeg har tillatelse fra rettighetshavere å bruke bildene jeg har lastet opp."
+
+# write:119
+msgid "Save as draft"
+msgstr "Lagre som kladd"
+
+# write:120
+msgid "Publish"
+msgstr "Publiser"
+
+# write:122
+msgid "Your book will not be published until you fix these issues."
+msgstr "Boka vil ikke bli publisert før du har fylt ut disse feltene."
+
+# write:123
+msgid "It must have a title."
+msgstr "Den må ha en tittel"
+
+# write:124
+msgid "It must have an author."
+msgstr "Den må ha en forfatter."
+
+# write:125
+msgid "Each page must have some text."
+msgstr "Hver side må ha en tekst."
+
+# write:126
+msgid "The text on each page must be less than 130 characters in length."
+msgstr "Teksten på hver side må ikke overstige 130 tegn."
+
+# write:127
+msgid "It must have at least 3 pages."
+msgstr "Den må ha minimum 3 sider."
+
+# write:128
+msgid "It must specify the language."
+msgstr "Språk må spesifiseres."
+
+# write:129
+msgid "It must be in no more than 4 categories."
+msgstr "Boka kan ikke tilhøre mer enn 4 kategorier."
+
+# write:130
+msgid "You must check that you have permission to use uploaded images."
+msgstr "Du må kontrollere at du har tillatelse til å bruke opplastede bilder."
+
+# write:131
+msgid "Your book has been saved as a draft."
+msgstr "Boka di har blitt lagret som en kladd."
+
+# write:138
+msgctxt "button label"
+msgid "Add to Book"
+msgstr "Legg til"
+
+# write:139
+msgctxt "button label"
+msgid "Close"
+msgstr "Lukk"
+
+# write:140
+msgctxt "button label"
+msgid "Previous"
+msgstr "Tidligere"
+
+# write:141, collections:24, bookPage:26
+msgctxt "button label"
+msgid "Next"
+msgstr "Neste"
+
+# write:142
+msgid "Page added to your book"
+msgstr "Side lagt til i boka di."
+
+# write:143
+msgid "Page duplicated"
+msgstr "Kopiert side"
+
+# write:146
+msgid ""
+"Click on the text to change it. You may use the next and previous buttons to"
+" move between pages. When you're finished, close the editor by clicking on "
+"the x in the upper right."
+msgstr "Klikk på teksten for å endre den. Du kan bruke Neste og Forrige knappene for å flytte mellom sider. Når du er ferdig, lukker du redigeringsmodus ved å klikke på X øverst til høyre."
+
+# write:146
+msgid "Page Editor Help"
+msgstr "Hjelp med sideredigering"
+
+# write:148
+msgid "Click to edit"
+msgstr "Klikk for å redigere"
+
+# write:149
+msgid "Delete this page"
+msgstr "Slett denne siden"
+
+# write:150
+msgid "Duplicate this page"
+msgstr "Kopier denne siden"
+
+# write:151
+msgid "If you leave you will lose your work on this book."
+msgstr "Hvis du forlater siden, vil du miste arbeidet knyttet til denne boka."
+
+# write:154
+msgid "Drop files here to upload"
+msgstr "Dra filer hit for å laste opp"
+
+# write:155
+msgid "Upload"
+msgstr "Last opp"
+
+# write:165
+msgid "Failed"
+msgstr "Mislyktes"
+
+# yourbooks:2, write:2
+msgid "You must have Javascript enabled in order to write a book."
+msgstr "Du må ha Javascript aktivert for å kunne lage en bok."
+
+# yourbooks:4, write:4
+msgid "Your web browser does not support writing books."
+msgstr "Din nettleser støtter ikke laging av bøker."
+
+# yourbooks:7, yourbooks:7, yourbooks:17, yourbooks:17, yourbooks:42,
+# yourbooks:42, yourbooks:66, yourbooks:66, write:11, write:11, write:29,
+# write:29, write:36, write:36, write:46, write:46, write:68, write:68,
+# write:113, write:113, write:145, write:145
+msgid "Click for help"
+msgstr "Klikk her for hjelp"
+
+# yourbooks:8
+msgid ""
+"Links to the main sections of this page are listed below. You may choose to "
+"use these links to help you get to the different sections of this page."
+msgstr "Lenker til de viktigste delene av denne siden er listet opp nedenfor. Du kan bruke disse linkene for å komme deg til de ulike delene av denne siden."
+
+# yourbooks:8, yourbooks:9
+msgid "Quick Navigation"
+msgstr "Hurtig navigasjon"
+
+# yourbooks:11, yourbooks:18, yourbooks:19
+msgid "Your Draft Books"
+msgstr "Dine kladder"
+
+# yourbooks:12, yourbooks:43, yourbooks:44
+msgid "Your Published Books"
+msgstr "Dine publiserte bøker"
+
+# yourbooks:13, yourbooks:67, yourbooks:68
+msgid "Your Collections"
+msgstr "Dine samlinger"
+
+# yourbooks:18
+msgid ""
+"Your draft books are listed below. Click on a title to expose a menu that "
+"will allow you to edit or delete it."
+msgstr "Dine bøker som er lagret som kladder, er listet opp nedenfor. Klikk på bokas tittel hvis du  vil redigere eller slette den."
+
+# yourbooks:24, yourbooks:26
+msgid "untitled"
+msgstr "uten navn"
+
+# yourbooks:27, yourbooks:52
+msgctxt "Button label"
+msgid "Read"
+msgstr "Les"
+
+# yourbooks:28, yourbooks:53
+msgctxt "Button label"
+msgid "Edit"
+msgstr "Rediger"
+
+# yourbooks:29, yourbooks:97
+msgctxt "Button label"
+msgid "Delete"
+msgstr "Slett"
+
+# yourbooks:30, yourbooks:54, yourbooks:83, yourbooks:98, busy:6, busy:11,
+# write:164
+msgctxt "Button label"
+msgid "Cancel"
+msgstr "Avbryt"
+
+# yourbooks:37
+msgid "If you had any books saved as drafts they would appear here."
+msgstr "Hvis du har lagret bøker som kladd, så vil de vises her."
+
+# yourbooks:43
+msgid ""
+"Your published books are listed below. Click on a title to expose a menu "
+"that will allow you to edit it. From the editor you may return a book draft "
+"status by clicking Save as Draft."
+msgstr "Publiserte bøker er listet opp nedenfor. Klikk bokas tittel for å redigere den. Du kan også velge å endre status på boka ved å klikke på Lagre som utkast."
+
+# yourbooks:61
+msgid "If you had any published books they would be listed here."
+msgstr "Hvis du har publiserte bøker, så vil de vises her."
+
+# yourbooks:67
+msgid ""
+"Your collections are listed below. Click on the Favorites button to create a"
+" new collection. Click on a collection to expose a menu that will allow you "
+"to modify it."
+msgstr "Samlingene dine er listet opp nedenfor. Klikk på knappen Favoritter for å opprette en ny samling. Klikk på en samling hvis du ønsker å gjøre endringer i den."
+
+# yourbooks:71, navigation:17
+msgid "Favorites"
+msgstr "Favoritter"
+
+# yourbooks:73
+msgid "Favorites: {{count}} books"
+msgstr "Favoritter: {{count}} bøker"
+
+# yourbooks:75, yourbooks:90, write:49
+msgid "Title"
+msgstr "Tittel"
+
+# yourbooks:76, yourbooks:91
+msgid "Description"
+msgstr "Beskrivelse"
+
+# yourbooks:77
+msgctxt "Button label"
+msgid "Save as a new Collection"
+msgstr "Lage som en ny samling"
+
+# yourbooks:80
+msgid "Add books to your Favorites and come back here to save as a Collection"
+msgstr "Legg til bøker i Favoritter, og vend tilbake hit for å lagre som en Samling"
+
+# yourbooks:82
+msgctxt "Button label"
+msgid "Clear Favorites list"
+msgstr "Tøm lista over Favoritter"
+
+# yourbooks:92
+msgid "{{count}} books"
+msgstr "{{count}} bøker"
+
+# yourbooks:93
+msgctxt "Button label"
+msgid "Update title and description"
+msgstr "Oppdater tittel og beskrivelse"
+
+# yourbooks:94
+msgctxt "Button label"
+msgid "Add to Favorites"
+msgstr "Legg til i favoritter"
+
+# yourbooks:95
+msgid "Merge Favorites into here"
+msgstr "Slå sammen favoritter"
+
+# yourbooks:96
+msgid "Replace with Favorites"
+msgstr "Flytt tilbake til Favoritter"
+
+# yourbooks:107
+msgid "You must be logged in to see your draft and published books."
+msgstr "Du må være innlogget for å se dine kladder og publiserte bøker."
+
+# yourbooks:107, write:6, login:21
+msgctxt "link label"
+msgid "Log In"
+msgstr "Logg inn"
+
+# yourbooks:110
+msgid "Where in the world are these books read?"
+msgstr "Hvor i verden er disse bøkene lest?"
+
+# yourbooks:111
+msgid "Check out our map of readers!"
+msgstr "Sjekk ut kartet vårt over lesere!"
