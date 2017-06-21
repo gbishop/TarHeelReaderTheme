@@ -389,7 +389,7 @@ function ParseBookPost($post) {
     $res['modified'] = $post->post_modified;
     $res['created'] = $post->post_date;
     $res['slug'] = $post->post_name;
-    $res['link'] = preg_replace('/http:\/\/[a-zA-Z0-9.]+/', '', get_permalink($id));
+    $res['link'] = preg_replace('/https?:\/\/[a-zA-Z0-9.]+/', '', get_permalink($id));
     $res['ID'] = $id;
     $res['bust'] = mysql2date('ydmHis', $post->post_modified, false);  // cache bust for speech
 
