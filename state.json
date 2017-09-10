@@ -6,6 +6,7 @@
     "type": { "pattern": "^[TCO]?$", "default": "" },
     "audience": { "pattern": "^[CE]?$", "default": "E" },
     "search": { "pattern": "", "default": "" },
+    "count": { "pattern": "^\\d+$", "default": "24" },
     "pageColor": { "pattern": "^[f0]{3}$", "default": "fff" },
     "textColor": { "pattern": "^[f0]{3}$", "default": "000" },
     "voice": { "pattern": "^(silent|male|female|child|browser)$", "default": "silent" },

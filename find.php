@@ -48,7 +48,7 @@ if (count($where) > 0) {
 }
 
 $json = array_key_exists('json', $_GET) && $_GET['json'] == 1;
-$count = 24;
+$count = THR('count');
 $cp1 = $count + 1; // ask for one more to determine if there are more
 $page = THR('page');
 $offset = ($page - 1) * $count;
