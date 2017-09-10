@@ -1,4 +1,4 @@
-all: devel
+all: dev
 
 manifest:
 	python tools/manifest.py > manifest.appcache
@@ -39,6 +39,9 @@ copytest:
 copyproduction:
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
 
+copydev:
+	rsync -az --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/dev.tarheelreader/THR/api/wp-content/themes/thr3
+
 optimized: build
 	rm -rf ../Theme-build/*
 	nodejs ../r.js -o js/app.build.js
@@ -51,6 +54,8 @@ versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
 devel: build copygb
+
+dev: build copydev
 
 testprod: optimized
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/gbserver/wp-content/themes/thr3
