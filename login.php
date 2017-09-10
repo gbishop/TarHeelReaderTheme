@@ -30,6 +30,16 @@ if ($out) {
     wp_redirect('/');
     die;
 }
+if (is_ajax()) {
+    $user = wp_get_current_user();
+    $resp = array('login' => $user->user_login, 'id' => $user->ID);
+    $output = json_encode($resp);
+    header('Content-Type: application/json');
+    header('Content-Size: ' . strlen($output));
+    echo $output;
+    die;
+}
+
 $view['logged_in'] = is_user_logged_in();
 $view['admin'] = is_admin();
 $view['logoutURL'] = '/login/?out=1';
