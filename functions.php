@@ -544,7 +544,7 @@ function posts_to_find_results($posts, $nrows, $count) {
         $po['title'] = $book['title'];
         $po['ID'] = $post->ID;
         $po['slug'] = $book['slug'];
-        $po['link'] = $book['link'];
+        $po['link'] = str_replace('/THR/api','',$book['link']);
         $po['author'] = $book['author'];
         $po['rating'] = rating_info($book['rating_value']);
         $po['tags'] = $book['tags'];
