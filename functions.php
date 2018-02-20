@@ -835,7 +835,7 @@ function my_registration_errors( $errors, $sanitized_user_login, $user_email ) {
 
     if (isHotmailAddress($user_email)) {
         $errors->add( 'hotmail_error',
-                      '<strong>ERROR</strong>: Hotmail addresses do not work. They hate us for some reason. Choose a better email provider.');
+                      '<strong>ERROR</strong>: Your email address will not work because Microsoft refuses to accept our messages; they hate us for some reason. Even if your address does not include the words microsoft or hotmail it is handled by Microsoft behind the scenes.');
     }
     if (empty($_POST['access_code']) ||
         strtolower(trim( $_POST['access_code'] )) != ACCESS_CODE) {
