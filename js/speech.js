@@ -84,12 +84,15 @@ define(["templates", "state", "ios" ], function(templates, state, ios) {
             text = siteSpeech[key].text;
         }
         window.speechSynthesis.cancel();
-        var msg = new SpeechSynthesisUtterance(text);
-        if (lang in browserLang)
-            lang = browserLang[lang];
-        msg.lang = lang;
-        ios.speechRate(msg);
-        window.speechSynthesis.speak(msg);
+        // add a delay in hopes of making built-in work better on windows with "David"
+        setTimeout(function() {
+            var msg = new SpeechSynthesisUtterance(text);
+            if (lang in browserLang)
+                lang = browserLang[lang];
+            msg.lang = lang;
+            ios.speechRate(msg);
+            window.speechSynthesis.speak(msg);
+        }, 500);
     }
 
     function play(id, page, lang, text, bust) {
