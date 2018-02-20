@@ -361,7 +361,7 @@ define(["route",
         if (!pageNumber) {
             pageNumber = 1;
         }
-        console.log('configureBook', url, slug, pageNumber);
+        // console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
         if (!$page.is('.thr-book-page')) {
             console.log('not book page, no configure');
