@@ -30,7 +30,7 @@ if ($out) {
     wp_redirect('/');
     die;
 }
-if (is_ajax()) {
+if (getParam('shared', 0, '/1/') == 1) {
     if (is_user_logged_in()) {
         $current_user = wp_get_current_user();
         $resp = array('login' => $current_user->user_login,
