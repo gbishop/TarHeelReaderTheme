@@ -878,4 +878,70 @@ function my_password_message($message, $key) {
     $message = preg_replace('/<([^>]+)>/', "$1", $message);
     return $message;
 }
+
+// add user meta data for shared reading
+function sr_custom_define() {
+    $custom_meta_fields = array();
+    $custom_meta_fields['sharedrole'] = 'Shared Role';
+    return $custom_meta_fields;
+}
+function sr_columns($defaults) {
+  $meta_number = 0;
+  $custom_meta_fields = sr_custom_define();
+  foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+    $meta_number++;
+    $defaults[('sr-usercolumn-' . $meta_number . '')] = __($meta_disp_name, 'user-column');
+  }
+  return $defaults;
+}
+
+function sr_custom_columns($value, $column_name, $id) {
+  $meta_number = 0;
+  $custom_meta_fields = sr_custom_define();
+  foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+    $meta_number++;
+    if( $column_name == ('sr-usercolumn-' . $meta_number . '') ) {
+      return get_the_author_meta($meta_field_name, $id );
+    }
+  }
+}
+
+function sr_show_extra_profile_fields($user) {
+  print('<h3>Extra profile information</h3>');
+
+  print('<table class="form-table">');
+
+  $meta_number = 0;
+  $custom_meta_fields = sr_custom_define();
+  foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+    $meta_number++;
+    print('<tr>');
+    print('<th><label for="' . $meta_field_name . '">' . $meta_disp_name . '</label></th>');
+    print('<td>');
+    print('<input type="text" name="' . $meta_field_name . '" id="' . $meta_field_name . '" value="' . esc_attr( get_the_author_meta($meta_field_name, $user->ID ) ) . '" class="regular-text" /><br />');
+    print('<span class="description"></span>');
+    print('</td>');
+    print('</tr>');
+  }
+  print('</table>');
+}
+
+function sr_save_extra_profile_fields($user_id) {
+
+  if (!current_user_can('edit_user', $user_id))
+    return false;
+
+  $meta_number = 0;
+  $custom_meta_fields = sr_custom_define();
+  foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+    $meta_number++;
+    update_usermeta( $user_id, $meta_field_name, $_POST[$meta_field_name] );
+  }
+}
+add_action('show_user_profile', 'sr_show_extra_profile_fields');
+add_action('edit_user_profile', 'sr_show_extra_profile_fields');
+add_action('personal_options_update', 'sr_save_extra_profile_fields');
+add_action('edit_user_profile_update', 'sr_save_extra_profile_fields');
+add_action('manage_users_custom_column', 'sr_custom_columns', 15, 3);
+add_filter('manage_users_columns', 'sr_columns', 15, 1);    
 ?>
