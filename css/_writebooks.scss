@@ -94,6 +94,10 @@
         display: inline;
     }
 
+    img[src^="/uploads"] {
+        outline: 2px solid red;
+    }
+
     .settings {
         margin-top: 1em;
         clear: both;
