@@ -9,14 +9,6 @@ Display the login form
 $view = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = wp_signon();
-    if (is_ajax()) {
-        $resp = array('r' => !is_wp_error($user));
-        $output = json_encode($resp);
-        header('Content-Type: application/json');
-        header('Content-Size: ' . strlen($output));
-        echo $output;
-        die;
-    }
     if ( is_wp_error($user) ) {
         $view['failed'] = 1;
     } else {
@@ -33,14 +25,39 @@ if ($out) {
 if (getParam('shared', 0, '/1/') == 1) {
     if (is_user_logged_in()) {
         $current_user = wp_get_current_user();
-        $resp = array('login' => $current_user->user_login,
-            'role' => get_the_author_meta('sharedrole', $current_user->ID));
+        $login = $current_user->user_login;
+        $role = get_the_author_meta('sharedrole', $current_user->ID);
+        $hash = hash('sha256', $login . $role . AUTH_KEY);
+        $resp = array('login' => $login,
+            'role' => $role,
+            'hash' => $hash
+        );
     } else {
         $resp = array('login' => '');
     }
     $output = json_encode($resp);
     header('Content-Type: application/json');
     header('Content-Size: ' . strlen($output));
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Credentials: true");
+    echo $output;
+    die;
+}
+if (getParam('shared', 0, '/2/') == 2) {
+    $login = getParam('login', '', '/[a-zA-Z0-9 ]+/');
+    $role = getParam('role', '', '/[a-z]+/');
+    $hash = getParam('hash', '', '/[0-9a-f]+/');
+    $check = hash('sha256', $login . $role . AUTH_KEY);
+    $resp = array('login' => $login,
+        'role' => $role,
+        'hash' => $hash,
+        'ok' => $check == $hash
+    );
+    $output = json_encode($resp);
+    header('Content-Type: application/json');
+    header('Content-Size: ' . strlen($output));
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Credentials: true");
     echo $output;
     die;
 }

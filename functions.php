@@ -944,4 +944,6 @@ add_action('personal_options_update', 'sr_save_extra_profile_fields');
 add_action('edit_user_profile_update', 'sr_save_extra_profile_fields');
 add_action('manage_users_custom_column', 'sr_custom_columns', 15, 3);
 add_filter('manage_users_columns', 'sr_columns', 15, 1);    
+
+remove_action('login_init', 'send_frame_options_header');
 ?>
