@@ -48,10 +48,12 @@ if (getParam('shared', 0, '/2/') == 2) {
     $role = getParam('role', '', '/[a-z]+/');
     $hash = getParam('hash', '', '/[0-9a-f]+/');
     $check = hash('sha256', $login . $role . AUTH_KEY);
+    $user = get_user_by('login', $login);
+    $current_role = $user && get_the_author_meta('sharedrole', $user->ID);
     $resp = array('login' => $login,
         'role' => $role,
         'hash' => $hash,
-        'ok' => $check == $hash
+        'ok' => $check == $hash && $role == $current_role
     );
     $output = json_encode($resp);
     header('Content-Type: application/json');
