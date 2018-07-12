@@ -54,4 +54,12 @@ $view = array(
 	'announcements' => $announcements
 );
 echo template_render('frontPage', $view);
+// signal shared reader that the user had logged in
+if (is_user_logged_in()) {
+?>
+<script>
+  if (window.parent) window.parent.postMessage('shared', '*');
+</script>
+<?php
+}
 thr_footer(); ?>
