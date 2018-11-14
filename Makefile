@@ -41,7 +41,7 @@ copyproduction:
 
 optimized: build
 	rm -rf ../Theme-build/*
-	nodejs ../r.js -o js/app.build.js
+	node ../r.js -o js/app.build.js
 	cp --parents -r *.php *.json EPub PowerPoint js/main-combined.js js/json2.min.js js/modernizr.custom.js js/require.min.js *.swf *.png images speech style.css ../Theme-build
 	mv ../Theme-build/js/main-combined.js ../Theme-build/js/main.js
 	make versioned
