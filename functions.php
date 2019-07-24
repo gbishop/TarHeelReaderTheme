@@ -931,4 +931,17 @@ add_action('manage_users_custom_column', 'sr_custom_columns', 15, 3);
 add_filter('manage_users_columns', 'sr_columns', 15, 1);    
 
 remove_action('login_init', 'send_frame_options_header');
+
+function shared_role() {
+    $current_user = wp_get_current_user();
+    $role = strtolower($current_user->roles[0]);
+    if ($role == 'administrator') {
+        $role = 'admin';
+    } elseif ($role == 'editor' || $role == 'author') {
+        $role = 'author';
+    } else {
+        $role = '';
+    }
+    return $role;
+}
 ?>
