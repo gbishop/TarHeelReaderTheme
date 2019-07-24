@@ -156,14 +156,14 @@ function convert_image_url($url) {
         $nurl = '/cache/images/' . substr($m[3], -2) . '/' . $m[3] . '_' . $m[4] . $size . '.jpg';
         $path = $root . $nurl;
         if (!file_exists($path)) {
-            $furl = preg_replace('/\\/photo([0-9])/', 'http://farm$1.static.flickr.com', $url);
+            $furl = preg_replace('/\\/photo([0-9])/', 'https://farm$1.static.flickr.com', $url);
             $r = copy($furl, $path);
             if (!$r) {
                 $log->logError('copy from Flickr failed', $furl . ' -> ' . $path);
             }
         }
 
-    } elseif(preg_match('/http:\\/\\/farm([0-9])\\.static\\.flickr\\.com\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
+    } elseif(preg_match('/https:\\/\\/farm([0-9])\\.static\\.flickr\\.com\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
         $size = $m[5];
         if (!$size) {
             $size = '';

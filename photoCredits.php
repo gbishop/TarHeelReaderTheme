@@ -35,7 +35,7 @@ if ($ID) {
                 $parts = explode('/', $photo['url']);
                 $photoID = explode('_', $parts[count($parts)-1]);
                 $photoID = $photoID[0];
-                $photo['infolink'] = "http://flickr.com/photo.gne?id=$photoID";
+                $photo['infolink'] = "https://flickr.com/photo.gne?id=$photoID";
             }
             setImageSizes($photo);
         }

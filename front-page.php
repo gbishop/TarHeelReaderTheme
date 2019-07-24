@@ -48,7 +48,7 @@ thr_header('home-page'); ?> <!-- front-page.php -->
 $view = array(
 	'wellicon' => '<img src="/theme/images/well.png" class="tinyicon" title="old well icon" alt=" "/>',
 	'gearicon' => '<img src="/theme/images/settings.png" class="tinyicon" title="gear icon" alt=" "/>',
-	'Flickr' => '<a href="http://flickr.com">Flickr</a>',
+	'Flickr' => '<a href="https://flickr.com">Flickr</a>',
 	'locales' => $Templates['locales'],
 	'content' => $content,
 	'announcements' => $announcements
