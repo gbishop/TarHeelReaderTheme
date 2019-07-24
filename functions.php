@@ -932,8 +932,7 @@ add_filter('manage_users_columns', 'sr_columns', 15, 1);
 
 remove_action('login_init', 'send_frame_options_header');
 
-function shared_role() {
-    $current_user = wp_get_current_user();
+function shared_role($current_user) {
     $role = strtolower($current_user->roles[0]);
     if ($role == 'administrator') {
         $role = 'admin';
