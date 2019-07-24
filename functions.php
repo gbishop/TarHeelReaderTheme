@@ -818,25 +818,10 @@ function my_register_form() {
     <?php
 }
 
-// Check for hotmail
-function isHotmailAddress($email) {
-    $domain = substr(strrchr($email, '@'), 1);
-
-    $mxs = array();
-    getmxrr($domain, $mxs);
-
-    $hotmailMxs = preg_grep('/(hotmail|outlook)\.com$/', $mxs);
-    return (count($hotmailMxs) > 0);
-}
-
 // Validate the access code
 add_filter( 'registration_errors', 'my_registration_errors', 10, 3 );
 function my_registration_errors( $errors, $sanitized_user_login, $user_email ) {
 
-    if (isHotmailAddress($user_email)) {
-        $errors->add( 'hotmail_error',
-                      '<strong>ERROR</strong>: Your email address will not work because Microsoft refuses to accept our messages; they hate us for some reason. Even if your address does not include the words microsoft or hotmail it is handled by Microsoft behind the scenes.');
-    }
     if (empty($_POST['access_code']) ||
         strtolower(trim( $_POST['access_code'] )) != ACCESS_CODE) {
         $errors->add( 'access_code_error',
