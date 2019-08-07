@@ -1,111 +1,181 @@
 <noscript>
-<p>_(You must have Javascript enabled in order to write a book.)</p>
+  <p>_(You must have Javascript enabled in order to write a book.)</p>
 </noscript>
-<p class="unsupported classic">_(Your web browser does not support writing books.)</p>
+<p class="unsupported classic">
+  _(Your web browser does not support writing books.)
+</p>
 {{#user}}
-   <div class="quickNavigation">
-        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Quick Navigation)">_(Links to the main sections of this page are listed below. You may choose to use these links to help you get to the different sections of this page.)</p>
-        <h2>_(Quick Navigation)</h2>
-        <ul>
-            <li class="draftBooksHeaderLink">_(Your Draft Books)</li>
-            <li class="publishedBooksHeaderLink">_(Your Published Books)</li>
-            <li class="collectionsHeaderLink">_(Your Collections)</li>
-        </ul>
-   </div>
-   <div class="container">
-        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Your Draft Books)">_(Your draft books are listed below. Click on a title to expose a menu that will allow you to edit or delete it.)</p>
-        <h2 class="draftBooksHeader">_(Your Draft Books)</h2>
-        {{#has_drafts}}
-        <ul class="controlList booksList draftBooks">
-            {{#drafts}}
-            <li data-id="{{ID}}" data-link="{{{link}}}">
-                <span>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</span>
-                <div>
-                    <p>{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}</p>
-                    <button data-action="read">_(Read|Button label)</button>
-                    <button data-action="edit">_(Edit|Button label)</button>
-                    <button data-action="delete">_(Delete|Button label)</button>
-                    <button data-action="cancel">_(Cancel|Button label)</button>
-                </div>
-            </li>
-           {{/drafts}}
-        </ul>
-        {{/has_drafts}}
-        {{^has_drafts}}
-        <p>_(If you had any books saved as drafts they would appear here.)</p>
-        {{/has_drafts}}
-   </div>
+<div class="quickNavigation">
+  <img
+    class="help"
+    src="/theme/images/help.png"
+    title="_(Click for help)"
+    alt="_(Click for help)"
+  />
+  <p class="help-text" title="_(Quick Navigation)">
+    _(Links to the main sections of this page are listed below. You may choose
+    to use these links to help you get to the different sections of this page.)
+  </p>
+  <h2>_(Quick Navigation)</h2>
+  <ul>
+    <li class="draftBooksHeaderLink">_(Your Draft Books)</li>
+    <li class="publishedBooksHeaderLink">_(Your Published Books)</li>
+    <li class="collectionsHeaderLink">_(Your Collections)</li>
+  </ul>
+</div>
+<div class="container">
+  <img
+    class="help"
+    src="/theme/images/help.png"
+    title="_(Click for help)"
+    alt="_(Click for help)"
+  />
+  <p class="help-text" title="_(Your Draft Books)">
+    _(Your draft books are listed below. Click on a title to expose a menu that
+    will allow you to edit or delete it.)
+  </p>
+  <h2 class="draftBooksHeader">_(Your Draft Books)</h2>
+  {{#has_drafts}}
+  <ul class="controlList booksList draftBooks">
+    {{#drafts}}
+    <li data-id="{{ID}}" data-link="{{{link}}}">
+      <span
+        >{{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}{{#author}}
+        <i>({{author}})</i>{{/author}}</span
+      >
+      <div>
+        <p>
+          {{#title}}{{title}}{{/title}}{{^title}}_(untitled){{/title}}{{#author}}
+          <i>({{author}})</i>{{/author}}
+        </p>
+        <button data-action="read">_(Read|Button label)</button>
+        <button data-action="edit">_(Edit|Button label)</button>
+        <button data-action="delete">_(Delete|Button label)</button>
+        <button data-action="cancel">_(Cancel|Button label)</button>
+      </div>
+    </li>
+    {{/drafts}}
+  </ul>
+  {{/has_drafts}} {{^has_drafts}}
+  <p>_(If you had any books saved as drafts they would appear here.)</p>
+  {{/has_drafts}}
+</div>
 
-    <div id="container">
-        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Your Published Books)">_(Your published books are listed below. Click on a title to expose a menu that will allow you to edit it. From the editor you may return a book draft status by clicking Save as Draft.)</p>
-        <h2 class="publishedBooksHeader">_(Your Published Books)</h2>
-        {{#has_published}}
-        <ul class="controlList booksList publishedBooks">
-            {{#published}}
-            <li data-id="{{ID}}" data-link="{{{link}}}">
-                <span>{{title}}</span>
-                <div>
-                    <p>{{title}}</p>
-                    <button data-action="read">_(Read|Button label)</button>
-                    <button data-action="edit">_(Edit|Button label)</button>
-                    <button data-action="cancel">_(Cancel|Button label)</button>
-                </div>
-            </li>
-            {{/published}}
-        </ul>
-        {{/has_published}}
-        {{^has_published}}
-        <p>_(If you had any published books they would be listed here.)</p>
-        {{/has_published}}
-    </div>
+<div id="container">
+  <img
+    class="help"
+    src="/theme/images/help.png"
+    title="_(Click for help)"
+    alt="_(Click for help)"
+  />
+  <p class="help-text" title="_(Your Published Books)">
+    _(Your published books are listed below. Click on a title to expose a menu
+    that will allow you to edit it. From the editor you may return a book draft
+    status by clicking Save as Draft.)
+  </p>
+  <h2 class="publishedBooksHeader">_(Your Published Books)</h2>
+  {{#has_published}}
+  <ul class="controlList booksList publishedBooks">
+    {{#published}}
+    <li data-id="{{ID}}" data-link="{{{link}}}">
+      <span>{{title}}</span>
+      <div>
+        <p>{{title}}</p>
+        <button data-action="read">_(Read|Button label)</button>
+        <button data-action="edit">_(Edit|Button label)</button>
+        <button data-action="cancel">_(Cancel|Button label)</button>
+      </div>
+    </li>
+    {{/published}}
+  </ul>
+  {{/has_published}} {{^has_published}}
+  <p>_(If you had any published books they would be listed here.)</p>
+  {{/has_published}}
+</div>
 
-    <div id="container">
-        <img class="help" src="/theme/images/help.png" title="_(Click for help)" alt="_(Click for help)"/>
-        <p class="help-text" title="_(Your Collections)">_(Your collections are listed below. Click on the Favorites button to create a new collection. Click on a collection to expose a menu that will allow you to modify it.)</p>
-        <h2 class="collectionsHeader">_(Your Collections)</h2>
-        <ul class="controlList collectionsList">
-            <li data-id="new" class="favoritesCollection">
-                <span>_(Favorites)</span>
-                <div>
-                    <p>_(Favorites: {{count}} books)</p>
-                    {{#count}}
-                    <input title="_(Title)" type="text" name="title" value="" placeholder="Enter title"/>
-                    <textarea title="_(Description)" name="description" placeholder="Enter description"></textarea>
-                    <button data-action="save" disabled class="validateTitle">_(Save as a new Collection|Button label)</button>
-                    {{/count}}
-                    {{^count}}
-                    <p>_(Add books to your Favorites and come back here to save as a Collection)</p>
-                    {{/count}}
-                    <button data-action="clear">_(Clear Favorites list|Button label)</button>
-                    <button data-action="cancel">_(Cancel|Button label)</button>
-                </div>
-            </li>
-            {{#collections}}
-            <li data-id="{{ID}}">
-                <span>{{title}}</span>
-                <div>
-                    <input title="_(Title)" type="text" name="title" value="{{title}}" />
-                    <textarea title="_(Description)" name="description">{{description}}</textarea>
-                    <p>_({{count}} books)</p>
-                    <button data-action="save" class="validateTitle">_(Update title and description|Button label)</button>
-                    <button data-action="add">_(Add to Favorites|Button label)</button>
-                    <button data-action="merge" class="requireFavs">_(Merge Favorites into here)</button>
-                    <button data-action="set" class="requireFavs">_(Replace with Favorites)</button>
-                    <button data-action="delete">_(Delete|Button label)</button>
-                    <button data-action="cancel">_(Cancel|Button label)</button>
-                </div>
-            </li>
-            {{/collections}}
-        </ul>
-    </div>
+<div id="container">
+  <img
+    class="help"
+    src="/theme/images/help.png"
+    title="_(Click for help)"
+    alt="_(Click for help)"
+  />
+  <p class="help-text" title="_(Your Collections)">
+    _(Your collections are listed below. Click on the Favorites button to create
+    a new collection. Click on a collection to expose a menu that will allow you
+    to modify it.)
+  </p>
+  <h2 class="collectionsHeader">_(Your Collections)</h2>
+  <ul class="controlList collectionsList">
+    <li data-id="new" class="favoritesCollection">
+      <span>_(Favorites)</span>
+      <div>
+        <p>_(Favorites: {{count}} books)</p>
+        {{#count}}
+        <input
+          title="_(Title)"
+          type="text"
+          name="title"
+          value=""
+          placeholder="Enter title"
+        />
+        <textarea
+          title="_(Description)"
+          name="description"
+          placeholder="Enter description"
+        ></textarea>
+        <button data-action="save" disabled class="validateTitle">
+          _(Save as a new Collection|Button label)
+        </button>
+        {{/count}} {{^count}}
+        <p>
+          _(Add books to your Favorites and come back here to save as a
+          Collection)
+        </p>
+        {{/count}}
+        <button data-action="clear">
+          _(Clear Favorites list|Button label)
+        </button>
+        <button data-action="cancel">_(Cancel|Button label)</button>
+      </div>
+    </li>
+    {{#collections}}
+    <li data-id="{{ID}}">
+      <span>{{title}}</span>
+      <div>
+        <input title="_(Title)" type="text" name="title" value="{{title}}" />
+        <textarea title="_(Description)" name="description">
+{{description}}</textarea
+        >
+        <p>_({{count}} books)</p>
+        <button data-action="save" class="validateTitle">
+          _(Update title and description|Button label)
+        </button>
+        <button data-action="add">_(Add to Favorites|Button label)</button>
+        <button data-action="merge" class="requireFavs">
+          _(Merge Favorites into here)
+        </button>
+        <button data-action="set" class="requireFavs">
+          _(Replace with Favorites)
+        </button>
+        <button data-action="delete">_(Delete|Button label)</button>
+        <button data-action="cancel">_(Cancel|Button label)</button>
+      </div>
+    </li>
+    {{/collections}}
+  </ul>
+</div>
 
-{{/user}}
-{{^user}}
-<p class="notLoggedIn">_(You must be logged in to see your draft and published books.) <a class="thr-blue-button" href="/login/?goto=your-books">_(Log In|link label)</a></p>
+{{/user}} {{^user}}
+<p class="notLoggedIn">
+  _(You must be logged in to see your draft and published books.)
+  <a class="thr-blue-button" href="/login/?goto=your-books"
+    >_(Log In|link label)</a
+  >
+</p>
 {{/user}}
 
 <h2>_(Where in the world are these books read?)</h2>
-<a class="thr-gray-button mapButton" href="/where-are-the-readers/">_(Check out our map of readers!)</a>
+<a class="thr-gray-button mapButton" href="/where-are-the-readers/"
+  >_(Check out our map of readers!)</a
+>

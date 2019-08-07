@@ -130,10 +130,12 @@ if($userid != 0) {
     $my_drafts = query_posts("cat=$BookCat&author=$userid&orderby=title&posts_per_page=-1&post_status=draft");
     $drafts_list = Array();
     foreach ($my_drafts as $post) {
+        $book = ParseBookPost($post);
         $drafts[] = Array(
             'title' => $post->post_title,
             'ID' => $post->ID,
-            'link' => get_permalink($post->ID)
+            'link' => get_permalink($post->ID),
+            'author' => $book['author']
         );
     }
     $view['drafts'] = $drafts;
