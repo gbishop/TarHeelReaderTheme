@@ -1,29 +1,61 @@
 [
-        { "label": "_(Arabic)",     "tag": "Arabic",     "value": "ar",  "speech": false },
-        { "label": "_(Basque)",     "tag": "Basque",     "value": "eu",  "speech": false },
-        { "label": "_(Catalan)",    "tag": "Catalan",    "value": "ca",  "speech": false },
-        { "label": "_(Chinese)",    "tag": "Chinese",    "value": "zh",  "speech": false },
-        { "label": "_(Cherokee)",   "tag": "Cherokee",   "value": "chr", "speech": false },
-        { "label": "_(Danish)",     "tag": "Danish",     "value": "da",  "speech": false },
-        { "label": "_(Dutch)",      "tag": "Dutch",      "value": "nl",  "speech": false },
-        { "label": "_(English)",    "tag": "English",    "value": "en",  "speech": true },
-        { "label": "_(Filipino)",   "tag": "Filipino",   "value": "fil", "speech": false },
-        { "label": "_(Finnish)",    "tag": "Finnish",    "value": "fi",  "speech": false },
-        { "label": "_(French)",     "tag": "French",     "value": "fr",  "speech": true },
-        { "label": "_(Galician)",   "tag": "Galician",   "value": "gl",  "speech": false },
-        { "label": "_(German)",     "tag": "German",     "value": "de",  "speech": true },
-        { "label": "_(Greek)",      "tag": "Greek",      "value": "el",  "speech": false },
-        { "label": "_(Hebrew)",     "tag": "Hebrew",     "value": "he",  "speech": false },
-        { "label": "_(Icelandic)",  "tag": "Icelandic",  "value": "is",  "speech": false },
-        { "label": "_(Indonesian)", "tag": "Indonesian", "value": "id",  "speech": true, "synth": "de" },
-        { "label": "_(Italian)",    "tag": "Italian",    "value": "it",  "speech": true },
-        { "label": "_(Japanese)",   "tag": "Japanese",   "value": "ja",  "speech": false },
-        { "label": "_(Latin)",      "tag": "Latin",      "value": "la",  "speech": false },
-        { "label": "_(Norwegian)",  "tag": "Norwegian",  "value": "no",  "speech": false },
-        { "label": "_(Polish)",     "tag": "Polish",     "value": "pl",  "speech": false },
-        { "label": "_(Portuguese)", "tag": "Portuguese", "value": "pt",  "speech": true },
-        { "label": "_(Sanskrit)",   "tag": "Sanskrit",   "value": "sa",  "speech": true },
-        { "label": "_(Spanish)",    "tag": "Spanish",    "value": "es",  "speech": true },
-        { "label": "_(Swedish)",    "tag": "Swedish",    "value": "sv",  "speech": true },
-        { "label": "_(Turkish)",    "tag": "Turkish",    "value": "tr",  "speech": false}
+  { "label": "_(Arabic)", "tag": "Arabic", "value": "ar", "speech": false },
+  { "label": "_(Basque)", "tag": "Basque", "value": "eu", "speech": false },
+  { "label": "_(Catalan)", "tag": "Catalan", "value": "ca", "speech": false },
+  { "label": "_(Chinese)", "tag": "Chinese", "value": "zh", "speech": false },
+  {
+    "label": "_(Cherokee)",
+    "tag": "Cherokee",
+    "value": "chr",
+    "speech": false
+  },
+  { "label": "_(Danish)", "tag": "Danish", "value": "da", "speech": false },
+  { "label": "_(Dutch)", "tag": "Dutch", "value": "nl", "speech": false },
+  { "label": "_(English)", "tag": "English", "value": "en", "speech": true },
+  {
+    "label": "_(Filipino)",
+    "tag": "Filipino",
+    "value": "fil",
+    "speech": false
+  },
+  { "label": "_(Finnish)", "tag": "Finnish", "value": "fi", "speech": false },
+  { "label": "_(French)", "tag": "French", "value": "fr", "speech": true },
+  { "label": "_(Galician)", "tag": "Galician", "value": "gl", "speech": false },
+  { "label": "_(German)", "tag": "German", "value": "de", "speech": true },
+  { "label": "_(Greek)", "tag": "Greek", "value": "el", "speech": false },
+  { "label": "_(Hebrew)", "tag": "Hebrew", "value": "he", "speech": false },
+  {
+    "label": "_(Icelandic)",
+    "tag": "Icelandic",
+    "value": "is",
+    "speech": false
+  },
+  {
+    "label": "_(Indonesian)",
+    "tag": "Indonesian",
+    "value": "id",
+    "speech": true,
+    "synth": "de"
+  },
+  { "label": "_(Italian)", "tag": "Italian", "value": "it", "speech": true },
+  { "label": "_(Japanese)", "tag": "Japanese", "value": "ja", "speech": false },
+  { "label": "_(Latin)", "tag": "Latin", "value": "la", "speech": false },
+  {
+    "label": "_(Norwegian)",
+    "tag": "Norwegian",
+    "value": "no",
+    "speech": false
+  },
+  { "label": "_(Polish)", "tag": "Polish", "value": "pl", "speech": false },
+  {
+    "label": "_(Portuguese)",
+    "tag": "Portuguese",
+    "value": "pt",
+    "speech": true
+  },
+  { "label": "_(Sanskrit)", "tag": "Sanskrit", "value": "sa", "speech": true },
+  { "label": "_(Spanish)", "tag": "Spanish", "value": "es", "speech": true },
+  { "label": "_(Swedish)", "tag": "Swedish", "value": "sv", "speech": true },
+  { "label": "_(Thai)", "tag": "Thai", "value": "th", "speech": false },
+  { "label": "_(Turkish)", "tag": "Turkish", "value": "tr", "speech": false }
 ]
