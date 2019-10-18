@@ -163,7 +163,7 @@ function convert_image_url($url) {
             }
         }
 
-    } elseif(preg_match('/https:\\/\\/farm([0-9])\\.static\\.flickr\\.com\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
+    } elseif(preg_match('/https?:\\/\\/farm([0-9])\\.static\\.flickr\\.com\\/([0-9a-f]+)\\/([0-9a-f]+)_([0-9a-f]+)(_[stmbo])?\\.jpg/', $url, $m)) {
         $size = $m[5];
         if (!$size) {
             $size = '';
@@ -171,7 +171,7 @@ function convert_image_url($url) {
         $nurl = '/cache/images/' . substr($m[3], -2) . '/' . $m[3] . '_' . $m[4] . $size . '.jpg';
         $path = $root . $nurl;
 
-    } elseif(preg_match('/http:.*\\/wp-content(\\/uploads\\/.*)(_[ts])?\\.jpg/', $url, $m)) {
+    } elseif(preg_match('/https?:.*\\/wp-content(\\/uploads\\/.*)(_[ts])?\\.jpg/', $url, $m)) {
         $nurl = $m[1] . $m[2] . '.jpg';
         $nurl = str_replace(' ', '_', $nurl);
         $path = $root . $nurl;
