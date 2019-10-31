@@ -1,0 +1,42 @@
+{
+  "name": "nreader",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/file-saver": "^1.3.0",
+    "@types/react-modal": "^3.1.2",
+    "director": "^1.2.8",
+    "file-saver": "^1.3.8",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
+    "mobx-react-devtools": "^5.0.1",
+    "mobx-utils": "^5.0.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-key-handler": "^1.0.1",
+    "react-modal": "^3.4.5",
+    "react-scripts-ts": "2.16.0",
+    "runtypes": "^2.0.6"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.1",
+    "@types/node": "^10.3.4",
+    "@types/react": "^16.4.1",
+    "@types/react-dom": "^16.0.6",
+    "typescript": "^3.0.1"
+  },
+  "proxy": {
+    "/api/db": {
+      "target": "http://localhost:5500",
+      "pathRewrite": {
+        "^/api/db": "/"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.editor img {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.editor figcaption {
+  max-width: 200px;
+}
+
+.editor tr {
+}
+
+.editor td,th {
+  border: 1px solid black;
+  text-align: center;
+}
+
+table.editor {
+  border-collapse: collapse;
+}

@@ -1,0 +1,55 @@
+# config for hostname dev.tarheelreader.org
+
+server {
+    listen 80;
+    server_name shared2.tarheelreader.org;
+    return 301 https://shared2.tarheelreader.org/$request_uri;
+}
+
+server {
+    listen      443 ssl;
+    root /var/www/shared2.tarheelreader;
+    index index.html;
+
+    server_name  shared2.tarheelreader.org;
+    # remove the server version
+    server_tokens off;
+
+    ssl_certificate ssl_cert/star.tarheelreader_org_chained.cer;
+    ssl_certificate_key ssl_cert/star.tarheelreader.key;
+    ssl_session_cache shared:SSL:1m;
+    ssl_session_timeout  5m;
+    ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+
+    # I got this list from
+    # https://www.digicert.com/ssl-support/ssl-enabling-perfect-forward-secrecy.htm
+    # as suggested by John Sopko
+    ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS +RC4 RC4";
+    ssl_prefer_server_ciphers   on;
+
+    # configure gzip
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_http_version 1.1;
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+    client_max_body_size 10m;
+
+    location /api/activate {
+        root /var/www;
+        try_files $uri @thsruwsgi;
+    }
+    location @thsruwsgi {
+        uwsgi_pass unix:/run/uwsgi/app/thsr-activate/socket;
+        include uwsgi_params;
+    }
+
+    location / {
+        try_files $uri /index.html;
+        # inhibit caching during dev
+        expires 0;
+    }
+}
+

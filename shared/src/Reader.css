@@ -1,0 +1,155 @@
+.page-number {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  font-size: 1em;
+  margin: 0;
+}
+
+.book-page {
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  background-color: #fff;
+}
+
+.caption-box {
+  width: 36em;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.caption {
+  font-size: 1.8em;
+  line-height: 1.2em;
+  word-break: break-word;
+  margin: 0;
+}
+
+.comment {
+  height: 20px;
+  font-size: 16px;
+  color: #333;
+  padding: 5px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.response-container {
+  position: absolute;
+}
+
+.response-container button {
+  display: inline-block;
+  background: solid;
+  background-color: #ddd;
+  text-align: center;
+  padding: 0;
+}
+
+.response-container button.selected {
+  background-color: #99badd;
+}
+
+.response-container button figure {
+  margin: 0;
+  padding: 0;
+}
+
+.response-container button figure figcaption {
+  margin: 0;
+  padding: 0;
+}
+
+.next-link,.back-link {
+  position: absolute;
+  bottom: 0.5em;
+  width: 6em;
+  height: 4em;
+  border-radius: 0.5em;
+  border: 1px solid black;
+}
+.next-link img, .back-link img {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0.5em auto 0.25em auto;
+}
+.next-link {
+  right: 0.5em;
+}
+.back-link {
+  left: 0.5em;
+}
+
+.controls label {
+  display: block;
+  padding: 0.5em;
+}
+
+.controls #responseWords {
+  max-width: 24em;
+}
+
+.controls #responseWords label {
+  display: inline-block;
+  width: 6em;
+  padding: 0.0em;
+}
+
+fieldset label {
+  display: inline-block !important;
+  padding: 0.1em !important;
+}
+
+.book-page .choices button {
+  font-size: 1.5em;
+  width: 12em;
+  padding: 2em;
+  border-radius: 0.5em;
+  display: block;
+  margin: 10px auto;
+  background: white;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reading-container {
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+}
+
+[role="tablist"] {
+  list-style-type: none;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+}
+[role="tablist"] li {
+  display: inline;
+}
+[role="tab"] {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  margin: 0 0.25em -1px 0.25em;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 3px 3px 0 0;
+  color: #000;
+  background-color: #ddd;
+}
+[role="tab"][aria-selected="true"] {
+  border-bottom-color: #fff;
+  box-shadow: 3px 0px lightgray;
+  background-color: #fff;
+}
+[role="tabpanel"] {
+  padding: 0 0.5em;
+}
+[role="tabpanel"][aria-hidden="true"] {
+  display: none;
+}
