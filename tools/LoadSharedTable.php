@@ -5,7 +5,7 @@ require_once('../../../../wp-load.php');
 
 ini_set('memory_limit','512M');
 
-$shared = json_decode(file_get_contents("../shared/public/api/db/shared.json"), true);
+$shared = json_decode(file_get_contents("../shared/api/db/shared.json"), true);
 
 $wpdb->show_errors();
 
@@ -16,12 +16,13 @@ echo "$sql\n";
 $r = $wpdb->query($sql);
 echo 'result = ' . $r . "\n";
 $sql = "CREATE TABLE {$table_name} (
-          ID bigint NOT NULL,
+          sharedID bigint auto_increment primary key,
+          bookID bigint NOT NULL,
           status text,
           level text,
           owner bigint,
           comments json,
-          INDEX(ID)
+          INDEX(bookID)
          ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 echo "$sql\n";
 $r = $wpdb->query($sql);
@@ -48,7 +49,7 @@ foreach ($shared as $book) {
     $comments = json_encode($book['comments']);
 
     $row = array( );
-    $row['ID'] = $bookID;
+    $row['bookID'] = $bookID;
     $row['owner'] = $userID;
     $row['status'] = $book['status'];
     $row['level'] = $book['level'];

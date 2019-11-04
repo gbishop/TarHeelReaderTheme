@@ -40,13 +40,17 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     $ID = $book['ID'];
-    $q = "select * from wpreader_shared where ID = $ID and status = 'published'";
+    $q = "select * from wpreader_shared where bookID = $ID and status = 'published'";
     $log->logError($q);
     $rows = $wpdb->get_results($q);
     $comments = [];
+    $owners = [];
+    $sharedIDs = [];
     foreach($rows as $row) {
         foreach(json_decode($row->comments) as $comment) {
             $comments[] = $comment;
+            $owners[] = $row->owner;
+            $sharedIDs[] = $row->sharedID;
         }
     }
     if (count($comments) == 0) {
@@ -56,6 +60,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $book['pages'][0]['text'] = $book['title'];
     $result = array(
         'comments' => $comments,
+        'owners' => $owners,
+        'sharedIDs' => $sharedIDs,
         'slug' => $book['slug'],
         'pages' => $book['pages'],
         'title' => $book['title'],
