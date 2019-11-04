@@ -101,8 +101,7 @@ class Store {
     });
   }
   // update the state typically from a URL
-  @action.bound setPath(studentid: string, bookid: string, page: number) {
-    this.studentid = studentid;
+  @action.bound setPath(bookid: string, page: number) {
     this.bookid = bookid;
     this.pageno = bookid ? page : 1;
     this.editing = false;
@@ -118,13 +117,7 @@ class Store {
       const p = "/edit" + (this.editSlug ? "/" + this.editSlug : "");
       return p;
     }
-    if (!this.studentid) {
-      return "/";
-    }
-    return (
-      `/read/${encodeURIComponent(this.studentid)}/${this.bookid}` +
-      (this.pageno > 1 ? `/${this.pageno}` : "")
-    );
+    return `/read/${this.bookid}` + (this.pageno > 1 ? `/${this.pageno}` : "");
   }
   // set the page number
   @action.bound public setPage(i: number) {

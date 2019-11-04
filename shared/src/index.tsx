@@ -25,15 +25,14 @@ function startRouter(store: Store) {
   // update state on url change
   const router = new Router();
   // I bet there is a cooler nested way to do this.
-  router.on(baseUrl + '/read/([a-zA-Z0-9%]+)', studentid => store.setPath(decodeURIComponent(studentid), '', 1));
-  router.on(baseUrl + '/read/([a-zA-Z0-9%]+)/([-a-z0-9]*)',
-    (studentid, bookid) => store.setPath(decodeURIComponent(studentid), bookid, 1));
-  router.on(baseUrl + '/read/([a-zA-Z0-9%]+)/([-a-z0-9]+)/(\\d+)',
-    (studentid, bookid, pageno) => store.setPath(decodeURIComponent(studentid), bookid, +pageno));
+  router.on(baseUrl + '/read/([-a-z0-9]*)',
+    (bookid) => store.setPath(bookid, 1));
+  router.on(baseUrl + '/read/([-a-z0-9]+)/(\\d+)',
+    (bookid, pageno) => store.setPath(bookid, +pageno));
   router.on(baseUrl + '/edit', () => store.setEditPath(''));
   router.on(baseUrl + '/edit/([-a-zA-Z0-9%.]+)', slug => store.setEditPath(slug));
   router.configure({
-    notfound: () => store.setPath('', '', 1),
+    notfound: () => store.setPath('', 1),
     html5history: true
   });
   router.init();

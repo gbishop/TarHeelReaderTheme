@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     $manifest = 'manifest="/theme/manifest.appcache"';
-    //$manifest = '';
+    $manifest = '';
     $classic = "";
     if (THR('classic')) {
         $classic = " classic";

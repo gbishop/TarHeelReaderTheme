@@ -1,50 +1,56 @@
-{   "action": "/find/",
-    "method": "get",
-    "controls": [
-        {   "label": "_(Search for|label for search box)",
-            "name" : "search",
-            "input": true,
-            "type": "search",
-            "description": "_(Enter text to search|placeholder text for search box)"
+{
+  "action": "/find/",
+  "method": "get",
+  "controls": [
+    {
+      "label": "_(Search for|label for search box)",
+      "name": "search",
+      "input": true,
+      "type": "search",
+      "description": "_(Enter text to search|placeholder text for search box)"
+    },
+    {
+      "label": "_(Topics|pulldown label)",
+      "name": "category",
+      "select": true,
+      "options": [{ "label": "_(All Topics)", "value": "" }]
+    },
+    {
+      "label": "_(Review status|pulldown label)",
+      "name": "reviewed",
+      "select": true,
+      "options": [
+        { "label": "_(Reviewed only)", "value": "R" },
+        { "label": "_(Include unreviewed)", "value": "" },
+        { "label": "_(Shared reading)", "value": "S" }
+      ]
+    },
+    {
+      "label": "_(Audience|pulldown label for audience ratings)",
+      "name": "audience",
+      "select": true,
+      "options": [
+        {
+          "label": "_(Rated E/Everybody|books appropriate for everyone)",
+          "value": "E"
         },
-        {   "label": "_(Topics|pulldown label)",
-            "name": "category",
-            "select": true,
-            "options": [
-                { "label": "_(All Topics)", "value": "" }
-            ]
+        {
+          "label": "_(Rated C/Caution|books that may not be appropriate for all readers)",
+          "value": "C"
         },
-        {   "label": "_(Review status|pulldown label)",
-            "name": "reviewed",
-            "select": true,
-            "options": [
-                { "label": "_(Reviewed only)", "value": "R" },
-                { "label": "_(Include unreviewed)", "value": "" }
-            ]
-        },
-        {   "label": "_(Audience|pulldown label for audience ratings)",
-            "name": "audience",
-            "select": true,
-            "options": [
-                { "label": "_(Rated E/Everybody|books appropriate for everyone)", "value": "E" },
-                { "label": "_(Rated C/Caution|books that may not be appropriate for all readers)", "value": "C" },
-                { "label": "_(Any rating|selection to ignore the audience rating)", "value": "" }
-            ]
-        },
-        {   "label": "_(Language)",
-            "name": "language",
-            "select": true,
-            "options": [
-            ]
-        },
-        {   "name": "page",
-            "input": true,
-            "type": "hidden",
-            "value": 1
-        },
-        {   "input": true,
-            "type": "submit",
-            "value": "_(Search|button label)"
+        {
+          "label": "_(Any rating|selection to ignore the audience rating)",
+          "value": ""
         }
-    ]
+      ]
+    },
+    {
+      "label": "_(Language)",
+      "name": "language",
+      "select": true,
+      "options": []
+    },
+    { "name": "page", "input": true, "type": "hidden", "value": 1 },
+    { "input": true, "type": "submit", "value": "_(Search|button label)" }
+  ]
 }

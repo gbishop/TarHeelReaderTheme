@@ -11,12 +11,16 @@
     <ul class="thr-book-list{{#reviewer}} reviewer{{/reviewer}}">
         {{#books}}
         <li class="selectable thr-colors" data-preview="{{preview.url}}" data-id="{{ID}}" lang="{{language}}" data-bust="{{bust}}">
-            <a href="{{link}}" data-type="book">
+            <a href="{{link}}" data-type="book" class="no-ajaxy">
                 <h2>{{title}}</h2>
                 <p class="thr-author">{{author}}</p>
                 {{#rating}}
                 <img src="{{icon}}" class="thr-stars" alt="{{text}}" title="{{text}}" />
                 {{/rating}}
+                {{#comments}}
+                <img src="/theme/images/comments_t.png" class="thr-comments"
+                     alt="_(Shared reading comments.|icon explanatory text)" title="_(Shared reading comments.|icon explanatory text)" />
+                {{/comments}}
                 {{#reviewed}}
                 <img src="/theme/images/reviewed_t.png" class="thr-reviewed"
                      alt="_(Reviewed for educational quality.|icon explanatory text)" title="_(Reviewed for educational quality.|icon explanatory text)" />

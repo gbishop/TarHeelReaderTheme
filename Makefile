@@ -31,7 +31,8 @@ translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 copygb:
-	rsync -az --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
+	rsync -az --exclude shared --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
+	rsync -az shared/build/ gbserver3:/var/www/gbserver3/wp-content/themes/thr3/shared
 
 copytest:
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/test.tarheelreader/wp-content/themes/thr3

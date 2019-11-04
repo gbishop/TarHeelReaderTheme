@@ -1,105 +1,156 @@
-import * as React from 'react';
-import { observer } from 'mobx-react';
-import KeyHandler from 'react-key-handler';
-import * as ReactModal from 'react-modal';
-import NextArrow from './NextArrow.png';
-import BackArrow from './BackArrow.png';
-import NextResponsePage from './NextResponsePage.png';
-import BackResponsePage from './BackResponsePage.png';
-import Store, { allResponses } from './Store';
-import { SharedBook } from './db';
-import { WaitToRender } from './helpers';
+import * as React from "react";
+import { observer } from "mobx-react";
+import KeyHandler from "react-key-handler";
+import * as ReactModal from "react-modal";
+import NextArrow from "./NextArrow.png";
+import BackArrow from "./BackArrow.png";
+import NextResponsePage from "./NextResponsePage.png";
+import BackResponsePage from "./BackResponsePage.png";
+import Store, { allResponses } from "./Store";
+import { SharedBook } from "./db";
+import { WaitToRender } from "./helpers";
 
-import './Reader.css';
+import "./Reader.css";
+
+function THR(name: string) {
+  const v = document.cookie.match("(^|;) ?thr=([^;]*)(;|$)");
+  const j = v ? v[2] : null;
+  if (j) {
+    const d = JSON.parse(decodeURIComponent(j));
+    return d[name];
+  }
+}
 
 @observer
-class Reader extends React.Component<{store: Store}, {}> {
+class Reader extends React.Component<{ store: Store }, {}> {
   public render() {
     const { store } = this.props;
-    return WaitToRender(store.bookP, (book) => {
-        const commentHeight = 30;
-        const containerHeight = store.screen.height - commentHeight;
-        const sc = store.screen;
-        const rs = Math.hypot(sc.width, sc.height) * (0.04 + 0.1 * store.responseSize / 100);
-        const cbox: Box = {
-          width: sc.width,
-          height: containerHeight,
-          left: 0,
+    return WaitToRender(store.bookP, book => {
+      const commentHeight = 30;
+      const containerHeight = store.screen.height - commentHeight;
+      const sc = store.screen;
+      const rs =
+        Math.hypot(sc.width, sc.height) *
+        (0.04 + (0.1 * store.responseSize) / 100);
+      const cbox: Box = {
+        width: sc.width,
+        height: containerHeight,
+        left: 0,
+        top: 0,
+        align: "v"
+      };
+
+      const rboxes: Box[] = []; // boxes for responses
+      if (store.layout === "left" && rboxes.length < store.nresponses) {
+        cbox.width -= rs;
+        cbox.left = rs;
+        rboxes.push({
           top: 0,
-          align: 'v'
-        };
+          left: 0,
+          height: cbox.height,
+          width: rs,
+          align: "v"
+        });
+      }
+      if (store.layout === "right" && rboxes.length < store.nresponses) {
+        cbox.width -= rs;
+        rboxes.push({
+          top: 0,
+          left: sc.width - rs,
+          height: cbox.height,
+          width: rs,
+          align: "v"
+        });
+      }
+      if (store.layout === "top" && rboxes.length < store.nresponses) {
+        cbox.height -= rs;
+        cbox.top = rs;
+        rboxes.push({
+          top: 0,
+          left: cbox.left,
+          height: rs,
+          width: cbox.width,
+          align: "h"
+        });
+      }
+      if (store.layout === "bottom" && rboxes.length < store.nresponses) {
+        cbox.height -= rs;
+        rboxes.push({
+          top: containerHeight - rs,
+          left: cbox.left,
+          height: rs,
+          width: cbox.width,
+          align: "h"
+        });
+      }
 
-        const rboxes: Box[] = []; // boxes for responses
-        if (store.layout === 'left' && rboxes.length < store.nresponses) {
-          cbox.width -= rs;
-          cbox.left = rs;
-          rboxes.push({ top: 0, left: 0, height: cbox.height, width: rs, align: 'v' });
-        }
-        if (store.layout === 'right' && rboxes.length < store.nresponses) {
-          cbox.width -= rs;
-          rboxes.push({ top: 0, left: sc.width - rs, height: cbox.height, width: rs, align: 'v'});
-        }
-        if (store.layout === 'top' && rboxes.length < store.nresponses) {
-          cbox.height -= rs;
-          cbox.top = rs;
-          rboxes.push({ top: 0, left: cbox.left, height: rs, width: cbox.width, align: 'h'});
-        }
-        if (store.layout === 'bottom' && rboxes.length < store.nresponses) {
-          cbox.height -= rs;
-          rboxes.push({ top: containerHeight - rs, left: cbox.left, height: rs, width: cbox.width,
-                        align: 'h'});
-        }
+      const containerStyle = {
+        width: store.screen.width,
+        height: store.screen.height - 30,
+        top: commentHeight
+      };
 
-        const containerStyle = {
-          width: store.screen.width,
-          height: store.screen.height - 30,
-          top: commentHeight
-        };
-
-        function saySelectedWord() {
-          if (store.responseIndex >= 0 && store.responseIndex < store.nresponses) {
-            sayWord(store.word);
-          }
+      function saySelectedWord() {
+        if (
+          store.responseIndex >= 0 &&
+          store.responseIndex < store.nresponses
+        ) {
+          sayWord(store.word);
         }
+      }
 
-        function sayWord(word: string) {
-          // response event
-          const msg = new SpeechSynthesisUtterance(word);
-          msg.lang = 'en-US';
-          speechSynthesis.speak(msg);
-          store.log(word);
-        }
+      function sayWord(word: string) {
+        // response event
+        const msg = new SpeechSynthesisUtterance(word);
+        msg.lang = "en-US";
+        speechSynthesis.speak(msg);
+        store.log(word);
+      }
 
-        const npages = book.pages.length;
-        const pageno = store.pageno;
-        const comment = store.pageno <= npages ?
-          book.comments[store.reading-1][pageno-1] : '';
+      const npages = book.pages.length;
+      const pageno = store.pageno;
+      const comment =
+        store.pageno <= npages
+          ? book.comments[store.reading - 1][pageno - 1]
+          : "";
 
-        return (
-          <div>
-            <button
-              onClick={store.toggleControlsVisible}
-              style={{border:'none', backgroundColor: 'inherit'}}
-            >&#x2699;</button>
-            <input 
-              type="number" 
-              value={store.reading} 
-              min={1} 
-              max={store.nreadings} 
-              onChange={(e) => store.setReading(+e.target.value)}
-              style={{width: "2em"}}
+      return (
+        <div>
+          <button
+            onClick={store.toggleControlsVisible}
+            style={{ border: "none", backgroundColor: "inherit" }}
+          >
+            &#x2699;
+          </button>
+          <input
+            type="number"
+            value={store.reading}
+            min={1}
+            max={store.nreadings}
+            onChange={e => store.setReading(+e.target.value)}
+            style={{ width: "2em" }}
+          />
+          <div className="comment">{comment}</div>
+          <div className="reading-container" style={containerStyle}>
+            <ReaderContent
+              box={cbox}
+              book={book}
+              pageno={store.pageno}
+              store={store}
             />
-            <div className="comment" >{comment}</div>
-            <div className="reading-container" style={containerStyle}>
-              <ReaderContent box={cbox} book={book} pageno={store.pageno} store={store}/>
-              <Responses boxes={rboxes} responses={store.responses} store={store} doResponse={sayWord} />
-              <Controls store={store} doResponse={saySelectedWord}/>
-            </div>
+            <Responses
+              boxes={rboxes}
+              responses={store.responses}
+              store={store}
+              doResponse={sayWord}
+            />
+            <Controls store={store} doResponse={saySelectedWord} />
           </div>
-        );
-      });
-    }
+        </div>
+      );
+    });
   }
+}
 
 // Reader component
 interface Box {
@@ -120,29 +171,40 @@ interface ReaderContentProps {
 @observer
 class ReaderContent extends React.Component<ReaderContentProps, {}> {
   public render() {
-    const {book, box, pageno, store} = this.props;
-    const {width, height, top, left} = box; 
+    const { book, box, pageno, store } = this.props;
+    const { width, height, top, left } = box;
     const fontSize = width / height < 4 / 3 ? width / 36 : height / 36;
     const pageStyle = {
-      width, height, top, left, fontSize
+      width,
+      height,
+      top,
+      left,
+      fontSize
     };
     if (pageno > book.pages.length) {
-
       return (
         <div className="book-page" style={pageStyle}>
           <h1 className="title">What would you like to do now?</h1>
           <div className="choices">
-            <button 
-              onClick={() => { store.setPage(1); }}
+            <button
+              onClick={() => {
+                store.setPage(1);
+              }}
             >
               Read this book again
             </button>
-            <button 
-              onClick={() => { store.setBookid(''); }}
+            <button
+              onClick={() => {
+                window.location.href = THR("findAnotherLink");
+              }}
             >
               Read another book
             </button>
-            <button onClick={() => { store.setBookid(''); }}> 
+            <button
+              onClick={() => {
+                window.location.href = "https://tarheelreader.org/find";
+              }}
+            >
               Go to Tar Heel Reader
             </button>
           </div>
@@ -164,7 +226,8 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
     } else {
       picStyle = {
         width: maxPicWidth,
-        marginTop: pageno === 1 ? 0 : (maxPicHeight - horizontalScale * page.height)
+        marginTop:
+          pageno === 1 ? 0 : maxPicHeight - horizontalScale * page.height
       };
     }
 
@@ -174,18 +237,20 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
         fontSize: 2 * fontSize,
         padding: 0,
         margin: 0,
-        display: 'block'
+        display: "block"
       };
       return (
         <div className="book-page" style={pageStyle}>
-          <h1 className="title" style={titleStyle}>{book.title}</h1>
-          <img 
-            src={'https://tarheelreader.org' + book.pages[0].url} 
-            className="pic" 
+          <h1 className="title" style={titleStyle}>
+            {book.title}
+          </h1>
+          <img
+            src={"https://tarheelreader.org" + book.pages[0].url}
+            className="pic"
             style={picStyle}
             alt=""
           />
-          <PageNavButtons store={store}/>
+          <PageNavButtons store={store} />
         </div>
       );
     } else {
@@ -193,7 +258,7 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
         <div className="book-page" style={pageStyle}>
           <p className="page-number">{pageno}</p>
           <img
-            src={'https://tarheelreader.org' + page.url}
+            src={"https://tarheelreader.org" + page.url}
             className="pic"
             style={picStyle}
             alt=""
@@ -201,12 +266,12 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
           <div className="caption-box">
             <p className="caption">{page.text}</p>
           </div>
-          <PageNavButtons store={store}/>
+          <PageNavButtons store={store} />
         </div>
       );
     }
-  }}
-
+  }
+}
 
 interface PageNavButtonsProps {
   store: Store;
@@ -219,16 +284,24 @@ class PageNavButtons extends React.Component<PageNavButtonsProps, {}> {
     if (store.pageTurnVisible) {
       return (
         <div>
-          <button className="next-link" onClick={()=>store.setPage(store.pageno+1)}>
-            <img src={NextArrow} alt="next"/>Next
+          <button
+            className="next-link"
+            onClick={() => store.setPage(store.pageno + 1)}
+          >
+            <img src={NextArrow} alt="next" />
+            Next
           </button>
-          <button className="back-link" onClick={()=>store.setPage(store.pageno-1)}>
-            <img src={BackArrow} alt="back"/>Back
+          <button
+            className="back-link"
+            onClick={() => store.setPage(store.pageno - 1)}
+          >
+            <img src={BackArrow} alt="back" />
+            Back
           </button>
         </div>
       );
     } else {
-      // This strange return value is keeping typescript happy 
+      // This strange return value is keeping typescript happy
       // https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#non-null-assertion-operator
       // We're asking it to ignore the possibility of returning null
       return null!;
@@ -246,22 +319,29 @@ interface ResponsesProps {
 @observer
 class Responses extends React.Component<ResponsesProps, {}> {
   public render() {
-    const {store, boxes, responses, doResponse } = this.props;
+    const { store, boxes, responses, doResponse } = this.props;
     let words = responses;
     let index = 0;
     const responseGroups = boxes.map((box, i) => {
       const nchunk = Math.max(1, Math.floor(words.length / (boxes.length - i)));
       const chunk = words.slice(0, nchunk);
       words = words.slice(nchunk);
-      const { pax, sax } = {'v': { pax: 'height', sax: 'width' },
-                            'h': { pax: 'width', sax: 'height' }}[box.align];
+      const { pax, sax } = {
+        v: { pax: "height", sax: "width" },
+        h: { pax: "width", sax: "height" }
+      }[box.align];
       const bstyle = {};
       bstyle[pax] = box[pax] / (nchunk + 1);
       bstyle[sax] = box[sax];
       const nbstyle = {};
       nbstyle[pax] = bstyle[pax] / 2;
       nbstyle[sax] = bstyle[sax];
-      const dstyle = { top: box.top, left: box.left, width: box.width, height: box.height };
+      const dstyle = {
+        top: box.top,
+        left: box.left,
+        width: box.width,
+        height: box.height
+      };
       const responseGroup = chunk.map((w, j) => (
         <ResponseButton
           key={w}
@@ -274,18 +354,12 @@ class Responses extends React.Component<ResponsesProps, {}> {
       ));
       return (
         <div key={i} style={dstyle} className="response-container">
-          <button
-            style={nbstyle}
-            onClick={() => store.stepResponsePage(-1)}
-          >
-            <img src={BackResponsePage} style={{width: '50%'}}/>
+          <button style={nbstyle} onClick={() => store.stepResponsePage(-1)}>
+            <img src={BackResponsePage} style={{ width: "50%" }} />
           </button>
           {responseGroup}
-          <button
-            style={nbstyle}
-            onClick={() => store.stepResponsePage(1)}
-          >
-            <img src={NextResponsePage} style={{width: '50%'}}/>
+          <button style={nbstyle} onClick={() => store.stepResponsePage(1)}>
+            <img src={NextResponsePage} style={{ width: "50%" }} />
           </button>
         </div>
       );
@@ -319,13 +393,13 @@ class ResponseButton extends React.Component<ResponseButtonProps, {}> {
     const isFocused = store.responseIndex === index;
     return (
       <button
-        className={`${isFocused ? 'selected' : ''}`}
+        className={`${isFocused ? "selected" : ""}`}
         onClick={() => doResponse(word)}
         style={style}
       >
         <figure>
           <img
-            src={process.env.PUBLIC_URL + '/symbols/' + word + '.png'}
+            src={process.env.PUBLIC_URL + "/symbols/" + word + ".png"}
             alt={word}
             style={iStyle}
           />
@@ -346,42 +420,36 @@ class Controls extends React.Component<ControlsProps, {}> {
   public render() {
     const { store, doResponse } = this.props;
     const customStyles = {
-      content : {
-        top                   : '50%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
+      content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)"
       },
       overlay: {
-        backgroundColor   : 'rgba(255, 255, 255, 0.0)'
+        backgroundColor: "rgba(255, 255, 255, 0.0)"
       }
     };
 
     return (
       <div>
         <NRKeyHandler
-          keyValue={'ArrowRight'}
-          onKeyHandle={()=>store.setPage(store.pageno+1)}
+          keyValue={"ArrowRight"}
+          onKeyHandle={() => store.setPage(store.pageno + 1)}
         />
         <NRKeyHandler
-          keyValue={'ArrowLeft'}
-          onKeyHandle={()=>store.setPage(store.pageno-1)}
+          keyValue={"ArrowLeft"}
+          onKeyHandle={() => store.setPage(store.pageno - 1)}
         />
-        <NRKeyHandler
-          keyValue={' '}
-          onKeyHandle={store.nextResponseIndex}
-        />
-        <NRKeyHandler
-          keyValue={'Enter'}
-          onKeyHandle={doResponse}
-        />
+        <NRKeyHandler keyValue={" "} onKeyHandle={store.nextResponseIndex} />
+        <NRKeyHandler keyValue={"Enter"} onKeyHandle={doResponse} />
         <NRKeyHandler
           keyValue="Escape"
           onKeyHandle={store.toggleControlsVisible}
         />
-        <ReactModal 
+        <ReactModal
           isOpen={store.controlsVisible}
           contentLabel="Reading controls"
           style={customStyles}
@@ -389,7 +457,8 @@ class Controls extends React.Component<ControlsProps, {}> {
         >
           <div className="controls">
             <h1>Reading controls</h1>
-            <label>Reading:&nbsp; 
+            <label>
+              Reading:&nbsp;
               <input
                 type="number"
                 value={store.reading}
@@ -398,10 +467,12 @@ class Controls extends React.Component<ControlsProps, {}> {
                 onChange={e => store.setReading(+e.target.value)}
               />
             </label>
-            <label>Side:&nbsp;
+            <label>
+              Side:&nbsp;
               <Layout store={store} />
             </label>
-            <label>Word Size:&nbsp;
+            <label>
+              Word Size:&nbsp;
               <input
                 type="range"
                 min="0"
@@ -410,16 +481,21 @@ class Controls extends React.Component<ControlsProps, {}> {
                 onChange={e => store.setResponseSize(+e.target.value)}
               />
             </label>
-            <label>Words per page:&nbsp;
+            <label>
+              Words per page:&nbsp;
               <select
                 value={store.responsesPerPage}
                 onChange={e => store.setResponsesPerPage(+e.target.value)}
               >
-                {[4,6,9,12,18].map(n =>
-                <option value={n} key={n}>{n}</option>)}
+                {[4, 6, 9, 12, 18].map(n => (
+                  <option value={n} key={n}>
+                    {n}
+                  </option>
+                ))}
               </select>
             </label>
-            <label>Page Navigation:&nbsp;
+            <label>
+              Page Navigation:&nbsp;
               <input
                 type="checkbox"
                 checked={store.pageTurnVisible}
@@ -428,22 +504,25 @@ class Controls extends React.Component<ControlsProps, {}> {
             </label>
             <h2>Words</h2>
             <div id="responseWords">
-              { allResponses.map(w => (
+              {allResponses.map(w => (
                 <label key={w}>
                   <input
                     type="checkbox"
                     name={w}
                     checked={!store.responsesExcluded.get(w)}
-                    onChange={(event) => store.setExcluded(event.target.name, !event.target.checked)}
+                    onChange={event =>
+                      store.setExcluded(
+                        event.target.name,
+                        !event.target.checked
+                      )
+                    }
                   />
                   {w}
                 </label>
               ))}
             </div>
 
-            <button onClick={store.toggleControlsVisible}>
-              Done
-            </button>
+            <button onClick={store.toggleControlsVisible}>Done</button>
           </div>
         </ReactModal>
       </div>
@@ -465,21 +544,21 @@ class NRKeyHandler extends React.Component<NRKeyHandlerProps, {}> {
       this.isDown = true;
       this.props.onKeyHandle(e);
     }
-  }
+  };
   public keyUp = (e: Event) => {
     this.isDown = false;
-  }
+  };
   public render() {
     const keyValue = this.props.keyValue;
     return (
       <div>
         <KeyHandler
-          keyEventName={'keydown'}
+          keyEventName={"keydown"}
           keyValue={keyValue}
           onKeyHandle={this.keyDown}
         />
         <KeyHandler
-          keyEventName={'keyup'}
+          keyEventName={"keyup"}
           keyValue={keyValue}
           onKeyHandle={this.keyUp}
         />
@@ -493,15 +572,20 @@ function capitalize(s: string) {
 }
 
 @observer
-class Layout extends React.Component<{store: Store}, {}> {
+class Layout extends React.Component<{ store: Store }, {}> {
   public render() {
     const store = this.props.store;
-    const sides = ['left', 'right', 'top', 'bottom', 'none'];
+    const sides = ["left", "right", "top", "bottom", "none"];
     return (
-      <select value={store.layout} onChange={(e) => store.setLayout(e.target.value)}>
+      <select
+        value={store.layout}
+        onChange={e => store.setLayout(e.target.value)}
+      >
         {sides.map(side => (
-          <option key={side} value={side} >{capitalize(side)}</option>))
-        }
+          <option key={side} value={side}>
+            {capitalize(side)}
+          </option>
+        ))}
       </select>
     );
   }

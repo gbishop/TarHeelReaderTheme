@@ -1,21 +1,21 @@
-import { Number, String, Array, Record, Static, Runtype } from 'runtypes';
-import { observable, computed, action } from 'mobx';
-import { fromPromise, IPromiseBasedObservable } from 'mobx-utils';
-import { saveAs } from 'file-saver';
+import { Number, String, Array, Record, Static, Runtype } from "runtypes";
+import { observable, computed, action } from "mobx";
+import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
+import { saveAs } from "file-saver";
 
-// export const THRURL = 'https://gbserver3.cs.unc.edu/';
-export const THRURL = 'https://tarheelreader.org/';
+export const THRURL = "https://gbserver3.cs.unc.edu/";
+// export const THRURL = "https://tarheelreader.org/";
 
 export const LevelNames = [
-  'K-2',
-  '3rd Grade',
-  '4th Grade',
-  '5th Grade',
-  '6th Grade',
-  '7th Grade',
-  '8th Grade',
-  '9-10th Grade',
-  '11-12th Grade'
+  "K-2",
+  "3rd Grade",
+  "4th Grade",
+  "5th Grade",
+  "6th Grade",
+  "7th Grade",
+  "8th Grade",
+  "9-10th Grade",
+  "11-12th Grade"
 ];
 
 export interface LogRecord {
@@ -32,7 +32,7 @@ const Page = Record({
   text: String,
   url: String,
   width: Number,
-  height: Number,
+  height: Number
 });
 
 const SharedBookValidator = Record({
@@ -57,22 +57,19 @@ const SharedBookListItemValidator = Record({
   owner: String
 });
 
-const SharedBookListValidator = 
-  Array(SharedBookListItemValidator);
+const SharedBookListValidator = Array(SharedBookListItemValidator);
 
-const SharedBookResponseValidator =
-  Record({
-    books: SharedBookListValidator,
-    recent: SharedBookListValidator,
-    yours: SharedBookListValidator
-  });
+const SharedBookResponseValidator = Record({
+  books: SharedBookListValidator,
+  recent: SharedBookListValidator,
+  yours: SharedBookListValidator
+});
 
-const AuthValidator =
-  Record({
-    login: String,
-    role: String,
-    hash: String
-  });
+const AuthValidator = Record({
+  login: String,
+  role: String,
+  hash: String
+});
 
 const CreateResponseValidator = Record({ slug: String });
 
@@ -85,14 +82,14 @@ export type CreateResponse = Static<typeof CreateResponseValidator>;
 export type Auth = Static<typeof AuthValidator>;
 
 export class DB {
-  @observable login: string = '';
-  @observable role: string = '';
-  token: string = '';
+  @observable login: string = "";
+  @observable role: string = "";
+  token: string = "";
   @computed get isAdmin() {
-    return this.role === 'admin';
+    return this.role === "admin";
   }
   @computed get canWrite() {
-    return this.role === 'admin' || this.role === 'author';
+    return this.role === "admin" || this.role === "author";
   }
   @computed get authentication() {
     return `MYAUTH user:"${this.login}", role:"${this.role}", token:"${this.token}"`;
@@ -112,20 +109,23 @@ export class DB {
   }
   // don't use fetchJson here
   @computed get authP(): IPromiseBasedObservable<Auth> {
-    return fromPromise(new Promise((resolve, reject) => {
-      const rt = this.authRetry;
-      window.fetch(THRURL + 'login/?shared=1', {
-        credentials: 'include'
+    return fromPromise(
+      new Promise((resolve, reject) => {
+        const rt = this.authRetry;
+        window
+          .fetch(THRURL + "login/?shared=1", {
+            credentials: "include"
+          })
+          .then(res => {
+            if (res.ok) {
+              res.json().then(obj => resolve(obj));
+            } else {
+              reject(res);
+            }
+          })
+          .catch(reject);
       })
-        .then(res => {
-          if (res.ok) {
-            res.json().then(obj => resolve(obj));
-          } else {
-            reject(res);
-          }
-        })
-        .catch(reject);
-    }))
+    );
   }
 
   @observable StudentListReload = 0;
@@ -135,89 +135,117 @@ export class DB {
 
   @computed get studentListP() {
     const url = `/api/db/students?reload=${this.StudentListReload}`;
-    return this.fetchJson(url, {},
-      Record({students: Array(String)}));
-  }    
+    return this.fetchJson(url, {}, Record({ students: Array(String) }));
+  }
   @computed get studentList(): string[] {
     return this.studentListP.case({
-      fulfilled: (v) => v.students,
+      fulfilled: v => v.students,
       pending: () => [],
-      rejected: (e) => []
+      rejected: e => []
     });
   }
   @action addStudent(studentid: string) {
     if (studentid.length > 0) {
-      this.fetchJson('/api/db/students', {
-        method: 'POST',
-        body: JSON.stringify({teacher: this.login, student: studentid}),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }, Record({status: String}))
-      .then(this.forceReload);
+      this.fetchJson(
+        "/api/db/students",
+        {
+          method: "POST",
+          body: JSON.stringify({ teacher: this.login, student: studentid }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        },
+        Record({ status: String })
+      ).then(this.forceReload);
     }
   }
 
   log(state: LogRecord) {
-    window.fetch('/api/db/log', {
-      method: 'POST',
+    /*
+    window.fetch("/api/db/log", {
+      method: "POST",
       body: JSON.stringify(state),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" }
     });
+    */
   }
 
-  fetchJson<T>(url: string, init: RequestInit, validator: Runtype<T>): IPromiseBasedObservable<T> {
-    const headers = {...init.headers, Authentication: this.authentication};
-    const authInit = {...init, headers};
-    return fromPromise(fetch(url, authInit)
-      .then((resp) => {
-        if (!resp.ok) {
-          return Promise.reject(new Error(resp.statusText));
-        }
-        return resp.json();})
-      .then(data => validator.check(data))
+  fetchJson<T>(
+    url: string,
+    init: RequestInit,
+    validator: Runtype<T>
+  ): IPromiseBasedObservable<T> {
+    const headers = { ...init.headers, Authentication: this.authentication };
+    const authInit = { ...init, headers };
+    return fromPromise(
+      fetch(url, authInit)
+        .then(resp => {
+          if (!resp.ok) {
+            return Promise.reject(new Error(resp.statusText));
+          }
+          return resp.json();
+        })
+        .then(data => validator.check(data))
     );
   }
 
   fetchBook(id: string) {
-    return this.fetchJson(`/api/db/books/${id}`,
-      {}, SharedBookValidator);
+    return this.fetchJson(
+      `/shared-as-json/?slug=${id}`,
+      {},
+      SharedBookValidator
+    );
   }
 
   fetchBookList(teacher: string) {
-    return this.fetchJson(`/api/db/books?teacher=${encodeURIComponent(teacher)}`,
-      {}, SharedBookResponseValidator);
+    return this.fetchJson(
+      `/api/db/books?teacher=${encodeURIComponent(teacher)}`,
+      {},
+      SharedBookResponseValidator
+    );
   }
-
 
   createNewBook(slug: string) {
-    return this.fetchJson('/api/db/books', {
-      method: 'post',
-      body: JSON.stringify({slug}),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8'
-      }},
-      CreateResponseValidator);
+    return this.fetchJson(
+      "/api/db/books",
+      {
+        method: "post",
+        body: JSON.stringify({ slug }),
+        headers: {
+          "Content-type": "application/json; charset=utf-8"
+        }
+      },
+      CreateResponseValidator
+    );
   }
 
-  updateBook(slug: string, comments: string[][], level: string, status: string) {
-    const body = JSON.stringify({comments, level, status});
-    return this.fetchJson(`/api/db/books/${slug}`, {
-      method: 'put',
-      body,
-      headers: {
-        'Content-type': 'application/json; charset=utf-8'
-      }},
-      CreateResponseValidator);
+  updateBook(
+    slug: string,
+    comments: string[][],
+    level: string,
+    status: string
+  ) {
+    const body = JSON.stringify({ comments, level, status });
+    return this.fetchJson(
+      `/api/db/books/${slug}`,
+      {
+        method: "put",
+        body,
+        headers: {
+          "Content-type": "application/json; charset=utf-8"
+        }
+      },
+      CreateResponseValidator
+    );
   }
 
   downloadLog() {
-    fetch('/api/db/log', {
+    fetch("/api/db/log", {
       headers: {
         Authentication: this.authentication
-      },
-    }).then(response => response.blob())
-      .then(blob => saveAs(blob, 'thsrlog.csv'));
+      }
+    })
+      .then(response => response.blob())
+      .then(blob => saveAs(blob, "thsrlog.csv"));
   }
-
 }

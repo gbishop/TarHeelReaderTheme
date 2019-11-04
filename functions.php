@@ -291,6 +291,7 @@ function ParseBookPost($post) {
         $res = json_decode($row->json, true);
         $res['reviewed'] = $row->reviewed == 'R';
         $res['language'] = $row->language;
+        $res['comments'] = $post->comments == '1';
 
     } else {
         // parse the old format
@@ -550,6 +551,7 @@ function posts_to_find_results($posts, $nrows, $count) {
         $po['tags'] = $book['tags'];
         $po['categories'] = $book['categories'];
         $po['reviewed'] = $book['reviewed'] == 'R';
+        $po['comments'] = $book['comments'];
         $po['audience'] = $book['audience'];
         $po['caution'] = $book['audience'] == 'C';
         $po['cover'] = $book['pages'][0];

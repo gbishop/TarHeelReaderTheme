@@ -6,16 +6,28 @@ GET: Return a list of books that match the query
 */
 ?>
 <?php
+global $log;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // construct the where clause
 $where = array();
+$having = array();
+
 $where[] = "p.post_status = 'publish'";
-foreach(array('language', 'reviewed', 'type', 'audience') as $field) {
+foreach(array('language', 'type', 'audience') as $field) {
     $value = THR($field);
     if ($value) {
         $where[] = "s.$field = '$value'";
     }
 }
-
+$reviewed = THR('reviewed');
+if ($reviewed == 'R') {
+    $where[] = "s.reviewed = 'R'";
+} else if ($reviewed == 'S') {
+    $having[] = "comments = 1";
+}
 $terms = array();
 
 $query = stripslashes(THR('search'));
@@ -46,6 +58,11 @@ if (count($where) > 0) {
 } else {
     $where = '';
 }
+if (count($having) > 0) {
+    $having = 'HAVING ' . implode(' AND ', $having);
+} else {
+    $having = '';
+}
 
 $json = array_key_exists('json', $_GET) && $_GET['json'] == 1;
 $count = 24;
@@ -54,16 +71,21 @@ $page = THR('page');
 $offset = ($page - 1) * $count;
 
 $sql = "
-SELECT p.*
+SELECT p.*, exists (select 1 from wpreader_shared where ID = p.ID) as comments
     FROM wpreader_posts p
     JOIN wpreader_book_search s ON p.ID = s.ID
     $where
+    $having
     ORDER BY p.post_date DESC
     LIMIT $offset,$cp1";
 $posts = $wpdb->get_results($sql);
 $nrows = min($wpdb->num_rows, count($posts));  // why do I need this?
 
 $result = posts_to_find_results($posts, $nrows, $count);
+// maybe modify links here for shared reading mode
+foreach($result['books'] as &$book) {
+    $book['link'] = '/shared/read/' . $book['slug'];
+}
 
 if (0) { // force an error for testing
     header("HTTP/1.0 500 Internal Error");
@@ -82,10 +104,12 @@ if ($json) {
 // construct the searchForm view object
 $searchFormData = $Templates['searchForm'];
 foreach( $searchFormData['controls'] as &$control) {
-    if ($control['name'] == 'category') {
-        $control['options'] = array_merge($control['options'], $Templates['categories']);
-    } elseif ($control['name'] == 'language') {
-        $control['options'] = $Templates['languages'];
+    if (array_key_exists('name', $control)) {
+        if ($control['name'] == 'category') {
+            $control['options'] = array_merge($control['options'], $Templates['categories']);
+        } elseif ($control['name'] == 'language') {
+            $control['options'] = $Templates['languages'];
+        }
     }
 }
 $searchFormData = setFormFromState($searchFormData);
