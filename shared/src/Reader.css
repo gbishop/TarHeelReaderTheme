@@ -36,6 +36,12 @@
   vertical-align: bottom;
 }
 
+.owner {
+  display: inline-block;
+  float: right;
+  padding: 5px;
+}
+
 .response-container {
   position: absolute;
 }
@@ -62,7 +68,8 @@
   padding: 0;
 }
 
-.next-link,.back-link {
+.next-link,
+.back-link {
   position: absolute;
   bottom: 0.5em;
   width: 6em;
@@ -70,7 +77,8 @@
   border-radius: 0.5em;
   border: 1px solid black;
 }
-.next-link img, .back-link img {
+.next-link img,
+.back-link img {
   display: block;
   width: 1.5em;
   height: 1.5em;
@@ -95,7 +103,7 @@
 .controls #responseWords label {
   display: inline-block;
   width: 6em;
-  padding: 0.0em;
+  padding: 0em;
 }
 
 fieldset label {

@@ -8,30 +8,19 @@ Template Name: SharedBook
 
 GET: Return the json for a shared book
 */
+$current_user = wp_get_current_user();
 
 if($_SERVER['REQUEST_METHOD'] == 'GET') {
     // get the parameters
     $id = getParam('id', 0, '/\d+/');
+    $slug = getParam('slug', '', '/[^\/]+/');
     if ($id) {
         $post = get_post($id);
-        if (!$post) {
-            header("HTTP/1.0 404 Not Found");
-            die();
-        }
+    } else if ($slug) {
+        $post = get_page_by_path($slug, '', 'post');
     } else {
-        $slug = getParam('slug', '', '/[^\/]+/');
-        if ($slug) {
-            query_posts("cat=3&name=$slug");
-            if(have_posts()) {
-                the_post();
-            } else {
-                header("HTTP/1.0 404 Not Found");
-                die();
-            }
-        } else {
-            header("HTTP/1.0 400 Bad Parameter");
-            die();
-        }
+        header("HTTP/1.0 400 Bad Parameter");
+        die();
     }
     $book = ParseBookPost($post);
     if (!$book) {
@@ -40,32 +29,38 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     $ID = $book['ID'];
-    $q = "select * from wpreader_shared where bookID = $ID and status = 'published'";
-    $log->logError($q);
+    $toEdit = getParam('edit', '0', '/^[01]$/');
+    if ($toEdit == '1') {
+        $userID = $current_user->ID;
+        $q = "select * from wpreader_shared where ID = $ID and owner = $userID";
+    } else {
+        $q = "select * from wpreader_shared where ID = $ID and status = 'published'";
+    }
+    // $log->logError($q);
     $rows = $wpdb->get_results($q);
     $comments = [];
     $owners = [];
-    $sharedIDs = [];
     foreach($rows as $row) {
+        $owner = get_user_by('ID', $row->owner)->user_login;
         foreach(json_decode($row->comments) as $comment) {
+            $comment[0] = $comment[0];
             $comments[] = $comment;
-            $owners[] = $row->owner;
-            $sharedIDs[] = $row->sharedID;
+            $owners[] = $owner;
         }
     }
     if (count($comments) == 0) {
         $comments[] = array_fill(0, count($book['pages']), '');
+        $owners[] = $current_user->login;
     }
     $book['pages'][0] = $book['pages'][1];
     $book['pages'][0]['text'] = $book['title'];
     $result = array(
         'comments' => $comments,
         'owners' => $owners,
-        'sharedIDs' => $sharedIDs,
         'slug' => $book['slug'],
         'pages' => $book['pages'],
         'title' => $book['title'],
-        'status' => $book['status'],
+        'status' => 'published',
         'author' => $book['author'],
         'owner' => 'junk',
         "level" => 'level'
@@ -78,98 +73,67 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     die();
 } elseif($_SERVER['REQUEST_METHOD'] == 'POST') {
     // posting a new or updated book
-    $id = getParam('id', 0, '/\d+/', 'post');
-    $publish = getParam('publish', 'false', '/false|true/', 'post');
-    $content = json_decode(getParam('book', '', null, 'post'), true);
+    $json_str = file_get_contents('php://input');
+    // $log->logError($json_str);
+    $data = json_decode($json_str, true);
+    $slug = $data['slug'];
+    // $log->logError($slug);
+    $post = get_page_by_path($slug, '', 'post');
+    if (!$post) {
+        header("HTTP/1.0 404 Not Found");
+        die();
+    }
+    $bookID = $post->ID;
+    // $log->logError($bookID);
+    $status = $data['status'];
     // validate user
-    if (!is_user_logged_in() || !current_user_can('publish_posts') || ($id && !current_user_can('edit_post', $id))) {
+    if (!is_user_logged_in() || !current_user_can('publish_posts')) {
         header("HTTP/1.0 401 Not Authorized");
         die();
     }
-    $current_user = wp_get_current_user();
-    if ($id) {
-        $post = get_post($id);
-        $book = ParseBookPost($post);
-        if (!$book) {
-            header("HTTP/1.0 404 Not Found");
-            die();
-        }
-    } else {
-        $book = array();
+    // get unique owners
+    $owners = [];
+    foreach($data['owners'] as $owner) {
+        $owners[$owner] = 1;
     }
-    $canPublish = $publish === 'true';
-    $book['title'] = trim($content['title']);
-    $canPublish = $canPublish && strlen($book['title']) > 0;
-    $book['author'] = trim($content['author']);
-    $canPublish = $canPublish && strlen($book['author']) > 0;
-    // validate type
-    if (!in_array($content['type'], array('T', 'C', 'O', ' '))) {
-        header("HTTP/1.0 400 Bad Type");
-        die();
-    }
-    $book['type'] = $content['type'];
-    // validate audience
-    if (!in_array($content['audience'], array('E', 'C', ' '))) {
-        header("HTTP/1.0 400 Bad Audience");
-        die();
-    }
-    $book['audience'] = $content['audience'];
-    // validate reviewed
-    $book['reviewed'] = current_user_can('edit_others_posts') && $content['reviewed'];
+    $owners = array_keys($owners);
+    // $log->logError(print_r($owners, true));
 
-    // validate language
-    if (!in_array($content['language'], $LangNameToLangCode) && $content['language'] != ' ') {
-        header("HTTP/1.0 400 Bad Language");
-        die();
-    }
-    $book['language'] = $content['language'];
-    $canPublish = $canPublish && $book['language'] != ' ';
-    // validate categories
-    foreach($content['categories'] as $category) {
-        if (!in_array($category, $CategoryAbbrv)) {
-            header("HTTP/1.0 400 Bad Category");
-            die();
+    // iterate over owners updating if necessary
+    foreach($owners as $owner) {
+        $ownerID = get_user_by('login', $owner)->ID;
+        // $log->logError('ownerid ' . $ownerID);
+        if ($ownerID == $current_user->ID || current_user_can('administrator')) {
+            // gather this owner's comments
+            // $log->logError('getting comments');
+            $user_comments = [];
+            foreach ($data['comments'] as $i=>$comments) {
+                if ($data['owners'][$i] == $owner) {
+                    $empty = true;
+                    foreach($comments as $comment) {
+                        if ($comment != '') {
+                            $empty = false;
+                        }
+                    }
+                    if (!$empty) {
+                        $user_comments[] = $comments;
+                    }
+                }
+            }
+            $sql = "insert into wpreader_shared (ID, owner, comments, status)
+                values (%d, %d, %s, %s) on duplicate key
+                update comments = %s, status = %s";
+            $json = json_encode($user_comments);
+            $sql = $wpdb->prepare($sql, $bookID, $ownerID,
+                $json,
+                $status,
+                $json,
+                $status);
+            // $log->logError($sql);
+            $wpdb->query($sql);
         }
     }
-    $book['categories'] = $content['categories'];
-    if ($content['tags']) {
-        $book['tags'] = $content['tags']; // TODO: Validate this
-    }
-    // validate pages
-    $pageNo = 1;
-    $pages = array();
-    foreach($content['pages'] as $page) {
-        if ($pageNo == 1 && $page['text'] != $book['title']) {
-            header("HTTP/1.0 400 Bad Page");
-            die();
-        }
-        $p = make_page(trim($page['text']), $page['url']);
-        if ($p === false) {
-            header("HTTP/1.0 500 Cache failure");
-            die();
-        }
-        $canPublish = $canPublish && strlen($p['text']) > 0;
-        $pages[] = $p;
-        $pageNo += 1;
-    }
-    $book['pages'] = $pages;
-    $canPublish = $canPublish && count($pages) > 3;
-
-    $book['status'] = $publish && $canPublish ? 'publish' : 'draft';
-    $book = SaveBookPost($id, $book);
-    if ($book === false) {
-        header("HTTP/1.0 400 Save Post Failed");
-        die();
-    }
-    $id = $book['ID'];
-
-    $output = json_encode($book);
-    header('Content-Type: application/json');
-    header('Content-Size: ' . mb_strlen($output));
-    echo $output;
-    if ($book['status'] == 'publish') {
-        updateSpeech($book, 1, count($pages));  // generate audio for first two pages
-    }
+    echo "ok";
     die();
 }
 ?>

@@ -72,7 +72,7 @@ $offset = ($page - 1) * $count;
 
 $sql = "
 SELECT p.*, exists (select 1 from wpreader_shared 
-                      where bookID = p.ID and 
+                      where ID = p.ID and 
                       status = 'published') as comments
     FROM wpreader_posts p
     JOIN wpreader_book_search s ON p.ID = s.ID

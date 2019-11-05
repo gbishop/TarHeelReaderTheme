@@ -43,7 +43,8 @@ const SharedBookValidator = Record({
   author: String,
   owner: String,
   pages: Array(Page),
-  comments: Array(Array(String))
+  comments: Array(Array(String)),
+  owners: Array(String)
 });
 
 const SharedBookListItemValidator = Record({
@@ -189,9 +190,9 @@ export class DB {
     );
   }
 
-  fetchBook(id: string) {
+  fetchBook(id: string, toEdit?: boolean) {
     return this.fetchJson(
-      `/shared-as-json/?slug=${id}`,
+      `/shared-as-json/?slug=${id}${toEdit ? "&edit=1" : ""}`,
       {},
       SharedBookValidator
     );
@@ -222,14 +223,14 @@ export class DB {
   updateBook(
     slug: string,
     comments: string[][],
-    level: string,
+    owners: string[],
     status: string
   ) {
-    const body = JSON.stringify({ comments, level, status });
+    const body = JSON.stringify({ slug, comments, owners, status });
     return this.fetchJson(
-      `/api/db/books/${slug}`,
+      "/shared-as-json",
       {
-        method: "put",
+        method: "post",
         body,
         headers: {
           "Content-type": "application/json; charset=utf-8"

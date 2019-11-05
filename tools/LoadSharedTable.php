@@ -16,13 +16,12 @@ echo "$sql\n";
 $r = $wpdb->query($sql);
 echo 'result = ' . $r . "\n";
 $sql = "CREATE TABLE {$table_name} (
-          sharedID bigint auto_increment primary key,
-          bookID bigint NOT NULL,
-          status text,
-          level text,
+          ID bigint,
           owner bigint,
+          status text,
           comments json,
-          INDEX(bookID)
+          INDEX(ID),
+          UNIQUE(ID, owner)
          ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 echo "$sql\n";
 $r = $wpdb->query($sql);
@@ -39,25 +38,43 @@ foreach ($shared as $book) {
     continue;
   }
   $userID = get_user_by('login', $book['owner'])->ID;
+  $userLogin = $book['owner'];
   if (!$userID) {
     echo "bad user " . $book['owner'] . "\n";
     print_r($book);
     break;
     continue;
   }
+  if ($bookID == 223814 && $userID == 34799 && $book['status'] == 'draft') {
+    // skip a duplicate draft
+    continue;
+  }
+  if ($bookID == 107607 && $userID == 32301 && $book['status'] == 'draft') {
+    // skip a duplicate draft
+    continue;
+  }
+  $empty = True;
+  foreach($book['comments'] as $comments) {
+    foreach($comments as $comment) {
+      if ($comment != '') {
+        $empty = False;
+      }
+    }
+  }
+  if (!$empty) {
 
     $comments = json_encode($book['comments']);
 
     $row = array( );
-    $row['bookID'] = $bookID;
+    $row['ID'] = $bookID;
     $row['owner'] = $userID;
     $row['status'] = $book['status'];
-    $row['level'] = $book['level'];
     $row['comments'] = $comments;
     $rows_affected = $wpdb->insert($table_name, $row);
     if ($rows_affected == 0) {
       print_r($row);
     }
+  }
 }
 
 ?>

@@ -17,6 +17,7 @@ interface SingleCommentEditorProps {
   comments: string[][];
   pageno: number;
   reading: number;
+  enabled: boolean;
 }
 
 @observer
@@ -25,7 +26,7 @@ class SingleCommentEditor extends React.Component<
   {}
 > {
   @action.bound updateComment(e: React.ChangeEvent<HTMLInputElement>) {
-    const { comments, pageno, reading } = this.props;
+    const { comments, pageno, reading, enabled } = this.props;
     comments[reading][pageno] = e.target.value;
     // if they add to the last reading, create another one
     // we'll delete fully empty readings on save
@@ -38,7 +39,7 @@ class SingleCommentEditor extends React.Component<
     comments.push(new Array(comments[0].length).fill(""));
   }
   render() {
-    const { comments, pageno, reading } = this.props;
+    const { comments, pageno, reading, enabled } = this.props;
     const npages = comments[0].length;
     return (
       <input
@@ -46,6 +47,7 @@ class SingleCommentEditor extends React.Component<
         value={comments[reading][pageno]}
         onChange={this.updateComment}
         tabIndex={reading * npages + pageno + 1}
+        disabled={!enabled}
       />
     );
   }
@@ -59,24 +61,28 @@ interface CommentEditorProps {
 @observer
 class CommentEditor extends React.Component<CommentEditorProps, {}> {
   @observable comments: string[][];
+  @observable owners: string[];
   @observable level: string;
   @action.bound setLevel(s: string) {
     this.level = s;
   }
   @action.bound addReading() {
+    const { book, store } = this.props;
     this.comments.push(new Array(this.comments[0].length).fill(""));
+    this.owners.push(store.db.login);
   }
   constructor(props: any) {
     super(props);
     this.comments = this.props.book.comments;
+    this.owners = this.props.book.owners;
     this.level = this.props.book.level;
   }
   @action.bound save(status: string) {
     const { book, store } = this.props;
-    store.db.updateBook(book.slug, this.comments, this.level, status);
+    store.db.updateBook(book.slug, this.comments, this.owners, status);
   }
   render() {
-    const book = this.props.book;
+    const { book, store } = this.props;
     const nreadings = this.comments.length;
     return (
       <div>
@@ -115,6 +121,10 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
                       comments={this.comments}
                       pageno={pn}
                       reading={rn}
+                      enabled={
+                        store.db.login === this.owners[rn] ||
+                        store.db.role === "admin"
+                      }
                     />
                   </td>
                 </tr>
@@ -172,7 +182,7 @@ class Edit extends React.Component<{ store: Store }, {}> {
   }
   @computed get bookP() {
     const store = this.props.store;
-    return store.db.fetchBook(store.editSlug);
+    return store.db.fetchBook(store.editSlug, true);
   }
   render() {
     const store = this.props.store;

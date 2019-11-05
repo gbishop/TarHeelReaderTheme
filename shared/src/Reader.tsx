@@ -144,7 +144,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
               store={store}
               doResponse={sayWord}
             />
-            <Controls store={store} doResponse={saySelectedWord} />
+            <Controls store={store} book={book} doResponse={saySelectedWord} />
           </div>
         </div>
       );
@@ -412,13 +412,14 @@ class ResponseButton extends React.Component<ResponseButtonProps, {}> {
 
 interface ControlsProps {
   store: Store;
+  book: SharedBook;
   doResponse: () => void;
 }
 
 @observer
 class Controls extends React.Component<ControlsProps, {}> {
   public render() {
-    const { store, doResponse } = this.props;
+    const { store, book, doResponse } = this.props;
     const customStyles = {
       content: {
         top: "50%",
@@ -457,6 +458,16 @@ class Controls extends React.Component<ControlsProps, {}> {
         >
           <div className="controls">
             <h1>Reading controls</h1>
+            <label>
+              Comments by: {book.owners[store.reading - 1]}&nbsp;
+              <button
+                onClick={() => store.setEditPath(book.slug)}
+                title="Edit or add comments"
+                style={{ display: "inline" }}
+              >
+                &#x270D;
+              </button>
+            </label>
             <label>
               Reading:&nbsp;
               <input
