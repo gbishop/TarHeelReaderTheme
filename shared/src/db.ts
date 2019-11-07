@@ -44,7 +44,8 @@ const SharedBookValidator = Record({
   owner: String,
   pages: Array(Page),
   comments: Array(Array(String)),
-  owners: Array(String)
+  owners: Array(String),
+  cids: Array(Record({ owner: String, cid: Number }))
 });
 
 const SharedBookListItemValidator = Record({
@@ -72,7 +73,7 @@ const AuthValidator = Record({
   hash: String
 });
 
-const CreateResponseValidator = Record({ slug: String });
+const CreateResponseValidator = Record({ slug: String, cid: Number });
 
 // construct the typescript type
 export type SharedBook = Static<typeof SharedBookValidator>;
@@ -190,9 +191,10 @@ export class DB {
     );
   }
 
-  fetchBook(id: string, toEdit?: boolean) {
+  fetchBook(slug: string, cid?: number) {
+    const cparm = cid === undefined ? "" : `&cid=${cid}`;
     return this.fetchJson(
-      `/shared-as-json/?slug=${id}${toEdit ? "&edit=1" : ""}`,
+      `/shared-as-json/?slug=${slug}${cparm}`,
       {},
       SharedBookValidator
     );
@@ -220,13 +222,11 @@ export class DB {
     );
   }
 
-  updateBook(
-    slug: string,
-    comments: string[][],
-    owners: string[],
-    status: string
-  ) {
-    const body = JSON.stringify({ slug, comments, owners, status });
+  updateBook(book: SharedBook, comments: string[][], status: string) {
+    const nbook = { ...book };
+    nbook.comments = comments;
+    nbook.status = status;
+    const body = JSON.stringify(nbook);
     return this.fetchJson(
       "/shared-as-json",
       {

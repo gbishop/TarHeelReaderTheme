@@ -79,7 +79,9 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
   }
   @action.bound save(status: string) {
     const { book, store } = this.props;
-    store.db.updateBook(book.slug, this.comments, this.owners, status);
+    store.db.updateBook(book, this.comments, status)
+    .then(resp => store.setEditPath(book.slug, resp.cid),
+          error => console.log('error', error));
   }
   render() {
     const { book, store } = this.props;
@@ -166,44 +168,19 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
 
 @observer
 class Edit extends React.Component<{ store: Store }, {}> {
-  @observable newSlug = "";
-  @action.bound setNewSlug(s: string) {
-    this.newSlug = s;
-  }
-  @observable message = "";
-  @action.bound setMessage(s: string) {
-    this.message = s;
-  }
-  @action.bound createBook() {
+  @action.bound createBook(slug: string) {
     const store = this.props.store;
-    store.db
-      .createNewBook(this.newSlug)
-      .then(v => store.setEditPath(v.slug), e => this.setMessage(e.message));
+    store.setEditPath(slug, 0);
   }
   @computed get bookP() {
     const store = this.props.store;
-    return store.db.fetchBook(store.editSlug, true);
+    return store.db.fetchBook(store.editSlug, store.editCID);
   }
   render() {
     const store = this.props.store;
-    if (store.editSlug.length === 0) {
-      return (
-        <div>
-          <input
-            type="text"
-            value={this.newSlug}
-            onChange={e => this.setNewSlug(e.target.value)}
-            placeholder="Enter a THR slug"
-          />
-          <button onClick={this.createBook}>Create</button>
-          <p>{this.message}</p>
-        </div>
-      );
-    } else {
-      return WaitToRender(this.bookP, book => (
-        <CommentEditor book={book} store={store} />
-      ));
-    }
+    return WaitToRender(this.bookP, book => (
+      <CommentEditor book={book} store={store} />
+    ));
   }
 }
 

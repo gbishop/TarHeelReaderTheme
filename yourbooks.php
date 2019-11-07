@@ -5,6 +5,8 @@ Template Name: YourBooks
 ?>
 <?php
 
+global $log;
+
 function returnJson($result) {
     if (!is_array($result)) {
         $result = array('result' => $result);
@@ -169,6 +171,23 @@ if($userid != 0) {
             'slug' => $row->slug);
     }
     $view['collections'] = $mycols;
+
+    $sql = "select c.CID, c.status, p.post_title, p.post_name
+              from wpreader_shared c, wpreader_posts p
+              where c.ID = p.ID and c.owner = $userid";
+    $log->logError($sql);
+    $rows = $wpdb->get_results($sql);
+    $log->logError(print_r($rows, true));
+    $mycoms = array();
+    foreach ($rows as $row) {
+        $mycoms[] = array(
+            'slug' => $row->post_name,
+            'CID' => $row->CID,
+            'status' => $row->status,
+            'title' => $row->post_title);
+    }
+    $view['comments'] = $mycoms;
+    $view['has_comments'] = count($mycoms) > 0;
 }
 
 echo template_render('yourbooks', $view);

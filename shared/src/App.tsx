@@ -3,7 +3,6 @@ import { observer } from "mobx-react";
 import "./App.css";
 import Store from "./Store";
 import Reader from "./Reader";
-import Choose from "./Choose";
 import { THRURL } from "./db";
 import Edit from "./Edit";
 
@@ -19,33 +18,8 @@ class App extends React.Component<{ store: Store }, {}> {
       fulfilled: auth => {
         store.db.setLoginRole(auth.login, auth.role, auth.hash);
 
-        /*
-        if (store.teacherid.length === 0) {
-          return (
-            <div>
-              <p>Please login to Tar Heel Reader below.</p>
-              <iframe
-                src={`${THRURL}/login`}
-                width="500"
-                height="550"
-              />
-            </div>
-          );
-
-        } else if (store.db.role.length === 0) {
-          return (<p>Contact Karen to get registered for the study.</p>);
-
-        } else */ if (
-          store.editing
-        ) {
+        if (store.editing) {
           return <Edit store={store} />;
-
-          /*
-          } else if (store.studentid.length === 0 || store.bookid.length === 0) {
-          return (
-            <Choose store={store} />
-          );
-          */
         } else {
           return <Reader store={store} />;
         }

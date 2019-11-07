@@ -166,6 +166,32 @@
   </ul>
 </div>
 
+<div class="container">
+  <img
+    class="help"
+    src="/theme/images/help.png"
+    title="_(Click for help)"
+    alt="_(Click for help)"
+  />
+  <p class="help-text" title="_(Your Comments)">
+    _(Your comments are listed below.)
+  </p>
+  <h2 class="draftBooksHeader">_(Your Comments)</h2>
+  {{#has_comments}}
+  <ul class="">
+    {{#comments}}
+    <li>
+      {{title}}: {{status}}
+      <a href="/shared/read/{{slug}}">read</a>
+      <a href="/shared/edit/{{slug}}/{{CID}}">edit</a>
+    </li>
+    {{/comments}}
+  </ul>
+  {{/has_comments}} {{^has_comments}}
+  <p>_(If you had any comments they would be here.)</p>
+  {{/has_comments}}
+</div>
+
 {{/user}} {{^user}}
 <p class="notLoggedIn">
   _(You must be logged in to see your draft and published books.)

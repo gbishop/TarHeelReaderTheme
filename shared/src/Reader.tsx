@@ -459,16 +459,6 @@ class Controls extends React.Component<ControlsProps, {}> {
           <div className="controls">
             <h1>Reading controls</h1>
             <label>
-              Comments by: {book.owners[store.reading - 1]}&nbsp;
-              <button
-                onClick={() => store.setEditPath(book.slug)}
-                title="Edit or add comments"
-                style={{ display: "inline" }}
-              >
-                &#x270D;
-              </button>
-            </label>
-            <label>
               Reading:&nbsp;
               <input
                 type="number"
@@ -531,6 +521,29 @@ class Controls extends React.Component<ControlsProps, {}> {
                   {w}
                 </label>
               ))}
+              <h2>Comments</h2>
+              <ul>
+                {book.cids.map(c => (
+                  <li key={c.cid}>
+                    {c.owner}
+                    {(c.owner === store.db.login ||
+                      store.db.role === "admin") && (
+                      <button
+                        onClick={() => store.setEditPath(book.slug, c.cid)}
+                        title="Edit comments"
+                        style={{ display: "inline" }}
+                      >
+                        &#x270D;
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              {(store.db.role === "admin" || store.db.role === "author") && (
+                <button onClick={() => store.setEditPath(book.slug, -1)}>
+                  Add comments
+                </button>
+              )}
             </div>
 
             <button onClick={store.toggleControlsVisible}>Done</button>

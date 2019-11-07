@@ -16,12 +16,12 @@ echo "$sql\n";
 $r = $wpdb->query($sql);
 echo 'result = ' . $r . "\n";
 $sql = "CREATE TABLE {$table_name} (
+          CID int auto_increment primary key,
           ID bigint,
           owner bigint,
           status text,
           comments json,
-          INDEX(ID),
-          UNIQUE(ID, owner)
+          INDEX(ID)
          ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 echo "$sql\n";
 $r = $wpdb->query($sql);
@@ -43,14 +43,6 @@ foreach ($shared as $book) {
     echo "bad user " . $book['owner'] . "\n";
     print_r($book);
     break;
-    continue;
-  }
-  if ($bookID == 223814 && $userID == 34799 && $book['status'] == 'draft') {
-    // skip a duplicate draft
-    continue;
-  }
-  if ($bookID == 107607 && $userID == 32301 && $book['status'] == 'draft') {
-    // skip a duplicate draft
     continue;
   }
   $empty = True;

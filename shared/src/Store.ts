@@ -59,6 +59,7 @@ class Store {
   // editing state
   @observable editing = false;
   @observable editSlug = "";
+  @observable editCID = 0;
 
   @observable studentid: string = "";
   // set student's id
@@ -106,15 +107,16 @@ class Store {
     this.pageno = bookid ? page : 1;
     this.editing = false;
   }
-  @action.bound setEditPath(slug: string) {
+  @action.bound setEditPath(slug: string, cid: number) {
     this.editing = true;
     this.editSlug = slug;
+    this.editCID = cid;
   }
 
   // map the state to a url
   @computed get currentPath() {
     if (this.editing) {
-      const p = "/edit" + (this.editSlug ? "/" + this.editSlug : "");
+      const p = "/edit" + "/" + this.editSlug + "/" + this.editCID;
       return p;
     }
     return `/read/${this.bookid}` + (this.pageno > 1 ? `/${this.pageno}` : "");
