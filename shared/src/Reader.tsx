@@ -311,7 +311,13 @@ class PageNavButtons extends React.Component<PageNavButtonsProps, {}> {
           </button>
           <button
             className="back-link"
-            onClick={() => store.setPage(store.pageno - 1)}
+            onClick={() => {
+              if (store.pageno > 1) {
+                store.setPage(store.pageno - 1);
+              } else {
+                window.location.href = THR("findAnotherLink");
+              }
+            }}
           >
             <img src={BackArrow} alt="back" />
             Back
