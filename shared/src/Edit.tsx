@@ -79,15 +79,21 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
   }
   @action.bound save(status: string) {
     const { book, store } = this.props;
-    store.db.updateBook(book, this.comments, status)
-    .then(resp => store.setEditPath(book.slug, resp.cid),
-          error => console.log('error', error));
+    store.db
+      .updateBook(book, this.comments, status)
+      .then(
+        resp => store.setEditPath(book.slug, resp.cid),
+        error => console.log("error", error)
+      );
   }
   render() {
     const { book, store } = this.props;
     const nreadings = this.comments.length;
     return (
       <div>
+        <button title="Go back" onClick={e => history.back()}>
+          <img src="/theme/images/well.png" />
+        </button>
         <table className="editor">
           <caption>
             Enter comments for each page. The TAB key will move your cursor to
