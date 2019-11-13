@@ -60,6 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         'owners' => $owners,
         'cids' => $cids,
         'slug' => $book['slug'],
+        'ID' => $ID,
         'pages' => $book['pages'],
         'title' => $book['title'],
         'status' => 'published',

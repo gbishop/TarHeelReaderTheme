@@ -38,6 +38,7 @@ const Page = Record({
 const SharedBookValidator = Record({
   title: String,
   slug: String,
+  ID: Number,
   status: String,
   level: String,
   author: String,
