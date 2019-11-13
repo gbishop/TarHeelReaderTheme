@@ -168,6 +168,14 @@ interface ReaderContentProps {
   store: Store;
 }
 
+function updateRating(book: SharedBook) {
+  const ratingInput = document.querySelector(".rating input:checked");
+  if (ratingInput) {
+    const rating = (ratingInput as HTMLInputElement).value;
+    fetch(`/rateajax/?id=${book.ID}&rating=${rating}`);
+  }
+}
+
 @observer
 class ReaderContent extends React.Component<ReaderContentProps, {}> {
   public render() {
@@ -188,6 +196,7 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
           <div className="choices">
             <button
               onClick={() => {
+                updateRating(book);
                 store.setPage(1);
               }}
             >
@@ -195,18 +204,27 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
             </button>
             <button
               onClick={() => {
+                updateRating(book);
                 window.location.href = THR("findAnotherLink");
               }}
             >
               Read another book
             </button>
-            <button
-              onClick={() => {
-                window.location.href = "https://tarheelreader.org/find";
-              }}
-            >
-              Go to Tar Heel Reader
-            </button>
+          </div>
+          <div className="rating">
+            <h2>How do you rate this book?</h2>
+            <input type="radio" id="onestar" name="rating" value="1" />
+            <label htmlFor="onestar">
+              <img src="/theme/images/1stars.png" />1 star
+            </label>
+            <input type="radio" id="twostar" name="rating" value="2" />
+            <label htmlFor="twostar">
+              <img src="/theme/images/2stars.png" />2 stars
+            </label>
+            <input type="radio" id="threestar" name="rating" value="3" />
+            <label htmlFor="threestar">
+              <img src="/theme/images/3stars.png" />3 stars
+            </label>
           </div>
         </div>
       );

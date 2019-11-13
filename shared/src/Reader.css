@@ -161,3 +161,15 @@ fieldset label {
 [role="tabpanel"][aria-hidden="true"] {
   display: none;
 }
+
+div.rating input[type="radio"] {
+  display: none;
+}
+
+div.rating label {
+  display: block;
+}
+
+div.rating input:checked + label {
+  background-color: gold;
+}
