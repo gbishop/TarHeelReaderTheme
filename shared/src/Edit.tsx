@@ -147,7 +147,7 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
               value={this.level}
               onChange={e => this.setLevel(e.target.value)}
             >
-              <option value="">Choose a level</option>
+              <option value="">All levels</option>
               {LevelNames.map(name => (
                 <option key={name} value={name}>
                   {name}
