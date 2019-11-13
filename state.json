@@ -5,6 +5,7 @@
   "category": { "pattern": "^([A-Za-z]{4})?$", "default": "" },
   "type": { "pattern": "^[TCO]?$", "default": "" },
   "audience": { "pattern": "^[CE]?$", "default": "E" },
+  "level": { "pattern": "^[-a-zA-Z 0-9]*$", "default": "" },
   "search": { "pattern": "", "default": "" },
   "pageColor": { "pattern": "^[f0]{3}$", "default": "fff" },
   "textColor": { "pattern": "^[f0]{3}$", "default": "000" },

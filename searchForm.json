@@ -20,9 +20,27 @@
       "name": "reviewed",
       "select": true,
       "options": [
-        { "label": "_(Reviewed only)", "value": "R" },
-        { "label": "_(Include unreviewed)", "value": "" },
-        { "label": "_(Shared reading)", "value": "S" }
+        { "label": "_(Reviewed)", "value": "R" },
+        { "label": "_(All)", "value": "" },
+        { "label": "_(Shared)", "value": "S" }
+      ]
+    },
+    {
+      "label": "_(Reading level|pulldown label)",
+      "name": "level",
+      "select": true,
+      "options": [
+        { "label": "_(All levels)", "value": "" },
+        { "label": "_(PreK)", "value": "PreK" },
+        { "label": "_(K-2)", "value": "K-2" },
+        { "label": "_(3rd Grade)", "value": "3rd Grade" },
+        { "label": "_(4th Grade)", "value": "4th Grade" },
+        { "label": "_(5th Grade)", "value": "5th Grade" },
+        { "label": "_(6th Grade)", "value": "6th Grade" },
+        { "label": "_(7th Grade)", "value": "7th Grade" },
+        { "label": "_(8th Grade)", "value": "8th Grade" },
+        { "label": "_(9-10th Grade)", "value": "9-10th Grade" },
+        { "label": "_(11-12th Grade)", "value": "11-12th Grade" }
       ]
     },
     {

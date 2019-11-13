@@ -21,6 +21,7 @@ $sql = "CREATE TABLE {$table_name} (
           owner bigint,
           status text,
           comments json,
+          level text,
           INDEX(ID)
          ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 echo "$sql\n";
@@ -61,6 +62,7 @@ foreach ($shared as $book) {
     $row['ID'] = $bookID;
     $row['owner'] = $userID;
     $row['status'] = $book['status'];
+    $row['level'] = $book['level'];
     $row['comments'] = $comments;
     $rows_affected = $wpdb->insert($table_name, $row);
     if ($rows_affected == 0) {

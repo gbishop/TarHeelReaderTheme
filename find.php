@@ -28,6 +28,12 @@ if ($reviewed == 'R') {
 } else if ($reviewed == 'S') {
     $having[] = "comments = 1";
 }
+$level = THR('level');
+if ($level) {
+    $shared_where = "and level = '$level'";
+} else {
+    $shared_where = "";
+}
 $terms = array();
 
 $query = stripslashes(THR('search'));
@@ -73,7 +79,7 @@ $offset = ($page - 1) * $count;
 $sql = "
 SELECT p.*, exists (select 1 from wpreader_shared 
                       where ID = p.ID and 
-                      status = 'published') as comments
+                      status = 'published' $shared_where) as comments
     FROM wpreader_posts p
     JOIN wpreader_book_search s ON p.ID = s.ID
     $where
