@@ -15,3 +15,12 @@ export function WaitToRender<T>(p: IPromiseBasedObservable<T>, f: (v:T) => JSX.E
   });
 }
 
+export function THR(name: string) {
+  const v = document.cookie.match("(^|;) ?thr=([^;]*)(;|$)");
+  const j = v ? v[2] : null;
+  if (j) {
+    const d = JSON.parse(decodeURIComponent(j));
+    return d[name];
+  }
+}
+

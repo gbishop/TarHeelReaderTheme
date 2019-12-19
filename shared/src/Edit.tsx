@@ -10,14 +10,13 @@ import {
   CreateResponse,
   LevelNames
 } from "./db";
-import { WaitToRender } from "./helpers";
+import { WaitToRender, THR } from "./helpers";
 import "./Edit.css";
 
 interface SingleCommentEditorProps {
   comments: string[][];
   pageno: number;
   reading: number;
-  enabled: boolean;
 }
 
 @observer
@@ -26,7 +25,7 @@ class SingleCommentEditor extends React.Component<
   {}
 > {
   @action.bound updateComment(e: React.ChangeEvent<HTMLInputElement>) {
-    const { comments, pageno, reading, enabled } = this.props;
+    const { comments, pageno, reading } = this.props;
     comments[reading][pageno] = e.target.value;
     // if they add to the last reading, create another one
     // we'll delete fully empty readings on save
@@ -39,7 +38,7 @@ class SingleCommentEditor extends React.Component<
     comments.push(new Array(comments[0].length).fill(""));
   }
   render() {
-    const { comments, pageno, reading, enabled } = this.props;
+    const { comments, pageno, reading } = this.props;
     const npages = comments[0].length;
     return (
       <input
@@ -47,7 +46,6 @@ class SingleCommentEditor extends React.Component<
         value={comments[reading][pageno]}
         onChange={this.updateComment}
         tabIndex={reading * npages + pageno + 1}
-        disabled={!enabled}
       />
     );
   }
@@ -91,7 +89,7 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
     const nreadings = this.comments.length;
     return (
       <div>
-        <button title="Go back" onClick={e => history.back()}>
+        <button title="Go back" onClick={() => store.setPath(book.slug, 1)}>
           <img src="/theme/images/well.png" />
         </button>
         <table className="editor">
@@ -129,10 +127,6 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
                       comments={this.comments}
                       pageno={pn}
                       reading={rn}
-                      enabled={
-                        store.db.login === this.owners[rn] ||
-                        store.db.role === "admin"
-                      }
                     />
                   </td>
                 </tr>

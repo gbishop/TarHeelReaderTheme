@@ -8,18 +8,9 @@ import NextResponsePage from "./NextResponsePage.png";
 import BackResponsePage from "./BackResponsePage.png";
 import Store, { allResponses } from "./Store";
 import { SharedBook } from "./db";
-import { WaitToRender } from "./helpers";
+import { WaitToRender, THR } from "./helpers";
 
 import "./Reader.css";
-
-function THR(name: string) {
-  const v = document.cookie.match("(^|;) ?thr=([^;]*)(;|$)");
-  const j = v ? v[2] : null;
-  if (j) {
-    const d = JSON.parse(decodeURIComponent(j));
-    return d[name];
-  }
-}
 
 @observer
 class Reader extends React.Component<{ store: Store }, {}> {
@@ -120,7 +111,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
             onClick={store.toggleControlsVisible}
             style={{ border: "none", backgroundColor: "inherit" }}
           >
-            &#x2699;
+            <img src="/theme/images/comments_t.png" />
           </button>
           <input
             type="number"
