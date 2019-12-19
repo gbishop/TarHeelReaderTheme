@@ -203,11 +203,11 @@ function resizeImage($im, $maxSide, $scaleUp) {
     return array($nim, $nw, $nh);
 }
 
-function create_thumbnail($turl, $tpath) {
+function create_thumbnail($tpath) {
     $path = str_replace('_t.jpg', '.jpg', $tpath);
     if (file_exists($path)) {
         $im = imagecreatefromjpeg($path);
-        list($nim, $nw, $nh) = resizeImage($im, 100, true);
+        list($nim) = resizeImage($im, 100, true);
         imagejpeg($nim, $tpath);
         return true;
     }
@@ -221,7 +221,7 @@ function make_page($text, $url) {
         // special case the thumbnail
         $log->logInfo("not found path='$path' url='$url'");
         if (substr($path, -6) == '_t.jpg') {
-            if (!create_thumbnail($url, $path)) {
+            if (!create_thumbnail($path)) {
                 $log->logError('thumbnail create failed');
                 return false;
             }
@@ -230,7 +230,7 @@ function make_page($text, $url) {
             return false;
         }
     }
-    list($width, $height, $type, $attr) = getimagesize($path);
+    list($width, $height) = getimagesize($path);
 
     return array('text'=>$text, 'url'=>$nurl, 'width'=>$width, 'height'=>$height);
 }
@@ -285,7 +285,6 @@ function ParseBookPost($post) {
     $id = $post->ID;
     $author_id = $post->post_author;
 
-    $content = $post->post_content;
     $row = $wpdb->get_row("SELECT * from $search_table WHERE ID = $id");
     if ($row) {
         $res = json_decode($row->json, true);
@@ -295,10 +294,8 @@ function ParseBookPost($post) {
 
     } else {
         // parse the old format
-        $nimages = preg_match_all('/(?:width="(\d+)" height="(\d+)" )?src="([^"]+)"\\/?>([^<]*)/', $post->post_content, $matches);
+        preg_match_all('/(?:width="(\d+)" height="(\d+)" )?src="([^"]+)"\\/?>([^<]*)/', $post->post_content, $matches);
         $image_urls = $matches[3];
-        $image_widths = $matches[1];
-        $image_heights = $matches[2];
         $captions = striptrim_deep(array_slice($matches[4], 1));
         $title = trim($post->post_title);
         $pages = array();
@@ -477,6 +474,7 @@ function updateSpeech($book, $startPage=0, $endPage=0) {
 
 function updateIndex($book) {
     global $wpdb;
+    global $log;
     $table_name = $wpdb->prefix . 'book_search';
 
     $content = array();
@@ -715,10 +713,10 @@ add_filter('loginout', 'fixupLogInOut');
 add_filter('register', 'fixupLogInOut');
 
 // fix the email return address
-function thr_mail_from($addr) {
+function thr_mail_from() {
     return "tarheelreader@cs.unc.edu";
 }
-function thr_mail_from_name($name) {
+function thr_mail_from_name() {
     return "Tar Heel Reader";
 }
 add_filter('wp_mail_from', 'thr_mail_from');
@@ -738,14 +736,14 @@ function thr_modify_query( $query ) {
 function thr_get_pagenum_link($link) {
     return str_replace('?ajax=1', '', $link);
 }
-add_filter('get_pagenum_link', thr_get_pagenum_link);
+add_filter('get_pagenum_link', 'thr_get_pagenum_link');
 
 // disable wordpress search
 function disable_search($query, $error = true) {
     if (is_search()) {
         $query->is_search = false;
-        $query->query_vars[s] = false;
-        $query->query[s] = false;
+        $query->query_vars['s'] = false;
+        $query->query['s'] = false;
 
         if ($error == true) {
             $query->is_404 = true;
@@ -756,7 +754,7 @@ if (!is_admin()) {
     add_action('parse_query', 'disable_search');
 }
 
-function thr_login_redirect($redirect_to, $request, $user) {
+function thr_login_redirect($redirect_to) {
     if (strpos($redirect_to, 'wp-admin') !== false) {
         $redirect_to = '/';
     }
@@ -822,7 +820,7 @@ function my_register_form() {
 
 // Validate the access code
 add_filter( 'registration_errors', 'my_registration_errors', 10, 3 );
-function my_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+function my_registration_errors( $errors) {
 
     if (empty($_POST['access_code']) ||
         strtolower(trim( $_POST['access_code'] )) != ACCESS_CODE) {
@@ -861,7 +859,7 @@ function my_user_register( $user_id ) {
 
 // fix the registration email by removing <> around url
 add_filter('retrieve_password_message', 'my_password_message',10,2);
-function my_password_message($message, $key) {
+function my_password_message($message) {
     $message = preg_replace('/<([^>]+)>/', "$1", $message);
     return $message;
 }
@@ -875,7 +873,7 @@ function sr_custom_define() {
 function sr_columns($defaults) {
   $meta_number = 0;
   $custom_meta_fields = sr_custom_define();
-  foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+  foreach ($custom_meta_fields as $meta_disp_name) {
     $meta_number++;
     $defaults[('sr-usercolumn-' . $meta_number . '')] = __($meta_disp_name, 'user-column');
   }
@@ -885,12 +883,13 @@ function sr_columns($defaults) {
 function sr_custom_columns($value, $column_name, $id) {
   $meta_number = 0;
   $custom_meta_fields = sr_custom_define();
-  foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+  foreach (array_keys($custom_meta_fields) as $meta_field_name) {
     $meta_number++;
     if( $column_name == ('sr-usercolumn-' . $meta_number . '') ) {
       return get_the_author_meta($meta_field_name, $id );
     }
   }
+  $value;  // ignore it
 }
 
 function sr_show_extra_profile_fields($user) {
@@ -920,9 +919,9 @@ function sr_save_extra_profile_fields($user_id) {
 
   $meta_number = 0;
   $custom_meta_fields = sr_custom_define();
-  foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+  foreach (array_keys($custom_meta_fields) as $meta_field_name) {
     $meta_number++;
-    update_usermeta( $user_id, $meta_field_name, $_POST[$meta_field_name] );
+    update_user_meta( $user_id, $meta_field_name, $_POST[$meta_field_name] );
   }
 }
 add_action('show_user_profile', 'sr_show_extra_profile_fields');

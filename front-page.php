@@ -10,13 +10,13 @@ if (!is_ajax() && array_key_exists('thr', $_COOKIE)) {
     	thr_setcookie(1);
         $home = home_url();
         $url = $value['lastURL'];
-        $log->info("home=$home");
-        $log->info("url=$url");
+        $log->logInfo("home=$home");
+        $log->logInfo("url=$url");
         if (strpos($url, $home) === 0) {
             $url = substr($url, strlen($home));
-            $log->info("relative=$url");
+            $log->logInfo("relative=$url");
             if ($url != '/') {
-                $log->info('ios restart redirect');
+                $log->logInfo('ios restart redirect');
                 header('Location: ' . $url);
                 die();
             }

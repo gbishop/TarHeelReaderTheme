@@ -132,8 +132,6 @@ class qqFileUploader {
         }
 
         $pathinfo = pathinfo($this->file->getName());
-        $filename = $pathinfo['filename'];
-        //$filename = md5(uniqid());
         $ext = strtolower($pathinfo['extension']);
 
         if($this->allowedExtensions && !in_array(strtolower($ext), $this->allowedExtensions)){
@@ -184,8 +182,7 @@ function processUploadedImage($path, $type) {
         }
     }
 
-    global $userdata;
-    get_currentuserinfo();
+    $userdata = wp_get_current_user();
     $userid = $userdata->ID;
 
     $upl = wp_upload_dir();
