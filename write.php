@@ -8,8 +8,7 @@ Allow users to write books
 <?php
 
 // get the id if any
-global $current_user;
-get_currentuserinfo();
+$current_user = wp_get_current_user();
 
 $view = array();
 $view['loggedIn'] = is_user_logged_in();
