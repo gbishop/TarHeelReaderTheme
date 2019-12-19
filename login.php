@@ -64,6 +64,8 @@ if (getParam('shared', 0, '/2/') == 2) {
     die;
 }
 
+$current_user = wp_get_current_user();
+$view['username'] = $current_user->user_login;
 $view['logged_in'] = is_user_logged_in();
 $view['admin'] = is_admin();
 $view['logoutURL'] = '/login/?out=1';
