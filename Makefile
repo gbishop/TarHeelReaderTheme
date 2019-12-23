@@ -30,6 +30,9 @@ style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_c
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
+copythr:
+	rsync -az --exclude .git --exclude tests/robot --delete . thr:/var/www/thr.cs.unc.edu/wp-content/themes/thr3
+
 copygb:
 	rsync -az --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
 
