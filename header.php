@@ -18,7 +18,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4">
-    <title><?php thr_title(); ?></title>
+    <title>Tar Heel Shared Reader</title>
     <link rel="shortcut icon" href="/theme/images/favicon.ico">
     <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
     <link rel="stylesheet" href="/theme/style.css">
