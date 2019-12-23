@@ -3,7 +3,8 @@ import { observable, computed, action } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 import { saveAs } from "file-saver";
 
-export const THRURL = "https://gbserver3.cs.unc.edu/";
+export const THRURL = "";
+// export const THRURL = "https://gbserver3.cs.unc.edu/";
 // export const THRURL = "https://tarheelreader.org/";
 
 export const LevelNames = [
@@ -116,7 +117,7 @@ export class DB {
       new Promise((resolve, reject) => {
         const rt = this.authRetry;
         window
-          .fetch(THRURL + "login/?shared=1", {
+          .fetch(THRURL + "/login/?shared=1", {
             credentials: "include"
           })
           .then(res => {
