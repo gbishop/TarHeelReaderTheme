@@ -30,6 +30,10 @@ style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_c
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
+copythr:
+	rsync -az --exclude shared --exclude .git --exclude tests/robot --delete . thr:/var/www/shared.tarheelreader.org/wp-content/themes/thr3
+	rsync -az shared/build/ thr:/var/www/shared.tarheelreader.org/wp-content/themes/thr3/shared
+
 copygb:
 	rsync -az --exclude shared --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
 	rsync -az shared/build/ gbserver3:/var/www/gbserver3/wp-content/themes/thr3/shared
