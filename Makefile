@@ -60,6 +60,11 @@ devel: build copygb
 testprod: optimized
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/gbserver/wp-content/themes/thr3
 
+release:
+	make optimized
+	cd shared; npm run build; cp -a build/ ../../Theme-build/shared
+	cd ../Theme-build; tar czf /home/gb/Sync/gbservers/roles/wordpress/files/thsr-theme.bz2 --exclude=.git --exclude=test .
+
 production:
 	make optimized
 	make copyproduction
