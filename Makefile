@@ -30,8 +30,8 @@ style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_c
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-copythr:
-	rsync -az --exclude .git --exclude tests/robot --delete . thr:/var/www/thr.cs.unc.edu/wp-content/themes/thr3
+copynew:
+	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/tarheelreader.org/wp-content/themes/thr3
 
 copygb:
 	rsync -az --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
@@ -57,6 +57,10 @@ devel: build copygb
 
 testprod: optimized
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/gbserver/wp-content/themes/thr3
+
+release:
+	make optimized
+	cd ../Theme-build; tar czf /home/gb/Sync/gbservers/roles/wordpress/files/thr-theme.bz2 --exclude=.git --exclude=shared --exclude=test .
 
 production:
 	make optimized
