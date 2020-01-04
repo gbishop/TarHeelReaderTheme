@@ -277,7 +277,6 @@ function make_page($text, $url)
         return false;
     }
     list($nurl, $path) = convert_image_url($url);
-    $log->logError('make_page', $url, $nurl, $path);
     if (!file_exists($path)) {
         // special case the thumbnail
         $log->logInfo("not found path='$path' url='$url'");
