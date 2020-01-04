@@ -65,6 +65,9 @@ release:
 	cd shared; npm run build; cp -a build/ ../../Theme-build/shared
 	cd ../Theme-build; tar czf /home/gb/Sync/gbservers/roles/wordpress/files/thsr-theme.bz2 --exclude=.git --exclude=test .
 
+symbols:
+	rsync ../../symbols.dynavox/* gbserver:/var/www/shared.tarheelreader.org/shared/symbols
+
 production:
 	make optimized
 	make copyproduction
