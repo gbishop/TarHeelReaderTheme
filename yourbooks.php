@@ -128,7 +128,7 @@ if($userid != 0) {
     // list drafts
     $BookCat = get_cat_id('Books');
     $my_drafts = query_posts("cat=$BookCat&author=$userid&orderby=title&posts_per_page=-1&post_status=draft");
-    $drafts_list = Array();
+    $drafts = Array();
     foreach ($my_drafts as $post) {
         $book = ParseBookPost($post);
         $drafts[] = Array(
