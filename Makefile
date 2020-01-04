@@ -33,8 +33,8 @@ translate:
 copynew:
 	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/tarheelreader.org/wp-content/themes/thr3
 
-copygb:
-	rsync -az --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
+copydev:
+	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/dev.tarheelreader.org/wp-content/themes/thr3
 
 copytest:
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/test.tarheelreader/wp-content/themes/thr3
@@ -53,7 +53,7 @@ optimized: build
 versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
-devel: build copygb
+devel: build copydev
 
 testprod: optimized
 	rsync -az --delete ../Theme-build/ gbserver3:/var/www/gbserver/wp-content/themes/thr3
