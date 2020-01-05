@@ -130,12 +130,18 @@ if($userid != 0) {
     $my_drafts = query_posts("cat=$BookCat&author=$userid&orderby=title&posts_per_page=-1&post_status=draft");
     $drafts = Array();
     foreach ($my_drafts as $post) {
-        $book = ParseBookPost($post);
+        $author = trim(get_post_meta($id, 'author_pseudonym', true));
+        if (!$author) {
+            $author_id = $post->post_author;
+            $authordata = get_userdata($author_id);
+            $author = $authordata->display_name;
+        }
+        $author = preg_replace('/^[bB][yY]:?\s*/', '', $author);
         $drafts[] = Array(
             'title' => $post->post_title,
             'ID' => $post->ID,
             'link' => get_permalink($post->ID),
-            'author' => $book['author']
+            'author' => $author
         );
     }
     $view['drafts'] = $drafts;
