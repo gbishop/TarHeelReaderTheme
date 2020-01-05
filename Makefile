@@ -1,4 +1,15 @@
-all: devel
+HOST=gbserver.cs.unc.edu
+
+dev: DOMAIN=dev.tarheelreader.org
+dev: SRC=.
+dev: build copy
+
+production: DOMAIN=tarheelreader.org
+production: SRC=../Theme-build/
+production: optimized copy
+
+copy:
+	rsync -az --delete --exclude .git --exclude tests/robot $(SRC) $(HOST):/var/www/$(DOMAIN)/theme/
 
 manifest:
 	python tools/manifest.py > manifest.appcache
@@ -30,45 +41,15 @@ style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_c
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-copynew:
-	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/tarheelreader.org/wp-content/themes/thr3
-
-copydev:
-	rsync -az --exclude .git --exclude tests/robot --delete . gbserver:/var/www/dev.tarheelreader.org/wp-content/themes/thr3
-
-copytest:
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/test.tarheelreader/wp-content/themes/thr3
-
-copyproduction:
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
-
 optimized: build
 	rm -rf ../Theme-build/*
 	node ../r.js -o js/app.build.js
 	cp --parents -r *.php *.json EPub PowerPoint js/main-combined.js js/json2.min.js js/modernizr.custom.js js/require.min.js *.swf *.png images speech style.css ../Theme-build
 	mv ../Theme-build/js/main-combined.js ../Theme-build/js/main.js
 	make versioned
-	python tools/manifest.py ../Theme-build/used.txt > ../Theme-build/manifest.appcache
 
 versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
-
-devel: build copydev
-
-testprod: optimized
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/gbserver/wp-content/themes/thr3
-
-release:
-	make optimized
-	cd ../Theme-build; tar czf /home/gb/Sync/gbservers/roles/wordpress/files/thr-theme.bz2 --exclude=.git --exclude=shared --exclude=test .
-
-production:
-	make optimized
-	make copyproduction
-
-test:
-	make optimized
-	make copytest
 
 siteSpeech: build
 	python tools/makeSiteSpeech.py Templates.*.json
