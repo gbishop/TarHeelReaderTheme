@@ -1,4 +1,18 @@
-all: devel
+HOST=gbserver.cs.unc.edu
+
+dev: DOMAIN=dev-shared.tarheelreader.org
+dev: SRC=.
+dev: build copy copyshared
+
+production: DOMAIN=shared.tarheelreader.org
+production: SRC=../Theme-build/
+production: optimized copy
+
+copy:
+	rsync -az --delete --exclude .git --exclude tests/robot $(SRC) $(HOST):/var/www/$(DOMAIN)/theme/
+
+copyshared:
+	rsync -az --exclude .git shared/build/ $(HOST):/var/www/$(DOMAIN)/theme/shared/
 
 manifest:
 	python tools/manifest.py > manifest.appcache
@@ -22,6 +36,7 @@ Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html se
 
 build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json Templates.no.json style.css
 	rm -f manifest.appcache
+	cd shared; npm run build
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss css/_offline.scss
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
@@ -30,51 +45,22 @@ style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_c
 translate:
 	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
-copythr:
-	rsync -az --exclude shared --exclude .git --exclude tests/robot --delete . thr:/var/www/shared.tarheelreader.org/wp-content/themes/thr3
-	rsync -az shared/build/ thr:/var/www/shared.tarheelreader.org/wp-content/themes/thr3/shared
-
-copygb:
-	rsync -az --exclude shared --exclude .git --exclude tests/robot --delete . gbserver3:/var/www/gbserver3/wp-content/themes/thr3
-	rsync -az shared/build/ gbserver3:/var/www/gbserver3/wp-content/themes/thr3/shared
-
-copytest:
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/test.tarheelreader/wp-content/themes/thr3
-
-copyproduction:
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/tarheelreader/wp-content/themes/thr3
-
 optimized: build
 	rm -rf ../Theme-build/*
 	node ../r.js -o js/app.build.js
 	cp --parents -r *.php *.json EPub PowerPoint js/main-combined.js js/json2.min.js js/modernizr.custom.js js/require.min.js *.swf *.png images speech style.css ../Theme-build
 	mv ../Theme-build/js/main-combined.js ../Theme-build/js/main.js
 	make versioned
-	python tools/manifest.py ../Theme-build/used.txt > ../Theme-build/manifest.appcache
+	cp -a shared/build/ ../../Theme-build/shared
 
 versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
-devel: build copygb
-
-testprod: optimized
-	rsync -az --delete ../Theme-build/ gbserver3:/var/www/gbserver/wp-content/themes/thr3
-
-release:
-	make optimized
-	cd shared; npm run build; cp -a build/ ../../Theme-build/shared
+release: optimized
 	cd ../Theme-build; tar czf /home/gb/Sync/gbservers/roles/wordpress/files/thsr-theme.bz2 --exclude=.git --exclude=test .
 
 symbols:
 	rsync ../../symbols.dynavox/* gbserver:/var/www/shared.tarheelreader.org/shared/symbols
-
-production:
-	make optimized
-	make copyproduction
-
-test:
-	make optimized
-	make copytest
 
 siteSpeech: build
 	python tools/makeSiteSpeech.py Templates.*.json

@@ -5,8 +5,6 @@ Template Name: YourBooks
 ?>
 <?php
 
-global $log;
-
 function returnJson($result) {
     if (!is_array($result)) {
         $result = array('result' => $result);
@@ -130,14 +128,20 @@ if($userid != 0) {
     // list drafts
     $BookCat = get_cat_id('Books');
     $my_drafts = query_posts("cat=$BookCat&author=$userid&orderby=title&posts_per_page=-1&post_status=draft");
-    $drafts_list = Array();
+    $drafts = Array();
     foreach ($my_drafts as $post) {
-        $book = ParseBookPost($post);
+        $author = trim(get_post_meta($id, 'author_pseudonym', true));
+        if (!$author) {
+            $author_id = $post->post_author;
+            $authordata = get_userdata($author_id);
+            $author = $authordata->display_name;
+        }
+        $author = preg_replace('/^[bB][yY]:?\s*/', '', $author);
         $drafts[] = Array(
             'title' => $post->post_title,
             'ID' => $post->ID,
             'link' => get_permalink($post->ID),
-            'author' => $book['author']
+            'author' => $author
         );
     }
     $view['drafts'] = $drafts;
@@ -175,9 +179,7 @@ if($userid != 0) {
     $sql = "select c.CID, c.status, p.post_title, p.post_name
               from wpreader_shared c, wpreader_posts p
               where c.ID = p.ID and c.owner = $userid";
-    $log->logError($sql);
     $rows = $wpdb->get_results($sql);
-    $log->logError(print_r($rows, true));
     $mycoms = array();
     foreach ($rows as $row) {
         $mycoms[] = array(
