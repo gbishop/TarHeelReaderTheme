@@ -36,7 +36,7 @@ Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html se
 
 build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json Templates.no.json style.css
 	rm -f manifest.appcache
-	cd shared; npm run build
+	cd shared; build-if-changed
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss css/_offline.scss
 	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
