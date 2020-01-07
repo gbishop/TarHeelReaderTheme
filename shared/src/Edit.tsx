@@ -17,6 +17,7 @@ interface SingleCommentEditorProps {
   comments: string[][];
   pageno: number;
   reading: number;
+  onChange: () => void;
 }
 
 @observer
@@ -25,8 +26,9 @@ class SingleCommentEditor extends React.Component<
   {}
 > {
   @action.bound updateComment(e: React.ChangeEvent<HTMLInputElement>) {
-    const { comments, pageno, reading } = this.props;
+    const { comments, pageno, reading, onChange } = this.props;
     comments[reading][pageno] = e.target.value;
+    onChange();
     // if they add to the last reading, create another one
     // we'll delete fully empty readings on save
     // if (reading === comments.length - 1) {
@@ -36,6 +38,7 @@ class SingleCommentEditor extends React.Component<
   @action.bound addReading() {
     const comments = this.props.comments;
     comments.push(new Array(comments[0].length).fill(""));
+    this.props.onChange();
   }
   render() {
     const { comments, pageno, reading } = this.props;
@@ -69,6 +72,13 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
     this.comments.push(new Array(this.comments[0].length).fill(""));
     this.owners.push(store.db.login);
   }
+  @observable saveResponse: string = "";
+  @action.bound setSaveResponse(s: string) {
+    this.saveResponse = s;
+  }
+  @action.bound clearSaveResponse() {
+    this.saveResponse = "";
+  }
   constructor(props: any) {
     super(props);
     this.comments = this.props.book.comments;
@@ -77,12 +87,20 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
   }
   @action.bound save(status: string) {
     const { book, store } = this.props;
-    store.db
-      .updateBook(book, this.comments, status)
-      .then(
-        resp => store.setEditPath(book.slug, resp.cid),
-        error => console.log("error", error)
-      );
+    store.db.updateBook(book, this.comments, status).then(
+      resp => {
+        store.setEditPath(book.slug, resp.cid);
+        if (status === "draft") {
+          this.setSaveResponse("Saved draft");
+        } else {
+          this.setSaveResponse("Published");
+        }
+      },
+      error => {
+        console.log("error", error);
+        this.setSaveResponse("Error, not saved " + error);
+      }
+    );
   }
   render() {
     const { book, store } = this.props;
@@ -127,6 +145,7 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
                       comments={this.comments}
                       pageno={pn}
                       reading={rn}
+                      onChange={this.clearSaveResponse}
                     />
                   </td>
                 </tr>
@@ -139,7 +158,10 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
             Set the level:&nbsp;
             <select
               value={this.level}
-              onChange={e => this.setLevel(e.target.value)}
+              onChange={e => {
+                this.setLevel(e.target.value);
+                this.clearSaveResponse();
+              }}
             >
               <option value="">All levels</option>
               {LevelNames.map(name => (
@@ -150,6 +172,7 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
             </select>
           </label>
         </p>
+        <p style={{ color: "red", fontSize: "1.5em" }}>{this.saveResponse}</p>
         <p>
           Books saved as draft are available only to you. You'll find them
           listed in the <b>Your books</b> section.
