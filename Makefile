@@ -6,7 +6,7 @@ dev: build copy copyshared
 
 production: DOMAIN=shared.tarheelreader.org
 production: SRC=../Theme-build/
-production: optimized copy
+production: optimized copy symbols
 
 copy:
 	rsync -az --delete --exclude .git --exclude tests/robot $(SRC) $(HOST):/var/www/$(DOMAIN)/theme/
@@ -51,7 +51,7 @@ optimized: build
 	cp --parents -r *.php *.json EPub PowerPoint js/main-combined.js js/json2.min.js js/modernizr.custom.js js/require.min.js *.swf *.png images speech style.css ../Theme-build
 	mv ../Theme-build/js/main-combined.js ../Theme-build/js/main.js
 	make versioned
-	cp -a shared/build/ ../../Theme-build/shared
+	cp -a shared/build/ ../Theme-build/shared
 
 versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
