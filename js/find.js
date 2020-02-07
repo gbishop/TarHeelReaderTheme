@@ -74,6 +74,9 @@ define([
   function moveSelection(direction) {
     // operate on the active page only
     var $page = $(".active-page");
+    if (!$page.is(".find-page") && !$page.is(".favorites-page")) {
+      return;
+    }
     // stop any animation of the preview and remove it
     $(".preview")
       .stop(true, false)
@@ -166,6 +169,13 @@ define([
           });
       }
     });
+    var onesw = +state.get("onesw");
+    if (onesw) {
+      // schedule the next step
+      setTimeout(function() {
+        $.publish("/find/next", []);
+      }, onesw * 1000);
+    }
   }
   // set up bindings for movement and selection, these are published from the keyboard handler
   $.subscribe("/find/next", function(e, name, code) {
@@ -228,6 +238,11 @@ define([
         }
       });
 
+    if (+state.get("onesw") != 0) {
+      setTimeout(function() {
+        $.publish("/find/next", []);
+      }, 1000);
+    }
     return { title: "Find - Tar Heel Reader", colors: true };
   }
   $(document).on(

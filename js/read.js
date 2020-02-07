@@ -178,9 +178,18 @@ define([
     }
   }
 
+  function chooseOrNextPage() {
+    if ($(".active-page .thr-choices").length > 0) {
+      makeChoice();
+    } else {
+      nextPage();
+    }
+  }
+
   function nextChoiceOrPage() {
     if ($(".active-page .thr-choices").length > 0) {
       changeChoice(+1);
+      oneSwitch(0);
     } else {
       nextPage();
     }
@@ -271,7 +280,28 @@ define([
     }
   }
 
+  var oneSwitchTimer = 0;
+  function oneSwitch(first) {
+    var onesw = +state.get("onesw");
+    var $page = $(".active-page.thr-book-page");
+    var choice = $page.is(".choice-page");
+    if (choice && onesw) {
+      if (oneSwitchTimer) {
+        clearTimeout(oneSwitchTimer);
+      }
+      oneSwitchTimer = setTimeout(
+        function() {
+          if ($(".active-page.thr-book-page.choice-page").length > 0) {
+            $.publish("/read/nextChoiceOrPage", []);
+          }
+        },
+        first ? 100 : onesw * 1000
+      );
+    }
+  }
+
   $.subscribe("/read/chooseOrPreviousPage", chooseOrPreviousPage);
+  $.subscribe("/read/chooseOrNextPage", chooseOrNextPage);
   $.subscribe("/read/nextChoiceOrPage", nextChoiceOrPage);
   $.subscribe("/read/previousChoiceOrPage", previousChoiceOrPage);
   $.subscribe("/read/makeChoice", makeChoice);
@@ -279,14 +309,26 @@ define([
   $.subscribe("/read/swipe", swipe);
 
   // configure the keyboard controls
-  keys.setMap(".active-page.thr-book-page", {
-    "left enter": "/read/chooseOrPreviousPage",
-    "right space": "/read/nextChoiceOrPage",
-    up: "/read/previousChoiceOrPage",
-    down: "/read/makeChoice",
-    "p n m c a r d 1 2 3": "/read/key",
-    swipe: "/read/swipe"
-  });
+  if (+state.get("onesw") == 0) {
+    keys.setMap(".active-page.thr-book-page", {
+      "left enter": "/read/chooseOrPreviousPage",
+      "right space": "/read/nextChoiceOrPage",
+      up: "/read/previousChoiceOrPage",
+      down: "/read/makeChoice",
+      "p n m c a r d 1 2 3": "/read/key",
+      swipe: "/read/swipe"
+    });
+  } else {
+    keys.setMap(".active-page.thr-book-page", {
+      left: "/read/chooseOrPreviousPage",
+      enter: "/read/chooseOrNextPage",
+      "right space": "/read/nextChoiceOrPage",
+      up: "/read/previousChoiceOrPage",
+      down: "/read/makeChoice",
+      "p n m c a r d 1 2 3": "/read/key",
+      swipe: "/read/swipe"
+    });
+  }
 
   // handle toggling favorites
   $(document).on("click", ".front-page .thr-favorites-icon", function(ev) {
@@ -373,7 +415,7 @@ define([
     if (!pageNumber) {
       pageNumber = 1;
     }
-    // console.log('configureBook', url, slug, pageNumber);
+    console.log("configureBook", url, slug, pageNumber);
     var $page = $(this);
     if (!$page.is(".thr-book-page")) {
       console.log("not book page, no configure");
@@ -390,6 +432,9 @@ define([
     if (state.get("eyetracker") == "1") {
       notifyTracker($page, slug, pageNumber);
     }
+
+    // start up the scanning
+    oneSwitch(1);
 
     // enable larger targets for eye gaze users
     var biglinks = +state.get("biglinks");
