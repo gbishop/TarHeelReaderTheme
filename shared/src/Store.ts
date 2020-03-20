@@ -134,8 +134,8 @@ class Store {
   // index to the readings array
   @observable public reading: number = 1;
   @action.bound public setReading(n: number) {
-    this.reading = n;
-    this.responseIndex = 0;
+    this.reading = Math.max(1, Math.min(n, this.nreadings));
+    // this.responseIndex = 0;
   }
   @computed get nreadings() {
     return this.bookP.case({

@@ -92,6 +92,9 @@ class Reader extends React.Component<{ store: Store }, {}> {
 
       function sayWord(word: string) {
         // response event
+        if (word === "I") {
+          word = "eye"; // hack for iOS
+        }
         const msg = new SpeechSynthesisUtterance(word);
         msg.lang = "en-US";
         speechSynthesis.speak(msg);
@@ -119,6 +122,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
             min={1}
             max={store.nreadings}
             pattern="\d*"
+            inputMode="numeric"
             onFocus={e => e.target.select()}
             onChange={e => {
               if (
@@ -126,12 +130,9 @@ class Reader extends React.Component<{ store: Store }, {}> {
                 e.target.value &&
                 e.target.value.match(/[0-9]+/)
               ) {
-                const value = Math.max(
-                  1,
-                  Math.min(+e.target.value, store.nreadings)
-                );
-                store.setReading(value);
+                store.setReading(+e.target.value);
               }
+              e.target.select();
             }}
             style={{ width: "2em" }}
           />
@@ -502,12 +503,9 @@ class Controls extends React.Component<ControlsProps, {}> {
                     e.target.value &&
                     e.target.value.match(/[0-9]+/)
                   ) {
-                    const value = Math.max(
-                      1,
-                      Math.min(+e.target.value, store.nreadings)
-                    );
-                    store.setReading(value);
+                    store.setReading(+e.target.value);
                   }
+                  e.target.select();
                 }}
               />
             </label>
