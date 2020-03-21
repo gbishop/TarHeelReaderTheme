@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import App from "./App";
 import Store from "./Store";
 import { DB } from "./db";
+import ReactGA from "react-ga";
 // import registerServiceWorker from './registerServiceWorker';
 import "./index.css";
 
@@ -20,6 +21,9 @@ navigator.serviceWorker
   .then(registrations =>
     registrations.map(registration => registration.unregister())
   );
+
+// initialize analytics
+ReactGA.initialize("UA-6128682-1");
 
 function startRouter(store: Store) {
   const baseUrl = process.env.PUBLIC_URL;
@@ -46,6 +50,7 @@ function startRouter(store: Store) {
   // update url on state changes
   // TODO
   autorun(() => {
+    ReactGA.pageview(store.currentPath);
     const path = baseUrl + store.currentPath;
     if (path !== window.location.pathname) {
       window.history.pushState(null, "", path);
@@ -72,9 +77,10 @@ startPersist(theStore);
 autorun(() => theStore.log());
 window.addEventListener("resize", theStore.resize);
 
-ReactDOM.render(<App store={theStore} />, document.getElementById(
-  "root"
-) as HTMLElement);
+ReactDOM.render(
+  <App store={theStore} />,
+  document.getElementById("root") as HTMLElement
+);
 // registerServiceWorker();
 
 // THR will signal us here that the user has logged in

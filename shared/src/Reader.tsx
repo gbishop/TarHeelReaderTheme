@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import KeyHandler from "react-key-handler";
-import * as ReactModal from "react-modal";
+import Modal from "react-modal";
 import NextArrow from "./NextArrow.png";
 import BackArrow from "./BackArrow.png";
 import NextResponsePage from "./NextResponsePage.png";
@@ -480,7 +480,7 @@ class Controls extends React.Component<ControlsProps, {}> {
           keyValue="Escape"
           onKeyHandle={store.toggleControlsVisible}
         />
-        <ReactModal
+        <Modal
           isOpen={store.controlsVisible}
           contentLabel="Reading controls"
           style={customStyles}
@@ -589,7 +589,7 @@ class Controls extends React.Component<ControlsProps, {}> {
 
             <button onClick={store.toggleControlsVisible}>Done</button>
           </div>
-        </ReactModal>
+        </Modal>
       </div>
     );
   }

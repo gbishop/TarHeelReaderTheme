@@ -44,7 +44,7 @@ export const allResponses: string[] = [
 const PERSISTVERSION = 1;
 
 class Store {
-  public db: DB;
+  public db!: DB;
 
   // does user have admin privileges
   @computed get isAdmin() {
