@@ -112,7 +112,7 @@ define([
     }
     renderUrl(url, context).then(function(title) {
       document.title = title;
-      ga("send", "pageview", { page: url.replace(rootUrl, "/"), title: title });
+      gtag('config', 'UA-6128682-1');
     });
   }
 

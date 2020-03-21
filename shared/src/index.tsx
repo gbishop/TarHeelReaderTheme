@@ -50,8 +50,8 @@ function startRouter(store: Store) {
   // update url on state changes
   // TODO
   autorun(() => {
-    ReactGA.pageview(store.currentPath);
     const path = baseUrl + store.currentPath;
+    ReactGA.pageview(path);
     if (path !== window.location.pathname) {
       window.history.pushState(null, "", path);
     }
