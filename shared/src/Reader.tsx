@@ -114,7 +114,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
             onClick={store.toggleControlsVisible}
             style={{ border: "none", backgroundColor: "inherit" }}
           >
-            <img src="/theme/images/comments_t.png" />
+            <img src="/theme/images/comments_t.png" alt="" />
           </button>
           <input
             type="number"
@@ -221,15 +221,15 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
             <h2>How do you rate this book?</h2>
             <input type="radio" id="onestar" name="rating" value="1" />
             <label htmlFor="onestar">
-              <img src="/theme/images/1stars.png" />1 star
+              <img src="/theme/images/1stars.png" alt="" />1 star
             </label>
             <input type="radio" id="twostar" name="rating" value="2" />
             <label htmlFor="twostar">
-              <img src="/theme/images/2stars.png" />2 stars
+              <img src="/theme/images/2stars.png" alt="" />2 stars
             </label>
             <input type="radio" id="threestar" name="rating" value="3" />
             <label htmlFor="threestar">
-              <img src="/theme/images/3stars.png" />3 stars
+              <img src="/theme/images/3stars.png" alt="" />3 stars
             </label>
           </div>
         </div>
@@ -385,11 +385,11 @@ class Responses extends React.Component<ResponsesProps, {}> {
       return (
         <div key={i} style={dstyle} className="response-container">
           <button style={nbstyle} onClick={() => store.stepResponsePage(-1)}>
-            <img src={BackResponsePage} style={{ width: "50%" }} />
+            <img src={BackResponsePage} style={{ width: "50%" }} alt="" />
           </button>
           {responseGroup}
           <button style={nbstyle} onClick={() => store.stepResponsePage(1)}>
-            <img src={NextResponsePage} style={{ width: "50%" }} />
+            <img src={NextResponsePage} style={{ width: "50%" }} alt="" />
           </button>
         </div>
       );

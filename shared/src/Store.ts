@@ -116,7 +116,7 @@ class Store {
   // map the state to a url
   @computed get currentPath() {
     if (this.editing) {
-      const p = "/edit" + "/" + this.editSlug + "/" + this.editCID;
+      const p = "/edit/" + this.editSlug + "/" + this.editCID;
       return p;
     }
     return `/read/${this.bookid}` + (this.pageno > 1 ? `/${this.pageno}` : "");

@@ -1,16 +1,13 @@
 import * as React from "react";
 import { observer } from "mobx-react";
-import { IPromiseBasedObservable } from "mobx-utils";
 import Store from "./Store";
 import { observable, action, computed } from "mobx";
 import {
   THRURL,
   SharedBook,
-  SharedBookList,
-  CreateResponse,
   LevelNames
 } from "./db";
-import { WaitToRender, THR } from "./helpers";
+import { WaitToRender } from "./helpers";
 import "./Edit.css";
 
 interface SingleCommentEditorProps {
@@ -68,7 +65,7 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
     this.level = s;
   }
   @action.bound addReading() {
-    const { book, store } = this.props;
+    const { store } = this.props;
     this.comments.push(new Array(this.comments[0].length).fill(""));
     this.owners.push(store.db.login);
   }
@@ -108,7 +105,7 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
     return (
       <div>
         <button title="Go back" onClick={() => store.setPath(book.slug, 1)}>
-          <img src="/theme/images/well.png" />
+          <img src="/theme/images/well.png" alt=""/>
         </button>
         <table className="editor">
           <caption>
@@ -134,7 +131,7 @@ class CommentEditor extends React.Component<CommentEditorProps, {}> {
                   {rn === 0 && (
                     <td rowSpan={nreadings}>
                       <figure>
-                        <img src={THRURL + page.url} />
+                        <img src={THRURL + page.url} alt=""/>
                         <figcaption>{page.text}</figcaption>
                       </figure>
                     </td>

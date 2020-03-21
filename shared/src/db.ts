@@ -115,7 +115,6 @@ export class DB {
   @computed get authP(): IPromiseBasedObservable<Auth> {
     return fromPromise(
       new Promise((resolve, reject) => {
-        const rt = this.authRetry;
         window
           .fetch(THRURL + "/login/?shared=1", {
             credentials: "include"

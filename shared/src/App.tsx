@@ -3,7 +3,6 @@ import { observer } from "mobx-react";
 import "./App.css";
 import Store from "./Store";
 import Reader from "./Reader";
-import { THRURL } from "./db";
 import Edit from "./Edit";
 
 @observer
