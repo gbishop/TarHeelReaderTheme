@@ -21,7 +21,9 @@ define(["pubsub"], function() {
         50: '2',
         51: '3',
         32: 'space',
-        13: 'enter'
+        13: 'enter',
+        34: 'pagedown',
+        33: 'pageup'
     };
 
     function onKeyDown(e) {
