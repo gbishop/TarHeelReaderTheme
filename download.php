@@ -106,7 +106,7 @@ function CreateEPubFromBook($book, $voice) {
             false, EPub::EXTERNAL_REF_ADD, ABSPATH);
     }
     $epub->finalize();
-    $zipData = $epub->sendBook($book['slug'] ?: $book['ID']);
+    $epub->sendBook($book['slug'] ?: $book['ID']);
 }
 
 function CreatePPTXFromBook($book) {

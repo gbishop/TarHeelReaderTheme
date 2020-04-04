@@ -1,32 +1,31 @@
 /* book.js render a book page */
 
-define(["route",
-        "page",
-        "templates",
-        "keyboard",
-        "state",
-        "speech",
-        "ios",
-        "store",
-        "controller"
-        ], function(route, page, templates, keys, state, speech, ios, store, controller) {
-
+define([
+    "route",
+    "page",
+    "templates",
+    "keyboard",
+    "state",
+    "speech",
+    "ios",
+    "store"
+], function(route, page, templates, keys, state, speech, ios, store) {
     var picBoxSize = {}; // sizing the pic box same as last time
 
     function pageLink(link, page) {
         if (page === 1) {
             return link;
         } else if (link.match(/^\/\?p=.*/)) {
-            return link + '&page=' + page;
+            return link + "&page=" + page;
         } else {
-            return link + page + '/';
+            return link + page + "/";
         }
     }
 
     function renderBook(url, slug, pageNumber) {
         //console.log('renderBook', url, slug, pageNumber, this);
         // only render a book locally when the link has data-type=book
-        if (!this || !this.data_type || this.data_type != 'book') {
+        if (!this || !this.data_type || this.data_type != "book") {
             //console.log('renderBook rejects based on type');
             return false; // it will get rendered by the host
         }
@@ -51,54 +50,68 @@ define(["route",
                 view.author = book.author;
                 view.pageNumber = pageNumber;
                 view.backto = encodeURI(book.link);
-                view.image = book.pages[Math.max(1, pageNumber-1)];
+                view.image = book.pages[Math.max(1, pageNumber - 1)];
                 view.caption = view.image.text;
                 if (pageNumber === 1) {
-                    view.backLink = state.get('findAnotherLink');
-                    view.nextLink = pageLink(book.link, pageNumber+1);
+                    view.backLink = state.get("findAnotherLink");
+                    view.nextLink = pageLink(book.link, pageNumber + 1);
                 } else {
-                    view.backLink = pageLink(book.link, pageNumber-1);
-                    view.nextLink = pageLink(book.link, pageNumber+1);
+                    view.backLink = pageLink(book.link, pageNumber - 1);
+                    view.nextLink = pageLink(book.link, pageNumber + 1);
                 }
                 templates.setImageSizes(view.image);
-                newContent = templates.render('bookPage', view);
-                speech.play(book.ID, pageNumber, book.language,
-                    book.pages[pageNumber-1].text, book.bust);
+                newContent = templates.render("bookPage", view);
+                speech.play(
+                    book.ID,
+                    pageNumber,
+                    book.language,
+                    book.pages[pageNumber - 1].text,
+                    book.bust
+                );
             } else {
-                if (pageNumber === N+1) {
-                    logEvent('read', 'complete', book.slug + ':' + book.ID);
+                if (pageNumber === N + 1) {
+                    logEvent("read", "complete", book.slug + ":" + book.ID);
                 }
-                view.nextLink = pageLink(book.link, pageNumber+1);
+                view.nextLink = pageLink(book.link, pageNumber + 1);
                 view.link = book.link;
-                view.findLink = state.get('findAnotherLink');
-                view.what = pageNumber === N+1;
-                view.rate = pageNumber === N+2;
-                view.thanks = pageNumber >= N+3;
+                view.findLink = state.get("findAnotherLink");
+                view.what = pageNumber === N + 1;
+                view.rate = pageNumber === N + 2;
+                view.thanks = pageNumber >= N + 3;
                 if (view.thanks) {
                     // we need to update the rating on the host
                     updateRating(book, url);
                 }
                 view.rating = templates.rating_info(book.rating_value);
-                newContent = templates.render('choicePage', view);
+                newContent = templates.render("choicePage", view);
             }
-            var $oldPage = page.getInactive('thr-book-page');
+            var $oldPage = page.getInactive("thr-book-page");
             // add classes to specific pages for styling purposes
             if (pageNumber === 1) {
-                $oldPage.addClass('thr-colors front-page').removeClass('choice-page');
+                $oldPage
+                    .addClass("thr-colors front-page")
+                    .removeClass("choice-page");
             } else if (pageNumber <= N) {
-                $oldPage.addClass('thr-colors').removeClass('front-page choice-page');
+                $oldPage
+                    .addClass("thr-colors")
+                    .removeClass("front-page choice-page");
             } else {
-                $oldPage.addClass('thr-colors choice-page').removeClass('front-page');
+                $oldPage
+                    .addClass("thr-colors choice-page")
+                    .removeClass("front-page");
             }
-            $oldPage.empty()
+            $oldPage
+                .empty()
                 .append(bookHeading(pageNumber, book.ID))
-                .append('<div class="content-wrap">' + newContent + '</div>');
+                .append('<div class="content-wrap">' + newContent + "</div>");
 
             // size the pic box like last time, its probably the same
-            $oldPage.find('.thr-pic-box').css(picBoxSize);
+            $oldPage.find(".thr-pic-box").css(picBoxSize);
 
-            $def.resolve($oldPage, {title: 'Tar Heel Reader | ' + book.title,
-                colors: true});
+            $def.resolve($oldPage, {
+                title: "Tar Heel Reader | " + book.title,
+                colors: true
+            });
         });
         return $def;
     }
@@ -110,22 +123,24 @@ define(["route",
             view.settings = true;
             view.isFavorite = state.isFavorite(ID);
         }
-        return templates.render('heading', view);
+        return templates.render("heading", view);
     }
 
-    function scalePicture ($page) {
-        var $box = $page.find('.thr-pic-box');
+    function scalePicture($page) {
+        var $box = $page.find(".thr-pic-box");
         if ($box.length === 0) return;
 
         var $window = $(window),
-            $container = $page.find('.content-wrap'),
+            $container = $page.find(".content-wrap"),
             ww = $container.width(),
             wh = $window.height(),
             b = $box.width(),
             bt = $box.offset().top,
             available,
-            $caption = $page.find('.thr-caption-box'),
-            ct, ch, gap;
+            $caption = $page.find(".thr-caption-box"),
+            ct,
+            ch,
+            gap;
 
         if ($caption.length === 1) {
             ct = $caption.offset().top;
@@ -136,71 +151,25 @@ define(["route",
             available = Math.min(ww, wh - bt - 8);
         }
         picBoxSize = {
-            width: available + 'px',
-            height: available + 'px'
+            width: available + "px",
+            height: available + "px"
         };
         $box.css(picBoxSize);
     }
 
-    // display big fonts
-    var ZoomFactor = 1,
-        ZoomText = false;
-    function zoom() {
-        ZoomFactor += 1;
-        if(ZoomFactor > 4) ZoomFactor = 1;
-        ZoomText = true;
-        bigFonts(ZoomFactor);
-    }
-
-    function bigFonts(zoom) {
-        if(zoom <= 1) {
-            $('.active-page [style]').not('img').removeAttr('style');
-        } else {
-            // make the text area large
-            $('.thr-caption-box').css({
-                width: '100%',
-                height: $(window).height() * Math.min(0.3 * zoom, 0.9),
-                overflowY: 'auto'
-            });
-            $('.thr-caption').css({
-                fontSize: 1.8 * zoom + 'em'
-            });
-            $('.thr-next-link').css({
-                opacity: 0.3
-            });
-            $('.thr-back-link').css({
-                opacity: 0.3
-            });
-            $('h1').css({
-                fontSize: zoom * 2 + 'em',
-                marginTop: 1 / zoom + 'em',
-                marginBottom: 0.2 / zoom + 'em',
-                width: '100%',
-                overflow: 'hidden'
-            });
-            $('h1.thr-question').css('fontSize', zoom + 'em')
-            $('.thr-choices').css('fontSize', zoom + 'em');
-
-       }
-       var $page = $('.active-page.thr-book-page');
-       if ($page.length === 1) {
-           scalePicture($page);
-       }
-    }
-
     // only resize when we're done instead of every 20ms
-    $(window).on('resize', function() {
+    $(window).on("resize", function() {
         if (this.resizeTO) {
             clearTimeout(this.resizeTO);
         }
         this.resizeTO = setTimeout(function() {
-            $(this).trigger('resizeEnd');
+            $(this).trigger("resizeEnd");
         }, 50);
     });
 
     // resize book pictures when the window changes size
-    $(window).on('resizeEnd', function(e) {
-        var $page = $('.active-page.thr-book-page');
+    $(window).on("resizeEnd", function(e) {
+        var $page = $(".active-page.thr-book-page");
         if ($page.length === 1) {
             //console.log('book resize');
             scalePicture($page);
@@ -208,7 +177,7 @@ define(["route",
     });
 
     function chooseOrPreviousPage() {
-        if ($('.active-page .thr-choices').length > 0) {
+        if ($(".active-page .thr-choices").length > 0) {
             makeChoice();
         } else {
             previousPage();
@@ -216,7 +185,7 @@ define(["route",
     }
 
     function nextChoiceOrPage() {
-        if ($('.active-page .thr-choices').length > 0) {
+        if ($(".active-page .thr-choices").length > 0) {
             changeChoice(+1);
         } else {
             nextPage();
@@ -224,7 +193,7 @@ define(["route",
     }
 
     function previousChoiceOrPage() {
-        if ($('.active-page .thr-choices').length > 0) {
+        if ($(".active-page .thr-choices").length > 0) {
             changeChoice(-1);
         } else {
             previousPage();
@@ -232,55 +201,27 @@ define(["route",
     }
 
     function makeChoice() {
-        var choice = $('.active-page .thr-choices .selected a');
+        var choice = $(".active-page .thr-choices .selected a");
         if (choice.length == 1) {
             choice.click();
         } else {
-            console.log('no choice', choice.length);
+            console.log("no choice", choice.length);
         }
-    }
-
-    function click(ref) {
-        var $link = $(ref),
-            href = $link.attr('href'),
-            dtype = $link.attr('data-type'),
-            context = { data_type: dtype };
-        controller.gotoUrl(href, '', context);
     }
 
     function previousPage() {
-        if(ZoomFactor > 1) {
-            if(ZoomText) {
-                ZoomText = false;
-                bigFonts(1);
-            } else {
-                ZoomText = true;
-                click('.active-page a.thr-back-link');
-            }
-        } else {
-            click('.active-page a.thr-back-link');
-        }
+        $(".active-page a.thr-back-link").click();
     }
 
-   function nextPage() {
-        if(ZoomFactor > 1) {
-            if(!ZoomText) {
-                ZoomText = true;
-                bigFonts(ZoomFactor);
-            } else {
-                ZoomText = false;
-                click('.active-page a.thr-next-link');
-            }
-        } else {
-            click('.active-page a.thr-next-link');
-        }
+    function nextPage() {
+        $(".active-page a.thr-next-link").click();
     }
 
     function changeChoice(dir) {
-        var choices = $('.active-page .thr-choices li');
+        var choices = $(".active-page .thr-choices li");
         if (choices.length > 0) {
             var index = 0;
-            var selected = choices.filter('.selected');
+            var selected = choices.filter(".selected");
             if (selected.length > 0) {
                 index = choices.index(selected);
                 index += dir;
@@ -290,20 +231,20 @@ define(["route",
                     index = 0;
                 }
             }
-            choices.removeClass('selected');
+            choices.removeClass("selected");
             var $choice = $(choices.get(index));
-            $choice.addClass('selected');
-            var toSay = $choice.attr('data-speech');
+            $choice.addClass("selected");
+            var toSay = $choice.attr("data-speech");
             if (toSay) {
-                speech.play('site', toSay, state.get('locale'));
+                speech.play("site", toSay, state.get("locale"));
             }
         } else {
-            console.log('no choices');
+            console.log("no choices");
         }
     }
 
     function keyChoice(e, name, code) {
-        var selector = '.active-page .key-' + name;
+        var selector = ".active-page .key-" + name;
         var link = $(selector);
         link.click();
     }
@@ -324,9 +265,10 @@ define(["route",
             var rating = parseInt(m[1], 10);
             book.rating_count += 1;
             book.rating_total += rating;
-            book.rating_value = Math.round(2.0*book.rating_total / book.rating_count) * 0.5;
+            book.rating_value =
+                Math.round((2.0 * book.rating_total) / book.rating_count) * 0.5;
             $.ajax({
-                url: '/rateajax/',
+                url: "/rateajax/",
                 data: {
                     id: book.ID,
                     rating: rating
@@ -335,50 +277,38 @@ define(["route",
         }
     }
 
-    $.subscribe('/read/chooseOrPreviousPage', chooseOrPreviousPage);
-    $.subscribe('/read/nextChoiceOrPage', nextChoiceOrPage);
-    $.subscribe('/read/previousChoiceOrPage', previousChoiceOrPage);
-    $.subscribe('/read/makeChoice', makeChoice);
-    $.subscribe('/read/key', keyChoice);
-    $.subscribe('/read/swipe', swipe);
-    $.subscribe('/read/zoom', zoom);
+    $.subscribe("/read/chooseOrPreviousPage", chooseOrPreviousPage);
+    $.subscribe("/read/nextChoiceOrPage", nextChoiceOrPage);
+    $.subscribe("/read/previousChoiceOrPage", previousChoiceOrPage);
+    $.subscribe("/read/makeChoice", makeChoice);
+    $.subscribe("/read/key", keyChoice);
+    $.subscribe("/read/swipe", swipe);
 
     // configure the keyboard controls
-    keys.setMap('.active-page.thr-book-page', {
-        'left enter': '/read/chooseOrPreviousPage',
-        'right space': '/read/nextChoiceOrPage',
-        'up': '/read/previousChoiceOrPage',
-        'down': '/read/makeChoice',
-        'p n m c a r d 1 2 3': '/read/key',
-        'swipe': '/read/swipe',
-        'z': '/read/zoom'
-    });
-
-    // locally bind the next and back button
-    $(document).on('click', '.thr-next-link', function(ev) {
-        ev.preventDefault();
-        nextPage();
-    });
-    $(document).on('click', '.thr-back-link', function(ev) {
-        ev.preventDefault();
-        previousPage();
+    keys.setMap(".active-page.thr-book-page", {
+        "left enter pageup": "/read/chooseOrPreviousPage",
+        "right space pagedown": "/read/nextChoiceOrPage",
+        up: "/read/previousChoiceOrPage",
+        down: "/read/makeChoice",
+        "p n m c a r d 1 2 3": "/read/key",
+        swipe: "/read/swipe"
     });
 
     // handle toggling favorites
-    $(document).on('click', '.front-page .thr-favorites-icon', function(ev) {
+    $(document).on("click", ".front-page .thr-favorites-icon", function(ev) {
         if (ios.cancelNav(ev)) {
             // prevent ios double click bug
             return false;
         }
         ev.preventDefault();
-        var $page = $('.front-page.active-page'),
-            id = $page.find('.content-wrap h1').attr('data-id');
+        var $page = $(".front-page.active-page"),
+            id = $page.find(".content-wrap h1").attr("data-id");
         if (state.isFavorite(id)) {
             state.removeFavorite(id);
         } else {
             state.addFavorite(id);
         }
-        $page.find('header').replaceWith(bookHeading(1, id));
+        $page.find("header").replaceWith(bookHeading(1, id));
     });
 
     var trackerSocket = null;
@@ -397,23 +327,25 @@ define(["route",
             return {
                 t: y,
                 l: x,
-                r: x+w,
-                b: y+h
-            }
+                r: x + w,
+                b: y + h
+            };
         }
         if (!trackerSocket || trackerSocket.readyState == 3) {
-            trackerSocket = new WebSocket('ws://localhost:8008/');
+            trackerSocket = new WebSocket("ws://localhost:8008/");
             trackerSocket.onopen = function() {
-                console.log('sending queued');
+                console.log("sending queued");
                 while (trackerQueue.length > 0) {
                     trackerSocket.send(trackerQueue.shift());
                 }
-            }
+            };
         }
-        $('.thr-text').contents().wrap('<span class="thetext"></span>');
-        var $text = $page.find('span.thetext'),
-            choice = $page.is('.choice-page'),
-            $pic = $page.find('img.thr-pic'),
+        $(".thr-text")
+            .contents()
+            .wrap('<span class="thetext"></span>');
+        var $text = $page.find("span.thetext"),
+            choice = $page.is(".choice-page"),
+            $pic = $page.find("img.thr-pic"),
             data = { page: pageNumber, slug: slug, choice: choice };
 
         if (!choice) {
@@ -431,46 +363,97 @@ define(["route",
                 };
             $.extend(data, d);
         }
-        console.log('data', data);
+        console.log("data", data);
         var jdata = JSON.stringify(data);
         if (trackerSocket.readyState == 1) {
-            console.log('sending');
+            console.log("sending");
             trackerSocket.send(jdata);
         } else {
-            console.log('queueing');
+            console.log("queueing");
             trackerQueue.push(jdata);
         }
         // end hack
     }
 
-
     function configureBook(url, slug, pageNumber) {
         if (!pageNumber) {
             pageNumber = 1;
         }
-        console.log('configureBook', url, slug, pageNumber);
+        // console.log('configureBook', url, slug, pageNumber);
         var $page = $(this);
-        if (!$page.is('.thr-book-page')) {
-            console.log('not book page, no configure');
+        if (!$page.is(".thr-book-page")) {
+            console.log("not book page, no configure");
         }
-        bigFonts(ZoomText ? ZoomFactor : 1);
-        $page.find('.thr-pic').fadeIn(200);
-        var toSay = $page.find('.thr-question').attr('data-speech');
+        scalePicture($page);
+        $page.find(".thr-pic").fadeIn(200);
+        var toSay = $page.find(".thr-question").attr("data-speech");
         if (toSay) {
-            speech.play('site', toSay, state.get('locale'));
+            speech.play("site", toSay, state.get("locale"));
         }
 
         ios.focusVoiceOverOnText($page);
 
-        if (state.get('eyetracker') == '1') {
+        if (state.get("eyetracker") == "1") {
             notifyTracker($page, slug, pageNumber);
+        }
+
+        // enable larger targets for eye gaze users
+        var biglinks = +state.get("biglinks");
+        if (biglinks) {
+            var $window = $(window),
+                $container = $page.find(".content-wrap"),
+                ww = $container.width(),
+                wh = $window.height(),
+                fs = parseFloat($("body").css("fontSize")),
+                target = fs * (0.9 + 3.6 * biglinks),
+                top = 10 * fs,
+                bar = wh - top,
+                ptb = (bar - target) / 2;
+            $("a.thr-next-link")
+                .css({
+                    width: "initial",
+                    height: "initial",
+                    paddingTop: ptb + "px",
+                    paddingBottom: ptb + "px",
+                    paddingLeft: fs,
+                    paddingRight: fs,
+                    backgroundColor: "inherit",
+                    right: 0,
+                    bottom: 0
+                })
+                .find("img")
+                .css("zoom", 2 * biglinks);
+            $("a.thr-back-link")
+                .css({
+                    width: "initial",
+                    height: "initial",
+                    paddingTop: ptb + "px",
+                    paddingBottom: ptb + "px",
+                    paddingLeft: fs,
+                    paddingRight: fs,
+                    backgroundColor: "inherit",
+                    left: 0,
+                    bottom: 0
+                })
+                .find("img")
+                .css("zoom", 2 * biglinks);
+            // remove the vertical scrollbar to allow the right boundary to help
+            $("html").css("overflow-y", "auto");
         }
     }
 
-    route.add('render', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, renderBook);
-    route.add('render', /^\/(?:\?(p=\d+))(?:&page=(\d+))?/, renderBook);
-    route.add('init', /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/, configureBook);
-    route.add('init', /^\/(?:\?p=.*)$/, configureBook);
+    route.add(
+        "render",
+        /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/,
+        renderBook
+    );
+    route.add("render", /^\/(?:\?(p=\d+))(?:&page=(\d+))?/, renderBook);
+    route.add(
+        "init",
+        /^\/\d+\/\d+\/\d+\/([^\/]+)\/(?:(\d+)\/)?(?:\?.*)?$/,
+        configureBook
+    );
+    route.add("init", /^\/(?:\?p=.*)$/, configureBook);
 
     return {};
 });

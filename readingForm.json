@@ -38,6 +38,16 @@
                 { "label": "_(Yellow)", "value": "ff0"}
             ]
         },
+        {   "label": "_(Page Button Size)",
+            "name": "biglinks",
+            "select": true,
+            "options": [
+                { "label": "_(Normal)", "value": "0" },
+                { "label": "_(Medium)", "value": "1" },
+                { "label": "_(Large)", "value": "2" },
+                { "label": "_(Extra Large)", "value": "3" }
+            ]
+        },
         {   "input": true,
             "type": "submit",
             "value": "_(Done|button label)"

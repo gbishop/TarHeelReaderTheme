@@ -73,7 +73,7 @@ function thr_setcookie($force=0) {
 
     // if we updated the state, the set the cookie
     if ($force || $setCookie > 0) {
-        setcookie('thr', json_encode($THRState), 0, '/');
+        setcookie('thr', json_encode($THRState), time()+60*60*24*365, '/');
         $setCookie = 0;
     }
 }

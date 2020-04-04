@@ -17,12 +17,13 @@ define(["pubsub"], function() {
         78: 'n',
         80: 'p',
         82: 'r',
-        90: 'z',
         49: '1',
         50: '2',
         51: '3',
         32: 'space',
-        13: 'enter'
+        13: 'enter',
+        34: 'pagedown',
+        33: 'pageup'
     };
 
     function onKeyDown(e) {

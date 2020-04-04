@@ -59,9 +59,9 @@ define([ "json!../state.json", "jquery.cookie" ], function(rules) {
 
     function setCookie() {
         var args = {path: '/'};
-        if (state.lastURL) {
-            args.expires = 1;
-        }
+        //if (state.lastURL) {
+            args.expires = 365;
+        //}
         $.cookie('thr', JSON.stringify(state), args);
     }
 

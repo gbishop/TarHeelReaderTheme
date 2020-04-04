@@ -17,5 +17,6 @@
     "classic": { "pattern": "^[01]$", "default": "0" },
     "debug": { "pattern": "^[01]$", "default": "0" },
     "offline" : { "pattern": "^[01]$", "default": "0" },
-    "eyetracker": { "pattern": "^[01]$", "default": "0"}
+    "eyetracker": { "pattern": "^[01]$", "default": "0"},
+    "biglinks": { "pattern": "^[0123]$", "default": "0"}
 }

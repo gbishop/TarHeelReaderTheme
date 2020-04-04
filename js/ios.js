@@ -61,8 +61,9 @@ define(["state"], function(state) {
         };
 
         res.speechRate = function(msg) {
+            // Is this no longer needed?
             // iOS talks too fast
-            msg.rate = 0.3;
+            // msg.rate = 0.3;
         };
     }
 

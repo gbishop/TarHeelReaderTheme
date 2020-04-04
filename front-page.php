@@ -10,13 +10,13 @@ if (!is_ajax() && array_key_exists('thr', $_COOKIE)) {
     	thr_setcookie(1);
         $home = home_url();
         $url = $value['lastURL'];
-        $log->info("home=$home");
-        $log->info("url=$url");
+        $log->logInfo("home=$home");
+        $log->logInfo("url=$url");
         if (strpos($url, $home) === 0) {
             $url = substr($url, strlen($home));
-            $log->info("relative=$url");
+            $log->logInfo("relative=$url");
             if ($url != '/') {
-                $log->info('ios restart redirect');
+                $log->logInfo('ios restart redirect');
                 header('Location: ' . $url);
                 die();
             }
@@ -48,10 +48,18 @@ thr_header('home-page'); ?> <!-- front-page.php -->
 $view = array(
 	'wellicon' => '<img src="/theme/images/well.png" class="tinyicon" title="old well icon" alt=" "/>',
 	'gearicon' => '<img src="/theme/images/settings.png" class="tinyicon" title="gear icon" alt=" "/>',
-	'Flickr' => '<a href="http://flickr.com">Flickr</a>',
+	'Flickr' => '<a href="https://flickr.com">Flickr</a>',
 	'locales' => $Templates['locales'],
 	'content' => $content,
 	'announcements' => $announcements
 );
 echo template_render('frontPage', $view);
+// signal shared reader that the user had logged in
+if (is_user_logged_in()) {
+?>
+<script>
+  if (window.parent) window.parent.postMessage('shared', '*');
+</script>
+<?php
+}
 thr_footer(); ?>

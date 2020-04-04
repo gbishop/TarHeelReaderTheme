@@ -4,6 +4,7 @@
     { "label": "Español", "value":"es", "templates":"/theme/Templates.es.json"},
     { "label": "Français", "value":"fr", "templates":"/theme/Templates.fr.json"},
     { "label": "Italiano", "value":"it", "templates":"/theme/Templates.it.json"},
+    { "label": "norsk", "value":"no", "templates":"/theme/Templates.no.json"},
     { "label": "Türkçe", "value":"tr", "templates":"/theme/Templates.tr.json"},
     { "label": "Português", "value":"pt", "templates":"/theme/Templates.pt.json"},
     { "label": "汉语", "value":"zh", "templates":"/theme/Templates.zh.json"}
