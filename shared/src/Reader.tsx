@@ -385,19 +385,11 @@ class Responses extends React.Component<ResponsesProps, {}> {
       return (
         <div key={i} style={dstyle} className="response-container">
           <button style={nbstyle} onClick={() => store.stepResponsePage(-1)}>
-            <img
-              src={BackResponsePage}
-              style={{ width: "100%", height: "100%", objectFit: "contain" }}
-              alt=""
-            />
+            <img src={BackResponsePage} alt="" />
           </button>
           {responseGroup}
           <button style={nbstyle} onClick={() => store.stepResponsePage(1)}>
-            <img
-              src={NextResponsePage}
-              style={{ width: "100%", height: "100%", objectFit: "contain" }}
-              alt=""
-            />
+            <img src={NextResponsePage} alt="" />
           </button>
         </div>
       );

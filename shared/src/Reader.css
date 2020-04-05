@@ -52,6 +52,13 @@
   background-color: #ddd;
   text-align: center;
   padding: 0;
+  vertical-align: middle;
+}
+
+.response-container button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .response-container button.selected {
