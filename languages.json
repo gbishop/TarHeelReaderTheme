@@ -57,5 +57,11 @@
   { "label": "_(Spanish)", "tag": "Spanish", "value": "es", "speech": true },
   { "label": "_(Swedish)", "tag": "Swedish", "value": "sv", "speech": true },
   { "label": "_(Thai)", "tag": "Thai", "value": "th", "speech": false },
-  { "label": "_(Turkish)", "tag": "Turkish", "value": "tr", "speech": false }
+  { "label": "_(Turkish)", "tag": "Turkish", "value": "tr", "speech": false },
+  {
+    "label": "_(Vietnamese)",
+    "tag": "Vietnamese",
+    "value": "vi",
+    "speech": false
+  }
 ]
