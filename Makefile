@@ -11,9 +11,6 @@ production: optimized copy
 copy:
 	rsync -az --delete --exclude .git --exclude tests/robot $(SRC) $(HOST):/var/www/$(DOMAIN)/theme/
 
-manifest:
-	python2 tools/manifest.py > manifest.appcache
-
 transifex:
 	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it,zh,nb
 	mv languages/fr_FR.po languages/fr.po
@@ -32,7 +29,6 @@ Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html se
 	python tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json Templates.no.json style.css
-	rm -f manifest.appcache
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss css/_offline.scss
 	python2 tools/MakeMediaQueries.py > css/_mediaqueries.scss
