@@ -1,23 +1,25 @@
-'''Extract strings from the templates, translate them, and generate a list of messages to be spoken
+"""Extract strings from the templates, translate them, and generate a list of messages to be spoken
 
 _(Message to translate|Context of the message for the translator):FileNameForSpeech
 
-'''
+"""
 import re
 import os.path as osp
 import json
 import argparse
 import gettext
 
-parser = argparse.ArgumentParser(description="Process templates to produce locale specific json files.")
-parser.add_argument('--lang')
-parser.add_argument('--extract')
-parser.add_argument('-compact', action='store_true')
-parser.add_argument('templates', nargs='+')
-parser.add_argument('--output')
+parser = argparse.ArgumentParser(
+    description="Process templates to produce locale specific json files."
+)
+parser.add_argument("--lang")
+parser.add_argument("--extract")
+parser.add_argument("-compact", action="store_true")
+parser.add_argument("templates", nargs="+")
+parser.add_argument("--output")
 args = parser.parse_args()
 
-t = gettext.translation('thr', 'locale', [args.lang], fallback=args.lang == 'en')
+t = gettext.translation("thr", "locale", [args.lang], fallback=args.lang == "en")
 
 templates = {}
 strings = {}
@@ -27,25 +29,26 @@ speech_strings = {}
 for fname in args.templates:
     base = osp.basename(fname)
     key, ext = osp.splitext(base)
-    if ext == '.json':
+    if ext == ".json":
         try:
-            value = json.load(file(fname, 'r'))
+            value = json.load(open(fname, "r"))
         except Exception as e:
-            print 'error', fname
+            print("error", fname)
             raise e
 
     else:
-        value = file(fname, 'r').read().decode('utf-8')
+        value = open(fname, "r").read()
 
     templates[key] = value
 
 
 def translateObj(obj, keyname):
-    if type(obj) in [unicode, str]:
+    if type(obj) in [str]:
         lines = []
         for lineNumber, text in enumerate(obj.splitlines()):
+
             def translate(m):
-                s = tuple(m.group(1).split('|'))
+                s = tuple(m.group(1).split("|"))
                 locs = strings.get(s, [])
                 locs.append((keyname, lineNumber + 1))
                 strings[s] = locs
@@ -56,20 +59,21 @@ def translateObj(obj, keyname):
                         r = rr[1]
                 else:
                     r = t.gettext(s[0])
-                r = r.decode('utf-8')
                 if m.group(2):
                     phrase = m.group(2)[1:]
-                    for voice in ['c', 'f', 'm']:
-                        name = phrase + '-' + voice
+                    for voice in ["c", "f", "m"]:
+                        name = phrase + "-" + voice
                         speech_strings[name] = {
-                            'text': r,
-                            'url': '/theme/speech/%s-%s-%s.mp3' % (args.lang, phrase, voice)
+                            "text": r,
+                            "url": "/theme/speech/%s-%s-%s.mp3"
+                            % (args.lang, phrase, voice),
                         }
                 return r
-            text = re.sub(r'_\(([^\)]+)\)(:[0-9a-z]+)?', translate, text)
-            text = re.sub(r' +', ' ', text)
+
+            text = re.sub(r"_\(([^\)]+)\)(:[0-9a-z]+)?", translate, text)
+            text = re.sub(r" +", " ", text)
             lines.append(text)
-        result = ''.join(lines)
+        result = "".join(lines)
         return result
     elif type(obj) == dict:
         nobj = {}
@@ -78,24 +82,26 @@ def translateObj(obj, keyname):
         return nobj
 
     elif type(obj) == list:
-        return [translateObj(elem, keyname + '[%d]' % i)
-                for i, elem in enumerate(obj)]
+        return [translateObj(elem, keyname + "[%d]" % i) for i, elem in enumerate(obj)]
 
     else:
         return obj
 
-# now translate the templates blob
-templates = translateObj(templates, 'topLevel')
 
-templates['siteSpeech'] = speech_strings
+# now translate the templates blob
+templates = translateObj(templates, "topLevel")
+
+templates["siteSpeech"] = speech_strings
 
 if args.output:
     if args.compact:
-        file(args.output, 'w').write(json.dumps(templates, sort_keys=True, separators=(',', ':')))
+        open(args.output, "w").write(
+            json.dumps(templates, sort_keys=True, separators=(",", ":"))
+        )
     else:
-        file(args.output, 'w').write(json.dumps(templates, sort_keys=True, indent=2))
+        open(args.output, "w").write(json.dumps(templates, sort_keys=True, indent=2))
 
-poHeader = r'''
+poHeader = r"""
 msgid ""
 msgstr ""
 "Project-Id-Version: Foo\n"
@@ -107,16 +113,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-'''
+"""
 
 if args.extract:
     toSort = [(locs, string) for string, locs in strings.iteritems()]
     toSort.sort()
-    fp = file(args.extract, 'w')
-    print >>fp, poHeader
+    fp = open(args.extract, "w")
+    print(poHeader, file=fp)
     for locs, string in toSort:
-        print >>fp, '\n#', ', '.join(['%s:%d' % (fname, lineNumber) for fname, lineNumber in locs])
+        print(
+            "\n#",
+            ", ".join(["%s:%d" % (fname, lineNumber) for fname, lineNumber in locs]),
+            file=fp,
+        )
         if len(string) == 2:
-            print >>fp, 'msgctxt "%s"' % string[1].encode('utf-8')
-        print >>fp, 'msgid "%s"' % string[0].encode('utf-8')
-        print >>fp, 'msgstr ""'
+            print('msgctxt "%s"' % string[1], file=fp)
+        print('msgid "%s"' % string[0], file=fp)
+        print('msgstr ""', file=fp)
