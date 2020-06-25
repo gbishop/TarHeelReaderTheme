@@ -26,10 +26,10 @@ locale/%/LC_MESSAGES/thr.mo: languages/%.po
 	msgfmt $< --output-file $@
 
 Templates.en.json: templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
-	python2 tools/BuildTemplate.py -compact --lang=en --output=$@ $^
+	python tools/BuildTemplate.py -compact --lang=en --output=$@ $^
 
 Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
-	python2 tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json Templates.no.json style.css
 	rm -f manifest.appcache
