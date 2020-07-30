@@ -1,17 +1,9 @@
 <!DOCTYPE html>
-<?php
-    $manifest = 'manifest="/theme/manifest.appcache"';
-    //$manifest = '';
-    $classic = "";
-    if (THR('classic')) {
-        $classic = " classic";
-    }
-?>
 <!--[if lt IE 7 ]> <html class="ie ie6 ie6-7 no-js unsupported" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ie7 ie6-7 no-js unsupported" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8 no-js<?php echo $classic;?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ie9 no-js<?php echo $classic;?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if gt IE 9]><!--><html <?php echo $manifest;?> class="no-js<?php echo $classic;?>" <?php language_attributes(); ?>><!--<![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" <?php language_attributes(); ?>> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" <?php language_attributes(); ?>> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 
 <head>
@@ -34,20 +26,18 @@
         }
     ?>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.min.css">
-    <?php if (!THR('classic')) : ?>
-        <![if gt IE 7]>
-        <script src="/theme/js/modernizr.custom.js"></script>
-        <script src="/theme/js/json2.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script>
-            var require = { waitSeconds: 200 };
-            if (!window.console) window.console = {};
-            if (!window.console.log) window.console.log = function () { };
-        </script>
-        <script data-main="/theme/js/main" src="/theme/js/require.min.js"></script>
-        <![endif]>
-    <?php endif ?>
+    <![if gt IE 7]>
+    <script src="/theme/js/modernizr.custom.js"></script>
+    <script src="/theme/js/json2.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script>
+        var require = { waitSeconds: 200 };
+        if (!window.console) window.console = {};
+        if (!window.console.log) window.console.log = function () { };
+    </script>
+    <script data-main="/theme/js/main" src="/theme/js/require.min.js"></script>
+    <![endif]>
     <?php wp_head(); ?>
 
     <script>
