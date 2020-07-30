@@ -196,6 +196,8 @@ function convert_image_url($url)
                     'copy from Flickr failed',
                     $furl . ' -> ' . $path
                 );
+                $nurl = '/cache/images/lost.jpg';
+                $path = $root . $nurl;
             }
         }
     } elseif (
@@ -905,37 +907,33 @@ add_filter('login_head', 'my_custom_login_logo');
 add_action('register_form', 'my_register_form');
 function my_register_form()
 {
-    ?>
+?>
     <p>
         <label for="access_code">Registration Code<br />
-            <input type="text" name="access_code" id="access_code" class="input" size="25"
-                   value="<?php if (isset($_POST['access_code'])) {
-                       echo $_POST['access_code'];
-                   } ?>"/>
+            <input type="text" name="access_code" id="access_code" class="input" size="25" value="<?php if (isset($_POST['access_code'])) {
+                                                                                                        echo $_POST['access_code'];
+                                                                                                    } ?>" />
         </label>
     </p>
     <p>
         <label for="first_name">First Name<br />
-            <input type="text" name="first_name" id="first_name" class="input" size="25"
-                   value="<?php if (isset($_POST['first_name'])) {
-                       echo $_POST['first_name'];
-                   } ?>"/>
+            <input type="text" name="first_name" id="first_name" class="input" size="25" value="<?php if (isset($_POST['first_name'])) {
+                                                                                                    echo $_POST['first_name'];
+                                                                                                } ?>" />
         </label>
     </p>
     <p>
         <label for="last_name">Last Name<br />
-            <input type="text" name="last_name" id="last_name" class="input" size="25"
-                   value="<?php if (isset($_POST['last_name'])) {
-                       echo $_POST['last_name'];
-                   } ?>"/>
+            <input type="text" name="last_name" id="last_name" class="input" size="25" value="<?php if (isset($_POST['last_name'])) {
+                                                                                                    echo $_POST['last_name'];
+                                                                                                } ?>" />
         </label>
     </p>
     <p>
         <label for="about">About Yourself<br />
-        <textarea name="about" id="about" rows="5" cols="30"
-            ><?php if (isset($_POST['about'])) {
-                echo $_POST['about'];
-            } ?></textarea>
+            <textarea name="about" id="about" rows="5" cols="30"><?php if (isset($_POST['about'])) {
+                                                                        echo $_POST['about'];
+                                                                    } ?></textarea>
         </label>
     </p>
     <p>
@@ -943,11 +941,11 @@ function my_register_form()
             I understand that Tar Heel Reader is a copyright-free environment.
             I agree to seek permission from copyright holders before posting any copy written
             materials to the site.<br />
-            <input name="license" value="1" type="checkbox"/> I agree.
+            <input name="license" value="1" type="checkbox" /> I agree.
         </label>
     </p>
 
-    <?php
+<?php
 }
 
 // Validate the access code
