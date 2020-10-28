@@ -45,7 +45,7 @@ optimized: build
 	make versioned
 
 versioned:
-	cd ../Theme-build; python2 ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
+	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
 siteSpeech: build
 	python2 tools/makeSiteSpeech.py Templates.*.json
