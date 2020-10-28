@@ -48,7 +48,7 @@ versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
 siteSpeech: build
-	python2 tools/makeSiteSpeech.py Templates.*.json
+	python tools/makeSiteSpeech.py Templates.*.json
 	# if the speech file is too short, the flash player loops, need a better fix than this
 	lame --quiet --preset phon+ speech/en-1star-c.mp3 speech/foo.mp3
 	mv speech/foo.mp3 speech/en-1star-c.mp3
