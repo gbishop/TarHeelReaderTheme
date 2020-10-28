@@ -31,11 +31,11 @@ Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html se
 build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json Templates.no.json style.css
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss css/_offline.scss
-	python2 tools/MakeMediaQueries.py > css/_mediaqueries.scss
-	sass --style=compressed style.scss style.css
+	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
+	sassc --style=compressed style.scss style.css
 
 translate:
-	python2 tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 optimized: build
 	rm -rf ../Theme-build/*
