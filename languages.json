@@ -21,6 +21,7 @@
   { "label": "_(Finnish)", "tag": "Finnish", "value": "fi", "speech": false },
   { "label": "_(French)", "tag": "French", "value": "fr", "speech": true },
   { "label": "_(Galician)", "tag": "Galician", "value": "gl", "speech": false },
+  { "label": "_(Georgian)", "tag": "Georgian", "value": "ka", "speech": false },
   { "label": "_(German)", "tag": "German", "value": "de", "speech": true },
   { "label": "_(Greek)", "tag": "Greek", "value": "el", "speech": false },
   { "label": "_(Hebrew)", "tag": "Hebrew", "value": "he", "speech": false },

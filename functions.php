@@ -1103,4 +1103,13 @@ function shared_role($current_user)
     }
     return $role;
 }
+
+// they have added a "page" parameter that breaks my search
+// kill it here
+function remove_page_paramter($request)
+{
+    unset($request['page']);
+    return $request;
+}
+add_filter('request', 'remove_page_paramter');
 ?>
