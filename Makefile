@@ -1,11 +1,11 @@
-HOST=gbserver.cs.unc.edu
-
 dev: DOMAIN=dev.tarheelreader.org
 dev: SRC=.
+dev: HOST=gbserver-vm.cs.unc.edu
 dev: build copy
 
 production: DOMAIN=tarheelreader.org
 production: SRC=../Theme-build/
+production: HOST=gbserver.cs.unc.edu
 production: optimized copy
 
 copy:
