@@ -54,7 +54,7 @@
     "value": "pt",
     "speech": true
   },
-  { "label": "_(Sanskrit)", "tag": "Sanskrit", "value": "sa", "speech": true },
+  { "label": "_(Sanskrit)", "tag": "Sanskrit", "value": "sa", "speech": false },
   { "label": "_(Spanish)", "tag": "Spanish", "value": "es", "speech": true },
   { "label": "_(Swedish)", "tag": "Swedish", "value": "sv", "speech": true },
   { "label": "_(Thai)", "tag": "Thai", "value": "th", "speech": false },
@@ -64,5 +64,6 @@
     "tag": "Vietnamese",
     "value": "vi",
     "speech": false
-  }
+  },
+  { "label": "_(Zulu)", "tag": "Zulu", "value": "zul", "speech": false }
 ]
