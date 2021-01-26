@@ -559,7 +559,9 @@ function updateSpeech($book, $startPage = 0, $endPage = 0)
                         )
                     );
                     $ctx = stream_context_create($params);
-                    $mp3 = fopen(WP_SITEURL . '/synth/', 'rb', false, $ctx);
+                    // it gets hung going through nginx so go direct
+                    // $mp3 = fopen(WP_SITEURL . '/synth/', 'rb', false, $ctx);
+                    $mp3 = fopen('http://localhost:8888/synth/', 'rb', false, $ctx);
                     // save it
                     $fname = "$path/$i-" . substr($voice, 0, 1) . ".mp3";
                     file_put_contents($fname, $mp3);
