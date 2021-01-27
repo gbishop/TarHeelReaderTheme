@@ -57,7 +57,7 @@ versioned:
 	cd ../Theme-build; python2.7 ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
 release: optimized
-	cd ../Theme-build; tar czf /home/gb/Sync/gbservers/roles/wordpress/files/thsr-theme.bz2 --exclude=.git --exclude=test .
+	cd ../Theme-build; tar czf /home/gb/servers/ansible/roles/wordpress/files/thsr-theme.bz2 --exclude=.git --exclude=test .
 
 symbols:
 	rsync ../../symbols.dynavox/* gbserver:/var/www/shared.tarheelreader.org/shared/symbols
