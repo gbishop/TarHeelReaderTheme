@@ -15,7 +15,7 @@ copyshared:
 	rsync -az --exclude .git shared/build/ $(HOST):/var/www/$(DOMAIN)/theme/shared/
 
 manifest:
-	python2.7 tools/manifest.py > manifest.appcache
+	python tools/manifest.py > manifest.appcache
 
 transifex:
 	tx pull -f -l es_MX,fr_FR,de,pt_PT,tr,it,zh,nb
@@ -29,21 +29,21 @@ locale/%/LC_MESSAGES/thr.mo: languages/%.po
 	msgfmt $< --output-file $@
 
 Templates.en.json: templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
-	python2.7 tools/BuildTemplate.py -compact --lang=en --output=$@ $^
+	python tools/BuildTemplate.py -compact --lang=en --output=$@ $^
 
 Templates.%.json: languages/%.po locale/%/LC_MESSAGES/thr.mo templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
-	python2.7 tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py -compact --lang=$* --output=$@ templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 build: Templates.en.json Templates.de.json Templates.fr.json Templates.tr.json Templates.es.json Templates.it.json Templates.pt.json Templates.zh.json Templates.no.json style.css
 	rm -f manifest.appcache
 	cd shared; build-if-changed
 
 style.css: tools/MakeMediaQueries.py style.scss css/_allmediaqueries.scss css/_classes.scss css/_collections.scss css/_fileuploader.scss css/_ie.scss css/_image-gallery.scss css/_map-page.scss css/_mixins.scss css/_reset.scss css/_writebooks.scss css/_yourbooks.scss css/_offline.scss
-	python2.7 tools/MakeMediaQueries.py > css/_mediaqueries.scss
-	sass --style=compressed style.scss style.css
+	python tools/MakeMediaQueries.py > css/_mediaqueries.scss
+	sassc --style=compressed style.scss style.css
 
 translate:
-	python2.7 tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
+	python tools/BuildTemplate.py --lang=en --extract=languages/thr.pot templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 
 optimized: build
 	rm -rf ../Theme-build/*
@@ -54,7 +54,7 @@ optimized: build
 	cp -a shared/build/ ../Theme-build/shared
 
 versioned:
-	cd ../Theme-build; python2.7 ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
+	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
 
 release: optimized
 	cd ../Theme-build; tar czf /home/gb/servers/ansible/roles/wordpress/files/thsr-theme.bz2 --exclude=.git --exclude=test .
@@ -63,7 +63,7 @@ symbols:
 	rsync ../../symbols.dynavox/* gbserver:/var/www/shared.tarheelreader.org/shared/symbols
 
 siteSpeech: build
-	python2.7 tools/makeSiteSpeech.py Templates.*.json
+	python tools/makeSiteSpeech.py Templates.*.json
 	# if the speech file is too short, the flash player loops, need a better fix than this
 	lame --quiet --preset phon+ speech/en-1star-c.mp3 speech/foo.mp3
 	mv speech/foo.mp3 speech/en-1star-c.mp3
