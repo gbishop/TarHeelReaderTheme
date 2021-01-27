@@ -1113,5 +1113,5 @@ function remove_page_paramter($request)
     unset($request['page']);
     return $request;
 }
-add_filter('request', 'remove_page_paramter');
+// add_filter('request', 'remove_page_paramter');
 ?>
