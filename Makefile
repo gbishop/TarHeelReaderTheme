@@ -60,7 +60,7 @@ release: optimized
 	cd ../Theme-build; tar czf /home/gb/servers/ansible/roles/wordpress/files/thsr-theme.bz2 --exclude=.git --exclude=test .
 
 symbols:
-	rsync ../../symbols.dynavox/* gbserver:/var/www/shared.tarheelreader.org/shared/symbols
+	rsync /home/gb/Sync/symbols.dynavox/* gbserver-vm:/var/www/shared.tarheelreader.org/shared/symbols
 
 siteSpeech: build
 	python tools/makeSiteSpeech.py Templates.*.json
