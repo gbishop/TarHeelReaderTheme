@@ -1,4 +1,4 @@
-HOST=gbserver.cs.unc.edu
+HOST=gbserver-vm.cs.unc.edu
 
 dev: DOMAIN=dev-shared.tarheelreader.org
 dev: SRC=.
