@@ -47,22 +47,22 @@
       value="_(Log In|link label)"
       tabindex="100"
     />
-    <input type="hidden" name="redirect_to" value="{{redirect}}" />
+    <input type="hidden" name="redirect_to" value="{{ redirect }}" />
     <input type="hidden" name="testcookie" value="1" />
   </p>
 </form>
 <p>
-  <a href="/wp-login.php?action=lostpassword" class="thr-blue-button no-ajaxy"
+  <a href="{{ wplogin }}?action=lostpassword" class="thr-blue-button no-ajaxy"
     >_(Lost Password)</a
   >
 </p>
 <p>
-  <a href="/wp-login.php?action=register" class="thr-blue-button no-ajaxy"
+  <a href="{{ wplogin }}?action=register" class="thr-blue-button no-ajaxy"
     >_(Register)</a
   >
 </p>
 {{/logged_in}} {{#logged_in}}
 <h2>_(Log out of Tar Heel Reader)</h2>
-<p>You are logged in as {{username}}.</p>
+<p>You are logged in as {{ username }}.</p>
 <p><a href="{{{logoutURL}}}" class="thr-blue-button no-ajaxy">_(Log out)</a></p>
 {{/logged_in}}
