@@ -16,7 +16,7 @@ import "./Reader.css";
 class Reader extends React.Component<{ store: Store }, {}> {
   public render() {
     const { store } = this.props;
-    return WaitToRender(store.bookP, book => {
+    return WaitToRender(store.bookP, (book) => {
       const commentHeight = 30;
       const containerHeight = store.screen.height - commentHeight;
       const sc = store.screen;
@@ -28,7 +28,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
         height: containerHeight,
         left: 0,
         top: 0,
-        align: "v"
+        align: "v",
       };
 
       const rboxes: Box[] = []; // boxes for responses
@@ -40,7 +40,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
           left: 0,
           height: cbox.height,
           width: rs,
-          align: "v"
+          align: "v",
         });
       }
       if (store.layout === "right" && rboxes.length < store.nresponses) {
@@ -50,7 +50,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
           left: sc.width - rs,
           height: cbox.height,
           width: rs,
-          align: "v"
+          align: "v",
         });
       }
       if (store.layout === "top" && rboxes.length < store.nresponses) {
@@ -61,7 +61,7 @@ class Reader extends React.Component<{ store: Store }, {}> {
           left: cbox.left,
           height: rs,
           width: cbox.width,
-          align: "h"
+          align: "h",
         });
       }
       if (store.layout === "bottom" && rboxes.length < store.nresponses) {
@@ -71,14 +71,14 @@ class Reader extends React.Component<{ store: Store }, {}> {
           left: cbox.left,
           height: rs,
           width: cbox.width,
-          align: "h"
+          align: "h",
         });
       }
 
       const containerStyle = {
         width: store.screen.width,
         height: store.screen.height - 30,
-        top: commentHeight
+        top: commentHeight,
       };
 
       function saySelectedWord() {
@@ -123,8 +123,8 @@ class Reader extends React.Component<{ store: Store }, {}> {
             max={store.nreadings}
             pattern="\d*"
             inputMode="numeric"
-            onFocus={e => e.target.select()}
-            onChange={e => {
+            onFocus={(e) => e.target.select()}
+            onChange={(e) => {
               if (
                 e.target &&
                 e.target.value &&
@@ -193,14 +193,22 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
       height,
       top,
       left,
-      fontSize
+      fontSize,
+      color: "#" + THR("textColor"),
+      backgroundColor: "#" + THR("pageColor"),
     };
+    console.log("here", pageStyle);
     if (pageno > book.pages.length) {
+      const buttonStyle = {
+        color: "#" + THR("textColor"),
+        backgroundColor: "#" + THR("pageColor"),
+      };
       return (
         <div className="book-page" style={pageStyle}>
           <h1 className="title">What would you like to do now?</h1>
           <div className="choices">
             <button
+              style={buttonStyle}
               onClick={() => {
                 updateRating(book);
                 store.setPage(1);
@@ -209,6 +217,7 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
               Read this book again
             </button>
             <button
+              style={buttonStyle}
               onClick={() => {
                 updateRating(book);
                 window.location.href = THR("findAnotherLink");
@@ -245,13 +254,13 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
     let picStyle = {};
     if (verticalScale < horizontalScale) {
       picStyle = {
-        height: maxPicHeight
+        height: maxPicHeight,
       };
     } else {
       picStyle = {
         width: maxPicWidth,
         marginTop:
-          pageno === 1 ? 0 : maxPicHeight - horizontalScale * page.height
+          pageno === 1 ? 0 : maxPicHeight - horizontalScale * page.height,
       };
     }
 
@@ -261,7 +270,7 @@ class ReaderContent extends React.Component<ReaderContentProps, {}> {
         fontSize: 2 * fontSize,
         padding: 0,
         margin: 0,
-        display: "block"
+        display: "block",
       };
       return (
         <div className="book-page" style={pageStyle}>
@@ -358,7 +367,7 @@ class Responses extends React.Component<ResponsesProps, {}> {
       words = words.slice(nchunk);
       const { pax, sax } = {
         v: { pax: "height", sax: "width" },
-        h: { pax: "width", sax: "height" }
+        h: { pax: "width", sax: "height" },
       }[box.align];
       const bstyle = {};
       bstyle[pax] = box[pax] / (nchunk + 1);
@@ -370,7 +379,7 @@ class Responses extends React.Component<ResponsesProps, {}> {
         top: box.top,
         left: box.left,
         width: box.width,
-        height: box.height
+        height: box.height,
       };
       const responseGroup = chunk.map((w, j) => (
         <ResponseButton
@@ -414,11 +423,11 @@ class ResponseButton extends React.Component<ResponseButtonProps, {}> {
     const fontSize = maxSize / 5;
     const iconSize = maxSize - fontSize - 10;
     const iStyle = {
-      width: iconSize
+      width: iconSize,
     };
     const cStyle = {
       fontSize,
-      marginTop: -fontSize / 4
+      marginTop: -fontSize / 4,
     };
     const isFocused = store.responseIndex === index;
     return (
@@ -457,11 +466,11 @@ class Controls extends React.Component<ControlsProps, {}> {
         right: "auto",
         bottom: "auto",
         marginRight: "-50%",
-        transform: "translate(-50%, -50%)"
+        transform: "translate(-50%, -50%)",
       },
       overlay: {
-        backgroundColor: "rgba(255, 255, 255, 0.0)"
-      }
+        backgroundColor: "rgba(255, 255, 255, 0.0)",
+      },
     };
 
     return (
@@ -496,8 +505,8 @@ class Controls extends React.Component<ControlsProps, {}> {
                 min={1}
                 max={store.nreadings}
                 pattern="\d*"
-                onFocus={e => e.target.select()}
-                onChange={e => {
+                onFocus={(e) => e.target.select()}
+                onChange={(e) => {
                   if (
                     e.target &&
                     e.target.value &&
@@ -520,16 +529,16 @@ class Controls extends React.Component<ControlsProps, {}> {
                 min="0"
                 max="100"
                 value={store.responseSize}
-                onChange={e => store.setResponseSize(+e.target.value)}
+                onChange={(e) => store.setResponseSize(+e.target.value)}
               />
             </label>
             <label>
               Words per page:&nbsp;
               <select
                 value={store.responsesPerPage}
-                onChange={e => store.setResponsesPerPage(+e.target.value)}
+                onChange={(e) => store.setResponsesPerPage(+e.target.value)}
               >
-                {[4, 6, 9, 12, 18].map(n => (
+                {[4, 6, 9, 12, 18].map((n) => (
                   <option value={n} key={n}>
                     {n}
                   </option>
@@ -546,13 +555,13 @@ class Controls extends React.Component<ControlsProps, {}> {
             </label>
             <h2>Words</h2>
             <div id="responseWords">
-              {allResponses.map(w => (
+              {allResponses.map((w) => (
                 <label key={w}>
                   <input
                     type="checkbox"
                     name={w}
                     checked={!store.responsesExcluded.get(w)}
-                    onChange={event =>
+                    onChange={(event) =>
                       store.setExcluded(
                         event.target.name,
                         !event.target.checked
@@ -564,7 +573,7 @@ class Controls extends React.Component<ControlsProps, {}> {
               ))}
               <h2>Comments</h2>
               <ul>
-                {book.cids.map(c => (
+                {book.cids.map((c) => (
                   <li key={c.cid}>
                     {c.owner}
                     {(c.owner === store.db.login ||
@@ -644,9 +653,9 @@ class Layout extends React.Component<{ store: Store }, {}> {
     return (
       <select
         value={store.layout}
-        onChange={e => store.setLayout(e.target.value)}
+        onChange={(e) => store.setLayout(e.target.value)}
       >
-        {sides.map(side => (
+        {sides.map((side) => (
           <option key={side} value={side}>
             {capitalize(side)}
           </option>
