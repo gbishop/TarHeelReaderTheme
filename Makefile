@@ -5,7 +5,7 @@ dev: build copy
 
 production: DOMAIN=tarheelreader.org
 production: SRC=../Theme-build/
-production: HOST=gbserver.cs.unc.edu
+production: HOST=gbserver-vm.cs.unc.edu
 production: optimized copy
 
 copy:
@@ -46,6 +46,10 @@ optimized: build
 
 versioned:
 	cd ../Theme-build; python ../Theme/tools/EditFileVersions.py --used used.txt *.php js/main.js style.css Templates*.json
+
+release:
+	make optimized
+	cd ../Theme-build; tar czf /home/gb/servers/ansible/roles/wordpress/files/thr-theme.bz2 --exclude=.git --exclude=test .
 
 siteSpeech: build
 	python tools/makeSiteSpeech.py Templates.*.json

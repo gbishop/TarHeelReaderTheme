@@ -9,7 +9,7 @@ Display the login form
 $view = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = wp_signon();
-    if ( is_wp_error($user) ) {
+    if (is_wp_error($user)) {
         $view['failed'] = 1;
     } else {
         $goto = getParam('redirect_to', '/', '/^\/([-a-z]+\/)?$/', 'post');
@@ -28,7 +28,8 @@ if (getParam('shared', 0, '/1/') == 1) {
         $login = $current_user->user_login;
         $role = shared_role($current_user);
         $hash = hash('sha256', $login . $role . AUTH_KEY);
-        $resp = array('login' => $login,
+        $resp = array(
+            'login' => $login,
             'role' => $role,
             'hash' => $hash
         );
@@ -50,7 +51,8 @@ if (getParam('shared', 0, '/2/') == 2) {
     $check = hash('sha256', $login . $role . AUTH_KEY);
     $user = get_user_by('login', $login);
     $current_role = $user && shared_role($user);
-    $resp = array('login' => $login,
+    $resp = array(
+        'login' => $login,
         'role' => $role,
         'hash' => $hash,
         'ok' => $check == $hash && $role == $current_role
@@ -68,6 +70,7 @@ $current_user = wp_get_current_user();
 $view['username'] = $current_user->user_login;
 $view['logged_in'] = is_user_logged_in();
 $view['admin'] = is_admin();
+$view['wplogin'] = wp_login_url();
 $view['logoutURL'] = '/login/?out=1';
 $goto = getParam('goto', '/', '/^[-a-z]+$/');
 if ($goto != '/') {

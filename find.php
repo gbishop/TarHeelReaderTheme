@@ -25,7 +25,8 @@ if ($query) {
     foreach($words[0] as $word) {
         if (strlen($word) < 3) {
             $esc = esc_sql($word);
-            $where[] = "s.content REGEXP '[[:<:]]" . $esc . "[[:>:]]'";
+            // $where[] = "s.content REGEXP '[[:<:]]" . $esc . "[[:>:]]'";
+            $where[] = "s.content REGEXP '\\\\b" . $esc . "\\\\b'";
         } else {
             $terms[] = '+' . $word;
         }
