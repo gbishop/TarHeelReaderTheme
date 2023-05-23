@@ -110,7 +110,6 @@ define(["route",
     }
     renderUrl(url, context).then(function(title) {
       document.title = title;
-      // ga('send', 'pageview', { page: url.replace(rootUrl, '/'), title: title });
       gtag('event', 'page_view', {
         page_title: title,
         page_location: url.replace(rootUrl, '/')

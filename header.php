@@ -40,22 +40,21 @@
     <![endif]>
     <?php wp_head(); ?>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9GJ25EYK0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R9GJ25EYK0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-R9GJ25EYK0');
-</script>
-
+      gtag('config', 'G-R9GJ25EYK0');
+    </script>
     <script>
         function logMessage(msg) {
             console.log('logMessage', msg);
         }
         function logEvent(category, action, label, value) {
-            ga('send', 'event', category, action, label, value);
+            // ga('send', 'event', category, action, label, value);
             console.log('logEvent', category, action, label, value);
         }
     </script>
