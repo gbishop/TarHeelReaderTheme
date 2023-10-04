@@ -20,7 +20,7 @@ transifex:
 
 locale/%/LC_MESSAGES/thr.mo: languages/%.po
 	mkdir -p $(dir $@)
-	msgfmt $< --output-file $@
+	rmsgfmt $< -o $@
 
 Templates.en.json: templates/*.html searchForm.json readingForm.json categories.json languages.json ratings.json locales.json
 	python tools/BuildTemplate.py -compact --lang=en --output=$@ $^
