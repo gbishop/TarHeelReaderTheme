@@ -40,6 +40,12 @@
   },
   { "label": "_(Italian)", "tag": "Italian", "value": "it", "speech": true },
   { "label": "_(Japanese)", "tag": "Japanese", "value": "ja", "speech": false },
+  {
+    "label": "_(K’iche’ Maya)",
+    "tag": "Kiche",
+    "value": "quc",
+    "speech": false
+  },
   { "label": "_(Latin)", "tag": "Latin", "value": "la", "speech": false },
   { "label": "_(Malay)", "tag": "Malay", "value": "mys", "speech": false },
   {
