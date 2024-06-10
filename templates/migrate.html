@@ -1,0 +1,52 @@
+<h2>_(Log in to migrate to Monarch)</h2>
+{{#failed}}
+<p class="message">_(Login Failed)</p>
+{{/failed}}
+<form class="loginForm" action="/migrate/" method="post">
+  <p>
+    <label
+      >_(Username)<br />
+      <input
+        class="thr-input"
+        type="text"
+        name="log"
+        class="input"
+        value=""
+        size="20"
+        tabindex="10"
+      />
+    </label>
+  </p>
+  <p>
+    <label
+      >_(Password)<br />
+      <input
+        class="thr-input"
+        type="password"
+        name="pwd"
+        class="input"
+        value=""
+        size="20"
+        tabindex="20"
+      />
+    </label>
+  </p>
+  <p class="submit">
+    <input
+      class="thr-blue-button"
+      type="submit"
+      name="wp-submit"
+      class="button-primary"
+      value="_(Log In|link label)"
+      tabindex="100"
+    />
+    <input type="hidden" name="redirect_uri" value="{{ redirect }}" />
+    <input type="hidden" name="migrate_token" value="{{ migrate_token }}" />
+    <input type="hidden" name="testcookie" value="1" />
+  </p>
+</form>
+<p>
+  <a href="{{ wplogin }}?action=lostpassword" class="thr-blue-button no-ajaxy"
+    >_(Lost Password)</a
+  >
+</p>
