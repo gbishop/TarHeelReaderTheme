@@ -8,12 +8,27 @@ Display the migration form
 <?php
 global $log;
 
+function endsWith($haystack, $needle) {
+    return substr_compare($haystack, $needle, -strlen($needle)) === 0;
+}
+
 $view = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $log->logDebug("post");
     $user = wp_signon();
     $user_id = $user->ID;
     $goto = getParam('redirect_uri', '', '', 'post');
+    $goto_host = parse_url($goto, PHP_URL_HOST);
+    if (!$goto_host || !(
+       # qabw.net, buildingwings.net, buildingwings.com, monarchreader.com, monarchwriter.com
+       endsWith($goto_host, "qabw.net") ||
+       endsWith($goto_host, "buildingwings.net") ||
+       endsWith($goto_host, "monarchreader.com") ||
+       endsWith($goto_host, "monarchwriter.com")
+    )) {
+        header("HTTP/1.0 403 invalid redirect_uri");
+        die();
+    }
     $migrate_token = getParam('migrate_token', '', '', 'post');
     $log->logDebug("goto=$goto");
     $log->logDebug("migrate=$migrate_token");
@@ -37,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $exchange = openssl_encrypt($user_id, 'aes-256-cbc', $key, 0, $iv);
             $log->logDebug("redirecting exchange=$exchange");
             wp_redirect(add_query_arg(array(
-              'migrate_token' => $migrate_token,
-              'exchange' => $exchange,
+              'migrate_token' => urlencode($migrate_token),
+              'exchange' => urlencode($exchange),
             ), $goto));
             die();
         }
