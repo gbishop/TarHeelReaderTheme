@@ -21,9 +21,6 @@
         );
         echo template_render('styleColor', $view);
 
-        if (THR('debug')) {
-            echo '    <script src="http://152.2.129.207:8008/target/target-script-min.js#anonymous"></script>';
-        }
     ?>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.min.css">
     <![if gt IE 7]>
