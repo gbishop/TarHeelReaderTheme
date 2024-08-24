@@ -21,7 +21,7 @@ $token = getParam('token', '');
 
 /* validate the token here */
 
-if($userid && $token) {
+if($userid && $token == MONARCH_TOKEN) {
     // list drafts
     $BookCat = get_cat_id('Books');
     $my_drafts = query_posts("cat=$BookCat&author=$userid&orderby=title&posts_per_page=-1&post_status=draft");
